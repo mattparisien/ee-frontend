@@ -1,0 +1,9 @@
+$bg: #000; // my background color
+
+@function text-clr($color) {
+  @if (lightness($color) > 50) {
+    @return $dark;
+  } @else {
+    @return $light;
+  }
+}

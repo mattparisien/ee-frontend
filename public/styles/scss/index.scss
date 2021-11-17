@@ -1,0 +1,24 @@
+@import "config";
+@import "vars";
+@import "utils";
+@import "functions";
+@import "header";
+@import "components";
+@import "wraps";
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	font-family: "Haas";
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: none;
+	
+}

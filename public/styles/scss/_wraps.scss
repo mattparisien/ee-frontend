@@ -1,0 +1,9 @@
+.o-wrapper {
+  padding: 0 4em;
+}
+
+@media screen and (min-width: 1400px) {
+  .o-wrapper {
+    padding: 0 15rem;
+  }
+}

@@ -1,0 +1,56 @@
+.-flex {
+  display: flex;
+
+  &-center {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.-pg-md {
+	font-size: 3.2rem;
+	line-height: 3.4rem;
+}
+
+.-bg-dark {
+	background-color: $dark;
+}
+
+.-bg-light {
+	background-color: $light;
+}
+
+.-big {
+	font-size: 4rem;
+	letter-spacing: 0.1rem;
+	line-height: 9rem;
+}
+
+.-xl {
+	font-size: 5.4rem;
+	line-height: 5rem !important;
+}
+
+.-pd-md {
+	padding: 6rem;
+}
+
+.fade-up-rows {
+	.line-wrapper {
+		overflow: hidden;
+
+		.line {
+			transform: translateY(100%);
+		}
+	}
+}
+
+.-fixed {
+	position: fixed;
+	top: 0;
+	left:  0;
+}
+
+.is-hidden {
+	transform: translateY(-100%);
+}
