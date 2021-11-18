@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut } from "../animations";
+import { TextLogo } from "./Svg";
 
 export default function Header(props) {
 	$(() => {
@@ -29,10 +30,9 @@ export default function Header(props) {
 
 	return (
 		<header>
-			<button className='header-burger' type='button' onClick={props.onClick}>
-				<span class='top'></span>
-				<span class='bottom'></span>
-			</button>
+			<div className="logo-wrapper">
+					<TextLogo />
+			</div>
 			<nav>
 				<ul>
 					<li>
@@ -49,6 +49,10 @@ export default function Header(props) {
 					</li>
 				</ul>
 			</nav>
+			<button className='header-burger' type='button' onClick={props.onClick}>
+				<span class='top'></span>
+				<span class='bottom'></span>
+			</button>
 			<div className='bg-dynamic -bg-dark'></div>
 		</header>
 	);

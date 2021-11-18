@@ -7,3 +7,8 @@ $bg: #000; // my background color
     @return $light;
   }
 }
+
+@mixin ls($spacing) {
+  letter-spacing: $spacing;
+  margin-right: -$spacing;
+}

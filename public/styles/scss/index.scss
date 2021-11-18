@@ -5,6 +5,7 @@
 @import "header";
 @import "components";
 @import "wraps";
+@import "specific";
 
 * {
 	box-sizing: border-box;
@@ -15,7 +16,7 @@
 html {
 	height: 100%;
 	width: 100%;
-	font-family: "Haas";
+	font-family: "Kobe";
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

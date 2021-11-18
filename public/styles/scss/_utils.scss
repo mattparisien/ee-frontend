@@ -5,6 +5,22 @@
     align-items: center;
     justify-content: center;
   }
+
+	&-col {
+		flex-direction: column;
+	}
+
+	&-bet {
+		justify-content: space-between;
+	}
+}
+
+.-align-end {
+	align-items: flex-end;
+}
+
+.-just-end {
+	justify-content: flex-end;
 }
 
 .-pg-md {
@@ -20,6 +36,18 @@
 	background-color: $light;
 }
 
+.-bg-yellow {
+	background-color: $yellow;
+}
+
+.-bg-blue {
+	background-color: $blue;
+}
+
+.-bg-red {
+	background-color: $red;
+}
+
 .-big {
 	font-size: 4rem;
 	letter-spacing: 0.1rem;
@@ -27,12 +55,29 @@
 }
 
 .-xl {
-	font-size: 5.4rem;
-	line-height: 5rem !important;
+	font-size: 5.9rem;
+	line-height: 6rem !important;
+	letter-spacing: -0.2rem;
+}
+
+.-indent {
+	text-indent: 4em;
+}
+
+.-txt-dark {
+	color: $dark;
+}
+
+.-txt-light {
+	color: $light;
+}
+
+.-pd-sm {
+	padding: 1rem;
 }
 
 .-pd-md {
-	padding: 6rem;
+	padding: 4rem;
 }
 
 .fade-up-rows {
@@ -48,9 +93,27 @@
 .-fixed {
 	position: fixed;
 	top: 0;
+	left: 0;
+}
+
+.-fixed-left {
+	position: fixed;
+	top: 0;
 	left:  0;
+}
+
+.-fixed-right {
+	position: fixed;
+	top: 0;
+	right: 0;
 }
 
 .is-hidden {
 	transform: translateY(-100%);
+}
+
+.-absolute {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
