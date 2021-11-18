@@ -1,37 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import $ from "jquery";
-import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut } from "../animations";
+import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut, animateHeaderOut, animateHeaderIn } from "../animations";
 import { TextLogo } from "./Svg";
 
 export default function Header(props) {
-	$(() => {
-		function checkPosition() {
-
-      //Initial load check
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        animateTopBarIn();
-        console.log("hi");
-      } else {
-        animateTopBarOut();
-      }
-
-      //Check on resize
-			$(window).on("resize", function () {
-				if (window.matchMedia("(max-width: 767px)").matches) {
-					animateTopBarIn();
-					console.log("hi");
-				} else {
-					animateTopBarOut();
-				}
-			});
+	const handleBurgerHover = function (e) {
+		for (let patty of e.target.children) {
+			patty.style.transition = "300ms ease";
 		}
-		checkPosition();
-	});
+	};
+	const handleBurgerMouseLeave = function (e) {
+		for (let patty of e.target.children) {
+			setTimeout(() => {
+				patty.style.transition = "none";
+			}, 300);
+		}
+	};
+
+	const [scrollDirection, setScrollDirection] = useState("");
+
+	useEffect(() => {
+		let scrollPos = 0;
+		$(window).on("scroll", function (e) {
+			if ($(window).scrollTop() > $(".hero-section").height() * 2) {
+				if (document.body.getBoundingClientRect().top > scrollPos) {
+					if (!$("header").hasClass("header-hidden")) {
+						setScrollDirection("up");
+						animateHeaderIn();
+					}
+				} else {
+					if (!$("header").hasClass("header-showing")) setScrollDirection("down");
+					animateHeaderOut();
+				}
+				scrollPos = document.body.getBoundingClientRect().top;
+			}
+		});
+	}, []);
 
 	return (
-		<header>
-			<div className="logo-wrapper">
+		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"}>
+			<div className='logo-wrapper -absolute-center'>
+				<a href='/'>
 					<TextLogo />
+				</a>
 			</div>
 			<nav>
 				<ul>
@@ -49,11 +60,16 @@ export default function Header(props) {
 					</li>
 				</ul>
 			</nav>
-			<button className='header-burger' type='button' onClick={props.onClick}>
+			<button
+				className='header-burger'
+				type='button'
+				onClick={props.onClick}
+				onMouseEnter={e => handleBurgerHover(e)}
+				onMouseLeave={e => handleBurgerMouseLeave(e)}
+			>
 				<span class='top'></span>
 				<span class='bottom'></span>
 			</button>
-			<div className='bg-dynamic -bg-dark'></div>
 		</header>
 	);
 }

@@ -36,38 +36,7 @@ function App() {
 }
 
 $(() => {
-	// gsap.to($("#home-clip"), {
-	// 	scrollTrigger: {
-	// 		trigger: $(".hero-section"),
-	// 		start: "top top",
-	// 		pin: true,
-	// 		end: "+=1000",
-	// 		scrub: 2,
-	// 	},
-	// 	scale: "0.1",
-	// 	duration: 2,
-	// 	transformOrigin: "50% 50%",
-	// 	ease: "linear",
-	// });
-	// let mySplitText = new SplitText(".fade-up-rows", {
-	// 	type: "lines",
-	// 	linesClass: "line",
-	// });
-	// $(window).on("resize", function () {
-	// 	mySplitText.revert();
-	// 	mySplitText = new SplitText(".fade-up-rows", {
-	// 		type: "lines",
-	// 		linesClass: "line",
-	// 	});
-	// });
-	// $(".fade-up-rows .line").wrap('<div class="line-wrapper">');
-	// gsap.to(mySplitText.lines, {
-	// 	y: "0",
-	// 	opacity: 1,
-	// 	duration: 2,
-	// 	ease: "expo.out",
-	// 	stagger: 0.2,
-	// });
+	
 });
 
 export default App;

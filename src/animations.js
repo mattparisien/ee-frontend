@@ -65,3 +65,45 @@ export function setStickySection(end) {
 
 	return anim;
 }
+
+export function animateHeaderOut() {
+	const tl = gsap.timeline();
+	const burgerLines = $(".header-burger").find("span");
+	const logo = $(".logo-wrapper");
+	
+	tl.to(burgerLines, {
+		x: '100%',
+		opacity: 0,
+		stagger: 0.1,
+		duration: 0.3,
+		ease: 'linear'
+	});
+	tl.to(logo, {
+		y: '-100%',
+		opacity: 0,
+		duration: 0.3,
+		ease: 'linear',
+		onComplete: () => {
+			$("header").fadeOut(200);
+		}
+	}, 0);
+}
+
+export function animateHeaderIn() {
+	const tl = gsap.timeline();
+	const burgerLines = $(".header-burger").find("span");
+	const logo = $(".logo-wrapper");
+	$("header").css("display", "flex");
+	tl.to(burgerLines, {
+		x: '0',
+		opacity: 1,
+		duration: 0.3,
+		ease: 'linear'
+	});
+	tl.to(logo, {
+		y: '0',
+		opacity: 1,
+		duration: 0.3,
+		ease: 'linear',
+	}, 0);
+}
