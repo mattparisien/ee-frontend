@@ -64,6 +64,10 @@
 	text-indent: 4em;
 }
 
+.-txt-xs {
+	font-size: 1.8rem;
+}
+
 .-txt-dark {
 	color: $dark;
 }
@@ -112,6 +116,9 @@
 	transform: translateY(-100%);
 }
 
+
+
+
 .-absolute {
 	position: absolute;
 	top: 0;
@@ -127,4 +134,23 @@
 
 .-fill-light {
 	fill: $light;
+}
+
+.section-heading-indent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: 2em;
+	margin-left: 1em;
+	width: auto;
+	height: auto;
+	
+}
+
+.is-off {
+	display: none;
+}
+
+.is-active {
+	display: block;
 }

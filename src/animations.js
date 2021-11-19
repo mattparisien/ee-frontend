@@ -1,32 +1,42 @@
 import $ from "jquery";
 import { gsap } from "gsap";
 import CSSRulePlugin from "gsap/CSSRulePlugin";
+import { BlobTwo } from "./components/Svg";
 
-export function animateMenuIn() {
-	gsap.registerPlugin(CSSRulePlugin);
+// function animateMenuIn() {
+// 	gsap.registerPlugin(CSSRulePlugin);
 
-	const rule = CSSRulePlugin.getRule(".viewport-nav__list-item:before");
-	console.log(rule);
+// 	const rule = CSSRulePlugin.getRule(".viewport-nav__list-item:before");
+// 	console.log(rule);
 
-	const tl = gsap.timeline();
+// 	const tl = gsap.timeline();
 
-	tl.to($(".viewport-nav"), {
-		y: 0,
-		duration: 0.9,
-		ease: "expo.in",
-	});
-	tl.to(rule, {
-		scale: 0,
-	});
-}
+// 	tl.to($(".viewport-nav"), {
+// 		y: 0,
+// 		duration: 0.9,
+// 		ease: "expo.in",
+// 	});
+// 	tl.to(rule, {
+// 		scale: 0,
+// 	});
+// }
 
-export function animateMenuOut() {
-	gsap.to($(".viewport-nav"), {
-		y: "-100%",
-		duration: 0.9,
-		ease: "expo.in",
-	});
-}
+// function animateMenuOut() {
+// 	gsap.to($(".viewport-nav"), {
+// 		y: "-100%",
+// 		duration: 0.9,
+// 		ease: "expo.in",
+// 	});
+// }
+
+// export function toggleNavVisiblity() {
+// 	if ($(".viewport-nav").hasClass("is-active")) {
+// 		animateMenuIn();
+// 	}
+// 	if ($(".viewport-nav").hasClass("is-off")) {
+// 		animateMenuOut();
+// 	}
+// }
 
 export function animateTopBarIn() {
 	gsap.to($(".bg-dynamic"), {
@@ -47,7 +57,6 @@ export function animateTopBarOut() {
 }
 
 export function setStickySection(end) {
-	
 	const tl = gsap.timeline();
 	const anim = tl.to($("#blob"), {
 		scrollTrigger: {
@@ -56,12 +65,11 @@ export function setStickySection(end) {
 			pin: true,
 			pinSpacing: true,
 			end: end,
-			scrub: 1,	
+			scrub: 1,
 		},
-		transformOrigin: 'center',
-		scale: '600',
-		ease: 'linear'
-
+		transformOrigin: "center",
+		scale: "600",
+		ease: "linear",
 	});
 
 	return anim;
@@ -71,23 +79,27 @@ export function animateHeaderOut() {
 	const tl = gsap.timeline();
 	const burgerLines = $(".header-burger").find("span");
 	const logo = $(".logo-wrapper");
-	
+
 	tl.to(burgerLines, {
-		x: '100%',
+		x: "100%",
 		opacity: 0,
 		stagger: 0.1,
 		duration: 0.3,
-		ease: 'linear'
+		ease: "linear",
 	});
-	tl.to(logo, {
-		y: '-100%',
-		opacity: 0,
-		duration: 0.3,
-		ease: 'linear',
-		onComplete: () => {
-			$("header").fadeOut(200);
-		}
-	}, 0);
+	tl.to(
+		logo,
+		{
+			y: "-100%",
+			opacity: 0,
+			duration: 0.3,
+			ease: "linear",
+			onComplete: () => {
+				$("header").fadeOut(200);
+			},
+		},
+		0
+	);
 }
 
 export function animateHeaderIn() {
@@ -96,15 +108,19 @@ export function animateHeaderIn() {
 	const logo = $(".logo-wrapper");
 	$("header").css("display", "flex");
 	tl.to(burgerLines, {
-		x: '0',
+		x: "0",
 		opacity: 1,
 		duration: 0.3,
-		ease: 'linear'
+		ease: "linear",
 	});
-	tl.to(logo, {
-		y: '0',
-		opacity: 1,
-		duration: 0.3,
-		ease: 'linear',
-	}, 0);
+	tl.to(
+		logo,
+		{
+			y: "0",
+			opacity: 1,
+			duration: 0.3,
+			ease: "linear",
+		},
+		0
+	);
 }

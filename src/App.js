@@ -1,35 +1,34 @@
 import React, { useRef, useEffect, useState } from "react";
 import Header from "./components/Header";
-import Home from "./components/Home";
+import Home from "./components/Pages/Home";
 import Footer from "./components/Footer";
 import $, { contains } from "jquery";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ViewportNav from "./components/ViewportNav";
-import { animateMenuIn, animateMenuOut, setStickySection } from "./animations";
+import determineHeaderColor from "./helpers/headerColor";
+import { animateMenuIn, animateMenuOut, setStickySection, toggleNavVisiblity } from "./animations";
 
 function App() {
 	//Nav visibility state
 	const [headercolor, setHeaderColor] = useState("");
+	const [menuShow, setMenuShow] = useState(false);
 
-	const determineHeaderColor = function (section) {
-		if (section.classList.contains("-bg-red")) {
-			return "light";
-		} else if (section.classList.contains("-bg-light")) {
-			return "dark";
-		} else if (section.classList.contains("-bg-yellow")) {
-			return "dark";
-		}
-	};
+	function toggleMenuState() {
+		setMenuShow(!menuShow);
+	}
 
 	useEffect(() => {
 		$(window).on("scroll", function () {
-			const scrollTop = $(this).scrollTop();
+			if (document.querySelector(".pin-spacer").getBoundingClientRect().top <= -100) {
+				setHeaderColor("dark");
+			}
+
+			const headerHeight = $("header").height();
 			document.querySelectorAll("section").forEach(function (section) {
-				if (section.getBoundingClientRect().top <= 0) {
+				if (section.getBoundingClientRect().top <= headerHeight) {
 					const color = determineHeaderColor(section);
 					setHeaderColor(color);
-				} else {
 				}
 			});
 		});
@@ -47,7 +46,8 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Header theme={headercolor}/>
+			<ViewportNav isVisible={menuShow} />
+			<Header theme={headercolor} toggleMenu={toggleMenuState} />
 
 			<main>
 				<Home />

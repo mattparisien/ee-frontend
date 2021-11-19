@@ -28,7 +28,6 @@ a:hover {
 	width: 100%;
 	z-index: 9999;
 	background-color: white;
-	transform: translateY(-100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -118,12 +117,6 @@ a:hover {
 	}
 }
 
-@keyframes animateLines {
-	100% {
-		transform: scaleX(1);
-	}
-}
-
 section,
 footer {
 	min-height: 100vh;
@@ -142,8 +135,6 @@ footer {
 }
 
 footer {
-	
-
 	.top-paper {
 		background-color: $light;
 		img {
@@ -200,6 +191,29 @@ footer {
 			> div:not(:last-of-type) {
 				margin-right: 6rem;
 			}
+		}
+	}
+}
+
+.slider-wrapper {
+	width: 100vw;
+	height: 500px;
+	background-color: blue;
+	position: absolute;
+
+	.slider-inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 200vw;
+		height: 100%;
+
+		.slider-item {
+			margin: 0 4rem;
+			display: inline-block;
+			width: 400px;
+			height: 100%;
+			background-color: white;
 		}
 	}
 }

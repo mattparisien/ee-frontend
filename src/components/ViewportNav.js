@@ -2,8 +2,11 @@ import classNames from "classnames";
 import { ExitNav, Arrow } from "./Svg";
 
 export default function ViewportNav(props) {
+	const navClasses = classNames("viewport-nav -fixed", { "is-active": props.isVisible, "is-off": !props.isVisible });
+
+	
 	return (
-		<div className='viewport-nav -fixed'>
+		<div className={navClasses}>
 			<button className='viewport-nav__exit-btn -fixed-right' type='button' onClick={props.onClick}>
 				{ExitNav()}
 			</button>
@@ -23,7 +26,7 @@ export default function ViewportNav(props) {
 							<a href='/'>
 								Lets' Talk{" "}
 								<div className='arrow-container'>
-									<span>{<Arrow />}</span> <span>{<Arrow secondArrow/>}</span>
+									<span>{<Arrow />}</span> <span>{<Arrow secondArrow />}</span>
 								</div>
 							</a>
 						</li>

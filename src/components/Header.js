@@ -39,7 +39,7 @@ export default function Header(props) {
 	// }, []);
 
 	return (
-		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"} data-theme={props.theme ? props.theme : 'dark'}>
+		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"} data-theme={props.theme ? props.theme : 'light'}>
 			<div className='logo-wrapper -absolute-center'>
 				<a href='/'>
 					<TextLogo />
@@ -64,7 +64,7 @@ export default function Header(props) {
 			<button
 				className='header-burger'
 				type='button'
-				onClick={props.onClick}
+				onClick={props.toggleMenu}
 				onMouseEnter={e => handleBurgerHover(e)}
 				onMouseLeave={e => handleBurgerMouseLeave(e)}
 			>
