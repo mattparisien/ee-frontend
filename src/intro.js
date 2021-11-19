@@ -3,12 +3,21 @@ import gsap from "gsap";
 import CSSRulePlugin from "gsap/CSSRulePlugin";
 
 export default function introAnimation() {
+	
+
 	gsap.registerPlugin(CSSRulePlugin);
 
 	const logo = $(".logo-wrapper");
 	const letters = $("#header-logo").find("path");
 	const burgerLines = $(".header-burger").find("span");
 	const tl = gsap.timeline();
+
+	const viewportHeight = $(window).innerHeight();
+	const logoOffset = logo.offset().top;
+	const centered = (viewportHeight / 2) - logoOffset;
+
+	
+	console.log(viewportHeight)
 
 	console.log(burgerLines);
 
@@ -22,7 +31,7 @@ export default function introAnimation() {
 	tl.fromTo(
 		logo,
 		{
-			y: 500,
+			y: centered,
 		},
 		{
 			ease: "circ.inOut",

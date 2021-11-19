@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import ModalWrapper from "./components/ModalWrapper";
 import Header from "./components/Header";
 import Home from "./components/Pages/Home";
 import Footer from "./components/Footer";
@@ -13,6 +14,7 @@ function App() {
 	//Nav visibility state
 	const [headercolor, setHeaderColor] = useState("");
 	const [menuShow, setMenuShow] = useState(false);
+	const [hoverState, setHoverState] = useState(false);
 
 	function toggleMenuState() {
 		setMenuShow(!menuShow);
@@ -46,16 +48,21 @@ function App() {
 
 	return (
 		<div className='App'>
+			<ModalWrapper hoverState={hoverState} />
 			<ViewportNav isVisible={menuShow} />
-			<Header theme={headercolor} toggleMenu={toggleMenuState} />
+			<Header menuState={menuShow} theme={headercolor} toggleMenu={toggleMenuState} />
 
 			<main>
-				<Home />
+				<Home hoverState={hoverState} setHoverState={setHoverState} />
 			</main>
 
 			<Footer />
 		</div>
 	);
 }
+
+$(".slider-wrapper").hover(function () {
+	console.log("is hovering in!");
+});
 
 export default App;

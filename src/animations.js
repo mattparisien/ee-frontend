@@ -75,6 +75,25 @@ export function setStickySection(end) {
 	return anim;
 }
 
+export function animateSlider(el) {
+	const trigger = $(el).closest(".-sticky");
+	const end = $(el).width() * 2;
+	const xOffset = $(el).width();
+
+	const slideAnim = gsap.to(el, {
+		scrollTrigger: {
+			trigger: trigger,
+			pin: true,
+			pinSpacing: true,
+			start: "top top",
+			scrub: 1,
+			start: "top",
+			end: "+=1000",
+		},
+		x: -xOffset,
+	});
+}
+
 export function animateHeaderOut() {
 	const tl = gsap.timeline();
 	const burgerLines = $(".header-burger").find("span");
@@ -123,4 +142,50 @@ export function animateHeaderIn() {
 		},
 		0
 	);
+}
+
+export function followCursor(el) {
+	$(el).css("visibility", "visible");
+	$("body").on("mousemove", function (e) {
+		let left = e.clientX;
+		let top = e.clientY;
+
+		$(el).css({
+			top: top,
+			left: left,
+		});
+	});
+}
+export function unfollowCursor(el) {
+	$(el).css("visibility", "hidden");
+	$("body").off("mousemove");
+}
+
+export function animateBurgerToX() {
+	const top = $(".header-burger").find(".top");
+	const bottom = $(".header-burger").find(".bottom");
+
+	const tl = gsap.timeline();
+
+	tl.to(top, {
+		transformOrigin: 'center',
+		rotation: '30deg',
+		width: '100%',
+		duration: 0.5
+	})
+	tl.to(bottom, {
+		transformOrigin: 'center',
+		rotation: '-30deg',
+	}, 0)
+
+}
+
+export function animateXToBurger() {
+	const top = $(".header-burger").find(".top");
+	const bottom = $(".header-burger").find(".bottom");
+
+	gsap.to(top, {
+		rotation: '0deg'
+	})
+
 }

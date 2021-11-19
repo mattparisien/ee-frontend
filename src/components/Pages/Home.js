@@ -5,9 +5,15 @@ import { BlobTwo, ClipPath } from "../Svg";
 import introAnimation from "../../intro";
 import Slider from "../Slider";
 
-export default function Home() {
+export default function Home(props) {
+
+	const { hoverState, setHoverState } = props;
+
 	useEffect(() => {
-		introAnimation();
+		if ($(window).scrollTop() <= 0) {
+			introAnimation();
+		}
+		
 	}, []);
 
 	return (
@@ -29,8 +35,8 @@ export default function Home() {
 				</div>
 			</Section>
 			<Section classes='vision-section -bg-red' />
-			<Section classes='featured-work-section -bg-yellow -flex -flex-center'>
-				<Slider />
+			<Section classes='featured-work-section -bg-yellow -flex -flex-center -sticky'>
+				<Slider  hoverState={hoverState} setHoverState={setHoverState}/>
 			</Section>
 			<Section />
 			<Section />

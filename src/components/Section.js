@@ -10,9 +10,8 @@ export default function Section(props) {
 	const ref = useRef(null);
 
 	useEffect(() => {
-		setStickySection("+=1000");	
-	}, [])
-	
+		setStickySection("+=1000");
+	}, []);
 
 	return <section className={props.classes}>{props.children}</section>;
 }

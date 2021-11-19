@@ -1,26 +1,30 @@
 import React, { useState, useEffect, useRef } from "react";
 import $ from "jquery";
-import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut, animateHeaderOut, animateHeaderIn } from "../animations";
+import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut, animateHeaderOut, animateHeaderIn, animateBurgerToX, animateXToBurger} from "../animations";
 import { TextLogo } from "./Svg";
+import classNames from "classnames";
 
 export default function Header(props) {
 
-	const [scrollDirection, setScrollDirection] = useState("");
-	
-	const handleBurgerHover = function (e) {
-		for (let patty of e.target.children) {
-			patty.style.transition = "300ms ease";
-		}
-	};
-	const handleBurgerMouseLeave = function (e) {
-		for (let patty of e.target.children) {
-			setTimeout(() => {
-				patty.style.transition = "none";
-			}, 300);
-		}
-	};
+	const burgerClasses = classNames("header-burger", {"is-burger": !props.menuState})
 
-	// useEffect(() => {
+	const [scrollDirection, setScrollDirection] = useState("");
+
+	const ref = useRef(null);
+
+	useEffect(() => {
+		if (props.menuState) {
+			animateBurgerToX()
+			
+		} else {
+			animateXToBurger()
+			
+		}
+	}, [props.menuState])
+
+	
+
+
 	// 	let scrollPos = 0;
 	// 	$(window).on("scroll", function (e) {
 	// 		if ($(window).scrollTop() > $(".hero-section").height() * 2) {
@@ -62,11 +66,10 @@ export default function Header(props) {
 				</ul>
 			</nav>
 			<button
-				className='header-burger'
+				ref={ref}
+				className={burgerClasses}
 				type='button'
 				onClick={props.toggleMenu}
-				onMouseEnter={e => handleBurgerHover(e)}
-				onMouseLeave={e => handleBurgerMouseLeave(e)}
 			>
 				<span className="top"></span>
 				<span className="bottom"></span>
