@@ -76,7 +76,7 @@ export function ClipPath() {
 	);
 }
 
-export function TextLogo() {
+export function TextLogo(props) {
 	return (
 		<svg id='header-logo' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 752.01 75.68'>
 			<path

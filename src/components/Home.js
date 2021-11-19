@@ -20,8 +20,8 @@ export default function Home() {
 					</div>
 				</div>
 			</Section>
-			<Section />
-			<Section />
+			<Section classes="vision-section -bg-red"/>
+			<Section classes="featured-work-section -bg-yellow"/>
 			<Section />
 			<Section />
 			{/* <Section classes={"vision-section -bg-dark -flex -pd-sm -absolute"}></Section> */}

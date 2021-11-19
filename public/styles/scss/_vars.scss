@@ -8,3 +8,11 @@ $blue: #276dc9;
 $pd-sm: 1rem;
 
 
+:export {
+  light: $light;
+  dark: $dark;
+  yellow: $yellow;
+  red: $red;
+  blue: $blue
+}
+

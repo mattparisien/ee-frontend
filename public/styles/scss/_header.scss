@@ -23,9 +23,10 @@ header {
 		}
 	}
 
-	#header_logo {
+	#header-logo {
 		width: 100%;
 		height: 100%;
+		transition: 300ms ease;
 	}
 
 	.header-burger {
@@ -40,23 +41,19 @@ header {
 		flex-direction: column;
 		position: relative;
 		padding: 0.4rem;
-		background-color: $light;
 		margin-left: auto;
 
-
 		span {
-
 			height: 4px;
-			background-color: $dark;
+
 			z-index: 1;
-		
+
 			margin-left: auto;
 		}
 
 		.top {
 			margin-bottom: 3px;
 			width: 70%;
-			
 		}
 
 		.bottom {
@@ -109,5 +106,24 @@ header {
 		z-index: -1;
 		transform: translateY(-100%);
 	}
+}
 
+[data-theme="dark"] {
+	#header-logo {
+		fill: $light;
+	};
+
+	.header-burger span {
+		background-color: $light;
+	}
+}
+
+[data-theme="light"] {
+	#header-logo {
+		fill: $dark;
+	};
+
+	.header-burger span {
+		background-color: $dark;
+	}
 }

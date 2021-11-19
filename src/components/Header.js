@@ -4,6 +4,9 @@ import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut, anima
 import { TextLogo } from "./Svg";
 
 export default function Header(props) {
+
+	const [scrollDirection, setScrollDirection] = useState("");
+	
 	const handleBurgerHover = function (e) {
 		for (let patty of e.target.children) {
 			patty.style.transition = "300ms ease";
@@ -17,28 +20,26 @@ export default function Header(props) {
 		}
 	};
 
-	const [scrollDirection, setScrollDirection] = useState("");
-
-	useEffect(() => {
-		let scrollPos = 0;
-		$(window).on("scroll", function (e) {
-			if ($(window).scrollTop() > $(".hero-section").height() * 2) {
-				if (document.body.getBoundingClientRect().top > scrollPos) {
-					if (!$("header").hasClass("header-hidden")) {
-						setScrollDirection("up");
-						animateHeaderIn();
-					}
-				} else {
-					if (!$("header").hasClass("header-showing")) setScrollDirection("down");
-					animateHeaderOut();
-				}
-				scrollPos = document.body.getBoundingClientRect().top;
-			}
-		});
-	}, []);
+	// useEffect(() => {
+	// 	let scrollPos = 0;
+	// 	$(window).on("scroll", function (e) {
+	// 		if ($(window).scrollTop() > $(".hero-section").height() * 2) {
+	// 			if (document.body.getBoundingClientRect().top > scrollPos) {
+	// 				if (!$("header").hasClass("header-hidden")) {
+	// 					setScrollDirection("up");
+	// 					animateHeaderIn();
+	// 				}
+	// 			} else {
+	// 				if (!$("header").hasClass("header-showing")) setScrollDirection("down");
+	// 				animateHeaderOut();
+	// 			}
+	// 			scrollPos = document.body.getBoundingClientRect().top;
+	// 		}
+	// 	});
+	// }, []);
 
 	return (
-		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"}>
+		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"} data-theme={props.theme ? props.theme : 'dark'}>
 			<div className='logo-wrapper -absolute-center'>
 				<a href='/'>
 					<TextLogo />
@@ -67,8 +68,8 @@ export default function Header(props) {
 				onMouseEnter={e => handleBurgerHover(e)}
 				onMouseLeave={e => handleBurgerMouseLeave(e)}
 			>
-				<span class='top'></span>
-				<span class='bottom'></span>
+				<span className="top"></span>
+				<span className="bottom"></span>
 			</button>
 		</header>
 	);

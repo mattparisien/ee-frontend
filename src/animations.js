@@ -54,6 +54,7 @@ export function setStickySection(end) {
 			trigger: $(".hero-section"),
 			start: "top top",
 			pin: true,
+			pinSpacing: true,
 			end: end,
 			scrub: 1,	
 		},
