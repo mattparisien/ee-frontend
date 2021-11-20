@@ -1,11 +1,13 @@
 @import "config";
 @import "vars";
-@import "utils";
+
 @import "functions";
 @import "header";
 @import "components";
 @import "wraps";
+
 @import "specific";
+@import "utils";
 
 * {
 	box-sizing: border-box;
@@ -14,6 +16,7 @@
 }
 
 html {
+
 	height: 100%;
 	width: 100%;
 	font-family: "Kobe";
@@ -21,5 +24,8 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: none;
-	
+}
+
+main {
+	min-height: 100vh;
 }

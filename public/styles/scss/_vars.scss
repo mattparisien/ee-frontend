@@ -2,8 +2,19 @@ $dark: #201F1F;
 $light: rgb(249, 247, 241);
 $lightBlue: #A1CBD3;
 $lightGreen: #11A972;
-$yellow: #F0D549;
+$yellow: #f7e27c;
 $red: #d95133;
 $blue: #276dc9;
+$pd-sm: 1rem;
+$mg-sm: 1rem;
+$thick: 'Formula';
 
+
+:export {
+  light: $light;
+  dark: $dark;
+  yellow: $yellow;
+  red: $red;
+  blue: $blue
+}
 

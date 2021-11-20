@@ -1,37 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import $ from "jquery";
-import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut } from "../animations";
+import gsap from "gsap";
 import { TextLogo } from "./Svg";
 
 export default function Header(props) {
-	$(() => {
-		function checkPosition() {
+	const { menuState, toggleMenu } = props;
 
-      //Initial load check
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        animateTopBarIn();
-        console.log("hi");
-      } else {
-        animateTopBarOut();
-      }
+	const [scrollDirection, setScrollDirection] = useState("");
 
-      //Check on resize
-			$(window).on("resize", function () {
-				if (window.matchMedia("(max-width: 767px)").matches) {
-					animateTopBarIn();
-					console.log("hi");
-				} else {
-					animateTopBarOut();
-				}
-			});
-		}
-		checkPosition();
-	});
+	const ref = useRef(null);
+
 
 	return (
-		<header>
-			<div className="logo-wrapper">
+		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"} data-theme={props.theme ? props.theme : "light"}>
+			<div className='logo-wrapper -absolute-center'>
+				<a href='/'>
 					<TextLogo />
+				</a>
 			</div>
 			<nav>
 				<ul>
@@ -49,11 +34,10 @@ export default function Header(props) {
 					</li>
 				</ul>
 			</nav>
-			<button className='header-burger' type='button' onClick={props.onClick}>
-				<span class='top'></span>
-				<span class='bottom'></span>
+			<button ref={ref} className={menuState ? "header-burger is-x" : "header-burger is-burger"} type='button' onClick={() => toggleMenu(!menuState)}>
+				<span className='top' style={{backgroundColor: menuState && 'black'}}></span>
+				<span className='bottom' style={{backgroundColor: menuState && 'black'}}></span>
 			</button>
-			<div className='bg-dynamic -bg-dark'></div>
 		</header>
 	);
 }

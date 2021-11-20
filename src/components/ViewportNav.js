@@ -1,9 +1,18 @@
+import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
+import { toggleNavVisiblity } from "../animations";
 import { ExitNav, Arrow } from "./Svg";
 
 export default function ViewportNav(props) {
+	const navClasses = classNames("viewport-nav -fixed", { "is-active": props.isVisible, "is-off": !props.isVisible });
+	const ref = useRef(null);
+
+	useEffect(() => {
+		toggleNavVisiblity(ref.current, props.isVisible);
+	}, [props.isVisible]);
+
 	return (
-		<div className='viewport-nav -fixed'>
+		<div className={navClasses} ref={ref}>
 			<button className='viewport-nav__exit-btn -fixed-right' type='button' onClick={props.onClick}>
 				{ExitNav()}
 			</button>
@@ -23,7 +32,7 @@ export default function ViewportNav(props) {
 							<a href='/'>
 								Lets' Talk{" "}
 								<div className='arrow-container'>
-									<span>{<Arrow />}</span> <span>{<Arrow secondArrow/>}</span>
+									<span>{<Arrow />}</span> <span>{<Arrow secondArrow />}</span>
 								</div>
 							</a>
 						</li>

@@ -1,23 +1,31 @@
 .hero-section {
 	position: relative;
+	height: 150vh;
 
-	div {
+	#hero-heading {
+		font-size: 20rem;
+		color: $red;
+	}
+
+	> div {
 		width: 100%;
 		height: 100%;
 	}
 
 	.revealer {
-		height: 100%;
 		width: 100%;
 		clip-path: url("#home-clip");
 		object-fit: cover;
 		z-index: 999;
-		
 
 		&__inner {
-			margin-top: 5vw;
+			margin-top: 15em;
 			height: auto;
+			position: relative;
+			padding: $pd-sm;			
 		}
+
+		
 
 		p {
 			display: block;
@@ -32,12 +40,26 @@
 		z-index: 0;
 		top: 0;
 		left: 0;
+		height: 100vh;
 
+	
 		h1 {
 			font-size: 10rem;
 			text-transform: uppercase;
 			text-align: center;
-
 		}
 	}
+}
+
+.burger-is-hovered {
+	transition: 300ms;
+}
+
+#draggable-follower {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background-color: $red;
+	transform: translate(-50%, -50%);
+	z-index: 999;
 }
