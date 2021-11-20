@@ -4,6 +4,11 @@
   src: url("/Kobe1.1-Regular.woff") format("woff");
 }
 
+@font-face {
+  font-family: 'Formula';
+  src: url("/FormulaCondensed-Bold.otf");
+}
+
 @media (max-width: 699px) {
   html {
     font-size: 15px;
@@ -62,7 +67,6 @@
 
 header {
   width: 100%;
-  display: block;
   height: 100px;
   position: fixed;
   top: 0;
@@ -90,37 +94,6 @@ header #header-logo {
   width: 100%;
   height: 100%;
   transition: 300ms ease;
-}
-
-header .header-burger {
-  border-radius: 50%;
-  background-color: transparent;
-  border: 0px;
-  width: 4.8rem;
-  height: 3.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-  padding: 0.4rem;
-  margin-left: auto;
-}
-
-header .header-burger span {
-  height: 4px;
-  z-index: 1;
-  margin-left: auto;
-}
-
-header .header-burger .top {
-  margin-bottom: 3px;
-  width: 70%;
-}
-
-header .header-burger .bottom {
-  margin-top: 15px;
-  width: 100%;
 }
 
 header nav {
@@ -170,6 +143,21 @@ header .bg-dynamic {
 
 [data-theme="light"] .header-burger span {
   background-color: #201F1F;
+}
+
+.header-burger {
+  border-radius: 50%;
+  background-color: transparent;
+  border: 0px;
+  width: 4.8rem;
+  height: 2rem;
+  position: relative;
+  padding: 0.4rem;
+  margin-left: auto;
+}
+
+.header-burger span {
+  transition: 400ms ease;
 }
 
 a,
@@ -424,10 +412,83 @@ body {
   z-index: -1;
 }
 
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 @media screen and (min-width: 1400px) {
   .o-wrapper {
     padding: 0 15rem;
   }
+}
+
+.hero-section {
+  position: relative;
+  height: 150vh;
+}
+
+.hero-section #hero-heading {
+  font-size: 20rem;
+  color: #d95133;
+}
+
+.hero-section > div {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-section .revealer {
+  width: 100%;
+  clip-path: url("#home-clip");
+  object-fit: cover;
+  z-index: 999;
+}
+
+.hero-section .revealer__inner {
+  margin-top: 15em;
+  height: auto;
+  position: relative;
+  padding: 1rem;
+}
+
+.hero-section .revealer p {
+  display: block;
+}
+
+.hero-section .to-be-revealed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.hero-section .to-be-revealed h1 {
+  font-size: 10rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.burger-is-hovered {
+  transition: 300ms;
+}
+
+#draggable-follower {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #d95133;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.-thick {
+  font-family: "Formula";
 }
 
 .-flex {
@@ -484,12 +545,6 @@ body {
   font-size: 4rem;
   letter-spacing: 0.1rem;
   line-height: 9rem;
-}
-
-.-xl {
-  font-size: 5.9rem;
-  line-height: 6rem !important;
-  letter-spacing: -0.2rem;
 }
 
 .-indent {
@@ -579,12 +634,25 @@ body {
   height: auto;
 }
 
-.is-off {
-  display: none;
+.is-burger span {
+  height: 4px;
+  right: 0;
+  z-index: 1;
+  margin-left: auto;
 }
 
-.is-active {
-  display: block;
+.is-burger .top {
+  position: absolute;
+  top: 0;
+  margin-bottom: 3px;
+  width: 70%;
+}
+
+.is-burger .bottom {
+  margin-top: 15px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .is-burger:hover .top {
@@ -595,66 +663,104 @@ body {
   width: 70%;
 }
 
-.hero-section {
-  position: relative;
-  height: 150vh;
+.is-x {
+  transform: rotate(360deg);
+  transform-origin: center;
+  transition: transform 400ms ease;
 }
 
-.hero-section .hero-heading {
+.is-x span {
+  height: 4px;
+  z-index: 1;
+  margin-left: auto;
+  top: 50%;
+  right: 0;
+  transform-origin: center;
+}
+
+.is-x .top {
+  position: absolute;
+  margin-bottom: 0px;
+  width: 100%;
+  transform: translate(0, -50%) rotate(45deg);
+}
+
+.is-x .bottom {
+  margin-top: 0px;
+  width: 100%;
+  position: absolute;
+  transform: translate(0, -50%) rotate(-45deg);
+}
+
+.-index-0 {
+  z-index: 0;
+}
+
+.-index-1 {
+  z-index: 1;
+}
+
+.hidden {
   visibility: hidden;
 }
 
-.hero-section > div {
-  width: 100%;
-  height: 100%;
+.is-off {
+  transform: translateX(-100%);
 }
 
-.hero-section .revealer {
-  width: 100%;
-  clip-path: url("#home-clip");
-  object-fit: cover;
-  z-index: 999;
+@media screen and (min-width: 1200px) {
+  .-xl {
+    font-size: 5.9rem;
+    line-height: 5.8rem;
+    letter-spacing: -0.2rem;
+  }
 }
 
-.hero-section .revealer__inner {
-  margin-top: 15em;
-  height: auto;
-  position: relative;
-  padding: 1rem;
+@media screen and (max-width: 1200px) {
+  .-xl {
+    font-size: 5.5rem;
+    line-height: 5.3rem;
+    letter-spacing: -0.2rem;
+  }
 }
 
-.hero-section .revealer p {
-  display: block;
+@media screen and (max-width: 900px) {
+  .-xl {
+    font-size: 4.3rem;
+    line-height: 4rem;
+    letter-spacing: -0.1rem;
+  }
 }
 
-.hero-section .to-be-revealed {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  height: 100vh;
+@media screen and (max-width: 700px) {
+  .-xl {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+  .revealer__inner {
+    margin-top: 0;
+  }
 }
 
-.hero-section .to-be-revealed h1 {
-  font-size: 10rem;
-  text-transform: uppercase;
-  text-align: center;
+@media screen and (max-width: 600px) {
+  .-xl {
+    font-size: 2.5rem;
+    line-height: 2.8rem;
+  }
 }
 
-.burger-is-hovered {
-  transition: 300ms;
+@media screen and (max-width: 375px) {
+  .-xl {
+    font-size: 2rem;
+    line-height: 2.1rem;
+  }
 }
 
-#draggable-follower {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background-color: #d95133;
-  transform: translate(-50%, -50%);
-  z-index: 999;
+@media screen and (max-width: 320px) {
+  .-xl {
+    font-size: 1.8rem;
+    line-height: 2rem;
+  }
 }
 
 * {
@@ -671,4 +777,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: none;
+}
+
+main {
+  min-height: 100vh;
 }

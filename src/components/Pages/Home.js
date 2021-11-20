@@ -18,10 +18,11 @@ export default function Home(props) {
 
 	return (
 		<>
-			<Section sticky classes={"hero-section -flex -align-end -just-center -bg-yellow"}>
+			<Section sticky classes={"hero-section -flex -align-end -just-center -bg-light"}>
 				<ClipPath />
-				<div className='to-be-revealed hero-heading -bg-dark'>
-					<h1 className='-txt-dark -xl'>Listen</h1>
+				<div className='to-be-revealed '>
+					<h1 className='-txt-dark -xl -index-1 -thick' id="hero-heading">Listen</h1>
+					<div className="intro-bg -absolute -bg-yellow -index-0 "style={{width: '100%', height: '100%'}}></div>
 				</div>
 				<div className='revealer -bg-dark'>
 					<div className='revealer__inner'>

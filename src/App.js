@@ -36,6 +36,8 @@ function App() {
 		});
 	}, []);
 
+
+
 	// const handleBurgerClick = function () {
 	// 	setVisibility(true);
 	// 	animateMenuIn();

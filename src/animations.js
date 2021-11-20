@@ -3,40 +3,49 @@ import { gsap } from "gsap";
 import CSSRulePlugin from "gsap/CSSRulePlugin";
 import { BlobTwo } from "./components/Svg";
 
-// function animateMenuIn() {
-// 	gsap.registerPlugin(CSSRulePlugin);
+function animateMenuIn() {
+	gsap.registerPlugin(CSSRulePlugin);
 
-// 	const rule = CSSRulePlugin.getRule(".viewport-nav__list-item:before");
-// 	console.log(rule);
+	const rule = CSSRulePlugin.getRule(".viewport-nav__list-item:before");
+	console.log(rule);
 
-// 	const tl = gsap.timeline();
+	const tl = gsap.timeline();
 
-// 	tl.to($(".viewport-nav"), {
-// 		y: 0,
-// 		duration: 0.9,
-// 		ease: "expo.in",
-// 	});
-// 	tl.to(rule, {
-// 		scale: 0,
-// 	});
-// }
+	tl.to($(".viewport-nav"), {
+		y: 0,
+		duration: 0.9,
+		ease: "expo.in",
+	});
+	tl.to(rule, {
+		scale: 0,
+	});
+}
 
-// function animateMenuOut() {
-// 	gsap.to($(".viewport-nav"), {
-// 		y: "-100%",
-// 		duration: 0.9,
-// 		ease: "expo.in",
-// 	});
-// }
-
-// export function toggleNavVisiblity() {
-// 	if ($(".viewport-nav").hasClass("is-active")) {
-// 		animateMenuIn();
-// 	}
-// 	if ($(".viewport-nav").hasClass("is-off")) {
-// 		animateMenuOut();
-// 	}
-// }
+export function toggleNavVisiblity(ref, state) {
+	if (state) {
+		gsap.to(ref, {
+			x: 0,
+			duration: 1,
+			ease: 'expo.inOut'
+		});
+		gsap.to($("#header-logo"), {
+			autoAlpha: 0,
+			duration: 0.3,
+		}, 0.5)
+	} else {
+		gsap.to(ref, {
+			x: '-100%',
+			duration: 1,
+			ease: 'expo.inOut'
+		});
+		gsap.to($("#header-logo"), {
+			autoAlpha: 1,
+			duration: 0.3,
+			delay: 0.2
+		})
+	}
+	
+}
 
 export function animateTopBarIn() {
 	gsap.to($(".bg-dynamic"), {
@@ -94,55 +103,7 @@ export function animateSlider(el) {
 	});
 }
 
-export function animateHeaderOut() {
-	const tl = gsap.timeline();
-	const burgerLines = $(".header-burger").find("span");
-	const logo = $(".logo-wrapper");
 
-	tl.to(burgerLines, {
-		x: "100%",
-		opacity: 0,
-		stagger: 0.1,
-		duration: 0.3,
-		ease: "linear",
-	});
-	tl.to(
-		logo,
-		{
-			y: "-100%",
-			opacity: 0,
-			duration: 0.3,
-			ease: "linear",
-			onComplete: () => {
-				$("header").fadeOut(200);
-			},
-		},
-		0
-	);
-}
-
-export function animateHeaderIn() {
-	const tl = gsap.timeline();
-	const burgerLines = $(".header-burger").find("span");
-	const logo = $(".logo-wrapper");
-	$("header").css("display", "flex");
-	tl.to(burgerLines, {
-		x: "0",
-		opacity: 1,
-		duration: 0.3,
-		ease: "linear",
-	});
-	tl.to(
-		logo,
-		{
-			y: "0",
-			opacity: 1,
-			duration: 0.3,
-			ease: "linear",
-		},
-		0
-	);
-}
 
 export function followCursor(el) {
 	$(el).css("visibility", "visible");
@@ -161,31 +122,29 @@ export function unfollowCursor(el) {
 	$("body").off("mousemove");
 }
 
-export function animateBurgerToX() {
-	const top = $(".header-burger").find(".top");
-	const bottom = $(".header-burger").find(".bottom");
+export function burgerAnim(state) {
 
-	const tl = gsap.timeline();
+	gsap.registerPlugin(CSSRulePlugin);
 
-	tl.to(top, {
-		transformOrigin: 'center',
-		rotation: '30deg',
-		width: '100%',
-		duration: 0.5
-	})
-	tl.to(bottom, {
-		transformOrigin: 'center',
-		rotation: '-30deg',
-	}, 0)
+	const button = $(".header-burger");
+	const top = button.find(".top");
+	const bottom = button.find(".bottom");
 
-}
-
-export function animateXToBurger() {
-	const top = $(".header-burger").find(".top");
-	const bottom = $(".header-burger").find(".bottom");
-
-	gsap.to(top, {
-		rotation: '0deg'
-	})
+	if (state) {
+		gsap.to(button, {
+			css: {
+				className: '+= is-x'
+			},
+			duration: 3,
+			ease: 'expo.out'
+		})
+	} else {
+		gsap.to(button, {
+			opacity: 1,
+			duration: 3,
+			ease: 'expo.out'
+		})
+	}
+	
 
 }

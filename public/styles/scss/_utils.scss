@@ -1,3 +1,9 @@
+.-thick {
+	font-family: $thick;
+}
+
+
+
 .-flex {
   display: flex;
 
@@ -52,12 +58,6 @@
 	font-size: 4rem;
 	letter-spacing: 0.1rem;
 	line-height: 9rem;
-}
-
-.-xl {
-	font-size: 5.9rem;
-	line-height: 6rem !important;
-	letter-spacing: -0.2rem;
 }
 
 .-indent {
@@ -154,15 +154,31 @@
 	
 }
 
-.is-off {
-	display: none;
-}
 
-.is-active {
-	display: block;
-}
 
 .is-burger {
+
+		span {
+			height: 4px;
+			right: 0;
+			z-index: 1;
+			margin-left: auto;
+		}
+
+		.top {
+			position: absolute;
+			top: 0;
+			margin-bottom: 3px;
+			width: 70%;
+		}
+
+		.bottom {
+			margin-top: 15px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+		}
+
 	&:hover {
 		.top {
 			width: 100%;
@@ -171,5 +187,110 @@
 		.bottom {
 			width: 70%;
 		}
+	}
+}
+
+.is-x {
+
+	
+	transform: rotate(360deg);
+	transform-origin: center;
+	transition: transform 400ms ease;
+
+	span {
+		height: 4px;
+		z-index: 1;
+		margin-left: auto;
+		top: 50%;
+		right: 0;
+		transform-origin: center;
+	}
+
+	.top {
+		position: absolute;
+		margin-bottom: 0px;
+		width: 100%;
+		transform: translate(0, -50%)rotate(45deg);
+	}
+
+	.bottom {
+		margin-top: 0px;
+		width: 100%;
+		position: absolute;
+		transform: translate(0, -50%)rotate(-45deg);
+	}
+
+}
+
+.-index-0 {
+	z-index: 0;
+}
+
+.-index-1 {
+	z-index: 1;
+}
+
+
+.hidden {
+	visibility: hidden;
+}
+
+.is-off {
+	transform: translateX(-100%);
+}
+
+@media screen and (min-width: 1200px) {
+	.-xl {
+		font-size: 5.9rem;
+		line-height: 5.8rem;
+		letter-spacing: -0.2rem;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.-xl {
+		font-size: 5.5rem;
+		line-height: 5.3rem;
+		letter-spacing: -0.2rem;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.-xl {
+		font-size: 4.3rem;
+		line-height: 4rem;
+		letter-spacing: -0.1rem;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.-xl {
+		font-size: 3rem;
+		line-height: 3rem;
+	}
+
+	.revealer__inner {
+		margin-top: 0;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.-xl {
+		font-size: 2.5rem;
+		line-height: 2.8rem;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.-xl {
+		font-size: 2rem;
+		line-height: 2.1rem;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.-xl {
+		font-size: 1.8rem;
+		line-height: 2rem;
 	}
 }

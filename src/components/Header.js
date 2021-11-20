@@ -1,49 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import $ from "jquery";
-import { animateMenuIn, animateMenuOut, animateTopBarIn, animateTopBarOut, animateHeaderOut, animateHeaderIn, animateBurgerToX, animateXToBurger} from "../animations";
+import gsap from "gsap";
 import { TextLogo } from "./Svg";
-import classNames from "classnames";
 
 export default function Header(props) {
-
-	const burgerClasses = classNames("header-burger", {"is-burger": !props.menuState})
+	const { menuState, toggleMenu } = props;
 
 	const [scrollDirection, setScrollDirection] = useState("");
 
 	const ref = useRef(null);
 
-	useEffect(() => {
-		if (props.menuState) {
-			animateBurgerToX()
-			
-		} else {
-			animateXToBurger()
-			
-		}
-	}, [props.menuState])
-
-	
-
-
-	// 	let scrollPos = 0;
-	// 	$(window).on("scroll", function (e) {
-	// 		if ($(window).scrollTop() > $(".hero-section").height() * 2) {
-	// 			if (document.body.getBoundingClientRect().top > scrollPos) {
-	// 				if (!$("header").hasClass("header-hidden")) {
-	// 					setScrollDirection("up");
-	// 					animateHeaderIn();
-	// 				}
-	// 			} else {
-	// 				if (!$("header").hasClass("header-showing")) setScrollDirection("down");
-	// 				animateHeaderOut();
-	// 			}
-	// 			scrollPos = document.body.getBoundingClientRect().top;
-	// 		}
-	// 	});
-	// }, []);
 
 	return (
-		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"} data-theme={props.theme ? props.theme : 'light'}>
+		<header className={scrollDirection === "down" ? "header-hidden" : "header-showing"} data-theme={props.theme ? props.theme : "light"}>
 			<div className='logo-wrapper -absolute-center'>
 				<a href='/'>
 					<TextLogo />
@@ -65,14 +34,9 @@ export default function Header(props) {
 					</li>
 				</ul>
 			</nav>
-			<button
-				ref={ref}
-				className={burgerClasses}
-				type='button'
-				onClick={props.toggleMenu}
-			>
-				<span className="top"></span>
-				<span className="bottom"></span>
+			<button ref={ref} className={menuState ? "header-burger is-x" : "header-burger is-burger"} type='button' onClick={() => toggleMenu(!menuState)}>
+				<span className='top' style={{backgroundColor: menuState && 'black'}}></span>
+				<span className='bottom' style={{backgroundColor: menuState && 'black'}}></span>
 			</button>
 		</header>
 	);

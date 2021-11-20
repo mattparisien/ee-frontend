@@ -2,8 +2,9 @@
 	position: relative;
 	height: 150vh;
 
-	.hero-heading {
-		visibility: hidden;
+	#hero-heading {
+		font-size: 20rem;
+		color: $red;
 	}
 
 	> div {
@@ -41,6 +42,7 @@
 		left: 0;
 		height: 100vh;
 
+	
 		h1 {
 			font-size: 10rem;
 			text-transform: uppercase;
