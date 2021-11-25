@@ -1,6 +1,10 @@
 export function Ear() {
 	return (
-		<svg width='100px' viewBox='0 0 1076.9 1652.8' xmlns='http://www.w3.org/2000/svg'>
+		<svg
+			width='100px'
+			viewBox='0 0 1076.9 1652.8'
+			xmlns='http://www.w3.org/2000/svg'
+		>
 			<path
 				class='cls-1'
 				transform='translate(6989.7 -1558)'
@@ -45,13 +49,24 @@ export function Arrow(props) {
 	);
 }
 
-export function ClipPath() {
+export function Blob() {
 	return (
-		<svg class='-absolute' id='home-hero-svg' width='100%' height='100%' viewBox='0 0 2000 3000' preserveAspectRatio='none'>
+		<svg
+			class='-absolute'
+			id='home-hero-svg'
+			width='100%'
+			height='100%'
+			viewBox='0 0 2000 3000'
+			preserveAspectRatio='none'
+		>
 			{" "}
 			<defs>
 				{" "}
-				<clipPath id='home-clip' clipPathUnits='objectBoundingBox' transform='scale(0.0005, 0.00033333333333333)'>
+				<clipPath
+					id='home-clip'
+					clipPathUnits='objectBoundingBox'
+					transform='scale(0.0005, 0.00033333333333333)'
+				>
 					{" "}
 					<path
 						id='blob'
@@ -62,17 +77,6 @@ export function ClipPath() {
 				</clipPath>{" "}
 			</defs>{" "}
 		</svg>
-		// <svg width='100%' height='100%' class='-absolute' id='home-hero-svg' viewBox='0 0 20 20' preserveAspectRatio='none'>
-		// 	<defs>
-		// 		<clipPath clipPathUnits='objectBoundingBox' id='home-clip' transform="scale(0.00003, 0.00002)">
-		// 			<path
-		// 				id='blob'
-		// 				d='M1700.76,129.62C1566.49,60.51,1442.35,57.12,1388,56.23c-84.62-1.38-154.74,23.54-234.87,44.34-109.7,28.47-227,19-333.57-17.72C721.83,49.21,613.1,64.69,515.93,100,453.31,122.7,388,137.16,322.29,147.39c-59.54,9.27-123.42,8-179.84,31C61,211.67-6.31,278.05-44.25,357.08-85.63,443.27-94.38,551.37-58,640.75c56.2,138.1,200.4,224.53,341.44,253.33,113.81,23.25,233.14,27.69,348.78,36.75,139.3,10.92,210.49,16.2,285.61,7.61,221.59-25.32,229.28-101.76,384.62-106.32,213.48-6.27,287.25,135.51,461.6,81.64,14.25-4.4,90.31-29,151.89-99.82,105.65-121.5,100.35-300.48,51.24-423.14C1904.61,234.55,1768.93,164.71,1700.76,129.62Z'
-		// 				transform='translate(80.89 -56.18)'
-		// 			/>
-		// 		</clipPath>
-		// 	</defs>
-		// </svg>
 	);
 }
 
@@ -90,7 +94,11 @@ export function BlobTwo() {
 
 export function TextLogo(props) {
 	return (
-		<svg id='header-logo' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 752.01 75.68'>
+		<svg
+			id='header-logo'
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 752.01 75.68'
+		>
 			<path
 				d='M1121,198.69h60.53v14.88h-45c-.61,1.83-.76,10.39-.27,14h45.27v15H1136c0,4.71-.07,9.2,0,13.91h45.48c.21,2.63.08,5.08.1,7.52s0,4.78,0,7.13c-1.78.63-58,.77-60.67.18Z'
 				transform='translate(-1121.01 -198.48)'

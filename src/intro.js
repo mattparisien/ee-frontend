@@ -73,7 +73,7 @@ export default function introAnimation() {
 		{
 			autoAlpha: 0,
 			onComplete: () => {
-				$("body").css("overflow-y", "overlay");
+				$("body").css("overflow-y", "visible");
 			},
 		},
 		4

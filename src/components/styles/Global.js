@@ -1,27 +1,17 @@
-@import "config";
-@import "vars";
+import { createGlobalStyle } from "styled-components";
 
-@import "functions";
-@import "header";
-@import "components";
-@import "wraps";
-
-@import "specific";
-@import "utils";
-
-
+const GlobalStyles = createGlobalStyle`
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
+html {
 
-html, p {
 	height: 100%;
 	width: 100%;
 	line-height: 1.6;
-	font-family: 'Kobe';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: none;
@@ -30,4 +20,6 @@ html, p {
 main {
 	min-height: 100vh;
 }
+`;
 
+export { GlobalStyles };

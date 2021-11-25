@@ -8,7 +8,14 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ViewportNav from "./components/ViewportNav";
 import determineHeaderColor from "./helpers/headerColor";
-import { animateMenuIn, animateMenuOut, setStickySection, toggleNavVisiblity } from "./animations";
+import {
+	animateMenuIn,
+	animateMenuOut,
+	setStickySection,
+	toggleNavVisiblity,
+} from "./animations";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./components/styles/Global";
 
 function App() {
 	//Nav visibility state
@@ -20,24 +27,6 @@ function App() {
 		setMenuShow(!menuShow);
 	}
 
-	useEffect(() => {
-		$(window).on("scroll", function () {
-			if (document.querySelector(".pin-spacer").getBoundingClientRect().top <= -100) {
-				setHeaderColor("dark");
-			}
-
-			const headerHeight = $("header").height();
-			document.querySelectorAll("section").forEach(function (section) {
-				if (section.getBoundingClientRect().top <= headerHeight) {
-					const color = determineHeaderColor(section);
-					setHeaderColor(color);
-				}
-			});
-		});
-	}, []);
-
-
-
 	// const handleBurgerClick = function () {
 	// 	setVisibility(true);
 	// 	animateMenuIn();
@@ -48,17 +37,40 @@ function App() {
 	// 	animateMenuOut();
 	// };
 
+	const themes = {
+		banana: {
+			color: "#F1DA0A",
+			backgroundColor: "#F6F6EE",
+		},
+		night: {
+			color: "#F6F6EE",
+			backgroundColor: "#151414",
+		},
+		clean: {
+			color: "#201F1F",
+			backgroundColor: "#F6F6EE",
+		},
+	};
+
 	return (
 		<div className='App'>
-			<ModalWrapper hoverState={hoverState} />
-			<ViewportNav isVisible={menuShow} />
-			<Header menuState={menuShow} theme={headercolor} toggleMenu={toggleMenuState} />
+			<ThemeProvider theme={themes}>
+				<GlobalStyles />
 
-			<main>
-				<Home hoverState={hoverState} setHoverState={setHoverState} />
-			</main>
+				<ModalWrapper hoverState={hoverState} />
+				<ViewportNav isVisible={menuShow} />
+				<Header
+					menuState={menuShow}
+					theme={headercolor}
+					toggleMenu={toggleMenuState}
+				/>
 
-			<Footer />
+				<main>
+					<Home hoverState={hoverState} setHoverState={setHoverState} />
+				</main>
+
+				<Footer />
+			</ThemeProvider>
 		</div>
 	);
 }

@@ -1,47 +1,56 @@
 import React, { Fragment, useRef, useEffect } from "react";
 import $ from "jquery";
 import Section from "../Section";
-import { BlobTwo, ClipPath } from "../Svg";
+import { BlobTwo, ClipPath, TextLogo } from "../Svg";
 import introAnimation from "../../intro";
 import Slider from "../Slider";
+import ViewportWrapper from "../ViewportWrapper";
+import Heading from "../Heading";
+import Container from "../Container";
+import Paragraph from "../Paragraph";
+import Sticky from "../Sticky";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function Home(props) {
-
 	const { hoverState, setHoverState } = props;
 
 	useEffect(() => {
 		if ($(window).scrollTop() <= 0) {
 			introAnimation();
 		}
-		
 	}, []);
+
+	const visionCopy =
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+	const sectionThemes = {
+		sectionOne: "banana",
+		sectionTwo: "night",
+		sectionThree: "banana",
+		sectionFour: "banana",
+	};
 
 	return (
 		<>
-			<Section sticky classes={"hero-section -flex -align-end -just-center -bg-light"}>
-				<ClipPath />
-				<div className='to-be-revealed '>
-					<h1 className='-txt-dark -xl -index-1 -thick' id="hero-heading">Listen</h1>
-					<div className="intro-bg -absolute -bg-yellow -index-0 "style={{width: '100%', height: '100%'}}></div>
-				</div>
-				<div className='revealer -bg-dark'>
-					<div className='revealer__inner'>
-						<div className='section-heading-indent-text -txt-xs'>Vision</div>
-						<p className='-xl -txt-light -indent'>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse omnis animi, ab facilis excepturi error, ea alias porro a laboriosam
-							distinctio eaque sed numquam maiores minima dolore ipsa laudantium tempora fuga dicta odit. Nihil ullam, excepturi hic quis consequatur
-							repudiandae atque magnam voluptate eius minus maxime quisquam veniam repellat neque?
-						</p>
-					</div>
-				</div>
-			</Section>
-			<Section classes='vision-section -bg-red' />
-			<Section classes='featured-work-section -bg-yellow -flex -flex-center -sticky'>
-				<Slider  hoverState={hoverState} setHoverState={setHoverState}/>
-			</Section>
-			<Section />
-			<Section />
-			{/* <Section classes={"vision-section -bg-dark -flex -pd-sm -absolute"}></Section> */}
+			<ViewportWrapper>
+				<Container>
+					<Sticky
+						visionCopy={visionCopy}
+						themes={{
+							revealer: sectionThemes.sectionOne,
+							revealed: sectionThemes.sectionTwo,
+						}}
+					/>
+				</Container>
+			</ViewportWrapper>
+			<ViewportWrapper>
+				<Container sectionTheme={sectionThemes.sectionThree}></Container>
+			</ViewportWrapper>
+			<ViewportWrapper>
+				{" "}
+				<Container sectionTheme={sectionThemes.sectionThree}></Container>{" "}
+			</ViewportWrapper>
 		</>
 	);
 }

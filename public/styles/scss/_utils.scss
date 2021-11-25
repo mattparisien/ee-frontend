@@ -4,29 +4,22 @@
 
 
 
+//Flex utilities
+
 .-flex {
-  display: flex;
-
-  &-center {
-    align-items: center;
-    justify-content: center;
-  }
-
-	&-col {
-		flex-direction: column;
-	}
-
-	&-bet {
-		justify-content: space-between;
-	}
+	display: flex;
 }
 
-.-align-end {
-	align-items: flex-end;
+.-justify-center {
+	justify-content: center;
 }
 
-.-just-end {
-	justify-content: flex-end;
+.-column {
+	flex-direction: column;
+}
+
+.-align-center {
+	align-items: center;
 }
 
 .-pg-md {
@@ -81,7 +74,7 @@
 }
 
 .-pd-md {
-	padding: 4rem;
+	padding: 4vw;
 }
 
 .fade-up-rows {
@@ -103,7 +96,7 @@
 .-fixed-left {
 	position: fixed;
 	top: 0;
-	left:  0;
+	left: 0;
 }
 
 .-fixed-right {
@@ -122,10 +115,6 @@
 	transform: translateY(0);
 }
 
-
-
-
-
 .-absolute {
 	position: absolute;
 	top: 0;
@@ -143,56 +132,9 @@
 	fill: $light;
 }
 
-.section-heading-indent {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin-top: 2em;
-	margin-left: 1em;
-	width: auto;
-	height: auto;
-	
-}
 
-
-
-.is-burger {
-
-		span {
-			height: 4px;
-			right: 0;
-			z-index: 1;
-			margin-left: auto;
-		}
-
-		.top {
-			position: absolute;
-			top: 0;
-			margin-bottom: 3px;
-			width: 70%;
-		}
-
-		.bottom {
-			margin-top: 15px;
-			width: 100%;
-			position: absolute;
-			bottom: 0;
-		}
-
-	&:hover {
-		.top {
-			width: 100%;
-		}
-
-		.bottom {
-			width: 70%;
-		}
-	}
-}
 
 .is-x {
-
-	
 	transform: rotate(360deg);
 	transform-origin: center;
 	transition: transform 400ms ease;
@@ -210,16 +152,15 @@
 		position: absolute;
 		margin-bottom: 0px;
 		width: 100%;
-		transform: translate(0, -50%)rotate(45deg);
+		transform: translate(0, -50%) rotate(45deg);
 	}
 
 	.bottom {
 		margin-top: 0px;
 		width: 100%;
 		position: absolute;
-		transform: translate(0, -50%)rotate(-45deg);
+		transform: translate(0, -50%) rotate(-45deg);
 	}
-
 }
 
 .-index-0 {
@@ -230,7 +171,6 @@
 	z-index: 1;
 }
 
-
 .hidden {
 	visibility: hidden;
 }
@@ -239,34 +179,99 @@
 	transform: translateX(-100%);
 }
 
-@media screen and (min-width: 1200px) {
-	.-xl {
-		font-size: 5.9rem;
-		line-height: 5.8rem;
-		letter-spacing: -0.2rem;
+//Heading utilities
+.-heading-medium {
+	font-family: $thick;
+	font-weight: 200;
+}
+
+.-heading-bold {
+	font-family: $thick;
+	font-weight: 400;
+}
+
+.-heading-black {
+	font-family: "FK";
+	font-weight: 600;
+
+	&.-heading-large {
+		font-size: 6rem;
+		line-height: 9rem;
 	}
 }
 
+
+
+
+
+//Limit this utility to headings which use one or two words
+.-xl {
+	font-size: 30rem;
+	text-transform: uppercase;
+}
+
+@media screen and (min-width: 1200px) {
+	.paragraph-wrapper {
+		&.-large {
+			p {
+				font-size: 5.9rem;
+				line-height: 5rem;
+				letter-spacing: -0.2rem;
+			}
+		}
+	}
+}
+
+//Text media queries 
 @media screen and (max-width: 1200px) {
-	.-xl {
-		font-size: 5.5rem;
-		line-height: 5.3rem;
-		letter-spacing: -0.2rem;
+	.paragraph-wrapper {
+		&.-large {
+			p {
+				font-size: 5.5rem;
+				line-height: 5.3rem;
+				letter-spacing: -0.2rem;
+			}
+		}
+	}
+
+	.heading-wrapper {
+		&.-xl {
+			font-size: 25rem;
+		}
 	}
 }
 
 @media screen and (max-width: 900px) {
-	.-xl {
-		font-size: 4.3rem;
-		line-height: 4rem;
-		letter-spacing: -0.1rem;
+	.paragraph-wrapper {
+		&.-large {
+			p {
+				font-size: 4.3rem;
+				line-height: 4rem;
+				letter-spacing: -0.1rem;
+			}
+		}
+	}
+	.heading-wrapper {
+		&.-xl {
+			font-size: 23rem;
+		}
 	}
 }
 
 @media screen and (max-width: 700px) {
-	.-xl {
-		font-size: 3rem;
-		line-height: 3rem;
+	.paragraph-wrapper {
+		&.-large {
+			p {
+				font-size: 3rem;
+				line-height: 3rem;
+			}
+		}	
+	}
+
+	.heading-wrapper {
+		&.-xl {
+			font-size: 16rem;
+		}
 	}
 
 	.revealer__inner {
@@ -275,22 +280,49 @@
 }
 
 @media screen and (max-width: 600px) {
-	.-xl {
-		font-size: 2.5rem;
-		line-height: 2.8rem;
+	.paragraph-wrapper {
+		&.-large {
+			p {
+				font-size: 2.5rem;
+				line-height: 2.2rem;
+			}
+		}
+	}
+	.heading-wrapper {
+		&.-xl {
+			font-size: 11rem;
+		}
 	}
 }
 
 @media screen and (max-width: 375px) {
-	.-xl {
-		font-size: 2rem;
-		line-height: 2.1rem;
+	.paragraph-wrapper {
+		&.-large {
+			p {
+				font-size: 2rem;
+				line-height: 2.1rem;
+			}
+		}
+	}
+	.heading-wrapper {
+		&.-xl {
+			font-size: 9rem;
+		}
 	}
 }
 
 @media screen and (max-width: 320px) {
-	.-xl {
-		font-size: 1.8rem;
-		line-height: 2rem;
+	.paragraph-wrapper {
+		&.-large {
+			p {
+				font-size: 1.8rem;
+				line-height: 2rem;
+			}
+		}
+	}
+	.heading-wrapper {
+		&.-xl {
+			font-size: 6.3rem;
+		}
 	}
 }

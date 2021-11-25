@@ -2,19 +2,14 @@ a,
 ul,
 li {
 	text-decoration: none;
-	color: black;
+	color: inherit;
 	list-style: none;
 }
 
 p,
 a,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+li
+ {
 	font-weight: 200;
 }
 
@@ -56,7 +51,7 @@ a:hover {
 					}
 
 					a {
-						color: $light;
+						
 						transition: 300ms ease;
 					}
 				}
@@ -117,12 +112,7 @@ a:hover {
 	}
 }
 
-section,
-footer {
-	min-height: 100vh;
-	width: 100%;
-	color: text-clr(black);
-}
+
 
 .home-intro-wrapper {
 	display: flex;
@@ -134,66 +124,9 @@ footer {
 	color: $dark;
 }
 
-footer {
-	.top-paper {
-		background-color: $light;
-		img {
-			display: block;
-			margin: 0 auto;
-			width: 120%;
-			margin-bottom: -13vw;
-			margin-left: -2%;
-		}
-	}
 
-	.content {
-		height: 100%;
-		max-width: 1600px;
-		margin: 0 auto;
 
-		.heading {
-			width: 500px;
-			line-height: 3.5rem;
-			margin-bottom: 12rem;
-
-			.ear-footer {
-				display: inline-block;
-				height: 100px;
-				width: 100px;
-				margin: 0 -14px;
-
-				svg {
-					height: 90px;
-
-					path {
-						fill: $light;
-					}
-				}
-			}
-		}
-
-		.contact-info {
-			display: flex;
-			width: 100%;
-			justify-content: flex-end;
-
-			a,
-			p {
-				font-size: 2rem;
-				display: block;
-			}
-
-			span {
-				display: block;
-				margin-bottom: 2em;
-			}
-
-			> div:not(:last-of-type) {
-				margin-right: 6rem;
-			}
-		}
-	}
-}
+		
 
 .slider-wrapper {
 	width: 100vw;

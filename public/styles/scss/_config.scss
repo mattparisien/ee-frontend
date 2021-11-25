@@ -1,15 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
 
+//Font imports
 @font-face {
   font-family: 'Kobe';
-  src: url('/Kobe1.1-Regular.woff') format('woff'),
+  font-weight: 200;
+  src: url('../../KobeRegular.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Formula';
-  src: url('/FormulaCondensed-Bold.otf')
+  font-family: 'FK';
+  font-weight: 200;
+  src: url('../../FKScreamerMedium.otf') format('woff');
 }
 
+@font-face {
+  font-family: 'FK';
+  font-weight: 400;
+  src: url('../../FKScreamerBold.otf') format('woff');
+}
+
+@font-face {
+  font-family: 'FK';
+  font-weight: 600;
+  src: url('../../FKScreamerBlack.otf') format('woff');
+}
+
+
+
+//Global media queries
 @media (max-width:699px) {
   html {
       font-size: 15px
