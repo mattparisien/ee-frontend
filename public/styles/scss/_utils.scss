@@ -29,8 +29,9 @@
 
 
 
-.-bg-dark {
+.-dark {
 	background-color: $dark;
+	color: $light;
 }
 
 .-bg-light {
@@ -119,6 +120,12 @@
 
 .-position-absolute {
 	position: absolute;
+}
+
+.-fade-down {
+	opacity: 0;
+	transform: translateY(-100%);
+	display: block;
 }
 
 .-position-absolute-center {

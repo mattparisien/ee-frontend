@@ -48,3 +48,23 @@
 	transform: translate(-50%, -50%);
 	z-index: 999;
 }
+
+
+@media (max-width: 620px) {
+
+	.section-hero__title-wrapper {
+
+		height: 400px;
+
+		.section-hero__title__part {
+			font-size: 20vw
+	}
+	}
+	
+}
+
+@media (min-width:1200px) and (max-width:1399px) {
+  .section-hero__title__part {
+      font-size: 10vw
+  }
+}

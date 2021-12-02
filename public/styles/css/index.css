@@ -456,6 +456,21 @@ body {
   z-index: 999;
 }
 
+@media (max-width: 620px) {
+  .section-hero__title-wrapper {
+    height: 400px;
+  }
+  .section-hero__title-wrapper .section-hero__title__part {
+    font-size: 20vw;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .section-hero__title__part {
+    font-size: 10vw;
+  }
+}
+
 .word-wrapper {
   overflow: hidden;
 }
@@ -481,8 +496,9 @@ body {
   line-height: 3.4rem;
 }
 
-.-bg-dark {
+.-dark {
   background-color: #201F1F;
+  color: #f9f7f1;
 }
 
 .-bg-light {
@@ -569,6 +585,12 @@ body {
 
 .-position-absolute {
   position: absolute;
+}
+
+.-fade-down {
+  opacity: 0;
+  transform: translateY(-100%);
+  display: block;
 }
 
 .-position-absolute-center {
