@@ -1,55 +1,40 @@
-.hero-section {
-	position: relative;
-	height: 150vh;
-
-	#hero-heading {
-		font-size: 20rem;
-		color: $red;
-	}
-
-	> div {
-		width: 100%;
-		height: 100%;
-	}
-
-	.revealer {
-		width: 100%;
-		clip-path: url("#home-clip");
-		object-fit: cover;
-		z-index: 999;
-
-		&__inner {
-			margin-top: 15em;
-			height: auto;
-			position: relative;
-			padding: $pd-sm;			
-		}
-
+.section-hero__title-wrapper {
+	width: 89vw;
+  height: 40vw;
+	.section-hero__title__part {
 		
-
-		p {
-			display: block;
+		&:nth-of-type(2) {
+			left: 32vw;
 		}
-	}
 
-	.to-be-revealed {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: absolute;
-		z-index: 0;
-		top: 0;
-		left: 0;
-		height: 100vh;
-
-	
-		h1 {
-			font-size: inherit;
-			text-transform: uppercase;
-			text-align: center;
+		&:nth-of-type(3) {
+			right: 0;
 		}
+
+		&:nth-of-type(4) {
+			top: 7vw;
+		}
+
+		&:nth-of-type(5) {
+			bottom: 0;
+			left: 40vw;
+		}
+
+		&:nth-of-type(6) {
+			bottom: 0;
+			right: 0;
+		}
+		
 	}
 }
+
+.heroText {
+	font-size: 13vw;
+	letter-spacing: -1vw;
+}
+
+
+
 
 .burger-is-hovered {
 	transition: 300ms;

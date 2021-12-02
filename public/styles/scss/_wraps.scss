@@ -6,9 +6,16 @@ body {
   padding: 0 4em;
 }
 
+.c-section {
+  min-height: 100vh;
+  width: 100%;
+}
+
 .vision-section {
   z-index: -1;
 }
+
+
 
 .modal-wrapper {
   position: fixed;

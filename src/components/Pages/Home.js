@@ -15,42 +15,46 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 export default function Home(props) {
 	const { hoverState, setHoverState } = props;
 
-	useEffect(() => {
-		if ($(window).scrollTop() <= 0) {
-			introAnimation();
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if ($(window).scrollTop() <= 0) {
+	// 		introAnimation();
+	// 	}
+	// }, []);
 
-	const visionCopy =
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+	const heroWords = ["There's", "a", "better", "way", "to", "work"];
 
-	const sectionThemes = {
-		sectionOne: "banana",
-		sectionTwo: "night",
-		sectionThree: "banana",
-		sectionFour: "banana",
-	};
+	const words = useRef([]);
+
+	console.log(words)
 
 	return (
 		<>
-			<ViewportWrapper>
-				<Container>
-					<Sticky
-						visionCopy={visionCopy}
-						themes={{
-							revealer: sectionThemes.sectionOne,
-							revealed: sectionThemes.sectionTwo,
-						}}
-					/>
-				</Container>
-			</ViewportWrapper>
-			<ViewportWrapper>
-				<Container sectionTheme={sectionThemes.sectionThree}></Container>
-			</ViewportWrapper>
-			<ViewportWrapper>
-				{" "}
-				<Container sectionTheme={sectionThemes.sectionThree}></Container>{" "}
-			</ViewportWrapper>
+			<section className='c-section section-hero -bg-light'>
+				<div className='section-hero__title-wrapper -position-absolute-center'>
+					<h1 className='section-hero__title-wrapper__inner -w-100 -h-100 -position-relative -heading-bold'>
+						{heroWords.map(word => {
+							return (
+								<span className='section-hero__title__part word-wrapper heroText -position-absolute'>
+									<span
+										className='word'
+										ref={el =>
+											(words.current = [
+												...words.current,
+												words.current.push(el),
+											])
+										}
+									>
+										{word}
+									</span>
+								</span>
+							);
+						})}
+					</h1>
+				</div>
+			</section>
+			<section className='c-section section-who'></section>
+			<section className='c-section section-how'></section>
+			<section className='c-section section-work'></section>
 		</>
 	);
 }
