@@ -9,7 +9,7 @@ export default function useAxios(url) {
 	const getData = async function () {
 		const content = await axios
 			.get(url)
-			.then(res => setData(res.data))
+			.then(res => console.log(res.data))
 			.catch(err => setError(err))
 			.finally(setLoading(false));
 	};
