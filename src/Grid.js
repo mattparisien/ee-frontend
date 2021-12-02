@@ -1,18 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useAxios from "./helpers/hooks/useAxios";
 
 function Grid() {
+
 	const { data, error, loading } = useAxios(
 		"http://localhost:1337/api/grid-items?fields=*&populate=*"
 	);
 
+
+	useEffect(() => {
+		if (data) {
+			console.log('data', data)
+		}
+		
+	})
 	return (
 		<div className='grid how-grid'>
 			{data &&
-				data.map((gridItem, index) => {
+				data.data.map((gridItem, index) => {
 					return (
 						<div
-							className={`how-grid__${index.toString()} grid-col`}
+							className={`how-grid__${index + 1} grid-col`}
 							key={index}
 						>
 							<div className='heading-wrapper'>
