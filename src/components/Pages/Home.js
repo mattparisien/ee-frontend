@@ -12,32 +12,34 @@ import Sticky from "../Sticky";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import locomotiveScroll from "locomotive-scroll";
-import { LocomotiveScrollContext } from "react-locomotive-scroll";
+import useAxios from "../../helpers/hooks/useAxios";
 
 export default function Home(props) {
 	const { hoverState, setHoverState } = props;
+	const { data, error, loading } = useAxios('http://localhost:1337/api/home')
 
-	// useEffect(() => {
-	// 	if ($(window).scrollTop() <= 0) {
-	// 		introAnimation();
-	// 	}
-	// }, []);
-	//Scroll
+
+
 
 	const heroWords = ["There's", "a", "better", "way", "to", "work"];
+
+	const missionCopyOne = "The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes."
+	const missionCopyTwo = "We facilitate authentic, cause-based partnerships between musicians and vetted organizations that will accelerate change by increasing awareness, shifting behaviors and sparking activism.";
 
 	const words = useRef([]);
 	const introAnimation = useRef(gsap.timeline());
 	const scrollRef = useRef(null);
 
 	//Scroll init
-	useEffect(() => {
-		const scroll = new locomotiveScroll({
-			el: scrollRef.current,
-			smooth: true,
-		});
-	});
 
+
+// useEffect(() => {
+
+// 	const scroll = new locomotiveScroll({
+// 		el: scrollRef.current,
+// 		smooth: true
+// 	})
+// }, [])
 	useEffect(() => {
 		introAnimation.current.to(words.current, {
 			y: 0,
@@ -49,8 +51,8 @@ export default function Home(props) {
 	});
 
 	return (
-		<>
-			<div className='scroll' ref={scrollRef} data-scroll-container>
+		
+			<div ref={scrollRef}>
 				<section
 					className='c-section section-hero -bg-light'
 					data-scroll-section
@@ -71,11 +73,26 @@ export default function Home(props) {
 							})}
 						</h1>
 					</div>
+					<div className="section-hero__image-wrapper -position-absolute"></div>
+					<div className="section-hero__image-wrapper -position-absolute"></div>
 				</section>
 				<section
 					className='c-section section-who  -dark'
 					data-scroll-section
-				></section>
+				>
+					<div className="object-container">
+						<div className="paragraph-wrapper -pg-large">
+							<p>
+								{error && error}
+								{loading && 'Loading...'}
+								{data && data.data.attributes.missionHome}
+							</p>
+						</div>
+						<div className="paragraph-wrapper -pg-medium">
+							<p>{missionCopyTwo}</p>
+						</div>
+					</div>
+				</section>
 				<section
 					className='c-section section-how'
 					data-scroll-section
@@ -85,6 +102,6 @@ export default function Home(props) {
 					data-scroll-section
 				></section>
 			</div>
-		</>
+		
 	);
 }

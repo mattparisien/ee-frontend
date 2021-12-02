@@ -386,6 +386,10 @@ body {
   overflow-x: hidden;
 }
 
+.object-container {
+  padding: 4rem;
+}
+
 .o-wrapper {
   padding: 0 4em;
 }
@@ -491,9 +495,15 @@ body {
   align-items: center;
 }
 
-.-pg-md {
-  font-size: 3.2rem;
-  line-height: 3.4rem;
+.-pg-large {
+  font-size: 4.8rem;
+  line-height: 5rem;
+}
+
+.-pg-medium {
+  font-size: 3rem;
+  line-height: 3rem;
+  margin-top: 3rem;
 }
 
 .-dark {
