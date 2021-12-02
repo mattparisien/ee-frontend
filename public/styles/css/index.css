@@ -675,6 +675,21 @@ body {
   font-family: "Kobe Bold";
 }
 
+.-heading-medium {
+  font-family: 'Kobe';
+  font-size: 6rem;
+  line-height: 4.86rem;
+  letter-spacing: -0.4rem;
+}
+
+.-fw-400 {
+  font-family: "Kobe Bold";
+}
+
+.-fw-200 {
+  font-weight: 200;
+}
+
 .-heading-black {
   font-family: "FK";
   font-weight: 600;
@@ -761,6 +776,49 @@ body {
   .heading-wrapper.-xl {
     font-size: 6.3rem;
   }
+}
+
+.grid {
+  display: grid;
+}
+
+.how-grid {
+  grid-template-columns: repeat(12, 1fr);
+  margin: 6vw;
+  grid-gap: 1.4vw;
+}
+
+.how-grid .paragraph-wrapper {
+  width: 14.583vw;
+}
+
+.how-grid .-heading-medium {
+  width: 20vw;
+}
+
+.how-grid__one {
+  grid-column: span 4;
+  grid-row: 1/2;
+}
+
+.how-grid__two {
+  grid-column: 5/9;
+  grid-row: 2/3;
+}
+
+.how-grid__three {
+  grid-column: 9/13;
+  grid-row: 4/5;
+}
+
+.how-grid__four {
+  grid-column: 5/9;
+  grid-row: 5/6;
+}
+
+.how-grid__five {
+  grid-column: 1/5;
+  grid-row: 6/7;
 }
 
 * {

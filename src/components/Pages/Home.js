@@ -1,30 +1,20 @@
 import React, { Fragment, useRef, useEffect } from "react";
 import $ from "jquery";
-import Section from "../Section";
-import { BlobTwo, ClipPath, TextLogo } from "../Svg";
-import introAnimation from "../../intro";
-import Slider from "../Slider";
-import ViewportWrapper from "../ViewportWrapper";
-import Heading from "../Heading";
-import Container from "../Container";
-import Paragraph from "../Paragraph";
-import Sticky from "../Sticky";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import locomotiveScroll from "locomotive-scroll";
 import useAxios from "../../helpers/hooks/useAxios";
+import Grid from "../../Grid";
 
 export default function Home(props) {
 	const { hoverState, setHoverState } = props;
-	const { data, error, loading } = useAxios('http://localhost:1337/api/home')
-
-
-
+	// const { data, error, loading } = useAxios("http://localhost:1337/api/home");
 
 	const heroWords = ["There's", "a", "better", "way", "to", "work"];
 
-	const missionCopyOne = "The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes."
-	const missionCopyTwo = "We facilitate authentic, cause-based partnerships between musicians and vetted organizations that will accelerate change by increasing awareness, shifting behaviors and sparking activism.";
+	const missionCopyOne =
+		"The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.";
+	const missionCopyTwo =
+		"We facilitate authentic, cause-based partnerships between musicians and vetted organizations that will accelerate change by increasing awareness, shifting behaviors and sparking activism.";
 
 	const words = useRef([]);
 	const introAnimation = useRef(gsap.timeline());
@@ -32,14 +22,13 @@ export default function Home(props) {
 
 	//Scroll init
 
+	// useEffect(() => {
 
-// useEffect(() => {
-
-// 	const scroll = new locomotiveScroll({
-// 		el: scrollRef.current,
-// 		smooth: true
-// 	})
-// }, [])
+	// 	const scroll = new locomotiveScroll({
+	// 		el: scrollRef.current,
+	// 		smooth: true
+	// 	})
+	// }, [])
 	useEffect(() => {
 		introAnimation.current.to(words.current, {
 			y: 0,
@@ -51,57 +40,52 @@ export default function Home(props) {
 	});
 
 	return (
-		
-			<div ref={scrollRef}>
-				<section
-					className='c-section section-hero -bg-light'
-					data-scroll-section
-				>
-					<div className='section-hero__title-wrapper -position-absolute-center'>
-						<h1 className='section-hero__title-wrapper__inner -w-100 -h-100 -position-relative -heading-bold' data-scroll data-scroll-speed="3">
-							{heroWords.map(word => {
-								return (
-									<span className='section-hero__title__part word-wrapper heroText -position-absolute'>
-										<span
-											className='word -fade-down'
-											ref={el => (words.current = [...words.current, el])}
-										>
-											{word}
-										</span>
+		<div ref={scrollRef}>
+			<section className='c-section section-hero -bg-light' data-scroll-section>
+				<div className='section-hero__title-wrapper -position-absolute-center'>
+					<h1
+						className='section-hero__title-wrapper__inner -w-100 -h-100 -position-relative -heading-bold'
+						data-scroll
+						data-scroll-speed='3'
+					>
+						{heroWords.map(word => {
+							return (
+								<span className='section-hero__title__part word-wrapper heroText -position-absolute'>
+									<span
+										className='word -fade-down'
+										ref={el => (words.current = [...words.current, el])}
+									>
+										{word}
 									</span>
-								);
-							})}
-						</h1>
+								</span>
+							);
+						})}
+					</h1>
+				</div>
+				<div className='section-hero__image-wrapper -position-absolute'></div>
+				<div className='section-hero__image-wrapper -position-absolute'></div>
+			</section>
+			<section className='c-section section-who  -dark' data-scroll-section>
+				<div className='object-container'>
+					<div className='paragraph-wrapper -pg-large'>
+						<p>
+							{/* {error && error}
+							{loading && "Loading..."}
+							{data && data.data.attributes.missionHome} */}
+						</p>
 					</div>
-					<div className="section-hero__image-wrapper -position-absolute"></div>
-					<div className="section-hero__image-wrapper -position-absolute"></div>
-				</section>
-				<section
-					className='c-section section-who  -dark'
-					data-scroll-section
-				>
-					<div className="object-container">
-						<div className="paragraph-wrapper -pg-large">
-							<p>
-								{error && error}
-								{loading && 'Loading...'}
-								{data && data.data.attributes.missionHome}
-							</p>
-						</div>
-						<div className="paragraph-wrapper -pg-medium">
-							<p>{missionCopyTwo}</p>
-						</div>
+					<div className='paragraph-wrapper -pg-medium'>
+						<p>{missionCopyTwo}</p>
 					</div>
-				</section>
-				<section
-					className='c-section section-how'
-					data-scroll-section
-				></section>
-				<section
-					className='c-section section-work'
-					data-scroll-section
-				></section>
-			</div>
-		
+				</div>
+			</section>
+			<section className='c-section section-how' data-scroll-section>
+				<div className="object-container">
+				<Grid/>
+				</div>
+				
+			</section>
+			<section className='c-section section-work' data-scroll-section></section>
+		</div>
 	);
 }

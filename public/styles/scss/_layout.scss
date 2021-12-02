@@ -1,0 +1,48 @@
+.grid {
+  display: grid;
+}
+
+.how-grid {
+  grid-template-columns: repeat(12, 1fr);
+  margin: 6vw;
+  grid-gap: 1.4vw;
+
+  .paragraph-wrapper {
+    width: 14.583vw;
+  }
+
+  .-heading-medium  {
+    width: 20vw;
+  }
+
+
+  &__one {
+    grid-column: span 4;
+    grid-row: 1/2
+  }
+
+  &__two {
+    grid-column: 5/9;
+    grid-row: 2/3;
+  }
+
+
+  &__three {
+    grid-column: 9/13;
+    grid-row: 4/5;
+  }
+
+  &__four {
+    grid-column: 5/9;
+    grid-row: 5/6;
+  }
+
+  &__five {
+    grid-column: 1/5;
+    grid-row: 6/7;
+  }
+  
+
+
+  
+}

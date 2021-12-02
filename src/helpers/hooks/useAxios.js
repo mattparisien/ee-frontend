@@ -15,7 +15,7 @@ export default function useAxios(url) {
 	};
 
 	useEffect(() => {
-		getData()
+		getData();
 	});
 
 	return { data, error, loading };
