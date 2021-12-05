@@ -12,8 +12,9 @@ import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../helpers/hooks/useResize";
 import locomotiveScroll from "locomotive-scroll";
 import { motion } from "framer-motion";
+import InitialTransition from "../Transition/InitialTransition";
 
-export default function Home(props) {
+function Home(props) {
 	const { data, error, loading } = useAxios("http://localhost:1337/api/home");
 
 	const { windowResizing } = useResize();
@@ -76,11 +77,14 @@ export default function Home(props) {
 	});
 
 	return (
+		<>
 		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
-		>
+				
+				initial={{ translateX: '0' }}
+				animate={{ translateX: '0' }}
+				exit={{ translateX: "-150%" }}
+				transition={{ duration: 2, ease: "easeInOut" }}
+			>
 			<div ref={scrollRef} data-scroll-container>
 				<Section classes={"section-hero -bg-light"}>
 					<Container
@@ -136,26 +140,29 @@ export default function Home(props) {
 				<div className='section-hero__image-wrapper -position-absolute'></div>
 				<div className='section-hero__image-wrapper -position-absolute'></div> */}
 				</Section>
-				<Section classes={"section-who -bg-dark"}>
-					<div className='object-container'>
-						<Paragraph width={"100%"} medium indent>
-							{error && error}
-							{loading && "Loading..."}
-							{data && data.data.attributes.missionHome}
-						</Paragraph>
-						<Line color='white' marginTop />
-						<Paragraph small marginTop='50vw' width='40vw' right>
-							{data && data.data.attributes.missionHome}
-						</Paragraph>
-					</div>
-				</Section>
-				<Section classes={"section-how -bg-light"}>
-					<Container>
-						<Grid />
-					</Container>
-				</Section>
-				<Section classes={"section-work"}></Section>
+				{/* <Section classes={"section-who -bg-dark"}>
+				<div className='object-container'>
+					<Paragraph width={"100%"} medium indent>
+						{error && error}
+						{loading && "Loading..."}
+						{data && data.data.attributes.missionHome}
+					</Paragraph>
+					<Line color='white' marginTop />
+					<Paragraph small marginTop='50vw' width='40vw' right>
+						{data && data.data.attributes.missionHome}
+					</Paragraph>
+				</div>
+			</Section>
+			<Section classes={"section-how -bg-light"}>
+				<Container>
+					<Grid />
+				</Container>
+			</Section>
+			<Section classes={"section-work"}></Section> */}
 			</div>
-		</motion.div>
+			</motion.div>
+		</>
 	);
 }
+
+export default Home;

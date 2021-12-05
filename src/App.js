@@ -6,19 +6,20 @@ import Projects from "./components/Pages/Projects";
 import ProjectItem from "./components/Pages/ProjectItem";
 import Footer from "./components/Footer";
 import ViewportNav from "./components/ViewportNav";
+import TransitionBg from "./components/Transition/TransitionBg";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-	useLocation
+	useLocation,
 } from "react-router-dom";
 
 import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
-
+	console.log(Home);
 	const location = useLocation();
 
 	//Nav visibility state
@@ -47,7 +48,6 @@ function App() {
 
 	return (
 		<div className='App'>
-			
 			<ThemeProvider theme={themes}>
 				<GlobalStyles />
 
@@ -60,7 +60,7 @@ function App() {
 				/>
 
 				<main>
-					<AnimatePresence>
+					<AnimatePresence exitBeforeEnter initial={false}>
 						<Routes location={location} key={location.pathname}>
 							<Route
 								path='/'
@@ -68,14 +68,30 @@ function App() {
 									<Home hoverState={hoverState} setHoverState={setHoverState} />
 								}
 							/>
-							<Route path='/contact' element={<Contact />} />
-							<Route path='/projects' element={<Projects />} />
-							<Route path='/projects/:id' element={<ProjectItem />} />
+							<Route
+								path='/contact'
+								element={<Contact />}
+								location={location}
+								key={location.pathname}
+							/>
+							<Route
+								path='/projects'
+								element={<Projects />}
+								location={location}
+								key={location.pathname}
+							/>
+							<Route
+								path='/projects/:id'
+								element={
+									<ProjectItem location={location} key={location.pathname} />
+								}
+							/>
 						</Routes>
 					</AnimatePresence>
 				</main>
 
 				<Footer />
+				<TransitionBg />
 			</ThemeProvider>
 		</div>
 	);

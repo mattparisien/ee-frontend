@@ -598,6 +598,10 @@ body {
   justify-content: space-between;
 }
 
+.-z-50 {
+  z-index: 50;
+}
+
 .-flex-column {
   flex-direction: column;
 }
@@ -1002,6 +1006,46 @@ body {
 .line {
   transform: translateY(-100%);
   opacity: 0;
+}
+
+.slide-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #066bb8;
+  transform-origin: left;
+}
+
+.slide-out {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #066bb8;
+  transform-origin: right;
+}
+
+.transition-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F0D549;
+  z-index: -99999;
+}
+
+.transition-card {
+  z-index: 999;
+  background-color: #F0D549;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 * {
