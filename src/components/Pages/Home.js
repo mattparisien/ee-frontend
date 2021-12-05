@@ -78,13 +78,13 @@ function Home(props) {
 
 	return (
 		<>
-		<motion.div
-				
-				initial={{ translateX: '0' }}
-				animate={{ translateX: '0' }}
-				exit={{ translateX: "-150%" }}
-				transition={{ duration: 2, ease: "easeInOut" }}
-			>
+			<motion.div
+			  class="transition-card"
+				initial={{ translateX: "0" }}
+				animate={{ translateX: "-100%" }}
+				exit={{ translateX: "0%" }}
+				transition={{ duration: 0.6, ease: "easeInOut" }}
+			></motion.div>
 			<div ref={scrollRef} data-scroll-container>
 				<Section classes={"section-hero -bg-light"}>
 					<Container
@@ -160,7 +160,6 @@ function Home(props) {
 			</Section>
 			<Section classes={"section-work"}></Section> */}
 			</div>
-			</motion.div>
 		</>
 	);
 }

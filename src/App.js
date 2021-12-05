@@ -68,24 +68,9 @@ function App() {
 									<Home hoverState={hoverState} setHoverState={setHoverState} />
 								}
 							/>
-							<Route
-								path='/contact'
-								element={<Contact />}
-								location={location}
-								key={location.pathname}
-							/>
-							<Route
-								path='/projects'
-								element={<Projects />}
-								location={location}
-								key={location.pathname}
-							/>
-							<Route
-								path='/projects/:id'
-								element={
-									<ProjectItem location={location} key={location.pathname} />
-								}
-							/>
+							<Route path='/contact' element={<Contact />} />
+							<Route path='/projects' element={<Projects />} />
+							<Route path='/projects/:id' element={<ProjectItem />} />
 						</Routes>
 					</AnimatePresence>
 				</main>
