@@ -16,26 +16,19 @@ import {
 } from "./animations";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
+import locomotiveScroll from "locomotive-scroll";
 
 function App() {
 	//Nav visibility state
 	const [headercolor, setHeaderColor] = useState("");
 	const [menuShow, setMenuShow] = useState(false);
 	const [hoverState, setHoverState] = useState(false);
+	
 
 	function toggleMenuState() {
 		setMenuShow(!menuShow);
 	}
 
-	// const handleBurgerClick = function () {
-	// 	setVisibility(true);
-	// 	animateMenuIn();
-	// };
-
-	// const handleMenuClose = function () {
-	// 	setVisibility(false);
-	// 	animateMenuOut();
-	// };
 
 	const themes = {
 		banana: {
@@ -57,7 +50,7 @@ function App() {
 			<ThemeProvider theme={themes}>
 				<GlobalStyles />
 
-				<ModalWrapper hoverState={hoverState} />
+				{/* <ModalWrapper hoverState={hoverState} /> */}
 				<ViewportNav isVisible={menuShow} />
 				<Header
 					menuState={menuShow}
@@ -75,8 +68,6 @@ function App() {
 	);
 }
 
-$(".slider-wrapper").hover(function () {
-	console.log("is hovering in!");
-});
+
 
 export default App;

@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import useAxios from "./helpers/hooks/useAxios";
 import gsap from "gsap";
 import { useInView } from "react-intersection-observer";
 import SplitText from "gsap/SplitText";
+import useResize from "./helpers/hooks/useResize";
 
 function Grid() {
 	const { data, error, loading } = useAxios(
@@ -11,7 +12,14 @@ function Grid() {
 
 	const { ref, inView, entry } = useInView({ threshold: 0.8 });
 
-	const paragraphRefs = useRef([]);
+	const paragraph = useRef([]);
+	const fadeUpRows = useRef(gsap.timeline());
+	const [lines, setLines] = useState([]);
+	const { size } = useResize();
+
+	
+
+
 
 	return (
 		<div className='grid how-grid'>
@@ -20,16 +28,11 @@ function Grid() {
 					return (
 						<div className={`how-grid__${index + 1} grid-col`} key={index}>
 							<div className='heading-wrapper'>
-								<h3 className='-heading-medium -fw-200' ref={ref}>
+								<h3 className='-heading-medium -fw-200' >
 									{gridItem.attributes.gridEntry.Heading}
 								</h3>
 							</div>
-							<div
-								className='paragraph-wrapper -fade-up'
-								ref={el =>
-									(paragraphRefs.current = [...paragraphRefs.current, el])
-								}
-							>
+							<div className='paragraph-wrapper -fade-up'>
 								<p>{gridItem.attributes.gridEntry.Body}</p>
 							</div>
 						</div>

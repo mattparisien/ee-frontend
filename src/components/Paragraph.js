@@ -1,24 +1,57 @@
-import React from "react";
+import React, { useRef, forwardRef, useEffect } from "react";
 import classNames from "classnames";
+import SplitText from "gsap/SplitText";
+
+
 
 function Paragraph(props) {
-	const { small, medium, large } = props;
+	const {
+		small,
+		medium,
+		large,
+		classes,
+		width,
+		indent,
+		left,
+		right,
+		marginTop,
+		
+		myRef
+	} = props;
+
+	const splitRef = useRef(null);
+
+	const paragraphStyle = {
+		width: width,
+		marginTop: marginTop,
+		marginRight: left && "auto",
+		marginLeft: right && "auto",
+	};
 
 	const paragraphClass = classNames("paragraph-wrapper", {
-		"-large": large,
-		"-medium": medium,
-		"-small": small,
+		"-pg-large": large,
+		"-pg-medium": medium,
+		"-pg-small": small,
+		"-indent": indent,
+		classes,
 	});
+
+	// useEffect(() => {
+	// 	const splitText = new SplitText(splitRef.current, {
+	// 		type: "lines",
+	// 		linesClass: "fade-up-line"
+	// 	})
+	// }, [])
 
 	return (
 		<div
 			className='paragraph-wrapper'
-			style={{ width: "100%" }}
 			className={paragraphClass}
+			style={paragraphStyle}
 		>
-			<p>{props.children}</p>
+			<p ref={splitRef}>{props.children}</p>
 		</div>
 	);
 }
 
-export default Paragraph;
+export default forwardRef(Paragraph);

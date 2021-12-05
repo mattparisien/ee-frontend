@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
-import Container from "./Container";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Scroll } from "react-locomotive-scroll";

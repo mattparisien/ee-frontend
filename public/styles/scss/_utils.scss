@@ -1,7 +1,4 @@
 
-.word-wrapper {
-	overflow: hidden;
-}
 
 
 //Flex utilities
@@ -18,6 +15,11 @@
 	flex-direction: column;
 }
 
+.-margin-auto {
+	margin: 0 auto;
+	display: block;
+}
+
 .-align-items-center {
 	align-items: center;
 }
@@ -27,14 +29,25 @@
 	line-height: 5rem;
 }
 
+.-pg-small {
+	font-size: 2rem;
+	p {
+		line-height: 2.5rem;
+	}
+}
+
 .-pg-medium {
-	font-size: 3rem;
-	line-height: 3rem;
+	font-size: 4rem;
+	
 	margin-top: 3rem;
+
+	p {
+		line-height: 4.4rem;
+	}
 }
 
 
-.-dark {
+.-bg-dark {
 	background-color: $dark;
 	color: $light;
 }
@@ -42,6 +55,7 @@
 .-bg-light {
 	background-color: $light;
 }
+
 
 .-bg-yellow {
 	background-color: $yellow;
@@ -146,6 +160,10 @@
 
 .-w-100 {
 	width: 100%;
+}
+
+.-w-150vw {
+	width: 150vw;
 }
 
 .-h-100 {

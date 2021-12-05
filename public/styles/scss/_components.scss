@@ -1,3 +1,84 @@
+#eye {
+
+
+
+	.cls-1,
+	.cls-3,
+	.cls-4,
+	.cls-5 {
+		fill: none;
+	}
+	.cls-2,
+	.cls-3,
+	.cls-4,
+	.cls-5 {
+		fill-rule: evenodd;
+	}
+	.cls-3 {
+		stroke: $dark;
+	}
+	.cls-3,
+	.cls-4,
+	.cls-5 {
+		stroke-miterlimit: 10;
+	}
+
+	.cls-4 {
+		stroke-width: 66px;
+	}
+	.cls-5 {
+		stroke-width: 62px;
+	}
+
+	#overlays path {
+		stroke: $light;
+	}
+}
+
+#ear {
+
+
+
+	.cls-1 {
+		fill: $dark;
+	}
+	.cls-1,
+	.cls-2 {
+		fill-rule: evenodd;
+	}
+	.cls-2 {
+		fill: none;
+		stroke: #fff;
+		stroke-miterlimit: 10;
+		stroke-width: 66px;
+	}
+}
+#eye, #ear, #hero-amperstand {
+	position: absolute;
+	
+}
+
+#eye {
+	width: 40vw;
+	left: -15%;
+	top: 50%;
+	transform: translateY(-50%);
+	
+}
+
+#ear {
+	width: 30vw;
+	right: -10%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+
+
+
+
+
+
 a,
 ul,
 li {
@@ -8,8 +89,7 @@ li {
 
 p,
 a,
-li
- {
+li {
 	font-weight: 200;
 }
 
@@ -51,7 +131,6 @@ a:hover {
 					}
 
 					a {
-						
 						transition: 300ms ease;
 					}
 				}
@@ -112,8 +191,6 @@ a:hover {
 	}
 }
 
-
-
 .home-intro-wrapper {
 	display: flex;
 	align-items: flex-end;
@@ -124,14 +201,10 @@ a:hover {
 	color: $dark;
 }
 
-
-
-		
-
 .slider-wrapper {
 	width: 100vw;
 	height: 700px;
-	
+
 	position: absolute;
 
 	.slider-inner {
@@ -159,14 +232,11 @@ a:hover {
 				background-size: cover;
 				background-position: center;
 			}
-
 		}
 	}
 }
 
 @media screen and (max-width: 700px) {
-
-
 	.slider-wrapper {
 		height: 70vw !important;
 	}
@@ -176,9 +246,4 @@ a:hover {
 		height: 100% !important;
 		width: auto;
 	}
-
-
 }
-
-
-

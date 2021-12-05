@@ -4,14 +4,12 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 import { setStickySection } from "../animations";
+import classNames from "classnames";
 
 export default function Section(props) {
-	gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin);
-	const ref = useRef(null);
 
-	useEffect(() => {
-		setStickySection("+=1000");
-	}, []);
 
-	return <section className={props.classes}>{props.children}</section>;
+	const sectionClass = classNames("c-section", props.classes)
+
+	return <section className={sectionClass} data-scroll-section>{props.children}</section>;
 }

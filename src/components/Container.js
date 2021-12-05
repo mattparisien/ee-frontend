@@ -1,53 +1,15 @@
-import React, { Components, forwardRef } from "react";
-import Paragraph from "./Paragraph";
-import Heading from "./Heading";
-import { StyledContainer } from "./styles/StyledContainer.styled";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
+import { useEffect } from 'react/cjs/react.development';
+import $ from "jquery";
 
-function Container(props, ref) {
-	const {
-		width,
-		height,
-		flex,
-		isStretched,
-		sectionTheme,
-		justifyCenter,
-		alignCenter,
-		column,
-		paddingSmall,
-		paddingMedium,
-		paddingLarge,
-		absolute,
-		isBelow,
-		isAbove,
-	} = props;
+export default function Container(props) {
 
-	const containerClass = classNames("object-container", {
-		"-flex": flex,
-		"-justify-center": justifyCenter,
-		"-align-center": alignCenter,
-		"-column": column,
-		"-pd-sm": paddingSmall,
-		"-pd-md": paddingMedium,
-		"-pd-lg": paddingLarge,
-		"-absolute": absolute,
-	});
+  const containerClass = classNames("object-container", props.classes)
 
-	return (
-		<StyledContainer
-			$width={width}
-			$height={height}
-			$isStretched={isStretched}
-			className={containerClass}
-			$sectionTheme={sectionTheme}
-			$isAbove={isAbove}
-			$isBelow={isBelow}
-			ref={ref}
-		>
-			
-			{props.children}
-		</StyledContainer>
-	);
+  return (
+    <div className={containerClass}>
+      {props.children}
+    </div>
+  )
 }
-
-export default forwardRef(Container);
