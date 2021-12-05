@@ -75,7 +75,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 3vw 5vw;
   z-index: 99999;
 }
 
@@ -103,8 +103,6 @@ header nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  transform: translateY(-100%);
-  display: none;
 }
 
 header nav ul li {
@@ -157,6 +155,16 @@ header .bg-dynamic {
 
 .header-burger span.top {
   top: 0;
+}
+
+.desktop-nav-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.desktop-nav-wrapper nav {
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -584,6 +592,10 @@ body {
 
 .-justify-content-center {
   justify-content: center;
+}
+
+.-justify-between {
+  justify-content: space-between;
 }
 
 .-flex-column {

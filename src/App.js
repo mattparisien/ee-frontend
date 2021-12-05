@@ -1,34 +1,34 @@
 import React, { useRef, useEffect, useState } from "react";
-import ModalWrapper from "./components/ModalWrapper";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Home from "./components/Pages/Home";
+import Contact from "./components/Pages/Contact";
+import Projects from "./components/Pages/Projects";
+import ProjectItem from "./components/Pages/ProjectItem";
 import Footer from "./components/Footer";
-import $, { contains } from "jquery";
-import { gsap } from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import ViewportNav from "./components/ViewportNav";
-import determineHeaderColor from "./helpers/headerColor";
-import {
-	animateMenuIn,
-	animateMenuOut,
-	setStickySection,
-	toggleNavVisiblity,
-} from "./animations";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
-import locomotiveScroll from "locomotive-scroll";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	useLocation
+} from "react-router-dom";
+
+import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
+
+	const location = useLocation();
+
 	//Nav visibility state
 	const [headercolor, setHeaderColor] = useState("");
 	const [menuShow, setMenuShow] = useState(false);
 	const [hoverState, setHoverState] = useState(false);
-	
 
 	function toggleMenuState() {
 		setMenuShow(!menuShow);
 	}
-
 
 	const themes = {
 		banana: {
@@ -47,6 +47,7 @@ function App() {
 
 	return (
 		<div className='App'>
+			
 			<ThemeProvider theme={themes}>
 				<GlobalStyles />
 
@@ -59,7 +60,19 @@ function App() {
 				/>
 
 				<main>
-					<Home hoverState={hoverState} setHoverState={setHoverState} />
+					<AnimatePresence>
+						<Routes location={location} key={location.pathname}>
+							<Route
+								path='/'
+								element={
+									<Home hoverState={hoverState} setHoverState={setHoverState} />
+								}
+							/>
+							<Route path='/contact' element={<Contact />} />
+							<Route path='/projects' element={<Projects />} />
+							<Route path='/projects/:id' element={<ProjectItem />} />
+						</Routes>
+					</AnimatePresence>
 				</main>
 
 				<Footer />
@@ -67,7 +80,5 @@ function App() {
 		</div>
 	);
 }
-
-
 
 export default App;

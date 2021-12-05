@@ -11,6 +11,7 @@ import { Eye, Ear } from "../Svg";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../helpers/hooks/useResize";
 import locomotiveScroll from "locomotive-scroll";
+import { motion } from "framer-motion";
 
 export default function Home(props) {
 	const { data, error, loading } = useAxios("http://localhost:1337/api/home");
@@ -25,14 +26,12 @@ export default function Home(props) {
 	const introAnimation = useRef(gsap.timeline());
 	const scrollRef = useRef(null);
 
-	useEffect(() => {
-		const scroll = new locomotiveScroll({
-			el: scrollRef.current,
-			smooth: true,
-		});
-	}, []);
-
-
+	// useEffect(() => {
+	// 	const scroll = new locomotiveScroll({
+	// 		el: scrollRef.current,
+	// 		smooth: true,
+	// 	});
+	// }, []);
 
 	useEffect(() => {
 		gsap.registerPlugin(DrawSVGPlugin);
@@ -77,37 +76,42 @@ export default function Home(props) {
 	});
 
 	return (
-		<div ref={scrollRef} data-scroll-container>
-			<Section classes={"section-hero -bg-light"}>
-				<Container
-					classes={
-						"-w-100 -h-100 -position-absolute-center -display-flex -align-items-center -justify-content-center"
-					}
-				>
-					<div className='overflow-container -w-100 -h-100 -position-relative'>
-						<Eye reference={eye} speed='2' />
-						<div
-							className='-heading-bold -position-absolute-center'
-							id='hero-amperstand'
-						>
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+		>
+			<div ref={scrollRef} data-scroll-container>
+				<Section classes={"section-hero -bg-light"}>
+					<Container
+						classes={
+							"-w-100 -h-100 -position-absolute-center -display-flex -align-items-center -justify-content-center"
+						}
+					>
+						<div className='overflow-container -w-100 -h-100 -position-relative'>
+							<Eye reference={eye} speed='2' />
 							<div
-								className='amperstand-inner -position-relative'
-								ref={amperstand}
-								data-scroll
-								data-scroll-speed='2'
+								className='-heading-bold -position-absolute-center'
+								id='hero-amperstand'
 							>
-								<span>&</span>
-								<span class='scroll-cta -position-absolute'>
-									<span className='scroll-cta-inner' ref={scrollCta}>
-										Scroll & Enjoy
+								<div
+									className='amperstand-inner -position-relative'
+									ref={amperstand}
+									data-scroll
+									data-scroll-speed='2'
+								>
+									<span>&</span>
+									<span class='scroll-cta -position-absolute'>
+										<span className='scroll-cta-inner' ref={scrollCta}>
+											Scroll & Enjoy
+										</span>
 									</span>
-								</span>
+								</div>
 							</div>
+							<Ear reference={ear} speed='2' />
 						</div>
-						<Ear reference={ear} speed='2' />
-					</div>
-				</Container>
-				{/* <Container
+					</Container>
+					{/* <Container
 					classes={"section-hero__title-wrapper -position-absolute-center"}
 				>
 					<h1
@@ -131,26 +135,27 @@ export default function Home(props) {
 				</Container>
 				<div className='section-hero__image-wrapper -position-absolute'></div>
 				<div className='section-hero__image-wrapper -position-absolute'></div> */}
-			</Section>
-			<Section classes={"section-who -bg-dark"}>
-				<div className='object-container'>
-					<Paragraph width={"100%"} medium indent>
-						{error && error}
-						{loading && "Loading..."}
-						{data && data.data.attributes.missionHome}
-					</Paragraph>
-					<Line color='white' marginTop />
-					<Paragraph small marginTop='50vw' width='40vw' right>
-						{data && data.data.attributes.missionHome}
-					</Paragraph>
-				</div>
-			</Section>
-			<Section classes={"section-how -bg-light"}>
-				<Container>
-					<Grid />
-				</Container>
-			</Section>
-			<Section classes={"section-work"}></Section>
-		</div>
+				</Section>
+				<Section classes={"section-who -bg-dark"}>
+					<div className='object-container'>
+						<Paragraph width={"100%"} medium indent>
+							{error && error}
+							{loading && "Loading..."}
+							{data && data.data.attributes.missionHome}
+						</Paragraph>
+						<Line color='white' marginTop />
+						<Paragraph small marginTop='50vw' width='40vw' right>
+							{data && data.data.attributes.missionHome}
+						</Paragraph>
+					</div>
+				</Section>
+				<Section classes={"section-how -bg-light"}>
+					<Container>
+						<Grid />
+					</Container>
+				</Section>
+				<Section classes={"section-work"}></Section>
+			</div>
+		</motion.div>
 	);
 }

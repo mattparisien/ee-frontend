@@ -4,7 +4,10 @@ import { toggleNavVisiblity } from "../animations";
 import { ExitNav, Arrow } from "./Svg";
 
 export default function ViewportNav(props) {
-	const navClasses = classNames("viewport-nav -fixed", { "is-active": props.isVisible, "is-off": !props.isVisible });
+	const navClasses = classNames("viewport-nav -fixed", {
+		"is-active": props.isVisible,
+		"is-off": !props.isVisible,
+	});
 	const ref = useRef(null);
 
 	useEffect(() => {
@@ -13,7 +16,11 @@ export default function ViewportNav(props) {
 
 	return (
 		<div className={navClasses} ref={ref}>
-			<button className='viewport-nav__exit-btn -fixed-right' type='button' onClick={props.onClick}>
+			<button
+				className='viewport-nav__exit-btn -fixed-right'
+				type='button'
+				onClick={props.onClick}
+			>
 				{ExitNav()}
 			</button>
 			<div className='viewport-nav__inner'>

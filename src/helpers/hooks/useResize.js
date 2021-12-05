@@ -1,24 +1,19 @@
-import React, { useState, useLayoutEffect } from "react";
-import SplitText from "gsap/SplitText";
+import React, { useState } from "react";
+
 import { useEffect } from "react/cjs/react.development";
 
 export default function useResize() {
-	const [windowResizing, setWindowResizing] = useState(false);
+	const [windowWidth, setWindowWidth] = useState(null);
 
-  useEffect(() => {
-    let timeout;
-    const handleResize = () => {
-      clearTimeout(timeout);
+	useEffect(() => {
+		const handleResize = function (e) {
+			const innerWidth = window.innerWidth;
+			setWindowWidth(innerWidth);
+		};
 
-      setWindowResizing(true);
+		window.addEventListener("resize", handleResize);
 
-      timeout = setTimeout(() => {
-        setWindowResizing(false);
-      }, 200);
-    }
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-	return { windowResizing };
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+	return [windowWidth];
 }
