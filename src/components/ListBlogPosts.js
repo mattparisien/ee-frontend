@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import Grid from "@mui/material/Grid";
+import Grid from "./Grid";
+import GridItem from "./GridItem";
 import Paper from "@mui/material/Paper";
 import Image from "./Image";
 import useAxios from "../helpers/hooks/useAxios";
+import Container from "./Container";
 
 function ListBlogPosts({ gap, padding }) {
 	const gridStyle = { gap: gap && gap, width: "100%" };
@@ -10,18 +12,22 @@ function ListBlogPosts({ gap, padding }) {
 		"https://jsonplaceholder.typicode.com/albums/1/photos"
 	);
 
+	let count = 0;
+	
 	return (
-		<Grid container spacing={3}>
-			{error && error}
-			{loading && "Loading..."}
-			{data &&
-				data.map(post => {
-					return (
-						<Grid item xs={6} md={6} lg={6} key={post.id}>
-							<Image url={post.url} />
-						</Grid>
-					);
-				})}
+		
+		<Grid columns={4}>
+
+			{data && data.slice(0, 4).map((post, index) => {
+				count++
+
+
+				
+
+				return (
+					<GridItem classes={`project-grid__item__${count}`}></GridItem>
+				)
+			})}
 		</Grid>
 	);
 }

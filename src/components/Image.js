@@ -3,7 +3,7 @@ import React from "react";
 function Image(props) {
 	const imageContainerStyle = {
 		width: props.width ? props.width : "100%",
-		height: props.height ? props.height : "800px",
+		height: props.height ? props.height : "300px",
 		overflow: "hidden",
 	};
 

@@ -13,8 +13,9 @@ function Projects() {
 				</Container>
 				<Section>
 					<Container>
-					<ListBlogPosts gap={30}/>
+					<ListBlogPosts />
 					</Container>
+						
 					
 				</Section>
 			</Section>
