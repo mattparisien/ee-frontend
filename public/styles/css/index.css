@@ -1008,26 +1008,6 @@ body {
   opacity: 0;
 }
 
-.slide-in {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  background: #066bb8;
-  transform-origin: left;
-}
-
-.slide-out {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  background: #066bb8;
-  transform-origin: right;
-}
-
 .transition-bg {
   position: fixed;
   top: 0;
@@ -1038,7 +1018,7 @@ body {
   z-index: -99999;
 }
 
-.transition-card {
+.transition-group .transition-card {
   z-index: 999;
   background-color: #F0D549;
   height: 100%;
@@ -1048,17 +1028,26 @@ body {
   left: 0;
 }
 
+.transition-group .transition-out {
+  transform: translateX(-100%);
+}
+
+.-heading-xl {
+  font-size: 10vw;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, p {
+html,
+p {
   height: 100%;
   width: 100%;
   line-height: 1.6;
-  font-family: 'Kobe';
+  font-family: "Kobe";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: none;

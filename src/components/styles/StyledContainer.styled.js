@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 
 const StyledContainer = styled.div`
-	height: ${props => (props.$height ? props.$height : "100vh")};
+	height: ${props => (props.$height && props.$height)};
 	width: ${props => (props.$width ? props.$width : "100vw")};
+	padding: ${props  => (props.$padding ? props.$padding : '4rem')};
 	background-color: ${({ theme, $sectionTheme }) => {
 		return (
 			($sectionTheme === "banana" && theme.banana.backgroundColor) ||

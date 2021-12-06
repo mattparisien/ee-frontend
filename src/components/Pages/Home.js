@@ -11,8 +11,6 @@ import { Eye, Ear } from "../Svg";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../helpers/hooks/useResize";
 import locomotiveScroll from "locomotive-scroll";
-import { motion } from "framer-motion";
-import InitialTransition from "../Transition/InitialTransition";
 
 function Home(props) {
 	const { data, error, loading } = useAxios("http://localhost:1337/api/home");
@@ -78,15 +76,11 @@ function Home(props) {
 
 	return (
 		<>
-			<motion.div
-			  class="transition-card"
-				initial={{ translateX: "0" }}
-				animate={{ translateX: "-100%" }}
-				exit={{ translateX: "0%" }}
-				transition={{ duration: 0.6, ease: "easeInOut" }}
-			></motion.div>
 			<div ref={scrollRef} data-scroll-container>
-				<Section classes={"section-hero -bg-light"}>
+				<Section
+					classes={"section-hero -bg-light"}
+					sectionRef={props.sectionRefs}
+				>
 					<Container
 						classes={
 							"-w-100 -h-100 -position-absolute-center -display-flex -align-items-center -justify-content-center"
@@ -115,50 +109,29 @@ function Home(props) {
 							<Ear reference={ear} speed='2' />
 						</div>
 					</Container>
-					{/* <Container
-					classes={"section-hero__title-wrapper -position-absolute-center"}
-				>
-					<h1
-						className='section-hero__title-wrapper__inner -w-100 -h-100 -position-relative -heading-bold'
-						data-scroll
-						data-scroll-speed='3'
-					>
-						{heroWords.map(word => {
-							return (
-								<span className='section-hero__title__part word-wrapper heroText -position-absolute'>
-									<span
-										className='word -fade-down'
-										ref={el => (words.current = [...words.current, el])}
-									>
-										{word}
-									</span>
-								</span>
-							);
-						})}
-					</h1>
-				</Container>
-				<div className='section-hero__image-wrapper -position-absolute'></div>
-				<div className='section-hero__image-wrapper -position-absolute'></div> */}
+
+					<div className='section-hero__image-wrapper -position-absolute'></div>
+					<div className='section-hero__image-wrapper -position-absolute'></div>
 				</Section>
-				{/* <Section classes={"section-who -bg-dark"}>
-				<div className='object-container'>
-					<Paragraph width={"100%"} medium indent>
-						{error && error}
-						{loading && "Loading..."}
-						{data && data.data.attributes.missionHome}
-					</Paragraph>
-					<Line color='white' marginTop />
-					<Paragraph small marginTop='50vw' width='40vw' right>
-						{data && data.data.attributes.missionHome}
-					</Paragraph>
-				</div>
-			</Section>
-			<Section classes={"section-how -bg-light"}>
-				<Container>
-					<Grid />
-				</Container>
-			</Section>
-			<Section classes={"section-work"}></Section> */}
+				<Section classes={"section-who -bg-dark"}>
+					<div className='object-container'>
+						<Paragraph width={"100%"} medium indent>
+							{error && error}
+							{loading && "Loading..."}
+							{data && data.data.attributes.missionHome}
+						</Paragraph>
+						<Line color='white' marginTop />
+						<Paragraph small marginTop='50vw' width='40vw' right>
+							{data && data.data.attributes.missionHome}
+						</Paragraph>
+					</div>
+				</Section>
+				<Section classes={"section-how -bg-light"}>
+					<Container>
+						<Grid />
+					</Container>
+				</Section>
+				<Section classes={"section-work"}></Section>
 			</div>
 		</>
 	);

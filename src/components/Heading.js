@@ -2,18 +2,20 @@ import React from "react";
 
 import classNames from "classnames";
 
-function Heading({ medium, regular, bold, black, large, small, xl, type, children }) {
+function Heading({ small, medium, large, xl, children }) {
 	const headingClass = classNames("heading-wrapper", {
-		"-heading-medium": regular,
-		"-heading-bold": bold,
-		"-heading-black": black,
+		"-heading-small": small,
+		"-heading-medium": medium,
 		"-heading-large": large,
-		"-xl": xl,
+		"-heading-xl": xl,
 	});
 
 	return (
 		<div className={headingClass}>
-			{children}
+			{small && <h4>{children}</h4>}
+			{medium && <h3>{children}</h3>}
+			{large && <h2>{children}</h2>}
+			{xl && <h1>{children}</h1>}
 		</div>
 	);
 }

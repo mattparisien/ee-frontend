@@ -6,7 +6,6 @@ import Projects from "./components/Pages/Projects";
 import ProjectItem from "./components/Pages/ProjectItem";
 import Footer from "./components/Footer";
 import ViewportNav from "./components/ViewportNav";
-import TransitionBg from "./components/Transition/TransitionBg";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
 import {
@@ -16,19 +15,31 @@ import {
 	useLocation,
 } from "react-router-dom";
 
-import { AnimatePresence, motion } from "framer-motion";
-
 function App() {
-	console.log(Home);
 	const location = useLocation();
 
 	//Nav visibility state
-	const [headercolor, setHeaderColor] = useState("");
-	const [menuShow, setMenuShow] = useState(false);
-	const [hoverState, setHoverState] = useState(false);
+	// const [headercolor, setHeaderColor] = useState("");
+	// const [menuShow, setMenuShow] = useState(false);
+	// const [hoverState, setHoverState] = useState(false);
+
+	const [state, setState] = useState({
+		isHovering: false,
+		headerColor: null,
+		menuShow: false,
+	});
+
+	const sections = useRef([]);
+
+	const textContent = {
+		home: {
+			vision: {},
+			grid: {},
+		},
+	};
 
 	function toggleMenuState() {
-		setMenuShow(!menuShow);
+		setState(prev => ({ ...prev, menuShow: true }));
 	}
 
 	const themes = {
@@ -52,31 +63,28 @@ function App() {
 				<GlobalStyles />
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
-				<ViewportNav isVisible={menuShow} />
-				<Header
-					menuState={menuShow}
-					theme={headercolor}
-					toggleMenu={toggleMenuState}
-				/>
+				<ViewportNav isVisible={state.menuShow} />
+				<Header menuState={state.menuShow} toggleMenu={toggleMenuState} />
 
 				<main>
-					<AnimatePresence exitBeforeEnter initial={false}>
-						<Routes location={location} key={location.pathname}>
-							<Route
-								path='/'
-								element={
-									<Home hoverState={hoverState} setHoverState={setHoverState} />
-								}
-							/>
-							<Route path='/contact' element={<Contact />} />
-							<Route path='/projects' element={<Projects />} />
-							<Route path='/projects/:id' element={<ProjectItem />} />
-						</Routes>
-					</AnimatePresence>
+					<Routes location={location} key={location.pathname}>
+						<Route
+							path='/'
+							element={
+								<Home
+									hoverState={state.isHovering}
+									setHoverState={toggleMenuState}
+									sectionRefs={el => [...sections.current, el]}
+								/>
+							}
+						/>
+						<Route path='/contact' element={<Contact />} />
+						<Route path='/projects' element={<Projects />} />
+						<Route path='/projects/:id' element={<ProjectItem />} />
+					</Routes>
 				</main>
 
 				<Footer />
-				<TransitionBg />
 			</ThemeProvider>
 		</div>
 	);
