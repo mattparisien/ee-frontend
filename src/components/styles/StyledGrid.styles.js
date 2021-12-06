@@ -17,12 +17,11 @@ const StyledGrid = styled.div`
 		width: 100%;
 		position: relative;
 
-		.project-grid__item___content {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+		.image-overlay {
+			font-size: 2rem;
+			line-height: 2rem;
+			padding: 2rem;
+			text-transform: capitalize;
 		}
 	}
 
