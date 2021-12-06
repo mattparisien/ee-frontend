@@ -42,6 +42,12 @@ function App() {
 		setState(prev => ({ ...prev, menuShow: true }));
 	}
 
+	const updateHoverState = function () {
+		
+		setState(() => ({ ...state, isHovering: !state.isHovering }));
+		return state;
+	};
+
 	const themes = {
 		banana: {
 			color: "#F1DA0A",
@@ -79,7 +85,10 @@ function App() {
 							}
 						/>
 						<Route path='/contact' element={<Contact />} />
-						<Route path='/projects' element={<Projects />} />
+						<Route
+							path='/projects'
+							element={<Projects updateHoverState={updateHoverState} />}
+						/>
 						<Route path='/projects/:id' element={<ProjectItem />} />
 					</Routes>
 				</main>

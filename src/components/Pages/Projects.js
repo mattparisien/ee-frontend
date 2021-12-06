@@ -12,11 +12,9 @@ function Projects() {
 					<Heading xl>Our work</Heading>
 				</Container>
 				<Section>
-					<Container>
-					<ListBlogPosts />
+					<Container padding={'5vw'}>
+						<ListBlogPosts />
 					</Container>
-						
-					
 				</Section>
 			</Section>
 		</div>

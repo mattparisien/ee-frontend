@@ -1,9 +1,12 @@
-import React from "react";
+import { post } from "jquery";
+import React, {useRef, useEffect} from "react";
+import useHover from "../helpers/hooks/useHover";
+import ImageOverlay from "./ImageOverlay";
 
 function Image(props) {
 	const imageContainerStyle = {
 		width: props.width ? props.width : "100%",
-		height: props.height ? props.height : "300px",
+		height: props.height ? props.height : "100%",
 		overflow: "hidden",
 	};
 
@@ -21,10 +24,24 @@ function Image(props) {
 		height: "100%",
 	};
 
+	const [hoverRefs, isHovered] = useHover();
+
+	hoverRefs.current = [];
+
+	const addToRefs = function (el) {
+		if (el && !hoverRefs.current.includes(el)) {
+			hoverRefs.current.push(el);
+		}
+	};
+
+
 	return (
-		<div className={"image-wrapper"} style={imageContainerStyle}>
+		<>
+		<div className={"image-wrapper -position-relative"} style={imageContainerStyle} ref={addToRefs}>
 			<div className={"image"} style={imageStyle}></div>
+			{isHovered && <ImageOverlay overlayInfo={{title: props.title}} />}
 		</div>
+		</>
 	);
 }
 

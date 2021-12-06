@@ -8,7 +8,7 @@ export default function Container(props) {
 	const containerClass = classNames("object-container", props.classes);
 
 	return (
-		<StyledContainer $padding={props.$padding} className={"styled-object-container"}>
+		<StyledContainer $padding={props.padding} className={"styled-object-container"}>
 			{props.children}
 		</StyledContainer>
 	);
