@@ -30,7 +30,7 @@ export default function useIntersect(refs, options) {
 				});
 			}
 		}
-	}, []);
+	});
 
 	return [isIntersect, target];
 }

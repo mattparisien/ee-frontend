@@ -14,6 +14,7 @@ import {
 	Route,
 	useLocation,
 } from "react-router-dom";
+import ScrollToTop from "./helpers/ScrollToTop";
 
 function App() {
 	const location = useLocation();
@@ -51,6 +52,10 @@ function App() {
 		colors: {
 			light: "#F9F9EA",
 			dark: "#010201",
+			red: "#E32127",
+			green: "#3F855C",
+			blue: "#2057A0",
+			yellow: "#F0D549",
 		},
 	};
 

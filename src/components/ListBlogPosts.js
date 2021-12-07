@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Grid from "./Grid";
 import GridItem from "./GridItem";
-import Paper from "@mui/material/Paper";
 import Image from "./Image";
 import useAxios from "../helpers/hooks/useAxios";
 import Container from "./Container";
@@ -11,6 +10,8 @@ import useResize from "../helpers/hooks/useResize";
 import useIntersect from "../helpers/hooks/useIntersect";
 import $ from "jquery";
 import gsap from "gsap";
+import divideArray from "../helpers/divideArray";
+import renderGridItems from "../helpers/renderGridItems";
 
 function ListBlogPosts({ gap, padding }) {
 	const gridStyle = { gap: gap && gap, width: "100%" };
@@ -19,20 +20,24 @@ function ListBlogPosts({ gap, padding }) {
 	);
 
 	const gridItemRefs = useRef(null);
+	const imageRefs = useRef(null);
 	gridItemRefs.current = [];
+	imageRefs.current = [];
 
-	const getRefs = function (el) {
-		if (el && !gridItemRefs.current.includes(el)) {
-			gridItemRefs.current.push(el);
-		}
-		console.log(gridItemRefs.current);
-	};
+	// const getItemRefs = function (el) {
+	// 	if (el && !gridItemRefs.current.includes(el)) {
+	// 		gridItemRefs.current.push(el);
+	// 	}
+	// };
 
 	const [isIntersect, target] = useIntersect(gridItemRefs);
 
+
+
 	useEffect(() => {
 		if (target) {
-			gsap.to(target, {
+			const tl = gsap.timeline();
+			tl.to(target, {
 				opacity: 1,
 				y: "0",
 				duration: 1,
@@ -43,26 +48,9 @@ function ListBlogPosts({ gap, padding }) {
 
 	return (
 		<>
-			<Grid columns={12} gap={"4vw"}>
-				{data &&
-					data.slice(0, 10).map((post, index) => {
-						return (
-							<GridItem
-								classes={`project-grid__item project-grid__item__${index + 1}`}
-								key={post.id}
-								
-							>
-								<Link
-									to={`/projects/${post.id}`}
-									className='project-grid-item__link 	fade-up -position-relative'
-									ref={getRefs}
-								>
-									<Image url={post.url} title={post.title} />
-								</Link>
-							</GridItem>
-						);
-					})}
-			</Grid>
+			{data && renderGridItems(data)}
+			{error && <p>{error}</p>}
+			{loading && <p>Loading...</p>}
 		</>
 	);
 }

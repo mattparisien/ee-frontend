@@ -1,11 +1,11 @@
 import { post } from "jquery";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, forwardRef } from "react";
 import useHover from "../helpers/hooks/useHover";
 import ImageOverlay from "./ImageOverlay";
 import useResize from "../helpers/hooks/useResize";
 import StyledImage from "./styles/StyledImage";
 
-function Image(props) {
+function Image(props, ref) {
 	const [isHovered, setHovered] = useState(false);
 	const [windowWidth] = useResize();
 	const [device, setDevice] = useState(null);
@@ -24,10 +24,10 @@ function Image(props) {
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 		>
-			<div className={"image"}></div>
+			<div className={"image"} ref={ref}></div>
 			<ImageOverlay overlayInfo={{ title: props.title }} />
 		</StyledImage>
 	);
 }
 
-export default Image;
+export default forwardRef(Image);

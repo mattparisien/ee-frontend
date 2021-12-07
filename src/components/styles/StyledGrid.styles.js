@@ -4,7 +4,9 @@ import { deviceSize } from "./device";
 
 const StyledGrid = styled.div`
 
-
+	&:not(:first-child) {
+		margin-top: ${({ $gridStyles }) => ($gridStyles.gap ? $gridStyles.gap : "3vw")}
+	}
 	display: grid;
 	min-height: 100vh;
 	grid-template-columns: repeat(
@@ -26,10 +28,7 @@ const StyledGrid = styled.div`
 		width: 100%;
 		position: relative;
 
-		&.fade-up {
-			transform: translateY(300px);
-			opacity: 0;
-		}
+
 
 		.image-overlay {
 			font-size: 2rem;
@@ -44,7 +43,7 @@ const StyledGrid = styled.div`
 			
 
 			@media only screen and (max-width: ${deviceSize.tablet}px) {
-				grid-column: 1/5 !important;	
+				grid-column: 1/13 !important;	
 				grid-row: auto/auto !important;	
 				transform: none !important;
 			};
