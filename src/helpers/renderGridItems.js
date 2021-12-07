@@ -14,7 +14,7 @@ export default function renderGridItems(data) {
 	arrayofGrids = divideArray(data.data, 7);
 	return arrayofGrids.map(nested => {
 		return (
-			<Grid columns={12} gap={"4vw"}>
+			<Grid columns={12} gap={"4vw"} rows={"grid-auto-rows: 15vw"}>
 				{nested.map((post, index) => {
 					return (
 						<GridItem
@@ -28,7 +28,7 @@ export default function renderGridItems(data) {
 								<Image
 									url={`http://localhost:1337${post.attributes.FeatureImage.data.attributes.url}`}
 									title={post.attributes.Title}
-                  subTitle={post.attributes.Subtitle}
+									subTitle={post.attributes.Subtitle}
 								/>
 							</Link>
 						</GridItem>

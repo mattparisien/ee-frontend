@@ -14,14 +14,7 @@ import divideArray from "../helpers/divideArray";
 import renderGridItems from "../helpers/renderGridItems";
 
 function ListBlogPosts({ gap, padding }) {
-	const gridStyle = { gap: gap && gap, width: "100%" };
-	const { error, data, loading } = useAxios(
-		"/api/posts?fields=*&populate=*"
-	);
-
-	useEffect(() => {
-		console.log('data...', data)
-	})
+	const { error, data, loading } = useAxios("/api/posts?fields=*&populate=*");
 
 	const gridItemRefs = useRef(null);
 	const imageRefs = useRef(null);
@@ -35,8 +28,6 @@ function ListBlogPosts({ gap, padding }) {
 	// };
 
 	const [isIntersect, target] = useIntersect(gridItemRefs);
-
-
 
 	useEffect(() => {
 		if (target) {

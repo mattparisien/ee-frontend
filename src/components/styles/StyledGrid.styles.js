@@ -14,10 +14,10 @@ const StyledGrid = styled.div`
 		1fr
 	);
 
-	${({ $windowWidth }) => {
+	${({ $windowWidth, $gridStyles }) => {
 		return $windowWidth <= deviceSize.tablet
 			? "grid-auto-rows: 130vw"
-			: "grid-auto-rows: 15vw";
+			: $gridStyles.rows;
 	}};
 	
 	grid-gap: ${({ $gridStyles }) => ($gridStyles.gap ? $gridStyles.gap : "3vw")};

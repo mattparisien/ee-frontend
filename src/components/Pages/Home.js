@@ -2,18 +2,21 @@ import React, { Fragment, useRef, useEffect } from "react";
 import $ from "jquery";
 import gsap from "gsap";
 import useAxios from "../../helpers/hooks/useAxios";
-import Grid from "../../Grid";
+import Grid from "../Grid";
+import GridItem from "../GridItem";
 import Section from "../Section";
 import Container from "../Container";
 import Paragraph from "../Paragraph";
+import Heading from "../Heading";
 import Line from "../Line";
+import Steps from "../Steps";
 import { Eye, Ear } from "../Svg";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../helpers/hooks/useResize";
 import locomotiveScroll from "locomotive-scroll";
 
 function Home(props) {
-	const { data, error, loading } = useAxios("http://localhost:1337/api/home");
+	const { data, error, loading } = useAxios("/api/mission");
 
 	const { windowResizing } = useResize();
 
@@ -31,6 +34,10 @@ function Home(props) {
 	// 		smooth: true,
 	// 	});
 	// }, []);
+
+	useEffect(() => {
+		console.log(data && data.data.attributes.Body);
+	});
 
 	useEffect(() => {
 		gsap.registerPlugin(DrawSVGPlugin);
@@ -78,12 +85,13 @@ function Home(props) {
 		<>
 			<div ref={scrollRef} data-scroll-container>
 				<Section
-					classes={"section-hero -bg-light"}
+					classes={"section-hero"}
 					sectionRef={props.sectionRefs}
 				>
 					<Container
-					width="100%"
-					height="100vh"
+						bg={"light"}
+						width='100%'
+						height='100vh'
 						classes={
 							"-w-100 -h-100 -position-absolute-center -display-flex -align-items-center -justify-content-center"
 						}
@@ -120,17 +128,17 @@ function Home(props) {
 						<Paragraph width={"100%"} medium indent>
 							{error && error}
 							{loading && "Loading..."}
-							{data && data.data.attributes.missionHome}
+							{data && data.data.attributes.MissionOne}
 						</Paragraph>
 						<Line color='white' marginTop />
 						<Paragraph small marginTop='50vw' width='40vw' right>
-							{data && data.data.attributes.missionHome}
+							{data && data.data.attributes.MissionTwo}
 						</Paragraph>
 					</div>
 				</Section>
-				<Section classes={"section-how -bg-light"}>
-					<Container>
-						<Grid />
+				<Section classes={"section-how"}>
+					<Container bg={"light"}>
+						<Steps/>
 					</Container>
 				</Section>
 				<Section classes={"section-work"}></Section>
