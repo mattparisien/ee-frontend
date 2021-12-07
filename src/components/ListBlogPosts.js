@@ -7,8 +7,10 @@ import useAxios from "../helpers/hooks/useAxios";
 import Container from "./Container";
 import { Link } from "react-router-dom";
 import useHover from "../helpers/hooks/useHover";
+import useResize from "../helpers/hooks/useResize";
 
 function ListBlogPosts({ gap, padding }) {
+
 	const gridStyle = { gap: gap && gap, width: "100%" };
 	const { error, data, loading } = useAxios(
 		"https://jsonplaceholder.typicode.com/albums/1/photos"
@@ -20,11 +22,11 @@ function ListBlogPosts({ gap, padding }) {
 				data.slice(0, 4).map((post, index) => {
 					return (
 						<GridItem
-							classes={`project-grid__item__${index + 1}`}
+							classes={`project-grid__item project-grid__item__${index + 1}`}
 							key={post.id}
 						>
 							<Link
-								to={"/"}
+								to={`/projects/${post.id}`}
 								className='project-grid-item__link -position-relative'
 							>
 								<Image url={post.url} title={post.title} />

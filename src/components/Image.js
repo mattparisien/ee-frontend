@@ -11,8 +11,8 @@ function Image(props) {
 	const [device, setDevice] = useState(null);
 
 	useEffect(() => {
-		if (windowWidth && windowWidth < 700) {
-			setDevice("mobile");
+		if (windowWidth && windowWidth <= 1024) {
+			setDevice("tablet");
 		} else {
 			setDevice("desktop");
 		}
@@ -20,7 +20,7 @@ function Image(props) {
 
 	return (
 		<StyledImage
-			$props={{ ...props, device: device, isHovered: isHovered }}
+			$props={{ ...props, windowWidth: windowWidth, isHovered: isHovered }}
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 		>

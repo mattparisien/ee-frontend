@@ -1,15 +1,24 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
+import { deviceSize } from "./device";
 
 const StyledGrid = styled.div`
+
+
 	display: grid;
 	min-height: 100vh;
 	grid-template-columns: repeat(
 		${({ $gridStyles }) => $gridStyles.columns},
 		1fr
 	);
-	grid-template-rows: repeat(10, 20vw);
-	grid-gap: 3vw;
+
+	${({ $windowWidth }) => {
+		return $windowWidth <= deviceSize.tablet
+			? "grid-auto-rows: 130vw"
+			: "grid-template-rows: repeat(10, 20vw)";
+	}};
+	
+	grid-gap: 4vw;
 
 	.project-grid-item__link {
 		display: block;
@@ -25,7 +34,14 @@ const StyledGrid = styled.div`
 		}
 	}
 
-	& .project-grid__item {
+		.project-grid__item {
+			@media only screen and (max-width: ${deviceSize.tablet}px) {
+				grid-column: 1/5 !important;	
+				grid-row: auto/auto !important;	
+				transform: none !important;
+			};
+		
+		
 		&__1 {
 			grid-column: 1/3;
 			grid-row: 1/4;
@@ -47,6 +63,9 @@ const StyledGrid = styled.div`
 			grid-row: 8/10;
 		}
 	}
+
+
+}
 `;
 
 export default StyledGrid;

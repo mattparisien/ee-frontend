@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
+import {deviceSize} from "./device";
 
 const StyledImage = styled.div`
 	position: relative;
@@ -21,9 +22,9 @@ const StyledImage = styled.div`
 
 	.image-overlay {
 		opacity: ${({ $props }) => {
-			return $props.device === "desktop" && $props.isHovered
+			return $props.windowWidth > deviceSize.laptop && $props.isHovered
 				? "1"
-				: $props.device === "mobile"
+				: $props.windowWidth <= deviceSize.laptop
 				? "1"
 				: "0";
 		}};
