@@ -84,10 +84,7 @@ function Home(props) {
 	return (
 		<>
 			<div ref={scrollRef} data-scroll-container>
-				<Section
-					classes={"section-hero"}
-					sectionRef={props.sectionRefs}
-				>
+				<Section classes={"section-hero"} sectionRef={props.sectionRefs}>
 					<Container
 						bg={"light"}
 						width='100%'
@@ -123,8 +120,8 @@ function Home(props) {
 					<div className='section-hero__image-wrapper -position-absolute'></div>
 					<div className='section-hero__image-wrapper -position-absolute'></div>
 				</Section>
-				<Section classes={"section-who -bg-dark"}>
-					<div className='object-container'>
+				<Section classes={"section-who"}>
+					<Container bg={"dark"}>
 						<Paragraph width={"100%"} medium indent>
 							{error && error}
 							{loading && "Loading..."}
@@ -134,11 +131,11 @@ function Home(props) {
 						<Paragraph small marginTop='50vw' width='40vw' right>
 							{data && data.data.attributes.MissionTwo}
 						</Paragraph>
-					</div>
+					</Container>
 				</Section>
 				<Section classes={"section-how"}>
 					<Container bg={"light"}>
-						<Steps/>
+						<Steps />
 					</Container>
 				</Section>
 				<Section classes={"section-work"}></Section>

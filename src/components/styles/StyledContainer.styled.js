@@ -12,7 +12,12 @@ const StyledContainer = styled.div`
 			($bg === "dark" && theme.colors.dark)  
 		);
 	}};
-
+	color: ${({ theme, $bg}) => {
+		return (
+			($bg === "light" && theme.colors.dark) ||
+			($bg === "dark" && theme.colors.light)  
+		);
+	}};
 	${({ $isBelow, $isAbove }) => {
 		return `position: ${$isBelow ? "absolute" : ""};
 			 			bottom: ${$isBelow ? "0" : ""};
