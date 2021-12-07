@@ -25,7 +25,7 @@ function Image(props, ref) {
 			onMouseLeave={() => setHovered(false)}
 		>
 			<div className={"image"} ref={ref}></div>
-			<ImageOverlay overlayInfo={{ title: props.title }} />
+			<ImageOverlay overlayInfo={{ title: props.title, subtitle: props.subTitle }} />
 		</StyledImage>
 	);
 }

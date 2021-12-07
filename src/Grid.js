@@ -7,7 +7,7 @@ import useResize from "./helpers/hooks/useResize";
 
 function Grid() {
 	const { data, error, loading } = useAxios(
-		"http://localhost:1337/api/grid-items?fields=*&populate=*"
+		"/api/grid-items?fields=*&populate=*"
 	);
 
 	const { ref, inView, entry } = useInView({ threshold: 0.8 });

@@ -16,8 +16,12 @@ import renderGridItems from "../helpers/renderGridItems";
 function ListBlogPosts({ gap, padding }) {
 	const gridStyle = { gap: gap && gap, width: "100%" };
 	const { error, data, loading } = useAxios(
-		"https://jsonplaceholder.typicode.com/albums/1/photos"
+		"/api/posts?fields=*&populate=*"
 	);
+
+	useEffect(() => {
+		console.log('data...', data)
+	})
 
 	const gridItemRefs = useRef(null);
 	const imageRefs = useRef(null);

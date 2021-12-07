@@ -35,6 +35,11 @@ const StyledGrid = styled.div`
 			line-height: 2rem;
 			padding: 2rem;
 			text-transform: capitalize;
+
+			.title {
+				font-family: 'Kobe Bold';
+			}
+
 		}
 	}
 
