@@ -8,11 +8,11 @@ function Projects() {
 	return (
 		<div>
 			<Section>
-				<Container>
+				<Container bg={"light"}>
 					<Heading xl>Our work</Heading>
 				</Container>
 				<Section>
-					<Container padding={'5vw'}>
+					<Container padding={'5vw'} bg={"light"}>
 						<ListBlogPosts />
 					</Container>
 				</Section>

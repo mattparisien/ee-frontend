@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import {deviceSize} from "./device";
+import { deviceSize } from "./device";
 
 const StyledImage = styled.div`
 	position: relative;
@@ -29,6 +29,23 @@ const StyledImage = styled.div`
 				: "0";
 		}};
 		transition: 300ms ease;
+
+		.title,
+		.subtitle {
+			color: white;
+			z-index: 2;
+		}
+
+		.bg {
+			background-color: black;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0.5;
+			z-index: -1;
+		}
 	}
 `;
 

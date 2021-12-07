@@ -43,23 +43,14 @@ function App() {
 	}
 
 	const updateHoverState = function () {
-		
 		setState(() => ({ ...state, isHovering: !state.isHovering }));
 		return state;
 	};
 
 	const themes = {
-		banana: {
-			color: "#F1DA0A",
-			backgroundColor: "#F6F6EE",
-		},
-		night: {
-			color: "#F6F6EE",
-			backgroundColor: "#151414",
-		},
-		clean: {
-			color: "#201F1F",
-			backgroundColor: "#F6F6EE",
+		colors: {
+			light: "#F9F9EA",
+			dark: "#010201",
 		},
 	};
 

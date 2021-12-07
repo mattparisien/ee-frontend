@@ -7,7 +7,6 @@ function animateMenuIn() {
 	gsap.registerPlugin(CSSRulePlugin);
 
 	const rule = CSSRulePlugin.getRule(".viewport-nav__list-item:before");
-	console.log(rule);
 
 	const tl = gsap.timeline();
 

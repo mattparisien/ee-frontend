@@ -5,10 +5,16 @@ import $ from "jquery";
 import { StyledContainer } from "./styles/StyledContainer.styled.js";
 
 export default function Container(props) {
-	const containerClass = classNames("object-container", props.classes);
+	const containerClass = classNames("styled-object-container", props.classes);
 
 	return (
-		<StyledContainer $padding={props.padding} className={"styled-object-container"}>
+		<StyledContainer
+			$padding={props.padding}
+			$height={props.height}
+			$width={props.width}
+			$bg={props.bg}
+			className={containerClass}
+		>
 			{props.children}
 		</StyledContainer>
 	);

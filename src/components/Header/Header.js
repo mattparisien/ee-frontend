@@ -14,7 +14,6 @@ export default function Header(props) {
 	const [windowWidth] = useResize();
 
 	useEffect(() => {
-		console.log(windowWidth);
 		if (windowWidth && windowWidth < 700) {
 			setDevice("mobile");
 		} else {

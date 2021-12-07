@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-  background-color: ${({ theme }) => theme.night.backgroundColor};
-  color: ${({ theme }) => theme.night.color};
+  background-color: ${({ theme }) => theme.colors.dark};
+  color: ${({ theme }) => theme.colors.dark};
   height: 100vh;
   .footer-email {
     font-size: 5rem;
@@ -16,7 +16,7 @@ const StyledFooter = styled.footer`
       bottom: 0;
       width: 100%;
       height: 1px;
-      background-color: ${({ theme }) => theme.night.color};
+      background-color: ${({ theme }) => theme.colors.dark};
     }
   }
 `
