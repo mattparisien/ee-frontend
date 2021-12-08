@@ -105,13 +105,16 @@ function App() {
 				<Header menuState={state.menuShow} toggleMenu={toggleMenuState} />
 
 				<main>
-					<TransitionGroup>
+					<TransitionGroup className='transition-group'>
 						<div className='transitioner' ref={transitionRef}></div>
 						<Transition
-							timeout={500}
+							timeout={{
+								appear: 500,
+								enter: 500,
+								exit: 500,
+							}}
 							key={location.pathname}
-							onEnter={onEnterHandler}
-							// onExit={onExitHandler}
+							onExit={onEnterHandler}
 						>
 							<Routes location={location} key={location.pathname}>
 								<Route

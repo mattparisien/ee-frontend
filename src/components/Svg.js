@@ -1,4 +1,8 @@
-import { speed } from "jquery";
+import React, { useEffect, useState, useRef } from "react";
+import useHover from "../helpers/hooks/useHover";
+import gsap from "gsap";
+import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
+import $ from "jquery";
 
 export function Ear(props) {
 	return (
@@ -263,6 +267,46 @@ export function TextLogo(props) {
 				d='M1804.67,251.2l14.41-3.1c1.89,5.12,6.12,6.87,10.83,7.75a48.59,48.59,0,0,0,21.62-.79,14.56,14.56,0,0,0,4.51-2.12c2.49-1.72,2.43-4.84,0-6.63-2.88-2.09-6.29-2.75-9.71-3.11-3.09-.33-6.22-.43-9.33-.5-6.1-.14-12.17-.66-17.89-2.91a32.41,32.41,0,0,1-7.75-4.19,18.8,18.8,0,0,1-.17-29.86,30.59,30.59,0,0,1,13.73-5.91c9.54-1.79,19.07-1.93,28.51.64a28.59,28.59,0,0,1,12.14,6.51,22.79,22.79,0,0,1,6.86,12.11l-14.6,3.12c-1.57-4.67-5.22-6.51-9.43-7.44a48.77,48.77,0,0,0-23.25.55,13.94,13.94,0,0,0-3.71,1.62c-3.29,2.05-3.32,5.58.11,7.42a23,23,0,0,0,7.21,2.41,87.44,87.44,0,0,0,11.21.87,61.54,61.54,0,0,1,15.87,2.11,29.24,29.24,0,0,1,9.06,4.29,19,19,0,0,1,0,31.27,31.79,31.79,0,0,1-13.73,5.35c-9,1.48-18,1.63-26.88-.63a30,30,0,0,1-11.56-5.61,22.6,22.6,0,0,1-7.62-11.36A18.77,18.77,0,0,1,1804.67,251.2Z'
 				transform='translate(-1121.01 -198.48)'
 			/>
+		</svg>
+	);
+}
+
+export function Ellipse(props) {
+	gsap.registerPlugin(DrawSVGPlugin);
+
+	const ellipseAnim = useRef(gsap.timeline());
+	const [isHovering, setHovering] = useState(false);
+
+	const scaleEllipse = function (e) {
+		if (e.type === "mouseenter") {
+			ellipseAnim.current.to($(e.target).find("path"), {
+				drawSVG: "100%",
+				duration: 1,
+				ease: "Expo.easeInOut",
+			});
+		}
+		if (e.type === "mouseleave") {
+			console.log("hi");
+			ellipseAnim.current.progress(1).reverse();
+		}
+	};
+
+	return (
+		<svg
+			preserveAspectRatio='none'
+			viewBox='0 0 338 172'
+			className='link-ellipse -position-absolute-center'
+			fill='none'
+			stroke={props.color}
+			stroke-width="2px"
+			style={{ width: props.width }}
+			onMouseEnter={e => scaleEllipse(e)}
+			onMouseLeave={e => scaleEllipse(e)}
+		>
+			<path
+				d='M169,3.5c91.1,0,165,36.9,165,82.5s-73.9,82.5-165,82.5S4,131.6,4,86C4,40.4,77.9,3.5,169,3.5'
+				style={{ strokeDashoffset: 0.001, strokeDasharray: "0px, 999999px" }}
+			></path>
 		</svg>
 	);
 }

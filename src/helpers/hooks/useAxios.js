@@ -9,6 +9,7 @@ export default function useAxios(path) {
 	const { REACT_APP_BASE_URL } = process.env;
 
 	const getData = async function () {
+		
 		const content = await axios
 			.get(REACT_APP_BASE_URL + path)
 			.then(res => setData(res.data))

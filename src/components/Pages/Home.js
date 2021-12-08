@@ -28,6 +28,23 @@ function Home(props) {
 	const introAnimation = useRef(gsap.timeline());
 	const scrollRef = useRef(null);
 
+	const show = () => {
+		return (
+			<Section classes={"section-who"}>
+				<Container bg={"dark"}>
+					<Paragraph width={"100%"} medium indent>
+						{loading && "Loading..."}
+						{data && data.data.attributes.MissionOne}
+					</Paragraph>
+					<Line color='white' marginTop />
+					<Paragraph small marginTop='50vw' width='40vw' right>
+						{data && data.data.attributes.MissionTwo}
+					</Paragraph>
+				</Container>
+			</Section>
+		);
+	};
+
 	// useEffect(() => {
 	// 	const scroll = new locomotiveScroll({
 	// 		el: scrollRef.current,
@@ -120,19 +137,8 @@ function Home(props) {
 					<div className='section-hero__image-wrapper -position-absolute'></div>
 					<div className='section-hero__image-wrapper -position-absolute'></div>
 				</Section>
-				<Section classes={"section-who"}>
-					<Container bg={"dark"}>
-						<Paragraph width={"100%"} medium indent>
-							{error && error}
-							{loading && "Loading..."}
-							{data && data.data.attributes.MissionOne}
-						</Paragraph>
-						<Line color='white' marginTop />
-						<Paragraph small marginTop='50vw' width='40vw' right>
-							{data && data.data.attributes.MissionTwo}
-						</Paragraph>
-					</Container>
-				</Section>
+
+				{!error && show()}
 				<Section classes={"section-how"}>
 					<Container bg={"light"}>
 						<Steps />
