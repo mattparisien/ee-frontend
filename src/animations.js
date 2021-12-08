@@ -25,25 +25,28 @@ export function toggleNavVisiblity(ref, state) {
 		gsap.to(ref, {
 			x: 0,
 			duration: 1,
-			ease: 'expo.inOut'
+			ease: "expo.inOut",
 		});
-		gsap.to($("#header-logo"), {
-			autoAlpha: 0,
-			duration: 0.3,
-		}, 0.5)
+		gsap.to(
+			$("#header-logo"),
+			{
+				autoAlpha: 0,
+				duration: 0.3,
+			},
+			0.5
+		);
 	} else {
 		gsap.to(ref, {
-			x: '-100%',
+			x: "-100%",
 			duration: 1,
-			ease: 'expo.inOut'
+			ease: "expo.inOut",
 		});
 		gsap.to($("#header-logo"), {
 			autoAlpha: 1,
 			duration: 0.3,
-			delay: 0.2
-		})
+			delay: 0.2,
+		});
 	}
-	
 }
 
 export function animateTopBarIn() {
@@ -102,8 +105,6 @@ export function animateSlider(el) {
 	});
 }
 
-
-
 export function followCursor(el) {
 	$(el).css("visibility", "visible");
 	$("body").on("mousemove", function (e) {
@@ -122,7 +123,6 @@ export function unfollowCursor(el) {
 }
 
 export function burgerAnim(state) {
-
 	gsap.registerPlugin(CSSRulePlugin);
 
 	const button = $(".header-burger");
@@ -132,18 +132,27 @@ export function burgerAnim(state) {
 	if (state) {
 		gsap.to(button, {
 			css: {
-				className: '+= is-x'
+				className: "+= is-x",
 			},
 			duration: 3,
-			ease: 'expo.out'
-		})
+			ease: "expo.out",
+		});
 	} else {
 		gsap.to(button, {
 			opacity: 1,
 			duration: 3,
-			ease: 'expo.out'
-		})
+			ease: "expo.out",
+		});
 	}
-	
+}
 
+export function fadeUp(refs, duration) {
+	const tl = gsap.timeline();
+	tl.to(refs.current, {
+		y: 0,
+		opacity: 1,
+		duration: duration,
+		stagger: 0.2,
+		ease: "Expo.easeOut",
+	});
 }

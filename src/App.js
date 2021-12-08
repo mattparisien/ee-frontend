@@ -30,7 +30,7 @@ function App() {
 	const [state, setState] = useState({
 		isHovering: false,
 		headerColor: null,
-		menuShow: false,
+		menuIsShow: false,
 	});
 
 	const transitionRef = useRef(null);
@@ -39,7 +39,7 @@ function App() {
 	const sections = useRef([]);
 
 	function toggleMenuState() {
-		setState(prev => ({ ...prev, menuShow: true }));
+		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
 	}
 
 	const updateHoverState = function () {
@@ -102,8 +102,8 @@ function App() {
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
 
-				<Header menuState={state.menuShow} toggleMenu={toggleMenuState} />
-				<ViewportNav isVisible={state.menuShow} />
+				<Header onClick={toggleMenuState} />
+				<ViewportNav isVisible={state.menuIsShow} />
 				<main>
 					<TransitionGroup className='transition-group'>
 						<div className='transitioner' ref={transitionRef}></div>

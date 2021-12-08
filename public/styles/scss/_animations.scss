@@ -3,6 +3,12 @@
 	opacity: 0;
 }
 
+.-fade-up {
+	transform: translateY(100%);
+	opacity: 0;
+	display: block;
+}
+
 .transition-bg {
 	position: fixed;
 	top: 0;

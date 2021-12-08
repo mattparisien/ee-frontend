@@ -8,7 +8,7 @@ import useResize from "../../helpers/hooks/useResize";
 import { StyledHeader } from "../styles/StyledHeader";
 
 export default function Header(props) {
-	const { menuState, toggleMenu } = props;
+	const { menuState, toggleMenu, onClick } = props;
 
 	const [scrollDirection, setScrollDirection] = useState("");
 	const [device, setDevice] = useState(null);
@@ -35,7 +35,7 @@ export default function Header(props) {
 			</div>
 
 			{device === "mobile" && (
-				<MobileNav menuState={menuState} toggleMenu={toggleMenu} />
+				<MobileNav onClick={onClick} />
 			)}
 			{device === "desktop" && <DesktopNav />}
 		</StyledHeader>

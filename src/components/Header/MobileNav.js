@@ -1,16 +1,16 @@
 import React, { useRef, useEffect } from "react";
 
 function MobileNav(props) {
-	const { menuState, toggleMenu } = props;
+	const { menuState, onClick } = props;
 	const ref = useRef(null);
 
 	return (
 		<div className='mobile-nav-wrapper'>
 			<button
 				ref={ref}
-				className={menuState ? "header-burger is-x" : "header-burger is-burger"}
 				type='button'
-				onClick={() => toggleMenu(!menuState)}
+				onClick={onClick}
+				style={{ height: '50px', width: '50px' }}
 			>
 				<span
 					className='top'
