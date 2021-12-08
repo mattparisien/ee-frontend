@@ -1032,6 +1032,17 @@ body {
   transform: translateX(-100%);
 }
 
+.transitioner {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #F0D549;
+  z-index: 9999;
+  transform: translateX(-100%);
+}
+
 .-heading-xl {
   font-size: 10vw;
 }
