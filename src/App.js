@@ -33,6 +33,8 @@ function App() {
 		menuIsShow: false,
 	});
 
+
+	const [viewportNavColor, setViewportNavColor] = useState('dark');
 	const transitionRef = useRef(null);
 	const transitionTimeline = useRef(gsap.timeline());
 
@@ -102,7 +104,7 @@ function App() {
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
 
-				<Header onClick={toggleMenuState} />
+				<Header onClick={toggleMenuState} viewportNavColor={viewportNavColor} menuState={state.menuIsShow}/>
 				<ViewportNav isVisible={state.menuIsShow} />
 				<main>
 					<TransitionGroup className='transition-group'>

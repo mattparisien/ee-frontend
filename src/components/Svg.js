@@ -296,8 +296,8 @@ export function Ellipse(props) {
 			preserveAspectRatio='none'
 			viewBox='0 0 338 172'
 			className='link-ellipse -position-absolute-center'
-			fill='none'
-			stroke={props.color}
+			fill={props.fill}
+			stroke={props.stroke}
 			stroke-width="2px"
 			style={{ width: props.width }}
 			onMouseEnter={e => scaleEllipse(e)}

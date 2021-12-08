@@ -11,9 +11,12 @@ import { fadeUp } from "../animations";
 import gsap from "gsap";
 import { tabsListUnstyledClasses } from "@mui/base";
 import { act } from "react-dom/test-utils";
+import useResize from "../helpers/hooks/useResize";
 
 export default function ViewportNav(props) {
 	const [isActive, setActive] = useState(false);
+	const [windowWidth] = useResize();
+	
 
 	const addToRefs = function (el) {
 		if (el && !linkRefs.current.includes(el)) {
@@ -24,6 +27,8 @@ export default function ViewportNav(props) {
 	const ref = useRef(null);
 	const menuRef = useRef(null);
 	const linkRefs = useRef([]);
+	
+
 	const menuAnim = useRef(gsap.timeline());
 	linkRefs.current = [];
 
@@ -36,14 +41,22 @@ export default function ViewportNav(props) {
 	));
 
 	useEffect(() => {
+		console.log(windowWidth)
+		if (!isActive) {
+			console.log('hiiiii')
+			gsap.set(menuRef.current, { x: -windowWidth });	
+		}
+		
+	}, [windowWidth])
+
+	useEffect(() => {
 		if (props.isVisible) {
-			console.log("in here");
 			setActive(!isActive);
 			menuAnim.current.play();
 			menuAnim.current
 				.to(menuRef.current, {
 					x: 0,
-					duration: 1,
+					duration: 0.5,
 					ease: "Expo.inOut",
 				})
 				.to(
@@ -51,15 +64,16 @@ export default function ViewportNav(props) {
 					{
 						y: 0,
 						opacity: 1,
-						duration: 1,
-						stagger: 0.2,
+						duration: 0.5,
+						stagger: 0.1,
 						ease: "Expo.easeOut",
 					},
 					0
 				);
 		} else if (!props.isVisible && isActive) {
-			menuAnim.current.progress(1).reverse();
-			setActive(!isActive);
+			setActive(false);
+			menuAnim.current.reverse();
+			
 		}
 	}, [props.isVisible]);
 
