@@ -204,7 +204,9 @@
   stroke-width: 66px;
 }
 
-#eye, #ear, #hero-amperstand {
+#eye,
+#ear,
+#hero-amperstand {
   position: absolute;
 }
 
@@ -239,98 +241,6 @@ li {
 button:hover,
 a:hover {
   cursor: pointer;
-}
-
-.viewport-nav {
-  height: 100vh;
-  width: 100%;
-  z-index: 9999;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.viewport-nav .viewport-nav__inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 0.9rem;
-}
-
-.viewport-nav .viewport-nav__inner .right-col {
-  width: 80%;
-  margin: 0 1.4rem;
-}
-
-.viewport-nav .viewport-nav__inner .right-col ul li {
-  font-size: 9vw;
-  position: relative;
-  line-height: 10.5vw;
-  transition: 300ms ease;
-}
-
-.viewport-nav .viewport-nav__inner .right-col ul li:hover {
-  background-color: #151414;
-}
-
-.viewport-nav .viewport-nav__inner .right-col ul li:hover:last-of-type:hover #viewport-nav__arrow {
-  fill: #f9f7f1;
-}
-
-.viewport-nav .viewport-nav__inner .right-col ul li:hover a {
-  transition: 300ms ease;
-}
-
-.viewport-nav .viewport-nav__inner .right-col ul li a {
-  height: 100%;
-}
-
-.viewport-nav .viewport-nav__inner .right-col ul li::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  width: 100%;
-  background-color: #151414;
-  transform-origin: right;
-}
-
-.viewport-nav .viewport-nav__inner .right-col .arrow-container {
-  display: inline;
-  position: relative;
-}
-
-.viewport-nav .viewport-nav__inner .right-col .arrow-container #viewport-nav__arrow,
-.viewport-nav .viewport-nav__inner .right-col .arrow-container #viewport-nav__arrow-2 {
-  fill: #151414;
-  transition: 300ms ease;
-  width: 6vw;
-}
-
-.viewport-nav .viewport-nav__inner .right-col .arrow-container #viewport-nav__arrow-2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.viewport-nav .viewport-nav__inner .left-col {
-  width: 20%;
-  border-right: 1px solid #151414;
-  display: flex;
-}
-
-.viewport-nav .viewport-nav__exit-btn {
-  border: 0px;
-  width: 3.1rem;
-  height: 3.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0.4rem;
 }
 
 .home-intro-wrapper {
@@ -973,6 +883,7 @@ body {
 
 .-heading-xl {
   font-size: 10vw;
+  line-height: 15vw;
 }
 
 * {

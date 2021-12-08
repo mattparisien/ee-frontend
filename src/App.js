@@ -101,9 +101,9 @@ function App() {
 				<GlobalStyles />
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
-				<ViewportNav isVisible={state.menuShow} />
-				<Header menuState={state.menuShow} toggleMenu={toggleMenuState} />
 
+				<Header menuState={state.menuShow} toggleMenu={toggleMenuState} />
+				<ViewportNav isVisible={state.menuShow} />
 				<main>
 					<TransitionGroup className='transition-group'>
 						<div className='transitioner' ref={transitionRef}></div>

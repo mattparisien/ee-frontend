@@ -1,7 +1,4 @@
 #eye {
-
-
-
 	.cls-1,
 	.cls-3,
 	.cls-4,
@@ -36,9 +33,6 @@
 }
 
 #ear {
-
-
-
 	.cls-1 {
 		fill: $dark;
 	}
@@ -53,9 +47,10 @@
 		stroke-width: 66px;
 	}
 }
-#eye, #ear, #hero-amperstand {
+#eye,
+#ear,
+#hero-amperstand {
 	position: absolute;
-	
 }
 
 #eye {
@@ -63,7 +58,6 @@
 	left: -15%;
 	top: 50%;
 	transform: translateY(-50%);
-	
 }
 
 #ear {
@@ -72,12 +66,6 @@
 	top: 50%;
 	transform: translateY(-50%);
 }
-
-
-
-
-
-
 
 a,
 ul,
@@ -96,99 +84,6 @@ li {
 button:hover,
 a:hover {
 	cursor: pointer;
-}
-
-.viewport-nav {
-	height: 100vh;
-	width: 100%;
-	z-index: 9999;
-	background-color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	.viewport-nav__inner {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: row-reverse;
-		padding: 0.9rem;
-
-		.right-col {
-			width: 80%;
-			margin: 0 1.4rem;
-			ul li {
-				font-size: 9vw;
-				position: relative;
-				line-height: 10.5vw;
-				transition: 300ms ease;
-
-				&:hover {
-					background-color: $dark;
-
-					&:last-of-type:hover #viewport-nav__arrow {
-						fill: $light;
-					}
-
-					a {
-						transition: 300ms ease;
-					}
-				}
-
-				a {
-					height: 100%;
-				}
-
-				&::before {
-					content: "";
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					height: 1px;
-					width: 100%;
-					background-color: $dark;
-
-					transform-origin: right;
-				}
-			}
-
-			.arrow-container {
-				display: inline;
-				position: relative;
-
-				#viewport-nav__arrow,
-				#viewport-nav__arrow-2 {
-					fill: $dark;
-					transition: 300ms ease;
-					width: 6vw;
-				}
-
-				#viewport-nav__arrow-2 {
-					position: absolute;
-					top: 0;
-					left: 0;
-				}
-			}
-		}
-
-		.left-col {
-			width: 20%;
-			border-right: 1px solid $dark;
-			display: flex;
-		}
-	}
-
-	.viewport-nav__exit-btn {
-		border: 0px;
-		width: 3.1rem;
-		height: 3.1rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-
-		padding: 0.4rem;
-	}
 }
 
 .home-intro-wrapper {
