@@ -29,6 +29,7 @@ const StyledHeader = styled.header`
 		width: 100%;
 		height: 100%;
 		transition: 300ms ease;
+		fill: ${({ theme }) => theme.colors.dark};
 	}
 
 	nav {
@@ -66,8 +67,7 @@ const StyledHeader = styled.header`
 			.bottom {
 				height: 2px;
 				width: 100%;
-				background-color: ${({ $headerStyles, theme }) =>
-					theme.colors[$headerStyles.burger.color]};
+				background-color: ${({ theme }) => theme.colors.dark};
 				position: absolute;
 				margin: 1rem 0;
 				transition: ${({ $headerStyles }) => $headerStyles.burger.transition};
@@ -75,12 +75,20 @@ const StyledHeader = styled.header`
 
 			.top {
 				top: 0;
-				left: -${({ $headerStyles }) => $headerStyles.burger.left}px;
+				left: ${({ $headerStyles }) => $headerStyles.burger.left}px;
 			}
 
 			.bottom {
 				bottom: 0;
 				left: ${({ $headerStyles }) => $headerStyles.burger.left}px;
+			}
+
+			.burger-circle {
+				position: absolute;
+				top: 50%;
+				height: 50%;
+				transform-origin: center;
+				transform: translate(-50%, -50%)scale(0);
 			}
 		}
 	}

@@ -14,13 +14,74 @@ const StyledGrid = styled.div`
 		1fr
 	);
 
+
+
 	${({ $windowWidth, $gridStyles }) => {
-		return $windowWidth <= deviceSize.tablet
+		return $windowWidth <= deviceSize.mobileL
 			? "grid-auto-rows: 130vw"
 			: $gridStyles.rows;
 	}};
 	
 	grid-gap: ${({ $gridStyles }) => ($gridStyles.gap ? $gridStyles.gap : "3vw")};
+	grid-row-gap: 5vw;
+
+	&.steps-grid {
+
+		margin: 0 10vw;
+
+		.grid-item-wrapper {
+
+
+			display: flex;
+			align-items: flex-start;
+			justify-content: center;
+			flex-direction: column;
+
+			h4 {
+				font-size: 4.8vw;
+				line-height: 4.2vw;
+				text-transform: uppercase;
+				margin-bottom: 2vw;
+			}
+
+			p {
+				font-size: 1vw;
+			}
+
+		}
+	
+		
+		.steps-grid__item {
+
+
+			&1 {
+				grid-column: 1/5;
+			}
+
+			&2 {
+				grid-column: 5/9;
+				grid-row: 2/3;
+			}
+
+			&3 {
+				grid-column: 9/13;
+				grid-row: 3/4;
+			}
+
+			&4 {
+				grid-column: 5/9;
+				grid-row: 4/5;
+			}
+
+			&5 {
+				grid-column: 1/5;
+				grid-row: 5/6;
+			}
+		}
+
+	}
+	
+
 
 	.project-grid-item__link {
 		display: block;

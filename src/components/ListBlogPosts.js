@@ -1,16 +1,7 @@
 import React, { useRef, useEffect } from "react";
-import Grid from "./Grid";
-import GridItem from "./GridItem";
-import Image from "./Image";
 import useAxios from "../helpers/hooks/useAxios";
-import Container from "./Container";
-import { Link } from "react-router-dom";
-import useHover from "../helpers/hooks/useHover";
-import useResize from "../helpers/hooks/useResize";
 import useIntersect from "../helpers/hooks/useIntersect";
-import $ from "jquery";
 import gsap from "gsap";
-import divideArray from "../helpers/divideArray";
 import renderGridItems from "../helpers/renderGridItems";
 
 function ListBlogPosts({ gap, padding }) {

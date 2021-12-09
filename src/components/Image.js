@@ -1,6 +1,5 @@
-import { post } from "jquery";
-import React, { useRef, useEffect, useState, forwardRef } from "react";
-import useHover from "../helpers/hooks/useHover";
+import React, { useEffect, useState, forwardRef } from "react";
+
 import ImageOverlay from "./ImageOverlay";
 import useResize from "../helpers/hooks/useResize";
 import StyledImage from "./styles/StyledImage";
@@ -25,7 +24,9 @@ function Image(props, ref) {
 			onMouseLeave={() => setHovered(false)}
 		>
 			<div className={"image"} ref={ref}></div>
-			<ImageOverlay overlayInfo={{ title: props.title, subtitle: props.subTitle }} />
+			<ImageOverlay
+				overlayInfo={{ title: props.title, subtitle: props.subTitle }}
+			/>
 		</StyledImage>
 	);
 }

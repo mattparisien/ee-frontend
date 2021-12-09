@@ -123,7 +123,7 @@ function Home(props) {
 									data-scroll-speed='2'
 								>
 									<span>&</span>
-									<span class='scroll-cta -position-absolute'>
+									<span className='scroll-cta -position-absolute'>
 										<span className='scroll-cta-inner' ref={scrollCta}>
 											Scroll & Enjoy
 										</span>

@@ -1,6 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import { followCursor, unfollowCursor } from "../animations";
-import classNames from "classnames";
+import React, { useRef } from "react";
 
 export default function ModalWrapper(props) {
 	const { hoverState } = props;

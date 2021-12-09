@@ -14,7 +14,7 @@ export default function renderGridItems(data) {
 	arrayofGrids = divideArray(data.data, 7);
 	return arrayofGrids.map(nested => {
 		return (
-			<Grid columns={12} gap={"4vw"} rows={"grid-auto-rows: 15vw"}>
+			<Grid columns={12} gap={"4vw"} rows={"grid-auto-rows: 15vw"} classes={"project-grid"}>
 				{nested.map((post, index) => {
 					return (
 						<GridItem

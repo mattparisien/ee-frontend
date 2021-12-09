@@ -3,7 +3,7 @@ import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Scroll } from "react-locomotive-scroll";
+
 //Sticky section
 function Sticky({ themes, visionCopy }) {
 	const stickyWrapper = useRef(null);

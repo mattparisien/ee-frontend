@@ -440,6 +440,11 @@ body {
   z-index: 50;
 }
 
+.-heading-small {
+  font-size: 3.7rem;
+  line-height: 3.7rem;
+}
+
 .-flex-column {
   flex-direction: column;
 }

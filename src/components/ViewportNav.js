@@ -1,22 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
-import { toggleNavVisiblity } from "../animations";
-import { ExitNav, Arrow } from "./Svg";
+import React, { useRef } from "react";
 import { StyledViewportNav } from "./styles/StyledViewportNav";
 import Container from "./Container";
-import Heading from "./Heading";
 import { navigation } from "../data/data";
 import { Link } from "react-router-dom";
-import { fadeUp } from "../animations";
-import gsap from "gsap";
-import { tabsListUnstyledClasses } from "@mui/base";
-import { act } from "react-dom/test-utils";
 import useResize from "../helpers/hooks/useResize";
 
 export default function ViewportNav(props) {
-	const [isActive, setActive] = useState(false);
 	const [windowWidth] = useResize();
-	
 
 	const addToRefs = function (el) {
 		if (el && !linkRefs.current.includes(el)) {
@@ -24,12 +14,8 @@ export default function ViewportNav(props) {
 		}
 	};
 
-	const ref = useRef(null);
-	const menuRef = useRef(null);
 	const linkRefs = useRef([]);
-	
 
-	const menuAnim = useRef(gsap.timeline());
 	linkRefs.current = [];
 
 	const navLinks = navigation.map(link => (
@@ -40,45 +26,8 @@ export default function ViewportNav(props) {
 		</li>
 	));
 
-	useEffect(() => {
-		console.log(windowWidth)
-		if (!isActive) {
-			console.log('hiiiii')
-			gsap.set(menuRef.current, { x: -windowWidth });	
-		}
-		
-	}, [windowWidth])
-
-	useEffect(() => {
-		if (props.isVisible) {
-			setActive(!isActive);
-			menuAnim.current.play();
-			menuAnim.current
-				.to(menuRef.current, {
-					x: 0,
-					duration: 0.5,
-					ease: "Expo.inOut",
-				})
-				.to(
-					linkRefs.current,
-					{
-						y: 0,
-						opacity: 1,
-						duration: 0.5,
-						stagger: 0.1,
-						ease: "Expo.easeOut",
-					},
-					0
-				);
-		} else if (!props.isVisible && isActive) {
-			setActive(false);
-			menuAnim.current.reverse();
-			
-		}
-	}, [props.isVisible]);
-
 	return (
-		<StyledViewportNav className='viewport-nav' ref={menuRef}>
+		<StyledViewportNav className='viewport-nav' ref={props.sideMenuRef}>
 			<Container classes={"viewport-nav__inner"} bg={"dark"}>
 				<ul className='-position-absolute-center'>{navLinks}</ul>
 			</Container>

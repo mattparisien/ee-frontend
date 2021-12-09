@@ -1,8 +1,11 @@
 import React from "react";
 import StyledGrid from "./styles/StyledGrid.styles";
 import useResize from "../helpers/hooks/useResize";
+import classNames from "classnames";
 
 function Grid(props) {
+
+	const gridClass = classNames("grid-container", props.classes)
 	const [windowWidth] = useResize();
 
 	const gridStyles = {
@@ -13,7 +16,7 @@ function Grid(props) {
 
 	return (
 		<StyledGrid
-			className='grid-container'
+			className={gridClass}
 			$gridStyles={gridStyles}
 			$windowWidth={windowWidth}
 		>

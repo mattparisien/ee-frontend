@@ -1,8 +1,5 @@
-import React, { useRef, forwardRef, useEffect } from "react";
+import React, { useRef, forwardRef } from "react";
 import classNames from "classnames";
-import SplitText from "gsap/SplitText";
-
-
 
 function Paragraph(props) {
 	const {
@@ -15,8 +12,8 @@ function Paragraph(props) {
 		left,
 		right,
 		marginTop,
-		
-		myRef
+
+		myRef,
 	} = props;
 
 	const splitRef = useRef(null);

@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import classNames from "classnames";
-import { grid } from "@mui/system";
 
 function GridItem(props, ref) {
 	const gridItemClass = classNames("grid-item-wrapper", props.classes);

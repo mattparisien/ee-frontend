@@ -1,38 +1,40 @@
 import React, { useState, useEffect, useRef } from "react";
-import $ from "jquery";
-import gsap from "gsap";
 import { TextLogo } from "../Svg";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import useResize from "../../helpers/hooks/useResize";
 import { StyledHeader } from "../styles/StyledHeader";
-import { dark } from "@mui/material/styles/createPalette";
 import useHover from "../../helpers/hooks/useHover";
 import { useTheme } from "styled-components";
 
 export default function Header(props) {
 	const theme = useTheme();
-	const { menuState, toggleMenu, onClick, viewportNavColor } = props;
-	const burgerRef = useRef(null);
+	const {
+		menuState,
+		toggleMenu,
+		viewportNavColor,
+		changeColor,
+		color,
+		burgerRef,
+		buttonRef,
+		bottomPattyRef,
+		topPattyRef,
+		circleRef,
+		logoRef
+	} = props;
 	const [isHovered] = useHover(burgerRef);
-	
 
 	const [scrollDirection, setScrollDirection] = useState("");
 	const [device, setDevice] = useState(null);
 	const [windowWidth] = useResize();
 
-
-	useEffect(() => {
-		console.log(menuState)
-	})
-
 	const headerStyles = {
 		padding: "2rem 4rem",
 		burger: {
 			left: isHovered ? "10" : "0",
-			transition: "300ms ease",
-			color: menuState ? 'light' : 'dark'
-		},
+			transition: menuState ? "none" : "300ms ease",
+			color: "dark",
+		}
 	};
 
 	useEffect(() => {
@@ -47,14 +49,23 @@ export default function Header(props) {
 		<StyledHeader $headerStyles={headerStyles}>
 			<div className='logo-wrapper -absolute-center'>
 				<a href='/'>
-					<TextLogo />
+					<TextLogo logoRef={logoRef}/>
 				</a>
 			</div>
 
 			{device === "mobile" && (
-				<MobileNav onClick={onClick} burgerRef={burgerRef} theme={theme}/>
+				<MobileNav
+					onClick={toggleMenu}
+					burgerRef={burgerRef}
+					buttonRef={buttonRef}
+					bottomPattyRef={bottomPattyRef}
+					topPattyRef={topPattyRef}
+					circleRef={circleRef}
+					theme={theme}
+					menuState={menuState}
+				/>
 			)}
-			{device === "desktop" && <DesktopNav theme={theme}/>}
+			{device === "desktop" && <DesktopNav theme={theme} />}
 		</StyledHeader>
 	);
 }

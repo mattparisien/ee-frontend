@@ -1,4 +1,4 @@
-import { Ear } from "./Svg";
+
 import { StyledFooter } from "./styles/StyledFooter.styled";
 import Heading from "./Heading";
 

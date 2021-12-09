@@ -1,7 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { useEffect } from "react/cjs/react.development";
-import $ from "jquery";
 import { StyledContainer } from "./styles/StyledContainer.styled.js";
 
 export default function Container(props) {

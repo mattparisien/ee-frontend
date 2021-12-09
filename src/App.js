@@ -14,10 +14,11 @@ import {
 	Route,
 	useLocation,
 } from "react-router-dom";
-import ScrollToTop from "./helpers/ScrollToTop";
 import { TransitionGroup, Transition } from "react-transition-group";
 import gsap from "gsap";
 import $ from "jquery";
+
+let isFirstRender = true;
 
 function App() {
 	const location = useLocation();
@@ -33,21 +34,29 @@ function App() {
 		menuIsShow: false,
 	});
 
-
-	const [viewportNavColor, setViewportNavColor] = useState('dark');
+	const burgerRef = useRef(null);
+	const buttonRef = useRef(null);
+	const topPattyRef = useRef(null);
+	const bottomPattyRef = useRef(null);
+	const circleRef = useRef(null);
+	const [viewportNavColor, setViewportNavColor] = useState("dark");
+	const [headerColor, setHeaderColor] = useState("dark");
 	const transitionRef = useRef(null);
 	const transitionTimeline = useRef(gsap.timeline());
 
 	const sections = useRef([]);
 
-	function toggleMenuState() {
+	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
-	}
-
-	const updateHoverState = function () {
-		setState(() => ({ ...state, isHovering: !state.isHovering }));
-		return state;
 	};
+
+	const sideMenuAnim = useRef(gsap.timeline());
+	const sideMenuRef = useRef(null);
+	const headerLogoRef = useRef(null);
+
+	useEffect(() => {
+		console.log(state.menuIsShow);
+	}, [state.menuIsShow]);
 
 	const themes = {
 		colors: {
@@ -58,6 +67,91 @@ function App() {
 			blue: "#2057A0",
 			yellow: "#F0D549",
 		},
+	};
+
+	//Side nav animation
+	useEffect(() => {
+		if (state.menuIsShow) {
+			sideMenuAnim.current.play();
+			sideMenuAnim.current
+				.to(
+					sideMenuRef.current,
+					{
+						x: 0,
+						duration: 0.5,
+						ease: "Expo.inOut",
+					},
+					0
+				)
+				.to(
+					circleRef.current,
+					{
+						scale: 1,
+						opacity: 1,
+						ease: "back.out(1)",
+						fill: themes.colors.light,
+					},
+					0.2
+				)
+				.to(
+					topPattyRef.current,
+					{
+						transformOrigin: "center",
+						margin: 0,
+						rotation: "45",
+						left: "50%",
+						top: "50%",
+						y: "-50%",
+						x: "-50%",
+						duration: 0.5,
+						ease: "linear",
+					},
+					0
+				)
+				.to(
+					bottomPattyRef.current,
+					{
+						transformOrigin: "center",
+						margin: 0,
+						rotation: "-45",
+						left: "50%",
+						top: "50%",
+						y: "-50%",
+						x: "-50%",
+						duration: 0.5,
+						ease: "Expo.inOut",
+					},
+					0
+				)
+				.to(
+					burgerRef.current,
+					{
+						rotation: "360",
+						duration: 1,
+						ease: "Expo.easeOut",
+					},
+					0
+				)
+				.to(
+					headerLogoRef.current,
+					{
+						fill: themes.colors.light,
+						duration: 0.3,
+						ease: 'linear'
+					},
+					0
+				);
+
+			isFirstRender = false;
+		} else if (!state.menuIsShow && !isFirstRender) {
+			console.log("also in here!");
+			sideMenuAnim.current.reverse();
+		}
+	}, [state.menuIsShow]);
+
+	const updateHoverState = function () {
+		setState(() => ({ ...state, isHovering: !state.isHovering }));
+		return state;
 	};
 
 	const onEnterHandler = () => {
@@ -104,8 +198,19 @@ function App() {
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
 
-				<Header onClick={toggleMenuState} viewportNavColor={viewportNavColor} menuState={state.menuIsShow}/>
-				<ViewportNav isVisible={state.menuIsShow} />
+				<Header
+					toggleMenu={toggleMenu}
+					viewportNavColor={viewportNavColor}
+					menuState={state.menuIsShow}
+					color={headerColor}
+					logoRef={headerLogoRef}
+					burgerRef={burgerRef}
+					buttonref={buttonRef}
+					bottomPattyRef={bottomPattyRef}
+					topPattyRef={topPattyRef}
+					circleRef={circleRef}
+				/>
+				<ViewportNav isVisible={state.menuIsShow} sideMenuRef={sideMenuRef} />
 				<main>
 					<TransitionGroup className='transition-group'>
 						<div className='transitioner' ref={transitionRef}></div>
@@ -116,7 +221,7 @@ function App() {
 								exit: 500,
 							}}
 							key={location.pathname}
-							onExit={onEnterHandler}
+							onEnter={onEnterHandler}
 						>
 							<Routes location={location} key={location.pathname}>
 								<Route
@@ -124,7 +229,6 @@ function App() {
 									element={
 										<Home
 											hoverState={state.isHovering}
-											setHoverState={toggleMenuState}
 											sectionRefs={el => [...sections.current, el]}
 										/>
 									}
