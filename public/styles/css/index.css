@@ -302,6 +302,19 @@ body {
   overflow-x: hidden;
 }
 
+.transition-mask {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.clip-me-path {
+  stroke: white;
+  stroke-width: 300px;
+  fill: none;
+}
+
 .object-container {
   padding: 4rem;
 }
@@ -401,8 +414,6 @@ body {
 }
 
 #draggable-follower {
-  height: 50px;
-  width: 50px;
   border-radius: 50%;
   background-color: #d95133;
   transform: translate(-50%, -50%);
@@ -846,15 +857,50 @@ body {
   }
 }
 
+.-fade-up {
+  margin-bottom: 10vw;
+}
+
 .line {
-  transform: translateY(-100%);
+  overflow: hidden;
+  line-height: 20vw;
+}
+
+.char {
   opacity: 0;
 }
 
-.-fade-up {
+.char:nth-of-type(odd) {
+  transform: translateY(-100%);
+}
+
+.char:nth-of-type(even) {
   transform: translateY(100%);
-  opacity: 0;
-  display: block;
+}
+
+.transition-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 100%;
+  width: 100%;
+}
+
+.transition-path {
+  fill: none;
+  stroke: white;
+  stroke-width: 100px;
+}
+
+#transition-svg {
+  stroke: black;
+  stroke-width: 200px;
+  z-index: 99999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  fill: none;
 }
 
 .transition-bg {
@@ -914,6 +960,6 @@ p {
   -webkit-text-size-adjust: none;
 }
 
-main {
-  min-height: 100vh;
+.App {
+  background-color: orange;
 }

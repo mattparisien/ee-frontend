@@ -1,12 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { StyledViewportNav } from "./styles/StyledViewportNav";
 import Container from "./Container";
 import { navigation } from "../data/data";
 import { Link } from "react-router-dom";
 import useResize from "../helpers/hooks/useResize";
+import { useEffect } from "react/cjs/react.development";
+import gsap from "gsap/all";
+import SplitText from "gsap/SplitText";
+import $ from "jquery";
+import { Hidden } from "@mui/material";
+
+let isFirstRender = true;
 
 export default function ViewportNav(props) {
 	const [windowWidth] = useResize();
+	const [isSplit, setIsSplit] = useState(false);
+	const { linkRefs } = props;
+
+	const linkAnim = useRef(gsap.timeline());
 
 	const addToRefs = function (el) {
 		if (el && !linkRefs.current.includes(el)) {
@@ -14,13 +25,35 @@ export default function ViewportNav(props) {
 		}
 	};
 
-	const linkRefs = useRef([]);
+	useEffect(() => {
+		gsap.registerPlugin(SplitText);
 
-	linkRefs.current = [];
+		if (!isSplit) {
+			const mySplitText = new SplitText(linkRefs.current, {
+				type: "lines, chars",
+				charsClass: "char",
+				linesClass: "line",
+			});
+			setIsSplit(true);
+		}
+	}, []);
+
+	const handleMouseEnter = e => {
+
+	};
+
+	const handleMouseLeave = e => {};
 
 	const navLinks = navigation.map(link => (
 		<li key={link.id}>
-			<Link to={link.path} ref={addToRefs} className='-fade-up'>
+			<Link
+				to={link.path}
+				ref={addToRefs}
+				className='-fade-up'
+				onMouseEnter={e => handleMouseEnter(e)}
+				onMouseLeave={e => handleMouseLeave(e)}
+				style={{ overflow: "hidden" }}
+			>
 				{link.title}
 			</Link>
 		</li>

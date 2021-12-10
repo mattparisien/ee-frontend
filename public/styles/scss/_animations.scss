@@ -1,13 +1,54 @@
-.line {
-	transform: translateY(-100%);
-	opacity: 0;
+.-fade-up {
+	margin-bottom: 10vw;
 }
 
-.-fade-up {
-	transform: translateY(100%);
-	opacity: 0;
-	display: block;
+.line {
+	overflow: hidden;
+	line-height: 20vw;
+	
 }
+
+.char {
+	opacity: 0;
+
+	&:nth-of-type(odd) {
+		transform: translateY(-100%);
+	}
+
+	&:nth-of-type(even) {
+		transform: translateY(100%);
+	}
+}
+
+.transition-mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	height: 100%;
+	width: 100%;
+}
+
+
+.transition-path {
+	fill: none;
+	stroke: white;
+	stroke-width: 100px;
+}
+
+#transition-svg {
+	stroke: black;
+	stroke-width: 200px;
+	z-index: 99999999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	fill: none;
+}
+
+
+	
+
 
 .transition-bg {
 	position: fixed;

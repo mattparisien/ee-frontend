@@ -2,6 +2,21 @@ body {
   overflow-x: hidden;
 }
 
+
+
+.transition-mask {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.clip-me-path {
+  stroke: white;
+  stroke-width: 300px;
+  fill: none;
+}
+
 .object-container {
 	padding: 4rem;
 }

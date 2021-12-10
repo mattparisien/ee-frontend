@@ -22,6 +22,7 @@ function Image(props, ref) {
 			$props={{ ...props, windowWidth: windowWidth, isHovered: isHovered }}
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
+			className={props.classes}
 		>
 			<div className={"image"} ref={ref}></div>
 			<ImageOverlay

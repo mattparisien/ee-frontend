@@ -35,6 +35,11 @@ const StyledViewportNav = styled.div`
 					text-transform: uppercase;
 					font-size: 14vw;
 					letter-spacing: -0.6vw;
+					transition: 300ms ease;
+
+					&:hover {
+						color: ${({ theme }) => theme.colors.yellow};
+					}
 
 					@media (min-width: ${deviceSize.laptopL}px) {
 						font-size: 200px;

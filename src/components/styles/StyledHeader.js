@@ -63,32 +63,46 @@ const StyledHeader = styled.header`
 			border: 0px;
 			background: transparent;
 			position: relative;
+			height: 30px;
+			width: 30px;
+
+			${({ $menuIsShow }) => {
+				return !$menuIsShow
+					? `&:hover .top {
+					left: -10px;
+				}
+	
+				&:hover .bottom {
+					left: 10px;
+				}`
+					: "";
+			}};
+
 			.top,
 			.bottom {
 				height: 2px;
 				width: 100%;
-				background-color: ${({ theme }) => theme.colors.dark};
 				position: absolute;
-				margin: 1rem 0;
-				transition: ${({ $headerStyles }) => $headerStyles.burger.transition};
+				left: 0;
+				background-color: ${({ theme }) => theme.colors.dark};
+				transformorigin: center;
+				transition: 300ms ease;
 			}
 
 			.top {
-				top: 0;
-				left: ${({ $headerStyles }) => $headerStyles.burger.left}px;
+				transform: translateY(-5px);
 			}
 
 			.bottom {
-				bottom: 0;
-				left: ${({ $headerStyles }) => $headerStyles.burger.left}px;
+				transform: translateY(5px);
 			}
 
 			.burger-circle {
 				position: absolute;
+				left: 50%;
 				top: 50%;
-				height: 50%;
 				transform-origin: center;
-				transform: translate(-50%, -50%)scale(0);
+				transform: translate(-50%, -50%) scale(0);
 			}
 		}
 	}

@@ -15,6 +15,14 @@ const StyledGrid = styled.div`
 	);
 
 
+	&.project-grid  {
+		${({ $windowWidth, $gridStyles }) => {
+			return $windowWidth <= deviceSize.mobileL
+				? "grid-auto-rows: 600px;"
+				: $gridStyles.rows;
+		}};
+		}}
+	};
 
 	${({ $windowWidth, $gridStyles }) => {
 		return $windowWidth <= deviceSize.mobileL
@@ -89,13 +97,34 @@ const StyledGrid = styled.div`
 		width: 100%;
 		position: relative;
 
+		.project-grid-item__image-wrapper {
+			height: 80%;
+		}
 
+		.project-grid-item__mobile-title {
+			margin-top: 4vw;
+			display: flex;
+			align-items: flex-start;
+			justify-content: center;
+			flex-direction: column;
+			font-size: 6vw;
+			line-height: 7vw;
+
+			@media (min-width: ${deviceSize.mobileL}px) {
+				visibility: hidden;
+			}
+
+		}
 
 		.image-overlay {
 			font-size: 2rem;
 			line-height: 2rem;
 			padding: 2rem;
 			text-transform: capitalize;
+			
+			@media (max-width: ${deviceSize.mobileL}px) {
+				visibility: hidden;
+			}
 
 			.title {
 				font-family: 'Kobe Bold';

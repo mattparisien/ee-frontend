@@ -14,7 +14,12 @@ export default function renderGridItems(data) {
 	arrayofGrids = divideArray(data.data, 7);
 	return arrayofGrids.map(nested => {
 		return (
-			<Grid columns={12} gap={"4vw"} rows={"grid-auto-rows: 15vw"} classes={"project-grid"}>
+			<Grid
+				columns={12}
+				gap={"4vw"}
+				rows={"grid-auto-rows: 15vw"}
+				classes={"project-grid"}
+			>
 				{nested.map((post, index) => {
 					return (
 						<GridItem
@@ -29,7 +34,12 @@ export default function renderGridItems(data) {
 									url={`http://localhost:1337${post.attributes.FeatureImage.data.attributes.url}`}
 									title={post.attributes.Title}
 									subTitle={post.attributes.Subtitle}
+									classes={"project-grid-item__image-wrapper"}
 								/>
+								<div className='project-grid-item__mobile-title'>
+									<div className='title'>{post.attributes.Title}</div>
+									<div className='subtitle'>{post.attributes.Subtitle}</div>
+								</div>
 							</Link>
 						</GridItem>
 					);

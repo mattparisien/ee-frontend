@@ -13,16 +13,17 @@ function MobileNav(props) {
 		bottomPattyRef,
 		topPattyRef,
 		circleRef,
+
 	} = props;
 	
 
 	return (
 		<div className='mobile-nav-wrapper'>
 			<button
-				ref={buttonRef}
+				ref={burgerRef}
 				type='button'
 				onClick={onClick}
-				style={{ height: "50px", width: "50px" }}
+				
 			>
 				<span
 					className='top'
@@ -38,8 +39,8 @@ function MobileNav(props) {
 					classes={"burger-circle"}
 					circleRef={circleRef}
 					fill={props.theme.colors.light}
-					width={"80px"}
-					height={"80px"}
+					width={"66px"}
+					height={"66px"}
 				/>
 			</button>
 		</div>

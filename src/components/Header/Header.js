@@ -46,14 +46,14 @@ export default function Header(props) {
 	}, [windowWidth]);
 
 	return (
-		<StyledHeader $headerStyles={headerStyles}>
+		<StyledHeader $headerStyles={headerStyles} $menuIsShow={menuState}>
 			<div className='logo-wrapper -absolute-center'>
 				<a href='/'>
 					<TextLogo logoRef={logoRef}/>
 				</a>
 			</div>
 
-			{device === "mobile" && (
+			
 				<MobileNav
 					onClick={toggleMenu}
 					burgerRef={burgerRef}
@@ -63,9 +63,10 @@ export default function Header(props) {
 					circleRef={circleRef}
 					theme={theme}
 					menuState={menuState}
+					linkRefs={props.linkRefs}
 				/>
-			)}
-			{device === "desktop" && <DesktopNav theme={theme} />}
+			
+			{/* {device === "desktop" && <DesktopNav theme={theme} />} */}
 		</StyledHeader>
 	);
 }

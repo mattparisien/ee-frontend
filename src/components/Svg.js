@@ -4,6 +4,7 @@ import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import $ from "jquery";
 import classNames from "classnames";
+import { Transition } from "react-transition-group";
 
 export function Ear(props) {
 	return (
@@ -317,6 +318,31 @@ export function Ellipse(props) {
 				d='M169,3.5c91.1,0,165,36.9,165,82.5s-73.9,82.5-165,82.5S4,131.6,4,86C4,40.4,77.9,3.5,169,3.5'
 				style={{ strokeDashoffset: 0.001, strokeDasharray: "0px, 999999px" }}
 			></path>
+		</svg>
+	);
+}
+
+export function TransitionMask(props) {
+	return (
+		<svg
+			id='transition-svg'
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 1587.28 1652.7'
+		>
+			<defs>
+				<clipPath
+					id='transitionClipPath'
+					clipPathUnits='objectBoundingBox'
+					transform='scale(0.00060, 0.00006)'
+				>
+					<path
+						ref={props.transitionMask}
+						class='transition-path'
+						d='M951.85,799.48C825,576.86,674.78,332.45,630.71,351.76c-50,21.92,70.27,369,21.09,389.12C590.21,766.1,359.47,238.74,283.78,265c-71.43,24.81,29.71,530.76,68,527.42,41.3-3.6-16.08-598.2,72.67-614.15,103-18.51,309.37,758.6,372.71,743.08,61.2-15-126.78-741.53,2.34-792.31,122.73-48.26,463.17,540.89,443,555.55-21.69,15.8-432.11-656.87-618.84-583.68-196.54,77-29.59,935-79.7,942.33-54.22,8-157.83-1009.85-365.68-1022C-14,10-217.21,864.48-178,879.18c43.89,16.46,358.7-1031.43,616.5-996.24,269.87,36.83,268.37,1232,398.5,1233C1000.54,1117.2,1278.67,26.33,1071.4-74.87,839.68-188,142.88,1013.46,0,930.75-136.34,851.83,265.29-376.91,602.58-353.81,956.52-329.57,1158.8,1067.63,1123,1078.43c-25.81,7.78-272.39-674.38-283.64-705.57C685.58-53.5,669.12-175.28,607.27-182.69,519-193.27,361.58,31.81,61.09,1198'
+						transform='translate(434.41 434.64)'
+					/>
+				</clipPath>
+			</defs>
 		</svg>
 	);
 }

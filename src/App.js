@@ -17,6 +17,7 @@ import {
 import { TransitionGroup, Transition } from "react-transition-group";
 import gsap from "gsap";
 import $ from "jquery";
+import TransitionMask from "./components/Transition";
 
 let isFirstRender = true;
 
@@ -43,6 +44,7 @@ function App() {
 	const [headerColor, setHeaderColor] = useState("dark");
 	const transitionRef = useRef(null);
 	const transitionTimeline = useRef(gsap.timeline());
+	const linkRefs = useRef([]);
 
 	const sections = useRef([]);
 
@@ -87,9 +89,12 @@ function App() {
 					circleRef.current,
 					{
 						scale: 1,
+						y: "-50%",
+						x: "-50%",
 						opacity: 1,
 						ease: "back.out(1)",
 						fill: themes.colors.light,
+						duration: 0.5,
 					},
 					0.2
 				)
@@ -99,27 +104,11 @@ function App() {
 						transformOrigin: "center",
 						margin: 0,
 						rotation: "45",
-						left: "50%",
-						top: "50%",
-						y: "-50%",
-						x: "-50%",
+						x: 0,
 						duration: 0.5,
-						ease: "linear",
-					},
-					0
-				)
-				.to(
-					bottomPattyRef.current,
-					{
-						transformOrigin: "center",
-						margin: 0,
-						rotation: "-45",
-						left: "50%",
-						top: "50%",
 						y: "-50%",
-						x: "-50%",
-						duration: 0.5,
-						ease: "Expo.inOut",
+
+						ease: "Expo.easeInOut",
 					},
 					0
 				)
@@ -128,7 +117,20 @@ function App() {
 					{
 						rotation: "360",
 						duration: 1,
-						ease: "Expo.easeOut",
+						ease: "Expo.easeInOut",
+					},
+					0
+				)
+				.to(
+					bottomPattyRef.current,
+					{
+						transformOrigin: "center",
+						margin: 0,
+						x: 0,
+						rotation: "-45",
+						y: "-50%",
+						duration: 0.5,
+						ease: "Expo.easeInOut",
 					},
 					0
 				)
@@ -137,14 +139,24 @@ function App() {
 					{
 						fill: themes.colors.light,
 						duration: 0.3,
-						ease: 'linear'
+						ease: "linear",
 					},
 					0
+				)
+				.to(
+					$(linkRefs.current).find(".char"),
+					{
+						opacity: 1,
+						y: 0,
+						duration: 1.5,
+						stagger: 0.1,
+						ease: "Expo.easeOut",
+					},
+				0.15
 				);
 
 			isFirstRender = false;
 		} else if (!state.menuIsShow && !isFirstRender) {
-			console.log("also in here!");
 			sideMenuAnim.current.reverse();
 		}
 	}, [state.menuIsShow]);
@@ -153,6 +165,16 @@ function App() {
 		setState(() => ({ ...state, isHovering: !state.isHovering }));
 		return state;
 	};
+
+	const transitionAnim = useRef(gsap.timeline());
+	const transitionMask = useRef(null);
+
+	useEffect(() => {
+		transitionAnim.current.to(transitionMask.current, {
+			width: "50%",
+			duration: 2,
+		});
+	});
 
 	const onEnterHandler = () => {
 		transitionTimeline.current.play(0);
@@ -210,10 +232,15 @@ function App() {
 					topPattyRef={topPattyRef}
 					circleRef={circleRef}
 				/>
-				<ViewportNav isVisible={state.menuIsShow} sideMenuRef={sideMenuRef} />
+
+				<ViewportNav
+					isVisible={state.menuIsShow}
+					sideMenuRef={sideMenuRef}
+					linkRefs={linkRefs}
+				/>
+
 				<main>
 					<TransitionGroup className='transition-group'>
-						<div className='transitioner' ref={transitionRef}></div>
 						<Transition
 							timeout={{
 								appear: 500,
