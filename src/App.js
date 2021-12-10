@@ -18,6 +18,7 @@ import { TransitionGroup, Transition } from "react-transition-group";
 import gsap from "gsap";
 import $ from "jquery";
 import TransitionMask from "./components/Transition";
+import rgbToHex from "./helpers/rgbToHex";
 
 let isFirstRender = true;
 
@@ -35,6 +36,7 @@ function App() {
 		menuIsShow: false,
 	});
 
+	const sectionRefs = useRef(null);
 	const burgerRef = useRef(null);
 	const buttonRef = useRef(null);
 	const topPattyRef = useRef(null);
@@ -45,8 +47,7 @@ function App() {
 	const transitionRef = useRef(null);
 	const transitionTimeline = useRef(gsap.timeline());
 	const linkRefs = useRef([]);
-
-	const sections = useRef([]);
+	const headerRef = useRef(null);
 
 	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
@@ -55,10 +56,6 @@ function App() {
 	const sideMenuAnim = useRef(gsap.timeline());
 	const sideMenuRef = useRef(null);
 	const headerLogoRef = useRef(null);
-
-	useEffect(() => {
-		console.log(state.menuIsShow);
-	}, [state.menuIsShow]);
 
 	const themes = {
 		colors: {
@@ -70,6 +67,36 @@ function App() {
 			yellow: "#F0D549",
 		},
 	};
+
+	useEffect(() => {
+		function handleScroll() {
+			sectionRefs.current.forEach((section, i) => {
+				const rgb2hex = rgb =>
+					`#${rgb
+						.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)
+						.slice(1)
+						.map(n => parseInt(n, 10).toString(16).padStart(2, "0"))
+						.join("")}`;
+
+				const sectionTop = section.getBoundingClientRect().top;
+				const headerHeight = headerRef.current.clientHeight;
+				const sectionColor = rgb2hex(
+					window.getComputedStyle(section).backgroundColor
+				);
+				if (sectionTop <= headerHeight && sectionTop > -headerHeight) {
+					if (sectionColor === "#f9f9ea") {
+						setHeaderColor(themes.colors.dark);
+					} else {
+						setHeaderColor(themes.colors.light);
+					}
+				}
+			});
+		}
+
+		if (sectionRefs.current) {
+			window.addEventListener("scroll", handleScroll);
+		}
+	}, [sectionRefs]);
 
 	//Side nav animation
 	useEffect(() => {
@@ -105,7 +132,7 @@ function App() {
 						margin: 0,
 						rotation: "45",
 						x: 0,
-						duration: 0.5,
+						duration: 0.4,
 						y: "-50%",
 
 						ease: "Expo.easeInOut",
@@ -129,7 +156,7 @@ function App() {
 						x: 0,
 						rotation: "-45",
 						y: "-50%",
-						duration: 0.5,
+						duration: 0.4,
 						ease: "Expo.easeInOut",
 					},
 					0
@@ -152,7 +179,7 @@ function App() {
 						stagger: 0.1,
 						ease: "Expo.easeOut",
 					},
-				0.15
+					0.15
 				);
 
 			isFirstRender = false;
@@ -198,21 +225,6 @@ function App() {
 			});
 	};
 
-	// const onExitHandler = () => {
-	// 	gsap.killTweensOf(node);
-	// 	// Set initial position and styles
-	// 	gsap.set(node, {
-	// 		position: "absolute",
-	// 		left: 0,
-	// 	});
-	// 	// Create the animation for the incoming component
-	// 	gsap.to(node, {
-	// 		duration: 0.4,
-	// 		autoAlpha: 0,
-	// 		x: -100,
-	// 	});
-	// };
-
 	return (
 		<div className='App'>
 			<ThemeProvider theme={themes}>
@@ -224,13 +236,14 @@ function App() {
 					toggleMenu={toggleMenu}
 					viewportNavColor={viewportNavColor}
 					menuState={state.menuIsShow}
-					color={headerColor}
 					logoRef={headerLogoRef}
 					burgerRef={burgerRef}
 					buttonref={buttonRef}
 					bottomPattyRef={bottomPattyRef}
 					topPattyRef={topPattyRef}
 					circleRef={circleRef}
+					headerRef={headerRef}
+					headerColor={headerColor}
 				/>
 
 				<ViewportNav
@@ -256,7 +269,7 @@ function App() {
 									element={
 										<Home
 											hoverState={state.isHovering}
-											sectionRefs={el => [...sections.current, el]}
+											sectionRefs={sectionRefs}
 										/>
 									}
 								/>

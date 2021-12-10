@@ -13,32 +13,16 @@ function MobileNav(props) {
 		bottomPattyRef,
 		topPattyRef,
 		circleRef,
-
 	} = props;
-	
 
 	return (
 		<div className='mobile-nav-wrapper'>
-			<button
-				ref={burgerRef}
-				type='button'
-				onClick={onClick}
-				
-			>
-				<span
-					className='top'
-					ref={topPattyRef}
-					style={{ backgroundColor: menuState && "black" }}
-				></span>
-				<span
-					className='bottom'
-					ref={bottomPattyRef}
-					style={{ backgroundColor: menuState && "black" }}
-				></span>
+			<button ref={burgerRef} type='button' onClick={onClick}>
+				<span className='top' ref={topPattyRef}></span>
+				<span className='bottom' ref={bottomPattyRef}></span>
 				<Ellipse
 					classes={"burger-circle"}
 					circleRef={circleRef}
-					fill={props.theme.colors.light}
 					width={"66px"}
 					height={"66px"}
 				/>

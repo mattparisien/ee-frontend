@@ -14,11 +14,26 @@ import { Eye, Ear } from "../Svg";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../helpers/hooks/useResize";
 import locomotiveScroll from "locomotive-scroll";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useTheme } from "styled-components";
 
 function Home(props) {
 	const { data, error, loading } = useAxios("/api/mission");
 
 	const { windowResizing } = useResize();
+
+	const { sectionRefs } = props;
+	sectionRefs.current = [];
+
+	const addToRefs = function (el) {
+		if (el && !sectionRefs.current.includes(el)) {
+			sectionRefs.current.push(el);
+		}
+	};
+
+	useEffect(() => {
+		
+	})
 
 	const rows = useRef([]);
 	const eye = useRef(null);
@@ -26,12 +41,15 @@ function Home(props) {
 	const scrollCta = useRef(null);
 	const amperstand = useRef(null);
 	const introAnimation = useRef(gsap.timeline());
+	const overlayRef = useRef(null);
 	const scrollRef = useRef(null);
+	const stickySection = useRef(null);
+	const scalerRef = useRef(null);
 
 	const show = () => {
 		return (
 			<Section classes={"section-who"}>
-				<Container bg={"dark"}>
+				<Container bg={"dark"} addToRefs={addToRefs}>
 					<Paragraph width={"100%"} medium indent>
 						{loading && "Loading..."}
 						{data && data.data.attributes.MissionOne}
@@ -51,6 +69,8 @@ function Home(props) {
 	// 		smooth: true,
 	// 	});
 	// }, []);
+
+	const theme = useTheme();
 
 	useEffect(() => {
 		console.log(data && data.data.attributes.Body);
@@ -79,13 +99,54 @@ function Home(props) {
 				0.3
 			)
 			.to(
+				overlayRef.current,
+				{
+					x: "-100%",
+					duration: 2.5,
+					ease: "Expo.easeInOut",
+				},
+				1.4
+			)
+			.to(
 				amperstand.current,
 				{
-					y: 0,
-					duration: 1.3,
-					ease: "Expo.easeOut",
+					fontSize: "50vw",
+					duration: 3,
+					ease: "Expo.easeInOut",
 				},
-				1.5
+				2
+			)
+			.to(
+				amperstand.current,
+				{
+					color: theme.colors.blue,
+					duration: 0.3,
+				},
+				3
+			)
+			.to(
+				amperstand.current,
+				{
+					color: theme.colors.red,
+					duration: 0.3,
+				},
+				3.1
+			)
+			.to(
+				amperstand.current,
+				{
+					color: theme.colors.green,
+					duration: 0.3,
+				},
+				3.3
+			)
+			.to(
+				amperstand.current,
+				{
+					color: theme.colors.yellow,
+					duration: 0.3,
+				},
+				3.4
 			)
 			.to(
 				scrollCta.current,
@@ -101,8 +162,13 @@ function Home(props) {
 	return (
 		<>
 			<div ref={scrollRef} data-scroll-container>
-				<Section classes={"section-hero"} sectionRef={props.sectionRefs}>
+				<Section
+					classes={"section-hero"}
+					sectionRef={props.sectionRefs}
+					stickyRef={stickySection}
+				>
 					<Container
+						addToRefs={addToRefs}
 						bg={"light"}
 						width='100%'
 						height='100vh'
@@ -118,11 +184,13 @@ function Home(props) {
 							>
 								<div
 									className='amperstand-inner -position-relative'
-									ref={amperstand}
 									data-scroll
 									data-scroll-speed='2'
 								>
-									<span>&</span>
+									<div className='scaler' ref={scalerRef}>
+										<span ref={amperstand}>&</span>
+									</div>
+
 									<span className='scroll-cta -position-absolute'>
 										<span className='scroll-cta-inner' ref={scrollCta}>
 											Scroll & Enjoy
@@ -140,7 +208,7 @@ function Home(props) {
 
 				{!error && show()}
 				<Section classes={"section-how"}>
-					<Container bg={"light"}>
+					<Container addToRefs={addToRefs} bg={"light"}>
 						<Steps />
 					</Container>
 				</Section>

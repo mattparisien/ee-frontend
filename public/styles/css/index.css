@@ -349,7 +349,6 @@ body {
 }
 
 .section-hero #hero-amperstand {
-  overflow: hidden;
   font-size: 50vw;
   color: #F0D549;
   height: 40vw;
@@ -361,7 +360,6 @@ body {
   color: #151414;
   top: 28%;
   right: 15%;
-  overflow: hidden;
 }
 
 .section-hero #hero-amperstand .scroll-cta .scroll-cta-inner {
@@ -370,7 +368,6 @@ body {
 }
 
 .section-hero #hero-amperstand .amperstand-inner {
-  transform: translateY(100%);
   height: 40vw;
   display: flex;
   align-items: center;
@@ -855,27 +852,6 @@ body {
   .how-grid__5 {
     grid-row: 6/7;
   }
-}
-
-.-fade-up {
-  margin-bottom: 10vw;
-}
-
-.line {
-  overflow: hidden;
-  line-height: 20vw;
-}
-
-.char {
-  opacity: 0;
-}
-
-.char:nth-of-type(odd) {
-  transform: translateY(-100%);
-}
-
-.char:nth-of-type(even) {
-  transform: translateY(100%);
 }
 
 .transition-mask {

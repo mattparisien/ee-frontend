@@ -12,15 +12,14 @@ export default function Header(props) {
 	const {
 		menuState,
 		toggleMenu,
-		viewportNavColor,
-		changeColor,
-		color,
+
 		burgerRef,
 		buttonRef,
 		bottomPattyRef,
 		topPattyRef,
 		circleRef,
-		logoRef
+		logoRef,
+		headerColor,
 	} = props;
 	const [isHovered] = useHover(burgerRef);
 
@@ -30,11 +29,12 @@ export default function Header(props) {
 
 	const headerStyles = {
 		padding: "2rem 4rem",
+		color: headerColor,
 		burger: {
 			left: isHovered ? "10" : "0",
 			transition: menuState ? "none" : "300ms ease",
 			color: "dark",
-		}
+		},
 	};
 
 	useEffect(() => {
@@ -46,26 +46,28 @@ export default function Header(props) {
 	}, [windowWidth]);
 
 	return (
-		<StyledHeader $headerStyles={headerStyles} $menuIsShow={menuState}>
+		<StyledHeader
+			$headerStyles={headerStyles}
+			$menuIsShow={menuState}
+			ref={props.headerRef}
+		>
 			<div className='logo-wrapper -absolute-center'>
 				<a href='/'>
-					<TextLogo logoRef={logoRef}/>
+					<TextLogo logoRef={logoRef} />
 				</a>
 			</div>
 
-			
-				<MobileNav
-					onClick={toggleMenu}
-					burgerRef={burgerRef}
-					buttonRef={buttonRef}
-					bottomPattyRef={bottomPattyRef}
-					topPattyRef={topPattyRef}
-					circleRef={circleRef}
-					theme={theme}
-					menuState={menuState}
-					linkRefs={props.linkRefs}
-				/>
-			
+			<MobileNav
+				onClick={toggleMenu}
+				burgerRef={burgerRef}
+				buttonRef={buttonRef}
+				bottomPattyRef={bottomPattyRef}
+				topPattyRef={topPattyRef}
+				circleRef={circleRef}
+				menuState={menuState}
+				linkRefs={props.linkRefs}
+			/>
+
 			{/* {device === "desktop" && <DesktopNav theme={theme} />} */}
 		</StyledHeader>
 	);

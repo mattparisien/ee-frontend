@@ -24,6 +24,14 @@ const StyledViewportNav = styled.div`
 			max-width: 1000px;
 
 			li {
+				transition: 300ms ease;
+
+
+
+				&:hover a {
+					color: ${({ theme }) => theme.colors.yellow};
+				}
+
 				&:nth-child(even) {
 					text-align: right;
 					@media (max-width: ${deviceSize.mobileL}px) {
@@ -35,11 +43,22 @@ const StyledViewportNav = styled.div`
 					text-transform: uppercase;
 					font-size: 14vw;
 					letter-spacing: -0.6vw;
-					transition: 300ms ease;
+					
 
-					&:hover {
-						color: ${({ theme }) => theme.colors.yellow};
+					.line {
+						overflow: hidden;
+
+						.char {
+							&:nth-of-type(odd) {
+								transform: translateY(-100%);
+							}
+
+							&:nth-of-type(even) {
+								transform: translateY(100%);
+							}
+						}
 					}
+
 
 					@media (min-width: ${deviceSize.laptopL}px) {
 						font-size: 200px;

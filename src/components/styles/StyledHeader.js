@@ -29,7 +29,7 @@ const StyledHeader = styled.header`
 		width: 100%;
 		height: 100%;
 		transition: 300ms ease;
-		fill: ${({ theme }) => theme.colors.dark};
+		fill: ${({ $headerStyles }) => $headerStyles.color};
 	}
 
 	nav {
@@ -84,7 +84,7 @@ const StyledHeader = styled.header`
 				width: 100%;
 				position: absolute;
 				left: 0;
-				background-color: ${({ theme }) => theme.colors.dark};
+				background-color: ${({ $headerStyles }) => $headerStyles.color};
 				transformorigin: center;
 				transition: 300ms ease;
 			}
@@ -103,6 +103,7 @@ const StyledHeader = styled.header`
 				top: 50%;
 				transform-origin: center;
 				transform: translate(-50%, -50%) scale(0);
+				transtition: 300ms ease;
 			}
 		}
 	}

@@ -1,24 +1,4 @@
-.-fade-up {
-	margin-bottom: 10vw;
-}
 
-.line {
-	overflow: hidden;
-	line-height: 20vw;
-	
-}
-
-.char {
-	opacity: 0;
-
-	&:nth-of-type(odd) {
-		transform: translateY(-100%);
-	}
-
-	&:nth-of-type(even) {
-		transform: translateY(100%);
-	}
-}
 
 .transition-mask {
 	position: fixed;

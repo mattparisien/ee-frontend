@@ -7,6 +7,7 @@ export default function Container(props) {
 
 	return (
 		<StyledContainer
+			ref={props.addToRefs}
 			$padding={props.padding}
 			$height={props.height}
 			$width={props.width}
