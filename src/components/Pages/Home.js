@@ -16,6 +16,7 @@ import useResize from "../../helpers/hooks/useResize";
 import locomotiveScroll from "locomotive-scroll";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useTheme } from "styled-components";
+import useScroll from "../../helpers/hooks/useScrollDir";
 
 function Home(props) {
 	const { data, error, loading } = useAxios("/api/mission");
@@ -24,6 +25,8 @@ function Home(props) {
 
 	const { sectionRefs } = props;
 	sectionRefs.current = [];
+
+	const [isScrolling, scrollDirection] = useScroll();
 
 	const addToRefs = function (el) {
 		if (el && !sectionRefs.current.includes(el)) {
@@ -58,6 +61,10 @@ function Home(props) {
 					<Paragraph small marginTop='50vw' width='40vw' right>
 						{data && data.data.attributes.MissionTwo}
 					</Paragraph>
+					<Paragraph>
+						{isScrolling ? 'is scrolling!' : 'is not scrolling'}
+						{scrollDirection}
+					</Paragraph>
 				</Container>
 			</Section>
 		);
@@ -72,92 +79,90 @@ function Home(props) {
 
 	const theme = useTheme();
 
-	useEffect(() => {
-		console.log(data && data.data.attributes.Body);
-	});
 
-	useEffect(() => {
-		gsap.registerPlugin(DrawSVGPlugin);
 
-		introAnimation.current
-			.to($(eye.current).find("path"), {
-				drawSVG: "0%",
-				duration: 1,
-				ease: "expo.inout",
-				duration: 1,
-				stagger: 0.2,
-			})
-			.to(
-				$(ear.current).find("path"),
-				{
-					drawSVG: "0%",
-					duration: 1,
-					ease: "expo.inout",
-					duration: 1,
-					stagger: 0.2,
-				},
-				0.3
-			)
-			.to(
-				overlayRef.current,
-				{
-					x: "-100%",
-					duration: 2.5,
-					ease: "Expo.easeInOut",
-				},
-				1.4
-			)
-			.to(
-				amperstand.current,
-				{
-					fontSize: "50vw",
-					duration: 3,
-					ease: "Expo.easeInOut",
-				},
-				2
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.blue,
-					duration: 0.3,
-				},
-				3
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.red,
-					duration: 0.3,
-				},
-				3.1
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.green,
-					duration: 0.3,
-				},
-				3.3
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.yellow,
-					duration: 0.3,
-				},
-				3.4
-			)
-			.to(
-				scrollCta.current,
-				{
-					y: 0,
-					duration: 0.9,
-					ease: "Expo.easeOut",
-				},
-				2
-			);
-	});
+	// useEffect(() => {
+	// 	gsap.registerPlugin(DrawSVGPlugin);
+
+	// 	introAnimation.current
+	// 		.to($(eye.current).find("path"), {
+	// 			drawSVG: "0%",
+	// 			duration: 1,
+	// 			ease: "expo.inout",
+	// 			duration: 1,
+	// 			stagger: 0.2,
+	// 		})
+	// 		.to(
+	// 			$(ear.current).find("path"),
+	// 			{
+	// 				drawSVG: "0%",
+	// 				duration: 1,
+	// 				ease: "expo.inout",
+	// 				duration: 1,
+	// 				stagger: 0.2,
+	// 			},
+	// 			0.3
+	// 		)
+	// 		.to(
+	// 			overlayRef.current,
+	// 			{
+	// 				x: "-100%",
+	// 				duration: 2.5,
+	// 				ease: "Expo.easeInOut",
+	// 			},
+	// 			1.4
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				fontSize: "50vw",
+	// 				duration: 3,
+	// 				ease: "Expo.easeInOut",
+	// 			},
+	// 			2
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.blue,
+	// 				duration: 0.3,
+	// 			},
+	// 			3
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.red,
+	// 				duration: 0.3,
+	// 			},
+	// 			3.1
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.green,
+	// 				duration: 0.3,
+	// 			},
+	// 			3.3
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.yellow,
+	// 				duration: 0.3,
+	// 			},
+	// 			3.4
+	// 		)
+	// 		.to(
+	// 			scrollCta.current,
+	// 			{
+	// 				y: 0,
+	// 				duration: 0.9,
+	// 				ease: "Expo.easeOut",
+	// 			},
+	// 			2
+	// 		);
+	// });
 
 	return (
 		<>

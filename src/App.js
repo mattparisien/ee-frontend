@@ -18,7 +18,8 @@ import { TransitionGroup, Transition } from "react-transition-group";
 import gsap from "gsap";
 import $ from "jquery";
 import TransitionMask from "./components/Transition";
-import rgbToHex from "./helpers/rgbToHex";
+import rgb2hex from "./helpers/rgbToHex";
+import useScroll from "./helpers/hooks/useScrollDir";
 
 let isFirstRender = true;
 
@@ -35,6 +36,8 @@ function App() {
 		headerColor: null,
 		menuIsShow: false,
 	});
+
+	const [isScrolling, scrollDirection] = useScroll();
 
 	const sectionRefs = useRef(null);
 	const burgerRef = useRef(null);
@@ -71,19 +74,18 @@ function App() {
 	useEffect(() => {
 		function handleScroll() {
 			sectionRefs.current.forEach((section, i) => {
-				const rgb2hex = rgb =>
-					`#${rgb
-						.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)
-						.slice(1)
-						.map(n => parseInt(n, 10).toString(16).padStart(2, "0"))
-						.join("")}`;
+				console.log(section, section.getBoundingClientRect().bottom);
+				const sectionPoint =
+					scrollDirection === "up"
+						? section.getBoundingClientRect().top
+						: section.getBoundingClientRect().bottom;
 
-				const sectionTop = section.getBoundingClientRect().top;
 				const headerHeight = headerRef.current.clientHeight;
 				const sectionColor = rgb2hex(
 					window.getComputedStyle(section).backgroundColor
 				);
-				if (sectionTop <= headerHeight && sectionTop > -headerHeight) {
+
+				if (sectionPoint <= headerHeight && sectionPoint > -headerHeight) {
 					if (sectionColor === "#f9f9ea") {
 						setHeaderColor(themes.colors.dark);
 					} else {
@@ -96,7 +98,11 @@ function App() {
 		if (sectionRefs.current) {
 			window.addEventListener("scroll", handleScroll);
 		}
-	}, [sectionRefs]);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [scrollDirection]);
 
 	//Side nav animation
 	useEffect(() => {

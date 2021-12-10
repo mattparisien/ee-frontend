@@ -40,7 +40,6 @@ function filter(obj) {
 
 	for (key in obj["children"]) {
 		if (!Array.isArray(obj["children"][key]) && obj["children"][key] !== null) {
-			console.log("hellooo", obj["children"][key]);
 			filter(obj["children"][key]);
 		} else {
 		}

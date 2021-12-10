@@ -7,6 +7,7 @@ export default function Section(props) {
 
 	return (
 		<section className={sectionClass} data-scroll-section ref={props.stickyRef}>
+			
 			{props.children}
 		</section>
 	);

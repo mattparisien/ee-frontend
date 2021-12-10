@@ -7,7 +7,6 @@ function ProjectItem(props) {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(location)
   }, [])
 
   return (

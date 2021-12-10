@@ -23,9 +23,7 @@ function Steps() {
 		);
 	};
 
-	useEffect(() => {
-		console.log(data);
-	});
+
 
 	return (
 		<Grid gap={"3vw"} columns={12} rows={"grid-template-rows: repeat(6, 35vw)"} classes={"steps-grid"}>
