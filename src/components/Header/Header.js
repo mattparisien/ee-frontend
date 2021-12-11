@@ -1,32 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TextLogo } from "../Svg";
-import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import useResize from "../../helpers/hooks/useResize";
 import { StyledHeader } from "../styles/StyledHeader";
-import useHover from "../../helpers/hooks/useHover";
 import { useTheme } from "styled-components";
-import { useFirstRender } from "../../helpers/hooks/useFirstRender";
 
 export default function Header(props) {
 	const theme = useTheme();
-	const {
-		menuState,
-		toggleMenu,
+	const { menuState, toggleMenu, appRefs, addToRefs } = props;
 
-		burgerRef,
-		buttonRef,
-		bottomPattyRef,
-		topPattyRef,
-		circleRef,
-		logoRef,
-		headerColor,
-		addToRefs,
-	} = props;
-	const [isHovered] = useHover(burgerRef);
-	const [isFirstRender] = useFirstRender();
-
-	const [scrollDirection, setScrollDirection] = useState("");
 	const [device, setDevice] = useState(null);
 	const [windowWidth] = useResize();
 	const [isHoverable, setHoverable] = useState(true);
@@ -44,7 +26,7 @@ export default function Header(props) {
 
 	const headerStyles = {
 		padding: "2rem 4rem",
-		color: 'black',
+		color: "black",
 		burger: {
 			transition: menuState ? "none" : "300ms ease",
 			color: "dark",

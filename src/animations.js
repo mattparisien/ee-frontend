@@ -19,6 +19,14 @@ export function useSideMenu(appRefs, state, setState, themes) {
 		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
 	};
 
+	//Update menu offset on resize
+	useEffect(() => {
+		if (isResized) {
+			console.log("hi");
+			setState(prev => ({ ...prev, menuOffset: "-101%" }));
+		}
+	});
+
 	//Side nav animation
 	useEffect(() => {
 		const refs = appRefs.current;
