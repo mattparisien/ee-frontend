@@ -1,19 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { StyledViewportNav } from "./styles/StyledViewportNav";
 import Container from "./Container";
 import { navigation } from "../data/data";
 import { Link } from "react-router-dom";
 import useResize from "../helpers/hooks/useResize";
-import { useEffect } from "react/cjs/react.development";
 import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import { Hidden } from "@mui/material";
-import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 
 let isFirstRender = true;
 
 export default function ViewportNav(props) {
+	
 	const [isSplit, setIsSplit] = useState(false);
 	const { appRefs } = props;
 

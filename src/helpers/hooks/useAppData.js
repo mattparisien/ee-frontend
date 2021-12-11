@@ -1,9 +1,30 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import useResize from "./useResize";
 
 export default function useAppData() {
+	//Themes
+	const themes = {
+		colors: {
+			light: "#F9F9EA",
+			dark: "#010201",
+			red: "#E32127",
+			green: "#3F855C",
+			blue: "#2057A0",
+			yellow: "#F0D549",
+		},
+	};
+
 	const appRefs = useRef({});
 	appRefs.current = {};
 	let links = [];
+
+	//App state
+	const [state, setState] = useState({
+		isHovering: false,
+		headerColor: "dark",
+		menuIsShow: false,
+		menuOffset: "-101%",
+	});
 
 	const addToRefs = function (el) {
 		if (el && !appRefs.current[el]) {
@@ -27,5 +48,5 @@ export default function useAppData() {
 		}
 	};
 
-	return { appRefs, addToRefs };
+	return { appRefs, addToRefs, state, setState, themes };
 }

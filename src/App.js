@@ -17,10 +17,9 @@ import {
 import { TransitionGroup, Transition } from "react-transition-group";
 import gsap from "gsap";
 import $ from "jquery";
-import TransitionMask from "./components/Transition";
-import rgb2hex from "./helpers/rgbToHex";
+
 import useIntersect from "./helpers/hooks/useIntersect";
-import CustomEase from "gsap/CustomEase";
+import { useSideMenu } from "./animations";
 import useResize from "./helpers/hooks/useResize";
 import useAppData from "./helpers/hooks/useAppData";
 
@@ -34,52 +33,13 @@ function App() {
 	// const [menuShow, setMenuShow] = useState(false);
 	// const [hoverState, setHoverState] = useState(false);
 
-	const [state, setState] = useState({
-		isHovering: false,
-		headerColor: null,
-		menuIsShow: false,
-	});
-
 	const [windowWidth, isResized] = useResize();
-
-	const [menuOffset, setMenuOffset] = useState("-101%");
 	const sectionRefs = useRef(null);
-	const [viewportNavColor, setViewportNavColor] = useState("dark");
-	const [headerColor, setHeaderColor] = useState("dark");
+
 	const transitionRef = useRef(null);
 	const transitionTimeline = useRef(gsap.timeline());
 
-	const { addToRefs, appRefs } = useAppData();
-
 	const [isIntersect, target] = useIntersect(sectionRefs, { threshold: 1 });
-
-	const toggleMenu = () => {
-		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
-	};
-
-	const reverseComplete = () => {
-		console.log(sideMenuAnim.current);
-	};
-
-	const sideMenuAnim = useRef(
-		gsap.timeline({
-			onReverseComplete: () => reverseComplete(),
-		})
-	);
-
-	const sideMenuRef = useRef(null);
-	const headerLogoRef = useRef(null);
-
-	const themes = {
-		colors: {
-			light: "#F9F9EA",
-			dark: "#010201",
-			red: "#E32127",
-			green: "#3F855C",
-			blue: "#2057A0",
-			yellow: "#F0D549",
-		},
-	};
 
 	// useEffect(() => {
 	// 	console.log("current....", animRefs.current);
@@ -177,111 +137,6 @@ function App() {
 	// };
 	// }, [sectionRefs]);
 
-	//Side nav animation
-	useEffect(() => {
-		const refs = appRefs.current;
-
-		console.log("apprefs,", appRefs);
-		const reset = node => {
-			if (isResized) {
-				setMenuOffset(prev => prev);
-			}
-		};
-
-		if (state.menuIsShow) {
-			const e = CustomEase.create(
-				"custom",
-				"M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1"
-			);
-
-			sideMenuAnim.current.play();
-			sideMenuAnim.current
-				.to(
-					refs["viewport-nav"],
-					{
-						x: +menuOffset,
-						duration: 1.5,
-						ease: "Expo.easeInOut",
-					},
-					0
-				)
-				.to(
-					refs["menu-active-circle"],
-					{
-						scale: 1,
-						y: "-50%",
-						x: "-50%",
-						opacity: 1,
-						ease: "back.out(1)",
-						fill: themes.colors.light,
-						duration: 0.5,
-					},
-					0.2
-				)
-				.to(
-					refs["burger-top"],
-					{
-						transformOrigin: "center",
-						margin: 0,
-						rotation: "45",
-						x: 0,
-						duration: 0.4,
-						y: "-50%",
-
-						ease: "Expo.easeInOut",
-					},
-					0
-				)
-				.to(
-					refs["header-burger"],
-					{
-						rotation: "360",
-						duration: 1,
-						ease: "Expo.easeInOut",
-					},
-					0
-				)
-				.to(
-					refs["burger-bottom"],
-					{
-						transformOrigin: "center",
-						margin: 0,
-						x: 0,
-						rotation: "-45",
-						y: "-50%",
-						duration: 0.4,
-						ease: "Expo.easeInOut",
-					},
-					0
-				)
-				.to(
-					refs["header-logo"],
-					{
-						fill: themes.colors.light,
-						duration: 0.3,
-						ease: "linear",
-					},
-					0
-				)
-				.to(
-					$(refs["menu-links"]).find(".line .char"),
-					{
-						opacity: 1,
-						y: 0,
-						duration: 1.5,
-						stagger: 0.1,
-						ease: e,
-					},
-					0.15
-				);
-
-			isFirstRender = false;
-		} else if (!state.menuIsShow && !isFirstRender) {
-			sideMenuAnim.current.reverse();
-			reset();
-		}
-	}, [state.menuIsShow, appRefs]);
-
 	const updateHoverState = function () {
 		setState(() => ({ ...state, isHovering: !state.isHovering }));
 		return state;
@@ -301,7 +156,7 @@ function App() {
 	useEffect(() => {
 		if (isResized) {
 			console.log("hi");
-			setMenuOffset(prev => prev);
+			setState(prev => ({ ...prev, menuOffset: "-101%" }));
 		}
 	});
 
@@ -327,6 +182,10 @@ function App() {
 			});
 	};
 
+	const { addToRefs, appRefs, state, setState, themes } = useAppData();
+
+	const [toggleMenu] = useSideMenu(appRefs, state, setState, themes);
+
 	return (
 		<div className='App'>
 			<ThemeProvider theme={themes}>
@@ -336,18 +195,17 @@ function App() {
 
 				<Header
 					toggleMenu={toggleMenu}
-					viewportNavColor={viewportNavColor}
 					menuState={state.menuIsShow}
 					burgerRef={addToRefs}
 					addToRefs={addToRefs}
-					headerColor={headerColor}
+					headerColor={state.headerColor}
 				/>
 
 				<ViewportNav
 					isVisible={state.menuIsShow}
 					appRefs={appRefs}
 					addToRefs={addToRefs}
-					offset={menuOffset}
+					offset={state.menuOffset}
 				/>
 
 				<main>

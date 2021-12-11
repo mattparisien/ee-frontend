@@ -1,70 +1,120 @@
+import { useEffect, useRef } from "react";
 import $ from "jquery";
 import { gsap } from "gsap";
 import CSSRulePlugin from "gsap/CSSRulePlugin";
+import CustomEase from "gsap/CustomEase";
+import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import { BlobTwo } from "./components/Svg";
+import useResize from "./helpers/hooks/useResize";
+import { useFirstRender } from "./helpers/hooks/useFirstRender";
+import useAppData from "./helpers/hooks/useAppData";
 
-function animateMenuIn() {
-	gsap.registerPlugin(CSSRulePlugin);
+export function useSideMenu(appRefs, state, setState, themes) {
+	const [windowWidth, isResized] = useResize();
+	const [isFirstRender] = useFirstRender();
+	const sideMenuAnim = useRef(gsap.timeline());
 
-	const rule = CSSRulePlugin.getRule(".viewport-nav__list-item:before");
+	//Toggle Menu Animation
+	const toggleMenu = () => {
+		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
+	};
 
-	const tl = gsap.timeline();
+	//Side nav animation
+	useEffect(() => {
+		const refs = appRefs.current;
 
-	tl.to($(".viewport-nav"), {
-		y: 0,
-		duration: 0.9,
-		ease: "expo.in",
-	});
-	tl.to(rule, {
-		scale: 0,
-	});
-}
+		if (state.menuIsShow) {
+			const e = CustomEase.create(
+				"custom",
+				"M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1"
+			);
 
-export function toggleNavVisiblity(ref, state) {
-	if (state) {
-		gsap.to(ref, {
-			x: 0,
-			duration: 1,
-			ease: "expo.inOut",
-		});
-		gsap.to(
-			$("#header-logo"),
-			{
-				autoAlpha: 0,
-				duration: 0.3,
-			},
-			0.5
-		);
-	} else {
-		gsap.to(ref, {
-			x: "-100%",
-			duration: 1,
-			ease: "expo.inOut",
-		});
-		gsap.to($("#header-logo"), {
-			autoAlpha: 1,
-			duration: 0.3,
-			delay: 0.2,
-		});
-	}
-}
+			sideMenuAnim.current.play();
+			sideMenuAnim.current
+				.to(
+					refs["viewport-nav"],
+					{
+						x: +state.menuOffset,
+						duration: 1.5,
+						ease: "Expo.easeInOut",
+					},
+					0
+				)
+				.to(
+					refs["menu-active-circle"],
+					{
+						scale: 1,
+						y: "-50%",
+						x: "-50%",
+						opacity: 1,
+						ease: "back.out(1)",
+						fill: themes.colors.light,
+						duration: 0.5,
+					},
+					0.2
+				)
+				.to(
+					refs["burger-top"],
+					{
+						transformOrigin: "center",
+						margin: 0,
+						rotation: "45",
+						x: 0,
+						duration: 0.4,
+						y: "-50%",
 
-export function animateTopBarIn() {
-	gsap.to($(".bg-dynamic"), {
-		y: "0",
-		duration: 0.5,
-		ease: "power2.in",
-		delay: 0.1,
-	});
-}
+						ease: "Expo.easeInOut",
+					},
+					0
+				)
+				.to(
+					refs["header-burger"],
+					{
+						rotation: "360",
+						duration: 1,
+						ease: "Expo.easeInOut",
+					},
+					0
+				)
+				.to(
+					refs["burger-bottom"],
+					{
+						transformOrigin: "center",
+						margin: 0,
+						x: 0,
+						rotation: "-45",
+						y: "-50%",
+						duration: 0.4,
+						ease: "Expo.easeInOut",
+					},
+					0
+				)
+				.to(
+					refs["header-logo"],
+					{
+						fill: themes.colors.light,
+						duration: 0.3,
+						ease: "linear",
+					},
+					0
+				)
+				.to(
+					$(refs["menu-links"]).find(".line .char"),
+					{
+						opacity: 1,
+						y: 0,
+						duration: 1.5,
+						stagger: 0.1,
+						ease: e,
+					},
+					0.15
+				);
+		} else if (!state.menuIsShow && !isFirstRender) {
+			sideMenuAnim.current.reverse();
+		}
+	}, [state.menuIsShow, appRefs]);
 
-export function animateTopBarOut() {
-	gsap.to($(".bg-dynamic"), {
-		y: "-100%",
-		duration: 0.5,
-		ease: "power2.in",
-		delay: 0.1,
-	});
+	return [toggleMenu];
 }
 
 export function setStickySection(end) {
@@ -120,39 +170,4 @@ export function followCursor(el) {
 export function unfollowCursor(el) {
 	$(el).css("visibility", "hidden");
 	$("body").off("mousemove");
-}
-
-export function burgerAnim(state) {
-	gsap.registerPlugin(CSSRulePlugin);
-
-	const button = $(".header-burger");
-	const top = button.find(".top");
-	const bottom = button.find(".bottom");
-
-	if (state) {
-		gsap.to(button, {
-			css: {
-				className: "+= is-x",
-			},
-			duration: 3,
-			ease: "expo.out",
-		});
-	} else {
-		gsap.to(button, {
-			opacity: 1,
-			duration: 3,
-			ease: "expo.out",
-		});
-	}
-}
-
-export function fadeUp(refs, duration) {
-	const tl = gsap.timeline();
-	tl.to(refs.current, {
-		y: 0,
-		opacity: 1,
-		duration: duration,
-		stagger: 0.2,
-		ease: "Expo.easeOut",
-	});
 }
