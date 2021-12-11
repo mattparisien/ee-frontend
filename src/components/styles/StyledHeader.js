@@ -66,11 +66,11 @@ const StyledHeader = styled.header`
 			height: 30px;
 			width: 30px;
 
-			${({ $menuIsShow }) => {
-				return !$menuIsShow
+			${({ $isHoverable}) => {
+				return $isHoverable
 					? `&:hover .top {
 					left: -10px;
-				}
+				};
 	
 				&:hover .bottom {
 					left: 10px;

@@ -21,7 +21,7 @@ import TransitionMask from "./components/Transition";
 import rgb2hex from "./helpers/rgbToHex";
 import useIntersect from "./helpers/hooks/useIntersect";
 import CustomEase from "gsap/CustomEase";
-
+import useResize from "./helpers/hooks/useResize";
 
 let isFirstRender = true;
 
@@ -39,6 +39,9 @@ function App() {
 		menuIsShow: false,
 	});
 
+	const [windowWidth, isResized] = useResize();
+
+	const [menuOffset, setMenuOffset] = useState("-101%");
 	const sectionRefs = useRef(null);
 	const burgerRef = useRef(null);
 	const buttonRef = useRef(null);
@@ -58,7 +61,16 @@ function App() {
 		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
 	};
 
-	const sideMenuAnim = useRef(gsap.timeline());
+	const reverseComplete = () => {
+		console.log(sideMenuAnim.current);
+	};
+
+	const sideMenuAnim = useRef(
+		gsap.timeline({
+			onReverseComplete: () => reverseComplete(),
+		})
+	);
+
 	const sideMenuRef = useRef(null);
 	const headerLogoRef = useRef(null);
 
@@ -170,20 +182,26 @@ function App() {
 
 	//Side nav animation
 	useEffect(() => {
-
+		const reset = node => {
+			if (isResized) {
+				setMenuOffset(prev => prev);
+			}
+		};
 
 		if (state.menuIsShow) {
-
-			const e = CustomEase.create("custom", "M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1");
+			const e = CustomEase.create(
+				"custom",
+				"M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1"
+			);
 
 			sideMenuAnim.current.play();
 			sideMenuAnim.current
 				.to(
 					sideMenuRef.current,
 					{
-						x: 0,
+						x: +menuOffset,
 						duration: 1.5,
-						ease: 'Expo.easeInOut',
+						ease: "Expo.easeInOut",
 					},
 					0
 				)
@@ -252,7 +270,7 @@ function App() {
 						y: 0,
 						duration: 1.5,
 						stagger: 0.1,
-						ease: e
+						ease: e,
 					},
 					0.15
 				);
@@ -260,6 +278,7 @@ function App() {
 			isFirstRender = false;
 		} else if (!state.menuIsShow && !isFirstRender) {
 			sideMenuAnim.current.reverse();
+			reset();
 		}
 	}, [state.menuIsShow]);
 
@@ -276,6 +295,14 @@ function App() {
 			width: "50%",
 			duration: 2,
 		});
+	});
+
+	//Update menu offset on resize
+	useEffect(() => {
+		if (isResized) {
+			console.log("hi");
+			setMenuOffset(prev => prev);
+		}
 	});
 
 	const onEnterHandler = () => {
@@ -325,6 +352,7 @@ function App() {
 					isVisible={state.menuIsShow}
 					sideMenuRef={sideMenuRef}
 					linkRefs={linkRefs}
+					offset={menuOffset}
 				/>
 
 				<main>

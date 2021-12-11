@@ -9,13 +9,17 @@ import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
 import { Hidden } from "@mui/material";
+import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 
 let isFirstRender = true;
 
 export default function ViewportNav(props) {
-	const [windowWidth] = useResize();
 	const [isSplit, setIsSplit] = useState(false);
 	const { linkRefs } = props;
+
+	const menuStyles = {
+		offset: props.offset
+	}
 
 	const linkAnim = useRef(gsap.timeline());
 
@@ -24,6 +28,10 @@ export default function ViewportNav(props) {
 			linkRefs.current.push(el);
 		}
 	};
+
+	useEffect(() => {
+		console.log(props.offset)
+	})
 
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
@@ -38,9 +46,7 @@ export default function ViewportNav(props) {
 		}
 	}, []);
 
-	const handleMouseEnter = e => {
-
-	};
+	const handleMouseEnter = e => {};
 
 	const handleMouseLeave = e => {};
 
@@ -60,7 +66,7 @@ export default function ViewportNav(props) {
 	));
 
 	return (
-		<StyledViewportNav className='viewport-nav' ref={props.sideMenuRef}>
+		<StyledViewportNav className='viewport-nav' ref={props.sideMenuRef} $menuStyles={menuStyles}>
 			<Container classes={"viewport-nav__inner"} bg={"dark"}>
 				<ul className='-position-absolute-center'>{navLinks}</ul>
 			</Container>

@@ -13,7 +13,7 @@ const StyledViewportNav = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	transform: translateX(-100%);
+	transform: ${({ $menuStyles }) => `translateX(${$menuStyles.offset})`};
 
 	.viewport-nav__inner {
 		height: 100%;

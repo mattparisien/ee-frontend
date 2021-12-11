@@ -6,6 +6,7 @@ import useResize from "../../helpers/hooks/useResize";
 import { StyledHeader } from "../styles/StyledHeader";
 import useHover from "../../helpers/hooks/useHover";
 import { useTheme } from "styled-components";
+import { useFirstRender } from "../../helpers/hooks/useFirstRender";
 
 export default function Header(props) {
 	const theme = useTheme();
@@ -22,10 +23,23 @@ export default function Header(props) {
 		headerColor,
 	} = props;
 	const [isHovered] = useHover(burgerRef);
+	const [isFirstRender] = useFirstRender();
 
 	const [scrollDirection, setScrollDirection] = useState("");
 	const [device, setDevice] = useState(null);
 	const [windowWidth] = useResize();
+	const [isHoverable, setHoverable] = useState(true);
+
+	useEffect(() => {
+		if (menuState) {
+			setHoverable(false);
+		} else if (!menuState) {
+			//Add delay for making burger hoverable again --> wait for menu to be off screen
+			setTimeout(() => {
+				setHoverable(true);
+			}, 1500);
+		}
+	}, [menuState]);
 
 	const headerStyles = {
 		padding: "2rem 4rem",
@@ -48,7 +62,7 @@ export default function Header(props) {
 	return (
 		<StyledHeader
 			$headerStyles={headerStyles}
-			$menuIsShow={menuState}
+			$isHoverable={isHoverable}
 			ref={props.headerRef}
 		>
 			<div className='logo-wrapper -absolute-center'>
