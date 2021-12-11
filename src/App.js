@@ -15,15 +15,9 @@ import {
 	useLocation,
 } from "react-router-dom";
 import { TransitionGroup, Transition } from "react-transition-group";
-import gsap from "gsap";
-import $ from "jquery";
 
-import useIntersect from "./helpers/hooks/useIntersect";
 import { useSideMenu } from "./animations";
-import useResize from "./helpers/hooks/useResize";
 import useAppData from "./helpers/hooks/useAppData";
-
-let isFirstRender = true;
 
 function App() {
 	const location = useLocation();
@@ -58,6 +52,7 @@ function App() {
 					appRefs={appRefs}
 					addToRefs={addToRefs}
 					offset={state.menuOffset}
+					toggleMenu={toggleMenu}
 				/>
 
 				<main>
@@ -75,10 +70,7 @@ function App() {
 								<Route
 									path='/'
 									element={
-										<Home
-											hoverState={state.isHovering}
-											addToRefs={addToRefs}
-										/>
+										<Home hoverState={state.isHovering} addToRefs={addToRefs} />
 									}
 								/>
 								<Route path='/contact' element={<Contact />} />
@@ -92,7 +84,7 @@ function App() {
 					</TransitionGroup>
 				</main>
 
-				<Footer />
+				<Footer addToRefs={addToRefs} />
 			</ThemeProvider>
 		</div>
 	);

@@ -122,9 +122,6 @@ const StyledGrid = styled.div`
 			padding: 2rem;
 			text-transform: capitalize;
 			
-			@media (max-width: ${deviceSize.mobileL}px) {
-				visibility: hidden;
-			}
 
 			.title {
 				font-family: 'Kobe Bold';

@@ -31,6 +31,7 @@ export default function Header(props) {
 			transition: menuState ? "none" : "300ms ease",
 			color: "dark",
 		},
+
 	};
 
 	useEffect(() => {

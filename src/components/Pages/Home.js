@@ -10,7 +10,7 @@ import Paragraph from "../Paragraph";
 import Heading from "../Heading";
 import Line from "../Line";
 import Steps from "../Steps";
-import { Eye, Ear } from "../Svg";
+import { Eye, Ear, Trumpet } from "../Svg";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../helpers/hooks/useResize";
 import locomotiveScroll from "locomotive-scroll";
@@ -49,12 +49,9 @@ function Home(props) {
 						{data && data.data.attributes.MissionOne}
 					</Paragraph>
 					<Line color='white' marginTop />
+					<Trumpet width={"30vw"} color={"light"} position={"absolute"} />
 					<Paragraph small marginTop='50vw' width='40vw' right>
 						{data && data.data.attributes.MissionTwo}
-					</Paragraph>
-					<Paragraph>
-						{isScrolling ? "is scrolling!" : "is not scrolling"}
-						{scrollDirection}
 					</Paragraph>
 				</Container>
 			</Section>

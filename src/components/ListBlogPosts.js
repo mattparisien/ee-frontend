@@ -12,26 +12,6 @@ function ListBlogPosts({ gap, padding }) {
 	gridItemRefs.current = [];
 	imageRefs.current = [];
 
-	// const getItemRefs = function (el) {
-	// 	if (el && !gridItemRefs.current.includes(el)) {
-	// 		gridItemRefs.current.push(el);
-	// 	}
-	// };
-
-	const [isIntersect, target] = useIntersect(gridItemRefs);
-
-	useEffect(() => {
-		if (target) {
-			const tl = gsap.timeline();
-			tl.to(target, {
-				opacity: 1,
-				y: "0",
-				duration: 1,
-				ease: "Expo.easeOut",
-			});
-		}
-	}, [target]);
-
 	return (
 		<>
 			{data && renderGridItems(data)}

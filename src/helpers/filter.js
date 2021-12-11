@@ -30,7 +30,6 @@
 // 	},
 // };
 
-
 function filter(obj) {
 	let arr = [];
 
@@ -45,5 +44,3 @@ function filter(obj) {
 		}
 	}
 }
-
-console.log(filter(data));

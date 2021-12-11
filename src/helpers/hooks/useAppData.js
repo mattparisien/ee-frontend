@@ -53,9 +53,7 @@ export default function useAppData() {
 		}
 	};
 
-	useEffect(() => {
-		console.log(appRefs);
-	}, appRefs);
+
 
 	return { appRefs, addToRefs, state, setState, themes };
 }

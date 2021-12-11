@@ -66,7 +66,7 @@ const StyledHeader = styled.header`
 			height: 30px;
 			width: 30px;
 
-			${({ $isHoverable}) => {
+			${({ $isHoverable }) => {
 				return $isHoverable
 					? `&:hover .top {
 					left: -10px;
@@ -103,7 +103,6 @@ const StyledHeader = styled.header`
 				top: 50%;
 				transform-origin: center;
 				transform: translate(-50%, -50%) scale(0);
-				transtition: 300ms ease;
 			}
 		}
 	}

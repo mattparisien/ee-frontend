@@ -1,13 +1,9 @@
 import { useEffect, useRef } from "react";
 import $ from "jquery";
 import { gsap } from "gsap";
-import CSSRulePlugin from "gsap/CSSRulePlugin";
 import CustomEase from "gsap/CustomEase";
-import DrawSVGPlugin from "gsap/DrawSVGPlugin";
-import { BlobTwo } from "./components/Svg";
 import useResize from "./helpers/hooks/useResize";
 import { useFirstRender } from "./helpers/hooks/useFirstRender";
-import useAppData from "./helpers/hooks/useAppData";
 
 export function useSideMenu(appRefs, state, setState, themes) {
 	const [windowWidth, isResized] = useResize();
@@ -22,10 +18,9 @@ export function useSideMenu(appRefs, state, setState, themes) {
 	//Update menu offset on resize
 	useEffect(() => {
 		if (isResized) {
-			console.log("hi");
 			setState(prev => ({ ...prev, menuOffset: "-101%" }));
 		}
-	});
+	}, [isResized]);
 
 	//Side nav animation
 	useEffect(() => {
@@ -39,6 +34,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 
 			sideMenuAnim.current.play();
 			sideMenuAnim.current
+				//Menu
 				.to(
 					refs["viewport-nav"],
 					{
@@ -48,6 +44,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 					},
 					0
 				)
+				//Circle
 				.to(
 					refs["menu-active-circle"],
 					{
@@ -57,10 +54,11 @@ export function useSideMenu(appRefs, state, setState, themes) {
 						opacity: 1,
 						ease: "back.out(1)",
 						fill: themes.colors.light,
-						duration: 0.5,
+						duration: 0.2,
 					},
-					0.2
+					1
 				)
+				//Burger top
 				.to(
 					refs["burger-top"],
 					{
@@ -75,6 +73,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 					},
 					0
 				)
+				//Burger
 				.to(
 					refs["header-burger"],
 					{
@@ -84,6 +83,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 					},
 					0
 				)
+				//Burger bottom
 				.to(
 					refs["burger-bottom"],
 					{
@@ -97,6 +97,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 					},
 					0
 				)
+				//Logo
 				.to(
 					refs["header-logo"],
 					{
@@ -106,6 +107,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 					},
 					0
 				)
+				//Links
 				.to(
 					$(refs["menu-links"]).find(".line .char"),
 					{

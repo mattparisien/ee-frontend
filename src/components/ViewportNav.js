@@ -7,13 +7,14 @@ import useResize from "../helpers/hooks/useResize";
 import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
+import {Trumpet }from "./Svg";
 
 let isFirstRender = true;
 
 export default function ViewportNav(props) {
 	
 	const [isSplit, setIsSplit] = useState(false);
-	const { appRefs } = props;
+	const { appRefs, toggleMenu } = props;
 
 	const menuStyles = {
 		offset: props.offset,
@@ -21,9 +22,7 @@ export default function ViewportNav(props) {
 
 	const linkAnim = useRef(gsap.timeline());
 
-	useEffect(() => {
-		console.log(props.offset);
-	});
+
 
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
@@ -51,6 +50,7 @@ export default function ViewportNav(props) {
 				onMouseEnter={e => handleMouseEnter(e)}
 				onMouseLeave={e => handleMouseLeave(e)}
 				style={{ overflow: "hidden" }}
+				onClick={toggleMenu}
 			>
 				{link.title}
 			</Link>
@@ -65,6 +65,7 @@ export default function ViewportNav(props) {
 		>
 			<Container classes={"viewport-nav__inner"} bg={"dark"}>
 				<ul className='-position-absolute-center'>{navLinks}</ul>
+				
 			</Container>
 		</StyledViewportNav>
 	);
