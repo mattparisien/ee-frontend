@@ -22,6 +22,7 @@ import rgb2hex from "./helpers/rgbToHex";
 import useIntersect from "./helpers/hooks/useIntersect";
 import CustomEase from "gsap/CustomEase";
 import useResize from "./helpers/hooks/useResize";
+import useAppData from "./helpers/hooks/useAppData";
 
 let isFirstRender = true;
 
@@ -43,48 +44,12 @@ function App() {
 
 	const [menuOffset, setMenuOffset] = useState("-101%");
 	const sectionRefs = useRef(null);
-	const burgerRef = useRef(null);
-	const buttonRef = useRef(null);
-	const topPattyRef = useRef(null);
-	const bottomPattyRef = useRef(null);
-	const circleRef = useRef(null);
 	const [viewportNavColor, setViewportNavColor] = useState("dark");
 	const [headerColor, setHeaderColor] = useState("dark");
 	const transitionRef = useRef(null);
 	const transitionTimeline = useRef(gsap.timeline());
-	const linkRefs = useRef([]);
-	const headerRef = useRef(null);
-	const appRefs = useRef({});
 
-	appRefs.current = {};
-
-	const addToRefs = function (el) {
-		if (el && !appRefs.current[el]) {
-			let elClass = "";
-			let links = [];
-
-			//Take last of classList (avoid styled components classes)
-			//Spread DOMTokenList into array
-			if (el.classList) {
-				elClass = [...el.classList].splice(elClass.length - 1, 1).join("");
-
-				if ([...el.classList].includes("menu-link")) {
-					links.push(el);
-					appRefs.current['menu-links'] = links;
-				}
-			}
-
-		
-
-			el.id !== ""
-				? (appRefs.current[el.id] = el)
-				: (appRefs.current[elClass] = el);
-		}
-	};
-
-	useEffect(() => {
-		console.log(appRefs);
-	}, [appRefs]);
+	const { addToRefs, appRefs } = useAppData();
 
 	const [isIntersect, target] = useIntersect(sectionRefs, { threshold: 1 });
 
@@ -299,7 +264,7 @@ function App() {
 					0
 				)
 				.to(
-					$(linkRefs.current).find(".line .char"),
+					$(refs["menu-links"]).find(".line .char"),
 					{
 						opacity: 1,
 						y: 0,
@@ -373,7 +338,6 @@ function App() {
 					toggleMenu={toggleMenu}
 					viewportNavColor={viewportNavColor}
 					menuState={state.menuIsShow}
-					logoRef={headerLogoRef}
 					burgerRef={addToRefs}
 					addToRefs={addToRefs}
 					headerColor={headerColor}
@@ -381,8 +345,7 @@ function App() {
 
 				<ViewportNav
 					isVisible={state.menuIsShow}
-					sideMenuRef={sideMenuRef}
-					linkRefs={linkRefs}
+					appRefs={appRefs}
 					addToRefs={addToRefs}
 					offset={menuOffset}
 				/>

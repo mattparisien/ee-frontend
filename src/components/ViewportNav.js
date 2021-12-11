@@ -15,31 +15,30 @@ let isFirstRender = true;
 
 export default function ViewportNav(props) {
 	const [isSplit, setIsSplit] = useState(false);
-	const { linkRefs } = props;
+	const { appRefs } = props;
 
 	const menuStyles = {
-		offset: props.offset
-	}
+		offset: props.offset,
+	};
 
 	const linkAnim = useRef(gsap.timeline());
 
-	
 	useEffect(() => {
-		console.log(props.offset)
-	})
+		console.log(props.offset);
+	});
 
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
-
+		const links = appRefs.current["menu-links"];
 		if (!isSplit) {
-			const mySplitText = new SplitText(linkRefs.current, {
+			const mySplitText = new SplitText(links, {
 				type: "lines, chars",
 				charsClass: "char",
 				linesClass: "line",
 			});
 			setIsSplit(true);
 		}
-	}, []);
+	}, [appRefs]);
 
 	const handleMouseEnter = e => {};
 
@@ -61,7 +60,11 @@ export default function ViewportNav(props) {
 	));
 
 	return (
-		<StyledViewportNav className='viewport-nav' ref={props.addToRefs} $menuStyles={menuStyles}>
+		<StyledViewportNav
+			className='viewport-nav'
+			ref={props.addToRefs}
+			$menuStyles={menuStyles}
+		>
 			<Container classes={"viewport-nav__inner"} bg={"dark"}>
 				<ul className='-position-absolute-center'>{navLinks}</ul>
 			</Container>
