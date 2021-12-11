@@ -170,15 +170,20 @@ function App() {
 
 	//Side nav animation
 	useEffect(() => {
+
+
 		if (state.menuIsShow) {
+
+			const e = CustomEase.create("custom", "M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1");
+
 			sideMenuAnim.current.play();
 			sideMenuAnim.current
 				.to(
 					sideMenuRef.current,
 					{
 						x: 0,
-						duration: 0.5,
-						ease: "Expo.inOut",
+						duration: 1.5,
+						ease: 'Expo.easeInOut',
 					},
 					0
 				)
@@ -247,7 +252,7 @@ function App() {
 						y: 0,
 						duration: 1.5,
 						stagger: 0.1,
-						ease: CustomEase.create("custom", "M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1")
+						ease: e
 					},
 					0.15
 				);
