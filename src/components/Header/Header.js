@@ -7,7 +7,7 @@ import { useTheme } from "styled-components";
 
 export default function Header(props) {
 	const theme = useTheme();
-	const { menuState, toggleMenu, appRefs, addToRefs } = props;
+	const { menuState, toggleMenu, appRefs, addToRefs, headerColor } = props;
 
 	const [device, setDevice] = useState(null);
 	const [windowWidth] = useResize();
@@ -26,10 +26,10 @@ export default function Header(props) {
 
 	const headerStyles = {
 		padding: "2rem 4rem",
-		color: "black",
+		color: headerColor,
 		burger: {
 			transition: menuState ? "none" : "300ms ease",
-			color: "dark",
+			color: headerColor,
 		},
 
 	};

@@ -1,4 +1,4 @@
-export default function rgb2hex(rgb) {
+export default function rgbToHex(rgb) {
 	const hex = `#${rgb
 		.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/)
 		.slice(1)

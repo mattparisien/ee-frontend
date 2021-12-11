@@ -29,7 +29,7 @@ const StyledHeader = styled.header`
 		width: 100%;
 		height: 100%;
 		transition: 300ms ease;
-		fill: ${({ $headerStyles }) => $headerStyles.color};
+		fill: ${({ $headerStyles, theme }) => theme.colors[$headerStyles.color]};
 	}
 
 	nav {
@@ -84,7 +84,8 @@ const StyledHeader = styled.header`
 				width: 100%;
 				position: absolute;
 				left: 0;
-				background-color: ${({ $headerStyles }) => $headerStyles.color};
+				background-color: ${({ $headerStyles, theme }) =>
+					theme.colors[$headerStyles.color]};
 				transformorigin: center;
 				transition: 300ms ease;
 			}

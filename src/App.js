@@ -18,6 +18,7 @@ import { TransitionGroup, Transition } from "react-transition-group";
 
 import { useSideMenu } from "./animations";
 import useAppData from "./helpers/hooks/useAppData";
+import rgbToHex from "./helpers/rgbToHex";
 
 function App() {
 	const location = useLocation();
@@ -32,8 +33,46 @@ function App() {
 	const { addToRefs, appRefs, state, setState, themes } = useAppData();
 	const [toggleMenu] = useSideMenu(appRefs, state, setState, themes);
 
+	useEffect(() => {
+		const header = appRefs.current["side-header"];
+		const sections = appRefs.current["sections"];
+
+		const setHeaderColor = sectionColor => {
+			const light = themes.colors["light"].toLowerCase();
+
+			setState(prev => ({
+				...prev,
+				headerColor: sectionColor === light ? "dark" : "light",
+			}));
+		};
+
+		const handleIntersection = entries => {
+			entries.forEach(entry => {
+				const isIntersecting = entry.isIntersecting;
+				let sectionColor;
+
+				if (isIntersecting) {
+					sectionColor = rgbToHex(
+						window.getComputedStyle(entry.target).backgroundColor
+					);
+					setHeaderColor(sectionColor);
+				}
+			});
+		};
+
+		const options = {
+			threshold: 0,
+			rootMargin: "0px 0px -100%",
+		};
+
+		const observer = new IntersectionObserver(handleIntersection, options);
+		sections.forEach(section => {
+			observer.observe(section);
+		});
+	}, [appRefs]);
+
 	return (
-		<div className='App'>
+		<div className='App' ref={addToRefs}>
 			<ThemeProvider theme={themes}>
 				<GlobalStyles />
 
