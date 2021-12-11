@@ -19,7 +19,9 @@ import gsap from "gsap";
 import $ from "jquery";
 import TransitionMask from "./components/Transition";
 import rgb2hex from "./helpers/rgbToHex";
-import useScroll from "./helpers/hooks/useScrollDir";
+import useIntersect from "./helpers/hooks/useIntersect";
+import CustomEase from "gsap/CustomEase";
+
 
 let isFirstRender = true;
 
@@ -37,8 +39,6 @@ function App() {
 		menuIsShow: false,
 	});
 
-	const [isScrolling, scrollDirection] = useScroll();
-
 	const sectionRefs = useRef(null);
 	const burgerRef = useRef(null);
 	const buttonRef = useRef(null);
@@ -51,6 +51,8 @@ function App() {
 	const transitionTimeline = useRef(gsap.timeline());
 	const linkRefs = useRef([]);
 	const headerRef = useRef(null);
+
+	const [isIntersect, target] = useIntersect(sectionRefs, { threshold: 1 });
 
 	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
@@ -72,37 +74,99 @@ function App() {
 	};
 
 	useEffect(() => {
-		function handleScroll() {
-			sectionRefs.current.forEach((section, i) => {
-				console.log(section, section.getBoundingClientRect().bottom);
-				const sectionPoint =
-					scrollDirection === "up"
-						? section.getBoundingClientRect().top
-						: section.getBoundingClientRect().bottom;
+		let direction = "up";
+		let prevYPosition = 0;
 
-				const headerHeight = headerRef.current.clientHeight;
+		const setScrollDirection = () => {
+			if (window.scrollTop > prevYPosition) {
+				direction = "down";
+			} else {
+				direction = "up";
+			}
+
+			prevYPosition = window.scrollTop;
+		};
+
+		const getTargetSection = target => {
+			if (direction === "up") return target;
+
+			if (target.nextElementSibling) {
+				return target.nextElementSibling;
+			} else {
+				return target;
+			}
+		};
+
+		const shouldUpdate = entry => {
+			if (direction === "down" && !entry.isIntersecting) {
+				return true;
+			}
+
+			if (direction === "up" && entry.isIntersecting) {
+				return true;
+			}
+
+			return false;
+		};
+
+		function handleIntersection(entries) {
+			entries.forEach(entry => {
+				setScrollDirection();
+
+				if (!shouldUpdate(entry)) return;
+
+				const target = getTargetSection(entry.target);
 				const sectionColor = rgb2hex(
-					window.getComputedStyle(section).backgroundColor
+					window.getComputedStyle(target).backgroundColor
 				);
-
-				if (sectionPoint <= headerHeight && sectionPoint > -headerHeight) {
-					if (sectionColor === "#f9f9ea") {
+				if (sectionColor === "#f9f9ea") {
+					setTimeout(() => {
 						setHeaderColor(themes.colors.dark);
-					} else {
+					}, 400);
+				} else {
+					setTimeout(() => {
 						setHeaderColor(themes.colors.light);
-					}
+					}, 400);
 				}
 			});
 		}
 
-		if (sectionRefs.current) {
-			window.addEventListener("scroll", handleScroll);
-		}
+		const observer = new IntersectionObserver(handleIntersection, {
+			rootMargin: headerRef.current.offsetHeight * -1 + "px",
+			threshold: 0,
+		});
 
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, [scrollDirection]);
+		sectionRefs.current.forEach(section => {
+			observer.observe(section);
+		});
+
+		// function handleScroll() {
+		// 	sectionRefs.current.forEach((section, i) => {
+		// 		const sectionPoint = section.getBoundingClientRect().top;
+
+		// 		const headerHeight = headerRef.current.clientHeight;
+		// 		const sectionColor = rgb2hex(
+		// 			window.getComputedStyle(section).backgroundColor
+		// 		);
+
+		// 		if (sectionPoint <= headerHeight && sectionPoint > -headerHeight) {
+		// 			if (sectionColor === "#f9f9ea") {
+		// 				setHeaderColor(themes.colors.dark);
+		// 			} else {
+		// 				setHeaderColor(themes.colors.light);
+		// 			}
+		// 		}
+		// 	});
+		// }
+
+		// if (sectionRefs.current) {
+		// 	window.addEventListener("scroll", handleScroll);
+		// }
+
+		// return () => {
+		// 	window.removeEventListener("scroll", handleScroll);
+		// };
+	}, [sectionRefs]);
 
 	//Side nav animation
 	useEffect(() => {
@@ -177,13 +241,13 @@ function App() {
 					0
 				)
 				.to(
-					$(linkRefs.current).find(".char"),
+					$(linkRefs.current).find(".line .char"),
 					{
 						opacity: 1,
 						y: 0,
 						duration: 1.5,
 						stagger: 0.1,
-						ease: "Expo.easeOut",
+						ease: CustomEase.create("custom", "M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1")
 					},
 					0.15
 				);

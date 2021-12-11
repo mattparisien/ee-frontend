@@ -6,7 +6,9 @@ export default function useIntersect(refs, options) {
 
 	const handleIntersect = entries => {
 		entries.forEach(entry => {
-			setIntersect(entry.isIntersecting);
+			if (entry.isIntersecting) {
+				setIntersect(true)
+			}
 
 			if (entry.isIntersecting) {
 				setTarget(entry.target);
