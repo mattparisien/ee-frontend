@@ -4,27 +4,25 @@ import { Ellipse } from "../Svg";
 let isFirstRender = true;
 
 function MobileNav(props) {
-	const {
-		menuState,
-		onClick,
-		headerStyles,
-		burgerRef,
-		buttonRef,
-		bottomPattyRef,
-		topPattyRef,
-		circleRef,
-	} = props;
+	const { onClick, addToRefs } = props;
 
 	return (
 		<div className='mobile-nav-wrapper'>
-			<button ref={burgerRef} type='button' onClick={onClick}>
-				<span className='top' ref={topPattyRef}></span>
-				<span className='bottom' ref={bottomPattyRef}></span>
+			<button
+				className='burger'
+				ref={addToRefs}
+				type='button'
+				onClick={onClick}
+				id="header-burger"
+			>
+				<span className='top' id="burger-top" ref={addToRefs}></span>
+				<span className='bottom' id="burger-bottom" ref={addToRefs}></span>
 				<Ellipse
 					classes={"burger-circle"}
-					circleRef={circleRef}
+					circleRef={addToRefs}
 					width={"66px"}
 					height={"66px"}
+					id="menu-active-circle"
 				/>
 			</button>
 		</div>

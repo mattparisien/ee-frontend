@@ -23,12 +23,7 @@ export default function ViewportNav(props) {
 
 	const linkAnim = useRef(gsap.timeline());
 
-	const addToRefs = function (el) {
-		if (el && !linkRefs.current.includes(el)) {
-			linkRefs.current.push(el);
-		}
-	};
-
+	
 	useEffect(() => {
 		console.log(props.offset)
 	})
@@ -54,8 +49,8 @@ export default function ViewportNav(props) {
 		<li key={link.id}>
 			<Link
 				to={link.path}
-				ref={addToRefs}
-				className='-fade-up'
+				ref={props.addToRefs}
+				className='-fade-up menu-link'
 				onMouseEnter={e => handleMouseEnter(e)}
 				onMouseLeave={e => handleMouseLeave(e)}
 				style={{ overflow: "hidden" }}
@@ -66,7 +61,7 @@ export default function ViewportNav(props) {
 	));
 
 	return (
-		<StyledViewportNav className='viewport-nav' ref={props.sideMenuRef} $menuStyles={menuStyles}>
+		<StyledViewportNav className='viewport-nav' ref={props.addToRefs} $menuStyles={menuStyles}>
 			<Container classes={"viewport-nav__inner"} bg={"dark"}>
 				<ul className='-position-absolute-center'>{navLinks}</ul>
 			</Container>

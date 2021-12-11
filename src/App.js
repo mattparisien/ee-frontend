@@ -54,6 +54,37 @@ function App() {
 	const transitionTimeline = useRef(gsap.timeline());
 	const linkRefs = useRef([]);
 	const headerRef = useRef(null);
+	const appRefs = useRef({});
+
+	appRefs.current = {};
+
+	const addToRefs = function (el) {
+		if (el && !appRefs.current[el]) {
+			let elClass = "";
+			let links = [];
+
+			//Take last of classList (avoid styled components classes)
+			//Spread DOMTokenList into array
+			if (el.classList) {
+				elClass = [...el.classList].splice(elClass.length - 1, 1).join("");
+
+				if ([...el.classList].includes("menu-link")) {
+					links.push(el);
+					appRefs.current['menu-links'] = links;
+				}
+			}
+
+		
+
+			el.id !== ""
+				? (appRefs.current[el.id] = el)
+				: (appRefs.current[elClass] = el);
+		}
+	};
+
+	useEffect(() => {
+		console.log(appRefs);
+	}, [appRefs]);
 
 	const [isIntersect, target] = useIntersect(sectionRefs, { threshold: 1 });
 
@@ -85,103 +116,107 @@ function App() {
 		},
 	};
 
-	useEffect(() => {
-		let direction = "up";
-		let prevYPosition = 0;
+	// useEffect(() => {
+	// 	console.log("current....", animRefs.current);
+	// 	let direction = "up";
+	// 	let prevYPosition = 0;
 
-		const setScrollDirection = () => {
-			if (window.scrollTop > prevYPosition) {
-				direction = "down";
-			} else {
-				direction = "up";
-			}
+	// 	const setScrollDirection = () => {
+	// 		if (window.scrollTop > prevYPosition) {
+	// 			direction = "down";
+	// 		} else {
+	// 			direction = "up";
+	// 		}
 
-			prevYPosition = window.scrollTop;
-		};
+	// 		prevYPosition = window.scrollTop;
+	// 	};
 
-		const getTargetSection = target => {
-			if (direction === "up") return target;
+	// 	const getTargetSection = target => {
+	// 		if (direction === "up") return target;
 
-			if (target.nextElementSibling) {
-				return target.nextElementSibling;
-			} else {
-				return target;
-			}
-		};
+	// 		if (target.nextElementSibling) {
+	// 			return target.nextElementSibling;
+	// 		} else {
+	// 			return target;
+	// 		}
+	// 	};
 
-		const shouldUpdate = entry => {
-			if (direction === "down" && !entry.isIntersecting) {
-				return true;
-			}
+	// 	const shouldUpdate = entry => {
+	// 		if (direction === "down" && !entry.isIntersecting) {
+	// 			return true;
+	// 		}
 
-			if (direction === "up" && entry.isIntersecting) {
-				return true;
-			}
+	// 		if (direction === "up" && entry.isIntersecting) {
+	// 			return true;
+	// 		}
 
-			return false;
-		};
+	// 		return false;
+	// 	};
 
-		function handleIntersection(entries) {
-			entries.forEach(entry => {
-				setScrollDirection();
+	// function handleIntersection(entries) {
+	// 	entries.forEach(entry => {
+	// 		setScrollDirection();
 
-				if (!shouldUpdate(entry)) return;
+	// 		if (!shouldUpdate(entry)) return;
 
-				const target = getTargetSection(entry.target);
-				const sectionColor = rgb2hex(
-					window.getComputedStyle(target).backgroundColor
-				);
-				if (sectionColor === "#f9f9ea") {
-					setTimeout(() => {
-						setHeaderColor(themes.colors.dark);
-					}, 400);
-				} else {
-					setTimeout(() => {
-						setHeaderColor(themes.colors.light);
-					}, 400);
-				}
-			});
-		}
+	// 		const target = getTargetSection(entry.target);
+	// 		const sectionColor = rgb2hex(
+	// 			window.getComputedStyle(target).backgroundColor
+	// 		);
+	// 		if (sectionColor === "#f9f9ea") {
+	// 			setTimeout(() => {
+	// 				setHeaderColor(themes.colors.dark);
+	// 			}, 400);
+	// 		} else {
+	// 			setTimeout(() => {
+	// 				setHeaderColor(themes.colors.light);
+	// 			}, 400);
+	// 		}
+	// 	});
+	// }
 
-		const observer = new IntersectionObserver(handleIntersection, {
-			rootMargin: headerRef.current.offsetHeight * -1 + "px",
-			threshold: 0,
-		});
+	// const observer = new IntersectionObserver(handleIntersection, {
+	// 	rootMargin: headerRef.current.offsetHeight * -1 + "px",
+	// 	threshold: 0,
+	// });
 
-		sectionRefs.current.forEach(section => {
-			observer.observe(section);
-		});
+	// sectionRefs.current.forEach(section => {
+	// 	observer.observe(section);
+	// });
 
-		// function handleScroll() {
-		// 	sectionRefs.current.forEach((section, i) => {
-		// 		const sectionPoint = section.getBoundingClientRect().top;
+	// function handleScroll() {
+	// 	sectionRefs.current.forEach((section, i) => {
+	// 		const sectionPoint = section.getBoundingClientRect().top;
 
-		// 		const headerHeight = headerRef.current.clientHeight;
-		// 		const sectionColor = rgb2hex(
-		// 			window.getComputedStyle(section).backgroundColor
-		// 		);
+	// 		const headerHeight = headerRef.current.clientHeight;
+	// 		const sectionColor = rgb2hex(
+	// 			window.getComputedStyle(section).backgroundColor
+	// 		);
 
-		// 		if (sectionPoint <= headerHeight && sectionPoint > -headerHeight) {
-		// 			if (sectionColor === "#f9f9ea") {
-		// 				setHeaderColor(themes.colors.dark);
-		// 			} else {
-		// 				setHeaderColor(themes.colors.light);
-		// 			}
-		// 		}
-		// 	});
-		// }
+	// 		if (sectionPoint <= headerHeight && sectionPoint > -headerHeight) {
+	// 			if (sectionColor === "#f9f9ea") {
+	// 				setHeaderColor(themes.colors.dark);
+	// 			} else {
+	// 				setHeaderColor(themes.colors.light);
+	// 			}
+	// 		}
+	// 	});
+	// }
 
-		// if (sectionRefs.current) {
-		// 	window.addEventListener("scroll", handleScroll);
-		// }
+	// if (sectionRefs.current) {
+	// 	window.addEventListener("scroll", handleScroll);
+	// }
 
-		// return () => {
-		// 	window.removeEventListener("scroll", handleScroll);
-		// };
-	}, [sectionRefs]);
+	// return () => {
+	// 	window.removeEventListener("scroll", handleScroll);
+	// };
+	// }, [sectionRefs]);
 
 	//Side nav animation
 	useEffect(() => {
+		const refs = appRefs.current;
+
+		console.log("apprefs,", appRefs);
 		const reset = node => {
 			if (isResized) {
 				setMenuOffset(prev => prev);
@@ -197,7 +232,7 @@ function App() {
 			sideMenuAnim.current.play();
 			sideMenuAnim.current
 				.to(
-					sideMenuRef.current,
+					refs["viewport-nav"],
 					{
 						x: +menuOffset,
 						duration: 1.5,
@@ -206,7 +241,7 @@ function App() {
 					0
 				)
 				.to(
-					circleRef.current,
+					refs["menu-active-circle"],
 					{
 						scale: 1,
 						y: "-50%",
@@ -219,7 +254,7 @@ function App() {
 					0.2
 				)
 				.to(
-					topPattyRef.current,
+					refs["burger-top"],
 					{
 						transformOrigin: "center",
 						margin: 0,
@@ -233,7 +268,7 @@ function App() {
 					0
 				)
 				.to(
-					burgerRef.current,
+					refs["header-burger"],
 					{
 						rotation: "360",
 						duration: 1,
@@ -242,7 +277,7 @@ function App() {
 					0
 				)
 				.to(
-					bottomPattyRef.current,
+					refs["burger-bottom"],
 					{
 						transformOrigin: "center",
 						margin: 0,
@@ -255,7 +290,7 @@ function App() {
 					0
 				)
 				.to(
-					headerLogoRef.current,
+					refs["header-logo"],
 					{
 						fill: themes.colors.light,
 						duration: 0.3,
@@ -280,7 +315,7 @@ function App() {
 			sideMenuAnim.current.reverse();
 			reset();
 		}
-	}, [state.menuIsShow]);
+	}, [state.menuIsShow, appRefs]);
 
 	const updateHoverState = function () {
 		setState(() => ({ ...state, isHovering: !state.isHovering }));
@@ -339,12 +374,8 @@ function App() {
 					viewportNavColor={viewportNavColor}
 					menuState={state.menuIsShow}
 					logoRef={headerLogoRef}
-					burgerRef={burgerRef}
-					buttonref={buttonRef}
-					bottomPattyRef={bottomPattyRef}
-					topPattyRef={topPattyRef}
-					circleRef={circleRef}
-					headerRef={headerRef}
+					burgerRef={addToRefs}
+					addToRefs={addToRefs}
 					headerColor={headerColor}
 				/>
 
@@ -352,6 +383,7 @@ function App() {
 					isVisible={state.menuIsShow}
 					sideMenuRef={sideMenuRef}
 					linkRefs={linkRefs}
+					addToRefs={addToRefs}
 					offset={menuOffset}
 				/>
 

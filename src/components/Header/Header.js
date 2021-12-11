@@ -21,6 +21,7 @@ export default function Header(props) {
 		circleRef,
 		logoRef,
 		headerColor,
+		addToRefs,
 	} = props;
 	const [isHovered] = useHover(burgerRef);
 	const [isFirstRender] = useFirstRender();
@@ -43,9 +44,8 @@ export default function Header(props) {
 
 	const headerStyles = {
 		padding: "2rem 4rem",
-		color: headerColor,
+		color: 'black',
 		burger: {
-			left: isHovered ? "10" : "0",
 			transition: menuState ? "none" : "300ms ease",
 			color: "dark",
 		},
@@ -63,23 +63,20 @@ export default function Header(props) {
 		<StyledHeader
 			$headerStyles={headerStyles}
 			$isHoverable={isHoverable}
-			ref={props.headerRef}
+			ref={addToRefs}
+			id='site-header'
 		>
 			<div className='logo-wrapper -absolute-center'>
 				<a href='/'>
-					<TextLogo logoRef={logoRef} />
+					<TextLogo logoRef={addToRefs} />
 				</a>
 			</div>
 
 			<MobileNav
 				onClick={toggleMenu}
-				burgerRef={burgerRef}
-				buttonRef={buttonRef}
-				bottomPattyRef={bottomPattyRef}
-				topPattyRef={topPattyRef}
-				circleRef={circleRef}
 				menuState={menuState}
 				linkRefs={props.linkRefs}
+				addToRefs={addToRefs}
 			/>
 
 			{/* {device === "desktop" && <DesktopNav theme={theme} />} */}

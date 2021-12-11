@@ -313,6 +313,7 @@ export function Ellipse(props) {
 			onMouseEnter={e => scaleEllipse(e)}
 			onMouseLeave={e => scaleEllipse(e)}
 			ref={props.circleRef}
+			id={props.id}
 		>
 			<path
 				d='M169,3.5c91.1,0,165,36.9,165,82.5s-73.9,82.5-165,82.5S4,131.6,4,86C4,40.4,77.9,3.5,169,3.5'
