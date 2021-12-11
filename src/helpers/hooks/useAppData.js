@@ -16,7 +16,8 @@ export default function useAppData() {
 
 	const appRefs = useRef({});
 	appRefs.current = {};
-	let links = [];
+	const links = [];
+	const sections = [];
 
 	//App state
 	const [state, setState] = useState({
@@ -39,6 +40,10 @@ export default function useAppData() {
 					links.push(el);
 					appRefs.current["menu-links"] = links;
 					return;
+				} else if ([...el.classList].includes("styled-object-container")) {
+					sections.push(el);
+					appRefs.current["sections"] = sections;
+					return;
 				}
 			}
 
@@ -47,6 +52,10 @@ export default function useAppData() {
 				: (appRefs.current[elClass] = el);
 		}
 	};
+
+	useEffect(() => {
+		console.log(appRefs);
+	}, appRefs);
 
 	return { appRefs, addToRefs, state, setState, themes };
 }

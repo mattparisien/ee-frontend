@@ -28,7 +28,6 @@ let isFirstRender = true;
 function App() {
 	const location = useLocation();
 
-
 	const sectionRefs = useRef(null);
 
 	const updateHoverState = function () {
@@ -78,7 +77,7 @@ function App() {
 									element={
 										<Home
 											hoverState={state.isHovering}
-											sectionRefs={sectionRefs}
+											addToRefs={addToRefs}
 										/>
 									}
 								/>

@@ -23,20 +23,11 @@ function Home(props) {
 
 	const { windowResizing } = useResize();
 
-	const { sectionRefs } = props;
-	sectionRefs.current = [];
+	const { addToRefs } = props;
 
 	const [isScrolling, scrollDirection] = useScroll();
 
-	const addToRefs = function (el) {
-		if (el && !sectionRefs.current.includes(el)) {
-			sectionRefs.current.push(el);
-		}
-	};
-
-	useEffect(() => {
-		
-	})
+	useEffect(() => {});
 
 	const rows = useRef([]);
 	const eye = useRef(null);
@@ -62,7 +53,7 @@ function Home(props) {
 						{data && data.data.attributes.MissionTwo}
 					</Paragraph>
 					<Paragraph>
-						{isScrolling ? 'is scrolling!' : 'is not scrolling'}
+						{isScrolling ? "is scrolling!" : "is not scrolling"}
 						{scrollDirection}
 					</Paragraph>
 				</Container>
@@ -70,16 +61,7 @@ function Home(props) {
 		);
 	};
 
-	// useEffect(() => {
-	// 	const scroll = new locomotiveScroll({
-	// 		el: scrollRef.current,
-	// 		smooth: true,
-	// 	});
-	// }, []);
-
 	const theme = useTheme();
-
-
 
 	// useEffect(() => {
 	// 	gsap.registerPlugin(DrawSVGPlugin);
