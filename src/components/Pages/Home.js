@@ -27,7 +27,7 @@ function Home(props) {
 
 	const [isScrolling, scrollDirection] = useScroll();
 
-	useEffect(() => {});
+	
 
 	const rows = useRef([]);
 	const eye = useRef(null);

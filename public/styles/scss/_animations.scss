@@ -1,5 +1,3 @@
-
-
 .transition-mask {
 	position: fixed;
 	top: 0;
@@ -9,6 +7,9 @@
 	width: 100%;
 }
 
+#transition-morph__leave {
+	display: none !important;
+}
 
 .transition-path {
 	fill: none;
@@ -25,10 +26,6 @@
 	left: 0;
 	fill: none;
 }
-
-
-	
-
 
 .transition-bg {
 	position: fixed;
@@ -66,4 +63,3 @@
 	z-index: 9999;
 	transform: translateX(-100%);
 }
-

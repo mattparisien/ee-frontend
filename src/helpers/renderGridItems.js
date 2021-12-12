@@ -19,6 +19,7 @@ export default function renderGridItems(data) {
 				gap={"4vw"}
 				rows={"grid-auto-rows: 15vw"}
 				classes={"project-grid"}
+				key={nested.id}
 			>
 				{nested.map((post, index) => {
 					return (
@@ -29,12 +30,14 @@ export default function renderGridItems(data) {
 							<Link
 								to={`/projects/${post.id}`}
 								className='project-grid-item__link  fade-up -position-relative'
+								key={post.id}
 							>
 								<Image
 									url={`http://localhost:1337${post.attributes.FeatureImage.data.attributes.url}`}
 									title={post.attributes.Title}
 									subTitle={post.attributes.Subtitle}
 									classes={"project-grid-item__image-wrapper"}
+									key={post.id}
 								/>
 								<div className='project-grid-item__mobile-title'>
 									<div className='title'>{post.attributes.Title}</div>

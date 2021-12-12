@@ -26,6 +26,10 @@ export default function useAppData() {
 		headerColor: "dark",
 		menuIsShow: false,
 		menuOffset: "-101%",
+		transition: {
+			isPlaying: false,
+			direction: null,
+		},
 	});
 
 	const addToRefs = function (el) {
@@ -45,8 +49,7 @@ export default function useAppData() {
 					sections.push(el);
 					appRefs.current["sections"] = sections;
 					return;
-				} else if (([...el.classList].includes("paragraph"))) {
-
+				} else if ([...el.classList].includes("paragraph")) {
 				}
 			}
 
@@ -55,8 +58,6 @@ export default function useAppData() {
 				: (appRefs.current[elClass] = el);
 		}
 	};
-
-
 
 	return { appRefs, addToRefs, state, setState, themes };
 }

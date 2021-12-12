@@ -1,9 +1,108 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import $ from "jquery";
 import { gsap } from "gsap";
 import CustomEase from "gsap/CustomEase";
 import useResize from "./helpers/hooks/useResize";
 import { useFirstRender } from "./helpers/hooks/useFirstRender";
+import MorphSVGPlugin from "gsap/MorphSVGPlugin";
+
+export function useTransition(appRefs, state) {
+	const masterTl = useRef(gsap.timeline({ paused: true }));
+	const transitionOutTl = useRef(gsap.timeline({ paused: true }));
+	const transitionInTl = useRef(gsap.timeline({ paused: true }));
+	const isPlaying = state.transition.isPlaying;
+	const direction = state.transition.direction;
+	const isFirstRender = useFirstRender();
+
+	useEffect(() => {
+		gsap.registerPlugin(MorphSVGPlugin);
+		const container = appRefs.current["site-transition"];
+		const path = appRefs.current["transition-morph-enter"];
+		const dur = 0.1;
+		const shapes = {
+			leave: [
+				"M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
+				"M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
+				"M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z",
+				"M1920,553.35C1231.2,0,795.2-178,0,553.35V0H1920Z",
+				"M1920,192.36C1353.18,53.28,987.5,9.52,0,161.11V0H1920Z",
+				"M1920,19.54C1223.47,9.74,720.27,0,0,22V0H1920Z",
+			],
+			enter: [
+				"M1920,1080H0",
+				"M1920,1080H0C624.14,567.69,1263.74,554.67,1920,1080Z",
+				"M1920,895.59V1080H0V916.69C614.63,2.42,1253.61-57.74,1920,895.59Z",
+				"M1920,553.35V1080H0V553.35C795.2-178,1231.21,0,1920,553.35Z",
+				"M1920,192.36V1080H0V161.11C987.5,9.52,1353.18,53.28,1920,192.36Z",
+				"M0,0V1080H1920V0Z",
+			],
+		};
+		//In
+
+		transitionInTl.current
+			.set(container, {
+				display: "block",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[1],
+				duration: 0.4,
+				ease: "power4.in",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[2],
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[3],
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[4],
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[5],
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: "M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
+				duration: 0.4,
+				ease: "none",
+				delay: 1,
+			})
+			.to(path, {
+				morphSVG: '"M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z"',
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: "M1920,553.35C1231.2,0,795.2-178,0,553.35V0H1920Z",
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: "M1920,192.36C1353.18,53.28,987.5,9.52,0,161.11V0H1920Z",
+				duration: dur,
+				y: "-200px",
+				ease: "none",
+			})
+			.set(container, {
+				display: "none",
+			});
+	}, [appRefs]);
+
+	useEffect(() => {
+		if (isPlaying && direction === "enter") {
+			transitionInTl.current.play();
+		} else if (isPlaying && direction === "leave") {
+			transitionOutTl.current.play();
+		}
+	}, [direction]);
+}
 
 export function useSideMenu(appRefs, state, setState, themes) {
 	const [windowWidth, isResized] = useResize();

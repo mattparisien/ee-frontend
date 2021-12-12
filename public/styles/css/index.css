@@ -863,6 +863,10 @@ body {
   width: 100%;
 }
 
+#transition-morph__leave {
+  display: none !important;
+}
+
 .transition-path {
   fill: none;
   stroke: white;
