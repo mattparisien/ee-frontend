@@ -44,7 +44,7 @@ function Home(props) {
 		return (
 			<Section classes={"section-who"}>
 				<Container bg={"dark"} addToRefs={addToRefs}>
-					<Paragraph width={"100%"} medium indent>
+					<Paragraph width={"100%"} medium indent addToRefs={addToRefs}>
 						{loading && "Loading..."}
 						{data && data.data.attributes.MissionOne}
 					</Paragraph>

@@ -18,6 +18,7 @@ export default function useAppData() {
 	appRefs.current = {};
 	const links = [];
 	const sections = [];
+	const paragraphs = [];
 
 	//App state
 	const [state, setState] = useState({
@@ -44,6 +45,8 @@ export default function useAppData() {
 					sections.push(el);
 					appRefs.current["sections"] = sections;
 					return;
+				} else if (([...el.classList].includes("paragraph"))) {
+
 				}
 			}
 

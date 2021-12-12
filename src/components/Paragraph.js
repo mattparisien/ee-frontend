@@ -12,7 +12,7 @@ function Paragraph(props) {
 		left,
 		right,
 		marginTop,
-
+		addToRefs,
 		myRef,
 	} = props;
 
@@ -46,7 +46,7 @@ function Paragraph(props) {
 			className={paragraphClass}
 			style={paragraphStyle}
 		>
-			<p ref={splitRef}>{props.children}</p>
+			<p className="paragraph" ref={addToRefs}>{props.children}</p>
 		</div>
 	);
 }

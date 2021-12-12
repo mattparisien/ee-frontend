@@ -34,3 +34,12 @@ p {
 	background-color: orange;
 }
 
+main {
+	clip-path: url(#transition-clip);
+}
+
+.transition-mask {
+	position: fixed;
+}
+
+

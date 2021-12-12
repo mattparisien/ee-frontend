@@ -15,10 +15,13 @@ import {
 	useLocation,
 } from "react-router-dom";
 import { TransitionGroup, Transition } from "react-transition-group";
-
+import ScrollToTop from "./helpers/ScrollToTop";
 import { useSideMenu } from "./animations";
 import useAppData from "./helpers/hooks/useAppData";
 import rgbToHex from "./helpers/rgbToHex";
+import TransitionMask from "./components/Transition";
+import SplitText from "gsap/SplitText";
+import gsap from "gsap/all";
 
 function App() {
 	const location = useLocation();
@@ -49,20 +52,25 @@ function App() {
 		const handleIntersection = entries => {
 			entries.forEach(entry => {
 				const isIntersecting = entry.isIntersecting;
-				let sectionColor;
+				let sectionBg = "";
+				let sectionHex = "";
 
 				if (isIntersecting) {
-					sectionColor = rgbToHex(
-						window.getComputedStyle(entry.target).backgroundColor
-					);
-					setHeaderColor(sectionColor);
+					console.log(entry.target);
+					sectionBg = window.getComputedStyle(entry.target).backgroundColor;
+					if (sectionBg !== "rgba(0, 0, 0, 0)") {
+						sectionHex = rgbToHex(sectionBg);
+						setHeaderColor(sectionHex);
+					} else {
+						return;
+					}
 				}
 			});
 		};
 
 		const options = {
 			threshold: 0,
-			rootMargin: "0px 0px -100%",
+			rootMargin: `0px 0px -95%`,
 		};
 
 		const observer = new IntersectionObserver(handleIntersection, options);
@@ -93,7 +101,7 @@ function App() {
 					offset={state.menuOffset}
 					toggleMenu={toggleMenu}
 				/>
-
+				{/* <TransitionMask/> */}
 				<main>
 					<TransitionGroup className='transition-group'>
 						<Transition

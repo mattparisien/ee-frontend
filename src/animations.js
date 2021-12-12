@@ -25,7 +25,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 	//Side nav animation
 	useEffect(() => {
 		const refs = appRefs.current;
-
+		gsap.registerPlugin(CustomEase);
 		if (state.menuIsShow) {
 			const e = CustomEase.create(
 				"custom",
@@ -68,7 +68,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 						x: 0,
 						duration: 0.4,
 						y: "-50%",
-
+						backgroundColor: themes.colors.dark,
 						ease: "Expo.easeInOut",
 					},
 					0
@@ -94,6 +94,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 						y: "-50%",
 						duration: 0.4,
 						ease: "Expo.easeInOut",
+						backgroundColor: themes.colors.dark,
 					},
 					0
 				)
@@ -117,7 +118,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 						stagger: 0.1,
 						ease: e,
 					},
-					0.15
+					0.55
 				);
 		} else if (!state.menuIsShow && !isFirstRender) {
 			sideMenuAnim.current.reverse();
