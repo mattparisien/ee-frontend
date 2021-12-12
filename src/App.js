@@ -56,7 +56,6 @@ function App() {
 				let sectionHex = "";
 
 				if (isIntersecting) {
-					console.log(entry.target);
 					sectionBg = window.getComputedStyle(entry.target).backgroundColor;
 					if (sectionBg !== "rgba(0, 0, 0, 0)") {
 						sectionHex = rgbToHex(sectionBg);
@@ -101,7 +100,7 @@ function App() {
 					offset={state.menuOffset}
 					toggleMenu={toggleMenu}
 				/>
-				{/* <TransitionMask/> */}
+				<TransitionMask addToRefs={addToRefs} appRefs={appRefs}/>
 				<main>
 					<TransitionGroup className='transition-group'>
 						<Transition
