@@ -23,6 +23,7 @@ import TransitionMask from "./components/Transition";
 import SplitText from "gsap/SplitText";
 import gsap from "gsap/all";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
+import gsapCore from "gsap/gsap-core";
 
 function App() {
 	const location = useLocation();
@@ -79,20 +80,67 @@ function App() {
 		});
 	}, [appRefs]);
 
-	const transitionTimeline = useRef(gsap.timeline());
+	const transTl = useRef(gsap.timeline({ paused: true }));
 
 	useEffect(() => {
 		gsap.registerPlugin(MorphSVGPlugin);
+		const container = appRefs.current["site-transition"];
+		const path = appRefs.current["transition-morph"];
+		const shapes = [
+			"M1920,1080H0V0H1920Z",
+			"M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
+			"M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z",
+			"M1920,553.35C1231.2,0,795.2-178,0,553.35V0H1920Z",
+			"M1920,192.36C1353.18,53.28,987.5,9.52,0,161.11V0H1920Z",
+			"M1920,19.54C1223.47,9.74,720.27,0,0,22V0H1920Z",
+		];
+		transTl.current
 
-		transitionTimeline.current
-			.to(appRefs.current["transition-morph"], {
-				morphSVG: "M1920,0h0c-202.47,316.08-556.77,839.33-960,839.33S202.47,316.08,0,0H1920Z",
-				duration: 1,
-				ease: 'linear'
+			.to(path, {
+				morphSVG: shapes[1],
+				duration: 0.4,
+				ease: "power4.in",
+			})
+			.to(path, {
+				morphSVG: shapes[2],
+				duration: 0.4,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes[3],
+				duration: 0.4,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes[4],
+				duration: 0.4,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes[5],
+				duration: 0.4,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes[5],
+				duration: 0.4,
+				ease: "none",
+				y: "-200px",
+			})
+			.set(container, {
+				display: "none",
 			});
+
+		const init = () => {
+			gsap.to(transTl.current, {
+				time: transTl.current.duration(),
+				duration: transTl.current.duration(),
+				ease: "expo.easeInOut",
+			});
+		};
+
+		init();
 	}, [appRefs]);
-
-
 
 	return (
 		<div className='App' ref={addToRefs}>
@@ -116,7 +164,11 @@ function App() {
 					offset={state.menuOffset}
 					toggleMenu={toggleMenu}
 				/>
-				<TransitionMask addToRefs={addToRefs} appRefs={appRefs} />
+				<TransitionMask
+					addToRefs={addToRefs}
+					appRefs={appRefs}
+					themes={themes}
+				/>
 				<main>
 					<TransitionGroup className='transition-group'>
 						<Transition

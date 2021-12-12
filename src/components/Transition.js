@@ -3,37 +3,48 @@ import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
 function TransitionMask(props) {
-	let shapes = [
-		{
-			d: "M1920,0V1080c-348.9,2.13-536.38,0-939.61,0H0V0Z",
-		},
-		{
-			d: "M1920,0V313.76c-202.47,316.08-556.77,525.57-960,525.57S202.47,629.84,0,313.76V0Z",
-		},
-		{
-			d: "M1920,0Z",
-		},
-	];
+
+	const { themes } = props;
+
+	const transitionStyle = {
+		position: "fixed",
+		top: 0,
+		left: 0,
+		width: "100vw",
+		height: "100vh",
+		zIndex: 9999,
+	};
+
+	const svgStyle = {
+		display: "flex",
+		alignItems: "center",
+		justifyContnt: "center",
+		fill: themes.colors.yellow
+	};
 
 	return (
-		<div class='transition-mask'>
+		<div
+			className='site-transition'
+			style={transitionStyle}
+			ref={props.addToRefs}
+		>
 			<svg
 				id='transition-morph'
 				height='100%'
 				width='100%'
 				viewbox='0 0 1920 1080'
 				preserveAspectRatio='none'
-				fill={"orange"}
+
+				style={svgStyle}
 			>
 				<path
 					ref={props.addToRefs}
-					class='transition-morph'
-					d="M1920,0V1080c-348.9,2.13-536.38,0-939.61,0H0V0Z"
+					className='transition-morph'
+					d='M1920,1080H0V0H1920Z'
 				></path>
 			</svg>
 		</div>
 	);
 }
-
 
 export default TransitionMask;
