@@ -90,10 +90,6 @@ function App() {
 		}));
 	};
 
-	useEffect(() => {
-		console.log(state)
-	}, [state])
-
 	return (
 		<div className='App' ref={addToRefs}>
 			<ThemeProvider theme={themes}>

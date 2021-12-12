@@ -33,7 +33,7 @@ function TransitionMask(props) {
 				id='transition-morph__enter'
 				height='100%'
 				width='100%'
-				viewbox='0 0 1920 1080'
+				viewBox='0 0 1920 1080'
 				preserveAspectRatio='none'
 				style={svgStyle}
 			>
@@ -41,6 +41,8 @@ function TransitionMask(props) {
 					ref={props.addToRefs}
 					className='transition-morph-enter'
 					d='M-3.1,1073.81h1920c-723.06,8.48-1221.05,8-1920,0Z'
+					width="100%"
+					height="100%"
 				></path>
 			</svg>
 		</div>
