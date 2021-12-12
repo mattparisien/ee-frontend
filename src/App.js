@@ -22,6 +22,7 @@ import rgbToHex from "./helpers/rgbToHex";
 import TransitionMask from "./components/Transition";
 import SplitText from "gsap/SplitText";
 import gsap from "gsap/all";
+import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
 function App() {
 	const location = useLocation();
@@ -78,6 +79,21 @@ function App() {
 		});
 	}, [appRefs]);
 
+	const transitionTimeline = useRef(gsap.timeline());
+
+	useEffect(() => {
+		gsap.registerPlugin(MorphSVGPlugin);
+
+		transitionTimeline.current
+			.to(appRefs.current["transition-morph"], {
+				morphSVG: "M1920,0h0c-202.47,316.08-556.77,839.33-960,839.33S202.47,316.08,0,0H1920Z",
+				duration: 1,
+				ease: 'linear'
+			});
+	}, [appRefs]);
+
+
+
 	return (
 		<div className='App' ref={addToRefs}>
 			<ThemeProvider theme={themes}>
@@ -100,7 +116,7 @@ function App() {
 					offset={state.menuOffset}
 					toggleMenu={toggleMenu}
 				/>
-				<TransitionMask addToRefs={addToRefs} appRefs={appRefs}/>
+				<TransitionMask addToRefs={addToRefs} appRefs={appRefs} />
 				<main>
 					<TransitionGroup className='transition-group'>
 						<Transition
