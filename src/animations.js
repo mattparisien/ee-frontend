@@ -6,7 +6,7 @@ import useResize from "./helpers/hooks/useResize";
 import { useFirstRender } from "./helpers/hooks/useFirstRender";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
-export function useTransition(appRefs, state) {
+export function useTransition(appRefs, state, setState) {
 	const masterTl = useRef(gsap.timeline({ paused: true }));
 	const transitionOutTl = useRef(gsap.timeline({ paused: true }));
 	const transitionInTl = useRef(gsap.timeline({ paused: true }));
@@ -29,7 +29,7 @@ export function useTransition(appRefs, state) {
 				"M1920,19.54C1223.47,9.74,720.27,0,0,22V0H1920Z",
 			],
 			enter: [
-				"M1920,1080H0",
+				"M-3.1,1073.81h1920c-723.06,8.48-1221.05,8-1920,0Z",
 				"M1920,1080H0C624.14,567.69,1263.74,554.67,1920,1080Z",
 				"M1920,895.59V1080H0V916.69C614.63,2.42,1253.61-57.74,1920,895.59Z",
 				"M1920,553.35V1080H0V553.35C795.2-178,1231.21,0,1920,553.35Z",
@@ -37,8 +37,15 @@ export function useTransition(appRefs, state) {
 				"M0,0V1080H1920V0Z",
 			],
 		};
-		//In
 
+		//Reset state/path attributes on trans complete
+		const reset = () => {
+			const resetState = { isPlaying: false, direction: null };
+			setState(prev => ({ ...prev, transition: resetState }));
+			path.setAttribute("d", shapes.enter[0]);
+		};
+
+		//In
 		transitionInTl.current
 			.set(container, {
 				display: "block",
@@ -75,7 +82,7 @@ export function useTransition(appRefs, state) {
 				delay: 1,
 			})
 			.to(path, {
-				morphSVG: '"M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z"',
+				morphSVG: "M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z",
 				duration: dur,
 				ease: "none",
 			})
@@ -92,16 +99,17 @@ export function useTransition(appRefs, state) {
 			})
 			.set(container, {
 				display: "none",
+				onComplete: () => {
+					reset();
+				},
 			});
 	}, [appRefs]);
 
 	useEffect(() => {
 		if (isPlaying && direction === "enter") {
-			transitionInTl.current.play();
-		} else if (isPlaying && direction === "leave") {
-			transitionOutTl.current.play();
+			transitionInTl.current.progress(0).play();
 		}
-	}, [direction]);
+	}, [isPlaying]);
 }
 
 export function useSideMenu(appRefs, state, setState, themes) {

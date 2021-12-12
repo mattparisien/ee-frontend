@@ -79,9 +79,9 @@ function App() {
 		});
 	}, [appRefs]);
 
-	const transitioner = useTransition(appRefs, state);
+	const transitioner = useTransition(appRefs, state, setState);
 
-	const handleTransitionIn = () => {
+	const handleTransition = () => {
 		const transitionEnter = { isPlaying: true, direction: "enter" };
 
 		setState(prev => ({
@@ -90,14 +90,9 @@ function App() {
 		}));
 	};
 
-	const handleTransitionOut = () => {
-		const transitionLeave = { isPlaying: true, direction: "leave" };
-
-		setState(prev => ({
-			...prev,
-			transition: transitionLeave,
-		}));
-	};
+	useEffect(() => {
+		console.log(state)
+	}, [state])
 
 	return (
 		<div className='App' ref={addToRefs}>
@@ -128,10 +123,7 @@ function App() {
 				/>
 				<main>
 					<TransitionGroup className='transition-group'>
-						<Transition
-							onEnter={handleTransitionIn}
-							key={location.pathname}
-						>
+						<Transition onExited={handleTransition} key={location.pathname}>
 							<Routes location={location} key={location.pathname}>
 								<Route
 									path='/'
