@@ -5,7 +5,7 @@ import Paragraph from "../Paragraph";
 const StyledFooter = styled.footer`
 	position: relative;
 	h2 {
-		font-size: 20rem;
+		font-size: 5rem;
 		color: ${({ theme }) => theme.colors.light};
 	}
 
@@ -39,6 +39,31 @@ const StyledFooter = styled.footer`
 		position: relative;
 	}
 
+
+
+	a.footer-next-project-clickable {
+		display: block;
+		.footer-next-btn-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		
+	
+			.next-arrow {
+				width: 30vw;
+				margin-left: 10vw;
+				
+			}
+	
+		}
+
+		.footer-horiz-band {
+			height: 500px;
+		}
+
+	}
+
+
 	.marquee-inner {
 		display: flex;
 		height: 500px;
@@ -46,6 +71,8 @@ const StyledFooter = styled.footer`
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
 
 		.marquee-part {
 			position: absolute;

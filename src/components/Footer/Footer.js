@@ -12,6 +12,7 @@ export default function Footer(props) {
 	useEffect(() => {
 		setLayout(location.includes("projects/") ? "project" : "contact");
 	}, [location]);
+	
 
 	return (
 		<StyledFooter $layout={layout}>

@@ -3,14 +3,13 @@ import Heading from "../Heading";
 import { Link } from "react-router-dom";
 import Line from "../Line";
 import gsap from "gsap";
+import { Arrow } from "../Svg";
 
 function Project() {
 	const marqueePartOne = useRef(null);
 	const marqueePartTwo = useRef(null);
 	const marqueeFirstAnim = useRef(gsap.timeline());
 	const marqueeSecondAnim = useRef(gsap.timeline({ paused: true }));
-	const [hasRepeat, setRepeat] = useState(false);
-	const [hasReset, setReset] = useState(false);
 
 	useEffect(() => {
 		const initMarquee = () => {
@@ -19,6 +18,12 @@ function Project() {
 			const partOne = marqueePartOne.current;
 			const partTwo = marqueePartTwo.current;
 			const windowWidth = window.innerWidth;
+			const partWidth = partOne.getBoundingClientRect().width;
+			const duration = Math.ceil(partWidth / 100);
+			let hasReset = false;
+			let hasRepeat = false;
+
+			const delay = 0.56;
 
 			const getRightEdge = el => {
 				const rightEdge = el.getBoundingClientRect().right;
@@ -26,16 +31,19 @@ function Project() {
 			};
 
 			const animateSecondPart = () => {
-				animTwo.play();
+				hasReset = false;
+				gsap.set(partTwo, { x: window.innerWidth });
+				animTwo.progress(0).play();
 				animTwo.to(partTwo, {
 					x: "-100%",
 					ease: "linear",
-					duration: 20,
-					delay: 0.56,
+					duration: duration,
+					delay: delay,
+
 					onUpdate: () => {
 						if (getRightEdge(partTwo) <= windowWidth && !hasReset) {
 							reset();
-							setReset(true);
+							hasReset = true;
 						}
 					},
 				});
@@ -43,22 +51,23 @@ function Project() {
 
 			const reset = () => {
 				gsap.set(partOne, { x: window.innerWidth });
-				setRepeat(false);
+
 				animatePartOne();
 			};
 
 			const animatePartOne = () => {
-				console.log(hasRepeat)
+				hasRepeat = false;
 				animOne.progress(0).play();
 				animOne.to(partOne, {
 					x: "-100%",
 					ease: "linear",
-					duration: 20,
+					duration: duration,
+					delay: delay,
 					onUpdate: () => {
 						//If right end of marquee hits the right side of viewport, call the next animation to begin
 						if (getRightEdge(partOne) <= windowWidth && !hasRepeat) {
 							animateSecondPart();
-							setRepeat(true);
+							hasRepeat = true;
 						}
 					},
 				});
@@ -74,12 +83,13 @@ function Project() {
 	return (
 		<>
 			<Line color={"light"} />
-			<Link to='/'>
-				<div className='footer-next-btn-wrapper'>
+			<Link to='/' className={"footer-next-project-clickable"}>
+				<div className='footer-next-btn-wrapper footer-horiz-band'>
 					<h2>Next</h2>
+					<Arrow color={"light"} />
 				</div>
 				<Line color={"light"} />
-				<div className='footer-next-title-wrapper'>
+				<div className='footer-next-title-wrapper footer-horiz-band'>
 					<div className='marquee-wrapper'>
 						<div className='marquee-inner'>
 							<div
