@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
+import { deviceSize } from "./device";
 
 const StyledHeader = styled.header`
 	width: 100%;
@@ -7,14 +8,16 @@ const StyledHeader = styled.header`
 	position: fixed;
 	top: 0;
 	left: 0;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	padding: ${({ $headerStyles }) => $headerStyles.padding};
-	z-index: 99999;
+	z-index: 9999;
+	display: flex;
 
 	.logo-wrapper {
 		width: 200px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 
 		a {
 			height: 100%;
@@ -38,6 +41,7 @@ const StyledHeader = styled.header`
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
+		align-self: flex-end;
 
 		ul {
 			li {
@@ -58,6 +62,8 @@ const StyledHeader = styled.header`
 	}
 
 	.mobile-nav-wrapper {
+		display: inline-block;
+		margin-left: auto;
 		button {
 			outline: none;
 			border: 0px;
@@ -107,6 +113,12 @@ const StyledHeader = styled.header`
 			}
 		}
 	}
+
+	@media screen and (max-width: ${deviceSize.mobileL}) {
+		.logo-wrapper {
+			display: none;
+		};
+	};
 `;
 
 export { StyledHeader };

@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import useResize from "./useResize";
+import { useLocation } from "react-router-dom";
 
 export default function useAppData() {
 	//Themes
@@ -13,7 +14,7 @@ export default function useAppData() {
 			yellow: "#F0D549",
 		},
 	};
-
+	const location = useLocation();
 	const appRefs = useRef({});
 	appRefs.current = {};
 	const links = [];
@@ -22,6 +23,7 @@ export default function useAppData() {
 
 	//App state
 	const [state, setState] = useState({
+		location: location.pathname,
 		isHovering: false,
 		headerColor: "dark",
 		menuIsShow: false,
@@ -31,6 +33,11 @@ export default function useAppData() {
 			direction: null,
 		},
 	});
+
+	//Detect location changes
+	useEffect(() => {
+		setState(prev => ({ ...prev, location: location.pathname }));
+	}, [location]);
 
 	const addToRefs = function (el) {
 		if (el && !appRefs.current[el]) {

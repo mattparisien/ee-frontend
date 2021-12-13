@@ -5,7 +5,7 @@ import { deviceSize } from "./device";
 const StyledViewportNav = styled.div`
 	height: 100vh;
 	width: 100%;
-	z-index: 9999;
+	z-index: 999;
 	background-color: white;
 	display: flex;
 	align-items: center;

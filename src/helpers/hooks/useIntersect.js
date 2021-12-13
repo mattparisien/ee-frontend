@@ -1,38 +1,89 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import useAppData from "./useAppData";
+import rgbToHex from "../rgbToHex";
 
-export default function useIntersect(refs, options) {
-	const [isIntersect, setIntersect] = useState(false);
-	const [target, setTarget] = useState(null);
-
-	const handleIntersect = entries => {
-		entries.forEach(entry => {
-			if (entry.isIntersecting) {
-				setIntersect(true)
-			}
-
-			if (entry.isIntersecting) {
-				setTarget(entry.target);
-			}
-		});
-	};
+function useIntersection(arrayOfRefs, callback, options) {
+	const [isIntersecting, setIntersecting] = useState(false);
+	const [target, setTarget] = useState(false);
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(handleIntersect, options);
-
-		if (refs.current.length >= 1) {
-			refs.current.forEach(el => {
-				observer.observe(el);
-			});
+		//Handle possible errors
+		if (!arrayOfRefs || !options) {
+			console.error("useIntersection: You are either missing refs or options");
+			return;
+		} else if (!Array.isArray(arrayOfRefs)) {
+			console.error("useIntersection: you must provide an array of refs");
+			return;
 		}
+		const handleIntersection = entries => {
+			entries.forEach(entry => {
+				const isIntersecting = entry.isIntersecting;
+
+				if (isIntersecting) {
+					setIntersecting(true);
+					setTarget(entry.target);
+				}
+			});
+		};
+
+		const observer = new IntersectionObserver(handleIntersection, options);
+
+		arrayOfRefs.forEach(item => {
+			observer.observe(item);
+		});
 
 		return () => {
-			if (refs.current.length >= 1) {
-				refs.current.forEach(el => {
-					observer.unobserve(el);
-				});
-			}
-		}
-	});
+			observer.disconnect();
+		};
+	}, [arrayOfRefs]);
 
-	return [isIntersect, target];
+	return [isIntersecting, target];
 }
+
+// export default function useIntersect(options) {
+// 	const { appRefs, themes } = useAppData();
+
+// 	useEffect(() => {
+// 		const header = appRefs.current["side-header"];
+// 		const sections = appRefs.current["sections"];
+
+// 		const setHeaderColor = sectionColor => {
+// 			const light = themes.colors["light"].toLowerCase();
+
+// 			setState(prev => ({
+// 				...prev,
+// 				headerColor: sectionColor === light ? "dark" : "light",
+// 			}));
+// 		};
+
+// 		const handleIntersection = entries => {
+// 			entries.forEach(entry => {
+// 				const isIntersecting = entry.isIntersecting;
+// 				let sectionBg = "";
+// 				let sectionHex = "";
+
+// 				if (isIntersecting) {
+// 					sectionBg = window.getComputedStyle(entry.target).backgroundColor;
+// 					if (sectionBg !== "rgba(0, 0, 0, 0)") {
+// 						sectionHex = rgbToHex(sectionBg);
+// 						setHeaderColor(sectionHex);
+// 					} else {
+// 						return;
+// 					}
+// 				}
+// 			});
+// 		};
+
+// 		// const options = {
+// 		// 	threshold: 0,
+// 		// 	rootMargin: `0px 0px -95%`,
+// 		// };
+
+// 		const observer = new IntersectionObserver(handleIntersection, options);
+// 		sections.forEach(section => {
+// 			observer.observe(section);
+// 		});
+// 	}, [appRefs]);
+// }
+
+export { useIntersection };

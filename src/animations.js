@@ -133,7 +133,8 @@ export function useSideMenu(appRefs, state, setState, themes) {
 
 			sideMenuAnim.current.play();
 			sideMenuAnim.current
-				//Menu
+
+				.timeScale(1)
 				.to(
 					refs["viewport-nav"],
 					{
@@ -220,7 +221,7 @@ export function useSideMenu(appRefs, state, setState, themes) {
 					0.55
 				);
 		} else if (!state.menuIsShow && !isFirstRender) {
-			sideMenuAnim.current.reverse();
+			sideMenuAnim.current.timeScale(2).reverse();
 		}
 	}, [state.menuIsShow, appRefs]);
 

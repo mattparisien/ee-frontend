@@ -50,7 +50,7 @@ export default function ViewportNav(props) {
 				onMouseEnter={e => handleMouseEnter(e)}
 				onMouseLeave={e => handleMouseLeave(e)}
 				style={{ overflow: "hidden" }}
-				onClick={toggleMenu}
+				onClick={() => toggleMenu()}
 			>
 				{link.title}
 			</Link>

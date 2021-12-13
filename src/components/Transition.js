@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
-function TransitionMask(props) {
+function SiteTransition(props) {
 	const { themes } = props;
 
 	const transitionStyle = {
@@ -11,7 +11,7 @@ function TransitionMask(props) {
 		left: 0,
 		width: "100vw",
 		height: "100vh",
-		zIndex: 9999,
+		zIndex: 99999,
 		display: "none",
 	};
 
@@ -49,4 +49,4 @@ function TransitionMask(props) {
 	);
 }
 
-export default TransitionMask;
+export default SiteTransition;

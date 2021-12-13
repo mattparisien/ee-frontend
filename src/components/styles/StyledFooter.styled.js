@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledFooter = styled.footer`
   background-color: ${({ theme }) => theme.colors.dark};
   color: ${({ theme }) => theme.colors.dark};
-  height: 100vh;
+  height: 80vh;
   .footer-email {
     font-size: 5rem;
     position: relative;
