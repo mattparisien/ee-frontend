@@ -5,7 +5,7 @@ import Paragraph from "../Paragraph";
 const StyledFooter = styled.footer`
 	position: relative;
 	h2 {
-		font-size: 5rem;
+		font-size: 20vw;
 		color: ${({ theme }) => theme.colors.light};
 	}
 
@@ -39,30 +39,23 @@ const StyledFooter = styled.footer`
 		position: relative;
 	}
 
-
-
 	a.footer-next-project-clickable {
 		display: block;
 		.footer-next-btn-wrapper {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-		
-	
+
 			.next-arrow {
 				width: 30vw;
 				margin-left: 10vw;
-				
 			}
-	
 		}
 
 		.footer-horiz-band {
 			height: 500px;
 		}
-
 	}
-
 
 	.marquee-inner {
 		display: flex;
@@ -78,6 +71,13 @@ const StyledFooter = styled.footer`
 			position: absolute;
 			left: 0;
 			transform: translateX(${window.innerWidth}px);
+			display: flex;
+
+			&__title {
+				&:nth-of-type(1) {
+					margin-right: 20vw;
+				}
+			}
 		}
 	}
 `;
