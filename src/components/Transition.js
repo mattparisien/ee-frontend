@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import MorphSVGPlugin from "gsap/MorphSVGPlugin";
+import { shuffleColors } from "../helpers/shuffleColors";
+
 
 function SiteTransition(props) {
 	const { themes } = props;
@@ -19,7 +19,7 @@ function SiteTransition(props) {
 		display: "flex",
 		alignItems: "center",
 		justifyContnt: "center",
-		fill: themes.colors.yellow,
+		fill: shuffleColors(themes),
 	};
 
 	return (

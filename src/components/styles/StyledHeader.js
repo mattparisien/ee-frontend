@@ -11,6 +11,7 @@ const StyledHeader = styled.header`
 	padding: ${({ $headerStyles }) => $headerStyles.padding};
 	z-index: 9999;
 	display: flex;
+	align-items: center;
 
 	.logo-wrapper {
 		width: 200px;

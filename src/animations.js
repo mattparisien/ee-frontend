@@ -44,7 +44,7 @@ export function useTransition(appRefs, state, setState) {
 			})
 			.to(path, {
 				morphSVG: shapes.enter[1],
-				duration: 0.4,
+				duration: dur,
 				ease: "power4.in",
 			})
 			.to(path, {

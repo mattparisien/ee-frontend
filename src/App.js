@@ -4,7 +4,7 @@ import Home from "./components/Pages/Home";
 import Contact from "./components/Pages/Contact";
 import Projects from "./components/Pages/Projects";
 import ProjectItem from "./components/Pages/ProjectItem";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import ViewportNav from "./components/ViewportNav";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
@@ -20,6 +20,7 @@ import useAppData from "./helpers/hooks/useAppData";
 import SiteTransition from "./components/Transition";
 import { useIntersection } from "./helpers/hooks/useIntersect";
 import SiteRoutes from "./Routes";
+import { shuffleColors } from "./helpers/shuffleColors";
 
 function App() {
 	const location = useLocation();
@@ -37,6 +38,10 @@ function App() {
 			transition: transitionEnter,
 		}));
 	};
+
+	useEffect(() => {
+		console.log(shuffleColors(themes))
+	}, [themes])
 
 	return (
 		<div className='App' ref={addToRefs}>
@@ -73,7 +78,7 @@ function App() {
 					</TransitionGroup>
 				</main>
 
-				<Footer addToRefs={addToRefs} />
+				<Footer addToRefs={addToRefs} location={state.location} />
 			</ThemeProvider>
 		</div>
 	);
