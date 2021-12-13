@@ -14,7 +14,7 @@ export default function Footer(props) {
 	}, [location]);
 
 	return (
-		<StyledFooter className='-pd-md' $layout={layout}>
+		<StyledFooter $layout={layout}>
 			<Container addToRefs={addToRefs}>
 				{layout === "contact" && <Contact />}
 				{layout === "project" && <Project />}

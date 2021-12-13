@@ -1,8 +1,11 @@
 import React from "react";
+import { StyledHeading } from "./styles/StyledHeading";
 
 import classNames from "classnames";
 
-function Heading({ small, medium, large, xl, children }) {
+function Heading(props) {
+	const {small, medium, large, xl, color, children, size} = props;
+
 	const headingClass = classNames("heading-wrapper", {
 		"-heading-small": small,
 		"-heading-medium": medium,
@@ -10,13 +13,19 @@ function Heading({ small, medium, large, xl, children }) {
 		"-heading-xl": xl,
 	});
 
+
+	const headingStyles = {
+		color: color,
+		size: size === 'xl' && '60vw'
+	}
+
 	return (
-		<div className={headingClass}>
+		<StyledHeading className="styled-heading-wrapper" $headingStyles={headingStyles}>
 			{small && <h4>{children}</h4>}
 			{medium && <h3>{children}</h3>}
 			{large && <h2>{children}</h2>}
 			{xl && <h1>{children}</h1>}
-		</div>
+		</StyledHeading>
 	);
 }
 
