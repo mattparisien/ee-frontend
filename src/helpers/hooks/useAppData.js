@@ -14,6 +14,8 @@ export default function useAppData() {
 			yellow: "#F0D549",
 		},
 	};
+
+	const [windowWidth, isResized] = useResize();
 	const location = useLocation();
 	const appRefs = useRef({});
 	appRefs.current = {};
@@ -38,6 +40,11 @@ export default function useAppData() {
 	useEffect(() => {
 		setState(prev => ({ ...prev, location: location.pathname }));
 	}, [location]);
+
+	//Update menu offset on resize
+	useEffect(() => {
+		setState(prev => ({ ...prev, menuOffset: `-${windowWidth}px` }));
+	}, [windowWidth]);
 
 	const addToRefs = function (el) {
 		if (el && !appRefs.current[el]) {

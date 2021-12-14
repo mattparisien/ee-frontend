@@ -42,7 +42,6 @@ import rgbToHex from "../rgbToHex";
 
 export default function useIntersect(refs, setState) {
 	const { themes } = useAppData();
-	console.log('refs...', refs)
 
 	useEffect(() => {
 		const header = refs.current["side-header"];
@@ -58,11 +57,13 @@ export default function useIntersect(refs, setState) {
 		};
 
 		const handleIntersection = entries => {
-			console.log('hi in here!')
+			let count = 0;
+		
 			entries.forEach(entry => {
 				const isIntersecting = entry.isIntersecting;
 				let sectionBg = "";
 				let sectionHex = "";
+				
 
 				if (isIntersecting) {
 					sectionBg = window.getComputedStyle(entry.target).backgroundColor;
@@ -78,15 +79,19 @@ export default function useIntersect(refs, setState) {
 
 		const options = {
 			threshold: 0,
-			rootMargin: `0px 0px -95%`,
+			rootMargin: `0px 0px -95% 0px`,
 		};
 
 		const observer = new IntersectionObserver(handleIntersection, options);
 
 		sections.forEach(section => {
-			console.log(section)
 			observer.observe(section);
 		});
+
+		return () => {
+			observer.disconnect();
+		}
+
 	}, [refs]);
 }
 

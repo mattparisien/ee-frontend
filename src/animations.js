@@ -5,11 +5,13 @@ import CustomEase from "gsap/CustomEase";
 import useResize from "./helpers/hooks/useResize";
 import { useFirstRender } from "./helpers/hooks/useFirstRender";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
+import CSSPlugin from "gsap/CSSPlugin";
 
 export function useTransition(appRefs, state, setState) {
 	const masterTl = useRef(gsap.timeline({ paused: true }));
-	const transitionOutTl = useRef(gsap.timeline({ paused: true }));
-	const transitionInTl = useRef(gsap.timeline({ paused: true }));
+	const transitionOutTl = useRef(gsap.timeline());
+	const transitionInTl = useRef(gsap.timeline());
+	const easeTl = useRef(gsap.timeline());
 	const isPlaying = state.transition.isPlaying;
 	const direction = state.transition.direction;
 	const isFirstRender = useFirstRender();
@@ -38,99 +40,115 @@ export function useTransition(appRefs, state, setState) {
 		};
 
 		//In
-		transitionInTl.current
-			.set(container, {
-				display: "block",
-			})
-			.to(path, {
-				morphSVG: shapes.enter[1],
-				duration: dur,
-				ease: "power4.in",
-			})
-			.to(path, {
-				morphSVG: shapes.enter[2],
-				duration: dur,
-				ease: "none",
-			})
-			.to(path, {
-				morphSVG: shapes.enter[3],
-				duration: dur,
-				ease: "none",
-			})
-			.to(path, {
-				morphSVG: shapes.enter[4],
-				duration: dur,
-				ease: "none",
-			})
-			.to(path, {
-				morphSVG: shapes.enter[5],
-				duration: dur,
-				ease: "none",
-			})
-			.to(path, {
-				morphSVG: "M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
-				duration: 0.4,
-				ease: "none",
-				delay: 1,
-			})
-			.to(path, {
-				morphSVG: "M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z",
-				duration: dur,
-				ease: "none",
-			})
-			.to(path, {
-				morphSVG: "M1920,553.35C1231.2,0,795.2-178,0,553.35V0H1920Z",
-				duration: dur,
-				ease: "none",
-			})
-			.to(path, {
-				morphSVG: "M1920,192.36C1353.18,53.28,987.5,9.52,0,161.11V0H1920Z",
-				duration: dur,
-				y: "-200px",
-				ease: "none",
-			})
-			.set(container, {
-				display: "none",
-				onComplete: () => {
-					reset();
-				},
-			});
+		const transitionEnter = () => {
+			transitionInTl.current
+				.set(container, {
+					display: "block",
+				})
+				.to(path, {
+					morphSVG: shapes.enter[1],
+					duration: dur,
+					ease: "none",
+				})
+				.to(path, {
+					morphSVG: shapes.enter[2],
+					duration: dur,
+					ease: "none",
+				})
+				.to(path, {
+					morphSVG: shapes.enter[3],
+					duration: dur,
+					ease: "none",
+				})
+				.to(path, {
+					morphSVG: shapes.enter[4],
+					duration: dur,
+					ease: "none",
+				})
+				.to(path, {
+					morphSVG: shapes.enter[5],
+					duration: dur,
+					ease: "none",
+				})
+				.addLabel("in-end", "<");
+		};
+
+		const transitionOut = () => {
+			transitionOutTl.current
+				.to(path, {
+					morphSVG: "M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
+					duration: 0.4,
+					ease: "none",
+					delay: 1,
+				})
+				.to(path, {
+					morphSVG: "M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z",
+					duration: dur,
+					ease: "none",
+				})
+				.to(path, {
+					morphSVG: "M1920,553.35C1231.2,0,795.2-178,0,553.35V0H1920Z",
+					duration: dur,
+					ease: "none",
+				})
+				.to(path, {
+					morphSVG: "M1920,192.36C1353.18,53.28,987.5,9.52,0,161.11V0H1920Z",
+					duration: dur,
+					y: "-200px",
+					ease: "none",
+				})
+				.set(container, {
+					display: "none",
+					onComplete: () => {
+						reset();
+					},
+				});
+		};
+
+		masterTl.current.add(() => transitionEnter()).add(() => transitionOut());
 	}, [appRefs]);
 
 	useEffect(() => {
 		if (isPlaying && direction === "enter") {
-			transitionInTl.current.progress(0).play();
+			masterTl.current.progress(0).play();
 		}
 	}, [isPlaying]);
 }
 
 export function useSideMenu(appRefs, state, setState, themes) {
+	const refs = appRefs.current;
+	const [isKill, setKill] = useState(false);
 	const [windowWidth, isResized] = useResize();
 	const [isFirstRender] = useFirstRender();
-	const sideMenuAnim = useRef(gsap.timeline());
+	const sideMenuAnim = useRef(
+		gsap.timeline({ onReverseComplete: () => clearProps() })
+	);
+
+	//Detach transform property to revert to original side menu offset updated by state
+	const clearProps = () => {
+		gsap.set(refs["viewport-nav"], { clearProps: "transform" });
+	};
 
 	//Toggle Menu Animation
 	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
 	};
 
-	//Update menu offset on resize
 	useEffect(() => {
-		if (isResized) {
-			setState(prev => ({ ...prev, menuOffset: "-101%" }));
-		}
-	}, [isResized]);
+		isKill && sideMenuAnim.current.kill();
+	}, [isKill]);
+
+
 
 	//Side nav animation
 	useEffect(() => {
-		const refs = appRefs.current;
 		gsap.registerPlugin(CustomEase);
 		if (state.menuIsShow) {
 			const e = CustomEase.create(
 				"custom",
 				"M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1"
 			);
-
+			gsap.set(refs["viewport-nav"], { x: state.menuOffset });
 			sideMenuAnim.current.play();
 			sideMenuAnim.current
 

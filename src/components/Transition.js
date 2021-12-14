@@ -9,7 +9,7 @@ function SiteTransition(props) {
 		position: "fixed",
 		top: 0,
 		left: 0,
-		width: "100vw",
+		minWidth: "100vw",
 		height: "100vh",
 		zIndex: 99999,
 		display: "none",

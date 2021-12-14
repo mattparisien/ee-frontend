@@ -15,8 +15,6 @@ function shuffleColors(theme) {
 		}
 	}
 
-	console.log(colors);
-
 	const randomColorIndex = Math.ceil(Math.random() * colors.length);
 
 	randomColor = colors[randomColorIndex];

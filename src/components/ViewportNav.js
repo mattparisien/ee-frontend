@@ -7,12 +7,11 @@ import useResize from "../helpers/hooks/useResize";
 import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import {Trumpet }from "./Svg";
+import { Trumpet } from "./Svg";
 
 let isFirstRender = true;
 
 export default function ViewportNav(props) {
-	
 	const [isSplit, setIsSplit] = useState(false);
 	const { appRefs, toggleMenu } = props;
 
@@ -21,8 +20,6 @@ export default function ViewportNav(props) {
 	};
 
 	const linkAnim = useRef(gsap.timeline());
-
-
 
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
@@ -44,6 +41,7 @@ export default function ViewportNav(props) {
 	const navLinks = navigation.map(link => (
 		<li key={link.id}>
 			<Link
+				delay={1000}
 				to={link.path}
 				ref={props.addToRefs}
 				className='-fade-up menu-link'
@@ -65,7 +63,6 @@ export default function ViewportNav(props) {
 		>
 			<Container classes={"viewport-nav__inner"} bg={"dark"}>
 				<ul className='-position-absolute-center'>{navLinks}</ul>
-				
 			</Container>
 		</StyledViewportNav>
 	);
