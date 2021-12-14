@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StyledFooter } from "../styles/StyledFooter.styled";
 import Container from "../Container";
 import Heading from "../Heading";
@@ -7,6 +7,7 @@ import Project from "./Project";
 import Section from "../Section";
 
 export default function Footer(props) {
+	const footerRef = useRef(null);
 	const { location, addToRefs } = props;
 	const [layout, setLayout] = useState("contact");
 
@@ -15,10 +16,10 @@ export default function Footer(props) {
 	}, [location]);
 
 	return (
-		<StyledFooter $layout={layout}>
+		<StyledFooter $layout={layout} ref={footerRef}>
 			<Container>
 				{layout === "contact" && <Contact />}
-				{layout === "project" && <Project />}
+				{layout === "project" && <Project footerRef={footerRef}/>}
 			</Container>
 		</StyledFooter>
 	);

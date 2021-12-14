@@ -5,7 +5,10 @@ import Line from "../Line";
 import { Arrow } from "../Svg";
 import Marquee from "../Marquee";
 
-function Project() {
+function Project(props) {
+
+	const { footerRef } = props;
+
 	return (
 		<>
 			<Line color={"light"} />
@@ -16,7 +19,7 @@ function Project() {
 				</div>
 				<Line color={"light"} />
 				<div className='footer-next-title-wrapper footer-horiz-band'>
-					<Marquee text={"anus power!"} />
+					<Marquee text={"anus power!"} triggerRef={footerRef}/>
 				</div>
 
 				<Line color={"light"} />
