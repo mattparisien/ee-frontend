@@ -14,12 +14,13 @@ const StyledViewportNav = styled.div`
 	top: 0;
 	left: 0;
 	transform: ${({ $menuStyles }) => `translateX(${$menuStyles.offset})`};
+	background-color: ${({ theme }) => theme.colors.dark};
+	color: ${({ theme }) => theme.colors.light};
 
 	#trumpet {
 		position: absolute;
 		width: 30vw;
-		transform: scaleX(-1)translate(10vw, 10vw);
-
+		transform: scaleX(-1) translate(10vw, 10vw);
 	}
 
 	.viewport-nav__inner {
@@ -32,8 +33,6 @@ const StyledViewportNav = styled.div`
 
 			li {
 				transition: 300ms ease;
-
-
 
 				&:hover a {
 					color: ${({ theme }) => theme.colors.yellow};
@@ -51,7 +50,6 @@ const StyledViewportNav = styled.div`
 					font-size: 14vw;
 					letter-spacing: -0.6vw;
 					transition: 300ms ease;
-					
 
 					.line {
 						overflow: hidden;
@@ -66,7 +64,6 @@ const StyledViewportNav = styled.div`
 							}
 						}
 					}
-
 
 					@media (min-width: ${deviceSize.laptopL}px) {
 						font-size: 190px;

@@ -1,19 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
-import Heading from "../Heading";
+
 import { Link } from "react-router-dom";
 import Line from "../Line";
-import gsap from "gsap";
+
 import { Arrow } from "../Svg";
 import Marquee from "../Marquee";
 
 function Project() {
-	// const marqueePartOne = useRef(null);
-	// const marqueePartTwo = useRef(null);
-	// const marqueeFirstAnim = useRef(gsap.timeline());
-	// const marqueeSecondAnim = useRef(gsap.timeline({ paused: true }));
-
-
-
 	return (
 		<>
 			<Line color={"light"} />
@@ -24,7 +17,7 @@ function Project() {
 				</div>
 				<Line color={"light"} />
 				<div className='footer-next-title-wrapper footer-horiz-band'>
-				<Marquee/>
+					<Marquee text={"This will be some cool text"} />
 				</div>
 
 				<Line color={"light"} />

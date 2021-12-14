@@ -27,8 +27,6 @@ function Home(props) {
 
 	const [isScrolling, scrollDirection] = useScroll();
 
-	
-
 	const rows = useRef([]);
 	const eye = useRef(null);
 	const ear = useRef(null);
@@ -42,8 +40,8 @@ function Home(props) {
 
 	const show = () => {
 		return (
-			<Section classes={"section-who"}>
-				<Container bg={"dark"} addToRefs={addToRefs}>
+			<Section classes={"section-who"} bg={"dark"} addToRefs={addToRefs}>
+				<Container bg={"dark"}>
 					<Paragraph width={"100%"} medium indent addToRefs={addToRefs}>
 						{loading && "Loading..."}
 						{data && data.data.attributes.MissionOne}
@@ -60,88 +58,88 @@ function Home(props) {
 
 	const theme = useTheme();
 
-	useEffect(() => {
-		gsap.registerPlugin(DrawSVGPlugin);
+	// useEffect(() => {
+	// 	gsap.registerPlugin(DrawSVGPlugin);
 
-		introAnimation.current
-			.to($(eye.current).find("path"), {
-				drawSVG: "0%",
-				duration: 1,
-				ease: "expo.inout",
-				duration: 1,
-				stagger: 0.2,
-			})
-			.to(
-				$(ear.current).find("path"),
-				{
-					drawSVG: "0%",
-					duration: 1,
-					ease: "expo.inout",
-					duration: 1,
-					stagger: 0.2,
-				},
-				0.3
-			)
-			.to(
-				overlayRef.current,
-				{
-					x: "-100%",
-					duration: 2.5,
-					ease: "Expo.easeInOut",
-				},
-				1.4
-			)
-			.to(
-				amperstand.current,
-				{
-					fontSize: "50vw",
-					duration: 3,
-					ease: "Expo.easeInOut",
-				},
-				2
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.blue,
-					duration: 0.3,
-				},
-				3
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.red,
-					duration: 0.3,
-				},
-				3.1
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.green,
-					duration: 0.3,
-				},
-				3.3
-			)
-			.to(
-				amperstand.current,
-				{
-					color: theme.colors.yellow,
-					duration: 0.3,
-				},
-				3.4
-			)
-			.to(
-				scrollCta.current,
-				{
-					y: 0,
-					duration: 0.9,
-					ease: "Expo.easeOut",
-				},
-				2
-			);
-	});
+	// 	introAnimation.current
+	// 		.to($(eye.current).find("path"), {
+	// 			drawSVG: "0%",
+	// 			duration: 1,
+	// 			ease: "expo.inout",
+	// 			duration: 1,
+	// 			stagger: 0.2,
+	// 		})
+	// 		.to(
+	// 			$(ear.current).find("path"),
+	// 			{
+	// 				drawSVG: "0%",
+	// 				duration: 1,
+	// 				ease: "expo.inout",
+	// 				duration: 1,
+	// 				stagger: 0.2,
+	// 			},
+	// 			0.3
+	// 		)
+	// 		.to(
+	// 			overlayRef.current,
+	// 			{
+	// 				x: "-100%",
+	// 				duration: 2.5,
+	// 				ease: "Expo.easeInOut",
+	// 			},
+	// 			1.4
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				fontSize: "50vw",
+	// 				duration: 3,
+	// 				ease: "Expo.easeInOut",
+	// 			},
+	// 			2
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.blue,
+	// 				duration: 0.3,
+	// 			},
+	// 			3
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.red,
+	// 				duration: 0.3,
+	// 			},
+	// 			3.1
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.green,
+	// 				duration: 0.3,
+	// 			},
+	// 			3.3
+	// 		)
+	// 		.to(
+	// 			amperstand.current,
+	// 			{
+	// 				color: theme.colors.yellow,
+	// 				duration: 0.3,
+	// 			},
+	// 			3.4
+	// 		)
+	// 		.to(
+	// 			scrollCta.current,
+	// 			{
+	// 				y: 0,
+	// 				duration: 0.9,
+	// 				ease: "Expo.easeOut",
+	// 			},
+	// 			2
+	// 		);
+	// });
 
 	return (
 		<>
@@ -150,9 +148,10 @@ function Home(props) {
 					classes={"section-hero"}
 					sectionRef={props.sectionRefs}
 					stickyRef={stickySection}
+					bg={"light"}
+					addToRefs={addToRefs}
 				>
 					<Container
-						addToRefs={addToRefs}
 						bg={"light"}
 						width='100%'
 						height='100vh'
@@ -191,12 +190,16 @@ function Home(props) {
 				</Section>
 
 				{!error && show()}
-				<Section classes={"section-how"}>
-					<Container addToRefs={addToRefs} bg={"light"}>
+				<Section classes={"section-how"} bg={"light"} addToRefs={addToRefs}>
+					<Container>
 						<Steps />
 					</Container>
 				</Section>
-				<Section classes={"section-work"}></Section>
+				<Section
+					bg={"light"}
+					classes={"section-work"}
+					addToRefs={addToRefs}
+				></Section>
 			</div>
 		</>
 	);

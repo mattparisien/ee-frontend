@@ -52,7 +52,7 @@ export default function useAppData() {
 					links.push(el);
 					appRefs.current["menu-links"] = links;
 					return;
-				} else if ([...el.classList].includes("styled-object-container")) {
+				} else if ([...el.classList].includes("c-section")) {
 					sections.push(el);
 					appRefs.current["sections"] = sections;
 					return;

@@ -16,8 +16,7 @@ const StyledFooter = styled.footer`
 			font-weight: 200;
 		}
 	}
-
-	background-color: ${({ theme }) => theme.colors.dark};
+	
 	color: ${({ theme }) => theme.colors.dark};
 	height: 100vh;
 	.footer-email {

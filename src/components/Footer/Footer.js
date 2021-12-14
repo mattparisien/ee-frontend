@@ -4,6 +4,7 @@ import Container from "../Container";
 import Heading from "../Heading";
 import Contact from "./Contact";
 import Project from "./Project";
+import Section from "../Section";
 
 export default function Footer(props) {
 	const { location, addToRefs } = props;
@@ -12,14 +13,15 @@ export default function Footer(props) {
 	useEffect(() => {
 		setLayout(location.includes("projects/") ? "project" : "contact");
 	}, [location]);
-	
 
 	return (
-		<StyledFooter $layout={layout}>
-			<Container addToRefs={addToRefs}>
-				{layout === "contact" && <Contact />}
-				{layout === "project" && <Project />}
-			</Container>
-		</StyledFooter>
+		<Section addToRefs={addToRefs} bg={"dark"}>
+			<StyledFooter $layout={layout}>
+				<Container>
+					{layout === "contact" && <Contact />}
+					{layout === "project" && <Project />}
+				</Container>
+			</StyledFooter>
+		</Section>
 	);
 }

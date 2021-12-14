@@ -1,14 +1,14 @@
 import { useRef } from "react";
-
+import { StyledSection } from "./styles/StyledSection";
 import classNames from "classnames";
 
 export default function Section(props) {
+	const { bg, addToRefs } = props;
 	const sectionClass = classNames("c-section", props.classes);
 
 	return (
-		<section className={sectionClass} data-scroll-section ref={props.stickyRef}>
-			
+		<StyledSection className={sectionClass} $bg={bg} ref={addToRefs}>
 			{props.children}
-		</section>
+		</StyledSection>
 	);
 }

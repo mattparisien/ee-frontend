@@ -11,7 +11,6 @@ export default function Container(props) {
 			$padding={props.padding}
 			$height={props.height}
 			$width={props.width}
-			$bg={props.bg}
 			className={containerClass}
 		>
 			{props.children}

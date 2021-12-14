@@ -1,11 +1,25 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import useResize from "../helpers/hooks/useResize";
+import useScroll from "../helpers/hooks/useScrollDir";
+import { isCompositeComponentWithType } from "react-dom/cjs/react-dom-test-utils.development";
 
-function Marquee() {
+function Marquee(props) {
+	const { text } = props;
+	const [isScrolling, scrollDirection] = useScroll();
+	const [speed, setSpeed] = useState();
+
+	const [windowWidth, isResized] = useResize();
 	const marqueePartOne = useRef(null);
 	const marqueePartTwo = useRef(null);
 	const marqueeFirstAnim = useRef(gsap.timeline());
 	const marqueeSecondAnim = useRef(gsap.timeline({ paused: true }));
+
+	useEffect(() => {
+		if (isScrolling && scrollDirection) {
+			setSpeed(prev => (prev += 200));
+		}
+	}, [isScrolling]);
 
 	useEffect(() => {
 		const animOne = marqueeFirstAnim.current;
@@ -27,7 +41,7 @@ function Marquee() {
 
 		const animateSecondPart = () => {
 			hasReset = false;
-			gsap.set(partTwo, { x: window.innerWidth });
+			gsap.set(partTwo, { x: windowWidth });
 			animTwo.progress(0).play();
 			animTwo.to(partTwo, {
 				x: "-100%",
@@ -45,7 +59,7 @@ function Marquee() {
 		};
 
 		const reset = () => {
-			gsap.set(partOne, { x: window.innerWidth });
+			gsap.set(partOne, { x: windowWidth });
 
 			animatePartOne();
 		};
@@ -79,10 +93,10 @@ function Marquee() {
 					style={{ marginRight: "100px" }}
 				>
 					<div className='marquee-part__title'>
-						<h2>This is a title </h2>
+						<h2>{text} </h2>
 					</div>
 					<div className='marquee-part__title'>
-						<h2>This is a title</h2>
+						<h2>{text}</h2>
 					</div>
 				</div>
 				<div
@@ -91,10 +105,10 @@ function Marquee() {
 					style={{ marginRight: "100px" }}
 				>
 					<div className='marquee-part__title'>
-						<h2>This is a title </h2>
+						<h2>{text} </h2>
 					</div>
 					<div className='marquee-part__title'>
-						<h2>This is a title</h2>
+						<h2>{text}</h2>
 					</div>
 				</div>
 			</div>
