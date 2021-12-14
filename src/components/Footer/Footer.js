@@ -15,13 +15,11 @@ export default function Footer(props) {
 	}, [location]);
 
 	return (
-		<Section addToRefs={addToRefs} bg={"dark"}>
-			<StyledFooter $layout={layout}>
-				<Container>
-					{layout === "contact" && <Contact />}
-					{layout === "project" && <Project />}
-				</Container>
-			</StyledFooter>
-		</Section>
+		<StyledFooter $layout={layout}>
+			<Container>
+				{layout === "contact" && <Contact />}
+				{layout === "project" && <Project />}
+			</Container>
+		</StyledFooter>
 	);
 }

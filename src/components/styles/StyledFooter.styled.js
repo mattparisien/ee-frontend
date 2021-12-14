@@ -1,24 +1,31 @@
 import styled from "styled-components";
 import Heading from "../Heading";
 import Paragraph from "../Paragraph";
+import { deviceSize } from "./device";
 
 const StyledFooter = styled.footer`
+	color: ${({ theme }) => theme.colors.dark};
+	background-color: ${({ theme }) => theme.colors.dark};
 	position: relative;
+	height: 90vh;
+
+	@media (max-width: ${deviceSize.tablet}px) {
+		height: 65vh !important;
+	}
+
 	h2 {
 		font-size: 20vw;
 		color: ${({ theme }) => theme.colors.light};
-	}
+	};
 
 	.footer-next-title-wrapper {
 		h2 {
 			white-space: nowrap;
 			font-family: "Kobe";
 			font-weight: 200;
-		}
-	}
-	
-	color: ${({ theme }) => theme.colors.dark};
-	height: 100vh;
+		};
+	};
+
 	.footer-email {
 		font-size: 5rem;
 		position: relative;
@@ -31,12 +38,12 @@ const StyledFooter = styled.footer`
 			width: 100%;
 			height: 1px;
 			background-color: ${({ theme }) => theme.colors.dark};
-		}
-	}
+		};
+	};
 
 	.marquee-wrapper {
 		position: relative;
-	}
+	};
 
 	a.footer-next-project-clickable {
 		display: block;
@@ -48,13 +55,13 @@ const StyledFooter = styled.footer`
 			.next-arrow {
 				width: 30vw;
 				margin-left: 10vw;
-			}
-		}
+			};
+		};
 
 		.footer-horiz-band {
 			height: 500px;
-		}
-	}
+		};
+	};
 
 	.marquee-inner {
 		display: flex;
@@ -79,5 +86,6 @@ const StyledFooter = styled.footer`
 			}
 		}
 	}
+	} ;
 `;
 export { StyledFooter };

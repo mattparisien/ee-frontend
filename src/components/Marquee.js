@@ -82,6 +82,12 @@ function Marquee(props) {
 			});
 		};
 		animatePartOne();
+
+		return () => {
+			console.log('inside of cleanup')
+			marqueeFirstAnim.current.kill();
+			marqueeSecondAnim.current.kill();
+		};
 	}, []);
 
 	return (
