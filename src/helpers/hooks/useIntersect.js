@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAppData from "./useAppData";
 import rgbToHex from "../rgbToHex";
+import gsap from "gsap";
 
 // function useIntersection(arrayOfRefs, callback, options) {
 // 	const [isIntersecting, setIntersecting] = useState(false);
@@ -44,8 +45,9 @@ export default function useIntersect(refs, setState) {
 	const { themes } = useAppData();
 
 	useEffect(() => {
+		const currentPage = refs.current.currentPage;
+		const q = gsap.utils.selector(currentPage);
 		const header = refs.current["side-header"];
-		const sections = refs.current["sections"];
 
 		const setHeaderColor = sectionColor => {
 			const light = themes.colors["light"].toLowerCase();
@@ -58,12 +60,11 @@ export default function useIntersect(refs, setState) {
 
 		const handleIntersection = entries => {
 			let count = 0;
-		
+
 			entries.forEach(entry => {
 				const isIntersecting = entry.isIntersecting;
 				let sectionBg = "";
 				let sectionHex = "";
-				
 
 				if (isIntersecting) {
 					sectionBg = window.getComputedStyle(entry.target).backgroundColor;
@@ -84,14 +85,13 @@ export default function useIntersect(refs, setState) {
 
 		const observer = new IntersectionObserver(handleIntersection, options);
 
-		sections.forEach(section => {
+		q(".c-section").forEach(section => {
 			observer.observe(section);
 		});
 
 		return () => {
 			observer.disconnect();
-		}
-
+		};
 	}, [refs]);
 }
 

@@ -2,18 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import $ from "jquery";
 import { gsap } from "gsap";
 import CustomEase from "gsap/CustomEase";
-import useResize from "./helpers/hooks/useResize";
+
 import { useFirstRender } from "./helpers/hooks/useFirstRender";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
-import CSSPlugin from "gsap/CSSPlugin";
 
 export function useTransition(appRefs, state, setState) {
 	const masterTl = useRef(gsap.timeline({ paused: true }));
 	const transitionOutTl = useRef(gsap.timeline());
 	const transitionInTl = useRef(gsap.timeline());
 	const easeTl = useRef(gsap.timeline());
-	const isPlaying = state.transition.isPlaying;
-	const direction = state.transition.direction;
 	const isFirstRender = useFirstRender();
 
 	useEffect(() => {
@@ -34,8 +31,7 @@ export function useTransition(appRefs, state, setState) {
 
 		//Reset state/path attributes on trans complete
 		const reset = () => {
-			const resetState = { isPlaying: false, direction: null };
-			setState(prev => ({ ...prev, transition: resetState }));
+			setState(prev => ({ ...prev, isTransitioning: false }));
 			path.setAttribute("d", shapes.enter[0]);
 		};
 
@@ -109,139 +105,148 @@ export function useTransition(appRefs, state, setState) {
 	}, [appRefs]);
 
 	useEffect(() => {
-		if (isPlaying && direction === "enter") {
+		if (state.isTransitioning) {
+			console.log(masterTl.current);
 			masterTl.current.progress(0).play();
 		}
-	}, [isPlaying]);
+	}, [state.isTransitioning]);
 }
 
 export function useSideMenu(appRefs, state, setState, themes) {
 	const refs = appRefs.current;
-	const [isKill, setKill] = useState(false);
-	const [windowWidth, isResized] = useResize();
 	const [isFirstRender] = useFirstRender();
 	const sideMenuAnim = useRef(
-		gsap.timeline({ onReverseComplete: () => clearProps() })
+		gsap.timeline({ onReverseComplete: () => clearProps(), paused: true })
 	);
 
 	//Detach transform property to revert to original side menu offset updated by state
 	const clearProps = () => {
-		gsap.set(refs["viewport-nav"], { clearProps: "transform" });
+		gsap.set(refs["viewport-nav"], { clearProps: true });
 	};
 
-	//Toggle Menu Animation
+	//Toggle menu state - called when burger is clicked
 	const toggleMenu = () => {
 		setState(prev => ({ ...prev, menuIsShow: !state.menuIsShow }));
 	};
 
-	useEffect(() => {
-		isKill && sideMenuAnim.current.kill();
-	}, [isKill]);
-
-
-
-	//Side nav animation
+	//Store anim
 	useEffect(() => {
 		gsap.registerPlugin(CustomEase);
-		if (state.menuIsShow) {
-			const e = CustomEase.create(
-				"custom",
-				"M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1"
-			);
-			gsap.set(refs["viewport-nav"], { x: state.menuOffset });
-			sideMenuAnim.current.play();
-			sideMenuAnim.current
+		const setValues = gsap.set(refs["viewport-nav"], { x: state.menuOffset });
+		sideMenuAnim.current.add(setValues);
 
-				.timeScale(1)
-				.to(
-					refs["viewport-nav"],
-					{
-						x: +state.menuOffset,
-						duration: 1.5,
-						ease: "Expo.easeInOut",
-					},
-					0
-				)
-				//Circle
-				.to(
-					refs["menu-active-circle"],
-					{
-						scale: 1,
-						y: "-50%",
-						x: "-50%",
-						opacity: 1,
-						ease: "back.out(1)",
-						fill: themes.colors.light,
-						duration: 0.2,
-					},
-					1
-				)
-				//Burger top
-				.to(
-					refs["burger-top"],
-					{
-						transformOrigin: "center",
-						margin: 0,
-						rotation: "45",
-						x: 0,
-						duration: 0.4,
-						y: "-50%",
-						backgroundColor: themes.colors.dark,
-						ease: "Expo.easeInOut",
-					},
-					0
-				)
-				//Burger
-				.to(
-					refs["header-burger"],
-					{
-						rotation: "360",
-						duration: 1,
-						ease: "Expo.easeInOut",
-					},
-					0
-				)
-				//Burger bottom
-				.to(
-					refs["burger-bottom"],
-					{
-						transformOrigin: "center",
-						margin: 0,
-						x: 0,
-						rotation: "-45",
-						y: "-50%",
-						duration: 0.4,
-						ease: "Expo.easeInOut",
-						backgroundColor: themes.colors.dark,
-					},
-					0
-				)
-				//Logo
-				.to(
-					refs["header-logo"],
-					{
-						fill: themes.colors.light,
-						duration: 0.3,
-						ease: "linear",
-					},
-					0
-				)
-				//Links
-				.to(
-					$(refs["menu-links"]).find(".line .char"),
-					{
-						opacity: 1,
-						y: 0,
-						duration: 1.5,
-						stagger: 0.1,
-						ease: e,
-					},
-					0.55
-				);
+		const e = CustomEase.create(
+			"custom",
+			"M0,0,C-0.066,1,0.578,1,0.864,1,1.01,1,0.818,1.001,1,1"
+		);
+
+		sideMenuAnim.current
+			.timeScale(1.5)
+			.to(
+				refs["viewport-nav"],
+				{
+					x: +state.menuOffset,
+					duration: 1.5,
+					ease: "Expo.easeInOut",
+				},
+				0
+			)
+			//Circle
+			.to(
+				refs["menu-active-circle"],
+				{
+					scale: 1,
+					y: "-50%",
+					x: "-50%",
+					opacity: 1,
+					ease: "back.out(1)",
+					fill: themes.colors.light,
+					duration: 0.2,
+				},
+				1
+			)
+			//Burger top
+			.to(
+				refs["burger-top"],
+				{
+					transformOrigin: "center",
+					margin: 0,
+					rotation: "45",
+					x: 0,
+					duration: 0.4,
+					y: "-50%",
+					backgroundColor: themes.colors.dark,
+					ease: "Expo.easeInOut",
+				},
+				0
+			)
+			//Burger
+			.to(
+				refs["header-burger"],
+				{
+					rotation: "360",
+					duration: 1,
+					ease: "Expo.easeInOut",
+				},
+				0
+			)
+			//Burger bottom
+			.to(
+				refs["burger-bottom"],
+				{
+					transformOrigin: "center",
+					margin: 0,
+					x: 0,
+					rotation: "-45",
+					y: "-50%",
+					duration: 0.4,
+					ease: "Expo.easeInOut",
+					backgroundColor: themes.colors.dark,
+				},
+				0
+			)
+			//Logo
+			.to(
+				refs["header-logo"],
+				{
+					fill: themes.colors.light,
+					duration: 0.3,
+					ease: "linear",
+				},
+				0
+			)
+			//Links
+			.to(
+				$(refs["menu-links"]).find(".line .char"),
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1.5,
+					stagger: 0.1,
+					ease: e,
+				},
+				0.55
+			);
+	}, []);
+
+	//Entry animation
+	const playAnimation = () => {
+		sideMenuAnim.current.play();
+	};
+
+	//Exit animation
+	const reverseAnimation = () => {
+		sideMenuAnim.current.timeScale(1.5).reverse();
+	};
+
+	//Call animations depending on menu state change
+	useEffect(() => {
+		if (state.menuIsShow && !isFirstRender) {
+			playAnimation();
 		} else if (!state.menuIsShow && !isFirstRender) {
-			sideMenuAnim.current.timeScale(2).reverse();
+			reverseAnimation();
 		}
-	}, [state.menuIsShow, appRefs]);
+	}, [state.menuIsShow]);
 
 	return [toggleMenu];
 }

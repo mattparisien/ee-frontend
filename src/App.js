@@ -17,7 +17,6 @@ import SiteRoutes from "./Routes";
 function App() {
 	const location = useLocation();
 	const sectionRefs = useRef(null);
-	
 
 	const { addToRefs, appRefs, state, setState, themes } = useAppData();
 	const [toggleMenu] = useSideMenu(appRefs, state, setState, themes);
@@ -26,11 +25,9 @@ function App() {
 	const intersector = useIntersect(appRefs, setState);
 
 	const handleTransition = () => {
-		const transitionEnter = { isPlaying: true, direction: "enter" };
-
 		setState(prev => ({
 			...prev,
-			transition: transitionEnter,
+			isTransitioning: true,
 		}));
 	};
 
@@ -63,7 +60,11 @@ function App() {
 
 				<main>
 					<TransitionGroup className='transition-group'>
-						<Transition onExited={handleTransition} key={location.pathname}>
+						<Transition
+							classNames='enter'
+							onExit={handleTransition}
+							key={location.pathname}
+						>
 							<SiteRoutes location={location} addToRefs={addToRefs} />
 						</Transition>
 					</TransitionGroup>

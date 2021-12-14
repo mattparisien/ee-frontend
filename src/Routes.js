@@ -9,13 +9,16 @@ function SiteRoutes(props) {
 		<>
 			<Routes location={location} key={location.pathname}>
 				<Route path='/' element={<Home addToRefs={addToRefs} />} />
-				<Route path='/contact' element={<Contact />} />
+				<Route path='/contact' element={<Contact addToRefs={addToRefs} />} />
 				<Route
 					path='/projects'
-					element={<Projects />}
+					element={<Projects addToRefs={addToRefs} />}
 					key={location.pathname}
 				/>
-				<Route path='/projects/:id' element={<ProjectItem />} />
+				<Route
+					path='/projects/:id'
+					element={<ProjectItem addToRefs={addToRefs} />}
+				/>
 			</Routes>
 		</>
 	);

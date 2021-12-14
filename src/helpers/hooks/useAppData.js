@@ -20,8 +20,7 @@ export default function useAppData() {
 	const appRefs = useRef({});
 	appRefs.current = {};
 	const links = [];
-	const sections = [];
-	const paragraphs = [];
+	let currentPage = "";
 
 	//App state
 	const [state, setState] = useState({
@@ -30,10 +29,7 @@ export default function useAppData() {
 		headerColor: "dark",
 		menuIsShow: false,
 		menuOffset: "-101%",
-		transition: {
-			isPlaying: false,
-			direction: null,
-		},
+		isTransitioning: false,
 	});
 
 	//Detect location changes
@@ -59,11 +55,10 @@ export default function useAppData() {
 					links.push(el);
 					appRefs.current["menu-links"] = links;
 					return;
-				} else if ([...el.classList].includes("c-section")) {
-					sections.push(el);
-					appRefs.current["sections"] = sections;
+				} else if ([...el.classList].includes("page-wrap")) {
+					currentPage = el;
+					appRefs.current["currentPage"] = currentPage;
 					return;
-				} else if ([...el.classList].includes("paragraph")) {
 				}
 			}
 

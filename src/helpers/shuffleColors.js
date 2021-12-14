@@ -3,7 +3,7 @@
 function shuffleColors(theme) {
 	let randomColor;
 	const colors = [];
-
+	
 	//Push only colors that aren't b&w & check if array includes
 	for (let key in theme.colors) {
 		if (

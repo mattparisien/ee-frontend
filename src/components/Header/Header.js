@@ -14,6 +14,8 @@ export default function Header(props) {
 	const [isHoverable, setHoverable] = useState(true);
 
 	useEffect(() => {
+		console.log(menuState);
+
 		if (menuState) {
 			setHoverable(false);
 		} else if (!menuState) {
@@ -31,7 +33,6 @@ export default function Header(props) {
 			transition: menuState ? "none" : "300ms ease",
 			color: headerColor,
 		},
-
 	};
 
 	useEffect(() => {

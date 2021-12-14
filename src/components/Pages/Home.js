@@ -42,7 +42,7 @@ function Home(props) {
 		return (
 			<Section classes={"section-who"} bg={"dark"} addToRefs={addToRefs}>
 				<Container bg={"dark"}>
-					<Paragraph width={"100%"} medium indent addToRefs={addToRefs}>
+					<Paragraph size={"medium"} indent>
 						{loading && "Loading..."}
 						{data && data.data.attributes.MissionOne}
 					</Paragraph>
@@ -143,13 +143,17 @@ function Home(props) {
 
 	return (
 		<>
-			<div ref={scrollRef} data-scroll-container>
+			<div
+				ref={scrollRef}
+				data-scroll-container
+				className='home-page page-wrap'
+				ref={addToRefs}
+			>
 				<Section
 					classes={"section-hero"}
 					sectionRef={props.sectionRefs}
 					stickyRef={stickySection}
 					bg={"light"}
-					addToRefs={addToRefs}
 				>
 					<Container
 						bg={"light"}
@@ -190,16 +194,12 @@ function Home(props) {
 				</Section>
 
 				{!error && show()}
-				<Section classes={"section-how"} bg={"light"} addToRefs={addToRefs}>
+				<Section classes={"section-how"} bg={"light"}>
 					<Container>
 						<Steps />
 					</Container>
 				</Section>
-				<Section
-					bg={"light"}
-					classes={"section-work"}
-					addToRefs={addToRefs}
-				></Section>
+				<Section bg={"light"} classes={"section-work"}></Section>
 			</div>
 		</>
 	);
