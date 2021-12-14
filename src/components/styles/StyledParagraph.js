@@ -10,20 +10,23 @@ const StyledParagraph = styled.div`
        ${$indent && `text-indent: 20vw`};
 
         @media ${device.mobileS} {
-          font-size: 2rem;
-          line-height: 1rem;
+          font-size: 1.6rem;
+          
+          & p {
+            line-height: 1.9rem;
+          }
         };
       
         @media ${device.mobileM} {
-          font-size: 1.3rem;
+          font-size: 1.8rem;
 
           & p {
-            line-height: 3.8rem;
+            line-height: 2.3rem;
           }
         };
       
         @media ${device.mobileL} {
-          font-size: 3rem;
+          font-size: 2rem;
 
           & p {
             line-height: 2.6rem;
@@ -32,10 +35,10 @@ const StyledParagraph = styled.div`
 
 
         @media (min-width: 680px) {
-          font-size: 2rem;
+          font-size: 2.3em;
 
           & p {
-            line-height: 2.8rem;
+            line-height: 2.7rem;
           }
 
         }
@@ -44,6 +47,7 @@ const StyledParagraph = styled.div`
       
         @media ${device.tablet} {
           font-size: 2.6rem;
+          
 
           & p {
             line-height: 3rem;

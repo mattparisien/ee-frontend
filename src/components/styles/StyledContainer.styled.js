@@ -25,13 +25,15 @@ const StyledContainer = styled.div`
 	}};
 
 	@media ${device.mobileS} {
+		padding: 5rem 1.8rem;
 	}
 
 	@media ${device.mobileM} {
+		padding: 5rem 1.8rem;
 	}
 
 	@media ${device.mobileL} {
-		padding: 5rem 7rem;
+		padding: 5rem 2.8rem;
 	}
 
 	@media (min-width: 680px) {
@@ -41,6 +43,7 @@ const StyledContainer = styled.div`
 
 
 	@media ${device.tablet} {
+		padding: 5rem;
 	}
 
 	@media ${device.laptop} {
