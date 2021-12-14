@@ -1,33 +1,24 @@
-import React, { useRef, forwardRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import classNames from "classnames";
 import { StyledParagraph } from "./styles/StyledParagraph";
+import useResize from "../helpers/hooks/useResize";
+import { style } from "@mui/system";
 
 function Paragraph(props) {
-	const {
-		small,
-		medium,
-		large,
-		classes,
-		width,
-		indent,
-		left,
-		right,
-		marginTop,
-		addToRefs,
-		myRef,
-	} = props;
+	const getWidth = el => {
+		return el.getBoundingClientRect().width;
+	};
 
-	const splitRef = useRef(null);
-
-	// useEffect(() => {
-	// 	const splitText = new SplitText(splitRef.current, {
-	// 		type: "lines",
-	// 		linesClass: "fade-up-line"
-	// 	})
-	// }, [])
+	const { addToRefs } = props;
+	const styledParagraph = useRef(null);
 
 	return (
-		<StyledParagraph className='styled-paragraph-wrapper' $size={props.size} $indent={props.indent}>
+		<StyledParagraph
+			className='styled-paragraph-wrapper'
+			$size={props.size}
+			$indent={props.indent}
+			ref={styledParagraph}
+		>
 			<p className='paragraph' ref={addToRefs}>
 				{props.children}
 			</p>

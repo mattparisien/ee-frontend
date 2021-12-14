@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import $ from "jquery";
 import { gsap } from "gsap";
 import CustomEase from "gsap/CustomEase";
-
 import { useFirstRender } from "./helpers/hooks/useFirstRender";
 import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 

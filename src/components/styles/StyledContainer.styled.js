@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { device } from "./device";
 
 const StyledContainer = styled.div`
-	height: ${props => (props.$height ? props.$height : "100vh")};
+	min-height: ${props => (props.$height ? props.$height : "100vh")};
 	width: ${props => (props.$width ? props.$width : "100vw")};
 	background-color: ${({ theme, $bg }) => {
 		return (
@@ -38,16 +38,14 @@ const StyledContainer = styled.div`
 
 	@media (min-width: 680px) {
 		padding: 5rem 3rem;
-
 	}
-
 
 	@media ${device.tablet} {
 		padding: 5rem;
 	}
 
 	@media ${device.laptop} {
-		padding: 5rem 10rem;
+		padding: 5rem 7rem;
 	}
 
 	@media ${device.laptopL} {

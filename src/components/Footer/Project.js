@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import Line from "../Line";
-
 import { Arrow } from "../Svg";
 import Marquee from "../Marquee";
 
@@ -17,7 +16,7 @@ function Project() {
 				</div>
 				<Line color={"light"} />
 				<div className='footer-next-title-wrapper footer-horiz-band'>
-					<Marquee text={"This will be some cool text"} />
+					<Marquee text={"anus power!"} />
 				</div>
 
 				<Line color={"light"} />

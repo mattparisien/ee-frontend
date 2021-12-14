@@ -41,7 +41,7 @@ const StyledViewportNav = styled.div`
 				&:nth-child(even) {
 					text-align: right;
 					@media (max-width: ${deviceSize.mobileL}px) {
-						text-align: left;
+						text-align: left ${-10};
 					}
 				}
 
@@ -52,7 +52,8 @@ const StyledViewportNav = styled.div`
 					transition: 300ms ease;
 
 					.line {
-						overflow: hidden;
+						overflow-y: hidden;
+						padding: 0 1rem;
 
 						.char {
 							&:nth-of-type(odd) {
@@ -67,6 +68,7 @@ const StyledViewportNav = styled.div`
 
 					@media (min-width: ${deviceSize.laptopL}px) {
 						font-size: 190px;
+						letter-spacing: -1px;
 					}
 
 					@media (max-width: ${deviceSize.mobileL}px) {
