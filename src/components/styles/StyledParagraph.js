@@ -30,12 +30,23 @@ const StyledParagraph = styled.div`
           }
         };
 
-      
-        @media ${device.tablet} {
-          font-size: 3.4rem;
+
+        @media (min-width: 680px) {
+          font-size: 2rem;
 
           & p {
-            line-height: 3.8rem;
+            line-height: 2.8rem;
+          }
+
+        }
+
+
+      
+        @media ${device.tablet} {
+          font-size: 2.6rem;
+
+          & p {
+            line-height: 3rem;
           }
 
           
@@ -44,7 +55,7 @@ const StyledParagraph = styled.div`
   
       
         @media ${device.laptop} {
-          font-size: 2.4rem;
+          font-size: 2.6rem;
 
           & p {
             line-height: 2.5rem;
@@ -55,23 +66,36 @@ const StyledParagraph = styled.div`
  
     
         @media ${device.laptopL} {
-          font-size: 3rem;
+          font-size: 3.3rem;
 
           & p {
-            line-height: 3.4rem;
+            line-height: 3.8rem;
           }
           
         };
 
+    
 
       
         @media ${device.desktop} {
+          font-size: 3.2rem;
+
+          & p {
+            line-height: 3.3rem;
+          }
+        };
+
+
+      
+        @media (min-width: 2500px) {
           font-size: 5rem;
 
           & p {
-            line-height: 5rem;
+            line-height: 5.2rem;
           }
         };
+
+        
       `
 		);
 	}}
