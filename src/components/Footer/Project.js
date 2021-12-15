@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Line from "../Line";
 import { Arrow } from "../Svg";
-import CustomMarquee from "../Marquee";
+import SlidingText from "../Marquee";
 
 function Project(props) {
 
@@ -19,7 +19,7 @@ function Project(props) {
 				</div>
 				<Line color={"light"} />
 				<div className='footer-next-title-wrapper footer-horiz-band'>
-					<CustomMarquee text={"word"} triggerRef={footerRef}/>
+					<SlidingText text={"Some cool scrolling text"} triggerRef={footerRef}/>
 				</div>
 
 				<Line color={"light"} />

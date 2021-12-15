@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { device } from "./device";
 
 const StyledContainer = styled.div`
-	min-height: ${props => (props.$height ? "" : '100vh')};
-	height: ${props => (props.$height && props.$height)}
+	min-height: ${props => (props.$height ? "" : "100vh")};
+	height: ${props => props.$height && props.$height};
 	width: ${props => (props.$width ? props.$width : "100vw")};
 	background-color: ${({ theme, $bg }) => {
 		return (
@@ -25,6 +25,20 @@ const StyledContainer = styled.div`
 			`;
 	}};
 
+	${({ props }) => {
+		return `
+ ${
+		props.$flexCenter
+			? `
+			display: flex;
+			align-items: center;
+			justify-content: center;
+ `
+			: `display: block`
+ }
+`;
+	}}
+
 	@media ${device.mobileS} {
 		padding: 5rem 1.8rem;
 	}
@@ -34,7 +48,7 @@ const StyledContainer = styled.div`
 	}
 
 	@media ${device.mobileL} {
-		padding: 3rem;;
+		padding: 3rem;
 	}
 
 	@media (min-width: 680px) {
@@ -55,12 +69,11 @@ const StyledContainer = styled.div`
 
 	@media ${device.desktop} {
 		padding: 10rem;
-	};
-
+	}
 
 	@media (min-width: 2500px) {
 		padding: 10rem;
-	};
+	} ;
 `;
 
 export { StyledContainer };

@@ -1,3 +1,4 @@
+import { height } from "@mui/system";
 import styled from "styled-components";
 import Heading from "../Heading";
 import Paragraph from "../Paragraph";
@@ -7,7 +8,7 @@ const StyledFooter = styled.footer`
 	color: ${({ theme }) => theme.colors.dark};
 	background-color: ${({ theme }) => theme.colors.dark};
 	position: relative;
-	height: 90vh;
+	height: ${({ $height }) => $height ? $height : 'auto'};
 
 	@media (max-width: ${deviceSize.tablet}px) {
 		height: 65vh !important;
@@ -19,6 +20,14 @@ const StyledFooter = styled.footer`
 	};
 
 
+
+	.footer-horiz-band {
+		height: 30vw;
+		max-height: 500px;
+		min-height: 250px;
+		display: flex;
+		align-items: center;
+	}
 
 	.footer-next-title-wrapper {
 		h2 {
@@ -46,7 +55,8 @@ const StyledFooter = styled.footer`
 	
 
 	a.footer-next-project-clickable {
-		display: block;
+
+
 		.footer-next-btn-wrapper {
 			display: flex;
 			align-items: center;

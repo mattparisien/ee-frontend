@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const StyledMarquee = styled.div`
-	width: 100vw;
-	height: 700px;
+	width: auto;
 	position: absolute;
 	left: 0;
 
@@ -13,22 +12,14 @@ const StyledMarquee = styled.div`
 	}
 	.marquee-title {
 		position: absolute;
-		width: 50vw;
+		min-width: 50vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	.marquee-title:first-of-type {
-		left:  -${({ $boxWidth }) => $boxWidth && $boxWidth}px;
-		background-color: red;
-	}
-
-	.marquee-title:nth-of-type(2) {
-		left: 0;
-		background-color: orange;
-	}
-
-	.marquee-title:nth-of-type(3) {
-		left: ${({ $boxWidth }) => $boxWidth && $boxWidth}px;
-		background-color: blue;
+	.marquee-item {
+		margin-right: 5rem;
 	}
 `;
 
