@@ -7,8 +7,11 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 function Marquee(props) {
 	const { text, triggerRef } = props;
-	const scrollDirection = useScroll();
-	const [speed, setSpeed] = useState();
+	const [isScrolling, scrollDirection] = useScroll();
+
+	useEffect(() => {
+		console.log(isScrolling);
+	}, [isScrolling]);
 
 	const [windowWidth, isResized] = useResize();
 	const marqueePartOne = useRef(null);
@@ -56,7 +59,7 @@ function Marquee(props) {
 		}
 
 		if (secondAnim.isActive() && scrollDirection) {
-			console.log('second is active!')
+			console.log("second is active!");
 			gsap.registerPlugin(ScrollTrigger);
 			gsap.to(speedRefOne.current, {
 				x: scrollDirection === "down" ? "-=1000" : "+=1000",
