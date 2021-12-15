@@ -13,6 +13,7 @@ const StyledMarquee = styled.div`
 	}
 	.marquee-title {
 		position: absolute;
+		width: 50vw;
 	}
 
 	.marquee-title:first-of-type {
