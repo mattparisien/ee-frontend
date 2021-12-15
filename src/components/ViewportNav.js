@@ -8,6 +8,7 @@ import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
 import { Trumpet } from "./Svg";
+import Line from "./Line";
 
 let isFirstRender = true;
 

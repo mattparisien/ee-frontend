@@ -2,17 +2,29 @@ import styled from "styled-components";
 import { device } from "./device";
 
 const StyledParagraph = styled.div`
-  
+  position: relative;
+  .indent-title {
+    width: 20%;
+    position: absolute;
+    height: 100%;
 
-	${({ $size, $indent }) => {
+    span { 
+      display: block;
+      text-align: left;
+      width: 100%;
+      
+    }
+  }
+ 
 
-    
-
+	${({ $size, $indentStyles }) => {
 		return (
 			$size === "medium" &&
 			`
 
-       ${$indent && `text-indent: 20%`};
+       .paragraph {
+        ${$indentStyles.isIndent && `text-indent: 20%`};
+       }
 
         @media ${device.mobileS} {
           font-size: 1.6rem;
@@ -99,7 +111,7 @@ const StyledParagraph = styled.div`
 
     $size === "small" && 
     `
-    ${$indent && `text-indent: 20%`};
+    ${$indentStyles.isIndent && `text-indent: 20%`};
 
         margin-left: auto;
         margin-top: 50vw;
@@ -195,6 +207,8 @@ const StyledParagraph = styled.div`
         };
     `
 	}}
+
+
 
 
 

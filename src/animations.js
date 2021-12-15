@@ -12,11 +12,7 @@ export function useTransition(appRefs, state, setState) {
 	const isFirstRender = useFirstRender();
 	const tweenInTl = useRef(gsap.timeline());
 	const tweenOutTl = useRef(gsap.timeline());
-	const [duration, setDuration] = useState(null);
 
-	useEffect(() => {
-		setDuration(tweenInTl.current.duration());
-	}, [tweenInTl, tweenOutTl]);
 
 	useEffect(() => {
 		gsap.registerPlugin(MorphSVGPlugin);

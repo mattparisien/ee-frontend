@@ -59,13 +59,10 @@ function App() {
 					toggleMenu={toggleMenu}
 				/>
 
-				{/* When the button is clicked the component will shift to the 'entering' state and stay there for 500ms (the value of timeout) before it finally switches to 'entered'.
-When in is false the same thing happens except the state moves from 'exiting' to 'exited'. */}
-
 				<main>
 					<TransitionGroup className='transition-group'>
 						<Transition
-							timeout={1800}
+							timeout={1900}
 							key={location.pathname}
 							onExiting={handleTransition}
 						>
