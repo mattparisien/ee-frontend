@@ -17,7 +17,7 @@ p {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: none;
-	cursor: ${({ isTransitioning }) => isTransitioning && 'wait'}
+	cursor: ${({ isTransitioning }) => isTransitioning && "wait"}
 }
 
 body {
