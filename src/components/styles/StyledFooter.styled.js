@@ -42,7 +42,22 @@ const StyledFooter = styled.footer`
 	};
 
 	.marquee-wrapper {
-		position: relative;
+		display: flex;
+
+		
+		.marquee-title:first-of-type {
+			
+			background-color: red;
+		}
+
+		.marquee-title:nth-of-type(2) {
+			background-color: orange;
+		}
+
+		.marquee-title:nth-of-type(3) {
+			background-color: blue;
+		}
+
 	};
 
 	a.footer-next-project-clickable {
@@ -58,34 +73,9 @@ const StyledFooter = styled.footer`
 			};
 		};
 
-		.footer-horiz-band {
-			height: 500px;
-		};
 	};
 
-	.marquee-inner {
-		display: flex;
-		height: 500px;
-		width: 100vw;
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		display: flex;
-		align-items: center;
-
-		.marquee-part {
-			position: absolute;
-			left: 0;
-			transform: translateX(${window.innerWidth}px);
-			display: flex;
-
-			&__title {
-				&:nth-of-type(1) {
-					margin-right: 20vw;
-				}
-			}
-		}
-	}
+	
 	} ;
 `;
 export { StyledFooter };

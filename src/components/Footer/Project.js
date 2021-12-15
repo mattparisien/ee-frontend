@@ -15,11 +15,11 @@ function Project(props) {
 			<Link to='/' className={"footer-next-project-clickable"}>
 				<div className='footer-next-btn-wrapper footer-horiz-band'>
 					<h2>Next</h2>
-					<Arrow color={"light"} />
+					{/* <Arrow color={"light"} /> */}
 				</div>
 				<Line color={"light"} />
 				<div className='footer-next-title-wrapper footer-horiz-band'>
-					<Marquee text={"anus power!"} triggerRef={footerRef}/>
+					<Marquee text={"word"} triggerRef={footerRef}/>
 				</div>
 
 				<Line color={"light"} />

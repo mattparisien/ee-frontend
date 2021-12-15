@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import $ from "jquery";
+import $, { Tween } from "jquery";
 import { gsap } from "gsap";
 import CustomEase from "gsap/CustomEase";
 import { useFirstRender } from "./helpers/hooks/useFirstRender";
@@ -7,16 +7,22 @@ import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
 export function useTransition(appRefs, state, setState) {
 	const masterTl = useRef(gsap.timeline({ paused: true }));
-	const transitionOutTl = useRef(gsap.timeline());
-	const transitionInTl = useRef(gsap.timeline());
-	const easeTl = useRef(gsap.timeline());
+	const transitionOutTl = useRef(gsap.timeline({ paused: true }));
+	const transitionInTl = useRef(gsap.timeline({ paused: true }));
 	const isFirstRender = useFirstRender();
+	const tweenInTl = useRef(gsap.timeline());
+	const tweenOutTl = useRef(gsap.timeline());
+	const [duration, setDuration] = useState(null);
+
+	useEffect(() => {
+		setDuration(tweenInTl.current.duration());
+	}, [tweenInTl, tweenOutTl]);
 
 	useEffect(() => {
 		gsap.registerPlugin(MorphSVGPlugin);
 		const container = appRefs.current["site-transition"];
 		const path = appRefs.current["transition-morph-enter"];
-		const dur = 0.1;
+		const dur = 0.3;
 		const shapes = {
 			enter: [
 				"M-3.1,1073.81h1920c-723.06,8.48-1221.05,8-1920,0Z",
@@ -32,81 +38,104 @@ export function useTransition(appRefs, state, setState) {
 		const reset = () => {
 			setState(prev => ({ ...prev, isTransitioning: false }));
 			path.setAttribute("d", shapes.enter[0]);
+			gsap.set(path, { y: 0 });
 		};
-
 		//In
-		const transitionEnter = () => {
-			transitionInTl.current
-				.set(container, {
-					display: "block",
-				})
-				.to(path, {
-					morphSVG: shapes.enter[1],
-					duration: dur,
-					ease: "none",
-				})
-				.to(path, {
-					morphSVG: shapes.enter[2],
-					duration: dur,
-					ease: "none",
-				})
-				.to(path, {
-					morphSVG: shapes.enter[3],
-					duration: dur,
-					ease: "none",
-				})
-				.to(path, {
-					morphSVG: shapes.enter[4],
-					duration: dur,
-					ease: "none",
-				})
-				.to(path, {
-					morphSVG: shapes.enter[5],
-					duration: dur,
-					ease: "none",
-				})
-				.addLabel("in-end", "<");
-		};
+		transitionInTl.current
+			.set(container, {
+				display: "block",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[0],
+				ease: "none",
+				duration: dur,
+			})
+			.to(path, {
+				morphSVG: shapes.enter[1],
+				ease: "none",
+				duration: dur,
+			})
+			.to(path, {
+				morphSVG: shapes.enter[2],
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[3],
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[4],
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: shapes.enter[5],
+				duration: dur,
+				ease: "none",
+			});
 
-		const transitionOut = () => {
-			transitionOutTl.current
-				.to(path, {
-					morphSVG: "M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
-					duration: 0.4,
-					ease: "none",
-					delay: 1,
-				})
-				.to(path, {
-					morphSVG: "M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z",
-					duration: dur,
-					ease: "none",
-				})
-				.to(path, {
-					morphSVG: "M1920,553.35C1231.2,0,795.2-178,0,553.35V0H1920Z",
-					duration: dur,
-					ease: "none",
-				})
-				.to(path, {
-					morphSVG: "M1920,192.36C1353.18,53.28,987.5,9.52,0,161.11V0H1920Z",
-					duration: dur,
-					y: "-200px",
-					ease: "none",
-				})
-				.set(container, {
-					display: "none",
-					onComplete: () => {
-						reset();
-					},
-				});
-		};
-
-		masterTl.current.add(() => transitionEnter()).add(() => transitionOut());
+		transitionOutTl.current
+			.to(path, {
+				morphSVG: "M1920,1080C1263.74,554.67,624.14,567.69,0,1080V0H1920Z",
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: "M1920,895.59C1253.61-57.74,614.63,2.42,0,916.69V0H1920Z",
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: "M1920,553.35C1231.2,0,795.2-178,0,553.35V0H1920Z",
+				duration: dur,
+				ease: "none",
+			})
+			.to(path, {
+				morphSVG: "M1920,192.36C1353.18,53.28,987.5,9.52,0,161.11V0H1920Z",
+				duration: dur,
+				y: "-200px",
+				ease: "none",
+			})
+			.set(container, {
+				display: "none",
+				onComplete: () => {
+					reset();
+				},
+			});
 	}, [appRefs]);
 
 	useEffect(() => {
+		const transitionEnter = () => {
+			return new Promise((resolve, reject) => {
+				tweenInTl.current.progress(0).play();
+				tweenInTl.current.to(
+					transitionInTl.current,
+					transitionInTl.current.duration(),
+					{
+						progress: 1,
+						ease: "power4.out",
+						onComplete: () => resolve(),
+					}
+				);
+			});
+		};
+
+		const transitionLeave = () => {
+			// tweenOutTl.current.progress(0).play();
+			tweenOutTl.current.to(
+				transitionOutTl.current,
+				transitionOutTl.current.duration(),
+				{
+					progress: 1,
+					ease: "power4.out",
+				}
+			);
+		};
+
 		if (state.isTransitioning) {
-			console.log(masterTl.current);
-			masterTl.current.progress(0).play();
+			transitionEnter().then(() => transitionLeave());
 		}
 	}, [state.isTransitioning]);
 }

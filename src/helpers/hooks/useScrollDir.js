@@ -39,8 +39,8 @@ export default function useScroll() {
 	);
 
 	const handleScroll = () => {
-		setScrolling(true)
-		handleEndScroll()
+		setScrolling(true);
+		handleEndScroll();
 	};
 
 	useEffect(() => {

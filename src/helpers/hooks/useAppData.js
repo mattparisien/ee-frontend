@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import useResize from "./useResize";
 import { useLocation } from "react-router-dom";
+import { useTransition } from "../../animations";
 
 export default function useAppData() {
 	//Themes
@@ -18,6 +19,7 @@ export default function useAppData() {
 	const [windowWidth, isResized] = useResize();
 	const location = useLocation();
 	const appRefs = useRef({});
+	
 	appRefs.current = {};
 	const links = [];
 	let currentPage = "";
@@ -30,7 +32,10 @@ export default function useAppData() {
 		menuIsShow: false,
 		menuOffset: "-101%",
 		isTransitioning: false,
+
 	});
+
+	
 
 	//Detect location changes
 	useEffect(() => {
