@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 import useResize from "../helpers/hooks/useResize";
 
-
-
 import StyledMarquee from "./styles/StyledMarquee";
 import Marquee, {
 	Scale,
@@ -19,21 +17,16 @@ function SlidingText(props) {
 	const { text } = props;
 	const marqueeItem = useRef(null);
 	const [windowWidth, isResized] = useResize();
-	const [speed, setSpeed] = useState(null)
+	const [speed, setSpeed] = useState(null);
 	const n = 5;
 
 	useEffect(() => {
-
-		console.log('is resized!')
 		if (marqueeItem.current) {
-			let width = marqueeItem.current.offsetWidth;
-			let speed = width / (n * 2);
+			let width = marqueeItem.current.offsetWidth * 5;
+			let speed = width / 100
 			setSpeed(speed);
-			console.log('hi')
 		}
-
-
-	}, [windowWidth])
+	}, [windowWidth]);
 
 	return (
 		<StyledMarquee>
