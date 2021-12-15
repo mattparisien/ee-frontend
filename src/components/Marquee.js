@@ -7,7 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 function Marquee(props) {
 	const { text, triggerRef } = props;
-	const [isScrolling, scrollDirection] = useScroll();
+	const scrollDirection = useScroll();
 	const [speed, setSpeed] = useState();
 
 	const [windowWidth, isResized] = useResize();
@@ -18,7 +18,8 @@ function Marquee(props) {
 	const marqueeSecondAnim = useRef(gsap.timeline({ paused: true }));
 	const speedUpAnim = useRef(gsap.timeline());
 	const itemRefs = useRef([]);
-	const speedRef = useRef(null);
+	const speedRefOne = useRef(null);
+	const speedRefTwo = useRef(null);
 	itemRefs.current = [];
 
 	const addToRefs = function (el) {
@@ -40,24 +41,29 @@ function Marquee(props) {
 			}
 		};
 
-		const speedUpOnScroll = (target, playingTl) => {
-			speedUpAnim.current.to(playingTl, {
-				progress: playingTl.progress() + 0.01,
-				ease: "expo.easeOut",
-			});
-		};
-
 		const firstAnim = marqueeFirstAnim.current;
 		const secondAnim = marqueeSecondAnim.current;
 
-		if (firstAnim.isActive() && isScrolling) {
-			// const target = getTweenedElements(firstAnim);
-			// speedUpOnScroll(target, firstAnim);
-
-			gsap.to(speedRef.current, {
-				x: scrollDirection === "down" ? "-=500" : "+=500",
+		if (firstAnim.isActive() && scrollDirection) {
+			gsap.registerPlugin(ScrollTrigger);
+			gsap.to(speedRefOne.current, {
+				x: scrollDirection === "down" ? "-=1000" : "+=1000",
 				duration: 1,
 				ease: "power4.out",
+				scrollTrigger: triggerRef.current,
+				start: "top bottom",
+			});
+		}
+
+		if (secondAnim.isActive() && scrollDirection) {
+			console.log('second is active!')
+			gsap.registerPlugin(ScrollTrigger);
+			gsap.to(speedRefOne.current, {
+				x: scrollDirection === "down" ? "-=1000" : "+=1000",
+				duration: 1,
+				ease: "power4.out",
+				scrollTrigger: triggerRef.current,
+				start: "top bottom",
 			});
 		}
 
@@ -77,7 +83,7 @@ function Marquee(props) {
 		// 		ease: "Expo.inOut",
 		// 	});
 		// }
-	}, [isScrolling, triggerRef, itemRefs]);
+	}, [scrollDirection, triggerRef, itemRefs]);
 
 	useEffect(() => {
 		const animOne = marqueeFirstAnim.current;
@@ -149,7 +155,12 @@ function Marquee(props) {
 	return (
 		<div className='marquee-wrapper'>
 			<div className='marquee-inner' ref={inner}>
-				<div className='speed-part' width='100%' height='100%' ref={speedRef}>
+				<div
+					className='speed-slider'
+					width='100%'
+					height='100%'
+					ref={speedRefOne}
+				>
 					<div
 						className='marquee-part'
 						ref={marqueePartOne}
@@ -163,17 +174,18 @@ function Marquee(props) {
 						</div>
 					</div>
 				</div>
-
-				<div
-					className='marquee-part'
-					ref={marqueePartTwo}
-					style={{ marginRight: "100px" }}
-				>
-					<div className='marquee-part__title' ref={addToRefs}>
-						<h2>{text} </h2>
-					</div>
-					<div className='marquee-part__title' ref={addToRefs}>
-						<h2>{text}</h2>
+				<div className='speed-slider'>
+					<div
+						className='marquee-part'
+						ref={marqueePartTwo}
+						style={{ marginRight: "100px" }}
+					>
+						<div className='marquee-part__title' ref={addToRefs}>
+							<h2>{text} </h2>
+						</div>
+						<div className='marquee-part__title' ref={addToRefs}>
+							<h2>{text}</h2>
+						</div>
 					</div>
 				</div>
 			</div>

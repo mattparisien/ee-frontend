@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { device } from "./device";
 
 const StyledContainer = styled.div`
-	min-height: ${props => (props.$height ? props.$height : "100vh")};
+	min-height: ${props => (props.$height ? "" : '100vh')};
+	height: ${props => (props.$height && props.$height)}
 	width: ${props => (props.$width ? props.$width : "100vw")};
 	background-color: ${({ theme, $bg }) => {
 		return (

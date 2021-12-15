@@ -1,47 +1,25 @@
 import { useState, useEffect } from "react";
 
 export default function useScroll() {
-	const [isScrolling, setScrolling] = useState(false);
-	const [scrollDirection, setScrollDirection] = useState('up');
-
+	const [scrollDirection, setScrollDirection] = useState(null);
+	const [prevOffset, setPrevOffset] = useState(0);
+	const toggleScrollDirection = () => {
+		let scrollY = window.scrollY;
+		if (scrollY === 0) {
+			setScrollDirection(null);
+		}
+		if (scrollY > prevOffset) {
+			setScrollDirection("down");
+		} else if (scrollY < prevOffset) {
+			setScrollDirection("up");
+		}
+		setPrevOffset(scrollY);
+	};
 	useEffect(() => {
-		let isCurrentlyScrolling;
-
-		window.addEventListener(
-			"scroll",
-			function (event) {
-				setScrolling(true);
-				window.clearTimeout(isCurrentlyScrolling);
-
-				// Set a timeout to run after scrolling ends
-				isCurrentlyScrolling = setTimeout(function () {
-					setScrolling(false);
-				}, 66);
-			},
-			false
-		);
-	});
-
-	useEffect(() => {
-		let oldValue = 0;
-		let newValue = 0;
-
-		const handleScroll = e => {
-			newValue = window.pageYOffset;
-			if (oldValue < newValue) {
-				setScrollDirection("up");
-			} else if (oldValue > newValue) {
-				setScrollDirection("down");
-			}
-			oldValue = newValue;
-		};
-
-		window.addEventListener("scroll", handleScroll);
-
+		window.addEventListener("scroll", toggleScrollDirection);
 		return () => {
-			window.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("scroll", toggleScrollDirection);
 		};
-	}, [isScrolling]);
-
-	return [isScrolling, scrollDirection];
+	});
+	return scrollDirection;
 }

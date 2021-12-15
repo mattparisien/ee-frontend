@@ -17,7 +17,7 @@ export default function Footer(props) {
 
 	return (
 		<StyledFooter $layout={layout} ref={footerRef}>
-			<Container>
+			<Container height={"100%"}>
 				{layout === "contact" && <Contact />}
 				{layout === "project" && <Project footerRef={footerRef}/>}
 			</Container>
