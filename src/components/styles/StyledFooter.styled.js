@@ -18,6 +18,8 @@ const StyledFooter = styled.footer`
 		color: ${({ theme }) => theme.colors.light};
 	};
 
+
+
 	.footer-next-title-wrapper {
 		h2 {
 			white-space: nowrap;
@@ -41,24 +43,7 @@ const StyledFooter = styled.footer`
 		};
 	};
 
-	.marquee-wrapper {
-		display: flex;
-
-		
-		.marquee-title:first-of-type {
-			
-			background-color: red;
-		}
-
-		.marquee-title:nth-of-type(2) {
-			background-color: orange;
-		}
-
-		.marquee-title:nth-of-type(3) {
-			background-color: blue;
-		}
-
-	};
+	
 
 	a.footer-next-project-clickable {
 		display: block;

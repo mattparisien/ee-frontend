@@ -30,36 +30,36 @@ const StyledContainer = styled.div`
 	}
 
 	@media ${device.mobileM} {
-		padding: 5rem 1.8rem;
+		padding: 3rem;
 	}
 
 	@media ${device.mobileL} {
-		padding: 5rem 2.8rem;
+		padding: 3rem;;
 	}
 
 	@media (min-width: 680px) {
-		padding: 5rem 3rem;
-	}
-
-	@media ${device.tablet} {
 		padding: 5rem;
 	}
 
+	@media ${device.tablet} {
+		padding: 6rem;
+	}
+
 	@media ${device.laptop} {
-		padding: 5rem 7rem;
+		padding: 8rem;
 	}
 
 	@media ${device.laptopL} {
-		padding: 5rem 11rem;
+		padding: 10rem;
 	}
 
 	@media ${device.desktop} {
-		padding: 5rem 10rem;
+		padding: 10rem;
 	};
 
 
 	@media (min-width: 2500px) {
-		padding: 5rem 10rem;
+		padding: 10rem;
 	};
 `;
 

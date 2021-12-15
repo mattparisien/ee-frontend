@@ -11,19 +11,28 @@ import { useSideMenu, useTransition } from "./animations";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteTransition from "./components/Transition";
 import useIntersect from "./helpers/hooks/useIntersect";
-
+import useSplit from "./helpers/hooks/useSplit";
+import gsap from "gsap";
 import SiteRoutes from "./Routes";
+import SplitText from "gsap/SplitText";
 
 function App() {
 	const location = useLocation();
 	const sectionRefs = useRef(null);
+	
+	
 
 	const { addToRefs, appRefs, state, setState, themes } = useAppData();
-
+	const app = useRef(null);
+	const q = gsap.utils.selector(app.current);
+	const paragraphs = q('.fade-up-lines')
 	const [toggleMenu] = useSideMenu(appRefs, state, setState, themes);
 	const transitioner = useTransition(appRefs, state, setState);
 
 	const intersector = useIntersect(appRefs, setState);
+
+
+
 
 	const handleTransition = () => {
 		setState(prev => ({
@@ -33,7 +42,7 @@ function App() {
 	};
 
 	return (
-		<div className='App' ref={addToRefs}>
+		<div className='App' ref={app}>
 			<ThemeProvider theme={themes}>
 				<GlobalStyles />
 

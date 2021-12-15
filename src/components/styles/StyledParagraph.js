@@ -2,25 +2,33 @@ import styled from "styled-components";
 import { device } from "./device";
 
 const StyledParagraph = styled.div`
-  position: relative;
-  .indent-title {
-    width: 20%;
-    position: absolute;
-    height: 100%;
+	position: relative;
+	.indent-title {
+		width: 20%;
+		position: absolute;
+    display: flex;
+    align-items: center;
+		${({ $indentStyles }) => {
+      return (
+        `
+        font-size: ${$indentStyles.fontSize}px;
+        height: ${$indentStyles.height}px;
+        `
+      )
+    }}
 
-    span { 
-      display: block;
-      text-align: left;
-      width: 100%;
-      
-    }
-  }
- 
+
+		span {
+			display: block;
+			text-align: left;
+			width: 100%;
+		}
+	}
 
 	${({ $size, $indentStyles }) => {
 		return (
-			$size === "medium" &&
-			`
+			($size === "medium" &&
+				`
 
        .paragraph {
         ${$indentStyles.isIndent && `text-indent: 20%`};
@@ -106,11 +114,9 @@ const StyledParagraph = styled.div`
             line-height: 5.2rem;
           }
         };
-      `
-		) ||
-
-    $size === "small" && 
-    `
+      `) ||
+			($size === "small" &&
+				`
     ${$indentStyles.isIndent && `text-indent: 20%`};
 
         margin-left: auto;
@@ -205,14 +211,9 @@ const StyledParagraph = styled.div`
             line-height: 2.3rem;
           }
         };
-    `
+    `)
+		);
 	}}
-
-
-
-
-
-
 `;
 
 export { StyledParagraph };

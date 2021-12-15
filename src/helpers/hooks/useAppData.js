@@ -19,7 +19,7 @@ export default function useAppData() {
 	const [windowWidth, isResized] = useResize();
 	const location = useLocation();
 	const appRefs = useRef({});
-	
+
 	appRefs.current = {};
 	const links = [];
 	let currentPage = "";
@@ -32,10 +32,8 @@ export default function useAppData() {
 		menuIsShow: false,
 		menuOffset: "-101%",
 		isTransitioning: false,
-
+		currentPage: null,
 	});
-
-	
 
 	//Detect location changes
 	useEffect(() => {
@@ -53,16 +51,13 @@ export default function useAppData() {
 
 			//Take last of classList (avoid styled components classes)
 			//Spread DOMTokenList into array
+
 			if (el.classList) {
 				elClass = [...el.classList].splice(elClass.length - 1, 1).join("");
 
 				if ([...el.classList].includes("menu-link")) {
 					links.push(el);
 					appRefs.current["menu-links"] = links;
-					return;
-				} else if ([...el.classList].includes("page-wrap")) {
-					currentPage = el;
-					appRefs.current["currentPage"] = currentPage;
 					return;
 				}
 			}
