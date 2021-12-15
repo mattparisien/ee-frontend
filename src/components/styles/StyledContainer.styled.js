@@ -25,12 +25,13 @@ const StyledContainer = styled.div`
 			`;
 	}};
 
-	${({ props }) => {
+	${({ $centerInner }) => {
 		return `
  ${
-		props.$flexCenter
+		$centerInner
 			? `
 			display: flex;
+			flex-direction: column;
 			align-items: center;
 			justify-content: center;
  `

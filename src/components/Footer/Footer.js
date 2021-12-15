@@ -17,9 +17,12 @@ export default function Footer(props) {
 
 	return (
 		<StyledFooter $layout={layout} ref={footerRef}>
-			<Container height={"100%"}>
+			<Container
+				height={"100%"}
+				centerInner={layout === "project" && true}
+			>
 				{layout === "contact" && <Contact />}
-				{layout === "project" && <Project footerRef={footerRef}/>}
+				{layout === "project" && <Project footerRef={footerRef} />}
 			</Container>
 		</StyledFooter>
 	);

@@ -22,13 +22,13 @@ function SlidingText(props) {
 
 	return (
 		<StyledMarquee>
-		<Marquee velocity='12'>
-			{[...Array(n)].map((el, i) => (
-				<div className='marquee-item' key={i}>
-					<h2>hiiii</h2>
-				</div>
-			))}
-		</Marquee>
+			<Marquee velocity='12'>
+				{[...Array(n)].map((el, i) => (
+					<div className='marquee-item' key={i}>
+						<h2>{text}</h2>
+					</div>
+				))}
+			</Marquee>
 		</StyledMarquee>
 	);
 }

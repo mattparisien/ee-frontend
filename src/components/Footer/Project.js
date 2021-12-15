@@ -11,8 +11,9 @@ function Project(props) {
 
 	return (
 		<>
-			<Line color={"light"} />
+			
 			<Link to='/' className={"footer-next-project-clickable"}>
+				<Line color={"light"}/>
 				<div className='footer-next-btn-wrapper footer-horiz-band'>
 					<h2>Next</h2>
 					{/* <Arrow color={"light"} /> */}

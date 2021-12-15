@@ -2,7 +2,7 @@ import { height } from "@mui/system";
 import styled from "styled-components";
 import Heading from "../Heading";
 import Paragraph from "../Paragraph";
-import { deviceSize } from "./device";
+import { device, deviceSize } from "./device";
 
 const StyledFooter = styled.footer`
 	color: ${({ theme }) => theme.colors.dark};
@@ -17,6 +17,11 @@ const StyledFooter = styled.footer`
 	h2 {
 		font-size: 20vw;
 		color: ${({ theme }) => theme.colors.light};
+
+
+		@media ${device.laptopL} {
+			font-size: 300px;
+		};
 	};
 
 
@@ -55,7 +60,7 @@ const StyledFooter = styled.footer`
 	
 
 	a.footer-next-project-clickable {
-
+		width: 100%;
 
 		.footer-next-btn-wrapper {
 			display: flex;
