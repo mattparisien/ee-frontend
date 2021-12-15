@@ -44,7 +44,7 @@ function App() {
 	return (
 		<div className='App' ref={app}>
 			<ThemeProvider theme={themes}>
-				<GlobalStyles />
+				<GlobalStyles isTransitioning={state.isTransitioning}/>
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
 				<SiteTransition
