@@ -13,8 +13,10 @@ export default function Footer(props) {
 	const { location, addToRefs } = props;
 	const [layout, setLayout] = useState("contact");
 
+
+
 	const { data, error, loading } = useAxios(null, () =>
-		fetchNextPost("/projects/3")
+		fetchNextPost(location)
 	);
 
 	useEffect(() => {
