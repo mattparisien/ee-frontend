@@ -7,7 +7,7 @@ import SlidingText from "../Marquee";
 
 function Project(props) {
 
-	const { footerRef } = props;
+	const { footerRef, title } = props;
 
 	return (
 		<>
@@ -20,7 +20,7 @@ function Project(props) {
 				</div>
 				<Line color={"light"} />
 				<div className='footer-next-title-wrapper footer-horiz-band'>
-					<SlidingText text={"This is some longer text"} triggerRef={footerRef}/>
+					<SlidingText text={title ? title : ''} triggerRef={footerRef}/>
 				</div>
 
 				<Line color={"light"} />

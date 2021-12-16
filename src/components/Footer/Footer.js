@@ -5,24 +5,40 @@ import Heading from "../Heading";
 import Contact from "./Contact";
 import Project from "./Project";
 import Section from "../Section";
+import useAxios from "../../helpers/hooks/useAxios";
+import fetchNextPost from "../../helpers/fetchPostId";
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
 	const { location, addToRefs } = props;
 	const [layout, setLayout] = useState("contact");
 
+	const { data, error, loading } = useAxios(null, () =>
+		fetchNextPost("/projects/3")
+	);
+
 	useEffect(() => {
 		setLayout(location.includes("projects/") ? "project" : "contact");
 	}, [location]);
 
+	useEffect(() => {
+		if (error) {
+			console.log(error);
+		} else if (data) {
+			console.log(data);
+		}
+	}, [data, error, loading]);
+
 	return (
 		<StyledFooter $layout={layout} ref={footerRef}>
-			<Container
-				height={"100%"}
-				centerInner={layout === "project" && true}
-			>
+			<Container height={"100%"} centerInner={layout === "project" && true}>
 				{layout === "contact" && <Contact />}
-				{layout === "project" && <Project footerRef={footerRef} />}
+				{layout === "project" && (
+					<Project
+						footerRef={footerRef}
+						title={data && data.attributes.Title}
+					/>
+				)}
 			</Container>
 		</StyledFooter>
 	);
