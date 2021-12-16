@@ -75,6 +75,15 @@ const StyledFooter = styled.footer`
 
 	};
 
+	.link-list {
+		color: ${({theme}) => theme.colors.light};
+		justify-content: end;
+	
+		li {
+			padding: 0 3rem;
+		}
+	}
+
 	
 	} ;
 `;

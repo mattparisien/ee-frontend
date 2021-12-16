@@ -21,6 +21,7 @@ import useResize from "./helpers/hooks/useResize";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import SplitText from "gsap/SplitText";
+import { Helmet } from "react-helmet";
 
 function App() {
 	const location = useLocation();
@@ -53,6 +54,18 @@ function App() {
 
 	return (
 		<div className='App' ref={app}>
+				<Helmet>
+				<html lang='en' />
+				<title>The Eyes & Ears Agency</title>
+				<meta
+					name='description'
+					content='
+The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
+
+'
+				/>
+			</Helmet>
+
 			<ThemeProvider theme={themes}>
 				<GlobalStyles isTransitioning={state.isTransitioning} />
 

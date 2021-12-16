@@ -42,7 +42,12 @@ function Home(props) {
 		return (
 			<Section classes={"section-who"} bg={"dark"} addToRefs={addToRefs}>
 				<Container bg={"dark"}>
-					<Paragraph size={"medium"} indent indentTitle={"Agency"} fadeUp={"lines"}>
+					<Paragraph
+						size={"medium"}
+						indent
+						indentTitle={"Agency"}
+						fadeUp={"lines"}
+					>
 						{loading && "Loading..."}
 						{data && data.attributes.MissionOne}
 					</Paragraph>

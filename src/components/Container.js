@@ -12,6 +12,7 @@ export default function Container(props) {
 			$height={props.height}
 			$width={props.width}
 			$centerInner={props.centerInner}
+			$paddingVerticalNone={props.paddingVerticalNone}
 			className={containerClass}
 		>
 			{props.children}

@@ -12,12 +12,13 @@ let isFirstRender = true;
 export default function SideMenu(props) {
 	const [isSplit, setIsSplit] = useState(false);
 	const { appRefs, toggleMenu, isOpen, hasShown } = props;
+	
 
 	const menuStyles = {
 		offset: props.offset,
 	};
 
-	const linkAnim = useRef(gsap.timeline());
+	
 	const menuAnimIn = useRef(gsap.timeline());
 	const menuAnimOut = useRef(gsap.timeline());
 	const menuRef = useRef(null);
@@ -36,20 +37,36 @@ export default function SideMenu(props) {
 	}, [appRefs]);
 
 	useEffect(() => {
+
+		const container = menuRef.current;
+		const q = gsap.utils.selector(container);
+		const chars = q('.line .char');
+
 		if (isOpen) {
 			gsap.set(menuRef.current, { display: "flex" });
 			menuAnimIn.current.to(menuRef.current, {
 				x: 0,
 				duration: 1,
 				ease: "Expo.easeInOut",
-			});
+			})
+			.to(chars, {
+				y: 0,
+				duration: 1,
+				ease: "expo.out"
+			}, 0.5)
+			
+			;
 		}
 
-		console.log(hasShown);
 
 		if (!isOpen && hasShown) {
-			console.log("hi");
-			menuAnimOut.current.to(menuRef.current, {
+			menuAnimOut.current
+			.to(chars, {
+				y: '-100%',
+				duration: 1,
+				ease: "expo.out"
+			}, 0.5)
+			.to(menuRef.current, {
 				x: "-100%",
 				duration: 1,
 				ease: "Expo.easeInOut",
@@ -58,9 +75,10 @@ export default function SideMenu(props) {
 						display: "none",
 					});
 				},
-			});
+			})
+			
 		}
-	}, [isOpen]);
+	}, [isOpen, appRefs]);
 
 	const handleMouseEnter = e => {};
 
