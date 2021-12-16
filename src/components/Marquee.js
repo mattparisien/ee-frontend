@@ -9,34 +9,39 @@ import Marquee, {
 	randomIntFromInterval,
 	randomFloatFromInterval,
 } from "react-marquee-slider";
-
+import gsap from "gsap";
 import $ from "jquery";
 import { rest } from "lodash";
+import useScroll from "../helpers/hooks/useScrollDir";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 function SlidingText(props) {
-	const { text } = props;
+	const { text, triggerRef } = props;
+	const wrapper = useRef(null);
+	const q = gsap.utils.selector(wrapper);
+	const sliders = q(".sc-furwcr");
 	const marqueeItem = useRef(null);
 	const [windowWidth, isResized] = useResize();
 	const [speed, setSpeed] = useState(null);
-	const n = 5;
+	const [isScrolling, scrollDirection] = useScroll();
 
-	useEffect(() => {
-		if (marqueeItem.current) {
-			let width = marqueeItem.current.offsetWidth * 5;
-			let speed = width / 100
-			setSpeed(speed);
-		}
-	}, [windowWidth]);
+	const velocity = 20;
+	const reactMarquees = 3;
+	const marqueeItems = 5;
+
 
 	return (
-		<StyledMarquee>
-			<Marquee velocity={speed}>
-				{[...Array(n)].map((el, i) => (
-					<div className='marquee-item' key={i} ref={marqueeItem}>
-						<h2>{text}</h2>
-					</div>
-				))}
-			</Marquee>
+		<StyledMarquee className='marquee-wrapper' ref={wrapper}>
+			{[...Array(reactMarquees)].map((el, i) => (
+				<Marquee velocity={velocity} className='react-marquee' key={i}>
+					{[...Array(marqueeItems)].map((el, i) => (
+						<div className='marquee-item' key={i} ref={marqueeItem}>
+							<h2>{text}</h2>
+						</div>
+					))}
+				</Marquee>
+			))}
+			;
 		</StyledMarquee>
 	);
 }

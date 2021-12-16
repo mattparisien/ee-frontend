@@ -13,7 +13,6 @@ export function useTransition(appRefs, state, setState) {
 	const tweenInTl = useRef(gsap.timeline());
 	const tweenOutTl = useRef(gsap.timeline());
 
-
 	useEffect(() => {
 		gsap.registerPlugin(MorphSVGPlugin);
 		const container = appRefs.current["site-transition"];
@@ -119,7 +118,7 @@ export function useTransition(appRefs, state, setState) {
 		};
 
 		const transitionLeave = () => {
-			// tweenOutTl.current.progress(0).play();
+			tweenOutTl.current.progress(0).play();
 			tweenOutTl.current.to(
 				transitionOutTl.current,
 				transitionOutTl.current.duration(),

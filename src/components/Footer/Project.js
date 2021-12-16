@@ -20,7 +20,7 @@ function Project(props) {
 				</div>
 				<Line color={"light"} />
 				<div className='footer-next-title-wrapper footer-horiz-band'>
-					<SlidingText text={"ok"} triggerRef={footerRef}/>
+					<SlidingText text={"This is some longer text"} triggerRef={footerRef}/>
 				</div>
 
 				<Line color={"light"} />

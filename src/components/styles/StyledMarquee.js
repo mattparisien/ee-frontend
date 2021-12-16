@@ -3,7 +3,9 @@ import styled from "styled-components";
 const StyledMarquee = styled.div`
 	width: auto;
 	position: absolute;
-	left: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
 
 	.marquee-inner-relative {
 		position: relative;

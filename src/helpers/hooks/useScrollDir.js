@@ -34,7 +34,7 @@ export default function useScroll() {
 	});
 
 	const handleEndScroll = useMemo(
-		() => _.debounce(() => setScrolling(false), 800),
+		() => _.debounce(() => setScrolling(false), 200),
 		[]
 	);
 
