@@ -29,10 +29,15 @@ export default function useAppData() {
 		location: location.pathname,
 		isHovering: false,
 		headerColor: "dark",
-		menuIsShow: false,
+		showSidebar: false,
+		sidebar: {
+			showSidebar: false,
+			hasShown: false,
+		},
 		menuOffset: "-101%",
 		isTransitioning: false,
 		currentPage: null,
+		isSplit: false,
 	});
 
 	//Detect location changes

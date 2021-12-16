@@ -1,8 +1,14 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, {
+	useRef,
+	useEffect,
+	useState,
+	useLayoutEffect,
+	useMemo,
+} from "react";
 import Header from "./components/Header/Header";
 
 import Footer from "./components/Footer/Footer";
-import ViewportNav from "./components/ViewportNav";
+import SideMenu from "./components/SideMenu";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
@@ -11,7 +17,7 @@ import { useSideMenu, useTransition } from "./animations";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteTransition from "./components/Transition";
 import useIntersect from "./helpers/hooks/useIntersect";
-import useSplit from "./helpers/hooks/useSplit";
+import useResize from "./helpers/hooks/useResize";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import SplitText from "gsap/SplitText";
@@ -19,20 +25,24 @@ import SplitText from "gsap/SplitText";
 function App() {
 	const location = useLocation();
 	const sectionRefs = useRef(null);
-	
-	
 
 	const { addToRefs, appRefs, state, setState, themes } = useAppData();
 	const app = useRef(null);
 	const q = gsap.utils.selector(app.current);
-	const paragraphs = q('.fade-up-lines')
-	const [toggleMenu] = useSideMenu(appRefs, state, setState, themes);
+	const paragraphs = q(".fade-up-lines");
 	const transitioner = useTransition(appRefs, state, setState);
-
 	const intersector = useIntersect(appRefs, setState);
+	const [windowWidth, isResized] = useResize();
 
-
-
+	const toggleMenu = () => {
+		setState(prev => ({
+			...prev,
+			sidebar: {
+				showSidebar: !state.sidebar.showSidebar,
+				hasShown: !state.sidebar.hasShown ? true : true,
+			},
+		}));
+	};
 
 	const handleTransition = () => {
 		setState(prev => ({
@@ -44,7 +54,7 @@ function App() {
 	return (
 		<div className='App' ref={app}>
 			<ThemeProvider theme={themes}>
-				<GlobalStyles isTransitioning={state.isTransitioning}/>
+				<GlobalStyles isTransitioning={state.isTransitioning} />
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
 				<SiteTransition
@@ -60,8 +70,9 @@ function App() {
 					appRefs={appRefs}
 				/>
 
-				<ViewportNav
-					isVisible={state.menuIsShow}
+				<SideMenu
+					isOpen={state.sidebar.showSidebar}
+					hasShown={state.sidebar.hasShown}
 					appRefs={appRefs}
 					addToRefs={addToRefs}
 					offset={state.menuOffset}

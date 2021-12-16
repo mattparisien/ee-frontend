@@ -7,7 +7,6 @@ const StyledViewportNav = styled.div`
 	width: 100%;
 	z-index: 999;
 	background-color: white;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: fixed;
@@ -16,6 +15,7 @@ const StyledViewportNav = styled.div`
 	transform: ${({ $menuStyles }) => `translateX(${$menuStyles.offset})`};
 	background-color: ${({ theme }) => theme.colors.dark};
 	color: ${({ theme }) => theme.colors.light};
+	display: none;
 
 	#trumpet {
 		position: absolute;
@@ -51,21 +51,7 @@ const StyledViewportNav = styled.div`
 					letter-spacing: -0.6vw;
 					transition: 300ms ease;
 
-					.line {
-						overflow-y: hidden;
-						padding: 0 1rem;
-
-						.char {
-							&:nth-of-type(odd) {
-								transform: translateY(-100%);
-							}
-
-							&:nth-of-type(even) {
-								transform: translateY(100%);
-							}
-						}
-					}
-
+				
 					@media (min-width: ${deviceSize.laptopL}px) {
 						font-size: 190px;
 						letter-spacing: -1px;

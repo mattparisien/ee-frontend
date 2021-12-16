@@ -12,7 +12,7 @@ function Steps() {
 	const renderSteps = function () {
 		return (
 			data &&
-			data.data.slice(0, 5).map((step, index) => {
+			data.slice(0, 5).map((step, index) => {
 				return (
 					<GridItem key={step.id} classes={`steps-grid__item${index + 1}`}>
 						<Heading small>{step.attributes.Title}</Heading>

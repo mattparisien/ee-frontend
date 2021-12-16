@@ -4,10 +4,12 @@ import { StyledParagraph } from "./styles/StyledParagraph";
 import useResize from "../helpers/hooks/useResize";
 import { style } from "@mui/system";
 import classNames from "classnames";
+import SplitText from "gsap/SplitText";
+import styled from "styled-components";
 
 function Paragraph(props) {
 	const { addToRefs, indent, indentTitle, size, fadeUp } = props;
-	const styledParagraph = useRef(null);
+	const styledParagraph = useRef(null); 
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
 
@@ -22,6 +24,10 @@ function Paragraph(props) {
 		title: indentTitle,
 		isIndent: indent,
 	});
+
+	useEffect(() => {
+		console.log(styledParagraph.current);
+	}, [styledParagraph]);
 
 	useEffect(() => {
 		const calculateIndentStyles = () => {
@@ -55,11 +61,7 @@ function Paragraph(props) {
 			}}
 			ref={styledParagraph}
 		>
-			{indentTitle && (
-				<div className='indent-title'>
-					<span>{indentTitle}</span>
-				</div>
-			)}
+			{indentTitle && <div className='indent-title'>{indentTitle}</div>}
 			<p className={paragraphClass} ref={paragraph}>
 				{props.children}
 			</p>

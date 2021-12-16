@@ -3,24 +3,24 @@ import { StyledViewportNav } from "./styles/StyledViewportNav";
 import Container from "./Container";
 import { navigation } from "../data/data";
 import { Link } from "react-router-dom";
-import useResize from "../helpers/hooks/useResize";
+
 import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
-import $ from "jquery";
-import { Trumpet } from "./Svg";
-import Line from "./Line";
 
 let isFirstRender = true;
 
-export default function ViewportNav(props) {
+export default function SideMenu(props) {
 	const [isSplit, setIsSplit] = useState(false);
-	const { appRefs, toggleMenu } = props;
+	const { appRefs, toggleMenu, isOpen, hasShown } = props;
 
 	const menuStyles = {
 		offset: props.offset,
 	};
 
 	const linkAnim = useRef(gsap.timeline());
+	const menuAnimIn = useRef(gsap.timeline());
+	const menuAnimOut = useRef(gsap.timeline());
+	const menuRef = useRef(null);
 
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
@@ -34,6 +34,33 @@ export default function ViewportNav(props) {
 			setIsSplit(true);
 		}
 	}, [appRefs]);
+
+	useEffect(() => {
+		if (isOpen) {
+			gsap.set(menuRef.current, { display: "flex" });
+			menuAnimIn.current.to(menuRef.current, {
+				x: 0,
+				duration: 1,
+				ease: "Expo.easeInOut",
+			});
+		}
+
+		console.log(hasShown);
+
+		if (!isOpen && hasShown) {
+			console.log("hi");
+			menuAnimOut.current.to(menuRef.current, {
+				x: "-100%",
+				duration: 1,
+				ease: "Expo.easeInOut",
+				onComplete: () => {
+					gsap.set(menuRef.current, {
+						display: "none",
+					});
+				},
+			});
+		}
+	}, [isOpen]);
 
 	const handleMouseEnter = e => {};
 
@@ -59,7 +86,7 @@ export default function ViewportNav(props) {
 	return (
 		<StyledViewportNav
 			className='viewport-nav'
-			ref={props.addToRefs}
+			ref={menuRef}
 			$menuStyles={menuStyles}
 		>
 			<Container classes={"viewport-nav__inner"} bg={"dark"}>

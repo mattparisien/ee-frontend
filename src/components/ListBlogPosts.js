@@ -5,7 +5,7 @@ import gsap from "gsap";
 import renderGridItems from "../helpers/renderGridItems";
 
 function ListBlogPosts({ gap, padding }) {
-	const { error, data, loading } = useAxios("/api/posts?fields=*&populate=*");
+	const { error, data, loading } = useAxios("/api/posts?fields=*&populate=*", null);
 
 	const gridItemRefs = useRef(null);
 	const imageRefs = useRef(null);

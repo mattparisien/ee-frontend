@@ -19,7 +19,7 @@ import { useTheme } from "styled-components";
 import useScroll from "../../helpers/hooks/useScrollDir";
 
 function Home(props) {
-	const { data, error, loading } = useAxios("/api/mission");
+	const { data, error, loading } = useAxios("/api/mission", null);
 
 	const { windowResizing } = useResize();
 
@@ -44,12 +44,12 @@ function Home(props) {
 				<Container bg={"dark"}>
 					<Paragraph size={"medium"} indent indentTitle={"Agency"} fadeUp={"lines"}>
 						{loading && "Loading..."}
-						{data && data.data.attributes.MissionOne}
+						{data && data.attributes.MissionOne}
 					</Paragraph>
 					<Line color='white' marginTop />
 					<Trumpet width={"30vw"} color={"light"} position={"absolute"} />
-					<Paragraph size={"small"} indent>
-						{data && data.data.attributes.MissionTwo}
+					<Paragraph size={"small"} indent indentTitle={"About"}>
+						{data && data.attributes.MissionTwo}
 					</Paragraph>
 				</Container>
 			</Section>

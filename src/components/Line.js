@@ -13,7 +13,7 @@ function Line(props) {
 		marginBottom: props.marginBottom && "4vw",
 	};
 
-	return <div style={lineStyle}></div>;
+	return <div style={lineStyle} className="line"></div>;
 }
 
 export default Line;

@@ -7,13 +7,27 @@ import Project from "./Project";
 import Section from "../Section";
 import useAxios from "../../helpers/hooks/useAxios";
 import fetchNextPost from "../../helpers/fetchPostId";
+import gsap from "gsap";
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
 	const { location, addToRefs } = props;
 	const [layout, setLayout] = useState("contact");
+	const q = gsap.utils.selector(footerRef.current);
+		const lines = q('.line');
 
-
+	// useEffect(() => {
+	
+	// 	console.log(lines)
+	// 	gsap.fromTo(lines, {
+	// 		width: 0,
+	// 	}, {
+	// 		width: '100%',
+	// 		stagger: 0.2,
+	// 		duration: 1,
+	// 		ease: 'expo.inout'
+	// 	})
+	// }, [footerRef, lines])
 
 	const { data, error, loading } = useAxios(null, () =>
 		fetchNextPost(location)
@@ -23,13 +37,7 @@ export default function Footer(props) {
 		setLayout(location.includes("projects/") ? "project" : "contact");
 	}, [location]);
 
-	useEffect(() => {
-		if (error) {
-			console.log(error);
-		} else if (data) {
-			console.log(data);
-		}
-	}, [data, error, loading]);
+
 
 	return (
 		<StyledFooter $layout={layout} ref={footerRef}>

@@ -4,6 +4,7 @@ import { device } from "./device";
 const StyledParagraph = styled.div`
 	position: relative;
 	.indent-title {
+    text-indent: 0px;
 		width: 20%;
 		position: absolute;
     display: flex;

@@ -25,10 +25,11 @@ function SlidingText(props) {
 	const [speed, setSpeed] = useState(null);
 	const [isScrolling, scrollDirection] = useScroll();
 
-	const velocity = 20;
+	const velocity = 10;
 	const reactMarquees = 3;
 	const marqueeItems = 5;
 
+	
 
 	return (
 		<StyledMarquee className='marquee-wrapper' ref={wrapper}>
