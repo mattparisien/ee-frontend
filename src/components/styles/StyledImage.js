@@ -16,6 +16,7 @@ const StyledImage = styled.div`
 		background-size: 200%;
 		width: 100%;
 		height: 100%;
+		transition: 300ms ease;
 	}
 
 	.image-overlay {

@@ -1,29 +1,14 @@
-import React, { Fragment, useRef, useEffect, useState } from "react";
-
+import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
-
-import Section from "../../Section";
-import Container from "../../Container";
-import Paragraph from "../../Paragraph";
-import Heading from "../../Heading";
-
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../../helpers/hooks/useResize";
-
 import { useTheme } from "styled-components";
 import useScroll from "../../../helpers/hooks/useScrollDir";
-import UnorderedList from "../../Lists/UnorderedList";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
-import Image from "../../Image";
-import { StyledFeaturedWork } from "../styles";
-import useMouseMove from "../../../helpers/hooks/useMouseMove";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import How from "./components/How";
 import FeaturedWork from "./components/FeaturedWork";
-
 
 function Home(props) {
 	const [data, setData] = useState([]);
@@ -49,26 +34,10 @@ function Home(props) {
 			.catch(err => setError(err))
 			.finally(() => setLoading(false));
 	}, [loading]);
-	const { windowResizing } = useResize();
 
 	const { addToRefs } = props;
-
-	const [isScrolling, scrollDirection] = useScroll();
-	const [isHovering, setHovering] = useState(false);
-
-	const rows = useRef([]);
-	const eye = useRef(null);
-	const ear = useRef(null);
-	const scrollCta = useRef(null);
-	const amperstand = useRef(null);
-	const introAnimation = useRef(gsap.timeline());
-	const overlayRef = useRef(null);
 	const scrollRef = useRef(null);
-	const stickySection = useRef(null);
-	const scalerRef = useRef(null);
-	const skewContainer = useRef(null);
-
-	const theme = useTheme();
+	
 
 	useEffect(() => {
 		gsap.registerPlugin(DrawSVGPlugin);
@@ -166,7 +135,7 @@ function Home(props) {
 				ref={addToRefs}
 			>
 				<Hero />
-	
+
 				<About data={data} />
 				<How />
 				<FeaturedWork data={data} />

@@ -47,6 +47,7 @@ main {
 	overflow: hidden;
 }
 
+
 @media ${device.mobileS} {
 	html {
 		font-size: 15px

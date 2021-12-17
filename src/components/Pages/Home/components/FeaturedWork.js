@@ -95,7 +95,6 @@ function FeaturedWork(props) {
 		));
 
 	useEffect(() => {
-		console.log(listRefs, 'hi');
 		gsap.registerPlugin(ScrollTrigger);
 		let proxy = { skew: 0 },
 			skewSetter = gsap.quickSetter(listRefs.current, "skewY", "deg"), // fast
@@ -119,8 +118,8 @@ function FeaturedWork(props) {
 		});
 
 		// make the right edge "stick" to the scroll bar. force3D: true improves performance
-		gsap.set(".skewElem", { transformOrigin: "right center", force3D: true });
-	}, [listRefs]);
+		gsap.set(".skewElem", { transformOrigin: "left", force3D: true });
+	}, [listRefs.current]);
 
 	return (
 		<div>
@@ -135,14 +134,14 @@ function FeaturedWork(props) {
 						>
 							{featured}
 						</UnorderedList>
-						{/* <div className='featured-work-free-image-wrapper' ref={imageRef}>
+						<div className='featured-work-free-image-wrapper' ref={imageRef}>
 							<Image
 								url={imageUrl}
 								height={"100px"}
 								width={"100px"}
 								isVisible={isHovering}
 							/>
-						</div> */}
+						</div>
 						<ImageMesh />
 					</StyledFeaturedWork>
 				</Container>
