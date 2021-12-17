@@ -8,7 +8,6 @@ import Project from "./Project";
 import useAxios from "../../helpers/hooks/useAxios";
 import fetchNextPost from "../../helpers/fetchPostId";
 import gsap from "gsap";
-import UnorderedList from "../UnorderedList";
 import NavList from "./NavList";
 import { navigation } from "../../data/data";
 import { Link } from "react-router-dom";

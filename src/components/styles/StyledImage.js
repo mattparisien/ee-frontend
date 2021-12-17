@@ -3,12 +3,11 @@ import styled from "styled-components";
 import { deviceSize } from "./device";
 
 const StyledImage = styled.div`
-	position: relative;
 	width: ${props => (props.$width ? props.$width : "100%")};
 	height: ${props => (props.$height ? props.$height : "100%")};
 	overflow: "hidden";
-
-	.image {
+	visibility: ${props => (props.isVisible ? "visible" : "hidden")};
+	.image 
 		background-image: url(${({ $props }) =>
 			$props.url
 				? $props.url

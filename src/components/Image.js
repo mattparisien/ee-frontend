@@ -19,15 +19,22 @@ function Image(props, ref) {
 
 	return (
 		<StyledImage
-			$props={{ ...props, windowWidth: windowWidth, isHovered: isHovered }}
+			$props={{
+				...props,
+				windowWidth: windowWidth,
+				isHovered: isHovered,
+			}}
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 			className={props.classes}
+			ref={props.imageRef}
 		>
 			<div className={"image"} ref={ref}></div>
-			<ImageOverlay
-				overlayInfo={{ title: props.title, subtitle: props.subTitle }}
-			/>
+			{props.hasOverlay && (
+				<ImageOverlay
+					overlayInfo={{ title: props.title, subtitle: props.subTitle }}
+				/>
+			)}
 		</StyledImage>
 	);
 }

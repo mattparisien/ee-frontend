@@ -1,9 +1,9 @@
 import React from "react";
-import Grid from "./Grid";
-import GridItem from "./GridItem";
-import Heading from "./Heading";
-import Paragraph from "./Paragraph";
-import useAxios from "../helpers/hooks/useAxios";
+import Grid from "../../../Grid";
+import GridItem from "../../../GridItem";
+import Heading from "../../../Heading";
+import Paragraph from "../../../Paragraph";
+import useAxios from "../../../../helpers/hooks/useAxios";
 import { useEffect } from "react/cjs/react.development";
 
 function Steps() {
@@ -23,10 +23,13 @@ function Steps() {
 		);
 	};
 
-
-
 	return (
-		<Grid gap={"3vw"} columns={12} rows={"grid-template-rows: repeat(6, 35vw)"} classes={"steps-grid"}>
+		<Grid
+			gap={"3vw"}
+			columns={12}
+			rows={"grid-template-rows: repeat(6, 35vw)"}
+			classes={"steps-grid"}
+		>
 			{data && renderSteps()}
 		</Grid>
 	);
