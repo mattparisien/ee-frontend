@@ -74,7 +74,10 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 			</Helmet>
 
 			<ThemeProvider theme={themes}>
-				<GlobalStyles isTransitioning={state.isTransitioning} />
+				<GlobalStyles
+					isTransitioning={state.isTransitioning}
+					isOverflowHidden={state.sidebar.showSidebar}
+				/>
 
 				{/* <ModalWrapper hoverState={hoverState} /> */}
 				<SiteTransition

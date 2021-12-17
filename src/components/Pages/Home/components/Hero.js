@@ -14,9 +14,6 @@ function Hero(props) {
 				bg={"light"}
 				width='100%'
 				height='100vh'
-				classes={
-					"-w-100 -h-100 -position-absolute-center -display-flex -align-items-center -justify-content-center"
-				}
 			>
 				<div className='overflow-container -w-100 -h-100 -position-relative'>
 					<Eye speed='2' />

@@ -19,7 +19,6 @@ function FeaturedWork(props) {
 	const [imageUrl, setImageUrl] = useState(null);
 	const imageRef = useRef(null);
 	const listRefs = useRef(null);
-	listRefs.current = [];
 
 	const getFeatureImageById = id => {
 		let post = data[1].filter(post => post.id === id);
@@ -68,11 +67,11 @@ function FeaturedWork(props) {
 		setImageUrl(null);
 	};
 
-	const addToRefs = link => {
-		if (listRefs.current && !listRefs.current.includes(link)) {
-			listRefs.current.push(link);
-		}
-	};
+	// const addToRefs = link => {
+	// 	if (listRefs.current && !listRefs.current.includes(link)) {
+	// 		listRefs.current.push(link);
+	// 	}
+	// };
 
 	const featured =
 		data.length > 1 &&
@@ -82,14 +81,13 @@ function FeaturedWork(props) {
 				className='featured-list-item'
 				onMouseEnter={() => handleMouseEnter(title.id)}
 				onMouseLeave={handleMouseLeave}
-				ref={addToRefs}
 			>
 				<Link
 					key={index}
 					className='featured-list-item-link'
 					to={`/projects/${title.id}`}
 				>
-					<Heading large>{title.attributes.Title}</Heading>
+					{title.attributes.Title}
 				</Link>
 			</li>
 		));
@@ -122,31 +120,30 @@ function FeaturedWork(props) {
 	}, [listRefs.current]);
 
 	return (
-		<div>
-			<Section bg={"light"} classes={"section-work"}>
-				<Container classes={"featured-work-container"} centerInner>
-					<StyledFeaturedWork>
-						<UnorderedList
-							stacked
-							justifyCenter
-							alignCenter
-							baseFontSize={"8vw"}
-						>
-							{featured}
-						</UnorderedList>
-						<div className='featured-work-free-image-wrapper' ref={imageRef}>
-							<Image
-								url={imageUrl}
-								height={"100px"}
-								width={"100px"}
-								isVisible={isHovering}
-							/>
-						</div>
-						<ImageMesh />
-					</StyledFeaturedWork>
-				</Container>
-			</Section>
-		</div>
+		<Section bg={"light"} classes={"section-work"}>
+			<Container classes={"featured-work-container"} centerInner>
+				<StyledFeaturedWork>
+					<UnorderedList
+						stacked
+						justifyCenter
+						alignCenter
+						baseFontSize={"7rem"}
+						listRef={listRefs}
+					>
+						{featured}
+					</UnorderedList>
+					<div className='featured-work-free-image-wrapper' ref={imageRef}>
+						<Image
+							url={imageUrl}
+							height={"100px"}
+							width={"100px"}
+							isVisible={isHovering}
+						/>
+					</div>
+					<ImageMesh />
+				</StyledFeaturedWork>
+			</Container>
+		</Section>
 	);
 }
 

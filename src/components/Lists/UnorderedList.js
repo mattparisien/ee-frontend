@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { StyledUnorderedList } from "./styles";
 
 function UnorderedList(props) {
@@ -15,6 +15,7 @@ function UnorderedList(props) {
 			side={props.side}
 			justifyCenter={props.justifyCenter}
 			alignCenter={props.alignCenter}
+			ref={props.listRef}
 		>
 			{props.children}
 		</StyledUnorderedList>
