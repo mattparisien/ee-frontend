@@ -5,10 +5,8 @@ export const StyledDynamicWrapper = styled.div`
 	width: 100%;
 	height: 100%;
 
-	
-		transition: 300ms ease;
-		transform: translateY(${props => (props.isScrollingDown ? "-400%" : "0")});
-	
+	transition: 300ms ease;
+	transform: translateY(${props => (props.isScrollingDown ? "-400%" : "0")});
 `;
 
 export const StyledHeader = styled.div`
@@ -41,8 +39,6 @@ export const StyledHeader = styled.div`
 	#header-logo {
 		width: 100%;
 		height: 100%;
-		transition: 300ms ease;
-		fill: ${({ $headerStyles, theme }) => theme.colors[$headerStyles.color]};
 	}
 
 	nav {
@@ -80,7 +76,7 @@ export const StyledHeader = styled.div`
 			background: transparent;
 			position: relative;
 			height: 30px;
-			width: 30px;
+			width: 35px;
 
 			${({ $isHoverable }) => {
 				return $isHoverable
@@ -96,13 +92,12 @@ export const StyledHeader = styled.div`
 
 			.top,
 			.bottom {
-				height: 2px;
+				height: 2.5px;
 				width: 100%;
 				position: absolute;
 				left: 0;
-				background-color: ${({ $headerStyles, theme }) =>
-					theme.colors[$headerStyles.color]};
-				transformorigin: center;
+
+				transform-origin: center;
 				transition: 300ms ease;
 			}
 
@@ -140,5 +135,20 @@ export const StyledInnerLayout = styled.div`
 		right: 0;
 		top: 50%;
 		transform: translateY(-50%);
+	}
+
+	.logo-wrapper path {
+		transition: 300ms ease;
+		fill: ${(props, theme) =>
+			props.menuIsActive
+				? props.theme.colors["light"]
+				: props.theme.colors["dark"]};
+	}
+
+	.bottom,
+	.top {
+		transition: 300ms ease;
+		background-color: ${(props, theme) =>
+			props.menuIsActive ? "white" : "black"};
 	}
 `;

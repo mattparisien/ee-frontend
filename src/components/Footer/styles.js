@@ -1,21 +1,19 @@
-import { height } from "@mui/system";
 import styled from "styled-components";
-import Heading from "../Heading";
-import Paragraph from "../Paragraph";
-import { device, deviceSize } from "./device";
+import { device, deviceSize } from "../styles/device";
 
-const StyledFooter = styled.footer`
+export const StyledFooter = styled.footer`
 	color: ${({ theme }) => theme.colors.dark};
 	background-color: ${({ theme }) => theme.colors.dark};
 	position: relative;
 	height: ${({ $height }) => $height ? $height : 'auto'};
 
 	@media (max-width: ${deviceSize.tablet}px) {
-		height: 65vh !important;
+		height: auto;
 	}
 
 	h2 {
-		font-size: 20vw;
+		font-size: 15vw;
+
 		color: ${({ theme }) => theme.colors.light};
 
 
@@ -87,4 +85,20 @@ const StyledFooter = styled.footer`
 	
 	} ;
 `;
-export { StyledFooter };
+
+export const StyledProjectFooterInner = styled.div`
+`
+
+export const StyledContactFooterInner = styled.div`
+text-align: left;
+`
+
+export const StyledFooterBottom = styled.div`
+	color: ${({theme}) => theme.colors.light};
+	display: flex;
+	align-items: center;
+
+	.footer-brand-name {
+		width: 10rem;
+	}
+`

@@ -22,6 +22,9 @@ import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import SplitText from "gsap/SplitText";
 import { Helmet } from "react-helmet";
+import $ from "jquery";
+
+const isSplit = false;
 
 function App() {
 	const location = useLocation();
@@ -34,6 +37,10 @@ function App() {
 	const transitioner = useTransition(appRefs, state, setState);
 	const intersector = useIntersect(appRefs, setState);
 	const [windowWidth, isResized] = useResize();
+
+	useEffect(() => {
+		console.log($(".paragraph").html().split("\n"));
+	}, [appRefs]);
 
 	const toggleMenu = () => {
 		setState(prev => ({
@@ -54,7 +61,7 @@ function App() {
 
 	return (
 		<div className='App' ref={app}>
-				<Helmet>
+			<Helmet>
 				<html lang='en' />
 				<title>The Eyes & Ears Agency</title>
 				<meta
@@ -77,7 +84,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				/>
 				<Header
 					toggleMenu={toggleMenu}
-					menuState={state.menuIsShow}
+					menuState={state.sidebar.showSidebar}
 					addToRefs={addToRefs}
 					headerColor={state.headerColor}
 					appRefs={appRefs}

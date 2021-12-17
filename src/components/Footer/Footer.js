@@ -1,17 +1,18 @@
 import { useState, useEffect, useRef } from "react";
-import { StyledFooter } from "../styles/StyledFooter.styled";
+import { StyledFooter  } from "./styles";
 import Container from "../Container";
-import Heading from "../Heading";
+
 import Contact from "./Contact";
 import Project from "./Project";
-import Section from "../Section";
+
 import useAxios from "../../helpers/hooks/useAxios";
 import fetchNextPost from "../../helpers/fetchPostId";
 import gsap from "gsap";
 import UnorderedList from "../UnorderedList";
+import NavList from "./NavList";
 import { navigation } from "../../data/data";
 import { Link } from "react-router-dom";
-import { TextLogo } from "../Svg";
+
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
@@ -57,10 +58,12 @@ export default function Footer(props) {
 						title={data && data.attributes.Title}
 					/>
 				)}
+
+					<NavList links={navLinks}/>
 			</Container>
-			<Container height={"6rem"} paddingVerticalNone centerInner>
-				<UnorderedList>{navLinks}</UnorderedList>
-			</Container>
+			
+				
+			
 		</StyledFooter>
 	);
 }

@@ -38,6 +38,8 @@ main {
 	&:nth-of-type(even) {
 		transform: translateY(100%);
 	}
+	position: relative;
+	display: inline-block;
 
 }
 

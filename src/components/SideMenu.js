@@ -23,7 +23,7 @@ export default function SideMenu(props) {
 	};
 
 	const menuAnimIn = useRef(gsap.timeline());
-	const menuAnimOut = useRef(gsap.timeline({ onComplete: () => menuAnimOut.current.set(menuRef.current, { clearProps: "all" }) }));
+	const menuAnimOut = useRef(gsap.timeline());
 	const menuRef = useRef(null);
 
 	useEffect(() => {
@@ -50,6 +50,7 @@ export default function SideMenu(props) {
 
 		if (isOpen) {
 			gsap.set(menuRef.current, { display: "block" });
+
 			menuAnimIn.current
 				.to(menuRef.current, {
 					x: 0,
@@ -68,8 +69,6 @@ export default function SideMenu(props) {
 		}
 
 		if (!isOpen && hasShown) {
-			
-			console.log('should not be in here')
 			menuAnimOut.current
 				.to(
 					charsOdd,
@@ -95,7 +94,13 @@ export default function SideMenu(props) {
 						x: "-100%",
 						duration: 1,
 						ease: "Expo.easeInOut",
-			
+						onComplete: () => {
+							gsap.set(menuRef.current, { display: "none" });
+							gsap.set(menuRef.current, { clearProps: true });
+							gsap.set(chars, { clearProps: true });
+							menuAnimIn.current.clear();
+							menuAnimOut.current.clear();
+						},
 					},
 					0.2
 				);
@@ -109,7 +114,6 @@ export default function SideMenu(props) {
 	const navLinks = navigation.map(link => (
 		<li key={link.id}>
 			<Link
-				delay={1000}
 				to={link.path}
 				ref={props.addToRefs}
 				className='-fade-up menu-link'

@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { device } from "./device";
 
 const StyledContainer = styled.div`
+
+
+position: relative;
+
 	${({ $paddingVerticalNone }) => {
 		return (
 			$paddingVerticalNone &&

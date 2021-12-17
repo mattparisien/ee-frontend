@@ -2,14 +2,12 @@ import React, { useRef, useState, useEffect } from "react";
 
 import { StyledParagraph } from "./styles/StyledParagraph";
 import useResize from "../helpers/hooks/useResize";
-import { style } from "@mui/system";
+
 import classNames from "classnames";
-import SplitText from "gsap/SplitText";
-import styled from "styled-components";
 
 function Paragraph(props) {
 	const { addToRefs, indent, indentTitle, size, fadeUp } = props;
-	const styledParagraph = useRef(null); 
+	const styledParagraph = useRef(null);
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
 
@@ -59,7 +57,7 @@ function Paragraph(props) {
 			$indentStyles={{
 				...indentStyles,
 			}}
-			ref={styledParagraph}
+			ref={addToRefs}
 		>
 			{indentTitle && <div className='indent-title'>{indentTitle}</div>}
 			<p className={paragraphClass} ref={paragraph}>
