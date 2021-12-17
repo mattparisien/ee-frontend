@@ -3,24 +3,27 @@ import { StyledViewportNav } from "./styles/StyledViewportNav";
 import Container from "./Container";
 import { navigation } from "../data/data";
 import { Link } from "react-router-dom";
-
+import $ from "jquery";
 import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
-
-let isFirstRender = true;
+import CSSPlugin from "gsap/CSSPlugin";
 
 export default function SideMenu(props) {
 	const [isSplit, setIsSplit] = useState(false);
 	const { appRefs, toggleMenu, isOpen, hasShown } = props;
-	
 
 	const menuStyles = {
 		offset: props.offset,
 	};
 
-	
+	const onCompleteCallback = () => {
+		console.log("hello!sd");
+		gsap.set(menuAnimOut.current, { clearProps: true });
+		gsap.set(menuAnimIn.current, { clearProps: true });
+	};
+
 	const menuAnimIn = useRef(gsap.timeline());
-	const menuAnimOut = useRef(gsap.timeline());
+	const menuAnimOut = useRef(gsap.timeline({ onComplete: () => menuAnimOut.current.set(menuRef.current, { clearProps: "all" }) }));
 	const menuRef = useRef(null);
 
 	useEffect(() => {
@@ -37,46 +40,65 @@ export default function SideMenu(props) {
 	}, [appRefs]);
 
 	useEffect(() => {
+		gsap.registerPlugin(CSSPlugin);
 
 		const container = menuRef.current;
 		const q = gsap.utils.selector(container);
-		const chars = q('.line .char');
+		const chars = q(".line .char");
+		const charsOdd = q(".char:nth-of-type(odd)");
+		const charsEven = q(".char:nth-of-type(even)");
 
 		if (isOpen) {
-			gsap.set(menuRef.current, { display: "flex" });
-			menuAnimIn.current.to(menuRef.current, {
-				x: 0,
-				duration: 1,
-				ease: "Expo.easeInOut",
-			})
-			.to(chars, {
-				y: 0,
-				duration: 1,
-				ease: "expo.out"
-			}, 0.5)
-			
-			;
+			gsap.set(menuRef.current, { display: "block" });
+			menuAnimIn.current
+				.to(menuRef.current, {
+					x: 0,
+					duration: 1,
+					ease: "Expo.easeInOut",
+				})
+				.to(
+					chars,
+					{
+						y: 0,
+						duration: 1,
+						ease: "expo.out",
+					},
+					0.5
+				);
 		}
 
-
 		if (!isOpen && hasShown) {
-			menuAnimOut.current
-			.to(chars, {
-				y: '-100%',
-				duration: 1,
-				ease: "expo.out"
-			}, 0.5)
-			.to(menuRef.current, {
-				x: "-100%",
-				duration: 1,
-				ease: "Expo.easeInOut",
-				onComplete: () => {
-					gsap.set(menuRef.current, {
-						display: "none",
-					});
-				},
-			})
 			
+			console.log('should not be in here')
+			menuAnimOut.current
+				.to(
+					charsOdd,
+					{
+						y: "-100%",
+						duration: 1,
+						ease: "expo.inOut",
+					},
+					0.1
+				)
+				.to(
+					charsEven,
+					{
+						y: "100%",
+						duration: 1,
+						ease: "expo.inOut",
+					},
+					0.1
+				)
+				.to(
+					menuRef.current,
+					{
+						x: "-100%",
+						duration: 1,
+						ease: "Expo.easeInOut",
+			
+					},
+					0.2
+				);
 		}
 	}, [isOpen, appRefs]);
 

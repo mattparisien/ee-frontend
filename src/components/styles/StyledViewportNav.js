@@ -27,7 +27,7 @@ const StyledViewportNav = styled.div`
 		height: 100%;
 		width: 100%;
 
-		ul {w
+		ul {
 			width: 70%;
 			max-width: 1000px;
 

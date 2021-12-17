@@ -2,8 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { TextLogo } from "../Svg";
 import MobileNav from "./MobileNav";
 import useResize from "../../helpers/hooks/useResize";
-import { StyledHeader } from "../styles/StyledHeader";
+import useScroll from "../../helpers/hooks/useScrollDir";
 import { useTheme } from "styled-components";
+
+import {
+	StyledHeader,
+	StyledDynamicWrapper,
+	StyledInnerLayout,
+} from "./styles";
 
 export default function Header(props) {
 	const theme = useTheme();
@@ -12,6 +18,7 @@ export default function Header(props) {
 	const [device, setDevice] = useState(null);
 	const [windowWidth] = useResize();
 	const [isHoverable, setHoverable] = useState(true);
+	const [isScrolling, scrollDirection] = useScroll();
 
 	useEffect(() => {
 		console.log(menuState);
@@ -50,20 +57,25 @@ export default function Header(props) {
 			ref={addToRefs}
 			id='site-header'
 		>
-			<div className='logo-wrapper -absolute-center'>
-				<a href='/'>
-					<TextLogo logoRef={addToRefs} />
-				</a>
-			</div>
+			<StyledDynamicWrapper
+				className='header-dynamic-wrapper'
+				isScrollingDown={scrollDirection === "down"}
+			>
+				<StyledInnerLayout className='header-inner-layout'>
+					<div className='logo-wrapper -absolute-center'>
+						<a href='/'>
+							<TextLogo logoRef={addToRefs} />
+						</a>
+					</div>
 
-			<MobileNav
-				onClick={toggleMenu}
-				menuState={menuState}
-				linkRefs={props.linkRefs}
-				addToRefs={addToRefs}
-			/>
-
-			{/* {device === "desktop" && <DesktopNav theme={theme} />} */}
+					<MobileNav
+						onClick={toggleMenu}
+						menuState={menuState}
+						linkRefs={props.linkRefs}
+						addToRefs={addToRefs}
+					/>
+				</StyledInnerLayout>
+			</StyledDynamicWrapper>
 		</StyledHeader>
 	);
 }

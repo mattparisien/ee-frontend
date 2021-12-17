@@ -1,8 +1,17 @@
-import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { deviceSize } from "./device";
+import { device, deviceSize } from "../styles/device";
 
-const StyledHeader = styled.header`
+export const StyledDynamicWrapper = styled.div`
+	width: 100%;
+	height: 100%;
+
+	
+		transition: 300ms ease;
+		transform: translateY(${props => (props.isScrollingDown ? "-400%" : "0")});
+	
+`;
+
+export const StyledHeader = styled.div`
 	width: 100%;
 	height: 100px;
 	position: fixed;
@@ -76,12 +85,12 @@ const StyledHeader = styled.header`
 			${({ $isHoverable }) => {
 				return $isHoverable
 					? `&:hover .top {
-					left: -10px;
-				};
-	
-				&:hover .bottom {
-					left: 10px;
-				}`
+        left: -10px;
+      };
+
+      &:hover .bottom {
+        left: 10px;
+      }`
 					: "";
 			}};
 
@@ -118,8 +127,18 @@ const StyledHeader = styled.header`
 	@media screen and (max-width: ${deviceSize.mobileL}) {
 		.logo-wrapper {
 			display: none;
-		};
-	};
+		}
+	} ;
 `;
 
-export { StyledHeader };
+export const StyledInnerLayout = styled.div`
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.mobile-nav-wrapper {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+`;
