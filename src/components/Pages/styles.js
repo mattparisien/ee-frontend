@@ -10,7 +10,7 @@ ul {
 
 .featured-work-free-image-wrapper {
   
-  background-color: blue;
+  
   position: absolute;
   height: 30vw;
   width: 400px;

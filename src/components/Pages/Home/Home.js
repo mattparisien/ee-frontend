@@ -24,6 +24,7 @@ import About from "./components/About";
 import How from "./components/How";
 import FeaturedWork from "./components/FeaturedWork";
 
+
 function Home(props) {
 	const [data, setData] = useState([]);
 	const [error, setError] = useState(null);
@@ -71,6 +72,8 @@ function Home(props) {
 
 	useEffect(() => {
 		gsap.registerPlugin(DrawSVGPlugin);
+
+		console.log(data && data);
 
 		// introAnimation.current
 		// 	.to($(eye.current).find("path"), {
@@ -150,7 +153,7 @@ function Home(props) {
 		// 		},
 		// 		2
 		// 	);
-	});
+	}, []);
 
 	//Featured work titles
 
@@ -163,7 +166,7 @@ function Home(props) {
 				ref={addToRefs}
 			>
 				<Hero />
-
+	
 				<About data={data} />
 				<How />
 				<FeaturedWork data={data} />
