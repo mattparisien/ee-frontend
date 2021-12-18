@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Section from "../../../Section";
-import Container from "../../../Container";
+import Container from "../../../Containers/Container";
 import UnorderedList from "../../../Lists/UnorderedList";
 import Image from "../../../Image";
 import { StyledFeaturedWork } from "../../styles";

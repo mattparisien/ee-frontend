@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
-import { StyledViewportNav } from "./styles/StyledViewportNav";
+import { StyledViewportNav } from "../styles/StyledViewportNav";
 import Container from "./Container";
-import { navigation } from "../data/data";
+import { navigation } from "../../data/data";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 import gsap from "gsap/all";

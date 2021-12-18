@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Section from "../../../Section";
-import Container from "../../../Container";
+import Container from "../../../Containers/Container";
 import { Eye, Ear } from "../../../Svg";
 
 function Hero(props) {
