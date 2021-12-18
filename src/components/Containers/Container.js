@@ -14,6 +14,11 @@ export default function Container(props) {
 			$centerInner={props.centerInner}
 			$paddingVerticalNone={props.paddingVerticalNone}
 			className={containerClass}
+			isBelow={props.isBelow}
+			isAbove={props.isAbove}
+			isAbsolute={props.isAbsolute}
+			clipTo={props.clipTo}
+			isCustomBg={props.isCustomBg}
 		>
 			{props.children}
 		</StyledContainer>

@@ -16,10 +16,13 @@ export default function useFetch(path, options) {
 			return;
 		}
 
-		const convertToUrlArray = posts => {
+		const convertToPostArray = posts => {
 			return posts.data.map(post => ({
 				id: post.id,
 				featureImage: post.attributes.FeatureImage.data.attributes.url,
+				title: post.attributes.Title,
+				subtitle: post.attributes.subtitle,
+				body: post.attributes.Body,
 			}));
 		};
 
@@ -57,11 +60,21 @@ export default function useFetch(path, options) {
 		if (options.requestType && options.requestType === "upload") {
 			fetch(url)
 				.then(res => res.json())
-				.then(info => convertToUrlArray(info))
+				.then(info => convertToPostArray(info))
 				.then(featureImages => checkIfValidUpload(featureImages))
 				.then(arrayOfValidUrls => setData(arrayOfValidUrls))
 				.catch(err => setError(err))
 				.finally(() => setLoading(false));
+			return;
+		}
+
+		if (options.requestType && options.requestType === "textContent") {
+			fetch(url)
+				.then(res => res.json())
+				.then(res => setData(res.data))
+				.catch(err => setError(err))
+				.finally(() => setLoading(false));
+			return;
 		}
 	}, []);
 

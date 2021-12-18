@@ -15,7 +15,13 @@ export const StyledHeader = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding: ${({ $headerStyles }) => $headerStyles.padding};
+	padding: 2rem 4rem;
+
+	@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
+		padding: 1.8rem !important;
+		height: 75px;
+	}
+
 	z-index: 9999;
 	display: flex;
 	align-items: center;
@@ -26,6 +32,13 @@ export const StyledHeader = styled.div`
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+
+		@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
+			top: 50%;
+			left: 0;
+			transform: translate(0, -50%);
+			width: 150px;
+		}
 
 		a {
 			height: 100%;
@@ -67,20 +80,23 @@ export const StyledHeader = styled.div`
 		}
 	}
 
-	.mobile-nav-wrapper {
-		display: inline-block;
+	button {
 		margin-left: auto;
-		button {
-			outline: none;
-			border: 0px;
-			background: transparent;
-			position: relative;
-			height: 30px;
-			width: 35px;
+		outline: none;
+		border: 0px;
+		background: transparent;
+		position: relative;
 
-			${props => {
-				return !props.isMenuActive
-					? `&:hover{
+		width: 35px;
+
+		@media ${device.mobileS} {
+			width: 2rem;
+			height: auto;
+		}
+
+		${props => {
+			return !props.isMenuActive
+				? `&:hover{
 						.top {
 							left: 10px;
 						}
@@ -89,61 +105,57 @@ export const StyledHeader = styled.div`
 							left: -10px;
 						}
 					}`
-					: "";
-			}}
+				: "";
+		}}
 
-			.top,
-			.bottom {
-				height: 2.5px;
-				width: 100%;
-				position: absolute;
-				top: ${props => (props.isMenuActive ? "50%" : "")};
-				left: ${props => (props.isMenuActive ? "50%" : "0")};
-				transform-origin: center;
-				transition: 300ms ease;
-			}
+		.top {
+			transform: ${props =>
+				props.isMenuActive
+					? "translate(-50%, -50%)rotate(45deg)"
+					: "translate(0, 5px)rotate(0deg)"};
+		}
 
-			.top {
-				transform: ${props =>
-					props.isMenuActive
-						? "translate(-50%, -50%)rotate(45deg)"
-						: "translate(0, 5px)rotate(0deg)"};
-			}
+		.bottom {
+			transform: ${props =>
+				props.isMenuActive
+					? "translate(-50%, -50%)rotate(-45deg)"
+					: "translate(0, -5px)rotate(0deg)"};
+		}
 
-			.bottom {
-				transform: ${props =>
-					props.isMenuActive
-						? "translate(-50%, -50%)rotate(-45deg)"
-						: "translate(0, -5px)rotate(0deg)"};
-			}
+		.top,
+		.bottom {
+			height: 2.5px;
+			width: 100%;
+			position: absolute;
+			top: ${props => (props.isMenuActive ? "50%" : "")};
+			left: ${props => (props.isMenuActive ? "50%" : "0")};
+			transform-origin: center;
+			transition: 300ms ease;
+		}
 
-			.burger-circle {
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				transform-origin: center;
-				transform: translate(-50%, -50%) scale(0);
+		.burger-circle {
+			width: 66px;
+			height: 66px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform-origin: center;
+			transform: translate(-50%, -50%) scale(0);
+
+			@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
+				width: 48px;
+				height: 48px;
 			}
 		}
 	}
-
-	@media screen and (max-width: ${deviceSize.mobileL}) {
-		.logo-wrapper {
-			display: none;
-		}
-	} ;
 `;
 
 export const StyledInnerLayout = styled.div`
 	width: 100%;
 	height: 100%;
 	position: relative;
-	.mobile-nav-wrapper {
-		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-	}
+	display: flex;
+	align-items: center;
 
 	.logo-wrapper path {
 		transition: 300ms ease;

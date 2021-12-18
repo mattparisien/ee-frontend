@@ -11,6 +11,7 @@ export default function renderGridItems(data) {
 
 	arrayofGrids = divideArray(data, 7);
 
+	console.log('array of grid', arrayofGrids)
 	
 
 	return arrayofGrids.map(nested => {
@@ -35,15 +36,15 @@ export default function renderGridItems(data) {
 								key={post.id}
 							>
 								<Image
-									url={`${post.attributes.FeatureImage.data.attributes.url}`}
-									title={post.attributes.Title}
-									subTitle={post.attributes.Subtitle}
+									url={post.featureImage}
+									title={post.title}
+									subTitle={post.subtitle}
 									classes={"project-grid-item__image-wrapper"}
 									key={post.id}
 								/>
 								<div className='project-grid-item__mobile-title'>
-									<div className='title'>{post.attributes.Title}</div>
-									<div className='subtitle'>{post.attributes.Subtitle}</div>
+									<div className='title'>{post.title}</div>
+									<div className='subtitle'>{post.subtitle}</div>
 								</div>
 							</Link>
 						</GridItem>

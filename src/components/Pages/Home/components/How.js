@@ -1,13 +1,15 @@
 import React from "react";
-import { Section, Container } from "../../../index";
+import { ThemeConsumer } from "styled-components";
+import { Section, Container, Heading } from "../../../index";
 import Steps from "../components/Steps";
-
+import { useTheme } from "styled-components";
+import Scene from "../../../Engine/Scene";
 function How() {
+	const theme = useTheme();
+
 	return (
-		<Section classes={"section-how"} bg={"light"}>
-			<Container>
-				<Steps />
-			</Container>
+		<Section classes={"section-how"} bg={"dark"}>
+			<Scene/>
 		</Section>
 	);
 }

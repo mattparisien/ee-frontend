@@ -5,7 +5,6 @@ import { StyledFeaturedWork } from "../../styles";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
 import useMouseMove from "../../../../helpers/hooks/useMouseMove";
-import ImageMesh from "../../../Canvas/ImageMesh";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 function FeaturedWork(props) {
@@ -136,7 +135,7 @@ function FeaturedWork(props) {
 							isVisible={isHovering}
 						/>
 					</div>
-					<ImageMesh />
+					
 				</StyledFeaturedWork>
 			</Container>
 		</Section>

@@ -5,7 +5,9 @@ import { Trumpet } from "../index";
 import Spinner from "../Vector/Spinner";
 
 function About(props) {
-	const [data, error, loading] = useFetch("/api/about");
+	const [data, error, loading] = useFetch("/api/about", {
+		requestType: "textContent",
+	});
 
 	useEffect(() => {
 		console.log(data && data);
