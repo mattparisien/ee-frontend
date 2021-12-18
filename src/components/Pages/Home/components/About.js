@@ -2,8 +2,8 @@ import React, { useRef, useEffect } from "react";
 import Section from "../../../Section";
 import Container from "../../../Container";
 import Line from "../../../Line";
-import Paragraph from "../../../Paragraph";
-import { Eye, Ear } from "../../../Svg";
+
+
 import { Trumpet } from "../../../Svg";
 
 function About(props) {
