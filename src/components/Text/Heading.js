@@ -1,6 +1,5 @@
 import React from "react";
 import { StyledHeading } from "./styles/StyledHeading";
-
 import classNames from "classnames";
 
 function Heading(props) {
