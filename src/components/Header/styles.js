@@ -82,11 +82,11 @@ export const StyledHeader = styled.div`
 				return !props.isMenuActive
 					? `&:hover{
 						.top {
-							left: -5px;
+							left: 10px;
 						}
 
 						.bottom {
-							left: 5px;
+							left: -10px;
 						}
 					}`
 					: "";
