@@ -95,18 +95,24 @@ export const StyledHeader = styled.div`
 				height: 2.5px;
 				width: 100%;
 				position: absolute;
-				left: 0;
-
+				top: ${props => (props.isMenuActive ? "50%" : "")};
+				left: ${props => (props.isMenuActive ? "50%" : "0")};
 				transform-origin: center;
 				transition: 300ms ease;
 			}
 
 			.top {
-				transform: translateY(-5px);
+				transform: ${props =>
+					props.isMenuActive
+						? "translate(-50%, -50%)rotate(45deg)"
+						: "translate(0, 5px)rotate(0deg)"};
 			}
 
 			.bottom {
-				transform: translateY(5px);
+				transform: ${props =>
+					props.isMenuActive
+						? "translate(-50%, -50%)rotate(-45deg)"
+						: "translate(0, -5px)rotate(0deg)"};
 			}
 
 			.burger-circle {

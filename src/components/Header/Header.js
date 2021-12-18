@@ -53,6 +53,7 @@ export default function Header(props) {
 
 	return (
 		<StyledHeader
+			isMenuActive={menuState}
 			$headerStyles={headerStyles}
 			$isHoverable={isHoverable}
 			ref={addToRefs}

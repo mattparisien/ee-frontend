@@ -67,28 +67,6 @@ export default function SideMenu(props) {
 					0.5
 				)
 				.to(
-					burgerbottom,
-					{
-						rotation: "45",
-						top: "50%",
-						left: "50%",
-						y: "-50%",
-						x: "-50%",
-					},
-					0
-				)
-				.to(
-					burgerTop,
-					{
-						rotation: "-45",
-						top: "50%",
-						left: "50%",
-						y: "-50%",
-						x: "-50%",
-					},
-					0
-				)
-				.to(
 					circle,
 					{
 						scale: 1,
@@ -136,27 +114,6 @@ export default function SideMenu(props) {
 							menuAnimIn.current.clear();
 							menuAnimOut.current.clear();
 						},
-					},
-					0.2
-				)
-				.to(
-					burgerbottom,
-					{
-					rotation: '0',
-					onComplete: () => {
-						gsap.set(burgerbottom, { clearProps: true })
-					}
-					},
-					0.2
-				)
-				.to(
-					burgerTop,
-					{
-					rotation: '0',
-					top: 0,
-					onComplete: () => {
-						gsap.set(burgerTop, { clearProps: true })
-					}
 					},
 					0.2
 				);
