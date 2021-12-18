@@ -102,6 +102,16 @@ export default function SideMenu(props) {
 					0.1
 				)
 				.to(
+					circle,
+					{
+						scale: 0,
+						opacity: 0,
+						duration: 0.5,
+						ease: "back.out(2)",
+					},
+					0.5
+				)
+				.to(
 					menuRef.current,
 					{
 						x: "-100%",
@@ -111,6 +121,7 @@ export default function SideMenu(props) {
 							gsap.set(menuRef.current, { display: "none" });
 							gsap.set(menuRef.current, { clearProps: true });
 							gsap.set(chars, { clearProps: true });
+
 							menuAnimIn.current.clear();
 							menuAnimOut.current.clear();
 						},
