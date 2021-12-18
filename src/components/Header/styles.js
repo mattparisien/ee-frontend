@@ -145,10 +145,13 @@ export const StyledInnerLayout = styled.div`
 				: props.theme.colors["dark"]};
 	}
 
+	.burger-circle {
+		fill: ${({ theme }) => theme.colors.light};
+	}
+
 	.bottom,
 	.top {
 		transition: 300ms ease;
-		background-color: ${(props, theme) =>
-			props.menuIsActive ? "white" : "black"};
+		background-color: ${({ theme }) => theme.colors.dark};
 	}
 `;

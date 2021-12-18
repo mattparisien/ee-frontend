@@ -33,21 +33,11 @@ main {
 	min-height: 100vh;
 }
 
-.char {
 
-	&:nth-of-type(odd) {
-		transform: translateY(-100%);
-	}
-
-	&:nth-of-type(even) {
-		transform: translateY(100%);
-	}
-	position: relative;
-	display: inline-block;
-
-}
 
 .line {
+	opacity: 0;
+	transform: translateY(100%);
 	overflow: hidden;
 }
 
