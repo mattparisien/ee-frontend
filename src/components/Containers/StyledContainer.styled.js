@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { device } from "./device";
+import { device } from "../styles/device";
 
 const StyledContainer = styled.div`
 

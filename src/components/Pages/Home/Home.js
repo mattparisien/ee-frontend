@@ -6,7 +6,7 @@ import { useTheme } from "styled-components";
 import useScroll from "../../../helpers/hooks/useScrollDir";
 import axios from "axios";
 import Hero from "./components/Hero";
-import About from "./components/About";
+import About from "../About";
 import How from "./components/How";
 import FeaturedWork from "./components/FeaturedWork";
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { StyledSvg } from "./styles/StyledSvg";
+import { StyledSvg } from "./StyledSvg";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import $ from "jquery";

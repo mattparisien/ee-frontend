@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device, deviceSize } from "../styles/device";
 
 export const StyledHeading = styled.div`
 ${({ $headingStyles, theme }) => {

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import useAxios from "../helpers/hooks/useAxios";
 import useIntersect from "../helpers/hooks/useIntersect";
 import gsap from "gsap";
-import renderGridItems from "../helpers/renderGridItems";
+import renderGridItems from "./Grid/helpers/renderGridItems";
 
 function ListBlogPosts({ gap, padding }) {
 	const { error, data, loading } = useAxios("/api/posts?fields=*&populate=*", null);

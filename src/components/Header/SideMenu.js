@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { StyledViewportNav } from "../styles/StyledViewportNav";
-import Container from "./Container";
+import { Container } from "../index";
 import { navigation } from "../../data/data";
 import { Link } from "react-router-dom";
 import $ from "jquery";

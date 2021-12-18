@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Ellipse } from "../Svg";
+import { Ellipse } from "../index";
 
 let isFirstRender = true;
 

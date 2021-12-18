@@ -1,7 +1,6 @@
 import React from "react";
-import Section from "../../../Section";
-import Container from "../../../Container";
-import Steps from "./Steps";
+import { Section, Container } from "../../../index";
+import Steps from "../components/Steps";
 
 function How() {
 	return (

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import Line from "../Line";
-import { Arrow } from "../Svg";
+import { Arrow } from "../index";
 import SlidingText from "../Marquee";
 import { StyledProjectFooterInner, StyledContactFooterInner } from "./styles";
 

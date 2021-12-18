@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { StyledContainer } from "../styles/StyledContainer.styled.js";
+import { StyledContainer } from "./StyledContainer.styled";
 
 export default function Container(props) {
 	const containerClass = classNames("styled-object-container", props.classes);

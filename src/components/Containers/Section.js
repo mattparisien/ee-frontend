@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { StyledSection } from "./styles/StyledSection";
+import { StyledSection } from "./StyledSection";
 import classNames from "classnames";
 
 export default function Section(props) {

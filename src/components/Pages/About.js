@@ -1,10 +1,7 @@
 import React, { useRef, useEffect } from "react";
-import Section from "../../../Section";
-import Container from "../../../Container";
-import Line from "../../../Line";
+import { Section, Container, Line, Paragraph } from "../index";
 
-
-import { Trumpet } from "../../../Svg";
+import { Trumpet } from "../index";
 
 function About(props) {
 	const { data } = props;

@@ -1,10 +1,6 @@
 import React from "react";
-import Grid from "../../../Grid";
-import GridItem from "../../../GridItem";
-import Heading from "../../../Heading";
-import Paragraph from "../../../Paragraph";
+import { Heading, Paragraph, Grid, GridItem } from "../../../index";
 import useAxios from "../../../../helpers/hooks/useAxios";
-import { useEffect } from "react/cjs/react.development";
 
 function Steps() {
 	const { data, error, loading } = useAxios("/api/steps?fields=*&populate=*");
