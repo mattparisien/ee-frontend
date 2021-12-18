@@ -1,6 +1,6 @@
 import GridItem from "../components/GridItem";
 import Grid from "../components/Grid";
-import Image from "../components/Image";
+import Image from "../components/Image/Image";
 import { Link } from "react-router-dom";
 import divideArray from "./divideArray";
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyledFooter, StyledFooterBottom } from "./styles";
-import UnorderedList from '../Lists/UnorderedList';
+import { UnorderedList } from '..';
 
 function NavList(props) {
   return (

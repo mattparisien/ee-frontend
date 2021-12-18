@@ -1,17 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { StyledFooter  } from "./styles";
-import Container from "../Container";
-
+import { StyledFooter } from "./styles";
+import { Container } from "../index";
 import Contact from "./Contact";
 import Project from "./Project";
-
 import useAxios from "../../helpers/hooks/useAxios";
 import fetchNextPost from "../../helpers/fetchPostId";
 import gsap from "gsap";
 import NavList from "./NavList";
 import { navigation } from "../../data/data";
 import { Link } from "react-router-dom";
-
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
@@ -58,11 +55,8 @@ export default function Footer(props) {
 					/>
 				)}
 
-					<NavList links={navLinks}/>
+				<NavList links={navLinks} />
 			</Container>
-			
-				
-			
 		</StyledFooter>
 	);
 }

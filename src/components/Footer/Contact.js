@@ -1,5 +1,5 @@
 import React from "react";
-import Heading from "../Heading";
+import { Heading } from "..";
 import { StyledContactFooterInner } from "./styles";
 
 function Contact() {

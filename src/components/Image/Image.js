@@ -1,8 +1,8 @@
 import React, { useEffect, useState, forwardRef } from "react";
 
 import ImageOverlay from "./ImageOverlay";
-import useResize from "../helpers/hooks/useResize";
-import StyledImage from "./styles/StyledImage";
+import useResize from "../../helpers/hooks/useResize";
+import StyledImage from "../styles/StyledImage";
 
 function Image(props, ref) {
 	const [isHovered, setHovered] = useState(false);
