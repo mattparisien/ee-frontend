@@ -78,17 +78,19 @@ export const StyledHeader = styled.div`
 			height: 30px;
 			width: 35px;
 
-			${({ $isHoverable }) => {
-				return $isHoverable
-					? `&:hover .top {
-        left: -10px;
-      };
+			${props => {
+				return !props.isMenuActive
+					? `&:hover{
+						.top {
+							left: -5px;
+						}
 
-      &:hover .bottom {
-        left: 10px;
-      }`
+						.bottom {
+							left: 5px;
+						}
+					}`
 					: "";
-			}};
+			}}
 
 			.top,
 			.bottom {
