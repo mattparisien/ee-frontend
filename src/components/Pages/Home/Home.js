@@ -4,45 +4,22 @@ import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import useResize from "../../../helpers/hooks/useResize";
 import { useTheme } from "styled-components";
 import useScroll from "../../../helpers/hooks/useScrollDir";
-import axios from "axios";
 import Hero from "./components/Hero";
 import About from "../About";
 import How from "./components/How";
 import FeaturedWork from "./components/FeaturedWork";
+import useFetch from "../../../helpers/hooks/useFetch";
 
 function Home(props) {
-	const [data, setData] = useState([]);
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		console.log(data && data);
-
-		const url1 = axios.get(`${process.env.REACT_APP_BASE_URL}/api/about`);
-		const url2 = axios.get(
-			`${process.env.REACT_APP_BASE_URL}/api/posts?fields=*&populate=*`
-		);
-
-		Promise.all([url1, url2])
-			.then(values => {
-				values.forEach(val => {
-					if (!data[val]) {
-						setData(prev => [...prev, val.data.data]);
-					}
-				});
-			})
-			.catch(err => setError(err))
-			.finally(() => setLoading(false));
-	}, [loading]);
 
 	const { addToRefs } = props;
 	const scrollRef = useRef(null);
-	
 
 	useEffect(() => {
 		gsap.registerPlugin(DrawSVGPlugin);
 
-		console.log(data && data);
+		// console.log(data && data);
 
 		// introAnimation.current
 		// 	.to($(eye.current).find("path"), {
@@ -136,9 +113,9 @@ function Home(props) {
 			>
 				<Hero />
 
-				<About data={data} />
+				<About />
 				<How />
-				<FeaturedWork data={data} />
+				{/* <FeaturedWork data={data} /> */}
 			</div>
 		</>
 	);

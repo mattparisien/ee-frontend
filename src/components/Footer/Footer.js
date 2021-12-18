@@ -3,7 +3,6 @@ import { StyledFooter } from "./styles";
 import { Container, Svg } from "../index";
 import Contact from "./Contact";
 import Project from "./Project";
-import useAxios from "../../helpers/hooks/useAxios";
 import fetchNextPost from "../../helpers/fetchPostId";
 import gsap from "gsap";
 import NavList from "./NavList";
@@ -30,9 +29,9 @@ export default function Footer(props) {
 	// 	})
 	// }, [footerRef, lines])
 
-	const { data, error, loading } = useAxios(null, () =>
-		fetchNextPost(location)
-	);
+	// const { data, error, loading } = useAxios(null, () =>
+	// 	fetchNextPost(location)
+	// );
 
 	useEffect(() => {
 		setLayout(location.includes("projects/") ? "project" : "contact");
@@ -51,7 +50,7 @@ export default function Footer(props) {
 				{layout === "project" && (
 					<Project
 						footerRef={footerRef}
-						title={data && data.attributes.Title}
+						// title={data && data.attributes.Title}
 					/>
 				)}
 

@@ -38,9 +38,7 @@ function App() {
 	const intersector = useIntersect(appRefs, setState);
 	const [windowWidth, isResized] = useResize();
 
-	useEffect(() => {
-		console.log($(".paragraph").html().split("\n"));
-	}, [appRefs]);
+
 
 	const toggleMenu = () => {
 		setState(prev => ({
