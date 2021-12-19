@@ -3,12 +3,9 @@ import { StyledViewportNav } from "../styles/StyledViewportNav";
 import { Container } from "../index";
 import { navigation } from "../../data/data";
 import { Link } from "react-router-dom";
-import $ from "jquery";
 import gsap from "gsap/all";
-import SplitText from "gsap/SplitText";
-import CSSPlugin from "gsap/CSSPlugin";
 import useHoverEffect from "../../effects/LinkHover";
-import useSplit from "../../helpers/hooks/useSplit";
+
 
 export default function SideMenu(props) {
 	// const [isSplit, setIsSplit] = useState(false);
@@ -136,35 +133,7 @@ export default function SideMenu(props) {
 		}
 	}, [isOpen, appRefs]);
 
-	const handleMouseEnter = e => {
-		const linkChars = $(e.target).find(".char");
-		const tl = gsap.timeline();
-		let delay = 0;
 
-		linkChars.each((i, char) => {
-			const tl = gsap.timeline();
-			tl.timeScale(1.2).to(char, {
-				y: "-50%",
-				stagger: 0.1,
-				ease: "power1.in",
-				duration: 0.2,
-				opacity: 0,
-				delay: (delay += 0.1),
-				onComplete: () => {
-					gsap.set(char, {
-						y: "50",
-					});
-					tl.to(char, {
-						ease: "power1.out",
-						duration: 0.3,
-						opacity: 1,
-						y: 0,
-						stagger: 0.1,
-					});
-				},
-			});
-		});
-	};
 
 	const navLinks = navigation.map(link => (
 		<li key={link.id}>
@@ -172,7 +141,6 @@ export default function SideMenu(props) {
 				to={link.path}
 				ref={props.addToRefs}
 				className='-fade-up menu-link'
-				onMouseEnter={e => handleMouseEnter(e)}
 				style={{ overflow: "hidden" }}
 				onClick={() => toggleMenu()}
 			>

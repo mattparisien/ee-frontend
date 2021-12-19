@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { deviceSize } from "./device";
+import { shuffleColors } from "../../helpers/shuffleColors";
 
 const StyledViewportNav = styled.div`
 	height: 100vh;
@@ -38,7 +39,17 @@ const StyledViewportNav = styled.div`
 				}
 
 				&:hover a {
-					color: ${({ theme }) => theme.colors.yellow};
+					&:nth-of-type(1) {
+						color: ${({ theme }) => theme.colors.yellow};
+					}
+
+					&:nth-of-type(2) {
+						color: ${({ theme }) => theme.colors.red};
+					}
+
+					&:nth-of-type(3) {
+						color: ${({ theme }) => theme.colors.blue};
+					}
 				}
 
 				&:nth-child(even) {

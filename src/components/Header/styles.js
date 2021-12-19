@@ -91,7 +91,7 @@ export const StyledHeader = styled.div`
 
 		@media ${device.mobileS} {
 			width: 2rem;
-			height: auto;
+			height: 100%;
 		}
 
 		${props => {

@@ -9,10 +9,10 @@ export default function useAppData() {
 		colors: {
 			light: "#F9F9EA",
 			dark: "#010201",
-			red: "#E32127",
-			green: "#3F855C",
-			blue: "#2057A0",
-			yellow: "#F0D549",
+			red: "#DF181F",
+			green: "#039924s",
+			blue: "#1E70DD",
+			yellow: "#F1DA0A",
 		},
 	};
 

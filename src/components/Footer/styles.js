@@ -78,7 +78,7 @@ export const StyledFooter = styled.footer`
 		justify-content: end;
 	
 		li {
-			padding: 0 3rem;
+			padding: 0 2vw;
 		}
 	}
 
