@@ -7,11 +7,13 @@ import $ from "jquery";
 import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
 import CSSPlugin from "gsap/CSSPlugin";
-import { LinearMipMapNearestFilter } from "three";
+import useHoverEffect from "../../effects/LinkHover";
 
 export default function SideMenu(props) {
 	const [isSplit, setIsSplit] = useState(false);
 	const { appRefs, toggleMenu, isOpen, hasShown } = props;
+	
+
 
 	const menuStyles = {
 		offset: props.offset,
@@ -21,6 +23,12 @@ export default function SideMenu(props) {
 	const menuAnimOut = useRef(gsap.timeline());
 	const hoverTl = useRef(gsap.timeline());
 	const menuRef = useRef(null);
+	const container = menuRef.current;
+	const q = gsap.utils.selector(container);
+	const hoverTimelines = useRef;
+	hoverTimelines.current = [];
+	const hover = useHoverEffect(container)
+	const links = q("a");
 
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
@@ -39,11 +47,6 @@ export default function SideMenu(props) {
 		const burgerbottom = appRefs.current["burger-bottom"];
 		const burgerTop = appRefs.current["burger-top"];
 		const circle = appRefs.current["menu-active-circle"];
-
-		gsap.registerPlugin(CSSPlugin);
-
-		const container = menuRef.current;
-		const q = gsap.utils.selector(container);
 		const chars = q(".line .char");
 		const charsOdd = q(".char:nth-of-type(odd)");
 		const charsEven = q(".char:nth-of-type(even)");
@@ -134,25 +137,31 @@ export default function SideMenu(props) {
 
 	const handleMouseEnter = e => {
 		const linkChars = $(e.target).find(".char");
+		const tl = gsap.timeline();
+		let delay = 0;
 
-		gsap.to(linkChars, {
-			y: "-50%",
-			stagger: 0.1,
-			ease: "power1.in",
-			duration: 0.2,
-			opacity: 0,
-			onComplete: () => {
-				gsap.set(linkChars, {
-					y: "50",
-				});
-				gsap.to(linkChars, {
-					ease: "power1.out",
-					duration: 0.3,
-					opacity: 1,
-					y: 0,
-					stagger: 0.1
-				});
-			},
+		linkChars.each((i, char) => {
+			const tl = gsap.timeline();
+			tl.timeScale(1.2).to(char, {
+				y: "-50%",
+				stagger: 0.1,
+				ease: "power1.in",
+				duration: 0.2,
+				opacity: 0,
+				delay: (delay += 0.1),
+				onComplete: () => {
+					gsap.set(char, {
+						y: "50",
+					});
+					tl.to(char, {
+						ease: "power1.out",
+						duration: 0.3,
+						opacity: 1,
+						y: 0,
+						stagger: 0.1,
+					});
+				},
+			});
 		});
 	};
 
