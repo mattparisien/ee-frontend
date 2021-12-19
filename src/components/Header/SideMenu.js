@@ -19,6 +19,7 @@ export default function SideMenu(props) {
 
 	const menuAnimIn = useRef(gsap.timeline());
 	const menuAnimOut = useRef(gsap.timeline());
+	const hoverTl = useRef(gsap.timeline());
 	const menuRef = useRef(null);
 
 	useEffect(() => {
@@ -131,9 +132,29 @@ export default function SideMenu(props) {
 		}
 	}, [isOpen, appRefs]);
 
-	const handleMouseEnter = e => {};
+	const handleMouseEnter = e => {
+		const linkChars = $(e.target).find(".char");
 
-	const handleMouseLeave = e => {};
+		gsap.to(linkChars, {
+			y: "-50%",
+			stagger: 0.1,
+			ease: "power1.in",
+			duration: 0.2,
+			opacity: 0,
+			onComplete: () => {
+				gsap.set(linkChars, {
+					y: "50",
+				});
+				gsap.to(linkChars, {
+					ease: "power1.out",
+					duration: 0.3,
+					opacity: 1,
+					y: 0,
+					stagger: 0.1
+				});
+			},
+		});
+	};
 
 	const navLinks = navigation.map(link => (
 		<li key={link.id}>
@@ -142,7 +163,6 @@ export default function SideMenu(props) {
 				ref={props.addToRefs}
 				className='-fade-up menu-link'
 				onMouseEnter={e => handleMouseEnter(e)}
-				onMouseLeave={e => handleMouseLeave(e)}
 				style={{ overflow: "hidden" }}
 				onClick={() => toggleMenu()}
 			>

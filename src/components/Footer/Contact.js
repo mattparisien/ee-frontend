@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Heading } from "..";
+import { Container, Heading } from "..";
 import { StyledContactFooterInner } from "./styles";
-import useMouseMove from "../../helpers/hooks/useMouseMove";
 
 function Contact() {
-	const [location] = useMouseMove();
 	const line = useRef(null);
 	line.current = [];
+	const containers = useRef(null);
+	containers.current = [];
 	const [coords, setCoords] = useState({
 		x: 0,
 		y: 0,
@@ -18,31 +18,39 @@ function Contact() {
 		}
 	};
 
-	useEffect(() => {
-		const lineRef = line.current;
-		console.log("lineref", lineRef);
-
-		setCoords({
-			x: location.pageX / window.innerWidth,
-			y: location.pageY,
-		});
-
-		let width = 0;
-
-		if (coords.x && coords.y && lineRef.length > 0) {
-			updateCoords(coords);
+	const addToContainerRefs = el => {
+		if (containers.current && !containers.current.includes(el)) {
+			containers.current.push(el);
 		}
+	};
 
-		function updateCoords(coords) {
-			lineRef.forEach(line => {
-				line &&
-					line.setAttribute(
-						"d",
-						`M250,0 Q${coords.x * 500},${coords.y} 250,500`
-					);
-			});
-		}
-	}, [location]);
+	// useEffect(() => {
+	// 	const lineRef = line.current;
+	// 	console.log("lineref", lineRef);
+
+	// 	document.addEventListener("mousemove", function (e) {
+	// 		setCoords({
+	// 			x: e.clientX / window.innerWidth,
+	// 			y: e.clientY,
+	// 		});
+	// 	});
+
+	// 	let width = 0;
+
+	// 	if (coords.x && coords.y && lineRef.length > 0) {
+	// 		updateCoords(coords);
+	// 	}
+
+	// 	function updateCoords(coords) {
+	// 		lineRef.forEach(line => {
+	// 			line &&
+	// 				line.setAttribute(
+	// 					"d",
+	// 					`M250,0 Q${coords.x * 500},${coords.y} 250,500`
+	// 				);
+	// 		});
+	// 	}
+	// }, []);
 
 	return (
 		<StyledContactFooterInner className='contact-footer-inner'>
@@ -51,6 +59,7 @@ function Contact() {
 					xmlns='http://www.w3.org/2000/svg'
 					viewBox='0 0 500 500'
 					preserveAspectRatio='xMidYMid meet'
+					ref={addToContainerRefs}
 				>
 					<path
 						id='curve-path'
@@ -60,10 +69,11 @@ function Contact() {
 						ref={addToRefs}
 					/>
 				</svg>
-				<svg
+				{/* <svg
 					xmlns='http://www.w3.org/2000/svg'
 					viewBox='0 0 500 500'
 					preserveAspectRatio='xMidYMid meet'
+					ref={addToContainerRefs}
 				>
 					<path
 						id='curve-path'
@@ -72,7 +82,7 @@ function Contact() {
 						stroke='white'
 						ref={addToRefs}
 					/>
-				</svg>
+				</svg> */}
 			</div>
 
 			<Heading small white>

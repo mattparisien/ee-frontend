@@ -33,6 +33,9 @@ const StyledViewportNav = styled.div`
 
 			li {
 				transition: 300ms ease;
+				&:not(:last-of-type) {
+					margin-bottom: 3rem;
+				}
 
 				&:hover a {
 					color: ${({ theme }) => theme.colors.yellow};
@@ -48,17 +51,20 @@ const StyledViewportNav = styled.div`
 				a {
 					text-transform: uppercase;
 					font-size: 14vw;
+					line-height: 14vw;
+
 					letter-spacing: -0.6vw;
 					transition: 300ms ease;
 
-				
 					@media (min-width: ${deviceSize.laptopL}px) {
 						font-size: 190px;
+						line-height: 190px;
 						letter-spacing: -1px;
 					}
 
 					@media (max-width: ${deviceSize.mobileL}px) {
 						font-size: 17vw;
+						line-height: 17vw;
 					}
 				}
 			}

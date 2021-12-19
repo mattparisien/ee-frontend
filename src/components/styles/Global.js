@@ -33,6 +33,8 @@ main {
 	min-height: 100vh;
 }
 
+
+
 .char {
 	display: inline-block;
 	position: relative;
@@ -52,6 +54,7 @@ main {
 
 .line {
 	overflow: hidden;
+	
 }
 
 @media ${device.mobileS} {
