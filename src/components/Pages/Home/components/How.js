@@ -8,8 +8,8 @@ function How() {
 	const theme = useTheme();
 
 	return (
-		<Section classes={"section-how"} bg={"dark"}>
-			<Scene/>
+		<Section classes={"section-how"} bg={"light"}>
+			
 		</Section>
 	);
 }

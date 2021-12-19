@@ -13,9 +13,9 @@ function Scene() {
 		let Bodies = Matter.Bodies;
 		let Composites = Matter.Composites;
 		let Composite = Matter.Composite;
-
+		let Mouse = Matter.Mouse;
 		let Common = Matter.Common;
-		let MouseConstrainst = Matter.MouseConstraint;
+		let MouseConstraint = Matter.MouseConstraint;
 
 		let engine = Engine.create({});
 
@@ -24,9 +24,9 @@ function Scene() {
 			engine: engine,
 			canvas: canvasRef.current,
 			options: {
-				width: 800,
-				height: 800,
-				background: "rgba(255, 0, 0, 0.5)",
+				width: 500,
+				height: 500,
+				background: "transparent",
 				wireframes: false,
 			},
 		});
@@ -37,7 +37,6 @@ function Scene() {
 		Composite.add(engine.world, [
 			Bodies.rectangle(400, 600, 1200, 50.5, {
 				isStatic: true,
-				render: { fillStyle: "#060a19" },
 			}),
 		]);
 
@@ -51,6 +50,28 @@ function Scene() {
 		});
 
 		Composite.add(engine.world, [stack]);
+
+		let mouse = Mouse.create(render.canvas),
+			mouseConstraint = MouseConstraint.create(engine, {
+				mouse: mouse,
+				constraint: {
+					stiffness: 0.2,
+					render: {
+						visible: false,
+					},
+				},
+			});
+
+		Composite.add(engine.world, mouseConstraint);
+
+		render.mouse = mouse;
+
+		Render.lookAt(render, {
+			min: { x: 0, y: 0 },
+			max: { x: 800, y: 600 },
+		});
+
+	
 	}, []);
 
 	return (
