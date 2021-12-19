@@ -5,12 +5,7 @@ import $ from "jquery";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 
-
-
-
 function Hero(props) {
-
-	
 	const eye = useRef(null);
 	const overlayRef = useRef(null);
 	const amperstand = useRef(null);
@@ -20,8 +15,6 @@ function Hero(props) {
 
 	useEffect(() => {
 		gsap.registerPlugin(DrawSVGPlugin);
-
-		
 
 		introAnimation.current
 			.to($(eye.current).find("path"), {

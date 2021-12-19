@@ -3,12 +3,24 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import useResize from "./useResize";
 
-function useSplit(paragraphs) {
-	const [isSplit, setSplit] = useState(false);
-	const mySplitText = useRef([]);
-	mySplitText.current = paragraphs;
-	
-	
+function useSplit(arrayOfElements) {
+	const [isSplit, setIsSplit] = useState(false);
+	const [chars, setChars] = useState(null);
+	useEffect(() => {
+		gsap.registerPlugin(SplitText);
 
+		if (arrayOfElements.length > 0 && !isSplit) {
+			
+			const mySplitText = new SplitText(arrayOfElements, {
+				type: "lines, chars",
+				charsClass: "char",
+				linesClass: "line",
+			});
+			setIsSplit(true);
+			setChars(mySplitText.chars);
+		}
+	}, [arrayOfElements]);
+
+	return [isSplit, chars];
 }
 export default useSplit;

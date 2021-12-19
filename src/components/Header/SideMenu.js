@@ -8,9 +8,10 @@ import gsap from "gsap/all";
 import SplitText from "gsap/SplitText";
 import CSSPlugin from "gsap/CSSPlugin";
 import useHoverEffect from "../../effects/LinkHover";
+import useSplit from "../../helpers/hooks/useSplit";
 
 export default function SideMenu(props) {
-	const [isSplit, setIsSplit] = useState(false);
+	// const [isSplit, setIsSplit] = useState(false);
 	const { appRefs, toggleMenu, isOpen, hasShown } = props;
 	
 
@@ -30,18 +31,18 @@ export default function SideMenu(props) {
 	const hover = useHoverEffect(container)
 	const links = q("a");
 
-	useEffect(() => {
-		gsap.registerPlugin(SplitText);
-		const links = appRefs.current["menu-links"];
-		if (!isSplit) {
-			const mySplitText = new SplitText(links, {
-				type: "lines, chars",
-				charsClass: "char",
-				linesClass: "line",
-			});
-			setIsSplit(true);
-		}
-	}, [appRefs]);
+	// useEffect(() => {
+	// 	gsap.registerPlugin(SplitText);
+	// 	const links = appRefs.current["menu-links"];
+	// 	if (!isSplit) {
+	// 		const mySplitText = new SplitText(links, {
+	// 			type: "lines, chars",
+	// 			charsClass: "char",
+	// 			linesClass: "line",
+	// 		});
+	// 		setIsSplit(true);
+	// 	}
+	// }, [appRefs]);
 
 	useEffect(() => {
 		const burgerbottom = appRefs.current["burger-bottom"];

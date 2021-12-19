@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import $ from "jquery";
+import useSplit from "../helpers/hooks/useSplit";
 
 export default function useHoverEffect(container) {
 
@@ -8,6 +9,8 @@ export default function useHoverEffect(container) {
 
 	const q = gsap.utils.selector(container);
 	const links = q("a");
+	const [isSplit, chars] = useSplit(links);
+
 
 	useEffect(() => {
 		const handleMouseEnter = e => {
