@@ -5,12 +5,14 @@ import { deviceSize } from "./device";
 const StyledImage = styled.div`
 	width: ${props => (props.$width ? props.$width : "100%")};
 	height: ${props => (props.$height ? props.$height : "100%")};
-	overflow: "hidden";
+	overflow: hidden;
+	position: relative;
 	.image {
+		overflow: hidden;
 		background-image: url(${({ $props }) =>
-			$props.url
-				? `${process.env.REACT_APP_BASE_URL + $props.url}`
-				: "https://images.pexels.com/photos/9876016/pexels-photo-9876016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"});
+			$props.url.startsWith("http")
+				? $props.url
+				: process.env.REACT_APP_API_URL + $props.url});
 		background-position: 50% 50%;
 		background-repeat: "no-repeat";
 		background-size: 200%;

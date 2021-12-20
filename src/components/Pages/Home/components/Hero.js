@@ -1,20 +1,75 @@
 import React, { useRef, useEffect } from "react";
-import Section from "../../../Section";
-import Container from "../../../Container";
-import { Eye, Ear } from "../../../Svg";
+
+import { Container, Section, Eye, Ear } from "../../../index";
+import $ from "jquery";
+import gsap from "gsap";
+import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 
 function Hero(props) {
+	const eye = useRef(null);
+	const overlayRef = useRef(null);
+	const amperstand = useRef(null);
+	const scrollCta = useRef(null);
+	const ear = useRef(null);
+	const introAnimation = useRef(gsap.timeline());
+
+	useEffect(() => {
+		gsap.registerPlugin(DrawSVGPlugin);
+
+		introAnimation.current
+			.to($(eye.current).find("path"), {
+				drawSVG: "0%",
+				duration: 1,
+				ease: "expo.inout",
+				duration: 1,
+				stagger: 0.2,
+			})
+			.to(
+				$(ear.current).find("path"),
+				{
+					drawSVG: "0%",
+					duration: 1,
+					ease: "expo.inout",
+					duration: 1,
+					stagger: 0.2,
+				},
+				0.3
+			)
+			.to(
+				overlayRef.current,
+				{
+					x: "-100%",
+					duration: 2.5,
+					ease: "Expo.easeInOut",
+				},
+				1.4
+			)
+			.to(
+				amperstand.current,
+				{
+					fontSize: "50vw",
+					duration: 3,
+					ease: "Expo.easeInOut",
+				},
+				2
+			)
+			.to(
+				scrollCta.current,
+				{
+					y: 0,
+					duration: 0.9,
+					ease: "Expo.easeOut",
+				},
+				2
+			);
+	}, []);
 	return (
 		<Section
 			classes={"section-hero"}
 			sectionRef={props.sectionRefs}
 			bg={"light"}
 		>
-			<Container
-				bg={"light"}
-				width='100%'
-				height='100vh'
-			>
+			<Container bg={"light"} width='100%' height='100vh'>
 				<div className='overflow-container -w-100 -h-100 -position-relative'>
 					<Eye speed='2' />
 					<div

@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import useAxios from "./helpers/hooks/useAxios";
 import gsap from "gsap";
 import { useInView } from "react-intersection-observer";
 import SplitText from "gsap/SplitText";
 import useResize from "./helpers/hooks/useResize";
 
 function Grid() {
-	const { data, error, loading } = useAxios(
-		"/api/grid-items?fields=*&populate=*"
-	);
+	// const { data, error, loading } = useAxios(
+	// 	"/api/grid-items?fields=*&populate=*"
+	// );
 
 	const { ref, inView, entry } = useInView({ threshold: 0.8 });
 

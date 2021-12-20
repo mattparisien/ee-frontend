@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledSection = styled.section`
+	position: ${props => (props.isRelative ? "relative" : "inherit")};
 	background-color: ${({ theme, $bg }) => {
 		return (
 			($bg === "light" && theme.colors.light) ||

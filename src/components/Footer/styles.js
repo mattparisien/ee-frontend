@@ -11,8 +11,10 @@ export const StyledFooter = styled.footer`
 		height: auto;
 	}
 
-	h2 {
+	#next-link, .marquee-text {
 		font-size: 15vw;
+		font-family: 'Kobe Bold';
+		letter-spacing: -0.6vw;
 
 		color: ${({ theme }) => theme.colors.light};
 
@@ -22,12 +24,17 @@ export const StyledFooter = styled.footer`
 		};
 	};
 
+	#scene {
+		
+		left: 0;
+		top: 0;
+	}
 
 
 	.footer-horiz-band {
 		height: 30vw;
 		max-height: 500px;
-		min-height: 250px;
+		min-height: 200px;
 		display: flex;
 		align-items: center;
 	}
@@ -73,12 +80,16 @@ export const StyledFooter = styled.footer`
 
 	};
 
+	.footer-navList-wrapper {
+		margin-top: 2rem;
+	}
+
 	.link-list {
 		color: ${({theme}) => theme.colors.light};
 		justify-content: end;
 	
 		li {
-			padding: 0 3rem;
+			padding: 0 2vw;
 		}
 	}
 
@@ -87,6 +98,7 @@ export const StyledFooter = styled.footer`
 `;
 
 export const StyledProjectFooterInner = styled.div`
+	width: 100%;
 `
 
 export const StyledContactFooterInner = styled.div`
@@ -97,6 +109,7 @@ export const StyledFooterBottom = styled.div`
 	color: ${({theme}) => theme.colors.light};
 	display: flex;
 	align-items: center;
+	width: 100%;
 
 	.footer-brand-name {
 		width: 10rem;

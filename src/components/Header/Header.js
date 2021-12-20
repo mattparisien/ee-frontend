@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { TextLogo } from "../Svg";
+import { TextLogo } from "../index";
 import MobileNav from "./MobileNav";
 import useResize from "../../helpers/hooks/useResize";
 import useScroll from "../../helpers/hooks/useScrollDir";
@@ -53,6 +53,7 @@ export default function Header(props) {
 
 	return (
 		<StyledHeader
+			isMenuActive={menuState}
 			$headerStyles={headerStyles}
 			$isHoverable={isHoverable}
 			ref={addToRefs}

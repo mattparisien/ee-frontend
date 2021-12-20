@@ -1,11 +1,13 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { device } from "./device";
+import { device } from "../styles/device";
 
 const StyledContainer = styled.div`
-
-
-position: relative;
+	position: ${props => (props.isAbsolute ? "absolute" : "relative")};
+	top: ${props => (props.isAbsolute ? "0" : "")};
+	left: ${props => (props.isAbsolute ? "0" : "")};
+	z-index: ${props => (props.isBelow ? "-1" : props.isAbove ? "1" : "")};
+	clip-path: ${props => (props.clipTo ? `url(${props.clipTo})` : "")};
 
 	${({ $paddingVerticalNone }) => {
 		return (
@@ -20,12 +22,7 @@ position: relative;
 	min-height: ${props => (props.$height ? "" : "100vh")};
 	height: ${props => props.$height && props.$height};
 	width: ${props => (props.$width ? props.$width : "100vw")};
-	background-color: ${({ theme, $bg }) => {
-		return (
-			($bg === "light" && theme.colors.light) ||
-			($bg === "dark" && theme.colors.dark)
-		);
-	}};
+	background-color: ${props => (props.isCustomBg ? props.isCustomBg : "")};
 	color: ${({ theme, $bg }) => {
 		return (
 			($bg === "light" && theme.colors.dark) ||

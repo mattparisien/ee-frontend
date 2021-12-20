@@ -1,15 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import Section from "../../../Section";
-import Container from "../../../Container";
+import {Image, Section, Container} from "../../../index";
 import UnorderedList from "../../../Lists/UnorderedList";
-import Image from "../../../Image";
 import { StyledFeaturedWork } from "../../styles";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
-import Heading from "../../../Heading";
 import useMouseMove from "../../../../helpers/hooks/useMouseMove";
-import ImageMesh from "../../../Canvas/ImageMesh";
-import { Scroll } from "react-locomotive-scroll";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 function FeaturedWork(props) {
@@ -140,7 +135,7 @@ function FeaturedWork(props) {
 							isVisible={isHovering}
 						/>
 					</div>
-					<ImageMesh />
+					
 				</StyledFeaturedWork>
 			</Container>
 		</Section>

@@ -8,7 +8,7 @@ import React, {
 import Header from "./components/Header/Header";
 
 import Footer from "./components/Footer/Footer";
-import SideMenu from "./components/SideMenu";
+import { SideMenu } from "./components/index"
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
@@ -38,9 +38,7 @@ function App() {
 	const intersector = useIntersect(appRefs, setState);
 	const [windowWidth, isResized] = useResize();
 
-	useEffect(() => {
-		console.log($(".paragraph").html().split("\n"));
-	}, [appRefs]);
+
 
 	const toggleMenu = () => {
 		setState(prev => ({

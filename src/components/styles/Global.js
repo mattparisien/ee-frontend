@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { device } from "./device";
+import { device, deviceSize } from "./device";
 
 const GlobalStyles = createGlobalStyle`
 * {
@@ -35,12 +35,31 @@ main {
 
 
 
-.line {
-	opacity: 0;
-	transform: translateY(100%);
-	overflow: hidden;
+.char {
+	display: inline-block;
+	position: relative;
 }
 
+.viewport-nav {
+	.char:nth-of-type(odd) {
+		opacity: 0;
+		transform: translateY(100%);
+		
+	}
+	
+	.char:nth-of-type(even) {
+		opacity: 0;
+		transform: translateY(-100%);
+		
+	}
+}
+
+
+
+.line {
+	overflow: hidden;
+	
+}
 
 @media ${device.mobileS} {
 	html {

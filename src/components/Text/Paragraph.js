@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
-import { StyledParagraph } from "./styles/StyledParagraph";
-import useResize from "../helpers/hooks/useResize";
+import { StyledParagraph } from "./styles";
+import useResize from "../../helpers/hooks/useResize";
 
 import classNames from "classnames";
 

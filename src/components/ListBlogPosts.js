@@ -1,11 +1,14 @@
 import React, { useRef, useEffect } from "react";
-import useAxios from "../helpers/hooks/useAxios";
 import useIntersect from "../helpers/hooks/useIntersect";
 import gsap from "gsap";
-import renderGridItems from "../helpers/renderGridItems";
+import renderGridItems from "./Grid/helpers/renderGridItems";
+import useFetch from "../helpers/hooks/useFetch";
+import Spinner from "./Vector/Spinner";
 
 function ListBlogPosts({ gap, padding }) {
-	const { error, data, loading } = useAxios("/api/posts?fields=*&populate=*", null);
+	const [data, error, loading] = useFetch("/api/posts?fields=*&populate=*", {
+		requestType: "upload",
+	});
 
 	const gridItemRefs = useRef(null);
 	const imageRefs = useRef(null);
@@ -15,8 +18,7 @@ function ListBlogPosts({ gap, padding }) {
 	return (
 		<>
 			{data && renderGridItems(data)}
-			{error && <p>{error}</p>}
-			{loading && <p>Loading...</p>}
+			{loading && <Spinner />}
 		</>
 	);
 }

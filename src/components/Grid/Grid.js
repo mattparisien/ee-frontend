@@ -1,6 +1,6 @@
 import React from "react";
-import StyledGrid from "./styles/StyledGrid.styles";
-import useResize from "../helpers/hooks/useResize";
+import StyledGrid from "../styles/StyledGrid.styles";
+import useResize from "../../helpers/hooks/useResize";
 import classNames from "classnames";
 
 function Grid(props) {
