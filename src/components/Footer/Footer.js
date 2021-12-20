@@ -7,6 +7,7 @@ import fetchNextPost from "../../helpers/fetchPostId";
 import gsap from "gsap";
 import NavList from "./NavList";
 import { navigation } from "../../data/data";
+import Scene from "../Engine/Scene";
 import { Link } from "react-router-dom";
 
 export default function Footer(props) {
@@ -55,7 +56,9 @@ export default function Footer(props) {
 				)}
 
 				<NavList links={navLinks} />
+				
 			</Container>
+			
 		</StyledFooter>
 	);
 }

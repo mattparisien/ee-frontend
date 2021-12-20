@@ -22,6 +22,11 @@ export const StyledFooter = styled.footer`
 		};
 	};
 
+	#scene {
+		
+		left: 0;
+		top: 0;
+	}
 
 
 	.footer-horiz-band {

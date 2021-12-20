@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Container, Heading } from "..";
 import { StyledContactFooterInner } from "./styles";
 
+
 function Contact() {
 	const line = useRef(null);
 	line.current = [];
@@ -54,36 +55,7 @@ function Contact() {
 
 	return (
 		<StyledContactFooterInner className='contact-footer-inner'>
-			<div className='bouncy-lines-container' className='-display-flex'>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					viewBox='0 0 500 500'
-					preserveAspectRatio='xMidYMid meet'
-					ref={addToContainerRefs}
-				>
-					<path
-						id='curve-path'
-						d='M250,0 Q250,250 250,500'
-						strokeWidth='2px'
-						stroke='white'
-						ref={addToRefs}
-					/>
-				</svg>
-				{/* <svg
-					xmlns='http://www.w3.org/2000/svg'
-					viewBox='0 0 500 500'
-					preserveAspectRatio='xMidYMid meet'
-					ref={addToContainerRefs}
-				>
-					<path
-						id='curve-path'
-						d='M250,0 Q250,250 250,500'
-						strokeWidth='2px'
-						stroke='white'
-						ref={addToRefs}
-					/>
-				</svg> */}
-			</div>
+
 
 			<Heading small white>
 				info@eyesandears.com

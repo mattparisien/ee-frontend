@@ -27,7 +27,7 @@ export const StyledHeader = styled.div`
 	align-items: center;
 
 	.logo-wrapper {
-		width: 200px;
+		width: 150px;
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -86,7 +86,6 @@ export const StyledHeader = styled.div`
 		border: 0px;
 		background: transparent;
 		position: relative;
-
 		width: 35px;
 
 		@media ${device.mobileS} {
@@ -136,16 +135,25 @@ export const StyledHeader = styled.div`
 		.burger-circle {
 			width: 66px;
 			height: 66px;
+			display: block;
 			position: absolute;
 			left: 50%;
 			top: 50%;
 			transform-origin: center;
 			transform: translate(-50%, -50%) scale(0);
+			background-color: ${({ theme }) => theme.colors.light};
+			border-radius: 50%;
+			z-index: -1;
+			overflow: hidden;
 
 			@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
 				width: 48px;
 				height: 48px;
 			}
+
+			
+
+		
 		}
 	}
 `;

@@ -51,7 +51,7 @@ export default function SideMenu(props) {
 
 		if (isOpen) {
 			gsap.set(menuRef.current, { display: "block" });
-			console.log(appRefs);
+			console.log('refs', appRefs);
 			menuAnimIn.current
 				.to(menuRef.current, {
 					x: 0,

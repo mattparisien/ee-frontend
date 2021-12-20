@@ -16,11 +16,9 @@ function MobileNav(props) {
 		>
 			<span className='top' id='burger-top' ref={addToRefs}></span>
 			<span className='bottom' id='burger-bottom' ref={addToRefs}></span>
-			<Ellipse
-				classes={"burger-circle"}
-				circleRef={addToRefs}
-				id='menu-active-circle'
-			/>
+			<div className={"burger-circle"} ref={addToRefs} id='menu-active-circle'>
+				<div className='inner-expanding-circle'></div>
+			</div>
 		</button>
 	);
 }

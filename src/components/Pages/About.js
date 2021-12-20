@@ -10,7 +10,7 @@ function About(props) {
 	});
 
 	useEffect(() => {
-		console.log(data && data);
+		console.log('hi', data && data);
 	}, [loading]);
 
 	const content = () => (

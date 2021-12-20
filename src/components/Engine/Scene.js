@@ -1,55 +1,55 @@
 import React, { useEffect, useRef } from "react";
 import Matter from "matter-js";
 import { StyledScene } from "./styles";
+import useResize from "../../helpers/hooks/useResize";
 
 function Scene() {
 	const boxRef = useRef(null);
 	const canvasRef = useRef(null);
+	const [windowWidth] = useResize();
 
 	useEffect(() => {
-		let Engine = Matter.Engine;
-		let Render = Matter.Render;
-		let World = Matter.World;
-		let Bodies = Matter.Bodies;
-		let Composites = Matter.Composites;
-		let Composite = Matter.Composite;
-		let Mouse = Matter.Mouse;
-		let Common = Matter.Common;
-		let MouseConstraint = Matter.MouseConstraint;
+		let Engine = Matter.Engine,
+			Render = Matter.Render,
+			Runner = Matter.Runner,
+			World = Matter.World,
+			MouseConstraint = Matter.MouseConstraint,
+			Mouse = Matter.Mouse,
+			Bodies = Matter.Bodies,
+			Body = Matter.Body,
+			Composite = Matter.Composite;
 
-		let engine = Engine.create({});
+		let engine = Engine.create(),
+			world = engine.world;
 
 		let render = Render.create({
-			element: boxRef.current,
+			element: document.body,
 			engine: engine,
-			canvas: canvasRef.current,
 			options: {
-				width: 500,
-				height: 500,
-				background: "transparent",
+				width: windowWidth,
+				height: 600,
 				wireframes: false,
+				showVelocity: true,
 			},
 		});
 
-		Engine.run(engine);
 		Render.run(render);
 
-		Composite.add(engine.world, [
-			Bodies.rectangle(400, 600, 1200, 50.5, {
-				isStatic: true,
-			}),
+		let runner = Runner.create();
+		Runner.run(runner, engine);
+
+		Composite.add(world, [
+			// falling blocks
+			Bodies.rectangle(200, 100, 60, 60, { frictionAir: 0.001 }),
+			Bodies.rectangle(400, 100, 60, 60, { frictionAir: 0.05 }),
+			Bodies.rectangle(600, 100, 60, 60, { frictionAir: 0.1 }),
+
+			// walls
+			Bodies.rectangle(400, 0, windowWidth, 50, { isStatic: true }),
+			Bodies.rectangle(400, 600, windowWidth, 50, { isStatic: true }),
+			Bodies.rectangle(windowWidth - 200, 300, 50, 600, { isStatic: true }),
+			Bodies.rectangle(0 - 130, 300, 50, 600, { isStatic: true }),
 		]);
-
-		//Add bodies
-		const stack = Composites.stack(100, 0, 10, 8, 0, 0, function (x, y) {
-			return Bodies.circle(
-				x,
-				y,
-				Common.random(30, 100, { restitution: 0.6, friction: 0.1 })
-			);
-		});
-
-		Composite.add(engine.world, [stack]);
 
 		let mouse = Mouse.create(render.canvas),
 			mouseConstraint = MouseConstraint.create(engine, {
@@ -62,15 +62,13 @@ function Scene() {
 				},
 			});
 
-		Composite.add(engine.world, mouseConstraint);
+		Composite.add(world, mouseConstraint);
 
+		// keep the mouse in sync with rendering
 		render.mouse = mouse;
 
-		Render.lookAt(render, {
-			min: { x: 0, y: 0 },
-			max: { x: 800, y: 600 },
-		});
-
+		// fit the render viewport to the scene
+	
 	
 	}, []);
 
