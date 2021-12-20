@@ -18,10 +18,12 @@ const StyledMarquee = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		color: white;
 	}
 
 	.marquee-item {
 		margin-right: 5rem;
+
 	}
 `;
 

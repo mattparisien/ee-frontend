@@ -9,10 +9,6 @@ function About(props) {
 		requestType: "textContent",
 	});
 
-	useEffect(() => {
-		console.log('hi', data && data);
-	}, [loading]);
-
 	const content = () => (
 		<>
 			<Paragraph size={"medium"} indent indentTitle={"Agency"} fadeUp={"lines"}>

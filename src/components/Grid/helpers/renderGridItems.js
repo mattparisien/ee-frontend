@@ -41,6 +41,7 @@ export default function renderGridItems(data) {
 									subTitle={post.subtitle}
 									classes={"project-grid-item__image-wrapper"}
 									key={post.id}
+									hasOverlay
 								/>
 								<div className='project-grid-item__mobile-title'>
 									<div className='title'>{post.title}</div>

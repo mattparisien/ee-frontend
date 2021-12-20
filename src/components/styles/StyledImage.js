@@ -5,8 +5,10 @@ import { deviceSize } from "./device";
 const StyledImage = styled.div`
 	width: ${props => (props.$width ? props.$width : "100%")};
 	height: ${props => (props.$height ? props.$height : "100%")};
-	overflow: "hidden";
+	overflow: hidden;
+	position: relative;
 	.image {
+		overflow: hidden;
 		background-image: url(${({ $props }) =>
 			$props.url.startsWith("http")
 				? $props.url

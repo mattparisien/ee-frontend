@@ -9,8 +9,6 @@ export default function useFetch(path, options) {
 	const cloudinaryBaseUrl = process.env.REACT_APP_CLOUDINARY_URL;
 	const url = baseUrl + path;
 
-	console.log('url', url)
-
 	useEffect(() => {
 		if (!options) {
 			console.error(
@@ -20,8 +18,7 @@ export default function useFetch(path, options) {
 		}
 
 		const convertToPostArray = posts => {
-			const simplifiedPosts =  posts.data.map(post => (
-				{
+			const simplifiedPosts = posts.data.map(post => ({
 				id: post.id,
 				featureImage: post.attributes.FeatureImage.data.attributes.url,
 				title: post.attributes.Title,
@@ -29,15 +26,13 @@ export default function useFetch(path, options) {
 				body: post.attributes.Body,
 			}));
 
+			console.log("simplified", simplifiedPosts);
 			return simplifiedPosts;
 		};
 
 		const replaceInvalidResponses = (validResponses, featureImagesArr) => {
-			
 			const defaultImageUrl =
 				"https://images.pexels.com/photos/10438284/pexels-photo-10438284.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-
-			
 
 			for (let i = 0; i < featureImagesArr.length; i++) {
 				if (!validResponses.includes(featureImagesArr[i].featureImage)) {
@@ -59,16 +54,22 @@ export default function useFetch(path, options) {
 						.map(response => response.url);
 				})
 				.then(validResponses =>
-					
 					replaceInvalidResponses(validResponses, featureImagesArr)
 				)
+				.catch(err => err);
+		};
+
+		const fetchFirstPost = () => {
+			return fetch(baseUrl + "/api/posts/1")
+				.then(res => res.json())
+				.then(data => data)
 				.catch(err => err);
 		};
 
 		if (options.requestType && options.requestType === "upload") {
 			fetch(url)
 				.then(res => res.json())
-				.then(info =>  convertToPostArray(info))
+				.then(info => convertToPostArray(info))
 				.then(featureImages => checkIfValidUpload(featureImages))
 				.then(arrayOfValidUrls => setData(arrayOfValidUrls))
 				.catch(err => setError(err))
@@ -83,6 +84,27 @@ export default function useFetch(path, options) {
 				.catch(err => setError(err))
 				.finally(() => setLoading(false));
 			return;
+		}
+
+		if (options.requestType && options.requestType === "nextPost") {
+			fetch(url)
+				.then(res => res.json())
+				.then(postData =>
+					postData.error && postData.error.status === 404
+						? fetchFirstPost()
+						: setData({
+								id: postData.data.id,
+								title: postData.data.attributes.Title,
+						  })
+				)
+				.then(firstPostData =>
+					setData({
+						id: firstPostData.data.id,
+						title: firstPostData.data.attributes.Title,
+					})
+				)
+				.catch(err => setError(err))
+				.finally(() => setLoading(false));
 		}
 	}, []);
 

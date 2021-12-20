@@ -11,7 +11,7 @@ export default function SideMenu(props) {
 	// const [isSplit, setIsSplit] = useState(false);
 	const { appRefs, toggleMenu, isOpen, hasShown } = props;
 	
-
+	
 
 	const menuStyles = {
 		offset: props.offset,

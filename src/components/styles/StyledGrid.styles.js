@@ -14,15 +14,8 @@ const StyledGrid = styled.div`
 		1fr
 	);
 
+	
 
-	&.project-grid  {
-		${({ $windowWidth, $gridStyles }) => {
-			return $windowWidth <= deviceSize.mobileL
-				? "grid-auto-rows: 600px;"
-				: $gridStyles.rows;
-		}};
-		}}
-	};
 
 	${({ $windowWidth, $gridStyles }) => {
 		return $windowWidth <= deviceSize.mobileL
@@ -99,7 +92,7 @@ const StyledGrid = styled.div`
 
 		.project-grid-item__image-wrapper {
 			height: 80%;
-		}
+		};
 
 		.project-grid-item__mobile-title {
 			margin-top: 4vw;
@@ -112,9 +105,9 @@ const StyledGrid = styled.div`
 
 			@media (min-width: ${deviceSize.mobileL}px) {
 				visibility: hidden;
-			}
+			};
 
-		}
+		};
 
 		.image-overlay {
 			font-size: 2rem;
@@ -125,18 +118,18 @@ const StyledGrid = styled.div`
 
 			.title {
 				font-family: 'Kobe Bold';
-			}
+			};
 
-		}
-	}
+		};
+	};
 
 		.project-grid__item {
 
 			
 
-			@media only screen and (max-width: ${deviceSize.tablet}px) {
+			@media only screen and (max-width: ${deviceSize.mobileL}px) {
 				grid-column: 1/13 !important;	
-				grid-row: auto/auto !important;	
+				grid-row: repeat(10, 200px);
 				transform: none !important;
 			};
 			

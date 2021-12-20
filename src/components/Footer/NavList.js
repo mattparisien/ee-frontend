@@ -9,7 +9,7 @@ function NavList(props) {
   const hover = useHoverEffect(container);
 
   return (
-    <StyledFooterBottom ref={container}>
+    <StyledFooterBottom ref={container} className="footer-navList-wrapper">
       <div className='footer-brand-name'>Eyes & Ears © 2021</div>
 				<UnorderedList>{props.links}</UnorderedList>
     </StyledFooterBottom>

@@ -37,7 +37,7 @@ function SlidingText(props) {
 				<Marquee velocity={velocity} className='react-marquee' key={i}>
 					{[...Array(marqueeItems)].map((el, i) => (
 						<div className='marquee-item' key={i} ref={marqueeItem}>
-							<h2>{text}</h2>
+							<h2 className="marquee-text">{text}</h2>
 						</div>
 					))}
 				</Marquee>

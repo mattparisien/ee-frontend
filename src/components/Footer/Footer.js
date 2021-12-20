@@ -7,8 +7,8 @@ import fetchNextPost from "../../helpers/fetchPostId";
 import gsap from "gsap";
 import NavList from "./NavList";
 import { navigation } from "../../data/data";
-import Scene from "../Engine/Scene";
 import { Link } from "react-router-dom";
+import useFetch from "../../helpers/hooks/useFetch";
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
@@ -30,13 +30,16 @@ export default function Footer(props) {
 	// 	})
 	// }, [footerRef, lines])
 
-	// const { data, error, loading } = useAxios(null, () =>
-	// 	fetchNextPost(location)
-	// );
+	const nextPostId = parseInt(location.split("projects/")[1]) + 1;
+
+	const [data, error, loading] = useFetch(`/api/posts/${nextPostId}`, {
+		requestType: "nextPost",
+	});
 
 	useEffect(() => {
+		console.log(data && data)
 		setLayout(location.includes("projects/") ? "project" : "contact");
-	}, [location]);
+	}, [location, data]);
 
 	const navLinks = navigation.map(listItem => (
 		<li key={listItem.id}>
@@ -49,16 +52,11 @@ export default function Footer(props) {
 			<Container height={"100%"} centerInner={layout === "project" && true}>
 				{layout === "contact" && <Contact />}
 				{layout === "project" && (
-					<Project
-						footerRef={footerRef}
-						// title={data && data.attributes.Title}
-					/>
+					<Project footerRef={footerRef} title={data && data.title} />
 				)}
 
 				<NavList links={navLinks} />
-				
 			</Container>
-			
 		</StyledFooter>
 	);
 }
