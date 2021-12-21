@@ -29,7 +29,7 @@ export default function SideMenu(props) {
 	linkRefs.current = [];
 
 	const [isSplit, chars, splitCount] = useSplit([linkRefs.current][0], {
-		type: "chars, line",
+		type: "chars, lines",
 		charsClass: "char",
 		linesClass: "line"
 	});

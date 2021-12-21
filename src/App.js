@@ -41,7 +41,7 @@ function App() {
 	const [windowWidth, isResized] = useResize();
 
 	useEffect(() => {
-		console.log('hi')
+		console.log("hi");
 		const scroll = new locomotiveScroll({
 			el: scrollRef.current,
 			smooth: true,
@@ -116,11 +116,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								key={location.pathname}
 								onExiting={handleTransition}
 							>
-								<SiteRoutes
-									location={location}
-									addToRefs={addToRefs}
-									
-								/>
+								<SiteRoutes location={location} addToRefs={addToRefs} />
 							</Transition>
 						</TransitionGroup>
 					</div>
