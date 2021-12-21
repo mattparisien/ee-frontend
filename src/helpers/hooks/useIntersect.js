@@ -35,6 +35,7 @@ function useIntersection(arrayOfRefs, options) {
 
 		arrayOfRefs.forEach(item => {
 			observer.observe(item);
+			state.target && observer.unobserve(state.target);
 		});
 
 		return () => {

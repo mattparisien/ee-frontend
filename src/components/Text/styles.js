@@ -18,14 +18,7 @@ export const StyledParagraph = styled.div`
   .fade-up-line {
     transform: translateY(100%);
     opacity: 0;
-    
-
-    &:nth-of-type(1)::before {
-      padding-left: 20%;
-      
-      content: '';
-
-    }
+  
   }
 
 	.indent-title {
