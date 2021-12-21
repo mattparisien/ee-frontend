@@ -6,14 +6,22 @@ import gsap from "gsap";
 import { Link } from "react-router-dom";
 import useMouseMove from "../../../../helpers/hooks/useMouseMove";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import useFetch from "../../../../helpers/hooks/useFetch";
 
 function FeaturedWork(props) {
-	const { data } = props;
 	const [location] = useMouseMove();
 	const [isHovering, setHovering] = useState(false);
 	const [imageUrl, setImageUrl] = useState(null);
 	const imageRef = useRef(null);
 	const listRefs = useRef(null);
+
+	const [data, error, loading] = useFetch('/api/posts', {
+		requestType: 'uploads'
+	})
+
+
+
+
 
 	const getFeatureImageById = id => {
 		let post = data[1].filter(post => post.id === id);
@@ -25,11 +33,14 @@ function FeaturedWork(props) {
 		}
 
 		imageUrl = post[0].attributes.FeatureImage.data.attributes.url;
-		console.log(imageUrl);
+		
 		return imageUrl;
 	};
 
 	useEffect(() => {
+
+		
+
 		if (isHovering) {
 			gsap.to(imageRef.current, {
 				opacity: 1,
@@ -69,8 +80,9 @@ function FeaturedWork(props) {
 	// };
 
 	const featured =
-		data.length > 1 &&
+		data &&
 		data[1].map((title, index) => (
+
 			<li
 				key={index}
 				className='featured-list-item'

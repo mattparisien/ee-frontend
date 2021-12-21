@@ -8,7 +8,7 @@ import React, {
 import Header from "./components/Header/Header";
 
 import Footer from "./components/Footer/Footer";
-import { SideMenu } from "./components/index"
+import { SideMenu } from "./components/index";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
@@ -16,17 +16,19 @@ import { TransitionGroup, Transition } from "react-transition-group";
 import { useSideMenu, useTransition } from "./animations";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteTransition from "./components/Transition";
-import useIntersect from "./helpers/hooks/useIntersect";
+// import useIntersect from "./helpers/hooks/useIntersect";
 import useResize from "./helpers/hooks/useResize";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import SplitText from "gsap/SplitText";
 import { Helmet } from "react-helmet";
 import $ from "jquery";
+import locomotiveScroll from "locomotive-scroll";
 
 const isSplit = false;
 
 function App() {
+	const scrollRef = useRef(null);
 	const location = useLocation();
 	const sectionRefs = useRef(null);
 
@@ -35,10 +37,16 @@ function App() {
 	const q = gsap.utils.selector(app.current);
 	const paragraphs = q(".fade-up-lines");
 	const transitioner = useTransition(appRefs, state, setState);
-	const intersector = useIntersect(appRefs, setState);
+	// const intersector = useIntersect(appRefs, setState);
 	const [windowWidth, isResized] = useResize();
 
-
+	useEffect(() => {
+		console.log('hi')
+		const scroll = new locomotiveScroll({
+			el: scrollRef.current,
+			smooth: true,
+		});
+	}, [scrollRef]);
 
 	const toggleMenu = () => {
 		setState(prev => ({
@@ -101,15 +109,21 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				/>
 
 				<main>
-					<TransitionGroup className='transition-group'>
-						<Transition
-							timeout={1900}
-							key={location.pathname}
-							onExiting={handleTransition}
-						>
-							<SiteRoutes location={location} addToRefs={addToRefs} />
-						</Transition>
-					</TransitionGroup>
+					<div className='scroll-container' ref={scrollRef}>
+						<TransitionGroup className='transition-group'>
+							<Transition
+								timeout={1900}
+								key={location.pathname}
+								onExiting={handleTransition}
+							>
+								<SiteRoutes
+									location={location}
+									addToRefs={addToRefs}
+									
+								/>
+							</Transition>
+						</TransitionGroup>
+					</div>
 				</main>
 
 				<Footer addToRefs={addToRefs} location={state.location} />

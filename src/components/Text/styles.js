@@ -13,6 +13,21 @@ ${({ $headingStyles, theme }) => {
 
 export const StyledParagraph = styled.div`
 	position: relative;
+
+
+  .fade-up-line {
+    transform: translateY(100%);
+    opacity: 0;
+    
+
+    &:nth-of-type(1)::before {
+      padding-left: 20%;
+      
+      content: '';
+
+    }
+  }
+
 	.indent-title {
 		text-indent: 0px;
 		width: 20%;
@@ -38,9 +53,7 @@ export const StyledParagraph = styled.div`
 			($size === "medium" &&
 				`
 
-     .paragraph {
-      ${$indentStyles.isIndent && `text-indent: 20%`};
-     }
+     
 
       @media ${device.mobileS} {
         font-size: 1.6rem;

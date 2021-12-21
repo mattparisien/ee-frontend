@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-	overflow-y: ${props => (props.isOverflowHidden ? "hidden" : "overlay")};
+	// overflow-y: ${props => (props.isOverflowHidden ? "hidden" : "overlay")};
 }
 
 html,

@@ -62,7 +62,7 @@ function Hero(props) {
 				},
 				2
 			);
-	}, []);
+	}, [eye, ear, amperstand]);
 	return (
 		<Section
 			classes={"section-hero"}
@@ -71,7 +71,7 @@ function Hero(props) {
 		>
 			<Container bg={"light"} width='100%' height='100vh'>
 				<div className='overflow-container -w-100 -h-100 -position-relative'>
-					<Eye speed='2' />
+					<Eye speed='2' ref={eye}/>
 					<div
 						className='-heading-bold -position-absolute-center'
 						id='hero-amperstand'
@@ -82,7 +82,7 @@ function Hero(props) {
 							data-scroll-speed='2'
 						>
 							<div className='scaler'>
-								<span>&</span>
+								<span ref={amperstand}>&</span>
 							</div>
 
 							<span className='scroll-cta -position-absolute'>
@@ -90,7 +90,7 @@ function Hero(props) {
 							</span>
 						</div>
 					</div>
-					<Ear speed='2' />
+					<Ear speed='2' ref={ear}/>
 				</div>
 			</Container>
 

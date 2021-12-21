@@ -9,7 +9,7 @@ function How() {
 
 	return (
 		<Section classes={"section-how"} bg={"light"}>
-			
+			<h1>hi</h1>
 		</Section>
 	);
 }

@@ -11,11 +11,14 @@ export default function useFetch(path, options) {
 
 	useEffect(() => {
 		if (!options) {
+			console.log(url);
 			console.error(
 				'You must include options. Example: { requestType: "upload" }'
 			);
 			return;
 		}
+
+		
 
 		const convertToPostArray = posts => {
 			const simplifiedPosts = posts.data.map(post => ({
@@ -26,7 +29,6 @@ export default function useFetch(path, options) {
 				body: post.attributes.Body,
 			}));
 
-			console.log("simplified", simplifiedPosts);
 			return simplifiedPosts;
 		};
 
