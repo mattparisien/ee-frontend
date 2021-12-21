@@ -41,7 +41,7 @@ function About(props) {
 				duration: 0.8,
 				stagger: 0.1,
 				opacity: 1,
-				ease: 'power2.out'
+				ease: "power2.out",
 			});
 		}
 
@@ -50,9 +50,10 @@ function About(props) {
 
 		gsap.to(q(".fade-up-line"), {
 			y: 0,
-			duration: 0.5,
-			stagger: 0.1,
+			duration: 0.8,
+			stagger: 0.2,
 			opacity: 1,
+			ease: 'power3.out'
 		});
 	}, [isSplit, splitCount, target]);
 
@@ -71,8 +72,6 @@ function About(props) {
 			<Trumpet width={"30vw"} color={"light"} position={"absolute"} />
 			<Paragraph
 				size={"small"}
-				indent
-				indentTitle={"About"}
 				addToRefs={addToRefs}
 			>
 				{data && data.attributes.Body.split("split")[1]}

@@ -24,6 +24,10 @@ export const StyledFooter = styled.footer`
 		};
 	};
 
+	.styled-object-container {
+		padding-bottom: 0px;
+	}
+
 	#scene {
 		
 		left: 0;
@@ -81,7 +85,8 @@ export const StyledFooter = styled.footer`
 	};
 
 	.footer-navList-wrapper {
-		margin-top: 2rem;
+		margin: 5vw 0;
+		
 	}
 
 	.link-list {

@@ -3,6 +3,7 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import useResize from "./useResize";
 import { split } from "lodash";
+import $ from "jquery";
 
 function useSplit(arrayOfElements, options) {
 	const [splitText, setSplitText] = useState(null);
@@ -20,9 +21,9 @@ function useSplit(arrayOfElements, options) {
 		}
 
 		if (arrayOfElements.length >= 0 && !isSplit) {
-			console.log('elementssss', arrayOfElements)
+			console.log("elementssss", arrayOfElements);
 			const mySplitText = new SplitText(arrayOfElements, options);
-
+			$(mySplitText.lines).wrap('<div class="line-wrapper"></div>');
 			setIsSplit(true);
 			setSplitText(mySplitText);
 			setSplitCount(1);
@@ -33,6 +34,7 @@ function useSplit(arrayOfElements, options) {
 	useEffect(() => {
 		if (splitText) {
 			setSplitText(splitText.revert().split());
+			$(splitText.lines).wrap('<div class="line-wrapper"></div>');
 			setSplitCount(prev => prev + 1);
 		}
 	}, [windowWidth]);

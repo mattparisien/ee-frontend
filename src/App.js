@@ -24,6 +24,7 @@ import SplitText from "gsap/SplitText";
 import { Helmet } from "react-helmet";
 import $ from "jquery";
 import locomotiveScroll from "locomotive-scroll";
+import CookieBar from "./components/Modals/CookieBar";
 
 const isSplit = false;
 
@@ -41,7 +42,6 @@ function App() {
 	const [windowWidth, isResized] = useResize();
 
 	useEffect(() => {
-		console.log("hi");
 		const scroll = new locomotiveScroll({
 			el: scrollRef.current,
 			smooth: true,
@@ -108,8 +108,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					toggleMenu={toggleMenu}
 				/>
 
-				<main>
-					<div className='scroll-container' ref={scrollRef}>
+				<main ref={scrollRef}>
+					<div className='scroll-container'>
 						<TransitionGroup className='transition-group'>
 							<Transition
 								timeout={1900}
@@ -123,6 +123,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				</main>
 
 				<Footer addToRefs={addToRefs} location={state.location} />
+				{/* <CookieBar /> */}
 			</ThemeProvider>
 		</div>
 	);

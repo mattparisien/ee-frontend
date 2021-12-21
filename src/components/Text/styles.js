@@ -14,10 +14,17 @@ ${({ $headingStyles, theme }) => {
 export const StyledParagraph = styled.div`
 	position: relative;
 
+  .line-wrapper {
+    overflow: hidden;
+  }
 
   .fade-up-line {
     transform: translateY(100%);
     opacity: 0;
+
+    &:nth-of-type(1) {
+      s
+    }
   
   }
 
@@ -93,7 +100,7 @@ export const StyledParagraph = styled.div`
 
     
       @media ${device.laptop} {
-        font-size: 2.6rem;
+        font-size: 2.1rem;
 
         & p {
           line-height: 2.9rem;
@@ -131,7 +138,7 @@ export const StyledParagraph = styled.div`
     `) ||
 			($size === "small" &&
 				`
-  ${$indentStyles.isIndent && `text-indent: 20%`};
+  
 
       margin-left: auto;
       margin-top: 50vw;
