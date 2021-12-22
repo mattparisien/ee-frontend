@@ -20,9 +20,7 @@ export default function Header(props) {
 	const [isScrolling, scrollDirection] = useScroll(props.scroller);
 
 
-	// useEffect(() => {
-	// 	console.log(props.scroller)
-	// }, [props.scroller])
+
 
 	useEffect(() => {
 		if (menuState) {

@@ -38,7 +38,6 @@ export default function useScroll(scroller) {
 	);
 
 	const handleScroll = () => {
-		console.log("si scrolling!");
 		setScrolling(true);
 		handleEndScroll();
 	};

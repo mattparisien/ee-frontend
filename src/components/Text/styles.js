@@ -13,20 +13,18 @@ ${({ $headingStyles, theme }) => {
 
 export const StyledParagraph = styled.div`
 	position: relative;
+  letter-spacing: -1px;
 
   .line-wrapper {
     overflow: hidden;
-  }
+
 
   .fade-up-line {
     transform: translateY(100%);
-    opacity: 0;
-
-    &:nth-of-type(1) {
-      s
-    }
-  
   }
+
+  }
+
 
 	.indent-title {
 		text-indent: 0px;
@@ -46,7 +44,96 @@ export const StyledParagraph = styled.div`
 			text-align: left;
 			width: 100%;
 		}
-	}
+	};
+
+
+  ${({ $size }) => {
+		return (
+			$size === "large" &&
+			`
+      @media ${device.mobileS} {
+        font-size: 1.6rem;
+        
+        & p {
+          line-height: 1.9rem;
+        }
+      };
+    
+      @media ${device.mobileM} {
+        font-size: 2rem;
+
+        & p {
+          line-height: 2.3rem;
+        }
+      };
+    
+      @media ${device.mobileL} {
+        font-size: 2rem;
+
+        & p {
+          line-height: 2.5rem;
+        }
+      };
+
+
+      @media (min-width: 680px) {
+        font-size: 3rem;
+
+        & p {
+          line-height: 2.7rem;
+        }
+
+      }
+
+      @media ${device.tablet} {
+        font-size: 4rem;
+        
+
+        & p {
+          line-height: 4.5rem;
+        }
+      };
+
+    
+      @media ${device.laptop} {
+        font-size: 4.5rem;
+
+        & p {
+          line-height: 6rem;
+        }    
+      };
+
+  
+      @media ${device.laptopL} {
+        font-size: 6rem;
+
+        & p {
+          line-height: 6.2rem;
+        }
+        
+      };
+
+    
+      @media ${device.desktop} {
+        font-size: 6.5rem;
+
+        & p {
+          line-height: 7rem;
+        }
+      };
+
+
+    
+      @media (min-width: 2500px) {
+        font-size: 6rem;
+
+        & p {
+          line-height: 5.2rem;
+        }
+      };
+      `
+		);
+	}}
 
 	${({ $size, $indentStyles }) => {
 		return (
@@ -119,10 +206,10 @@ export const StyledParagraph = styled.div`
 
     
       @media ${device.desktop} {
-        font-size: 6rem;
+        font-size: 3.2rem;
 
         & p {
-          line-height: 7rem;
+          line-height: 3.3rem;
         }
       };
 

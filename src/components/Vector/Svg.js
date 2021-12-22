@@ -41,6 +41,7 @@ export function Ear(props) {
 			viewBox='0 0 693.11 921.78'
 			data-scroll
 			data-scroll-speed={props.speed && props.speed}
+			ref={props.earRef}
 		>
 			<defs></defs>
 			<path
@@ -80,6 +81,9 @@ export function Eye(props) {
 			id='eye'
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 1017.42 439.88'
+			ref={props.eyeRef}
+			data-scroll
+			data-scroll-speed={"5"}
 		>
 			<defs></defs>
 			<g id='Layer_12' data-name='Layer 12'>

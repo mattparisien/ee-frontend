@@ -21,17 +21,12 @@ const isSplit = false;
 function App() {
 	const scrollRef = useRef(null);
 	const location = useLocation();
-	const sectionRefs = useRef(null);
 
 	const { addToRefs, appRefs, state, setState, themes } = useAppData(
 		scrollRef.current
 	);
 	const app = useRef(null);
 	const q = gsap.utils.selector(app.current);
-	const paragraphs = q(".fade-up-lines");
-	const transitioner = useTransition(appRefs, state, setState);
-	// const intersector = useIntersect(appRefs, setState);
-	const [windowWidth, isResized] = useResize();
 
 	const toggleMenu = () => {
 		setState(prev => ({
@@ -49,9 +44,6 @@ function App() {
 			isTransitioning: true,
 		}));
 	};
-
-
-
 
 	return (
 		<div className='App' ref={app}>

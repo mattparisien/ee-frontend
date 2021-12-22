@@ -17,60 +17,43 @@ function Hero(props) {
 	useEffect(() => {
 		gsap.registerPlugin(DrawSVGPlugin);
 
-		console.log(eye && eye.current);
-
-		introAnimation.current.to(amperstand.current, {
-			y: 0,
-			ease: "expo.inOut",
-			duration: 1.5
-		})
-
-		// introAnimation.current
-		// 	.to($(eye.current).find("path"), {
-		// 		drawSVG: "0%",
-		// 		duration: 1,
-		// 		ease: "expo.inout",
-		// 		duration: 1,
-		// 		stagger: 0.2,
-		// 	})
-		// 	.to(
-		// 		$(ear.current).find("path"),
-		// 		{
-		// 			drawSVG: "0%",
-		// 			duration: 1,
-		// 			ease: "expo.inout",
-		// 			duration: 1,
-		// 			stagger: 0.2,
-		// 		},
-		// 		0.3
-		// 	)
-		// 	.to(
-		// 		overlayRef.current,
-		// 		{
-		// 			x: "-100%",
-		// 			duration: 2.5,
-		// 			ease: "Expo.easeInOut",
-		// 		},
-		// 		1.4
-		// 	)
-		// 	.to(
-		// 		amperstand.current,
-		// 		{
-		// 			fontSize: "50vw",
-		// 			duration: 3,
-		// 			ease: "Expo.easeInOut",
-		// 		},
-		// 		2
-		// 	)
-		// 	.to(
-		// 		scrollCta.current,
-		// 		{
-		// 			y: 0,
-		// 			duration: 0.9,
-		// 			ease: "Expo.easeOut",
-		// 		},
-		// 		2
-		// 	);
+		introAnimation.current
+			.to(
+				$(eye.current).find("path"),
+				{
+					drawSVG: "0%",
+					duration: 1,
+					ease: "expo.inout",
+					duration: 1,
+					stagger: 0.2,
+				},
+				0
+			)
+			.to(
+				$(ear.current).find("path"),
+				{
+					drawSVG: "0%",
+					duration: 1,
+					ease: "expo.inout",
+					duration: 1,
+					stagger: 0.2,
+				},
+				0.3
+			)
+			.to(amperstand.current, {
+				y: 0,
+				ease: "expo.inOut",
+				duration: 1.5,
+			})
+			.to(
+				scrollCta.current,
+				{
+					y: 0,
+					duration: 0.9,
+					ease: "Expo.easeOut",
+				},
+				2
+			);
 	}, [eye, ear, amperstand]);
 	return (
 		<Section
@@ -80,7 +63,8 @@ function Hero(props) {
 		>
 			<StyledHero className='hero-wrapper'>
 				<Container bg={"light"} width='100%' height='100vh'>
-					<div className='overflow-container -w-100 -h-100 -position-relative'>
+					<div className='overflow-container -w-100 -h-100 -position-relative' 	data-scroll-speed='6'
+							data-scroll>
 						<Eye speed='2' eyeRef={eye} />
 						<div
 							className='-heading-bold -position-absolute-center'
@@ -88,8 +72,6 @@ function Hero(props) {
 						>
 							<div
 								className='amperstand-inner -position-relative'
-								data-scroll
-								data-scroll-speed='6'
 								ref={amperstand}
 							>
 								<span>&</span>

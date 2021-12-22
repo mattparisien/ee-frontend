@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import {Image, Section, Container} from "../../../index";
+import { Image, Section, Container } from "../../../index";
 import UnorderedList from "../../../Lists/UnorderedList";
 import { StyledFeaturedWork } from "../../styles";
 import gsap from "gsap";
@@ -15,13 +15,9 @@ function FeaturedWork(props) {
 	const imageRef = useRef(null);
 	const listRefs = useRef(null);
 
-	const [data, error, loading] = useFetch('/api/posts', {
-		requestType: 'uploads'
-	})
-
-
-
-
+	const [data, error, loading] = useFetch("/api/posts", {
+		requestType: "uploads",
+	});
 
 	const getFeatureImageById = id => {
 		let post = data[1].filter(post => post.id === id);
@@ -33,14 +29,11 @@ function FeaturedWork(props) {
 		}
 
 		imageUrl = post[0].attributes.FeatureImage.data.attributes.url;
-		
+
 		return imageUrl;
 	};
 
 	useEffect(() => {
-
-		
-
 		if (isHovering) {
 			gsap.to(imageRef.current, {
 				opacity: 1,
@@ -73,16 +66,15 @@ function FeaturedWork(props) {
 		setImageUrl(null);
 	};
 
-	// const addToRefs = link => {
-	// 	if (listRefs.current && !listRefs.current.includes(link)) {
-	// 		listRefs.current.push(link);
-	// 	}
-	// };
+	const addToRefs = link => {
+		if (listRefs.current && !listRefs.current.includes(link)) {
+			listRefs.current.push(link);
+		}
+	};
 
 	const featured =
 		data &&
 		data[1].map((title, index) => (
-
 			<li
 				key={index}
 				className='featured-list-item'
@@ -147,7 +139,6 @@ function FeaturedWork(props) {
 							isVisible={isHovering}
 						/>
 					</div>
-					
 				</StyledFeaturedWork>
 			</Container>
 		</Section>

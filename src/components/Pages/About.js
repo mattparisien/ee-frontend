@@ -4,10 +4,10 @@ import useFetch from "../../helpers/hooks/useFetch";
 import { Trumpet } from "../index";
 import Spinner from "../Vector/Spinner";
 import useSplit from "../../helpers/hooks/useSplit";
-import gsap from "gsap";
-
 import { useIntersection } from "../../helpers/hooks/useIntersect";
 import Accent from "../../effects/Accent";
+import gsap from "gsap";
+
 function About(props) {
 	const [data, error, loading] = useFetch("/api/about", {
 		requestType: "textContent",
@@ -25,23 +25,31 @@ function About(props) {
 	const accentuate = () => {
 		//Accentuates words that are marked as bold from STRAPI
 
+		const mapEachWord = arrayOfWords => {
+			const mappedWords = arrayOfWords.map((word, i) => (
+				<>
+					{word.includes("**") ? (
+						<Accent type={determinedAccentType(word)} key={i}>
+							{word.replaceAll("**", "")}
+						</Accent>
+					) : (
+						word
+					)}{" "}
+				</>
+			));
+
+			return mappedWords;
+		};
+
 		let body = data && data.attributes.Body;
-		let words = body.split(" ");
 
-		const result = words.map((word, i) => (
-			<>
-				{word.includes("**") ? (
-					<Accent type={determinedAccentType(word)}>
-						{word.replaceAll("**", "")}
-					</Accent>
-				) : (
-					word
-				)}{" "}
-			</>
-		));
-	
+		let partOneWords = body.split("split")[0].split(" ");
+		let partTwoWords = body.split("split")[1].split(" ");
+		const result1 = mapEachWord(partOneWords);
+		const result2 = mapEachWord(partTwoWords);
+		let results = [result1, result2];
 
-		return result;
+		return results;
 	};
 
 	const splitRef = useRef(null);
@@ -86,13 +94,22 @@ function About(props) {
 			opacity: 1,
 			ease: "power3.out",
 		});
-	}, [target]);
+	}, [target, isSplit]);
 
 	const content = () => (
 		<>
-			<Paragraph size={"medium"} fadeUp={"lines"} addToRefs={addToRefs}>
-				{data && accentuate()}
-			</Paragraph>
+			{data &&
+				accentuate().map((text, i) => {
+					return (
+						<Paragraph
+							size={i === 0 ? "medium" : "small"}
+							fadeUp={"lines"}
+							addToRefs={addToRefs}
+						>
+							{text}
+						</Paragraph>
+					);
+				})}
 			<Line color='white' marginTop />
 			<Trumpet width={"30vw"} color={"light"} position={"absolute"} />
 			<Paragraph size={"small"} addToRefs={addToRefs}></Paragraph>
@@ -101,9 +118,11 @@ function About(props) {
 
 	return (
 		<Section classes={"section-who"} bg={"dark"}>
-			<Container bg={"dark"} padding='small'>
-				{loading && <Spinner />}
-				{data && content()}
+			<Container padding='small'>
+				<div className='morph-bg'>
+					{loading && <Spinner />}
+					{data && content()}
+				</div>
 			</Container>
 		</Section>
 	);
