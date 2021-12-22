@@ -1,10 +1,4 @@
-import React, {
-	useRef,
-	useEffect,
-	useState,
-	useLayoutEffect,
-	useMemo,
-} from "react";
+import React, { useRef, useEffect } from "react";
 import Header from "./components/Header/Header";
 
 import Footer from "./components/Footer/Footer";
@@ -13,18 +7,14 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { TransitionGroup, Transition } from "react-transition-group";
-import { useSideMenu, useTransition } from "./animations";
+import { useTransition } from "./animations";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteTransition from "./components/Transition";
 // import useIntersect from "./helpers/hooks/useIntersect";
 import useResize from "./helpers/hooks/useResize";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
-import SplitText from "gsap/SplitText";
 import { Helmet } from "react-helmet";
-import $ from "jquery";
-import locomotiveScroll from "locomotive-scroll";
-import CookieBar from "./components/Modals/CookieBar";
 
 const isSplit = false;
 
@@ -33,20 +23,15 @@ function App() {
 	const location = useLocation();
 	const sectionRefs = useRef(null);
 
-	const { addToRefs, appRefs, state, setState, themes } = useAppData();
+	const { addToRefs, appRefs, state, setState, themes } = useAppData(
+		scrollRef.current
+	);
 	const app = useRef(null);
 	const q = gsap.utils.selector(app.current);
 	const paragraphs = q(".fade-up-lines");
 	const transitioner = useTransition(appRefs, state, setState);
 	// const intersector = useIntersect(appRefs, setState);
 	const [windowWidth, isResized] = useResize();
-
-	useEffect(() => {
-		const scroll = new locomotiveScroll({
-			el: scrollRef.current,
-			smooth: true,
-		});
-	}, [scrollRef]);
 
 	const toggleMenu = () => {
 		setState(prev => ({
@@ -64,6 +49,9 @@ function App() {
 			isTransitioning: true,
 		}));
 	};
+
+
+
 
 	return (
 		<div className='App' ref={app}>
@@ -94,6 +82,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				<Header
 					toggleMenu={toggleMenu}
 					menuState={state.sidebar.showSidebar}
+					scroller={state.scroller && state.scroller}
 					addToRefs={addToRefs}
 					headerColor={state.headerColor}
 					appRefs={appRefs}

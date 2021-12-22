@@ -21,7 +21,7 @@ function useSplit(arrayOfElements, options) {
 		}
 
 		if (arrayOfElements.length >= 0 && !isSplit) {
-			console.log("elementssss", arrayOfElements);
+			
 			const mySplitText = new SplitText(arrayOfElements, options);
 			$(mySplitText.lines).wrap('<div class="line-wrapper"></div>');
 			setIsSplit(true);

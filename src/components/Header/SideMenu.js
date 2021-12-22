@@ -36,7 +36,7 @@ export default function SideMenu(props) {
 
 	const addToRefs = el => {
 		if (linkRefs.current && !linkRefs.current.includes(el)) {
-			console.log(el);
+
 			el !== null && linkRefs.current.push(el);
 		}
 	};
@@ -51,7 +51,7 @@ export default function SideMenu(props) {
 
 		if (isOpen) {
 			gsap.set(menuRef.current, { display: "block" });
-			console.log("refs", appRefs);
+
 			menuAnimIn.current
 				.to(menuRef.current, {
 					x: 0,

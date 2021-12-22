@@ -2,8 +2,9 @@ import { useRef, useState, useEffect } from "react";
 import useResize from "./useResize";
 import { useLocation } from "react-router-dom";
 import { useTransition } from "../../animations";
+import locomotiveScroll from "locomotive-scroll";
 
-export default function useAppData() {
+export default function useAppData(scrollRef) {
 	//Themes
 	const themes = {
 		colors: {
@@ -26,6 +27,7 @@ export default function useAppData() {
 
 	//App state
 	const [state, setState] = useState({
+		scroller: null,
 		location: location.pathname,
 		isHovering: false,
 		headerColor: "dark",
@@ -39,6 +41,19 @@ export default function useAppData() {
 		currentPage: null,
 		isSplit: false,
 	});
+
+	//Init locomotive scroll
+	useEffect(() => {
+		if (scrollRef) {
+			const scroll = new locomotiveScroll({
+				el: scrollRef,
+				smooth: true,
+				getDirection: true
+			});
+
+			setState(prev => ({ ...prev, scroller: scroll }));
+		}
+	}, [scrollRef]);
 
 	//Detect location changes
 	useEffect(() => {

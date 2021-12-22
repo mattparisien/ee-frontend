@@ -11,7 +11,7 @@ export default function useFetch(path, options) {
 
 	useEffect(() => {
 		if (!options) {
-			console.log(url);
+		
 			console.error(
 				'You must include options. Example: { requestType: "upload" }'
 			);

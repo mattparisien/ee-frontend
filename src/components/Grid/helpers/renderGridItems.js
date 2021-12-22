@@ -11,8 +11,7 @@ export default function renderGridItems(data) {
 
 	arrayofGrids = divideArray(data, 7);
 
-	console.log('array of grid', arrayofGrids)
-	
+	console.log("array of grid", arrayofGrids);
 
 	return arrayofGrids.map(nested => {
 		return (
@@ -24,7 +23,6 @@ export default function renderGridItems(data) {
 				key={nested.id}
 			>
 				{nested.map((post, index) => {
-					console.log(post)
 					return (
 						<GridItem
 							classes={`project-grid__item project-grid__item__${index + 1}`}

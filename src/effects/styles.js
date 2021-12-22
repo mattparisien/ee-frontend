@@ -14,12 +14,16 @@ display: inline-block;
   fill: none;
   position: absolute;
   width: 100%;
-  stroke: ${({ theme }) => theme.colors.blue};
+  stroke: ${({ theme }) => shuffleColors(theme)};
   stroke-width: 8px;
   bottom: 10px;
   left: 0;  
   z-index: 99;
   opacity: 0.8;
+}
+
+.accent-line {
+  bottom: 20px;
 }
 
 
@@ -35,7 +39,7 @@ display: inline-block;
   transform: translate(-50%, -50%);
 
   ellipse {
-    rx:280;
+    rx:240;
   }
 }
 `

@@ -15,11 +15,15 @@ function About(props) {
 
 	const determinedAccentType = word => {
 		let nakedWord = word.replaceAll("**", "");
-		return nakedWord.length <= 6 ? "rectangle" : "line";
+		return nakedWord.length <= 6
+			? "rectangle"
+			: nakedWord.length === 10
+			? "circle"
+			: "line";
 	};
 
 	const accentuate = () => {
-		const toAccentuate = ["Eyes"];
+		//Accentuates words that are marked as bold from STRAPI
 
 		let body = data && data.attributes.Body;
 		let words = body.split(" ");
@@ -35,7 +39,7 @@ function About(props) {
 				)}{" "}
 			</>
 		));
-		console.log(result);
+	
 
 		return result;
 	};
