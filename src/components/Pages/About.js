@@ -5,17 +5,18 @@ import { Trumpet } from "../index";
 import Spinner from "../Vector/Spinner";
 import useSplit from "../../helpers/hooks/useSplit";
 import gsap from "gsap";
-import useAppData from "../../helpers/hooks/useAppData";
-import { useIntersection } from "../../helpers/hooks/useIntersect";
-import Accent from "../Accent";
-import useAccent from "../../helpers/hooks/useAccent";
 
+import { useIntersection } from "../../helpers/hooks/useIntersect";
+import Accent from "../../effects/Accent";
 function About(props) {
 	const [data, error, loading] = useFetch("/api/about", {
 		requestType: "textContent",
 	});
 
-	// const [isWrapped] = useAccent("hello how r u", ["how", "you"]);
+	const determinedAccentType = word => {
+		let nakedWord = word.replaceAll("**", "");
+		return nakedWord.length <= 6 ? "rectangle" : "line";
+	};
 
 	const accentuate = () => {
 		const toAccentuate = ["Eyes"];
@@ -26,7 +27,9 @@ function About(props) {
 		const result = words.map((word, i) => (
 			<>
 				{word.includes("**") ? (
-					<Accent>{word.replaceAll("**", "")}</Accent>
+					<Accent type={determinedAccentType(word)}>
+						{word.replaceAll("**", "")}
+					</Accent>
 				) : (
 					word
 				)}{" "}
