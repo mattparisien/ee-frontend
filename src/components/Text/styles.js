@@ -119,10 +119,10 @@ export const StyledParagraph = styled.div`
 
     
       @media ${device.desktop} {
-        font-size: 3.2rem;
+        font-size: 6rem;
 
         & p {
-          line-height: 3.3rem;
+          line-height: 7rem;
         }
       };
 

@@ -7,11 +7,35 @@ import useSplit from "../../helpers/hooks/useSplit";
 import gsap from "gsap";
 import useAppData from "../../helpers/hooks/useAppData";
 import { useIntersection } from "../../helpers/hooks/useIntersect";
+import Accent from "../Accent";
+import useAccent from "../../helpers/hooks/useAccent";
 
 function About(props) {
 	const [data, error, loading] = useFetch("/api/about", {
 		requestType: "textContent",
 	});
+
+	// const [isWrapped] = useAccent("hello how r u", ["how", "you"]);
+
+	const accentuate = () => {
+		const toAccentuate = ["Eyes"];
+
+		let body = data && data.attributes.Body;
+		let words = body.split(" ");
+
+		const result = words.map((word, i) => (
+			<>
+				{word.includes("**") ? (
+					<Accent>{word.replaceAll("**", "")}</Accent>
+				) : (
+					word
+				)}{" "}
+			</>
+		));
+		console.log(result);
+
+		return result;
+	};
 
 	const splitRef = useRef(null);
 	const paragraphRefs = useRef(null);
@@ -23,7 +47,7 @@ function About(props) {
 	});
 
 	const [isIntersecting, target] = useIntersection(paragraphRefs.current, {
-		threshold: 0.8,
+		threshold: 0.2,
 		rootMargin: "0px",
 	});
 
@@ -53,35 +77,24 @@ function About(props) {
 			duration: 0.8,
 			stagger: 0.2,
 			opacity: 1,
-			ease: 'power3.out'
+			ease: "power3.out",
 		});
-	}, [isSplit, splitCount, target]);
+	}, [target]);
 
 	const content = () => (
 		<>
-			<Paragraph
-				size={"medium"}
-				indent
-				indentTitle={"Agency"}
-				fadeUp={"lines"}
-				addToRefs={addToRefs}
-			>
-				{data.attributes.Body.split("split")[0]}
+			<Paragraph size={"medium"} fadeUp={"lines"} addToRefs={addToRefs}>
+				{data && accentuate()}
 			</Paragraph>
 			<Line color='white' marginTop />
 			<Trumpet width={"30vw"} color={"light"} position={"absolute"} />
-			<Paragraph
-				size={"small"}
-				addToRefs={addToRefs}
-			>
-				{data && data.attributes.Body.split("split")[1]}
-			</Paragraph>
+			<Paragraph size={"small"} addToRefs={addToRefs}></Paragraph>
 		</>
 	);
 
 	return (
 		<Section classes={"section-who"} bg={"dark"}>
-			<Container bg={"dark"}>
+			<Container bg={"dark"} padding='small'>
 				{loading && <Spinner />}
 				{data && content()}
 			</Container>

@@ -8,6 +8,7 @@ const StyledContainer = styled.div`
 	left: ${props => (props.isAbsolute ? "0" : "")};
 	z-index: ${props => (props.isBelow ? "-1" : props.isAbove ? "1" : "")};
 	clip-path: ${props => (props.clipTo ? `url(${props.clipTo})` : "")};
+	padding: ${({ $padding }) => $padding === 'small' && '4vw'};
 
 	${({ $paddingVerticalNone }) => {
 		return (
@@ -50,42 +51,6 @@ const StyledContainer = styled.div`
  }
 `;
 	}}
-
-	@media ${device.mobileS} {
-		padding: 5rem 1.8rem;
-	}
-
-	@media ${device.mobileM} {
-		padding: 3rem;
-	}
-
-	@media ${device.mobileL} {
-		padding: 3rem;
-	}
-
-	@media (min-width: 680px) {
-		padding: 5rem;
-	}
-
-	@media ${device.tablet} {
-		padding: 6rem;
-	}
-
-	@media ${device.laptop} {
-		padding: 8rem;
-	}
-
-	@media ${device.laptopL} {
-		padding: 10rem;
-	}
-
-	@media ${device.desktop} {
-		padding: 10rem;
-	}
-
-	@media (min-width: 2500px) {
-		padding: 10rem;
-	} ;
 `;
 
 export { StyledContainer };
