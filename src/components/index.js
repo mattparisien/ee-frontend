@@ -6,7 +6,7 @@ import UnorderedList from "./Lists/UnorderedList";
 import Header from "./Header/Header";
 import Grid from "./Grid/Grid";
 import GridItem from "./Grid/GridItem";
-import { Eye, Ear, TextLogo, Arrow, Ellipse, Trumpet } from "./Vector/Svg";
+import { Eye, Ear, TextLogo, Arrow, Ellipse, Trumpet, DrawnLogo } from "./Vector/Svg";
 import Line from "./Line";
 import ListBlogPosts from "./ListBlogPosts";
 import SlidingText from "./Marquee";
@@ -29,6 +29,7 @@ export {
 	Ellipse,
 	Trumpet,
 	TextLogo,
+	DrawnLogo,
 	SlidingText,
 	Line,
 	ListBlogPosts,

@@ -23,6 +23,7 @@ function About(props) {
 	};
 
 	const accentuate = () => {
+		console.log("hello");
 		//Accentuates words that are marked as bold from STRAPI
 
 		const mapEachWord = arrayOfWords => {
@@ -102,27 +103,30 @@ function About(props) {
 				accentuate().map((text, i) => {
 					return (
 						<Paragraph
-							size={i === 0 ? "medium" : "small"}
+							size={i === 0 ? "large" : "small"}
 							fadeUp={"lines"}
 							addToRefs={addToRefs}
+							key={i}
 						>
 							{text}
 						</Paragraph>
 					);
 				})}
 			<Line color='white' marginTop />
-			<Trumpet width={"30vw"} color={"light"} position={"absolute"} />
-			<Paragraph size={"small"} addToRefs={addToRefs}></Paragraph>
+			{/* <Trumpet width={"30vw"} color={"light"} position={"absolute"} /> */}
+			<Paragraph
+				size={"small"}
+				addToRefs={addToRefs}
+				margin={"10px"}
+			></Paragraph>
 		</>
 	);
 
 	return (
-		<Section classes={"section-who"} bg={"dark"}>
-			<Container padding='small'>
-				<div className='morph-bg'>
-					{loading && <Spinner />}
-					{data && content()}
-				</div>
+		<Section classes={"section-who"} bg={"dark"} height={"auto"}>
+			<Container padding={"small"} height={"auto"}>
+				{loading && <Spinner />}
+				{data && content()}
 			</Container>
 		</Section>
 	);

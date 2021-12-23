@@ -13,18 +13,17 @@ ${({ $headingStyles, theme }) => {
 
 export const StyledParagraph = styled.div`
 	position: relative;
-  letter-spacing: -1px;
+	letter-spacing: -1px;
+	margin: ${({ margin }) => margin && margin};
 
-  .line-wrapper {
-    overflow: hidden;
-
+	.line-wrapper {
+		overflow: hidden;
+	}
 
   .fade-up-line {
-    transform: translateY(100%);
+    transform: translateY(-100%);
+    opacity: 0;
   }
-
-  }
-
 
 	.indent-title {
 		text-indent: 0px;
@@ -44,282 +43,114 @@ export const StyledParagraph = styled.div`
 			text-align: left;
 			width: 100%;
 		}
-	};
+	}
 
-
-  ${({ $size }) => {
-		return (
-			$size === "large" &&
-			`
+	${({ size }) => {
+		return `
       @media ${device.mobileS} {
-        font-size: 1.6rem;
+
+        font-size: ${size === "large" && "50px"}
         
-        & p {
-          line-height: 1.9rem;
-        }
       };
-    
+
+
       @media ${device.mobileM} {
-        font-size: 2rem;
-
-        & p {
-          line-height: 2.3rem;
-        }
-      };
-    
-      @media ${device.mobileL} {
-        font-size: 2rem;
-
-        & p {
-          line-height: 2.5rem;
-        }
+        ${
+					size === "large" &&
+					`
+          font-size: 8vw;
+          
+          p {
+            line-height: 10vw;
+          }
+          
+        `
+				}
       };
 
 
-      @media (min-width: 680px) {
-        font-size: 3rem;
-
-        & p {
-          line-height: 2.7rem;
-        }
-
-      }
-
-      @media ${device.tablet} {
-        font-size: 4rem;
+      @media  ${device.mobileL} {
         
-
-        & p {
-          line-height: 4.5rem;
-        }
+        
+        ${
+					size === "large" &&
+					`
+          font-size: 8vw;
+          p {
+            line-height: 10.5vw;
+          }
+          
+        `
+				}
       };
 
-    
+
+      @media  ${device.tablet} {
+
+          ${
+						size === "large" &&
+						`
+          font-size: 4.1rem;
+          p {
+            line-height: 4.7rem;
+          }
+          
+        `
+					}
+      };
+
+
       @media ${device.laptop} {
-        font-size: 4.5rem;
-
-        & p {
-          line-height: 6rem;
-        }    
-      };
-
-  
-      @media ${device.laptopL} {
-        font-size: 6rem;
-
-        & p {
-          line-height: 6.2rem;
-        }
         
+
+        ${
+					size === "large" &&
+					`
+          font-size: 5rem;
+          p {
+            line-height: 5.5rem;
+          }
+          
+        `
+				}
+
       };
-
-    
-      @media ${device.desktop} {
-        font-size: 6.5rem;
-
-        & p {
-          line-height: 7rem;
-        }
-      };
-
-
-    
-      @media (min-width: 2500px) {
-        font-size: 6rem;
-
-        & p {
-          line-height: 5.2rem;
-        }
-      };
-      `
-		);
-	}}
-
-	${({ $size, $indentStyles }) => {
-		return (
-			($size === "medium" &&
-				`
-
      
+      
 
-      @media ${device.mobileS} {
-        font-size: 1.6rem;
-        
-        & p {
-          line-height: 1.9rem;
-        }
-      };
-    
-      @media ${device.mobileM} {
-        font-size: 1.8rem;
 
-        & p {
-          line-height: 2.3rem;
-        }
-      };
-    
-      @media ${device.mobileL} {
-        font-size: 2rem;
+      @media  ${device.desktop} {
 
-        & p {
-          line-height: 2.6rem;
-        }
+        ${
+					(size === "large" &&
+						`
+          font-size: 5.4rem;
+          p {
+            line-height: 6.5rem;
+          }
+          
+        `,
+					size === "medium" &&
+						`
+          
+        `)
+				}
+
       };
 
 
-      @media (min-width: 680px) {
-        font-size: 2.3em;
-
-        & p {
-          line-height: 2.7rem;
-        }
-
-      }
-
-      @media ${device.tablet} {
-        font-size: 2.6rem;
-        
-
-        & p {
-          line-height: 3rem;
-        }
+      ${device.desktopL} {
+        ${
+					size === "large" &&
+					`
+          font-size: 5.9rem;
+          p {
+            line-height: 5.9rem;
+          }
+          
+        `
+				}
       };
-
-    
-      @media ${device.laptop} {
-        font-size: 2.1rem;
-
-        & p {
-          line-height: 2.9rem;
-        }    
-      };
-
-  
-      @media ${device.laptopL} {
-        font-size: 3.3rem;
-
-        & p {
-          line-height: 3.8rem;
-        }
-        
-      };
-
-    
-      @media ${device.desktop} {
-        font-size: 3.2rem;
-
-        & p {
-          line-height: 3.3rem;
-        }
-      };
-
-
-    
-      @media (min-width: 2500px) {
-        font-size: 5rem;
-
-        & p {
-          line-height: 5.2rem;
-        }
-      };
-    `) ||
-			($size === "small" &&
-				`
-  
-
-      margin-left: auto;
-      margin-top: 50vw;
-      display: block;
-      width: 35vw;
-
-      @media ${device.mobileS} {
-        font-size: 1.6rem;
-        
-        & p {
-          line-height: 1.9rem;
-        }
-      };
-    
-      @media ${device.mobileM} {
-        font-size: 1.5rem;
-        width: 100%;
-
-        & p {
-          line-height: 2.1rem;
-        }
-      };
-    
-      @media ${device.mobileL} {
-        font-size: 1.7rem;
-        width: 70vw;
-        & p {
-          line-height: 2rem;
-        }
-      };
-
-
-      @media (min-width: 680px) {
-        font-size: 1.6rem;
-        width: 55vw;
-
-        & p {
-          line-height: 1.9rem;
-        }
-
-      }
-
-      @media ${device.tablet} {
-        font-size: 1.6rem;
-        width: 50vw;
-
-        & p {
-          line-height: 1.9rem;
-        }
-
-        
-      };
-
-    
-      @media ${device.laptop} {
-        width: 45vw;
-        font-size: 1.7rem;
-
-        & p {
-          line-height: 2.2rem;
-        }
-        
-      };
-
-  
-      @media ${device.laptopL} {
-        font-size: 1.9rem;
-
-        & p {
-          line-height: 2rem;
-        }
-        
-      };
-
-    
-      @media ${device.desktop} {
-        width: 35vw;
-        font-size: 2rem;
-
-        & p {
-          line-height: 2.3rem;
-        }
-      };
-
-
-    
-      @media (min-width: 2500px) {
-        font-size: 2.3rem;
-
-        & p {
-          line-height: 2.3rem;
-        }
-      };
-  `)
-		);
+      `;
 	}}
 `;

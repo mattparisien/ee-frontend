@@ -8,7 +8,7 @@ import { GlobalStyles } from "./components/styles/Global";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { TransitionGroup, Transition } from "react-transition-group";
 import useAppData from "./helpers/hooks/useAppData";
-import SiteTransition from "./components/Transition";
+import SiteTransition from "./components/Transition/Transition";
 // import useIntersect from "./helpers/hooks/useIntersect";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
@@ -84,6 +84,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					addToRefs={addToRefs}
 					appRefs={appRefs}
 					themes={themes}
+					isTransitioning={state.isTransitioning}
 				/>
 				<Header
 					toggleMenu={toggleMenu}

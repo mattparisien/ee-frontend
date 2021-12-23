@@ -6,7 +6,7 @@ import useResize from "../../helpers/hooks/useResize";
 import classNames from "classnames";
 
 function Paragraph(props) {
-	const { addToRefs, indent, indentTitle, size, fadeUp } = props;
+	const { addToRefs, indent, indentTitle, size, margin, fadeUp } = props;
 	const styledParagraph = useRef(null);
 	const paragraph = useRef(null);
 	const [windowWidth, isResized] = useResize();
@@ -51,7 +51,8 @@ function Paragraph(props) {
 		<StyledParagraph
 
 			className={"styled-paragraph-wrapper"}
-			$size={size}
+			size={size}
+			margin={margin}
 			$indentStyles={{
 				...indentStyles,
 			}}

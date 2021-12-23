@@ -22,7 +22,7 @@ function useIntersection(arrayOfRefs, options) {
 			entries.forEach(entry => {
 				const isIntersecting = entry.isIntersecting;
 
-				if (isIntersecting) {
+				if (isIntersecting && !state.isIntersecting) {
 					setState({
 						isIntersecting: true,
 						target: entry.target,

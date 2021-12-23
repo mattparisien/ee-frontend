@@ -16,7 +16,9 @@ function useSplit(arrayOfElements, options) {
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
 
-		if (!arrayOfElements[0]) {
+		console.log(arrayOfElements)
+
+		if (!arrayOfElements || !arrayOfElements[0]) {
 			return;
 		}
 

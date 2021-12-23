@@ -51,41 +51,50 @@ const StyledContainer = styled.div`
 `;
 	}}
 
-	@media ${device.mobileS} {
-		padding: 5rem 1.8rem;
-	}
+	${({ padding }) => {
+		return (
 
-	@media ${device.mobileM} {
-		padding: 3rem;
-	}
+			`
+			@media ${device.mobileS} {
+				padding: ${padding === 'small' && '2rem'};
+			}
+		
+			@media ${device.mobileM} {
+				padding: ${padding === 'small' && '2rem'};
+			}
+		
+			@media ${device.mobileL} {
+				padding: ${padding === 'small' && '2rem'};
+			}
+		
+			@media (min-width: 680px) {
+				padding: ${padding === 'small' && '3rem'};
+			}
+		
+			@media ${device.tablet} {
+				padding: ${padding === 'small' && '3rem'};
+			}
+		
+			@media ${device.laptop} {
+				padding: ${padding === 'small' && '5rem'};
+				
+			}
+		
+			@media ${device.laptopL} {
+				padding: ${padding === 'small' && '5rem'};
+			}
+		
+			@media ${device.desktop} {
+				padding: ${padding === 'small' && '5rem'};
+			}
+		
+			@media (min-width: 2500px) {
+				padding: ${padding === 'small' && '5rem'};
+			} ;
+			`
 
-	@media ${device.mobileL} {
-		padding: 3rem;
-	}
-
-	@media (min-width: 680px) {
-		padding: 5rem;
-	}
-
-	@media ${device.tablet} {
-		padding: 6rem;
-	}
-
-	@media ${device.laptop} {
-		padding: 8rem;
-	}
-
-	@media ${device.laptopL} {
-		padding: 10rem;
-	}
-
-	@media ${device.desktop} {
-		padding: 10rem;
-	}
-
-	@media (min-width: 2500px) {
-		padding: 10rem;
-	} ;
+		)
+	}}
 `;
 
 export { StyledContainer };

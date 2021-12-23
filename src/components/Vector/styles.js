@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { ThemeConsumer } from "styled-components";
 
 export const StyledLoader = styled.div`
   height: 100%;
@@ -16,4 +16,18 @@ export const StyledLoader = styled.div`
     fill: black !important;
   }
 
+`
+
+export const StyledDrawnLogo = styled.div`
+  #drawn-logo {
+
+    .faceLine {
+      fill: ${({ theme }) => theme.colors.dark};
+    }
+    
+    .soundWave {
+      fill: ${({ theme }) => theme.colors.red}
+    }
+
+  }
 `

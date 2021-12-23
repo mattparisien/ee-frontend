@@ -54,12 +54,13 @@ main {
 	}
 }
 
-
-
-.line {
+.line-wrapper {
 	overflow: hidden;
-	
 }
+
+
+
+
 
 @media ${device.mobileS} {
 	html {
