@@ -42,19 +42,6 @@ export default function useAppData(scrollRef) {
 		isSplit: false,
 	});
 
-	//Init locomotive scroll
-	useEffect(() => {
-		if (scrollRef) {
-			const scroll = new locomotiveScroll({
-				el: scrollRef,
-				smooth: true,
-				getDirection: true
-			});
-
-			setState(prev => ({ ...prev, scroller: scroll }));
-		}
-	}, [scrollRef]);
-
 	//Detect location changes
 	useEffect(() => {
 		setState(prev => ({ ...prev, location: location.pathname }));

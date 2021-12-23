@@ -36,7 +36,7 @@ export default function Footer(props) {
 	));
 
 	return (
-		<StyledFooter $layout={layout} ref={footerRef}>
+		<StyledFooter $layout={layout} ref={footerRef} data-scroll-section>
 			<Container height={"100%"} centerInner={layout === "project" && true}>
 				{layout === "contact" && <Contact />}
 				{layout === "project" && (

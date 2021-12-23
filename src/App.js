@@ -7,14 +7,13 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { TransitionGroup, Transition } from "react-transition-group";
-import { useTransition } from "./animations";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteTransition from "./components/Transition";
 // import useIntersect from "./helpers/hooks/useIntersect";
-import useResize from "./helpers/hooks/useResize";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import { Helmet } from "react-helmet";
+import locomotiveScroll from "locomotive-scroll";
 
 const isSplit = false;
 
@@ -25,6 +24,21 @@ function App() {
 	const { addToRefs, appRefs, state, setState, themes } = useAppData(
 		scrollRef.current
 	);
+
+	useEffect(() => {
+		if (scrollRef.current && !state.scroller) {
+			setTimeout(() => {
+				const scroll = new locomotiveScroll({
+					el: scrollRef.current,
+					smooth: true,
+					getDirection: true,
+					smoothMobile: false,
+				});
+				setState(prev => ({ ...prev, scroller: scroll }));
+			}, 500);
+		}
+	}, [scrollRef, state.scroller]);
+
 	const app = useRef(null);
 	const q = gsap.utils.selector(app.current);
 
@@ -88,9 +102,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					offset={state.menuOffset}
 					toggleMenu={toggleMenu}
 				/>
-
-				<main ref={scrollRef}>
-					<div className='scroll-container'>
+				<div className='scroll-container'>
+					<main ref={scrollRef}>
 						<TransitionGroup className='transition-group'>
 							<Transition
 								timeout={1900}
@@ -100,10 +113,10 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								<SiteRoutes location={location} addToRefs={addToRefs} />
 							</Transition>
 						</TransitionGroup>
-					</div>
-				</main>
+					</main>
 
-				<Footer addToRefs={addToRefs} location={state.location} />
+					<Footer addToRefs={addToRefs} location={state.location} />
+				</div>
 				{/* <CookieBar /> */}
 			</ThemeProvider>
 		</div>
