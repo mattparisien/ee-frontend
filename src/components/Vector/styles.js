@@ -20,6 +20,7 @@ export const StyledLoader = styled.div`
 
 export const StyledDrawnLogo = styled.div`
   #drawn-logo {
+    overflow: visible;
 
     .faceLine {
       fill: ${({ theme }) => theme.colors.dark};
