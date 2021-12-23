@@ -289,7 +289,7 @@ export function TextLogo(props) {
 
 export function DrawnLogo(props) {
 	return (
-		<StyledDrawnLogo animateSoundWaves={props.animateSoundWaves}>
+		<StyledDrawnLogo animateSoundWaves={props.animateSoundWaves} color={props.color}>
 			<svg
 				viewBox='0 0 736 1011'
 				fill='none'

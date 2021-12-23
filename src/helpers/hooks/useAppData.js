@@ -10,6 +10,7 @@ export default function useAppData(scrollRef) {
 		colors: {
 			light: "#F9F9EA",
 			dark: "#010201",
+			lighterDark: "#111111",
 			red: "#DF181F",
 			green: "#039924s",
 			blue: "#1E70DD",
