@@ -6,6 +6,13 @@ export const StyledHero = styled.div`
 
     .amperstand-inner {
       transform: translateY(100%);
+
+
+      #amperstand {
+        fill: ${({ theme }) => theme.colors.yellow};
+        height: 30vw;
+        max-height: 600px;
+      }
     }
 	}
 `;

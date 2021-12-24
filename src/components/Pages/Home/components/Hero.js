@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import { Container, Section, Eye, Ear } from "../../../index";
+import { Container, Section, Eye, Ear, Amperstand } from "../../../index";
 import $ from "jquery";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
@@ -63,8 +63,11 @@ function Hero(props) {
 		>
 			<StyledHero className='hero-wrapper'>
 				<Container bg={"light"} width='100%' height='100vh'>
-					<div className='overflow-container -w-100 -h-100 -position-relative' 	data-scroll-speed='6'
-							data-scroll>
+					<div
+						className='overflow-container -w-100 -h-100 -position-relative'
+						data-scroll-speed='6'
+						data-scroll
+					>
 						<Eye speed='2' eyeRef={eye} />
 						<div
 							className='-heading-bold -position-absolute-center'
@@ -74,7 +77,7 @@ function Hero(props) {
 								className='amperstand-inner -position-relative'
 								ref={amperstand}
 							>
-								<span>&</span>
+								<Amperstand />
 
 								<span className='scroll-cta -position-absolute'>
 									<span className='scroll-cta-inner'>Scroll & Enjoy</span>

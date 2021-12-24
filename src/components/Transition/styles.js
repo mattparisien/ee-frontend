@@ -8,7 +8,7 @@ export const StyledTransition = styled.div`
 	height: 100vh;
 	z-index: 99999;
 	opacity: 1;
-	display: block;
+	display: none;
 	background-color: ${({ theme }) => theme.colors.yellow};
 	clip-path: url(#transition-clipPath__clip);
 
@@ -25,7 +25,7 @@ export const StyledTransition = styled.div`
 	}
 
 	#transition-clipPath__clip {
-		transform: scale(0.000473, 0.0009);
+		transform: scale(0.00105, 0.0018);
 
 		path {
 			height: 100%;
