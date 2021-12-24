@@ -9,14 +9,19 @@ export const StyledTransition = styled.div`
 	z-index: 99999;
 	opacity: 1;
 	display: block;
-	background-color: ${({ theme }) => theme.colors.lighterDark};
+	background-color: ${({ theme }) => theme.colors.yellow};
 	clip-path: url(#transition-clipPath__clip);
 
 	.site-transition__inner {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		flex-direction: column;
 		height: 100%;
+	}
+
+	.transition-clipPath {
+		position: absolute;
 	}
 
 	#transition-clipPath__clip {
@@ -37,7 +42,7 @@ export const StyledTransition = styled.div`
 
 	.transition-brand-saying {
 		margin: 0 auto;
-		color: ${({ theme }) => theme.colors.light};
+		color: ${({ theme }) => theme.colors.dark};
 		width: 100%;
 		height: 100%;
 		display: flex;
@@ -48,12 +53,12 @@ export const StyledTransition = styled.div`
 		.transition-brand-saying__sentence {
 			text-align: center;
 			text-transform: capitalize;
-			font-size: 2rem;
-			line-height: 2rem;
+			font-size: 2.5rem;
+			line-height: 2.5rem;
 
 			.char {
-				font-family: "Kobe Bold";
-				letter-spacing: -2px;
+				font-family: "Blc";
+				letter-spacing: -1px;
 				transform: translateY(100%);
 				opacity: 0;
 			}

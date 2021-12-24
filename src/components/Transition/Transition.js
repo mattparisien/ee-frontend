@@ -30,31 +30,31 @@ function SiteTransition(props) {
 		const q = gsap.utils.selector(logoContainer);
 		const timeline = transitionTl.current;
 
-		if (logoRef.current) {
-			let delay = 0;
+		// if (logoRef.current) {
+		// 	let delay = 0;
 
-			gsap.set(q(".soundWave"), {
-				opacity: 0,
-			});
+		// 	gsap.set(q(".soundWave"), {
+		// 		opacity: 0,
+		// 	});
 
 
-			waveTl.current
-				.to(q(".soundWave"), {
-					x: "-50",
-					ease: "linear",
-					duration: 0.3,
-					opacity: 1,
-					stagger: 0.1
-				})
-				.to(q(".soundWave"), {
-					x: "-100",
-					ease: "linear",
-					opacity: 0,
-					duration: 0.3,
-					stagger: 0.1
-				}, 0.3)
+		// 	waveTl.current
+		// 		.to(q(".soundWave"), {
+		// 			x: "-50",
+		// 			ease: "linear",
+		// 			duration: 0.3,
+		// 			opacity: 1,
+		// 			stagger: 0.1
+		// 		})
+		// 		.to(q(".soundWave"), {
+		// 			x: "-100",
+		// 			ease: "linear",
+		// 			opacity: 0,
+		// 			duration: 0.3,
+		// 			stagger: 0.1
+		// 		}, 0.3)
 		
-		}
+		// }
 
 		if (text.current && isSplit && morphPath.current) {
 			const q = gsap.utils.selector(text.current);
@@ -90,7 +90,7 @@ function SiteTransition(props) {
 					display: "none",
 				});
 		}
-	}, [logoRef]);
+	}, [isSplit, morphPath, text]);
 
 	return (
 		<StyledTransition
@@ -99,9 +99,9 @@ function SiteTransition(props) {
 			ref={transitionCard}
 		>
 			<div className='site-transition__inner'>
-				<div className='transition-drawn-logo'>
+				{/* <div className='transition-drawn-logo'>
 					<DrawnLogo animateSoundWaves color={"light"} logoRef={logoRef} />
-				</div>
+				</div> */}
 				<div className='transition-brand-saying'>
 					<div className='transition-brand-saying__sentence' ref={text}>
 						Creating social change by harnessing the power of music
