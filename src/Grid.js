@@ -5,20 +5,12 @@ import SplitText from "gsap/SplitText";
 import useResize from "./helpers/hooks/useResize";
 
 function Grid() {
-	// const { data, error, loading } = useAxios(
-	// 	"/api/grid-items?fields=*&populate=*"
-	// );
-
 	const { ref, inView, entry } = useInView({ threshold: 0.8 });
 
 	const paragraph = useRef([]);
 	const fadeUpRows = useRef(gsap.timeline());
 	const [lines, setLines] = useState([]);
 	const { size } = useResize();
-
-	
-
-
 
 	return (
 		<div className='grid how-grid'>
@@ -27,7 +19,7 @@ function Grid() {
 					return (
 						<div className={`how-grid__${index + 1} grid-col`} key={index}>
 							<div className='heading-wrapper'>
-								<h3 className='-heading-medium -fw-200' >
+								<h3 className='-heading-medium -fw-200'>
 									{gridItem.attributes.gridEntry.Heading}
 								</h3>
 							</div>

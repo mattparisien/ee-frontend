@@ -17,18 +17,6 @@ export default function Footer(props) {
 	const q = gsap.utils.selector(footerRef.current);
 	const lines = q(".line");
 
-	// useEffect(() => {
-
-	// 	console.log(lines)
-	// 	gsap.fromTo(lines, {
-	// 		width: 0,
-	// 	}, {
-	// 		width: '100%',
-	// 		stagger: 0.2,
-	// 		duration: 1,
-	// 		ease: 'expo.inout'
-	// 	})
-	// }, [footerRef, lines])
 
 	const nextPostId = parseInt(location.split("projects/")[1]) + 1;
 
@@ -37,7 +25,7 @@ export default function Footer(props) {
 	});
 
 	useEffect(() => {
-		console.log(data && data)
+		
 		setLayout(location.includes("projects/") ? "project" : "contact");
 	}, [location, data]);
 
@@ -48,7 +36,7 @@ export default function Footer(props) {
 	));
 
 	return (
-		<StyledFooter $layout={layout} ref={footerRef}>
+		<StyledFooter $layout={layout} ref={footerRef} data-scroll-section>
 			<Container height={"100%"} centerInner={layout === "project" && true}>
 				{layout === "contact" && <Contact />}
 				{layout === "project" && (

@@ -7,20 +7,17 @@ import Spinner from "../Vector/Spinner";
 function Projects(props) {
 	const { addToRefs } = props;
 
-
 	return (
-		<div className='projects-page page-wrap' ref={addToRefs}>
-			<Section bg={"light"}>
-				<Container>
-					<Heading xl>Our work</Heading>
+		<Section bg={"light"}>
+			<Container>
+				<Heading xl>Our work</Heading>
+			</Container>
+			<Section>
+				<Container padding={"5vw"} bg={"light"}>
+					<ListBlogPosts />
 				</Container>
-				<Section>
-					<Container padding={"5vw"} bg={"light"}>
-						<ListBlogPosts/>
-					</Container>
-				</Section>
 			</Section>
-		</div>
+		</Section>
 	);
 }
 

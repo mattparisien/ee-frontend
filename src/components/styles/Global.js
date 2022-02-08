@@ -1,7 +1,19 @@
 import { createGlobalStyle } from "styled-components";
 import { device, deviceSize } from "./device";
+import BertholdBlock from "./assets/fonts/blc69-webfont.woff";
+import BertholdBlock2 from "./assets/fonts/blc69-webfont.woff2";
 
 const GlobalStyles = createGlobalStyle`
+
+@font-face {
+	font-family: 'Blc';
+	src: local('BertholdBlock'), local('BertholdBlock'),
+	url(${BertholdBlock}) format('woff'),
+	url(${BertholdBlock2}) format('woff2');
+	font-weight: 200;
+}
+
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -9,7 +21,8 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-	overflow-y: ${props => (props.isOverflowHidden ? "hidden" : "overlay")};
+	// overflow-y: ${props => (props.isOverflowHidden ? "hid den" : "overlay")};
+	font-family: 'Blc' !important;
 }
 
 html,
@@ -54,12 +67,13 @@ main {
 	}
 }
 
-
-
-.line {
+.line-wrapper {
 	overflow: hidden;
-	
 }
+
+
+
+
 
 @media ${device.mobileS} {
 	html {

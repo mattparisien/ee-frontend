@@ -7,7 +7,7 @@ import { deviceSize } from "../components/styles/device";
 
 export default function useHoverEffect(container) {
 
-	console.log('hi')
+	
 	
 	const [windowWidth] = useResize();
 	const q = gsap.utils.selector(container);
@@ -53,7 +53,7 @@ export default function useHoverEffect(container) {
 		}
 
 		if (windowWidth < deviceSize.mobileL) {
-			console.log("hello!!!");
+			
 			links.forEach(link => {
 				link.removeEventListener("mouseenter", handleMouseEnter);
 			});

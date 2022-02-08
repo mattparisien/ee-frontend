@@ -1,19 +1,23 @@
 import React, { useEffect, useState, useRef } from "react";
-import {Image, Section, Container} from "../../../index";
+import { Image, Section, Container } from "../../../index";
 import UnorderedList from "../../../Lists/UnorderedList";
 import { StyledFeaturedWork } from "../../styles";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
 import useMouseMove from "../../../../helpers/hooks/useMouseMove";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import useFetch from "../../../../helpers/hooks/useFetch";
 
 function FeaturedWork(props) {
-	const { data } = props;
 	const [location] = useMouseMove();
 	const [isHovering, setHovering] = useState(false);
 	const [imageUrl, setImageUrl] = useState(null);
 	const imageRef = useRef(null);
 	const listRefs = useRef(null);
+
+	const [data, error, loading] = useFetch("/api/posts", {
+		requestType: "uploads",
+	});
 
 	const getFeatureImageById = id => {
 		let post = data[1].filter(post => post.id === id);
@@ -25,7 +29,7 @@ function FeaturedWork(props) {
 		}
 
 		imageUrl = post[0].attributes.FeatureImage.data.attributes.url;
-		console.log(imageUrl);
+
 		return imageUrl;
 	};
 
@@ -62,14 +66,14 @@ function FeaturedWork(props) {
 		setImageUrl(null);
 	};
 
-	// const addToRefs = link => {
-	// 	if (listRefs.current && !listRefs.current.includes(link)) {
-	// 		listRefs.current.push(link);
-	// 	}
-	// };
+	const addToRefs = link => {
+		if (listRefs.current && !listRefs.current.includes(link)) {
+			listRefs.current.push(link);
+		}
+	};
 
 	const featured =
-		data.length > 1 &&
+		data &&
 		data[1].map((title, index) => (
 			<li
 				key={index}
@@ -135,7 +139,6 @@ function FeaturedWork(props) {
 							isVisible={isHovering}
 						/>
 					</div>
-					
 				</StyledFeaturedWork>
 			</Container>
 		</Section>

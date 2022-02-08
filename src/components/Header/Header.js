@@ -17,12 +17,12 @@ export default function Header(props) {
 	const [device, setDevice] = useState(null);
 	const [windowWidth] = useResize();
 	const [isHoverable, setHoverable] = useState(true);
-	const [isScrolling, scrollDirection] = useScroll();
+	const [isScrolling, scrollDirection] = useScroll(props.scroller);
+
+
 
 
 	useEffect(() => {
-		console.log(menuState);
-
 		if (menuState) {
 			setHoverable(false);
 		} else if (!menuState) {
@@ -43,7 +43,7 @@ export default function Header(props) {
 	};
 
 	useEffect(() => {
-		console.log(menuState)
+		console.log(menuState);
 		if (windowWidth && windowWidth < 700) {
 			setDevice("mobile");
 		} else {
@@ -63,10 +63,13 @@ export default function Header(props) {
 				className='header-dynamic-wrapper'
 				isScrollingDown={scrollDirection === "down"}
 			>
-				<StyledInnerLayout className='header-inner-layout' menuIsActive={menuState}>
+				<StyledInnerLayout
+					className='header-inner-layout'
+					menuIsActive={menuState}
+				>
 					<div className='logo-wrapper -absolute-center'>
 						<a href='/'>
-							<TextLogo logoRef={addToRefs}/>
+							<TextLogo logoRef={addToRefs} />
 						</a>
 					</div>
 

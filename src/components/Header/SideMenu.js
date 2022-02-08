@@ -5,13 +5,11 @@ import { navigation } from "../../data/data";
 import { Link } from "react-router-dom";
 import gsap from "gsap/all";
 import useHoverEffect from "../../effects/LinkHover";
-
+import useSplit from "../../helpers/hooks/useSplit";
 
 export default function SideMenu(props) {
 	// const [isSplit, setIsSplit] = useState(false);
 	const { appRefs, toggleMenu, isOpen, hasShown } = props;
-	
-	
 
 	const menuStyles = {
 		offset: props.offset,
@@ -25,21 +23,23 @@ export default function SideMenu(props) {
 	const q = gsap.utils.selector(container);
 	const hoverTimelines = useRef;
 	hoverTimelines.current = [];
-	const hover = useHoverEffect(container)
+	const hover = useHoverEffect(container);
 	const links = q("a");
+	const linkRefs = useRef([]);
+	linkRefs.current = [];
 
-	// useEffect(() => {
-	// 	gsap.registerPlugin(SplitText);
-	// 	const links = appRefs.current["menu-links"];
-	// 	if (!isSplit) {
-	// 		const mySplitText = new SplitText(links, {
-	// 			type: "lines, chars",
-	// 			charsClass: "char",
-	// 			linesClass: "line",
-	// 		});
-	// 		setIsSplit(true);
-	// 	}
-	// }, [appRefs]);
+	const [isSplit, chars, splitCount] = useSplit([linkRefs.current][0], {
+		type: "chars, lines",
+		charsClass: "char",
+		linesClass: "line"
+	});
+
+	const addToRefs = el => {
+		if (linkRefs.current && !linkRefs.current.includes(el)) {
+
+			el !== null && linkRefs.current.push(el);
+		}
+	};
 
 	useEffect(() => {
 		const burgerbottom = appRefs.current["burger-bottom"];
@@ -51,7 +51,7 @@ export default function SideMenu(props) {
 
 		if (isOpen) {
 			gsap.set(menuRef.current, { display: "block" });
-			console.log('refs', appRefs);
+
 			menuAnimIn.current
 				.to(menuRef.current, {
 					x: 0,
@@ -133,8 +133,6 @@ export default function SideMenu(props) {
 		}
 	}, [isOpen, appRefs]);
 
-
-
 	const navLinks = navigation.map(link => (
 		<li key={link.id}>
 			<Link
@@ -143,6 +141,7 @@ export default function SideMenu(props) {
 				className='-fade-up menu-link'
 				style={{ overflow: "hidden" }}
 				onClick={() => toggleMenu()}
+				ref={addToRefs}
 			>
 				{link.title}
 			</Link>

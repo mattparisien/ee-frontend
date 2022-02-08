@@ -14,24 +14,15 @@ function Home(props) {
 	const { addToRefs } = props;
 	const scrollRef = useRef(null);
 
-	
 
 	//Featured work titles
 
 	return (
 		<>
-			<div
-				ref={scrollRef}
-				data-scroll-container
-				className='home-page page-wrap'
-				ref={addToRefs}
-			>
-				<Hero />
-
-				<About />
-				<How />
-				{/* <FeaturedWork data={data} /> */}
-			</div>
+			<Hero />
+			<About />
+			<How />
+			{/* <FeaturedWork /> */}
 		</>
 	);
 }

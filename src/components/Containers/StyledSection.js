@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledSection = styled.section`
+	min-height: ${({ isFullHeight }) => isFullHeight && "100vh"};
 	position: ${props => (props.isRelative ? "relative" : "inherit")};
 	background-color: ${({ theme, $bg }) => {
 		return (

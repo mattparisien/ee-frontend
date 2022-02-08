@@ -7,7 +7,14 @@ export default function Section(props) {
 	const sectionClass = classNames("c-section", props.classes);
 
 	return (
-		<StyledSection className={sectionClass} $bg={bg} ref={addToRefs} isRelative={isRelative}>
+		<StyledSection
+			isFullHeight={props.isFullHeight}
+			className={sectionClass}
+			$bg={bg}
+			ref={addToRefs}
+			isRelative={isRelative}
+			data-scroll-section
+		>
 			{props.children}
 		</StyledSection>
 	);

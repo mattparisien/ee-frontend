@@ -1,37 +1,36 @@
 import { useState, useEffect, useMemo } from "react";
 import _, { debounce } from "lodash";
+import useAppData from "./useAppData";
+import $ from "jquery";
 
-export default function useScroll() {
+export default function useScroll(scroller) {
 	const [scrollDirection, setScrollDirection] = useState(null);
 	const [prevOffset, setPrevOffset] = useState(0);
 	const [lastScroll, setLastScroll] = useState(new Date());
 	const [isScrolling, setScrolling] = useState(false);
+	const { state } = useAppData();
 
-	const toggleScrollDirection = () => {
-		let scrollY = window.scrollY;
-		if (scrollY === 0) {
-			setScrollDirection(null);
+	const toggleScrollDirection = e => {
+		if (e.direction !== scrollDirection) {
+			setScrollDirection(e.direction);
 		}
-		if (scrollY > prevOffset) {
-			setScrollDirection("down");
-		} else if (scrollY < prevOffset) {
-			setScrollDirection("up");
-		}
-		setPrevOffset(scrollY);
 	};
 
 	const listenForScroll = () => {
 		if (lastScroll.getTime() < new Date().getTime() - 300) {
-			console.log("has not scrolled!");
 		}
 	};
 
 	useEffect(() => {
-		window.addEventListener("scroll", toggleScrollDirection);
+		if (scroller) {
+			console.log(scroller);
+			scroller.on("scroll", e => toggleScrollDirection(e));
+		}
+
 		return () => {
 			window.removeEventListener("scroll", toggleScrollDirection);
 		};
-	});
+	}, [scroller]);
 
 	const handleEndScroll = useMemo(
 		() => _.debounce(() => setScrolling(false), 200),
@@ -44,10 +43,10 @@ export default function useScroll() {
 	};
 
 	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
+		document.addEventListener("scroll", handleScroll);
 
 		return () => {
-			window.removeEventListener("scroll", listenForScroll);
+			document.removeEventListener("scroll", listenForScroll);
 		};
 	});
 

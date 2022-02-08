@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { deviceSize } from "./device";
+import { deviceSize, device } from "../styles/device";
 
 const StyledGrid = styled.div`
 
@@ -9,26 +9,12 @@ const StyledGrid = styled.div`
 	}
 	display: grid;
 	min-height: 100vh;
-	grid-template-columns: repeat(
-		${({ $gridStyles }) => $gridStyles.columns},
-		1fr
-	);
-
+	grid-template-columns: repeat(12, 1fr);
+	grid-column-gap: 1.042vw
+	align-items: flex-start;
 	
-
-
-	${({ $windowWidth, $gridStyles }) => {
-		return $windowWidth <= deviceSize.mobileL
-			? "grid-auto-rows: 130vw"
-			: $gridStyles.rows;
-	}};
-	
-	grid-gap: ${({ $gridStyles }) => ($gridStyles.gap ? $gridStyles.gap : "3vw")};
-	grid-row-gap: 5vw;
 
 	&.steps-grid {
-
-		margin: 0 10vw;
 
 		.grid-item-wrapper {
 
@@ -39,14 +25,16 @@ const StyledGrid = styled.div`
 			flex-direction: column;
 
 			h4 {
-				font-size: 4.8vw;
-				line-height: 4.2vw;
-				text-transform: uppercase;
+				font-size: 4vw;
+				line-height: 4vw;
 				margin-bottom: 2vw;
+				width: 15vw;
 			}
 
 			p {
+				width: 15.3vw;
 				font-size: 1vw;
+				line-height: 1.3vw;
 			}
 
 		}
@@ -56,27 +44,25 @@ const StyledGrid = styled.div`
 
 
 			&1 {
-				grid-column: 1/5;
+				grid-column: 3/7;
 			}
 
 			&2 {
-				grid-column: 5/9;
-				grid-row: 2/3;
+				grid-column: 6/10;
+				
 			}
 
 			&3 {
-				grid-column: 9/13;
-				grid-row: 3/4;
+				grid-column: 9/12;
 			}
 
 			&4 {
-				grid-column: 5/9;
-				grid-row: 4/5;
+				grid-column: 6/10;
 			}
 
 			&5 {
-				grid-column: 1/5;
-				grid-row: 5/6;
+				grid-column: 3/8
+				
 			}
 		}
 

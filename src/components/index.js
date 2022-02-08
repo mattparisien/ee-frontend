@@ -6,7 +6,16 @@ import UnorderedList from "./Lists/UnorderedList";
 import Header from "./Header/Header";
 import Grid from "./Grid/Grid";
 import GridItem from "./Grid/GridItem";
-import { Eye, Ear, TextLogo, Arrow, Ellipse, Trumpet } from "./Vector/Svg";
+import {
+	Eye,
+	Ear,
+	TextLogo,
+	Arrow,
+	Ellipse,
+	Trumpet,
+	DrawnLogo,
+	Amperstand,
+} from "./Vector/Svg";
 import Line from "./Line";
 import ListBlogPosts from "./ListBlogPosts";
 import SlidingText from "./Marquee";
@@ -24,15 +33,17 @@ export {
 	Grid,
 	GridItem,
 	Eye,
+	Amperstand,
 	Ear,
 	Arrow,
 	Ellipse,
 	Trumpet,
 	TextLogo,
+	DrawnLogo,
 	SlidingText,
 	Line,
 	ListBlogPosts,
 	Image,
 	ImageOverlay,
-	SideMenu
+	SideMenu,
 };

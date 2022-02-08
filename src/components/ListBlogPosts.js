@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import useIntersect from "../helpers/hooks/useIntersect";
+// import useIntersect from "../helpers/hooks/useIntersect";
 import gsap from "gsap";
 import renderGridItems from "./Grid/helpers/renderGridItems";
 import useFetch from "../helpers/hooks/useFetch";

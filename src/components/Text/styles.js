@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
+import { RESPONSIVECONTAINERGUTTER } from "../styles/presetStyles";
 
 export const StyledHeading = styled.div`
 ${({ $headingStyles, theme }) => {
@@ -12,8 +13,28 @@ ${({ $headingStyles, theme }) => {
 `;
 
 export const StyledParagraph = styled.div`
+  padding: ${({ offsetTop }) => (offsetTop ? RESPONSIVECONTAINERGUTTER("regular", "top") : "3rem")};
 	position: relative;
+	letter-spacing: -1px;
+	
+
+	.line-wrapper {
+		overflow: hidden;
+
+		&:nth-of-type(1) {
+			padding-left: 20%;
+		}
+	}
+
+	.fade-up-line {
+		transform: translateY(100%);
+		opacity: 0;
+		white-space: nowrap;
+	}
+
 	.indent-title {
+		font-family: "Kobe";
+		font-size: 1vw;
 		text-indent: 0px;
 		width: 20%;
 		position: absolute;
@@ -33,193 +54,130 @@ export const StyledParagraph = styled.div`
 		}
 	}
 
-	${({ $size, $indentStyles }) => {
-		return (
-			($size === "medium" &&
-				`
-
-     .paragraph {
-      ${$indentStyles.isIndent && `text-indent: 20%`};
-     }
-
+	${({ size }) => {
+		return `
       @media ${device.mobileS} {
-        font-size: 1.6rem;
+
+        font-size: ${size === "large" && "50px"}
         
-        & p {
-          line-height: 1.9rem;
-        }
       };
-    
+
+
       @media ${device.mobileM} {
-        font-size: 1.8rem;
-
-        & p {
-          line-height: 2.3rem;
-        }
-      };
-    
-      @media ${device.mobileL} {
-        font-size: 2rem;
-
-        & p {
-          line-height: 2.6rem;
-        }
+        ${
+					size === "large" &&
+					`
+          font-size: 8vw;
+          
+          p {
+            line-height: 10vw;
+          }
+          
+        `
+				}
       };
 
 
-      @media (min-width: 680px) {
-        font-size: 2.3em;
+      @media  ${device.mobileL} {
+        
+        
+        ${
+					size === "large" &&
+					`
+          font-size: 8vw;
+          p {
+            line-height: 10.5vw;
+          }
+          
+        `
+				}
+      };
 
-        & p {
-          line-height: 2.7rem;
-        }
 
-      }
+      @media  ${device.tablet} {
 
-      @media ${device.tablet} {
-        font-size: 2.6rem;
+          ${
+						(size === "large" &&
+							`
+          font-size: 4.1rem;
+          p {
+            line-height: 4.7rem;
+          }
+          
+        `,
+						size === "medium" &&
+							`
+    font-size: 2.8rem;
+
+    p {
+      line-height: 3rem;
+    }
+    `)
+					}
+      };
+
+
+      @media ${device.laptop} {
         
 
-        & p {
+        ${
+					(size === "large" &&
+						`
+          font-size: 5rem;
+          p {
+            line-height: 5.5rem;
+          }
+        `,
+					size === "medium" &&
+						`
+        font-size: 3rem;
+
+        p {
           line-height: 3rem;
         }
+        `)
+				}
+
       };
+     
+      
 
-    
-      @media ${device.laptop} {
-        font-size: 2.6rem;
 
-        & p {
-          line-height: 2.9rem;
-        }    
-      };
+      @media  ${device.desktop} {
 
-  
-      @media ${device.laptopL} {
-        font-size: 3.3rem;
+        ${
+					(size === "large" &&
+						`
+          font-size: 5.4rem;
+          p {
+            line-height: 6.5rem;
+          }
+        `,
+					size === "medium" &&
+						`
+        font-size: 3.9rem;
 
-        & p {
-          line-height: 3.8rem;
+        p {
+          line-height: 4.2rem;
         }
-        
-      };
+        `)
+				}
 
-    
-      @media ${device.desktop} {
-        font-size: 3.2rem;
-
-        & p {
-          line-height: 3.3rem;
-        }
       };
 
 
-    
-      @media (min-width: 2500px) {
-        font-size: 5rem;
-
-        & p {
-          line-height: 5.2rem;
-        }
+      ${device.desktopL} {
+        ${
+					size === "large" &&
+					`
+          font-size: 5.9rem;
+          p {
+            line-height: 5.9rem;
+          }
+          
+        `
+				}
       };
-    `) ||
-			($size === "small" &&
-				`
-  ${$indentStyles.isIndent && `text-indent: 20%`};
-
-      margin-left: auto;
-      margin-top: 50vw;
-      display: block;
-      width: 35vw;
-
-      @media ${device.mobileS} {
-        font-size: 1.6rem;
-        
-        & p {
-          line-height: 1.9rem;
-        }
-      };
-    
-      @media ${device.mobileM} {
-        font-size: 1.5rem;
-        width: 100%;
-
-        & p {
-          line-height: 2.1rem;
-        }
-      };
-    
-      @media ${device.mobileL} {
-        font-size: 1.7rem;
-        width: 70vw;
-        & p {
-          line-height: 2rem;
-        }
-      };
-
-
-      @media (min-width: 680px) {
-        font-size: 1.6rem;
-        width: 55vw;
-
-        & p {
-          line-height: 1.9rem;
-        }
-
-      }
-
-      @media ${device.tablet} {
-        font-size: 1.6rem;
-        width: 50vw;
-
-        & p {
-          line-height: 1.9rem;
-        }
-
-        
-      };
-
-    
-      @media ${device.laptop} {
-        width: 45vw;
-        font-size: 1.7rem;
-
-        & p {
-          line-height: 2.2rem;
-        }
-        
-      };
-
-  
-      @media ${device.laptopL} {
-        font-size: 1.9rem;
-
-        & p {
-          line-height: 2rem;
-        }
-        
-      };
-
-    
-      @media ${device.desktop} {
-        width: 35vw;
-        font-size: 2rem;
-
-        & p {
-          line-height: 2.3rem;
-        }
-      };
-
-
-    
-      @media (min-width: 2500px) {
-        font-size: 2.3rem;
-
-        & p {
-          line-height: 2.3rem;
-        }
-      };
-  `)
-		);
+      `;
 	}}
 `;
