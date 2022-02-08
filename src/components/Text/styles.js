@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
+import { RESPONSIVECONTAINERGUTTER } from "../styles/presetStyles";
 
 export const StyledHeading = styled.div`
 ${({ $headingStyles, theme }) => {
@@ -12,7 +13,7 @@ ${({ $headingStyles, theme }) => {
 `;
 
 export const StyledParagraph = styled.div`
-  padding: ${({ offsetTop }) => (offsetTop ? "3rem 0" : "3rem")};
+  padding: ${({ offsetTop }) => (offsetTop ? RESPONSIVECONTAINERGUTTER("regular", "top") : "3rem")};
 	position: relative;
 	letter-spacing: -1px;
 	
