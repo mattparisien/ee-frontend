@@ -106,11 +106,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				<div className='scroll-container'>
 					<main ref={scrollRef}>
 						<TransitionGroup className='transition-group'>
-							<Transition
-								timeout={1900}
-								key={location.pathname}
-								onExiting={handleTransition}
-							>
+							<Transition key={location.pathname} onExiting={handleTransition}>
 								<SiteRoutes location={location} addToRefs={addToRefs} />
 							</Transition>
 						</TransitionGroup>

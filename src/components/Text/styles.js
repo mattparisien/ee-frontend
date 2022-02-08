@@ -12,20 +12,28 @@ ${({ $headingStyles, theme }) => {
 `;
 
 export const StyledParagraph = styled.div`
+  padding: ${({ offsetTop }) => (offsetTop ? "3rem 0" : "3rem")};
 	position: relative;
 	letter-spacing: -1px;
-	margin: ${({ margin }) => margin && margin};
+	
 
 	.line-wrapper {
 		overflow: hidden;
+
+		&:nth-of-type(1) {
+			padding-left: 20%;
+		}
 	}
 
-  .fade-up-line {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
+	.fade-up-line {
+		transform: translateY(100%);
+		opacity: 0;
+		white-space: nowrap;
+	}
 
 	.indent-title {
+		font-family: "Kobe";
+		font-size: 1vw;
 		text-indent: 0px;
 		width: 20%;
 		position: absolute;
@@ -88,14 +96,22 @@ export const StyledParagraph = styled.div`
       @media  ${device.tablet} {
 
           ${
-						size === "large" &&
-						`
+						(size === "large" &&
+							`
           font-size: 4.1rem;
           p {
             line-height: 4.7rem;
           }
           
-        `
+        `,
+						size === "medium" &&
+							`
+    font-size: 2.8rem;
+
+    p {
+      line-height: 3rem;
+    }
+    `)
 					}
       };
 
@@ -104,14 +120,21 @@ export const StyledParagraph = styled.div`
         
 
         ${
-					size === "large" &&
-					`
+					(size === "large" &&
+						`
           font-size: 5rem;
           p {
             line-height: 5.5rem;
           }
-          
-        `
+        `,
+					size === "medium" &&
+						`
+        font-size: 3rem;
+
+        p {
+          line-height: 3rem;
+        }
+        `)
 				}
 
       };
@@ -128,11 +151,14 @@ export const StyledParagraph = styled.div`
           p {
             line-height: 6.5rem;
           }
-          
         `,
 					size === "medium" &&
 						`
-          
+        font-size: 3.9rem;
+
+        p {
+          line-height: 4.2rem;
+        }
         `)
 				}
 

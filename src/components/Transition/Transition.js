@@ -10,7 +10,7 @@ import { entryAnimation, pageTransitionAnimation } from "./transitionAnims";
 function SiteTransition(props) {
 	const { themes, isTransitioning } = props;
 
-	const transitionTl = useRef(gsap.timeline());
+	const transitionTl = useRef(gsap.timeline({ paused: true }));
 	const morphPath = useRef(null);
 	const transitionCard = useRef(null);
 	const text = useRef(null);
@@ -21,18 +21,19 @@ function SiteTransition(props) {
 		charsClass: "char",
 	});
 
-	const isTransition = false;
-
 	useEffect(() => {
-
-
 		if (text.current && isSplit && morphPath.current) {
-			entryAnimation(transitionTl, text, transitionCard, morphPath);
+			if (isTransitioning) {
+				console.log('in hessssssre!')
+				const animation = pageTransitionAnimation(
+					transitionTl,
+					text,
+					transitionCard,
+					morphPath
+				);
+				animation.play();
+			}
 		}
-
-
-		
-
 	}, [isSplit, morphPath, text]);
 
 	return (

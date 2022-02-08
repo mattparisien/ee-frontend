@@ -3,7 +3,7 @@ import MorphSVGPlugin from "gsap/MorphSVGPlugin";
 
 gsap.registerPlugin(MorphSVGPlugin);
 
-export const entryAnimation = (timeline, text, transitionCard, morphPath) => {
+export const pageTransitionAnimation = (timeline, text, transitionCard, morphPath) => {
 	const tl = timeline.current;
 	const tagline = text.current;
 	const container = transitionCard.current;
@@ -56,7 +56,7 @@ export const entryAnimation = (timeline, text, transitionCard, morphPath) => {
 				opacity: 0,
 				duration: 0.5,
 			},
-			5
+			4.5
 		)
 		.set(container, {
 			display: "none",
@@ -65,9 +65,3 @@ export const entryAnimation = (timeline, text, transitionCard, morphPath) => {
 	return tl;
 };
 
-export const pageTransitionAnimation = (
-	timeline,
-	text,
-	transitionCard,
-	morphPath
-) => {};

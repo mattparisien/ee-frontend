@@ -1,14 +1,24 @@
 import React, { useRef, useState, useEffect } from "react";
-
+import $ from "jquery";
 import { StyledParagraph } from "./styles";
 import useResize from "../../helpers/hooks/useResize";
 
 import classNames from "classnames";
 
 function Paragraph(props) {
-	const { addToRefs, indent, indentTitle, size, margin, fadeUp } = props;
+	const {
+		addToRefs,
+		indent,
+		indentTitle,
+		size,
+		margin,
+		fadeUp,
+		padding,
+		offsetTop,
+	} = props;
 	const styledParagraph = useRef(null);
 	const paragraph = useRef(null);
+	const paragraphWrapper = useRef(null);
 	const [windowWidth, isResized] = useResize();
 
 	const paragraphClass = classNames("paragraph", {
@@ -23,36 +33,40 @@ function Paragraph(props) {
 		isIndent: indent,
 	});
 
+	useEffect(() => {
+		const calculateIndentStyles = () => {
+			const paragraph = $(paragraphWrapper.current).find(".paragraph")[0];
 
-	// useEffect(() => {
-	// 	const calculateIndentStyles = () => {
-	// 		const textHeight = paragraph.current.getBoundingClientRect().height;
-	// 		const fontSize = window
-	// 			.getComputedStyle(paragraph.current, null)
-	// 			.getPropertyValue("font-size");
-	// 		const fontSizeVal = fontSize.substr(0, fontSize.indexOf("p"));
-	// 		const height = paragraph.current.getBoundingClientRect().height;
+			const textHeight = paragraph.getBoundingClientRect().height;
 
-	// 		setIndentStyles(prev => ({
-	// 			...prev,
-	// 			fontSize: fontSizeVal / 2,
-	// 			height: fontSizeVal,
-	// 		}));
-	// 	};
+			const fontSize = window
+				.getComputedStyle(paragraph, null)
+				.getPropertyValue("font-size");
+			const fontSizeVal = fontSize.substr(0, fontSize.indexOf("p"));
+			const height = paragraph.getBoundingClientRect().height;
 
-	// 	calculateIndentStyles();
+			setIndentStyles(prev => ({
+				...prev,
+				fontSize: fontSizeVal / 2,
+				height: fontSizeVal,
+			}));
+		};
 
-	// 	if (isResized) {
-	// 		calculateIndentStyles();
-	// 	}
-	// }, [windowWidth]);
+		calculateIndentStyles();
+
+		if (isResized) {
+			calculateIndentStyles();
+		}
+	}, [windowWidth]);
 
 	return (
 		<StyledParagraph
-
+			ref={paragraphWrapper}
 			className={"styled-paragraph-wrapper"}
 			size={size}
 			margin={margin}
+			padding={padding}
+			offsetTop={offsetTop}
 			$indentStyles={{
 				...indentStyles,
 			}}

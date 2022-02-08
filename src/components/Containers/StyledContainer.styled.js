@@ -73,23 +73,27 @@ const StyledContainer = styled.div`
 		
 			@media ${device.tablet} {
 				padding: ${padding === 'small' && '3rem'};
+				padding: ${padding === 'regular' && '5rem'};
 			}
 		
 			@media ${device.laptop} {
 				padding: ${padding === 'small' && '5rem'};
-				
+				padding: ${padding === 'regular' && '7rem'};
 			}
 		
 			@media ${device.laptopL} {
 				padding: ${padding === 'small' && '5rem'};
+				padding: ${padding === 'regular' && '0 15rem'};
 			}
 		
 			@media ${device.desktop} {
 				padding: ${padding === 'small' && '5rem'};
+				padding: ${padding === 'regular' && ' 0 14rem'};
 			}
 		
 			@media (min-width: 2500px) {
 				padding: ${padding === 'small' && '5rem'};
+				padding: ${padding === 'regular' && '0 14rem'};
 			} ;
 			`
 
