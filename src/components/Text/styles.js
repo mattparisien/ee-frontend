@@ -13,10 +13,10 @@ ${({ $headingStyles, theme }) => {
 `;
 
 export const StyledParagraph = styled.div`
-  padding: ${({ offsetTop }) => (offsetTop ? RESPONSIVECONTAINERGUTTER("regular", "top") : "3rem")};
+	padding: ${({ offsetTop }) =>
+		offsetTop ? RESPONSIVECONTAINERGUTTER("regular", "top") : "3rem"};
 	position: relative;
 	letter-spacing: -1px;
-	
 
 	.line-wrapper {
 		overflow: hidden;

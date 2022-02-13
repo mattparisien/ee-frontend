@@ -62,34 +62,15 @@ function Hero(props) {
 			bg={"light"}
 		>
 			<StyledHero className='hero-wrapper'>
-				<Container bg={"light"} width='100%' height='100vh'>
-					<div
-						className='overflow-container -w-100 -h-100 -position-relative'
-						data-scroll-speed='6'
-						data-scroll
-					>
-						<Eye speed='2' eyeRef={eye} />
-						<div
-							className='-heading-bold -position-absolute-center'
-							id='hero-amperstand'
-						>
-							<div
-								className='amperstand-inner -position-relative'
-								ref={amperstand}
-							>
-								<Amperstand />
-
-								<span className='scroll-cta -position-absolute'>
-									<span className='scroll-cta-inner'>Scroll & Enjoy</span>
-								</span>
-							</div>
+				<Container>
+					<div className='hero-content'>
+						<div className='hero-content__inner'>
+							<div className='word'>Social</div>
+							<div className='word'>Impact</div>
+							<div className='word'>Agency</div>
 						</div>
-						<Ear speed='2' earRef={ear} />
 					</div>
 				</Container>
-
-				<div className='section-hero__image-wrapper -position-absolute'></div>
-				<div className='section-hero__image-wrapper -position-absolute'></div>
 			</StyledHero>
 		</Section>
 	);

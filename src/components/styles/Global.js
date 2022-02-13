@@ -1,17 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { device, deviceSize } from "./device";
-import BertholdBlock from "./assets/fonts/blc69-webfont.woff";
-import BertholdBlock2 from "./assets/fonts/blc69-webfont.woff2";
 
 const GlobalStyles = createGlobalStyle`
-
-@font-face {
-	font-family: 'Blc';
-	src: local('BertholdBlock'), local('BertholdBlock'),
-	url(${BertholdBlock}) format('woff'),
-	url(${BertholdBlock2}) format('woff2');
-	font-weight: 200;
-}
 
 
 * {
@@ -26,7 +16,7 @@ html {
 }
 
 html,
-p {
+body {
 	height: 100%;
 	width: 100%;
 	line-height: 1.6;
