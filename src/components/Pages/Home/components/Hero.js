@@ -5,10 +5,10 @@ import $ from "jquery";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import { StyledHero } from "./styles";
+import { DrawnLogo } from "../../../index";
 
 function Hero(props) {
 	const eye = useRef(null);
-	const overlayRef = useRef(null);
 	const amperstand = useRef(null);
 	const scrollCta = useRef(null);
 	const ear = useRef(null);
@@ -65,9 +65,10 @@ function Hero(props) {
 				<Container>
 					<div className='hero-content'>
 						<div className='hero-content__inner'>
-							<div className='word'>Social</div>
-							<div className='word'>Impact</div>
-							<div className='word'>Agency</div>
+							<DrawnLogo width='400px' />
+							<div className='word word-social'>Social</div>
+							<div className='word word-impact'>Impact</div>
+							<div className='word word-agency'>Agency</div>
 						</div>
 					</div>
 				</Container>

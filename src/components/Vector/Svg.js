@@ -292,6 +292,7 @@ export function DrawnLogo(props) {
 		<StyledDrawnLogo
 			animateSoundWaves={props.animateSoundWaves}
 			color={props.color}
+			className="drawnLogo"
 		>
 			<svg
 				viewBox='0 0 736 1011'
