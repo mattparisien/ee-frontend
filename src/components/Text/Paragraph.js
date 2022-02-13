@@ -15,6 +15,7 @@ function Paragraph(props) {
 		fadeUp,
 		padding,
 		offsetTop,
+		offsetBottom,
 		className,
 	} = props;
 	const styledParagraph = useRef(null);
@@ -28,39 +29,6 @@ function Paragraph(props) {
 		[className]: className,
 	});
 
-	const [indentStyles, setIndentStyles] = useState({
-		fontSize: null,
-		height: null,
-		title: indentTitle,
-		isIndent: indent,
-	});
-
-	useEffect(() => {
-		const calculateIndentStyles = () => {
-			const paragraph = $(paragraphWrapper.current).find(".paragraph")[0];
-
-			const textHeight = paragraph.getBoundingClientRect().height;
-
-			const fontSize = window
-				.getComputedStyle(paragraph, null)
-				.getPropertyValue("font-size");
-			const fontSizeVal = fontSize.substr(0, fontSize.indexOf("p"));
-			const height = paragraph.getBoundingClientRect().height;
-
-			setIndentStyles(prev => ({
-				...prev,
-				fontSize: fontSizeVal / 2,
-				height: fontSizeVal,
-			}));
-		};
-
-		calculateIndentStyles();
-
-		if (isResized) {
-			calculateIndentStyles();
-		}
-	}, [windowWidth]);
-
 	return (
 		<StyledParagraph
 			ref={paragraphWrapper}
@@ -69,9 +37,8 @@ function Paragraph(props) {
 			margin={margin}
 			padding={padding}
 			offsetTop={offsetTop}
-			$indentStyles={{
-				...indentStyles,
-			}}
+			offsetBottom={offsetBottom}
+			indent={indent}
 		>
 			{indentTitle && <div className='indent-title'>{indentTitle}</div>}
 			<p className={paragraphClass} ref={addToRefs}>

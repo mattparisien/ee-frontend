@@ -13,8 +13,25 @@ ${({ $headingStyles, theme }) => {
 `;
 
 export const StyledParagraph = styled.div`
-	padding: ${({ offsetTop }) =>
-		offsetTop ? RESPONSIVECONTAINERGUTTER("regular", "top") : "3rem"};
+
+p {
+  ${({ indent, size }) => {
+		return `
+      text-indent: ${
+				indent && size === "medium"
+					? "10vw"
+					: indent && size === "small"
+					? "5vw"
+					: "0"
+			}
+
+      `;
+	}}
+}
+ 
+
+	padding: ${({ offsetTop, offsetBottom }) =>
+		offsetTop && RESPONSIVECONTAINERGUTTER("regular", "top")}
 	position: relative;
 	letter-spacing: -1px;
 

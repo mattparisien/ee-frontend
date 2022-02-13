@@ -55,20 +55,25 @@ const StyledContainer = styled.div`
 		return (
 
 			`
+			
 			@media ${device.mobileS} {
 				padding: ${padding === 'small' && '2rem'};
+				padding: ${padding === 'regular' && '2rem'};
 			}
 		
 			@media ${device.mobileM} {
 				padding: ${padding === 'small' && '2rem'};
+				padding: ${padding === 'regular' && '2rem'};
 			}
 		
 			@media ${device.mobileL} {
 				padding: ${padding === 'small' && '2rem'};
+				padding: ${padding === 'regular' && '4rem'};
 			}
 		
 			@media (min-width: 680px) {
 				padding: ${padding === 'small' && '3rem'};
+				padding: ${padding === 'regular' && '6rem'};
 			}
 		
 			@media ${device.tablet} {
