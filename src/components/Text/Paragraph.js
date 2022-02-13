@@ -15,6 +15,7 @@ function Paragraph(props) {
 		fadeUp,
 		padding,
 		offsetTop,
+		className,
 	} = props;
 	const styledParagraph = useRef(null);
 	const paragraph = useRef(null);
@@ -24,6 +25,7 @@ function Paragraph(props) {
 	const paragraphClass = classNames("paragraph", {
 		"fade-up-lines": fadeUp && fadeUp === "lines",
 		"fade-up-blcok": fadeUp && fadeUp === "block",
+		[className]: className,
 	});
 
 	const [indentStyles, setIndentStyles] = useState({

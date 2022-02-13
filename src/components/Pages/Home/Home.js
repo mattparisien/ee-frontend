@@ -5,10 +5,10 @@ import useResize from "../../../helpers/hooks/useResize";
 import { useTheme } from "styled-components";
 import useScroll from "../../../helpers/hooks/useScrollDir";
 import Hero from "./components/Hero";
-import About from "../About";
+import About from "./components/About";
 import How from "./components/How";
-import FeaturedWork from "./components/FeaturedWork";
-import useFetch from "../../../helpers/hooks/useFetch";
+
+
 
 function Home(props) {
 	const { addToRefs } = props;

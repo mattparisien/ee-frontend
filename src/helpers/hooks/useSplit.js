@@ -10,6 +10,7 @@ function useSplit(arrayOfElements, options) {
 	const [splitCount, setSplitCount] = useState(0);
 	const [isSplit, setIsSplit] = useState(false);
 	const [chars, setChars] = useState(null);
+	const [words, setWords] = useState(null);
 	const [windowWidth] = useResize();
 	const [windowWidthChanged, setWindowWidthChanged] = useState(false);
 
@@ -29,7 +30,9 @@ function useSplit(arrayOfElements, options) {
 			setIsSplit(true);
 			setSplitText(mySplitText);
 			setSplitCount(1);
-			setChars(mySplitText.chars);
+			mySplitText.chars && setChars(mySplitText.chars);
+			mySplitText.words && setWords(mySplitText.words);
+
 		}
 	}, [arrayOfElements]);
 
@@ -41,6 +44,6 @@ function useSplit(arrayOfElements, options) {
 		}
 	}, [windowWidth]);
 
-	return [isSplit, chars, splitCount];
+	return [isSplit, chars, splitCount, words];
 }
 export default useSplit;

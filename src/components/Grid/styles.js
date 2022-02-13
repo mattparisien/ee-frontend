@@ -10,14 +10,20 @@ const StyledGrid = styled.div`
 	display: grid;
 	min-height: 100vh;
 	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(5, 1fr);
 	grid-column-gap: 1.042vw
 	align-items: flex-start;
+
+	
 	
 
 	&.steps-grid {
 
+		
+
 		.grid-item-wrapper {
 
+			
 
 			display: flex;
 			align-items: flex-start;
@@ -41,29 +47,35 @@ const StyledGrid = styled.div`
 	
 		
 		.steps-grid__item {
-
+			
 
 			&1 {
-				grid-column: 3/7;
+				grid-column: 1/5;
+				grid-row: 1/2;
 			}
 
 			&2 {
-				grid-column: 6/10;
+				grid-column: 5/9;
+				grid-row: 2/3;
 				
 			}
 
 			&3 {
-				grid-column: 9/12;
+				grid-column: 9/13;
+				grid-row: 3/4;
 			}
 
 			&4 {
-				grid-column: 6/10;
+				grid-column: 5/9;
+				grid-row: 4/5;
 			}
 
 			&5 {
-				grid-column: 3/8
+				grid-column: 1/5;
+				grid-row: 5/6;
 				
 			}
+			
 		}
 
 	}

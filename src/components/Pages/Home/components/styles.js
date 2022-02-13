@@ -3,18 +3,19 @@ import { device } from "../../../styles/device";
 
 export const StyledHero = styled.div`
 	.hero-content {
-		height: 60vw;
+		height: 80%;
 		max-height: 800px;
 		font-family: Kobe Bold;
-		width: 80%;
-		max-width: 1550px;
+		width: 100%;
+		
+		padding: inherit;
 		margin: 0 auto;
 		font-size: 10vw;
 		letter-spacing: -0.4vw;
 		line-height: 10vw;
 		position: absolute;
-		top: 50%;
 		left: 50%;
+		top: 50%;
 		transform: translate(-50%, -50%);
 
 		&__inner {
@@ -36,22 +37,23 @@ export const StyledHero = styled.div`
 					width: 300px;
 				}
 
-				.word {
+				.hero-word {
 					font-size: 200px;
 				}
 			}
 
-			.word {
+			.hero-word {
 				position: absolute;
+				overflow: hidden;
 			}
 
-			.word-impact {
+			.hero-word-impact {
 				right: 0;
 				top: 50%;
 				transform: translateY(-50%);
 			}
 
-			.word-agency {
+			.hero-word-agency {
 				bottom: 0;
 				left: 0;
 			}
@@ -70,5 +72,13 @@ export const StyledHero = styled.div`
 				max-height: 600px;
 			}
 		}
+	}
+`;
+
+export const StyledAbout = styled.div`
+	.section-who__paragraph2 {
+		width: 500px;
+		margin-left: auto;
+		margin-top: 600px;
 	}
 `;

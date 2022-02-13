@@ -40,12 +40,6 @@ export const StyledParagraph = styled.div`
 		position: absolute;
 		display: flex;
 		align-items: center;
-		${({ $indentStyles }) => {
-			return `
-      font-size: ${$indentStyles.fontSize}px;
-      height: ${$indentStyles.height}px;
-      `;
-		}}
 
 		span {
 			display: block;
@@ -58,7 +52,14 @@ export const StyledParagraph = styled.div`
 		return `
       @media ${device.mobileS} {
 
-        font-size: ${size === "large" && "50px"}
+        font-size: ${size === "large" && "50px"};
+        ${
+					size === "small" &&
+					`
+          font-size: 30px;
+          line-height: 35px;
+        `
+				};
         
       };
 
@@ -75,6 +76,14 @@ export const StyledParagraph = styled.div`
           
         `
 				}
+
+        ${
+					size === "small" &&
+					`
+        font-size: 40px;
+        line-height: 35px;
+      `
+				};
       };
 
 
@@ -114,6 +123,14 @@ export const StyledParagraph = styled.div`
     }
     `)
 					}
+
+        ${
+					size === "small" &&
+					`
+        font-size: 40px;
+        line-height: 35px;
+      `
+				};
       };
 
 

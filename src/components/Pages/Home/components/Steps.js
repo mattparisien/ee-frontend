@@ -20,9 +20,9 @@ function Steps() {
 						<Heading small>
 							{step.attributes.Title.split(" ").slice(0, 3).join(" ")}
 						</Heading>
-						<Paragraph xs >
+						<p>
 							{step.attributes.Body}
-						</Paragraph>
+							</p>
 					</GridItem>
 				);
 			})
@@ -30,7 +30,7 @@ function Steps() {
 	};
 
 	return (
-		<Container padding={"small"}>
+		<Container padding={"regular"}>
 			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
 				{data && renderSteps()}
 			</Grid>

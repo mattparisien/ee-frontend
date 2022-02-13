@@ -11,8 +11,8 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-	// overflow-y: ${props => (props.isOverflowHidden ? "hid den" : "overlay")};
-	font-family: 'Blc' !important;
+	overflow-y: ${props => (props.isOverflowHidden ? "hidden" : "overlay")};
+	font-family: 'Kobe';
 }
 
 html,

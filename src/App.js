@@ -25,19 +25,19 @@ function App() {
 		scrollRef.current
 	);
 
-	useEffect(() => {
-		if (scrollRef.current && !state.scroller) {
-			setTimeout(() => {
-				const scroll = new locomotiveScroll({
-					el: scrollRef.current,
-					smooth: true,
-					getDirection: true,
-					smoothMobile: false,
-				});
-				setState(prev => ({ ...prev, scroller: scroll }));
-			}, 500);
-		}
-	}, [scrollRef, state.scroller]);
+	// useEffect(() => {
+	// 	if (scrollRef.current && !state.scroller) {
+	// 		setTimeout(() => {
+	// 			const scroll = new locomotiveScroll({
+	// 				el: scrollRef.current,
+	// 				smooth: true,
+	// 				getDirection: true,
+	// 				smoothMobile: false,
+	// 			});
+	// 			setState(prev => ({ ...prev, scroller: scroll }));
+	// 		}, 500);
+	// 	}
+	// }, [scrollRef, state.scroller]);
 
 	const app = useRef(null);
 	const q = gsap.utils.selector(app.current);

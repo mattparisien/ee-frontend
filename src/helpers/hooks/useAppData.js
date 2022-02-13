@@ -8,7 +8,7 @@ export default function useAppData(scrollRef) {
 	//Themes
 	const themes = {
 		colors: {
-			light: "#F9F9EA",
+			light: "#FCFCF0",
 			dark: "#010201",
 			lighterDark: "#111111",
 			red: "#DF181F",
