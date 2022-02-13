@@ -21,7 +21,6 @@ function About(props) {
 					{data && (
 						<>
 							<Paragraph
-								
 								size={"medium"}
 								offsetTop
 								className='section-who__paragraph1'

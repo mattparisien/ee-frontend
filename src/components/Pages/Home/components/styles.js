@@ -7,7 +7,6 @@ export const StyledHero = styled.div`
 		max-height: 800px;
 		font-family: Kobe Bold;
 		width: 100%;
-		
 		padding: inherit;
 		margin: 0 auto;
 		font-size: 10vw;

@@ -8,11 +8,11 @@ const StyledGrid = styled.div`
 		margin-top: ${({ $gridStyles }) => ($gridStyles.gap ? $gridStyles.gap : "3vw")}
 	}
 	display: grid;
-	min-height: 100vh;
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(5, 1fr);
 	grid-column-gap: 1.042vw
 	align-items: flex-start;
+	height: 100vw;
 
 	
 	
@@ -23,6 +23,7 @@ const StyledGrid = styled.div`
 
 		.grid-item-wrapper {
 
+			opacity: 0.3;
 			
 
 			display: flex;
@@ -31,8 +32,8 @@ const StyledGrid = styled.div`
 			flex-direction: column;
 
 			h4 {
-				font-size: 4vw;
-				line-height: 4vw;
+				font-size: 3.3vw;
+				line-height: 3vw;
 				margin-bottom: 2vw;
 				width: 15vw;
 			}
