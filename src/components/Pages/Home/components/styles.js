@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../../styles/device";
 
 export const StyledHero = styled.div`
 	.hero-content {
@@ -6,10 +7,11 @@ export const StyledHero = styled.div`
 		max-height: 800px;
 		font-family: Kobe Bold;
 		width: 80%;
+		max-width: 1550px;
 		margin: 0 auto;
 		font-size: 10vw;
+		letter-spacing: -0.4vw;
 		line-height: 10vw;
-		letter-spacing: -0.4rem;
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -21,11 +23,22 @@ export const StyledHero = styled.div`
 			height: 100%;
 
 			.drawnLogo {
-				width: 300px;
+				width: 30vw;
+				max-width: 15vw;
 				top: 50%;
 				left: 50%;
 				position: absolute;
 				transform: translate(-50%, -50%);
+			}
+
+			@media ${device.desktop} {
+				.drawnLogo {
+					width: 300px;
+				}
+
+				.word {
+					font-size: 200px;
+				}
 			}
 
 			.word {
