@@ -10,7 +10,7 @@ function NavList(props) {
 
   return (
     <StyledFooterBottom ref={container} className="footer-navList-wrapper">
-      <div className='footer-brand-name'>Eyes & Ears © 2021</div>
+      <div className='footer-brand-name'>The Eyes & Ears Agency</div>
 				<UnorderedList>{props.links}</UnorderedList>
     </StyledFooterBottom>
   )

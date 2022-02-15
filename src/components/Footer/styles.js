@@ -11,6 +11,38 @@ export const StyledFooter = styled.footer`
 		height: auto;
 	}
 
+	.footer-contact {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+
+		&__left {
+			display: flex;
+			align-items: flex-start;
+			flex-direction: column;
+			justify-content: center;
+
+			.footer-email {
+				h2 {
+					font-size: 3.1vw;
+					line-height: 3.1vw;
+				}
+			}
+
+		}
+
+		&__right {
+			width: 15vw;
+
+			@media ${device.desktop} {
+				.drawnLogo {
+					width: 300px;
+			}
+				
+			}
+		}
+	}
+
 	#next-link, .marquee-text {
 		font-size: 15vw;
 		font-family: 'Kobe Bold';

@@ -36,13 +36,13 @@ const StyledContainer = styled.div`
 			`;
 	}};
 
-	${({ $centerInner }) => {
+	${({ $centerInner, flexDirection }) => {
 		return `
  ${
 		$centerInner
 			? `
 			display: flex;
-			flex-direction: column;
+			flex-direction: ${flexDirection && flexDirection};
 			align-items: center;
 			justify-content: center;
  `

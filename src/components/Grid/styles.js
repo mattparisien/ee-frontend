@@ -10,29 +10,65 @@ const StyledGrid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(5, 1fr);
-	grid-column-gap: 1.042vw
+	grid-column-gap: 1.042vw;
 	align-items: flex-start;
 	height: 100vw;
 
-	
-	
-
 	&.steps-grid {
+
+		.note {
+			width: 4vw;
+		}
+
+		.location-note-wrapper {
+
+			&__1 {
+				grid-row: 3/4;
+				grid-column: 11/12;
+			}
+
+			&__2 {
+				grid-row: 5/6;
+				grid-column: 4/5;
+			}
+
+			&__3 {
+				grid-row: 2/3;
+				grid-column: 3/4;
+			}
+
+			&__4 {
+				grid-row: 3/4;
+				grid-column: 1/2;
+			}
+
+			
+		}
+		
 
 		
 
+	
 		.grid-item-wrapper {
 
-			opacity: 0.3;
 			
-
 			display: flex;
 			align-items: flex-start;
 			justify-content: center;
 			flex-direction: column;
 
+		
+
+			h4, p {
+				color: ${({ theme }) => theme.colors.grey};
+			}
+
 			h4 {
+				
 				font-size: 3.3vw;
+				letter-spacing: -0.1vw;
+				text-transform: uppercase;
+				font-family: 'Kobe';
 				line-height: 3vw;
 				margin-bottom: 2vw;
 				width: 15vw;
@@ -115,9 +151,7 @@ const StyledGrid = styled.div`
 			text-transform: capitalize;
 			
 
-			.title {
-				font-family: 'Kobe Bold';
-			};
+		
 
 		};
 	};
@@ -130,6 +164,8 @@ const StyledGrid = styled.div`
 				grid-column: 1/13 !important;	
 				grid-row: repeat(10, 200px);
 				transform: none !important;
+
+
 			};
 			
 
@@ -141,7 +177,7 @@ const StyledGrid = styled.div`
 		&__2 {
 			grid-column: 7/13;
 			grid-row: 4/6;
-			transform: translateY(-14vw);
+			
 		}
 
 		&__3 {
@@ -157,7 +193,7 @@ const StyledGrid = styled.div`
 		&__5 {
 			grid-column: 1/5;
 			grid-row: 13/15;
-			transform: translateY(-14vw);
+			
 		}
 
 		&__6 {

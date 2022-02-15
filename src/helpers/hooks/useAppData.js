@@ -3,6 +3,8 @@ import useResize from "./useResize";
 import { useLocation } from "react-router-dom";
 import { useTransition } from "../../animations";
 import locomotiveScroll from "locomotive-scroll";
+import axios from "axios";
+import { formatPosts, formatSteps } from "../formatData";
 
 export default function useAppData(scrollRef) {
 	//Themes
@@ -15,6 +17,7 @@ export default function useAppData(scrollRef) {
 			green: "#039924s",
 			blue: "#1E70DD",
 			yellow: "#F1DA0A",
+			grey: "#AFAFAF"
 		},
 	};
 
@@ -29,52 +32,55 @@ export default function useAppData(scrollRef) {
 	//App state
 	const [state, setState] = useState({
 		scroller: null,
-		location: location.pathname,
-		isHovering: false,
 		headerColor: "dark",
-		showSidebar: false,
 		sidebar: {
 			showSidebar: false,
 			hasShown: false,
 		},
 		menuOffset: "-101%",
-		isTransitioning: false,
-		currentPage: null,
 		isSplit: false,
+		data: {
+			pending: true,
+		},
 	});
-
-	//Detect location changes
-	useEffect(() => {
-		setState(prev => ({ ...prev, location: location.pathname }));
-	}, [location]);
 
 	//Update menu offset on resize
 	useEffect(() => {
 		setState(prev => ({ ...prev, menuOffset: `-${windowWidth}px` }));
 	}, [windowWidth]);
 
-	const addToRefs = function (el) {
-		if (el && !appRefs.current[el]) {
-			let elClass = "";
+	//Fetch essential data
+	useEffect(() => {
+		const basePath = process.env.REACT_APP_API_URL;
 
-			//Take last of classList (avoid styled components classes)
-			//Spread DOMTokenList into array
+		const fetchURL = url => axios.get(url);
 
-			if (el.classList) {
-				elClass = [...el.classList].splice(elClass.length - 1, 1).join("");
+		const urls = [
+			`${basePath}/posts?populate=*`,
+			`${basePath}/steps`,
+			`${basePath}/about`,
+		];
 
-				if ([...el.classList].includes("menu-link")) {
-					links.push(el);
-					appRefs.current["menu-links"] = links;
-					return;
-				}
-			}
+		const promiseArray = [...urls].map(fetchURL);
 
-			el.id !== ""
-				? (appRefs.current[el.id] = el)
-				: (appRefs.current[elClass] = el);
-		}
-	};
+		Promise.all(promiseArray)
+			.then(data => {
+				const formattedPosts = formatPosts([...data[0].data.data]);
+				const formattedSteps = formatSteps([...data[1].data.data]);
+				setState(prev => ({
+					...prev,
+					data: {
+						...state.data,
+						posts: formattedPosts,
+						steps: formattedSteps,
+					},
+				}));
+			})
+			.catch(err => console.log(err))
+			.finally(
+				setState(prev => ({ ...prev, data: { ...prev.data, pending: false } }))
+			);
+	}, []);
 
-	return { appRefs, addToRefs, state, setState, themes };
+	return { appRefs, state, setState, themes };
 }

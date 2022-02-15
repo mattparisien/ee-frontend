@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import { Container, Section, Eye, Ear, Amperstand } from "../../../index";
-
+import { Container, Section } from "../../../index";
 import gsap from "gsap";
 import useSplit from "../../../../helpers/hooks/useSplit";
 import { StyledHero } from "./styles";
@@ -48,7 +47,7 @@ function Hero(props) {
 			bg={"light"}
 		>
 			<StyledHero className='hero-wrapper'>
-				<Container padding="regular" height="100vh">
+				<Container padding='regular' height='100vh'>
 					<div className='hero-content'>
 						<div className='hero-content__inner'>
 							<DrawnLogo width='400px' />

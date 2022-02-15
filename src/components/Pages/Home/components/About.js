@@ -10,10 +10,6 @@ function About(props) {
 		requestType: "textContent",
 	});
 
-	useEffect(() => {
-		console.log("data", data);
-	}, [data]);
-
 	return (
 		<Section classes={"section-who"} bg={"dark"} isFullHeight>
 			<Container padding={"regular"} height={"auto"}>
@@ -29,7 +25,11 @@ function About(props) {
 							>
 								{data.attributes.Body1}
 							</Paragraph>
-							<Paragraph size={"small"} indent className='section-who__paragraph2'>
+							<Paragraph
+								size={"small"}
+								indent
+								className='section-who__paragraph2'
+							>
 								{data.attributes.Body2}
 							</Paragraph>
 						</>

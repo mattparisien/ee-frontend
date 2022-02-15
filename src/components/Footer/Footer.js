@@ -17,7 +17,6 @@ export default function Footer(props) {
 	const q = gsap.utils.selector(footerRef.current);
 	const lines = q(".line");
 
-
 	const nextPostId = parseInt(location.split("projects/")[1]) + 1;
 
 	const [data, error, loading] = useFetch(`/api/posts/${nextPostId}`, {
@@ -25,7 +24,6 @@ export default function Footer(props) {
 	});
 
 	useEffect(() => {
-		
 		setLayout(location.includes("projects/") ? "project" : "contact");
 	}, [location, data]);
 
@@ -37,13 +35,13 @@ export default function Footer(props) {
 
 	return (
 		<StyledFooter $layout={layout} ref={footerRef} data-scroll-section>
-			<Container height={"100%"} centerInner={layout === "project" && true}>
-				{layout === "contact" && <Contact />}
-				{layout === "project" && (
-					<Project footerRef={footerRef} title={data && data.title} />
-				)}
+			<Container padding="regular" height="50vw" centerInner flexDirection="column">
+			{layout === "contact" && <Contact />}
+			{layout === "project" && (
+				<Project footerRef={footerRef} title={data && data.title} />
+			)}
 
-				<NavList links={navLinks} />
+			<NavList links={navLinks} />
 			</Container>
 		</StyledFooter>
 	);

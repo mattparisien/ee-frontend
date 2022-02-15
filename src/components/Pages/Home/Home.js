@@ -7,13 +7,12 @@ import useScroll from "../../../helpers/hooks/useScrollDir";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import How from "./components/How";
-
-
+import { useContext } from "react";
+import { DataContext } from "../../../App";
 
 function Home(props) {
 	const { addToRefs } = props;
 	const scrollRef = useRef(null);
-
 
 	//Featured work titles
 

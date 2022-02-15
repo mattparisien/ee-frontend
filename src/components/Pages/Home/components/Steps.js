@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { Heading, Paragraph, Grid, GridItem, Container } from "../../../index";
 import useFetch from "../../../../helpers/hooks/useFetch";
-import useSplit from "../../../../helpers/hooks/useSplit";
 import { useIntersection } from "../../../../helpers/hooks/useIntersect";
 import gsap from "gsap";
 import {
@@ -9,23 +8,26 @@ import {
 	DrawingGreen,
 	DrawingYellow,
 	DrawingRed,
+	NoteFilled,
+	NoteOutline,
 } from "../../../Vector/Svg";
+import { DataContext } from "../../../../App";
+import Notes from "./Notes";
+import { Section } from "../../../index";
 
 function Steps() {
-	const [data, error, loading] = useFetch("/api/steps", {
-		requestType: "textContent",
-	});
+	const { steps } = useContext(DataContext);
 
 	const renderSteps = function () {
 		return (
-			data &&
-			data.slice(0, 5).map((step, index) => {
+			steps &&
+			steps.slice(0, 5).map((step, index) => {
 				return (
 					<GridItem key={step.id} classes={`steps-grid__item${index + 1}`}>
 						<Heading small>
-							{step.attributes.Title.split(" ").slice(0, 3).join(" ")}
+							{step.title.split(" ").slice(0, 3).join(" ")}
 						</Heading>
-						<p>{step.attributes.Body}</p>
+						<p>{step.body}</p>
 					</GridItem>
 				);
 			})
@@ -35,13 +37,14 @@ function Steps() {
 	return (
 		<Container padding={"regular"} height='auto' isAbove>
 			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
-				{data && renderSteps()}
+				{steps && renderSteps()}
+				<Notes />
 			</Grid>
 			<Container className='steps-drawing-wrapper' isAbsolute isBelow>
-				<DrawingRed />
+				{/* <DrawingRed />
 				<DrawingYellow />
 				<DrawingGreen />
-				<DrawingBlue />
+				<DrawingBlue /> */}
 			</Container>
 		</Container>
 	);

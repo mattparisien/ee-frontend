@@ -19,6 +19,7 @@ export default function Container(props) {
 			isAbsolute={props.isAbsolute}
 			clipTo={props.clipTo}
 			isCustomBg={props.isCustomBg}
+			flexDirection={props.flexDirection}
 		>
 			{props.children}
 		</StyledContainer>

@@ -14,6 +14,10 @@ import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import { Helmet } from "react-helmet";
 import locomotiveScroll from "locomotive-scroll";
+import axios from "axios";
+import { createContext } from "react";
+
+export const DataContext = createContext();
 
 const isSplit = false;
 
@@ -25,19 +29,19 @@ function App() {
 		scrollRef.current
 	);
 
-	// useEffect(() => {
-	// 	if (scrollRef.current && !state.scroller) {
-	// 		setTimeout(() => {
-	// 			const scroll = new locomotiveScroll({
-	// 				el: scrollRef.current,
-	// 				smooth: true,
-	// 				getDirection: true,
-	// 				smoothMobile: false,
-	// 			});
-	// 			setState(prev => ({ ...prev, scroller: scroll }));
-	// 		}, 500);
-	// 	}
-	// }, [scrollRef, state.scroller]);
+	useEffect(() => {
+		if (scrollRef.current && !state.scroller) {
+			setTimeout(() => {
+				const scroll = new locomotiveScroll({
+					el: scrollRef.current,
+					smooth: true,
+					getDirection: true,
+					smoothMobile: false,
+				});
+				setState(prev => ({ ...prev, scroller: scroll }));
+			}, 500);
+		}
+	}, [scrollRef, state.scroller]);
 
 	const app = useRef(null);
 	const q = gsap.utils.selector(app.current);
@@ -72,50 +76,54 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 '
 				/>
 			</Helmet>
+			<DataContext.Provider value={state.data}>
+				<ThemeProvider theme={themes}>
+					<GlobalStyles
+						isTransitioning={state.isTransitioning}
+						isOverflowHidden={state.sidebar.showSidebar}
+					/>
 
-			<ThemeProvider theme={themes}>
-				<GlobalStyles
-					isTransitioning={state.isTransitioning}
-					isOverflowHidden={state.sidebar.showSidebar}
-				/>
+					{/* <ModalWrapper hoverState={hoverState} /> */}
+					<SiteTransition
+						addToRefs={addToRefs}
+						appRefs={appRefs}
+						themes={themes}
+						isTransitioning={state.isTransitioning}
+					/>
+					<Header
+						toggleMenu={toggleMenu}
+						menuState={state.sidebar.showSidebar}
+						scroller={state.scroller && state.scroller}
+						addToRefs={addToRefs}
+						headerColor={state.headerColor}
+						appRefs={appRefs}
+					/>
 
-				{/* <ModalWrapper hoverState={hoverState} /> */}
-				<SiteTransition
-					addToRefs={addToRefs}
-					appRefs={appRefs}
-					themes={themes}
-					isTransitioning={state.isTransitioning}
-				/>
-				<Header
-					toggleMenu={toggleMenu}
-					menuState={state.sidebar.showSidebar}
-					scroller={state.scroller && state.scroller}
-					addToRefs={addToRefs}
-					headerColor={state.headerColor}
-					appRefs={appRefs}
-				/>
+					<SideMenu
+						isOpen={state.sidebar.showSidebar}
+						hasShown={state.sidebar.hasShown}
+						appRefs={appRefs}
+						addToRefs={addToRefs}
+						offset={state.menuOffset}
+						toggleMenu={toggleMenu}
+					/>
+					<div className='scroll-container'>
+						<main ref={scrollRef}>
+							<TransitionGroup className='transition-group'>
+								<Transition
+									key={location.pathname}
+									onExiting={handleTransition}
+								>
+									<SiteRoutes location={location} addToRefs={addToRefs} />
+								</Transition>
+							</TransitionGroup>
+						</main>
 
-				<SideMenu
-					isOpen={state.sidebar.showSidebar}
-					hasShown={state.sidebar.hasShown}
-					appRefs={appRefs}
-					addToRefs={addToRefs}
-					offset={state.menuOffset}
-					toggleMenu={toggleMenu}
-				/>
-				<div className='scroll-container'>
-					<main ref={scrollRef}>
-						<TransitionGroup className='transition-group'>
-							<Transition key={location.pathname} onExiting={handleTransition}>
-								<SiteRoutes location={location} addToRefs={addToRefs} />
-							</Transition>
-						</TransitionGroup>
-					</main>
-
-					<Footer addToRefs={addToRefs} location={state.location} />
-				</div>
-				{/* <CookieBar /> */}
-			</ThemeProvider>
+						<Footer addToRefs={addToRefs} location={location.pathname} />
+					</div>
+					{/* <CookieBar /> */}
+				</ThemeProvider>
+			</DataContext.Provider>
 		</div>
 	);
 }

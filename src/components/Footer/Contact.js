@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useDebugValue } from "react";
 import { Container, Heading } from "..";
-import { StyledContactFooterInner } from "./styles";
+import { DrawnLogo } from "..";
 
+import { Section } from "..";
 
 function Contact() {
 	const line = useRef(null);
@@ -54,18 +55,23 @@ function Contact() {
 	// }, []);
 
 	return (
-		<StyledContactFooterInner className='contact-footer-inner'>
-
-
-			<Heading small white>
-				info@eyesandears.com
-			</Heading>
-			<span className='footer-email'>
-				<a href='/' target='_blank'>
-					info@eyesandears.com
-				</a>
-			</span>
-		</StyledContactFooterInner>
+		<>
+			<div className='footer-contact'>
+				<div className='footer-contact__left'>
+					<Heading large color='light'>
+						Hear to listen
+					</Heading>
+					<div className='footer-email'>
+						<Heading large color='light'>
+							<a href='mailto:info@eyesandears.com'>sammy@eyesandearsagency.com</a>
+						</Heading>
+					</div>
+				</div>
+				<div className='footer-contact__right'>
+					<DrawnLogo color="light"/>
+				</div>
+			</div>
+		</>
 	);
 }
 

@@ -9,6 +9,11 @@ ${({ $headingStyles, theme }) => {
 		($headingStyles.size && `font-size: ${$headingStyles.size}`)
 	);
 }}
+
+h2 {
+  font-size: 8vw;
+  line-height: 8vw;
+}
 }}
 `;
 
