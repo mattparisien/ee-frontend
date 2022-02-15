@@ -75,16 +75,15 @@ export const StyledHero = styled.div`
 `;
 
 export const StyledAbout = styled.div`
-
-.megaphone-svg {
-	position: absolute;
-	min-width: 400px;
-	width: 30vw;
-	bottom: 0;
-	left: -1vw;
-	height: auto;
-	padding-bottom: inherit;
-}
+	.megaphone-svg {
+		position: absolute;
+		min-width: 400px;
+		width: 30vw;
+		bottom: 0;
+		left: -1vw;
+		height: auto;
+		padding-bottom: inherit;
+	}
 
 	.section-who__paragraph2 {
 		width: 500px;
@@ -92,3 +91,9 @@ export const StyledAbout = styled.div`
 		margin-top: 600px;
 	}
 `;
+
+export const StyledNoteRotationWrapper = styled.div`
+	transform: rotate(${({ rotationDegree }) => rotationDegree + "deg"});
+`;
+
+

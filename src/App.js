@@ -16,21 +16,25 @@ import { Helmet } from "react-helmet";
 import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
 import { createContext } from "react";
+import { isCompositeComponentWithType } from "react-dom/cjs/react-dom-test-utils.production.min";
 
 export const DataContext = createContext();
+export const ScrollContext = createContext();
 
 const isSplit = false;
 
 function App() {
 	const scrollRef = useRef(null);
 	const location = useLocation();
+	const app = useRef(null);
+	const locomotiveRef = useRef(null);
 
 	const { addToRefs, appRefs, state, setState, themes } = useAppData(
-		scrollRef.current
+		locomotiveRef.current
 	);
 
 	useEffect(() => {
-		if (scrollRef.current && !state.scroller) {
+		if (scrollRef.current && !locomotiveRef.current) {
 			setTimeout(() => {
 				const scroll = new locomotiveScroll({
 					el: scrollRef.current,
@@ -38,12 +42,11 @@ function App() {
 					getDirection: true,
 					smoothMobile: false,
 				});
-				setState(prev => ({ ...prev, scroller: scroll }));
+				locomotiveRef.current = scroll;
 			}, 500);
 		}
-	}, [scrollRef, state.scroller]);
+	}, [scrollRef, state.scroller, locomotiveRef]);
 
-	const app = useRef(null);
 	const q = gsap.utils.selector(app.current);
 
 	const toggleMenu = () => {
@@ -76,6 +79,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 '
 				/>
 			</Helmet>
+
 			<DataContext.Provider value={state.data}>
 				<ThemeProvider theme={themes}>
 					<GlobalStyles
