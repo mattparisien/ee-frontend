@@ -7,19 +7,16 @@ import $ from "jquery";
 import ScrollContext from "../../../../App";
 import { Scroll } from "react-locomotive-scroll";
 
-
 function Notes() {
-
 	const scroller = useContext(ScrollContext);
 
 	const speed = 4;
 
 	const [rotation, setRotation] = useState(0);
 
-
 	useEffect(() => {
-		console.log(scroller)
-	})
+		console.log(scroller);
+	});
 
 	return (
 		<>
