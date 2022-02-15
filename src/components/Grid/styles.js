@@ -16,18 +16,46 @@ const StyledGrid = styled.div`
 
 	&.steps-grid {
 
-		.drawing {
-			width: 50px;
-			display: none;
+		.styled-object-container {
+			height: 100%;
 		}
 
-		.drawing-blue {
-			display: block;
-			grid-row: 5/6;
-			grid-column: 11/12;
-			width: 20vw;
-			transform: translateX(20vw);
+		.drawings-inner {
+			width: 100%;
+			height: 100%;
+			position: relative;
+
+			.drawing {
+				position: absolute;
+				width: 20vw;
+				height: auto;
+			}
+
+			.drawing-blue {
+				bottom: 0;
+				right: 0;
+				
+			}
+
+			.drawing-green {
+				bottom: 10vw;
+				
+			}
+
+			.drawing-yellow {
+				top: 10vw;
+				right: 0;
+				
+			}
+
+			.drawing-red {
+				top: 0;
+				left: 0;
+				width:  10vw;
+			}
 		}
+
+		
 
 		.note {
 			width: 4vw;

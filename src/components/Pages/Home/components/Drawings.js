@@ -9,6 +9,7 @@ import {
 function Drawings() {
 	return (
 		<>
+		
 			<DrawingRed />
 			<DrawingYellow />
 			<DrawingGreen />

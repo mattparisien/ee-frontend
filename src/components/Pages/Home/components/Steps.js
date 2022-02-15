@@ -56,7 +56,11 @@ function Steps() {
 			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
 				{steps && renderSteps()}
 				<Notes />
-				<Drawings />
+				<Container isAbsolute isBelow className='drawings-wrapper'>
+					<div className='drawings-inner'>
+						<Drawings />
+					</div>
+				</Container>
 			</Grid>
 		</Container>
 	);
