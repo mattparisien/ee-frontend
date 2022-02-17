@@ -49,21 +49,20 @@ export const StyledHero = styled.div`
 			}
 
 			.hero-word-social {
-				left: 50%;
-				top: 0;
-				transform: translateX(-50%);
+				left: ${({ defaultOffsets }) =>
+					defaultOffsets && defaultOffsets[1].left}px;
+				top: 50%;
+				transform: translateY(-50%);
 			}
 
 			.hero-word-impact {
-				right: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
+				left: ${({ defaultOffsets }) =>
+					defaultOffsets && defaultOffsets[2].left}px;
 			}
 
 			.hero-word-agency {
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%);
+				left: ${({ defaultOffsets }) =>
+					defaultOffsets && defaultOffsets[2].left}px;
 			}
 		}
 	}
@@ -104,5 +103,3 @@ export const StyledAbout = styled.div`
 export const StyledNoteRotationWrapper = styled.div`
 	color: blue;
 `;
-
-
