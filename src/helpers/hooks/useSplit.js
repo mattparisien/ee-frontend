@@ -11,6 +11,7 @@ function useSplit(arrayOfElements, options) {
 	const [isSplit, setIsSplit] = useState(false);
 	const [chars, setChars] = useState(null);
 	const [words, setWords] = useState(null);
+	const [lines, setLines] = useState(null);
 	const [windowWidth] = useResize();
 	const [windowWidthChanged, setWindowWidthChanged] = useState(false);
 
@@ -20,18 +21,20 @@ function useSplit(arrayOfElements, options) {
 		console.log(arrayOfElements)
 
 		if (!arrayOfElements || !arrayOfElements[0]) {
+			console.log('in herwss!s')
 			return;
 		}
 
 		if (arrayOfElements.length >= 0 && !isSplit) {
-			
+			console.log(arrayOfElements)
 			const mySplitText = new SplitText(arrayOfElements, options);
-			$(mySplitText.lines).wrap('<div class="line-wrapper"></div>');
+			
 			setIsSplit(true);
 			setSplitText(mySplitText);
 			setSplitCount(1);
 			mySplitText.chars && setChars(mySplitText.chars);
 			mySplitText.words && setWords(mySplitText.words);
+			mySplitText.lines && setLines(mySplitText.lines);
 
 		}
 	}, [arrayOfElements]);
@@ -44,6 +47,6 @@ function useSplit(arrayOfElements, options) {
 		}
 	}, [windowWidth]);
 
-	return [isSplit, chars, splitCount, words];
+	return [isSplit, chars, splitCount, words, lines];
 }
 export default useSplit;

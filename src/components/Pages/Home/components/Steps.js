@@ -1,22 +1,31 @@
 import React, { useEffect, useRef, useContext, useState } from "react";
 import { Heading, Paragraph, Grid, GridItem, Container } from "../../../index";
-
 import Drawings from "./Drawings";
 import { DataContext } from "../../../../App";
 import Notes from "./Notes/Notes";
 import { Scroll, useLocomotiveScroll } from "react-locomotive-scroll";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import useSplit from "../../../../helpers/hooks/useSplit";
+import SplitText from "gsap/SplitText";
 
 function Steps() {
 	const { steps } = useContext(DataContext);
 	const stepRefs = useRef([]);
 	const centeredStep = useRef(null);
+
 	const { scroll } = useLocomotiveScroll();
 	const [rotation, setRotation] = useState(null);
 	const noteContainerRef = useRef(null);
 	const rotationRefs = useRef([]);
 	const rotationTimeline = useRef(gsap.timeline());
+
+	const headingRefs = useRef([]);
+
+	const [isSplit, chars] = useSplit(headingRefs.current, {
+		type: "lines",
+		linesClass: "line",
+	});
 
 	const addToRefs = el => {
 		if (el && !rotationRefs.current.includes(el)) {
@@ -24,25 +33,13 @@ function Steps() {
 		}
 	};
 
-	// useEffect(() => {
-	// 	gsap.registerPlugin(ScrollTrigger);
-	// 	console.log(noteContainerRef, rotationRefs)
-	// 	if (noteContainerRef.current && rotationRefs.current.length > 3) {
-			
-	// 		rotationTimeline.current.to(rotationRefs.current, {
-	// 			rotation: "180deg",
-	// 			scrollTrigger: {
-	// 				trigger: noteContainerRef.current,
-	// 				start: "top top",
-	// 				end: "+=1000",
-	// 				scrub: 1,
-	// 				onEnter: () => {
-	// 					console.log("has enteredss!");
-	// 				},
-	// 			},
-	// 		});
-	// 	}
-	// }, [noteContainerRef, rotationRefs]);
+	const addToHeadingRefs = el => {
+		if (el && !headingRefs.current.includes(el)) {
+			headingRefs.current.push(el);
+		}
+	};
+
+	const stepsRevealAnim = useRef(gsap.timeline());
 
 	const renderSteps = function () {
 		return (
@@ -50,7 +47,7 @@ function Steps() {
 			steps.slice(0, 5).map((step, index) => {
 				return (
 					<GridItem key={step.id} classes={`steps-grid__item${index + 1}`}>
-						<Heading small>
+						<Heading small ref={addToHeadingRefs}>
 							{step.title.split(" ").slice(0, 3).join(" ")}
 						</Heading>
 						<p>{step.body}</p>

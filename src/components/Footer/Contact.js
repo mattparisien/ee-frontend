@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState, useDebugValue } from "react";
 import { Container, Heading } from "..";
 import { DrawnLogo } from "..";
-
+import SplitText from "gsap/SplitText";
 import { Section } from "..";
 
 function Contact() {
-	const line = useRef(null);
-	line.current = [];
+	const lines = useRef([]);
+
 	const containers = useRef(null);
 	containers.current = [];
 	const [coords, setCoords] = useState({
@@ -14,9 +14,11 @@ function Contact() {
 		y: 0,
 	});
 
+	const [linesToBeSplit, setLinesToBeSplit] = useState(null);
+
 	const addToRefs = el => {
-		if (line.current && !line.current.includes(el)) {
-			line.current.push(el);
+		if (el && !lines.current.includes(el)) {
+			lines.current.push(el);
 		}
 	};
 
@@ -58,17 +60,19 @@ function Contact() {
 		<>
 			<div className='footer-contact'>
 				<div className='footer-contact__left'>
-					<Heading large color='light'>
+					<Heading large color='light' weight='light' ref={addToRefs}>
 						Hear to listen
 					</Heading>
 					<div className='footer-email'>
-						<Heading large color='light'>
-							<a href='mailto:info@eyesandears.com'>sammy@eyesandearsagency.com</a>
+						<Heading large color='light' weight='light' ref={addToRefs}>
+							<a href='mailto:info@eyesandears.com'>
+								sammy@eyesandearsagency.com
+							</a>
 						</Heading>
 					</div>
 				</div>
 				<div className='footer-contact__right'>
-					<DrawnLogo color="light"/>
+					<DrawnLogo color='light' />
 				</div>
 			</div>
 		</>

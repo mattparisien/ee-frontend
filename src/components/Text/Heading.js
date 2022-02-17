@@ -1,9 +1,9 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { StyledHeading } from "./styles";
 import classNames from "classnames";
 import { capitalize } from "lodash";
 
-function Heading(props) {
+function Heading(props, ref) {
 	const {
 		small,
 		medium,
@@ -14,14 +14,14 @@ function Heading(props) {
 		size,
 		weight,
 		capitalize,
-		width
+		width,
 	} = props;
 
 	const headingStyles = {
 		color: color,
 		weight: weight,
 		capitalize: capitalize,
-		width: width
+		width: width,
 	};
 
 	return (
@@ -31,10 +31,10 @@ function Heading(props) {
 		>
 			{small && <h4>{children}</h4>}
 			{medium && <h3>{children}</h3>}
-			{large && <h2>{children}</h2>}
+			{large && <h2 ref={ref}>{children}</h2>}
 			{xl && <h1>{children}</h1>}
 		</StyledHeading>
 	);
 }
 
-export default Heading;
+export default forwardRef(Heading);
