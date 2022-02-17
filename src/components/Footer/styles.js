@@ -87,15 +87,7 @@ export const StyledFooter = styled.footer`
 		font-size: 5rem;
 		position: relative;
 
-		&::after {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			height: 1px;
-			background-color: ${({ theme }) => theme.colors.dark};
-		};
+		
 	};
 
 	
@@ -117,7 +109,10 @@ export const StyledFooter = styled.footer`
 	};
 
 	.footer-navList-wrapper {
-		margin: 5vw 0;
+		position: absolute;
+		bottom: 0;
+		padding: inherit;
+		margin-bottom: 2rem;
 		
 	}
 
@@ -149,6 +144,6 @@ export const StyledFooterBottom = styled.div`
 	width: 100%;
 
 	.footer-brand-name {
-		width: 10rem;
+		width: 13rem;
 	}
 `

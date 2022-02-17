@@ -10,7 +10,11 @@ function How() {
 
 	return (
 		<Section classes={"section-how"} bg={"light"}>
-			<Heading large color="dark">Steps to better listening</Heading>
+			<Container padding='regular' height='auto'>
+				<Heading large color='dark'>
+					Steps to better listening
+				</Heading>
+			</Container>
 			<Steps />
 		</Section>
 	);

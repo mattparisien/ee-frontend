@@ -3,73 +3,37 @@ import { device, deviceSize } from "../styles/device";
 import { RESPONSIVECONTAINERGUTTER } from "../styles/presetStyles";
 
 const paragraphFontSizes = {
-	large: {
-		desktopL: {
-			fontSize: "3.4rem",
-			lineHeight: "3.4rem",
-		},
-		desktop: {
-			fontSize: "2.8rem",
-			lineHeight: "2rem",
-		},
-		laptopL: {
-			fontSize: "3.5rem",
-			lineHeight: "3.5rem",
-		},
-		laptop: {
-			fontSize: "3.2rem",
-			lineHeight: "3.3rem",
-		},
-		tablet: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
-		},
-		mobileL: {
-			fontSize: "2.4rem",
-			lineHeight: "2.5rem",
-		},
-		mobileM: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
-		},
-		mobileS: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
-		},
+	desktopL: {
+		fontSize: "3.4rem",
+		lineHeight: "3.4rem",
 	},
-	small: {
-		desktopL: {
-			fontSize: "3.4rem",
-			lineHeight: "3.4rem",
-		},
-		desktop: {
-			fontSize: "2.8rem",
-			lineHeight: "2rem",
-		},
-		laptopL: {
-			fontSize: "3.5rem",
-			lineHeight: "3.5rem",
-		},
-		laptop: {
-			fontSize: "3.2rem",
-			lineHeight: "3.3rem",
-		},
-		tablet: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
-		},
-		mobileL: {
-			fontSize: "2.4rem",
-			lineHeight: "2.5rem",
-		},
-		mobileM: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
-		},
-		mobileS: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
-		},
+	desktop: {
+		fontSize: "2.8rem",
+		lineHeight: "2rem",
+	},
+	laptopL: {
+		fontSize: "3.5rem",
+		lineHeight: "3.5rem",
+	},
+	laptop: {
+		fontSize: "3.2rem",
+		lineHeight: "3.3rem",
+	},
+	tablet: {
+		fontSize: "4rem",
+		lineHeight: "4rem",
+	},
+	mobileL: {
+		fontSize: "2.4rem",
+		lineHeight: "2.5rem",
+	},
+	mobileM: {
+		fontSize: "4rem",
+		lineHeight: "4rem",
+	},
+	mobileS: {
+		fontSize: "4rem",
+		lineHeight: "4rem",
 	},
 };
 
@@ -139,20 +103,10 @@ export const StyledParagraph = styled.div`
 
 	padding-top: ${({ offsetTop }) => (offsetTop ? "6rem" : "0")};
 
-	${({ size }) => {
-		return `
-      ${Object.keys(device).map(deviceName => {
-				return `@media ${device[deviceName]} {
-              font-size: ${
-								paragraphFontSizes[size === "large" ? "large" : "small"][
-									deviceName
-								]["fontSize"]
-							};
-              line-height: ${
-								paragraphFontSizes.large[deviceName]["lineHeight"]
-							};
+	${Object.keys(device).map(deviceName => {
+		return `@media ${device[deviceName]} {
+              font-size: ${paragraphFontSizes[deviceName]["fontSize"]};
+              line-height: ${paragraphFontSizes[deviceName]["lineHeight"]};
             }`;
-			})};      
-      `;
-	}}
+	})};
 `;
