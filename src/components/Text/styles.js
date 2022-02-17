@@ -13,16 +13,16 @@ const paragraphFontSizes = {
 			lineHeight: "2rem",
 		},
 		laptopL: {
-			fontSize: "3.5rem",
-			lineHeight: "3.5rem",
+			fontSize: "3rem",
+			lineHeight: "3.2rem",
 		},
 		laptop: {
-			fontSize: "3.2rem",
-			lineHeight: "3.3rem",
+			fontSize: "2.7rem",
+			lineHeight: "2.8rem",
 		},
 		tablet: {
-			fontSize: "4rem",
-			lineHeight: "4rem",
+			fontSize: "3rem",
+			lineHeight: "3rem",
 		},
 		mobileL: {
 			fontSize: "2.4rem",
@@ -73,13 +73,52 @@ const paragraphFontSizes = {
 	},
 };
 
+const headingFontSizes = {
+	h2: {
+		desktopL: {
+			fontSize: "8rem",
+			lineHeight: "6rem",
+		},
+		desktop: {
+			fontSize: "10vw",
+			lineHeight: "12vw",
+		},
+		laptopL: {
+			fontSize: "8vw",
+			lineHeight: "6vw",
+		},
+		laptop: {
+			fontSize: "8vw",
+			lineHeight: "6vw",
+		},
+		tablet: {
+			fontSize: "12vw",
+			lineHeight: "9vw",
+		},
+		mobileL: {
+			fontSize: "10vw",
+			lineHeight: "8vw",
+		},
+		mobileM: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileS: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+	},
+};
+
 export const StyledHeading = styled.div`
 ${({ $headingStyles, theme }) => {
 	return (
-		($headingStyles.color && `color: ${theme.colors[$headingStyles.color]};`) ||
-		($headingStyles.size && `font-size: ${$headingStyles.size}`)
+		$headingStyles.color && `color: ${theme.colors[$headingStyles.color]};`
 	);
 }}
+
+width: ${({ $headingStyles }) =>
+	$headingStyles.width ? $headingStyles.width : "100%"};
 
 font-family: ${({ $headingStyles }) =>
 	$headingStyles.weight === "light" ? "Kobe" : "Kobe Bold"};
@@ -89,9 +128,13 @@ text-transform: ${({ $headingStyles }) =>
 
 
 h2 {
-  font-size: 8vw;
-  line-height: 8vw;
-}
+  	
+		${Object.keys(device).map(deviceName => {
+			return `@media ${device[deviceName]} {
+									font-size: ${headingFontSizes["h2"][deviceName]["fontSize"]};
+									line-height: ${headingFontSizes["h2"][deviceName]["lineHeight"]};
+								}`;
+		})}
 }}
 `;
 

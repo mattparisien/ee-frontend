@@ -14,12 +14,14 @@ function Heading(props) {
 		size,
 		weight,
 		capitalize,
+		width
 	} = props;
 
 	const headingStyles = {
 		color: color,
 		weight: weight,
 		capitalize: capitalize,
+		width: width
 	};
 
 	return (

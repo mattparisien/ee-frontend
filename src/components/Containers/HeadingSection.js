@@ -7,6 +7,7 @@ const StyledHeadingSection = styled.div`
 	display: flex;
 	align-items: center;
 
+	
 	${({ splitGraphicOffset }) => {
 		return (
 			splitGraphicOffset &&
@@ -15,6 +16,8 @@ const StyledHeadingSection = styled.div`
 			.heading-section-graphic-wrapper {
 				position: absolute;
 				${splitGraphicOffset}: 0;
+				width: 20vw;
+				max-width: 340px;
 			}
 
 			`
@@ -31,6 +34,7 @@ function HeadingSection(props) {
 				small={props.headingSize === "small"}
 				weight={props.headingWeight}
 				capitalize={props.capitalize}
+				width={props.headingWidth}
 			>
 				{props.headingText}
 			</Heading>

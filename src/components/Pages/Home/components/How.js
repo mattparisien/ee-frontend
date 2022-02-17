@@ -8,21 +8,21 @@ import HeadingSection from "../../../Containers/HeadingSection";
 import { InstrumentPlayer } from "../../../Vector/Svg";
 
 function How() {
-	
 	const theme = useTheme();
 
 	return (
 		<Section classes={"section-how"} bg={"light"}>
-			<Container padding='regular' height='auto'>
+			<Container padding='regular' height='auto' hasMarginBottom hasMarginTop>
 				<HeadingSection
 					headingSize='large'
 					color='dark'
 					headingText={"Steps to better listening"}
-					headingWeight="light"
+					headingWeight='light'
+					headingWidth='50%'
 					capitalize
 					splitGraphic={<InstrumentPlayer />}
 					splitGraphicOffset={"right"}
-					height="50vw"
+					height='50vw'
 				/>
 			</Container>
 			<Steps />

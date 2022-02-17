@@ -21,6 +21,8 @@ function Container(props, ref) {
 			isCustomBg={props.isCustomBg}
 			flexDirection={props.flexDirection}
 			ref={ref}
+			hasMarginTop={props.hasMarginTop}
+			hasMarginBottom={props.hasMarginBottom}
 		>
 			{props.children}
 		</StyledContainer>

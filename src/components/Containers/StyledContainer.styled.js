@@ -8,6 +8,17 @@ const StyledContainer = styled.div`
 	left: ${props => (props.isAbsolute ? "0" : "")};
 	z-index: ${props => (props.isBelow ? "-1" : props.isAbove ? "1" : "")};
 	clip-path: ${props => (props.clipTo ? `url(${props.clipTo})` : "")};
+	${({ hasMarginBottom, hasMarginTop }) => {
+		return `
+			margin: ${
+				hasMarginBottom && hasMarginTop
+					? "10vw 0"
+					: hasMarginBottom
+					? "0 0 10vw 0"
+					: "0"
+			};
+			`;
+	}}
 
 	${({ $paddingVerticalNone }) => {
 		return (
@@ -52,57 +63,53 @@ const StyledContainer = styled.div`
 	}}
 
 	${({ padding }) => {
-		return (
-
-			`
+		return `
 			
 			@media ${device.mobileS} {
-				padding: ${padding === 'small' && '2rem'};
-				padding: ${padding === 'regular' && '2rem'};
+				padding: ${padding === "small" && "2rem"};
+				padding: ${padding === "regular" && "2rem"};
 			}
 		
 			@media ${device.mobileM} {
-				padding: ${padding === 'small' && '2rem'};
-				padding: ${padding === 'regular' && '2rem'};
+				padding: ${padding === "small" && "2rem"};
+				padding: ${padding === "regular" && "2rem"};
 			}
 		
 			@media ${device.mobileL} {
-				padding: ${padding === 'small' && '2rem'};
-				padding: ${padding === 'regular' && '4rem'};
+				padding: ${padding === "small" && "2rem"};
+				padding: ${padding === "regular" && "4rem"};
 			}
 		
 			@media (min-width: 680px) {
-				padding: ${padding === 'small' && '3rem'};
-				padding: ${padding === 'regular' && '6rem'};
+				padding: ${padding === "small" && "3rem"};
+				padding: ${padding === "regular" && "6rem"};
 			}
 		
 			@media ${device.tablet} {
-				padding: ${padding === 'small' && '3rem'};
-				padding: ${padding === 'regular' && '5rem'};
+				padding: ${padding === "small" && "3rem"};
+				padding: ${padding === "regular" && "5rem"};
 			}
 		
 			@media ${device.laptop} {
-				padding: ${padding === 'small' && '5rem'};
-				padding: ${padding === 'regular' && '7rem'};
+				padding: ${padding === "small" && "5rem"};
+				padding: ${padding === "regular" && "7rem"};
 			}
 		
 			@media ${device.laptopL} {
-				padding: ${padding === 'small' && '5rem'};
-				padding: ${padding === 'regular' && '0 15rem'};
+				padding: ${padding === "small" && "5rem"};
+				padding: ${padding === "regular" && "0 15rem"};
 			}
 		
 			@media ${device.desktop} {
-				padding: ${padding === 'small' && '5rem'};
-				padding: ${padding === 'regular' && ' 0 14rem'};
+				padding: ${padding === "small" && "5rem"};
+				padding: ${padding === "regular" && " 0 14rem"};
 			}
 		
 			@media (min-width: 2500px) {
-				padding: ${padding === 'small' && '5rem'};
-				padding: ${padding === 'regular' && '0 14rem'};
+				padding: ${padding === "small" && "5rem"};
+				padding: ${padding === "regular" && "0 14rem"};
 			} ;
-			`
-
-		)
+			`;
 	}}
 `;
 
