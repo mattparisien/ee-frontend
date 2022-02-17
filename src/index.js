@@ -3,15 +3,12 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { ParallaxProvider } from "react-scroll-parallax";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ParallaxProvider>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ParallaxProvider>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

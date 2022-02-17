@@ -16,7 +16,7 @@ import { Helmet } from "react-helmet";
 import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
 import { createContext } from "react";
-import { isCompositeComponentWithType } from "react-dom/cjs/react-dom-test-utils.production.min";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 export const DataContext = createContext();
 export const ScrollContext = createContext();
@@ -29,23 +29,7 @@ function App() {
 	const app = useRef(null);
 	const locomotiveRef = useRef(null);
 
-	const { addToRefs, appRefs, state, setState, themes } = useAppData(
-		locomotiveRef.current
-	);
-
-	useEffect(() => {
-		if (scrollRef.current && !locomotiveRef.current) {
-			setTimeout(() => {
-				const scroll = new locomotiveScroll({
-					el: scrollRef.current,
-					smooth: true,
-					getDirection: true,
-					smoothMobile: false,
-				});
-				locomotiveRef.current = scroll;
-			}, 500);
-		}
-	}, [scrollRef, state.scroller, locomotiveRef]);
+	const { addToRefs, appRefs, state, setState, themes } = useAppData();
 
 	const q = gsap.utils.selector(app.current);
 
@@ -79,55 +63,63 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 '
 				/>
 			</Helmet>
+			<LocomotiveScrollProvider
+				options={{
+					smooth: true,
+					// ... all available Locomotive Scroll instance options
+				}}
+				watch={[location.pathname]}
+				containerRef={scrollRef}
+			>
+				<DataContext.Provider value={state.data}>
+					<ThemeProvider theme={themes}>
+						<GlobalStyles
+							isTransitioning={state.isTransitioning}
+							isOverflowHidden={state.sidebar.showSidebar}
+						/>
 
-			<DataContext.Provider value={state.data}>
-				<ThemeProvider theme={themes}>
-					<GlobalStyles
-						isTransitioning={state.isTransitioning}
-						isOverflowHidden={state.sidebar.showSidebar}
-					/>
+						{/* <ModalWrapper hoverState={hoverState} /> */}
+						<SiteTransition
+							addToRefs={addToRefs}
+							appRefs={appRefs}
+							themes={themes}
+							isTransitioning={state.isTransitioning}
+						/>
+						<Header
+							toggleMenu={toggleMenu}
+							menuState={state.sidebar.showSidebar}
+							scroller={state.scroller && state.scroller}
+							addToRefs={addToRefs}
+							headerColor={state.headerColor}
+							appRefs={appRefs}
+						/>
 
-					{/* <ModalWrapper hoverState={hoverState} /> */}
-					<SiteTransition
-						addToRefs={addToRefs}
-						appRefs={appRefs}
-						themes={themes}
-						isTransitioning={state.isTransitioning}
-					/>
-					<Header
-						toggleMenu={toggleMenu}
-						menuState={state.sidebar.showSidebar}
-						scroller={state.scroller && state.scroller}
-						addToRefs={addToRefs}
-						headerColor={state.headerColor}
-						appRefs={appRefs}
-					/>
+						<SideMenu
+							isOpen={state.sidebar.showSidebar}
+							hasShown={state.sidebar.hasShown}
+							appRefs={appRefs}
+							addToRefs={addToRefs}
+							offset={state.menuOffset}
+							toggleMenu={toggleMenu}
+						/>
+						<div className='scroll-container' ref={scrollRef}>
+							<main>
+								<TransitionGroup className='transition-group'>
+									<Transition
+										key={location.pathname}
+										onExiting={handleTransition}
+									>
+										<SiteRoutes location={location} addToRefs={addToRefs} />
+									</Transition>
+								</TransitionGroup>
+							</main>
 
-					<SideMenu
-						isOpen={state.sidebar.showSidebar}
-						hasShown={state.sidebar.hasShown}
-						appRefs={appRefs}
-						addToRefs={addToRefs}
-						offset={state.menuOffset}
-						toggleMenu={toggleMenu}
-					/>
-					<div className='scroll-container'>
-						<main ref={scrollRef}>
-							<TransitionGroup className='transition-group'>
-								<Transition
-									key={location.pathname}
-									onExiting={handleTransition}
-								>
-									<SiteRoutes location={location} addToRefs={addToRefs} />
-								</Transition>
-							</TransitionGroup>
-						</main>
-
-						<Footer addToRefs={addToRefs} location={location.pathname} />
-					</div>
-					{/* <CookieBar /> */}
-				</ThemeProvider>
-			</DataContext.Provider>
+							<Footer addToRefs={addToRefs} location={location.pathname} />
+						</div>
+						{/* <CookieBar /> */}
+					</ThemeProvider>
+				</DataContext.Provider>
+			</LocomotiveScrollProvider>
 		</div>
 	);
 }
