@@ -1,19 +1,25 @@
 import React from "react";
 import { StyledHeading } from "./styles";
 import classNames from "classnames";
+import { capitalize } from "lodash";
 
 function Heading(props) {
-	const { small, medium, large, xl, color, children, size } = props;
-
-	const headingClass = classNames("heading-wrapper", {
-		"-heading-small": small,
-		"-heading-medium": medium,
-		"-heading-large": large,
-		"-heading-xl": xl,
-	});
+	const {
+		small,
+		medium,
+		large,
+		xl,
+		color,
+		children,
+		size,
+		weight,
+		capitalize,
+	} = props;
 
 	const headingStyles = {
 		color: color,
+		weight: weight,
+		capitalize: capitalize,
 	};
 
 	return (

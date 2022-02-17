@@ -9,8 +9,8 @@ import { DrawnLogo } from "../../../index";
 function Hero(props) {
 	const wordRefs = useRef([]);
 	const [isSplit, chars, splitCount, words] = useSplit(wordRefs.current, {
-		type: "words",
-		wordsClass: "word",
+		type: "chars",
+		charsClass: "char",
 	});
 
 	const addToRefs = el => {
@@ -21,25 +21,53 @@ function Hero(props) {
 
 	const introAnimation = useRef(gsap.timeline());
 
-	// useEffect(() => {
-	// 	if (isSplit) {
-	// 		introAnimation.current.fromTo(
-	// 			words,
-	// 			{
-	// 				y: "-110%",
-	// 				left: "50%",
-	// 				x: "-50%"
-	// 			},
-	// 			{
-	// 				duration: 1,
-	// 				stagger: 0.3,
-	// 				y: "0",
-	// 				left: "50%",
-	// 				x: "-50%",
-	// 			}
-	// 		);
-	// 	}
-	// }, [isSplit]);
+	useEffect(() => {
+		if (isSplit && wordRefs.current.length > 2) {
+			introAnimation.current
+				.fromTo(
+					chars,
+					{
+						y: "100%",
+					},
+					{
+						y: "0",
+						duration: 3,
+						ease: "expo.inOut",
+						stagger: 0.05,
+					}
+				)
+				.to(
+					wordRefs.current[0],
+					{
+						left: 0,
+						xPercent: 0,
+						duration: 2,
+						ease: "expo.inOut",
+					},
+					2.3
+				)
+				.to(
+					wordRefs.current[1],
+					{
+						right: 0,
+						xPercent: 0,
+						duration: 2,
+						ease: "expo.inOut",
+					},
+					2.6
+				)
+				.to(
+					wordRefs.current[2],
+					{
+						left: 0,
+						duration: 2,
+						xPercent: 0,
+						ease: "expo.inOut",
+					},
+					2.9
+				);
+		}
+	}, [isSplit, wordRefs]);
 	return (
 		<Section
 			classes={"section-hero"}

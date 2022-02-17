@@ -4,16 +4,26 @@ import { Section, Container, Heading } from "../../../index";
 import Steps from "../components/Steps";
 import { useTheme } from "styled-components";
 import Scene from "../../../Engine/Scene";
+import HeadingSection from "../../../Containers/HeadingSection";
+import { InstrumentPlayer } from "../../../Vector/Svg";
 
 function How() {
+	
 	const theme = useTheme();
 
 	return (
 		<Section classes={"section-how"} bg={"light"}>
 			<Container padding='regular' height='auto'>
-				<Heading large color='dark'>
-					Steps to better listening
-				</Heading>
+				<HeadingSection
+					headingSize='large'
+					color='dark'
+					headingText={"Steps to better listening"}
+					headingWeight="light"
+					capitalize
+					splitGraphic={<InstrumentPlayer />}
+					splitGraphicOffset={"right"}
+					height="50vw"
+				/>
 			</Container>
 			<Steps />
 		</Section>

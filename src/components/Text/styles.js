@@ -3,37 +3,73 @@ import { device, deviceSize } from "../styles/device";
 import { RESPONSIVECONTAINERGUTTER } from "../styles/presetStyles";
 
 const paragraphFontSizes = {
-	desktopL: {
-		fontSize: "3.4rem",
-		lineHeight: "3.4rem",
+	large: {
+		desktopL: {
+			fontSize: "3.4rem",
+			lineHeight: "3.4rem",
+		},
+		desktop: {
+			fontSize: "2.8rem",
+			lineHeight: "2rem",
+		},
+		laptopL: {
+			fontSize: "3.5rem",
+			lineHeight: "3.5rem",
+		},
+		laptop: {
+			fontSize: "3.2rem",
+			lineHeight: "3.3rem",
+		},
+		tablet: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileL: {
+			fontSize: "2.4rem",
+			lineHeight: "2.5rem",
+		},
+		mobileM: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileS: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
 	},
-	desktop: {
-		fontSize: "2.8rem",
-		lineHeight: "2rem",
-	},
-	laptopL: {
-		fontSize: "3.5rem",
-		lineHeight: "3.5rem",
-	},
-	laptop: {
-		fontSize: "3.2rem",
-		lineHeight: "3.3rem",
-	},
-	tablet: {
-		fontSize: "4rem",
-		lineHeight: "4rem",
-	},
-	mobileL: {
-		fontSize: "2.4rem",
-		lineHeight: "2.5rem",
-	},
-	mobileM: {
-		fontSize: "4rem",
-		lineHeight: "4rem",
-	},
-	mobileS: {
-		fontSize: "4rem",
-		lineHeight: "4rem",
+	small: {
+		desktopL: {
+			fontSize: "1.5rem",
+			lineHeight: "1.5rem",
+		},
+		desktop: {
+			fontSize: "1.5rem",
+			lineHeight: "1.5rem",
+		},
+		laptopL: {
+			fontSize: "1.5rem",
+			lineHeight: "1.5rem",
+		},
+		laptop: {
+			fontSize: "2rem",
+			lineHeight: "2rem",
+		},
+		tablet: {
+			fontSize: "1.5rem",
+			lineHeight: "1.5rem",
+		},
+		mobileL: {
+			fontSize: "2.4rem",
+			lineHeight: "2.5rem",
+		},
+		mobileM: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileS: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
 	},
 };
 
@@ -44,6 +80,13 @@ ${({ $headingStyles, theme }) => {
 		($headingStyles.size && `font-size: ${$headingStyles.size}`)
 	);
 }}
+
+font-family: ${({ $headingStyles }) =>
+	$headingStyles.weight === "light" ? "Kobe" : "Kobe Bold"};
+
+text-transform: ${({ $headingStyles }) =>
+	$headingStyles.capitalize && "capitalize"};
+
 
 h2 {
   font-size: 8vw;
@@ -57,7 +100,7 @@ export const StyledParagraph = styled.div`
 		${({ indent, size }) => {
 			return `
       text-indent: ${
-				indent && size === "medium"
+				indent && size === "large"
 					? "10vw"
 					: indent && size === "small"
 					? "5vw"
@@ -103,10 +146,12 @@ export const StyledParagraph = styled.div`
 
 	padding-top: ${({ offsetTop }) => (offsetTop ? "6rem" : "0")};
 
-	${Object.keys(device).map(deviceName => {
-		return `@media ${device[deviceName]} {
-              font-size: ${paragraphFontSizes[deviceName]["fontSize"]};
-              line-height: ${paragraphFontSizes[deviceName]["lineHeight"]};
-            }`;
-	})};
+	${({ size }) => {
+		return Object.keys(device).map(deviceName => {
+			return `@media ${device[deviceName]} {
+									font-size: ${paragraphFontSizes[size][deviceName]["fontSize"]};
+									line-height: ${paragraphFontSizes[size][deviceName]["lineHeight"]};
+								}`;
+		});
+	}}
 `;

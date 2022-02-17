@@ -29,11 +29,13 @@ export const StyledHero = styled.div`
 				left: 50%;
 				position: absolute;
 				transform: translate(-50%, -50%);
+				opacity: 0;
 			}
 
 			@media ${device.desktop} {
 				.drawnLogo {
 					width: 300px;
+					opacity: 0;
 				}
 
 				.hero-word {
@@ -46,15 +48,22 @@ export const StyledHero = styled.div`
 				overflow: hidden;
 			}
 
+			.hero-word-social {
+				left: 50%;
+				top: 0;
+				transform: translateX(-50%);
+			}
+
 			.hero-word-impact {
-				right: 0;
+				right: 50%;
 				top: 50%;
-				transform: translateY(-50%);
+				transform: translate(-50%, -50%);
 			}
 
 			.hero-word-agency {
 				bottom: 0;
-				left: 0;
+				left: 50%;
+				transform: translateX(-50%);
 			}
 		}
 	}
