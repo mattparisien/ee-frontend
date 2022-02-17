@@ -1,5 +1,4 @@
 export const formatPosts = arr => {
-	console.log(arr);
 	const formattedPosts = arr.map(post => {
 		return {
 			id: post.id,
@@ -29,4 +28,12 @@ export const formatSteps = arr => {
 		};
 	});
 	return formattedSteps;
+};
+
+export const formatAbout = object => {
+	return {
+		id: object.id,
+		body1: object.attributes.Body1,
+		body2: object.attributes.Body2,
+	};
 };

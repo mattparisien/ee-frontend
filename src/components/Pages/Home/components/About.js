@@ -1,21 +1,19 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { Section, Container, Paragraph } from "../../..";
 import useFetch from "../../../../helpers/hooks/useFetch";
 import Spinner from "../../../Vector/Spinner";
 import { StyledAbout } from "./styles";
 import { Megaphone } from "../../../Vector/Svg";
+import { DataContext } from "../../../../App";
 
 function About(props) {
-	const [data, error, loading] = useFetch("/api/about", {
-		requestType: "textContent",
-	});
+	const data = useContext(DataContext);
 
 	return (
 		<Section classes={"section-who"} bg={"dark"} isFullHeight>
 			<Container padding={"regular"} height={"auto"}>
 				<StyledAbout>
-					{loading && <Spinner />}
-					{data && (
+					{data.about && (
 						<>
 							<Paragraph
 								size={"medium"}
@@ -23,14 +21,14 @@ function About(props) {
 								indent
 								className='section-who__paragraph1'
 							>
-								{data.attributes.Body1}
+								{data.about.body1}
 							</Paragraph>
 							<Paragraph
 								size={"small"}
 								indent
 								className='section-who__paragraph2'
 							>
-								{data.attributes.Body2}
+								{data.about.body2}
 							</Paragraph>
 						</>
 					)}

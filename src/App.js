@@ -13,13 +13,12 @@ import SiteTransition from "./components/Transition/Transition";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import { Helmet } from "react-helmet";
-import locomotiveScroll from "locomotive-scroll";
-import axios from "axios";
+
 import { createContext } from "react";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import LoadingScreen from "./components/Loading/LoadingScreen";
 
 export const DataContext = createContext();
-export const ScrollContext = createContext();
 
 const isSplit = false;
 
@@ -29,7 +28,7 @@ function App() {
 	const app = useRef(null);
 	const locomotiveRef = useRef(null);
 
-	const { addToRefs, appRefs, state, setState, themes } = useAppData();
+	const { addToRefs, appRefs, state, setState, pending, themes } = useAppData();
 
 	const q = gsap.utils.selector(app.current);
 
@@ -42,6 +41,10 @@ function App() {
 			},
 		}));
 	};
+
+	useEffect(() => {
+		console.log(state)
+	}, [state])
 
 	const handleTransition = () => {
 		setState(prev => ({
@@ -66,7 +69,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 			<LocomotiveScrollProvider
 				options={{
 					smooth: true,
-					// ... all available Locomotive Scroll instance options
+					getDirection: true,
 				}}
 				watch={[location.pathname]}
 				containerRef={scrollRef}
@@ -77,6 +80,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							isTransitioning={state.isTransitioning}
 							isOverflowHidden={state.sidebar.showSidebar}
 						/>
+						<LoadingScreen isActive={pending}/>
 
 						{/* <ModalWrapper hoverState={hoverState} /> */}
 						<SiteTransition
@@ -88,7 +92,6 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						<Header
 							toggleMenu={toggleMenu}
 							menuState={state.sidebar.showSidebar}
-							scroller={state.scroller && state.scroller}
 							addToRefs={addToRefs}
 							headerColor={state.headerColor}
 							appRefs={appRefs}
@@ -102,7 +105,11 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							offset={state.menuOffset}
 							toggleMenu={toggleMenu}
 						/>
-						<div className='scroll-container' ref={scrollRef}>
+						<div
+							className='scroll-container'
+							ref={scrollRef}
+							data-scroll-container
+						>
 							<main>
 								<TransitionGroup className='transition-group'>
 									<Transition

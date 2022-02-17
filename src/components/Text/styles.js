@@ -2,6 +2,77 @@ import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
 import { RESPONSIVECONTAINERGUTTER } from "../styles/presetStyles";
 
+const paragraphFontSizes = {
+	large: {
+		desktopL: {
+			fontSize: "3.4rem",
+			lineHeight: "3.4rem",
+		},
+		desktop: {
+			fontSize: "2.8rem",
+			lineHeight: "2rem",
+		},
+		laptopL: {
+			fontSize: "3.5rem",
+			lineHeight: "3.5rem",
+		},
+		laptop: {
+			fontSize: "3.2rem",
+			lineHeight: "3.3rem",
+		},
+		tablet: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileL: {
+			fontSize: "2.4rem",
+			lineHeight: "2.5rem",
+		},
+		mobileM: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileS: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+	},
+	small: {
+		desktopL: {
+			fontSize: "3.4rem",
+			lineHeight: "3.4rem",
+		},
+		desktop: {
+			fontSize: "2.8rem",
+			lineHeight: "2rem",
+		},
+		laptopL: {
+			fontSize: "3.5rem",
+			lineHeight: "3.5rem",
+		},
+		laptop: {
+			fontSize: "3.2rem",
+			lineHeight: "3.3rem",
+		},
+		tablet: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileL: {
+			fontSize: "2.4rem",
+			lineHeight: "2.5rem",
+		},
+		mobileM: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+		mobileS: {
+			fontSize: "4rem",
+			lineHeight: "4rem",
+		},
+	},
+};
+
 export const StyledHeading = styled.div`
 ${({ $headingStyles, theme }) => {
 	return (
@@ -18,10 +89,9 @@ h2 {
 `;
 
 export const StyledParagraph = styled.div`
-
-p {
-  ${({ indent, size }) => {
-		return `
+	p {
+		${({ indent, size }) => {
+			return `
       text-indent: ${
 				indent && size === "medium"
 					? "10vw"
@@ -31,12 +101,9 @@ p {
 			}
 
       `;
-	}}
-}
- 
+		}}
+	}
 
-	padding: ${({ offsetTop, offsetBottom }) =>
-		offsetTop && RESPONSIVECONTAINERGUTTER("regular", "top")}
 	position: relative;
 	letter-spacing: -1px;
 
@@ -70,153 +137,22 @@ p {
 		}
 	}
 
+	padding-top: ${({ offsetTop }) => (offsetTop ? "6rem" : "0")};
+
 	${({ size }) => {
 		return `
-      @media ${device.mobileS} {
-
-        font-size: ${size === "large" && "50px"};
-        ${
-					size === "small" &&
-					`
-          font-size: 30px;
-          line-height: 35px;
-        `
-				};
-        
-      };
-
-
-      @media ${device.mobileM} {
-        ${
-					size === "large" &&
-					`
-          font-size: 8vw;
-          
-          p {
-            line-height: 10vw;
-          }
-          
-        `
-				}
-
-        ${
-					size === "small" &&
-					`
-        font-size: 40px;
-        line-height: 35px;
-      `
-				};
-      };
-
-
-      @media  ${device.mobileL} {
-        
-        
-        ${
-					size === "large" &&
-					`
-          font-size: 8vw;
-          p {
-            line-height: 10.5vw;
-          }
-          
-        `
-				}
-      };
-
-
-      @media  ${device.tablet} {
-
-          ${
-						(size === "large" &&
-							`
-          font-size: 4.1rem;
-          p {
-            line-height: 4.7rem;
-          }
-          
-        `,
-						size === "medium" &&
-							`
-    font-size: 2.8rem;
-
-    p {
-      line-height: 3rem;
-    }
-    `)
-					}
-
-        ${
-					size === "small" &&
-					`
-        font-size: 40px;
-        line-height: 35px;
-      `
-				};
-      };
-
-
-      @media ${device.laptop} {
-        
-
-        ${
-					(size === "large" &&
-						`
-          font-size: 5rem;
-          p {
-            line-height: 5.5rem;
-          }
-        `,
-					size === "medium" &&
-						`
-        font-size: 3rem;
-
-        p {
-          line-height: 3rem;
-        }
-        `)
-				}
-
-      };
-     
-      
-
-
-      @media  ${device.desktop} {
-
-        ${
-					(size === "large" &&
-						`
-          font-size: 5.4rem;
-          p {
-            line-height: 6.5rem;
-          }
-        `,
-					size === "medium" &&
-						`
-        font-size: 3.9rem;
-
-        p {
-          line-height: 4.2rem;
-        }
-        `)
-				}
-
-      };
-
-
-      ${device.desktopL} {
-        ${
-					size === "large" &&
-					`
-          font-size: 5.9rem;
-          p {
-            line-height: 5.9rem;
-          }
-          
-        `
-				}
-      };
+      ${Object.keys(device).map(deviceName => {
+				return `@media ${device[deviceName]} {
+              font-size: ${
+								paragraphFontSizes[size === "large" ? "large" : "small"][
+									deviceName
+								]["fontSize"]
+							};
+              line-height: ${
+								paragraphFontSizes.large[deviceName]["lineHeight"]
+							};
+            }`;
+			})};      
       `;
 	}}
 `;

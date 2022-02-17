@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useTransition } from "../../animations";
 import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
-import { formatPosts, formatSteps } from "../formatData";
+import { formatPosts, formatSteps, formatAbout } from "../formatData";
 
 export default function useAppData(scrollRef) {
 	//Themes
@@ -17,19 +17,19 @@ export default function useAppData(scrollRef) {
 			green: "#039924s",
 			blue: "#1E70DD",
 			yellow: "#F1DA0A",
-			grey: "#AFAFAF"
+			grey: "#AFAFAF",
 		},
 	};
 
 	const [windowWidth, isResized] = useResize();
 	const location = useLocation();
 	const appRefs = useRef({});
-
 	appRefs.current = {};
-	const links = [];
-	let currentPage = "";
 
 	//App state
+
+	const [pending, setPending] = useState(true);
+
 	const [state, setState] = useState({
 		scroller: null,
 		headerColor: "dark",
@@ -39,9 +39,7 @@ export default function useAppData(scrollRef) {
 		},
 		menuOffset: "-101%",
 		isSplit: false,
-		data: {
-			pending: true,
-		},
+		data: {},
 	});
 
 	//Update menu offset on resize
@@ -67,20 +65,21 @@ export default function useAppData(scrollRef) {
 			.then(data => {
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
+				const formattedAbout = formatAbout(data[2].data.data);
+				console.log(formattedAbout)
 				setState(prev => ({
 					...prev,
 					data: {
 						...state.data,
+						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
 					},
 				}));
 			})
 			.catch(err => console.log(err))
-			.finally(
-				setState(prev => ({ ...prev, data: { ...prev.data, pending: false } }))
-			);
+			.finally(() => setPending(false));
 	}, []);
 
-	return { appRefs, state, setState, themes };
+	return { appRefs, state, setState, pending, themes };
 }

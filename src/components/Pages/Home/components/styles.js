@@ -93,7 +93,7 @@ export const StyledAbout = styled.div`
 `;
 
 export const StyledNoteRotationWrapper = styled.div`
-	transform: rotate(${({ rotationDegree }) => rotationDegree + "deg"});
+	color: blue;
 `;
 
 
