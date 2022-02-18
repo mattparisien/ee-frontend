@@ -57,9 +57,6 @@ main {
 	}
 }
 
-.line-wrapper {
-	overflow: hidden;
-}
 
 .line {
 	transform: translateY(100%);

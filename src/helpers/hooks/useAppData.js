@@ -66,7 +66,7 @@ export default function useAppData(scrollRef) {
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
-				console.log(formattedAbout)
+				
 				setState(prev => ({
 					...prev,
 					data: {

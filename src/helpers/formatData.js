@@ -17,6 +17,7 @@ export const formatPosts = arr => {
 			},
 		};
 	});
+	return formattedPosts;
 };
 
 export const formatSteps = arr => {

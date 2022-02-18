@@ -9,6 +9,7 @@ import About from "./components/About";
 import How from "./components/How";
 import { useContext } from "react";
 import { DataContext } from "../../../App";
+import FeaturedWork from "./components/FeaturedWork";
 
 function Home(props) {
 	const { addToRefs } = props;
@@ -21,7 +22,7 @@ function Home(props) {
 			<Hero />
 			<About />
 			<How />
-			{/* <FeaturedWork /> */}
+			<FeaturedWork />
 		</>
 	);
 }

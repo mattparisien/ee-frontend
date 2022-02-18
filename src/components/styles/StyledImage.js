@@ -2,6 +2,11 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { deviceSize } from "./device";
 
+// background-image: url(${({ $props }) =>
+// $props.url.startsWith("http")
+// 	? $props.url
+// 	: process.env.REACT_APP_API_URL + $props.url});
+
 const StyledImage = styled.div`
 	width: ${props => (props.$width ? props.$width : "100%")};
 	height: ${props => (props.$height ? props.$height : "100%")};
@@ -9,10 +14,7 @@ const StyledImage = styled.div`
 	position: relative;
 	.image {
 		overflow: hidden;
-		background-image: url(${({ $props }) =>
-			$props.url.startsWith("http")
-				? $props.url
-				: process.env.REACT_APP_API_URL + $props.url});
+	
 		background-position: 50% 50%;
 		background-repeat: "no-repeat";
 		background-size: 200%;

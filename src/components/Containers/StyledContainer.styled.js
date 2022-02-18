@@ -129,7 +129,7 @@ const StyledContainer = styled.div`
 											
 										}`;
 			  })
-			: "";
+			: ""
 	}}
 `;
 
