@@ -58,11 +58,11 @@ function Steps() {
 	};
 
 	return (
-		<Container padding={"regular"} height='auto' isAbove ref={noteContainerRef}>
+		<Container height='auto' isAbove ref={noteContainerRef}>
 			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
 				{steps && renderSteps()}
 				<Notes addToRefs={addToRefs} />
-				<Container isAbsolute isBelow className='drawings-wrapper'>
+				<Container isAbsolute isBelow className='drawings-wrapper' noGutter>
 					<div className='drawings-inner'>
 						<Drawings />
 					</div>

@@ -94,7 +94,7 @@ export const StyledAbout = styled.div`
 	}
 
 	.section-who__paragraph2 {
-		width: 500px;
+		width: 400px;
 		margin-left: auto;
 		margin-top: 600px;
 	}

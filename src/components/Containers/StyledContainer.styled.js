@@ -121,12 +121,16 @@ const StyledContainer = styled.div`
 `;
 	}}
 
-	${Object.keys(device).map(deviceName => {
-		return `@media ${device[deviceName]} {
-									padding: 0 ${responsiveGutter["horizontal"][deviceName]["padding"]};
-									
-								}`;
-	})};
+	${({ noGutter }) => {
+		return !noGutter
+			? Object.keys(device).map(deviceName => {
+					return `@media ${device[deviceName]} {
+											padding: 0 ${responsiveGutter["horizontal"][deviceName]["padding"]};
+											
+										}`;
+			  })
+			: "";
+	}}
 `;
 
 export { StyledContainer };

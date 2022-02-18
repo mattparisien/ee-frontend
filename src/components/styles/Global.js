@@ -61,7 +61,10 @@ main {
 	overflow: hidden;
 }
 
-
+.line {
+	transform: translateY(100%);
+	opacity: 0;
+}
 
 
 

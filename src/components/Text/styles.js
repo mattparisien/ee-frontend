@@ -159,10 +159,6 @@ export const StyledParagraph = styled.div`
 
 	.line-wrapper {
 		overflow: hidden;
-
-		&:nth-of-type(1) {
-			padding-left: 20%;
-		}
 	}
 
 	.fade-up-line {

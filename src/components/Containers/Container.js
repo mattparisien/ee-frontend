@@ -12,7 +12,7 @@ function Container(props, ref) {
 			$height={props.height}
 			$width={props.width}
 			$centerInner={props.centerInner}
-			$paddingVerticalNone={props.paddingVerticalNone}
+			noGutter={props.noGutter}
 			className={containerClass}
 			isBelow={props.isBelow}
 			isAbove={props.isAbove}
