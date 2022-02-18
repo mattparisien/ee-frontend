@@ -58,6 +58,7 @@ export const StyledFeaturedWorkList = styled.ul`
 
 	
 		.inner {
+			
 			display: block;
 			width: 100%;
 			height: 100%;
@@ -165,7 +166,7 @@ export const StyledFeaturedWorkList = styled.ul`
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding: 1vw;
+				padding: 3vw;
 				transition: 300ms ease;
 				opacity: 0;
 
@@ -340,7 +341,6 @@ function FeaturedWork(props) {
 						weight='light'
 						width='100%'
 						headingText={"Featured Work"}
-						hasScrollSpeed
 					/>
 				</Container>
 
