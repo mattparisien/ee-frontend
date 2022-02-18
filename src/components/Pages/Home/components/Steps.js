@@ -71,7 +71,7 @@ function Steps() {
 				itemInView={itemInView}
 			>
 				{steps && renderSteps()}
-				<Notes addToRefs={addToRefs} />
+				<Notes addToRefs={addToRefs} scrollTrigger={noteContainerRef.current} />
 				<Container isAbsolute isBelow className='drawings-wrapper' noGutter>
 					<div className='drawings-inner'>
 						<Drawings />

@@ -10,13 +10,19 @@ import NoteWrappers from "./NoteWrappers";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
-function Notes({addToRefs}) {
+function Notes({ addToRefs, scrollTrigger }) {
 	const notes = ["filled", "filled", "outline", "outline"];
 	let noteSpeed = 3;
 
 	return notes.map((note, i) => {
 		return (
-			<NoteWrappers key={i} id={i} ref={addToRefs} speed={noteSpeed+=1}>
+			<NoteWrappers
+				key={i}
+				id={i}
+				ref={addToRefs}
+				speed={(noteSpeed += 1)}
+				scrollTrigger={scrollTrigger}
+			>
 				{note === "filled" ? <NoteFilled /> : <NoteOutline />}
 			</NoteWrappers>
 		);
