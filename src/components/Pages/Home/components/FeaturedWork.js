@@ -11,6 +11,7 @@ import { DataContext } from "../../../../App";
 import HeadingSection from "../../../Containers/HeadingSection";
 import styled from "styled-components";
 import { responsiveGutter } from "../../../Containers/StyledContainer.styled";
+import { Frame } from "../../../Vector/Svg";
 
 export const StyledFeaturedWorkList = styled.ul`
 	width: 100%;
@@ -22,7 +23,7 @@ export const StyledFeaturedWorkList = styled.ul`
 		position: absolute;
 		height: 40vw;
 		width: 30vw;
-		overflow: hidden;
+		border-radius: 10px;
 
 		&:nth-of-type(1) {
 			top: 4vw;
@@ -55,6 +56,19 @@ export const StyledFeaturedWorkList = styled.ul`
 				background-size: cover;
 			}
 
+			.featured-work-uoList__frame {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 100%;
+				height: 100%;
+				display: none;
+
+			}
+			
+		
+
 			.featured-work-uoList__title {
 				height: 100%;
 				width: 100%;
@@ -76,13 +90,11 @@ export const StyledFeaturedWorkList = styled.ul`
 					text-align: center;
 					line-height: 8vw;
 					font-size: 8vw;
-					color: ${({theme}) => theme.colors.light};
+					color: ${({ theme }) => theme.colors.light};
 					z-index: 1;
-					
 				}
 
 				.background {
-					
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -179,18 +191,25 @@ function FeaturedWork(props) {
 		featuredPosts &&
 		featuredPosts.map(post => {
 			return (
-				<li key={post.id} className='featured-work-uoList__item'>
-					<Link to={`/posts/${post.id}`}>
-						<div
-							className='featured-work-uoList__image'
-							style={{ backgroundImage: `url(${post.media.featureImage.url})` }}
-						></div>
-						<div className='featured-work-uoList__title'>
-							<div className='title'>{post.title}</div>
-							<div className='background'></div>
-						</div>
-					</Link>
-				</li>
+				<>
+					<li key={post.id} className='featured-work-uoList__item'>
+						<Link to={`/posts/${post.id}`}>
+							<div
+								className='featured-work-uoList__image'
+								style={{
+									backgroundImage: `url(${post.media.featureImage.url})`,
+								}}
+							></div>
+							<div className='featured-work-uoList__title'>
+								<div className='title'>{post.title}</div>
+								<div className='background'></div>
+							</div>
+							<div className='featured-work-uoList__frame'>
+								<Frame />
+							</div>
+						</Link>
+					</li>
+				</>
 			);
 		});
 
@@ -201,13 +220,15 @@ function FeaturedWork(props) {
 				centerInner
 				flexDirection='column'
 			>
-				<HeadingSection
-					color='dark'
-					headingSize='large'
-					weight='light'
-					width='100%'
-					headingText={"Featured Work"}
-				/>
+				<Container hasMarginBottom hasMarginTop height='auto' centerInner>
+					<HeadingSection
+						color='dark'
+						headingSize='large'
+						weight='light'
+						width='100%'
+						headingText={"Featured Work"}
+					/>
+				</Container>
 
 				<StyledFeaturedWorkList className='featured-work-uoList'>
 					{renderedPosts}
