@@ -54,6 +54,7 @@ export const StyledFeaturedWorkList = styled.ul`
 				height: 100%;
 				width: 100%;
 				background-size: cover;
+				background-position: center;
 			}
 
 			.featured-work-uoList__frame {
@@ -64,10 +65,7 @@ export const StyledFeaturedWorkList = styled.ul`
 				width: 100%;
 				height: 100%;
 				display: none;
-
 			}
-			
-		
 
 			.featured-work-uoList__title {
 				height: 100%;
@@ -119,7 +117,19 @@ function FeaturedWork(props) {
 	const data = useContext(DataContext);
 
 	useEffect(() => {
-		console.log(data.posts && data.posts);
+		//Make sure object is sorted by od
+		const sortedPosts =
+			data.posts &&
+			data.posts.sort(function (a, b) {
+				if (a.id !== b.id) {
+					return a.id - b.id;
+				}
+				if (a.name === b.name) {
+					return 0;
+				}
+				return a.name > b.name ? 1 : -1;
+			});
+
 		data.posts && setFeaturedPosts(data.posts.slice(0, 3));
 	}, [data]);
 
