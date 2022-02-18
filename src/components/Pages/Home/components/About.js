@@ -17,7 +17,7 @@ function About(props) {
 						<>
 							<Paragraph
 								size="large"
-								offsetTop
+								offset={"top"}
 								indent
 								className='section-who__paragraph1'
 							>
@@ -27,6 +27,7 @@ function About(props) {
 								size="small"
 								indent
 								className='section-who__paragraph2'
+								offset={"bottom"}
 							>
 								{data.about.body2}
 							</Paragraph>

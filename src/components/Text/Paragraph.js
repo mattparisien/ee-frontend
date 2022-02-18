@@ -14,8 +14,7 @@ function Paragraph(props) {
 		margin,
 		fadeUp,
 		padding,
-		offsetTop,
-		offsetBottom,
+		offset,
 		className,
 	} = props;
 	const styledParagraph = useRef(null);
@@ -36,8 +35,7 @@ function Paragraph(props) {
 			size={size}
 			margin={margin}
 			padding={padding}
-			offsetTop={offsetTop}
-			offsetBottom={offsetBottom}
+			offset={offset}
 			indent={indent}
 		>
 			{indentTitle && <div className='indent-title'>{indentTitle}</div>}

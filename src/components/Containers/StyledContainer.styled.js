@@ -2,6 +2,65 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { device } from "../styles/device";
 
+const verticalGutter = {
+	desktopL: {
+		padding: "14vw",
+	},
+	desktop: {
+		padding: "10vw",
+	},
+	laptopL: {
+		padding: "15vw",
+	},
+	laptop: {
+		padding: "12vw",
+	},
+	tablet: {
+		padding: "9vw",
+	},
+	mobileL: {
+		padding: "6vw",
+	},
+	mobileM: {
+		padding: "4rem",
+	},
+	mobileS: {
+		padding: "4rem",
+	},
+};
+
+const horizontalGutter = {
+	desktopL: {
+		padding: "14vw",
+	},
+	desktop: {
+		padding: "10vw",
+	},
+	laptopL: {
+		padding: "15vw",
+	},
+	laptop: {
+		padding: "12vw",
+	},
+	tablet: {
+		padding: "9vw",
+	},
+	mobileL: {
+		padding: "6vw",
+	},
+	mobileM: {
+		padding: "4rem",
+	},
+	mobileS: {
+		padding: "4rem",
+	},
+};
+
+export const responsiveGutter = {
+	horizontal: horizontalGutter,
+	vertical: verticalGutter,
+};
+
 const StyledContainer = styled.div`
 	position: ${props => (props.isAbsolute ? "absolute" : "relative")};
 	top: ${props => (props.isAbsolute ? "0" : "")};
@@ -62,55 +121,12 @@ const StyledContainer = styled.div`
 `;
 	}}
 
-	${({ padding }) => {
-		return `
-			
-			@media ${device.mobileS} {
-				padding: ${padding === "small" && "2rem"};
-				padding: ${padding === "regular" && "2rem"};
-			}
-		
-			@media ${device.mobileM} {
-				padding: ${padding === "small" && "2rem"};
-				padding: ${padding === "regular" && "2rem"};
-			}
-		
-			@media ${device.mobileL} {
-				padding: ${padding === "small" && "2rem"};
-				padding: ${padding === "regular" && "4rem"};
-			}
-		
-			@media (min-width: 680px) {
-				padding: ${padding === "small" && "3rem"};
-				padding: ${padding === "regular" && "6rem"};
-			}
-		
-			@media ${device.tablet} {
-				padding: ${padding === "small" && "3rem"};
-				padding: ${padding === "regular" && "5rem"};
-			}
-		
-			@media ${device.laptop} {
-				padding: ${padding === "small" && "5rem"};
-				padding: ${padding === "regular" && "7rem"};
-			}
-		
-			@media ${device.laptopL} {
-				padding: ${padding === "small" && "5rem"};
-				padding: ${padding === "regular" && "0 15rem"};
-			}
-		
-			@media ${device.desktop} {
-				padding: ${padding === "small" && "5rem"};
-				padding: ${padding === "regular" && " 0 14rem"};
-			}
-		
-			@media (min-width: 2500px) {
-				padding: ${padding === "small" && "5rem"};
-				padding: ${padding === "regular" && "0 14rem"};
-			} ;
-			`;
-	}}
+	${Object.keys(device).map(deviceName => {
+		return `@media ${device[deviceName]} {
+									padding: 0 ${responsiveGutter["horizontal"][deviceName]["padding"]};
+									
+								}`;
+	})};
 `;
 
 export { StyledContainer };

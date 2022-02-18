@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
-import { RESPONSIVECONTAINERGUTTER } from "../styles/presetStyles";
+import { responsiveGutter } from "../Containers/StyledContainer.styled";
 
 const paragraphFontSizes = {
 	large: {
@@ -187,14 +187,13 @@ export const StyledParagraph = styled.div`
 		}
 	}
 
-	padding-top: ${({ offsetTop }) => (offsetTop ? "6rem" : "0")};
-
-	${({ size }) => {
+	${({ size, offset }) => {
 		return Object.keys(device).map(deviceName => {
 			return `@media ${device[deviceName]} {
 									font-size: ${paragraphFontSizes[size][deviceName]["fontSize"]};
 									line-height: ${paragraphFontSizes[size][deviceName]["lineHeight"]};
+									padding-${offset}: ${responsiveGutter["vertical"][deviceName]["padding"]}
 								}`;
 		});
-	}}
+	}};
 `;

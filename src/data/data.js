@@ -7,13 +7,13 @@ export const navigation = [
 	},
 	{
 		id: 2,
-		title: "Projects",
+		title: "Work",
 		path: "/projects",
 		circleWidth: "8rem",
 	},
 	{
 		id: 3,
-		title: "Contact",
+		title: "Connect",
 		path: "/contact",
 		circleWidth: "8rem",
 	},
