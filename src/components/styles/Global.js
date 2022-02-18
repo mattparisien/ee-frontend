@@ -57,6 +57,10 @@ main {
 	}
 }
 
+body {
+	background-color: ${({theme}) => theme.colors.light};
+}
+
 
 .line {
 	transform: translateY(100%);

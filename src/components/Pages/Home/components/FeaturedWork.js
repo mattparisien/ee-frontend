@@ -10,13 +10,13 @@ import useFetch from "../../../../helpers/hooks/useFetch";
 import { DataContext } from "../../../../App";
 import HeadingSection from "../../../Containers/HeadingSection";
 import styled from "styled-components";
+import { responsiveGutter } from "../../../Containers/StyledContainer.styled";
 
 export const StyledFeaturedWorkList = styled.ul`
 	width: 100%;
 	height: auto;
 	position: relative;
 	min-height: 90vh;
-	border: 1px solid black;
 
 	li {
 		position: absolute;
@@ -24,23 +24,23 @@ export const StyledFeaturedWorkList = styled.ul`
 		width: 30vw;
 		overflow: hidden;
 
-		
-
 		&:nth-of-type(1) {
 			top: 4vw;
 			left: 7vw;
-			transform: rotate(-20deg);
+			transform: rotate(-20deg) scale(0.8);
 		}
 
 		&:nth-of-type(2) {
 			top: 20vw;
-			right: 2vw;
+			right: 5vw;
 			width: 40vw;
+			transform: scale(0.8);
 		}
 
 		&:nth-of-type(3) {
 			bottom: 0;
-			left: 12vw;
+			left: 13vw;
+			transform: scale(0.8);
 		}
 
 		a {
@@ -53,6 +53,44 @@ export const StyledFeaturedWorkList = styled.ul`
 				height: 100%;
 				width: 100%;
 				background-size: cover;
+			}
+
+			.featured-work-uoList__title {
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 1vw;
+				transition: 300ms ease;
+				opacity: 0;
+
+				&:hover {
+					opacity: 1;
+				}
+
+				.title {
+					text-align: center;
+					line-height: 8vw;
+					font-size: 8vw;
+					color: ${({theme}) => theme.colors.light};
+					z-index: 1;
+					
+				}
+
+				.background {
+					
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: black;
+					opacity: 0.3;
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
 	}
@@ -147,7 +185,10 @@ function FeaturedWork(props) {
 							className='featured-work-uoList__image'
 							style={{ backgroundImage: `url(${post.media.featureImage.url})` }}
 						></div>
-						<div className='featured-work-uoList__title'></div>
+						<div className='featured-work-uoList__title'>
+							<div className='title'>{post.title}</div>
+							<div className='background'></div>
+						</div>
 					</Link>
 				</li>
 			);

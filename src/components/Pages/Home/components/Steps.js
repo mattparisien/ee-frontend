@@ -58,7 +58,7 @@ function Steps() {
 	};
 
 	return (
-		<Container height='auto' isAbove ref={noteContainerRef}>
+		<Container height='auto' isAbove ref={noteContainerRef} hasMarginBottom>
 			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
 				{steps && renderSteps()}
 				<Notes addToRefs={addToRefs} />
