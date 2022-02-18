@@ -54,7 +54,7 @@ export default function useAppData(scrollRef) {
 		const fetchURL = url => axios.get(url);
 
 		const urls = [
-			`${basePath}/posts?populate=*`,
+			`${basePath}/projects?populate=*`,
 			`${basePath}/steps`,
 			`${basePath}/about`,
 		];
@@ -63,10 +63,11 @@ export default function useAppData(scrollRef) {
 
 		Promise.all(promiseArray)
 			.then(data => {
+				console.log("data/...", data);
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
-				
+
 				setState(prev => ({
 					...prev,
 					data: {

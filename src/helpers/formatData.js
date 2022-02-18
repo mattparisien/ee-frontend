@@ -1,15 +1,20 @@
 export const formatPosts = arr => {
 	const formattedPosts = arr.map(post => {
+		console.log(post);
 		return {
 			id: post.id,
 			title: post.attributes.Title,
 			subtitle: post.attributes.Subtitle,
-			about: post.attributes.About,
-			ourWork: post.attributes.OurWork,
+			about1: post.attributes.About1,
+			about2: post.attributes.About2,
 			media: {
 				featureImage: {
-					url: post.attributes.FeatureImage.data.attributes.url,
-					altText: post.attributes.FeatureImage.data.attributes.alternativeText,
+					url: post.attributes.FeatureImage.data
+						? post.attributes.FeatureImage.data.attributes.url
+						: null,
+					altText: post.attributes.FeatureImage.data
+						? post.attributes.FeatureImage.data.attributes.alternativeText
+						: null,
 				},
 				additional: post.attributes.AdditionalMedia.data && [
 					...post.attributes.AdditionalMedia.data,

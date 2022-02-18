@@ -27,7 +27,7 @@ const StyledGrid = styled.div`
 
 			.drawing {
 				position: absolute;
-				width: 20vw;
+				width: 10vw;
 				height: auto;
 			}
 
