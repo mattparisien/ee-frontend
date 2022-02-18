@@ -169,11 +169,27 @@ function Hero(props) {
 				.to(
 					wordRefs.current[0],
 					{
+						top: 0,
+					},
+					3
+				)
+				.to(
+					wordRefs.current[2],
+					{
+						top: "100%",
+						duration: 2,
+						ease: "expo.inOut",
+					},
+					3
+				)
+				.to(
+					wordRefs.current[0],
+					{
 						left: 0,
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					2.3
+					3.2
 				)
 				.to(
 					wordRefs.current[1],
@@ -183,7 +199,7 @@ function Hero(props) {
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					2.4
+					3.5
 				)
 				.to(
 					wordRefs.current[2],
@@ -192,7 +208,7 @@ function Hero(props) {
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					2.5
+					3.7
 				)
 				.to(
 					logoRef.current,
@@ -201,7 +217,7 @@ function Hero(props) {
 						duration: 1,
 						ease: "expo.inOut",
 					},
-					2.9
+					3.9
 				);
 		}
 	}, [isSplit, wordRefs]);
