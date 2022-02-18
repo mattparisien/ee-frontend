@@ -12,10 +12,11 @@ import gsap from "gsap";
 
 function Notes({addToRefs}) {
 	const notes = ["filled", "filled", "outline", "outline"];
+	let noteSpeed = 3;
 
 	return notes.map((note, i) => {
 		return (
-			<NoteWrappers key={i} id={i} ref={addToRefs}>
+			<NoteWrappers key={i} id={i} ref={addToRefs} speed={noteSpeed+=1}>
 				{note === "filled" ? <NoteFilled /> : <NoteOutline />}
 			</NoteWrappers>
 		);

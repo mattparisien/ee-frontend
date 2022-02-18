@@ -19,6 +19,8 @@ export default function Section(props) {
 			ref={addToRefs}
 			isRelative={isRelative}
 			data-scroll-section
+			gutter={"top"}
+			gutter={"bottom"}
 		>
 			{props.children}
 		</StyledSection>

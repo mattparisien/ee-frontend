@@ -6,15 +6,15 @@ const StyledHeadingSection = styled.div`
 	height: ${({ height }) => height};
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 
-	
 	${({ splitGraphicOffset }) => {
 		return (
 			splitGraphicOffset &&
 			`
 
 			.heading-section-graphic-wrapper {
-				position: absolute;
+				
 				${splitGraphicOffset}: 0;
 				width: 20vw;
 				max-width: 340px;
@@ -27,7 +27,12 @@ const StyledHeadingSection = styled.div`
 
 function HeadingSection(props) {
 	return (
-		<StyledHeadingSection className='heading-section' {...props}>
+		<StyledHeadingSection
+			className='heading-section'
+			{...props}
+			data-scroll={props.hasScrollSpeed}
+			data-scroll-speed={props.hasScrollSpeed ? -2 : 0}
+		>
 			<Heading
 				color={props.color}
 				large={props.headingSize === "large"}

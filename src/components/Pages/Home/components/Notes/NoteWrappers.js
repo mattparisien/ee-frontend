@@ -1,8 +1,8 @@
 import React, { useRef, forwardRef } from "react";
 import { StyledNoteRotationWrapper } from "../styles";
 
-function NoteWrappers({ children, id, rotation }, ref) {
-	const noteSpeed = 3;
+function NoteWrappers({ children, id, rotation, speed }, ref) {
+	const noteSpeed = speed;
 
 	return (
 		<div

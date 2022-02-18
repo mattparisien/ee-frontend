@@ -5,11 +5,11 @@ import { responsiveGutter } from "../Containers/StyledContainer.styled";
 const paragraphFontSizes = {
 	large: {
 		desktopL: {
-			fontSize: "3.4rem",
-			lineHeight: "3.4rem",
+			fontSize: "2.8rem",
+			lineHeight: "2.8rem",
 		},
 		desktop: {
-			fontSize: "2.8rem",
+			fontSize: "3rem",
 			lineHeight: "2rem",
 		},
 		laptopL: {
@@ -156,10 +156,6 @@ export const StyledParagraph = styled.div`
 
 	position: relative;
 	letter-spacing: -1px;
-
-	.line-wrapper {
-		overflow: hidden;
-	}
 
 	.fade-up-line {
 		transform: translateY(100%);

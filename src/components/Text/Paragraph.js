@@ -37,29 +37,29 @@ function Paragraph(props, ref) {
 		}
 	};
 
-	useEffect(() => {
-		if (paragraph.current) {
-			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines",
-				linesClass: "line",
-			});
-			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
-		}
-	}, [paragraph]);
+	// useEffect(() => {
+	// 	if (paragraph.current) {
+	// 		const mySplitText = new SplitText(paragraph.current, {
+	// 			type: "lines",
+	// 			linesClass: "line",
+	// 		});
+	// 		$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
+	// 	}
+	// }, [paragraph]);
 
-	useEffect(() => {
-		if (intersectingTarget) {
-			console.log("should not be her!");
-			const lines = $(intersectingTarget).find(".line");
-			lineAnim.current.to(lines, {
-				opacity: 1,
-				y: 0,
-				duration: 0.8,
-				stagger: 0.1,
-				ease: "power2.out",
-			});
-		}
-	}, [intersectingTarget]);
+	// useEffect(() => {
+	// 	if (intersectingTarget) {
+	// 		console.log("should not be her!");
+	// 		const lines = $(intersectingTarget).find(".line");
+	// 		lineAnim.current.to(lines, {
+	// 			opacity: 1,
+	// 			y: 0,
+	// 			duration: 0.8,
+	// 			stagger: 0.1,
+	// 			ease: "power2.out",
+	// 		});
+	// 	}
+	// }, [intersectingTarget]);
 
 	return (
 		<InView

@@ -490,9 +490,7 @@ body {
   padding: 4vw;
 }
 
-.fade-up-rows .line-wrapper {
-  overflow: hidden;
-}
+
 
 .fade-up-rows .line-wrapper .line {
   transform: translateY(100%);

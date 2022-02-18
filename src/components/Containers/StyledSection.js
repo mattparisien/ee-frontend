@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { device } from "../styles/device";
+import { responsiveGutter } from "./StyledContainer.styled";
 
 const StyledSection = styled.section`
 	min-height: ${({ isFullHeight }) => isFullHeight && "100vh"};

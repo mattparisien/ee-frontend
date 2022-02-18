@@ -121,15 +121,31 @@ const StyledContainer = styled.div`
 `;
 	}}
 
-	${({ noGutter }) => {
+	${({ noGutter, hasPaddingVertical }) => {
 		return !noGutter
 			? Object.keys(device).map(deviceName => {
 					return `@media ${device[deviceName]} {
-											padding: 0 ${responsiveGutter["horizontal"][deviceName]["padding"]};
+											padding: ${
+												hasPaddingVertical
+													? responsiveGutter["horizontal"][deviceName][
+															"padding"
+													  ]
+													: `0 ${responsiveGutter["horizontal"][deviceName]["padding"]}`
+											};
 											
 										}`;
 			  })
-			: ""
+			: "";
+	}}
+
+	${({ isAbsoluteCenter }) => {
+		return isAbsoluteCenter
+			? `
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			`
+			: "";
 	}}
 `;
 

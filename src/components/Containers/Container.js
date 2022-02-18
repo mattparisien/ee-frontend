@@ -17,12 +17,13 @@ function Container(props, ref) {
 			isBelow={props.isBelow}
 			isAbove={props.isAbove}
 			isAbsolute={props.isAbsolute}
+			isAbsoluteCenter={props.isAbsoluteCenter}
+			isRelative={props.isRelative}
 			clipTo={props.clipTo}
 			isCustomBg={props.isCustomBg}
 			flexDirection={props.flexDirection}
 			ref={ref}
-			hasMarginTop={props.hasMarginTop}
-			hasMarginBottom={props.hasMarginBottom}
+			hasPaddingVertical={props.hasPaddingVertical}
 		>
 			{props.children}
 		</StyledContainer>

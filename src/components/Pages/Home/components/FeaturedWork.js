@@ -11,44 +11,133 @@ import { DataContext } from "../../../../App";
 import HeadingSection from "../../../Containers/HeadingSection";
 import styled from "styled-components";
 import { responsiveGutter } from "../../../Containers/StyledContainer.styled";
-import { Frame } from "../../../Vector/Svg";
+import { LineYellow, LineBlue, LineRed, LineGreen } from "../../../Vector/Svg";
 
 export const StyledFeaturedWorkList = styled.ul`
 	width: 100%;
 	height: auto;
 	position: relative;
-	min-height: 90vh;
+	height: 120vw;
+
+	.ul-frame {
+		width: 100%;
+		height: 100%;
+		transform: rotate(10deg);
+		position: sticky;
+		z-index: -10;
+		
+		}
+
+	}
 
 	li {
 		position: absolute;
-		height: 40vw;
-		width: 30vw;
+		height: 54vw;
+		width: 40vw;
 		border-radius: 10px;
+		overflow: visible;
+		
 
 		&:nth-of-type(1) {
-			top: 4vw;
-			left: 7vw;
-			transform: rotate(-20deg) scale(0.8);
+			top: 7.5vw;
+			left: 8vw;
+			transform: rotate(-20deg);
 		}
 
 		&:nth-of-type(2) {
-			top: 20vw;
-			right: 5vw;
-			width: 40vw;
-			transform: scale(0.8);
+			top: 30vw;
+			right: 0;
+			width: 48vw;
+			height: 48vw;	
 		}
 
 		&:nth-of-type(3) {
-			bottom: 0;
-			left: 13vw;
-			transform: scale(0.8);
+			bottom: -6vw;
+			left: 30vw;
 		}
 
-		a {
+	
+		.inner {
 			display: block;
 			width: 100%;
 			height: 100%;
 			position: relative;
+
+			.linkable-frame {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				transform: scale(1.1);
+
+
+				.decorative-line {
+					opacity: 0;
+					transition: 300ms ease;
+				}
+
+				&:hover .decorative-line {
+					opacity: 1;
+				}
+
+				&:hover .featured-work-uoList__title {
+					opacity: 1;
+				}
+			}
+
+			
+
+			.decorative-line-yellow {
+				transform: none;
+				position: absolute;
+				width: 100%;
+				bottom: -4vw;
+				z-index: 999;
+
+				svg {
+					transform: rotate(12deg);
+				}
+			}
+			
+
+			.decorative-line-red {
+				transform: none;
+				position: absolute;
+				width: 100%;
+				top: -5vw;
+				z-index: 999;
+
+				svg {
+					transform: rotate(12deg);
+				}
+			}
+
+			.decorative-line-green {
+				transform: none;
+				position: absolute;
+				height: 106%;
+				top: 0;
+				left: -6vw;
+				z-index: 999;
+
+				svg {
+					transform: rotate(12deg);
+				}
+			}
+
+			.decorative-line-blue {
+				transform: none;
+				position: absolute;
+				height: 106%;
+				top: -3vw;
+				right: -6vw;
+				z-index: 999;
+
+				svg {
+					transform: rotate(12deg);
+				}
+			}
 
 			.featured-work-uoList__image {
 				height: 100%;
@@ -80,14 +169,13 @@ export const StyledFeaturedWorkList = styled.ul`
 				transition: 300ms ease;
 				opacity: 0;
 
-				&:hover {
-					opacity: 1;
-				}
-
+				
 				.title {
 					text-align: center;
-					line-height: 8vw;
+					
 					font-size: 8vw;
+					letter-spacing: -0.4vw;
+					line-height: 6vw;
 					color: ${({ theme }) => theme.colors.light};
 					z-index: 1;
 				}
@@ -97,9 +185,10 @@ export const StyledFeaturedWorkList = styled.ul`
 					top: 0;
 					left: 0;
 					background-color: black;
-					opacity: 0.3;
+					opacity: 0.4;
 					width: 100%;
 					height: 100%;
+					transform: scale(-0.91);
 				}
 			}
 		}
@@ -203,40 +292,55 @@ function FeaturedWork(props) {
 			return (
 				<>
 					<li key={post.id} className='featured-work-uoList__item'>
-						<Link to={`/posts/${post.id}`}>
+						<div className='inner'>
 							<div
 								className='featured-work-uoList__image'
 								style={{
 									backgroundImage: `url(${post.media.featureImage.url})`,
 								}}
 							></div>
-							<div className='featured-work-uoList__title'>
-								<div className='title'>{post.title}</div>
-								<div className='background'></div>
-							</div>
-							<div className='featured-work-uoList__frame'>
-								<Frame />
-							</div>
-						</Link>
+
+							<Link className='linkable-frame' to={`/posts/${post.id}`}>
+								<div className='decorative-line decorative-line-yellow'>
+									<LineYellow />
+								</div>
+								<div className='decorative-line decorative-line-red'>
+									<LineRed />
+								</div>
+								<div className='decorative-line decorative-line-green'>
+									<LineGreen />
+								</div>
+								<div className='decorative-line decorative-line-blue'>
+									<LineBlue />
+								</div>
+								<div className='featured-work-uoList__title'>
+									<div className='title'>{post.title}</div>
+									<div className='background'></div>
+								</div>
+							</Link>
+						</div>
 					</li>
 				</>
 			);
 		});
 
 	return (
-		<Section bg={"light"} classes={"section-work"}>
+		<Section bg={"light"} classes={"section-work"} isFullHeight>
 			<Container
 				classes={"featured-work-container"}
 				centerInner
 				flexDirection='column'
+				noGutter
+				isRelative
 			>
-				<Container hasMarginBottom hasMarginTop height='auto' centerInner>
+				<Container hasPaddingVertical height='auto' centerInner>
 					<HeadingSection
 						color='dark'
 						headingSize='large'
 						weight='light'
 						width='100%'
 						headingText={"Featured Work"}
+						hasScrollSpeed
 					/>
 				</Container>
 

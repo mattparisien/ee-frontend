@@ -12,40 +12,24 @@ function About(props) {
 	const [paras, setParas] = useState(null);
 	const paragraphRefs = useRef([]);
 
-
-
 	const addToRefs = el => {
 		if (el && !paragraphRefs.current.includes(el)) {
 			setParas(paragraphRefs.current);
 		}
 	};
 
-	
-
-
-
 	return (
-		<Section classes={"section-who"} bg={"dark"} isFullHeight>
-			<Container padding={"regular"} height={"auto"}>
+		<Section classes={"section-who"} bg={"dark"} hasMarginTop >
+			<Container  height={"auto"} hasPaddingVertical>
 				<StyledAbout>
 					{data.about && (
 						<>
 							<Paragraph
 								size='large'
-								offset={"top"}
 								
 								className='section-who__paragraph1'
-
 							>
 								{data.about.body1}
-							</Paragraph>
-							<Paragraph
-								size='small'
-								
-								className='section-who__paragraph2'
-								offset={"bottom"}
-							>
-								{data.about.body2}
 							</Paragraph>
 						</>
 					)}

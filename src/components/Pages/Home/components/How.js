@@ -19,6 +19,7 @@ function How() {
 					headingText={"Steps to better listening"}
 					headingWeight='light'
 					headingWidth='100%'
+					headingWidth='60%'
 					capitalize
 					splitGraphic={<InstrumentPlayer />}
 					splitGraphicOffset={"right"}
