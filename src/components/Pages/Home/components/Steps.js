@@ -12,8 +12,8 @@ import SplitText from "gsap/SplitText";
 function Steps() {
 	const { steps } = useContext(DataContext);
 	const stepRefs = useRef([]);
-	const centeredStep = useRef(null);
 
+	const [itemInView, setItemInView] = useState(null);
 	const { scroll } = useLocomotiveScroll();
 	const [rotation, setRotation] = useState(null);
 	const noteContainerRef = useRef(null);
@@ -46,7 +46,12 @@ function Steps() {
 			steps &&
 			steps.slice(0, 5).map((step, index) => {
 				return (
-					<GridItem key={step.id} classes={`steps-grid__item${index + 1}`}>
+					<GridItem
+						key={step.id}
+						classes={`steps-grid__item${index + 1}`}
+						setItemInView={setItemInView}
+						id={step.id}
+					>
 						<Heading small ref={addToHeadingRefs}>
 							{step.title.split(" ").slice(0, 3).join(" ")}
 						</Heading>
@@ -57,9 +62,18 @@ function Steps() {
 		);
 	};
 
+	useEffect(() => {
+		itemInView && console.log(itemInView);
+	}, [itemInView]);
+
 	return (
 		<Container height='auto' isAbove ref={noteContainerRef} hasMarginBottom>
-			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
+			<Grid
+				name={"steps"}
+				columns={12}
+				classes={"steps-grid"}
+				itemInView={itemInView}
+			>
 				{steps && renderSteps()}
 				<Notes addToRefs={addToRefs} />
 				<Container isAbsolute isBelow className='drawings-wrapper' noGutter>

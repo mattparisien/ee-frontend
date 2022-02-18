@@ -76,6 +76,8 @@ export const StyledHero = styled.div`
 			.hero-word-social {
 				left: ${({ defaultOffsets }) =>
 					defaultOffsets[0] && defaultOffsets[0].left}px;
+				top: ${({ defaultOffsets }) =>
+					defaultOffsets[0] && defaultOffsets[0].top - 150}px;
 			}
 
 			.hero-word-impact {
@@ -88,7 +90,8 @@ export const StyledHero = styled.div`
 			.hero-word-agency {
 				left: ${({ defaultOffsets }) =>
 					defaultOffsets[2] && defaultOffsets[2].left}px;
-				bottom: 0;
+				top: ${({ defaultOffsets }) =>
+					defaultOffsets[2] && defaultOffsets[0].top + 150}px;
 			}
 		}
 	}
@@ -136,10 +139,12 @@ function Hero(props) {
 
 			wordRefs.current.forEach((word, id) => {
 				const wordWidth = word.offsetWidth;
+				const wordHeight = word.offsetHeight;
 				setDefaultOffsets(prev => ({
 					...prev,
 					[id]: {
 						left: containerWidth / 2 - wordWidth / 2,
+						top: containerHeight / 2 - wordHeight / 2,
 					},
 				}));
 			});
@@ -205,6 +210,7 @@ function Hero(props) {
 			classes={"section-hero"}
 			sectionRef={props.sectionRefs}
 			bg={"light"}
+			noGutter
 		>
 			<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
 				<Container padding='regular' height='100vh'>

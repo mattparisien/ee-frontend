@@ -17,6 +17,18 @@ const StyledSection = styled.section`
 			($bg === "dark" && theme.colors.light)
 		);
 	}};
+
+	${({ noGutter }) => {
+		return (
+			!noGutter &&
+			Object.keys(device).map(deviceName => {
+				return `@media ${device[deviceName]} {
+												margin: ${responsiveGutter["vertical"][deviceName]["padding"]} 0;
+												
+											}`;
+			})
+		);
+	}}
 `;
 
 export { StyledSection };

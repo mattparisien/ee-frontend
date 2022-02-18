@@ -5,7 +5,7 @@ import { InView } from "react-intersection-observer";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 export default function Section(props) {
-	const { bg, addToRefs, isRelative } = props;
+	const { bg, addToRefs, isRelative, noGutter } = props;
 	const sectionClass = classNames("c-section", props.classes);
 
 	//Detect when section intersects with header
@@ -19,8 +19,8 @@ export default function Section(props) {
 			ref={addToRefs}
 			isRelative={isRelative}
 			data-scroll-section
-			gutter={"top"}
-			gutter={"bottom"}
+			noGutter={noGutter}
+			
 		>
 			{props.children}
 		</StyledSection>

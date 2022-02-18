@@ -19,6 +19,7 @@ function Grid(props) {
 			className={gridClass}
 			$gridStyles={gridStyles}
 			$windowWidth={windowWidth}
+			itemInView={props.itemInView}
 		>
 			{props.children}
 		</StyledGrid>
