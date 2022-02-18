@@ -100,9 +100,7 @@ const StyledGrid = styled.div`
 
 		
 
-			h4, p {
-				color: ${({ theme }) => theme.colors.grey};
-			}
+		
 
 			h4 {
 				
@@ -113,6 +111,8 @@ const StyledGrid = styled.div`
 				line-height: 3vw;
 				margin-bottom: 2vw;
 				width: 15vw;
+				
+				
 			}
 
 			p {
@@ -121,11 +121,33 @@ const StyledGrid = styled.div`
 				line-height: 1.3vw;
 			}
 
+		
+
 		}
+
+	
 	
 		
 		.steps-grid__item {
-			
+
+			opacity: 0.3;
+
+			transition: 300ms ease;
+
+			${({ itemInView }) => {
+				return (
+					itemInView &&
+					`
+					
+					&${itemInView.id} {
+						opacity: 1;
+					}
+				`
+				);
+			}};		
+		
+		
+
 
 			&1 {
 				grid-column: 1/5;

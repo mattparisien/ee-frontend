@@ -48,7 +48,7 @@ function Steps() {
 				return (
 					<GridItem
 						key={step.id}
-						classes={`steps-grid__item${index + 1}`}
+						classes={`steps-grid__item steps-grid__item${index + 1}`}
 						setItemInView={setItemInView}
 						id={step.id}
 					>
@@ -61,10 +61,6 @@ function Steps() {
 			})
 		);
 	};
-
-	useEffect(() => {
-		itemInView && console.log(itemInView);
-	}, [itemInView]);
 
 	return (
 		<Container height='auto' isAbove ref={noteContainerRef} hasMarginBottom>

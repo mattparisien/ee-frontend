@@ -9,6 +9,8 @@ function GridItem(props, ref) {
 		<div className={gridItemClass} ref={ref}>
 			<InView
 				as='div'
+				rootMargin={"-30%"}
+				threshold={0}
 				className='grid-item-view-wrapper'
 				onChange={(inView, entry) =>
 					inView &&
