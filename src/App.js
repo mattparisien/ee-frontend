@@ -13,17 +13,20 @@ import SiteTransition from "./components/Transition/Transition";
 import gsap from "gsap";
 import SiteRoutes from "./Routes";
 import { Helmet } from "react-helmet";
-
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { createContext } from "react";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import LoadingScreen from "./components/Loading/LoadingScreen";
+import ScrollTrigger from "gsap/src/ScrollTrigger";
+
 
 export const DataContext = createContext();
-export const HeaderContext = createContext();
+export const SiteWideControls = createContext();
 
 const isSplit = false;
 
 function App() {
+	const { scroll } = useLocomotiveScroll();
 	const scrollRef = useRef(null);
 	const location = useLocation();
 	const app = useRef(null);
@@ -43,15 +46,41 @@ function App() {
 		}));
 	};
 
+	//ScrollTrigger proxy config (locomotive scroll hijacking)
 	useEffect(() => {
-		console.log(state);
-	}, [state]);
+		gsap.registerPlugin(ScrollTrigger);
+		scroll &&
+			ScrollTrigger.scrollerProxy(scrollRef.current, {
+				scrollTop(value) {
+					return arguments.length
+						? scroll.scrollTo(value, 0, 0)
+						: scroll.scroll.instance.scroll.y;
+				},
+				getBoundingClientRect() {
+					return {
+						top: 0,
+						left: 0,
+						with: window.innerWidth,
+						height: window.innerHeight,
+					};
+				},
+			});
+	}, [scroll]);
 
 	const handleTransition = () => {
 		setState(prev => ({
 			...prev,
 			isTransitioning: true,
 		}));
+	};
+
+	const toggleScrollLock = () => {
+		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
+	};
+
+	const siteControls = {
+		isScrollLock: state.isScrollLock,
+		toggleScrollLock,
 	};
 
 	return (
@@ -72,13 +101,17 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					smooth: true,
 					getDirection: true,
 				}}
+				onLocationChange={scroll =>
+					scroll.scrollTo(0, { duration: 0, disableLerp: true })
+				}
 				watch={[location.pathname]}
 				containerRef={scrollRef}
 			>
-				<HeaderContext.Provider value={""}>
+				<SiteWideControls.Provider value={siteControls}>
 					<DataContext.Provider value={state.data}>
 						<ThemeProvider theme={themes}>
 							<GlobalStyles
+								isScrollLock={state.isScrollLock}
 								isTransitioning={state.isTransitioning}
 								isOverflowHidden={state.sidebar.showSidebar}
 							/>
@@ -128,7 +161,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							{/* <CookieBar /> */}
 						</ThemeProvider>
 					</DataContext.Provider>
-				</HeaderContext.Provider>
+				</SiteWideControls.Provider>
 			</LocomotiveScrollProvider>
 		</div>
 	);

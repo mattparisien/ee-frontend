@@ -26,7 +26,13 @@ export const StyledDrawnLogo = styled.div`
 				color === "light" ? theme.colors.light : theme.colors.dark};
 		}
 
-		.soundWave {
+		.nose,
+		.ear {
+			fill: none;
+		}
+
+		.vibration,
+		.eye {
 			fill: ${({ theme }) => theme.colors.yellow};
 		}
 	}

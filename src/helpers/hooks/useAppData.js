@@ -24,8 +24,8 @@ export default function useAppData(scrollRef) {
 				scale: {
 					mobile: {
 						fontSize: "4.9",
-						lineHeight: "5.9"
-					}
+						lineHeight: "5.9",
+					},
 				},
 			},
 		},
@@ -48,7 +48,7 @@ export default function useAppData(scrollRef) {
 			hasShown: false,
 		},
 		menuOffset: "-101%",
-		isSplit: false,
+		isScrollLock: location.pathname === "/" ? true : false,
 		data: {},
 	});
 

@@ -1,11 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import { device, deviceSize } from "./device";
 
-
-export const FOOTERHEIGHT = '75vh';
-export const CONTAINERMAXWIDTH = '1900px';
-export const MOBILEFONTSIZE = '4.444vw';
-
+export const FOOTERHEIGHT = "75vh";
+export const CONTAINERMAXWIDTH = "1900px";
+export const MOBILEFONTSIZE = "4.444vw";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -17,8 +15,14 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-	overflow-y: ${props => (props.isOverflowHidden ? "hidden" : "overlay")};
 	font-family: 'Kobe';
+}
+
+
+#root, .has-scroll-smooth [data-scroll-container] {	
+	${({ isScrollLock }) => {
+		return isScrollLock && `overflow: hidden`;
+	}}
 }
 
 html,
@@ -65,7 +69,7 @@ main {
 }
 
 body {
-	background-color: ${({theme}) => theme.colors.light};
+	background-color: ${({ theme }) => theme.colors.light};
 }
 
 
