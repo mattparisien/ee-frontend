@@ -19,6 +19,16 @@ export default function useAppData(scrollRef) {
 			yellow: "#F1DA0A",
 			grey: "#AFAFAF",
 		},
+		typography: {
+			paragraph: {
+				scale: {
+					mobile: {
+						fontSize: "4.9",
+						lineHeight: "5.9"
+					}
+				},
+			},
+		},
 	};
 
 	const [windowWidth, isResized] = useResize();

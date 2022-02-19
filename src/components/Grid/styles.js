@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { deviceSize, device } from "../styles/device";
+import { responsiveGutter } from "../Containers/StyledContainer.styled";
 
 const StyledGrid = styled.div`
 
@@ -8,11 +9,127 @@ const StyledGrid = styled.div`
 		margin-top: ${({ $gridStyles }) => ($gridStyles.gap ? $gridStyles.gap : "3vw")}
 	}
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(5, 1fr);
-	grid-column-gap: 1.042vw;
-	align-items: flex-start;
-	height: 100vw;
+	grid-template-columns: repeat(6, 1fr);
+
+	.note, .drawing {
+		display: none;
+	}
+
+	.grid-item-wrapper {
+		grid-column: 1/ span 6;
+		margin-bottom: ${({ theme }) =>
+			theme.typography.paragraph.scale.mobile.lineHeight * 2.5}vw;;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+
+		h4 {
+			text-align: center;
+			font-size: 14vw;
+			line-height: 12vw;
+			letter-spacing: -0.1vw;
+			text-transform: uppercase;
+			font-family: 'Kobe';
+			margin-bottom: ${({ theme }) =>
+				theme.typography.paragraph.scale.mobile.lineHeight}vw;			
+		}
+
+		p {
+			text-align: center;
+			font-size: ${({ theme }) => theme.typography.paragraph.scale.mobile.fontSize}vw;
+			line-height: ${({ theme }) =>
+				theme.typography.paragraph.scale.mobile.lineHeight}vw;
+			
+		}
+
+	
+
+	}
+
+	
+
+
+
+	@media ${device.mobileL} {
+
+		
+
+		grid-template-columns: repeat(12, 1fr);
+		grid-template-rows: repeat(5, 1fr);
+		grid-column-gap: 1.042vw;
+		align-items: flex-start;
+		height: 100vw;
+
+		.grid-item-wrapper {
+
+			
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+	
+		
+	
+		
+	
+			h4 {
+				text-align: center;
+				font-size: 3.3vw;
+				letter-spacing: -0.1vw;
+				text-transform: uppercase;
+				font-family: 'Kobe';
+				line-height: 3vw;
+				margin-bottom: 2vw;
+				width: 15vw;
+				
+				
+			}
+	
+			p {
+				text-align: center;
+				width: 15.3vw;
+				font-size: 1vw;
+				line-height: 1.3vw;
+			}
+	
+		
+	
+		}
+
+		.steps-grid__item {
+			opacity: 0.3;
+
+				&1 {
+					grid-column: 1/5;
+					grid-row: 1/2;
+				}
+	
+				&2 {
+					grid-column: 5/9;
+					grid-row: 2/3;
+					
+				}
+	
+				&3 {
+					grid-column: 9/13;
+					grid-row: 3/4;
+				}
+	
+				&4 {
+					grid-column: 5/9;
+					grid-row: 4/5;
+				}
+	
+				&5 {
+					grid-column: 1/5;
+					grid-row: 5/6;
+					
+				}
+		}
+		
+
+	}
 
 	&.steps-grid {
 
@@ -87,50 +204,13 @@ const StyledGrid = styled.div`
 		}
 		
 
-		
-
-	
-		.grid-item-wrapper {
-
-			
-			display: flex;
-			align-items: flex-start;
-			justify-content: center;
-			flex-direction: column;
-
-		
-
-		
-
-			h4 {
-				
-				font-size: 3.3vw;
-				letter-spacing: -0.1vw;
-				text-transform: uppercase;
-				font-family: 'Kobe';
-				line-height: 3vw;
-				margin-bottom: 2vw;
-				width: 15vw;
-				
-				
-			}
-
-			p {
-				width: 15.3vw;
-				font-size: 1vw;
-				line-height: 1.3vw;
-			}
-
-		
-
-		}
 
 	
 	
 		
 		.steps-grid__item {
 
-			opacity: 0.3;
+			
 
 			transition: 300ms ease;
 
@@ -145,37 +225,11 @@ const StyledGrid = styled.div`
 				`
 				);
 			}};		
+
+	
+
+
 		
-		
-
-
-			&1 {
-				grid-column: 1/5;
-				grid-row: 1/2;
-			}
-
-			&2 {
-				grid-column: 5/9;
-				grid-row: 2/3;
-				
-			}
-
-			&3 {
-				grid-column: 9/13;
-				grid-row: 3/4;
-			}
-
-			&4 {
-				grid-column: 5/9;
-				grid-row: 4/5;
-			}
-
-			&5 {
-				grid-column: 1/5;
-				grid-row: 5/6;
-				
-			}
-			
 		}
 
 	}

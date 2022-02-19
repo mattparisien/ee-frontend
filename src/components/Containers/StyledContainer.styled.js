@@ -47,13 +47,13 @@ const horizontalGutter = {
 		padding: "9vw",
 	},
 	mobileL: {
-		padding: "6vw",
+		padding: "4vw",
 	},
 	mobileM: {
-		padding: "4rem",
+		padding: "1.9rem",
 	},
 	mobileS: {
-		padding: "4rem",
+		padding: "2rem",
 	},
 };
 

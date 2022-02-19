@@ -4,6 +4,7 @@ import { device, deviceSize } from "./device";
 
 export const FOOTERHEIGHT = '75vh';
 export const CONTAINERMAXWIDTH = '1900px';
+export const MOBILEFONTSIZE = '4.444vw';
 
 
 const GlobalStyles = createGlobalStyle`
