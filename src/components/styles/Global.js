@@ -41,6 +41,8 @@ body {
   overflow-x: hidden;
 }
 
+.overflow-fa
+
 
 main {
 	min-height: 100vh;
@@ -52,6 +54,13 @@ main {
 .char {
 	display: inline-block;
 	position: relative;
+	
+	
+}
+
+.heading-char {
+	transform: translateY(100%);
+	opacity: 0;
 }
 
 .viewport-nav {
@@ -76,6 +85,7 @@ body {
 .line {
 	transform: translateY(100%);
 	opacity: 0;
+	text-align: center !important;
 }
 
 

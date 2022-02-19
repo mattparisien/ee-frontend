@@ -12,18 +12,13 @@ function How() {
 
 	return (
 		<>
-			<Container padding='regular' height='auto' hasMarginBottom hasMarginTop>
+			<Container padding='regular' height='auto' hasPaddingBottom>
 				<HeadingSection
 					headingSize='large'
 					color='dark'
-					headingText={"Steps to better listening"}
+					headingText={"How We Do It"}
 					headingWeight='light'
 					headingWidth='100%'
-					headingWidth='60%'
-					capitalize
-					splitGraphic={<InstrumentPlayer />}
-					splitGraphicOffset={"right"}
-					height='50vw'
 				/>
 			</Container>
 			<Steps />

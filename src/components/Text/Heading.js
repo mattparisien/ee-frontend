@@ -41,8 +41,8 @@ function Heading(props, ref) {
 	useEffect(() => {
 		if (heading.current) {
 			const mySplitText = new SplitText(heading.current, {
-				type: "lines",
-				linesClass: "line",
+				type: "chars",
+				charsClass: "heading-char",
 			});
 			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
 		}
@@ -50,12 +50,12 @@ function Heading(props, ref) {
 
 	useEffect(() => {
 		if (intersectingTarget) {
-			const lines = $(intersectingTarget).find(".line");
-			lineAnim.current.to(lines, {
+			const chars = $(intersectingTarget).find(".heading-char");
+			lineAnim.current.to(chars, {
 				opacity: 1,
 				y: 0,
-				duration: 0.8,
-				stagger: 0.1,
+				duration: 0.6,
+				stagger: 0.05,
 				ease: "power2.out",
 			});
 		}

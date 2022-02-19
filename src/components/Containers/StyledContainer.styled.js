@@ -53,7 +53,7 @@ const horizontalGutter = {
 		padding: "1.9rem",
 	},
 	mobileS: {
-		padding: "2rem",
+		padding: "3rem",
 	},
 };
 
@@ -63,6 +63,7 @@ export const responsiveGutter = {
 };
 
 const StyledContainer = styled.div`
+	overflow: visible;
 	max-width: ${CONTAINERMAXWIDTH};
 	margin: 0 auto;
 	position: ${props => (props.isAbsolute ? "absolute" : "relative")};
@@ -113,17 +114,28 @@ const StyledContainer = styled.div`
 `;
 	}}
 
-	${({ noGutter, hasPaddingVertical }) => {
+	${({ noGutter, hasPaddingTop, hasPaddingBottom }) => {
 		return !noGutter
 			? Object.keys(device).map(deviceName => {
 					return `@media ${device[deviceName]} {
-											padding: ${
-												hasPaddingVertical
-													? responsiveGutter["horizontal"][deviceName][
-															"padding"
-													  ]
-													: `0 ${responsiveGutter["horizontal"][deviceName]["padding"]}`
-											};
+										${
+											hasPaddingTop
+												? `
+										padding-top: ${responsiveGutter["vertical"][deviceName]["padding"]};
+										padding-left: ${responsiveGutter["horizontal"][deviceName]["padding"]};
+										padding-right: ${responsiveGutter["horizontal"][deviceName]["padding"]};
+
+										`
+												: hasPaddingBottom
+												? `
+										padding-bottom: ${responsiveGutter["vertical"][deviceName]["padding"]};
+										padding-left: ${responsiveGutter["horizontal"][deviceName]["padding"]};
+										padding-right: ${responsiveGutter["horizontal"][deviceName]["padding"]};
+										`
+												: `
+												padding: 0 ${responsiveGutter["vertical"][deviceName]["padding"]};
+												`
+										}
 											
 										}`;
 			  })

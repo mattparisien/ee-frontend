@@ -23,7 +23,9 @@ function Container(props, ref) {
 			isCustomBg={props.isCustomBg}
 			flexDirection={props.flexDirection}
 			ref={ref}
-			hasPaddingVertical={props.hasPaddingVertical}
+			hasPaddingBottom={props.hasPaddingBottom}
+			hasPaddingTop={props.hasPaddingTop}
+			isOverflowVisible={props.isOverflowVisible}
 		>
 			{props.children}
 		</StyledContainer>

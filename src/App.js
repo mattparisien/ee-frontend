@@ -147,6 +147,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								offset={state.menuOffset}
 								toggleMenu={toggleMenu}
 							/>
+
 							<div
 								className='scroll-container'
 								ref={scrollRef}
@@ -165,6 +166,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 								<Footer addToRefs={addToRefs} location={location.pathname} />
 							</div>
+
 							{/* <CookieBar /> */}
 						</ThemeProvider>
 					</DataContext.Provider>

@@ -34,8 +34,8 @@ export const StyledFeaturedWorkList = styled.ul`
 		position: absolute;
 		height: 54vw;
 		width: 40vw;
-		max-width: 650px;
-		max-height: 950px;
+		max-width: 795px;
+		max-height: 1000px;
 		border-radius: 0.7vw;
 		overflow: visible;
 		

@@ -72,11 +72,9 @@ function Steps() {
 			>
 				{steps && renderSteps()}
 				<Notes addToRefs={addToRefs} scrollTrigger={noteContainerRef.current} />
-				<Container isAbsolute isBelow className='drawings-wrapper' noGutter>
-					<div className='drawings-inner'>
-						<Drawings />
-					</div>
-				</Container>
+				<div className='drawings-wrapper'>
+					<Drawings />
+				</div>
 			</Grid>
 		</Container>
 	);

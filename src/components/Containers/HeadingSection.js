@@ -1,12 +1,13 @@
 import React from "react";
 import { Heading } from "..";
 import styled from "styled-components";
+import { responsiveGutter } from "./StyledContainer.styled";
 
 const StyledHeadingSection = styled.div`
 	height: ${({ height }) => height};
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 
 	${({ splitGraphicOffset }) => {
 		return (

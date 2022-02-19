@@ -52,7 +52,7 @@ export const StyledTransition = styled.div`
 
 		.transition-brand-saying__sentence {
 			text-align: center;
-			text-transform: capitalize;
+			
 			font-size: 2.5rem;
 			line-height: 2.5rem;
 

@@ -76,35 +76,41 @@ const paragraphFontSizes = {
 const headingFontSizes = {
 	h2: {
 		desktopL: {
-			fontSize: "8rem",
-			lineHeight: "6rem",
+			fontSize: "9rem",
+			lineHeight: "8rem",
+			letterSpacing: "-0.2rem"
 		},
 		desktop: {
-			fontSize: "10vw",
+			fontSize: "12vw",
 			lineHeight: "12vw",
 		},
 		laptopL: {
-			fontSize: "8vw",
+			fontSize: "10vw",
 			lineHeight: "6vw",
+			letterSpacing: "-0.3vw"
 		},
 		laptop: {
-			fontSize: "8vw",
+			fontSize: "11vw",
 			lineHeight: "6vw",
+			letterSpacing: "-0.4vw",
 		},
 		tablet: {
-			fontSize: "12vw",
+			fontSize: "14vw",
 			lineHeight: "9vw",
+			letterSpacing: "-0.6vw",
 		},
 		mobileL: {
-			fontSize: "10vw",
-			lineHeight: "8vw",
+			fontSize: "14vw",
+			lineHeight: "9vw",
+			letterSpacing: "-0.6vw",
 		},
 		mobileM: {
-			fontSize: "4rem",
+			fontSize: "17vw",
 			lineHeight: "4rem",
 		},
 		mobileS: {
-			fontSize: "4rem",
+			fontSize: "20vw",
+			letterSpacing: "-0.6vw",
 			lineHeight: "4rem",
 		},
 	},
@@ -116,7 +122,7 @@ ${({ $headingStyles, theme }) => {
 		$headingStyles.color && `color: ${theme.colors[$headingStyles.color]};`
 	);
 }}
-
+text-align: center;
 width: ${({ $headingStyles }) =>
 	$headingStyles.width ? $headingStyles.width : "100%"};
 
@@ -133,6 +139,7 @@ h2 {
 			return `@media ${device[deviceName]} {
 									font-size: ${headingFontSizes["h2"][deviceName]["fontSize"]};
 									line-height: ${headingFontSizes["h2"][deviceName]["lineHeight"]};
+									letter-spacing: ${headingFontSizes["h2"][deviceName]["letterSpacing"]};
 								}`;
 		})}
 }}

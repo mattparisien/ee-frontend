@@ -160,7 +160,6 @@ export const StyledInnerLayout = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
-	
 
 	.logo-wrapper path {
 		transition: 300ms ease;
@@ -177,6 +176,7 @@ export const StyledInnerLayout = styled.div`
 	.bottom,
 	.top {
 		transition: 300ms ease;
-		background-color: ${({ headerColor, theme }) => theme.colors[headerColor]};
+		background-color: ${({ headerColor, theme, menuIsActive }) =>
+			theme.colors[menuIsActive ? "light" : headerColor]};
 	}
 `;

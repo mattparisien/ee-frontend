@@ -4,7 +4,7 @@ import { deviceSize, device } from "../styles/device";
 import { responsiveGutter } from "../Containers/StyledContainer.styled";
 
 const StyledGrid = styled.div`
-
+	overflow: visible;
 	&:not(:first-child) {
 		margin-top: ${({ $gridStyles }) => ($gridStyles.gap ? $gridStyles.gap : "3vw")}
 	}
@@ -77,16 +77,49 @@ const StyledGrid = styled.div`
 				theme.typography.paragraph.scale.mobile.lineHeight}vw;
 			
 		}
-
-	
-
 	}
-
-	
-
 
 
 	@media ${device.mobileL} {
+
+		.drawings-wrapper{
+			width: 100%;
+			height: 100%;
+			
+			position: absolute;
+
+			.drawing {
+				display: block;
+				position: absolute;
+				width: 15vw;
+				height: auto;
+				overflow: visible;
+			}
+
+			.drawing-blue {
+				
+				bottom: 0;
+				right: 0;
+			}
+
+			.drawing-green {
+				bottom: 10vw;
+				
+			}
+
+			.drawing-yellow {
+				top: 10vw;
+				right: 0;
+				
+			}
+
+			.drawing-red {
+				top: 0;
+				left: 0;
+				width:  10vw;
+			}
+		}
+
 
 		.note {
 			width: 4vw;
@@ -123,7 +156,7 @@ const StyledGrid = styled.div`
 		grid-template-rows: repeat(5, 1fr);
 		grid-column-gap: 1.042vw;
 		align-items: flex-start;
-		height: 100vw;
+		
 
 		.grid-item-wrapper {
 
@@ -201,40 +234,7 @@ const StyledGrid = styled.div`
 			height: 100%;
 		}
 
-		.drawings-inner {
-			width: 100%;
-			height: 100%;
-			position: relative;
-
-			.drawing {
-				position: absolute;
-				width: 15vw;
-				height: auto;
-			}
-
-			.drawing-blue {
-				bottom: 0;
-				right: 0;
-				
-			}
-
-			.drawing-green {
-				bottom: 10vw;
-				
-			}
-
-			.drawing-yellow {
-				top: 10vw;
-				right: 0;
-				
-			}
-
-			.drawing-red {
-				top: 0;
-				left: 0;
-				width:  10vw;
-			}
-		}
+		
 
 		
 
