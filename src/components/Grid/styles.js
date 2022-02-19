@@ -10,9 +10,44 @@ const StyledGrid = styled.div`
 	}
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
+	position: relative;
 
-	.note, .drawing {
+	.drawing {
 		display: none;
+	}
+
+	.note {
+		width: 15vw;
+	}
+
+
+	.location-note-wrapper {
+		position: absolute;
+		
+	
+
+		&__1 {
+			top: 30vw;
+			left: -5vw;
+			
+		}
+
+		&__2 {
+			
+			bottom: 25vw;
+			left: -10vw;
+		}
+
+		&__3 {
+			right: -7vw;
+			
+		}
+
+		&__4 {
+			right: -8vw;
+			top: 135vw;
+		}
+
 	}
 
 	.grid-item-wrapper {
@@ -52,6 +87,35 @@ const StyledGrid = styled.div`
 
 
 	@media ${device.mobileL} {
+
+		.note {
+			width: 4vw;
+		}
+
+		.location-note-wrapper {
+
+			&__1 {
+				grid-row: 3/4;
+				grid-column: 11/12;
+			}
+
+			&__2 {
+				grid-row: 5/6;
+				grid-column: 4/5;
+			}
+
+			&__3 {
+				grid-row: 2/3;
+				grid-column: 3/4;
+			}
+
+			&__4 {
+				grid-row: 3/4;
+				grid-column: 1/2;
+			}
+
+			
+		}
 
 		
 
@@ -174,34 +238,6 @@ const StyledGrid = styled.div`
 
 		
 
-		.note {
-			width: 4vw;
-		}
-
-		.location-note-wrapper {
-
-			&__1 {
-				grid-row: 3/4;
-				grid-column: 11/12;
-			}
-
-			&__2 {
-				grid-row: 5/6;
-				grid-column: 4/5;
-			}
-
-			&__3 {
-				grid-row: 2/3;
-				grid-column: 3/4;
-			}
-
-			&__4 {
-				grid-row: 3/4;
-				grid-column: 1/2;
-			}
-
-			
-		}
 		
 
 
