@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, FormGroup, TextField } from "@mui/material";
 import Button from "../../../Button/Button";
 import axios from "axios";
@@ -6,23 +6,22 @@ import axios from "axios";
 function Entry() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
+
 	const handleChange = e => {
+		console.log(e.target.value);
 		e.target.name === "email"
 			? setEmail(e.target.value)
 			: setPassword(e.target.value);
 	};
 
-	const handleSubmit = (e) => {
+	useEffect(() => {
+		console.log(process.env.REACT_APP_API_URL)
+	}, [email, password]);
 
+	const handleSubmit = e => {
 		e.preventDefault();
-
-		axios	
-			.post(`${process.env.REACT_API_URL}/auth`, {
-				identifier: email.at,
-				password: password,
-			})
-			.then(res => console.log(res))
-			.catch(err => console.log(err));
 	};
 
 	return (
@@ -35,10 +34,9 @@ function Entry() {
 						name='email'
 						type='email'
 						variant='outlined'
-						id='outlined-basic'
-						value={password}
-						onChange={handleChange}
-						required
+						defaultValue={email}
+						value={email}
+						onChange={e => handleChange(e)}
 						sx={{ marginBottom: 2 }}
 					/>
 					<TextField
@@ -46,7 +44,7 @@ function Entry() {
 						name='password'
 						type='password'
 						variant='outlined'
-						onChange={handleChange}
+						onChange={e => handleChange(e)}
 						id='outlined-basic'
 						value={password}
 						required
