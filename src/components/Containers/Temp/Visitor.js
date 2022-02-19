@@ -5,6 +5,7 @@ import { TextLogo } from "../../Vector/Svg";
 import { Routes, Route, Link } from "react-router-dom";
 import ComingSoon from "./Visitor/ComingSoon";
 import Entry from "./Visitor/Entry";
+import useAppData from "../../../helpers/hooks/useAppData";
 
 const StyledVisitorPage = styled.div`
 	background-color: ${({ theme }) => theme.colors.light};
@@ -45,12 +46,15 @@ const StyledVisitorPage = styled.div`
 `;
 
 function Visitor() {
+
+	const {setState} = useAppData();
+
 	return (
 		<StyledVisitorPage>
 			<TextLogo />
 			<Routes>
 				<Route path='/' element={<ComingSoon />} />
-				<Route path='/entry' element={<Entry />} />
+				<Route path='/entry' element={<Entry setState={setState}/>} />
 			</Routes>
 		</StyledVisitorPage>
 	);

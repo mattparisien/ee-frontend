@@ -5,9 +5,24 @@ import Visitor from "./components/Containers/Temp/Visitor";
 import Authenticated from "./components/Containers/Temp/Authenticated";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/styles/Global";
+import Cookies from "universal-cookie";
 
 function App() {
-	const { state, themes } = useAppData();
+	const { state, themes, setState } = useAppData();
+
+	useEffect(() => {
+		const cookies = new Cookies();
+		const user = cookies.get("user");
+
+		if (user) {
+			setState(prev => ({
+				...prev,
+				user: {
+					isVisitor: false,
+				},
+			}));
+		}
+	}, []);
 
 	return (
 		<div className='App'>

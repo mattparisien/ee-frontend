@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Box, FormGroup, TextField, Alert } from "@mui/material";
 import Button from "../../../Button/Button";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
-function Entry() {
+function Entry({ setState }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [success, setSuccess] = useState(false);
@@ -23,7 +24,6 @@ function Entry() {
 
 		if (email === validEmail && password === validPassword) {
 			setSuccess(true);
-			console.log("success!");
 		} else {
 			setError("Email or password is incorrect");
 		}
@@ -32,8 +32,19 @@ function Entry() {
 	};
 
 	useEffect(() => {
-		success && navigate('/')
-	}, [success])
+		const cookies = new Cookies();
+
+		const user = cookies.get("user");
+
+		if (user) {
+			navigate("/");
+		}
+
+		if (success) {
+			cookies.set("user", "Pacman", { path: "/" });
+			window.location.href = "http://localhost:3000/";
+		}
+	}, [success]);
 
 	return (
 		<>
