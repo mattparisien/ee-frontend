@@ -17,7 +17,8 @@ export default function Section(props) {
 	const { toggleHeaderColor } = useContext(SiteWideControls);
 
 	useEffect(() => {
-		intersectingTarget && intersectingTarget.id !== 1 && toggleHeaderColor(bg);
+		intersectingTarget && console.log(intersectingTarget)
+		intersectingTarget && toggleHeaderColor(bg);
 	}, [intersectingTarget]);
 
 	return (
@@ -42,7 +43,7 @@ export default function Section(props) {
 					})
 				}
 				threshold={0}
-				rootMargin={"-50px 0px -90%"}
+				rootMargin={"-50px 0px -95%"}
 			>
 				{props.children}
 			</InView>

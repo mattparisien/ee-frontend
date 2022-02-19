@@ -78,6 +78,7 @@ function App() {
 	};
 
 	const toggleHeaderColor = sectionBgColor => {
+		console.log('this has been caaaaaqlleed')
 		setState(prev => ({
 			...prev,
 			headerColor: sectionBgColor === "dark" ? "light" : "dark",
