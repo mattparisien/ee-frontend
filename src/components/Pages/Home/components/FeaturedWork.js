@@ -34,7 +34,9 @@ export const StyledFeaturedWorkList = styled.ul`
 		position: absolute;
 		height: 54vw;
 		width: 40vw;
-		border-radius: 2vw;
+		max-width: 650px;
+		max-height: 950px;
+		border-radius: 0.7vw;
 		overflow: visible;
 		
 
@@ -157,7 +159,7 @@ export const StyledFeaturedWorkList = styled.ul`
 				width: 100%;
 				background-size: cover;
 				background-position: center;
-				border-radius: 2vw;
+				border-radius: 0.7vw;
 			}
 
 			.featured-work-uoList__frame {
@@ -203,7 +205,7 @@ export const StyledFeaturedWorkList = styled.ul`
 
 				.background {
 					position: absolute;
-					border-radius: 2vw;
+					border-radius: 0.7vw;
 					top: 0;
 					left: 0;
 					background-color: black;
@@ -347,29 +349,27 @@ function FeaturedWork(props) {
 		});
 
 	return (
-		<Section bg={"light"} classes={"section-work"} isFullHeight>
-			<Container
-				classes={"featured-work-container"}
-				centerInner
-				flexDirection='column'
-				noGutter
-				isRelative
-			>
-				<Container hasPaddingVertical height='auto' centerInner>
-					<HeadingSection
-						color='dark'
-						headingSize='large'
-						weight='light'
-						width='100%'
-						headingText={"Featured Work"}
-					/>
-				</Container>
-
-				<StyledFeaturedWorkList className='featured-work-uoList'>
-					{renderedPosts}
-				</StyledFeaturedWorkList>
+		<Container
+			classes={"featured-work-container"}
+			centerInner
+			flexDirection='column'
+			noGutter
+			isRelative
+		>
+			<Container hasPaddingVertical height='auto' centerInner>
+				<HeadingSection
+					color='dark'
+					headingSize='large'
+					weight='light'
+					width='100%'
+					headingText={"Featured Work"}
+				/>
 			</Container>
-		</Section>
+
+			<StyledFeaturedWorkList className='featured-work-uoList'>
+				{renderedPosts}
+			</StyledFeaturedWorkList>
+		</Container>
 	);
 }
 

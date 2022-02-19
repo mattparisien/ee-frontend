@@ -19,9 +19,6 @@ export default function Header(props) {
 	const [isHoverable, setHoverable] = useState(true);
 	const [isScrolling, scrollDirection] = useScroll(props.scroller);
 
-
-
-
 	useEffect(() => {
 		if (menuState) {
 			setHoverable(false);
@@ -32,6 +29,10 @@ export default function Header(props) {
 			}, 1500);
 		}
 	}, [menuState]);
+
+	useEffect(() => {
+		console.log(headerColor);
+	}, [headerColor]);
 
 	const headerStyles = {
 		padding: "2rem 4rem",
@@ -64,6 +65,7 @@ export default function Header(props) {
 				isScrollingDown={scrollDirection === "down"}
 			>
 				<StyledInnerLayout
+					headerColor={headerColor}
 					className='header-inner-layout'
 					menuIsActive={menuState}
 				>

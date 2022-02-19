@@ -19,24 +19,18 @@ function About(props) {
 	};
 
 	return (
-		<Section classes={"section-who"} bg={"dark"} hasMarginTop >
-			<Container  height={"auto"} hasPaddingVertical>
-				<StyledAbout>
-					{data.about && (
-						<>
-							<Paragraph
-								size='large'
-								
-								className='section-who__paragraph1'
-							>
-								{data.about.body1}
-							</Paragraph>
-						</>
-					)}
-					<Megaphone />
-				</StyledAbout>
-			</Container>
-		</Section>
+		<Container height={"auto"} hasPaddingVertical>
+			<StyledAbout>
+				{data.about && (
+					<>
+						<Paragraph size='large' className='section-who__paragraph1'>
+							{data.about.body1}
+						</Paragraph>
+					</>
+				)}
+				<Megaphone />
+			</StyledAbout>
+		</Container>
 	);
 }
 

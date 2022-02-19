@@ -223,37 +223,30 @@ function Hero(props) {
 		}
 	}, [isSplit, wordRefs]);
 	return (
-		<Section
-			classes={"section-hero"}
-			sectionRef={props.sectionRefs}
-			bg={"light"}
-			noGutter
-		>
-			<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
-				<Container padding='regular' height='100vh'>
-					<div className='hero-content'>
-						<div className='hero-content__inner' ref={containerRef}>
-							<div className='drawnLogo-wrapper-overflowHidden'>
-								<div className='drawnLogo__inner-relative'>
-									<div className='drawnLogo__inner-absolute' ref={logoRef}>
-										<DrawnLogo width='400px' />
-									</div>
+		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
+			<Container padding='regular' height='100vh'>
+				<div className='hero-content'>
+					<div className='hero-content__inner' ref={containerRef}>
+						<div className='drawnLogo-wrapper-overflowHidden'>
+							<div className='drawnLogo__inner-relative'>
+								<div className='drawnLogo__inner-absolute' ref={logoRef}>
+									<DrawnLogo width='400px' />
 								</div>
 							</div>
-							<div className='hero-word hero-word-social' ref={addToRefs}>
-								Social
-							</div>
-							<div className='hero-word hero-word-impact' ref={addToRefs}>
-								Impact
-							</div>
-							<div className='hero-word hero-word-agency' ref={addToRefs}>
-								Agency
-							</div>
+						</div>
+						<div className='hero-word hero-word-social' ref={addToRefs}>
+							Social
+						</div>
+						<div className='hero-word hero-word-impact' ref={addToRefs}>
+							Impact
+						</div>
+						<div className='hero-word hero-word-agency' ref={addToRefs}>
+							Agency
 						</div>
 					</div>
-				</Container>
-			</StyledHero>
-		</Section>
+				</div>
+			</Container>
+		</StyledHero>
 	);
 }
 

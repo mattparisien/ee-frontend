@@ -19,7 +19,6 @@ import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import LoadingScreen from "./components/Loading/LoadingScreen";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 
-
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
 
@@ -78,9 +77,18 @@ function App() {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
 	};
 
+	const toggleHeaderColor = () => {
+		console.log("this should only be called twice");
+		setState(prev => ({
+			...prev,
+			headerColor: prev.headerColor === "dark" ? "light" : "dark",
+		}));
+	};
+
 	const siteControls = {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
+		toggleHeaderColor,
 	};
 
 	return (

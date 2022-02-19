@@ -11,7 +11,7 @@ function How() {
 	const theme = useTheme();
 
 	return (
-		<Section classes={"section-how"} bg={"light"}>
+		<>
 			<Container padding='regular' height='auto' hasMarginBottom hasMarginTop>
 				<HeadingSection
 					headingSize='large'
@@ -27,7 +27,7 @@ function How() {
 				/>
 			</Container>
 			<Steps />
-		</Section>
+		</>
 	);
 }
 

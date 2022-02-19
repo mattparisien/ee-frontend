@@ -1,15 +1,26 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { StyledSection } from "./StyledSection";
 import classNames from "classnames";
 import { InView } from "react-intersection-observer";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { SiteWideControls } from "../../App";
 
 export default function Section(props) {
-	const { bg, addToRefs, isRelative, noGutter } = props;
-	const sectionClass = classNames("Section", props.classes);
+	const { bg, addToRefs, isRelative, noGutter, id, page } = props;
+	const sectionClass = classNames(
+		`Section section-${page} section-${page}__${id}`,
+		props.classes
+	);
 
 	//Detect when section intersects with header
 	const [intersectingTarget, setIntersectingTarget] = useState(null);
+	const { toggleHeaderColor } = useContext(SiteWideControls);
+
+	useEffect(() => {
+		
+		intersectingTarget && console.log(intersectingTarget);
+		intersectingTarget && intersectingTarget.id !== 1 && toggleHeaderColor();
+	}, [intersectingTarget]);
 
 	return (
 		<StyledSection
@@ -20,9 +31,23 @@ export default function Section(props) {
 			isRelative={isRelative}
 			data-scroll-section
 			noGutter={noGutter}
-			
 		>
-			{props.children}
+			<InView
+				className='section-view-wrapper'
+				as='div'
+				onChange={(inView, entry) =>
+					inView &&
+					setIntersectingTarget({
+						id: id,
+						target: entry.target,
+						page: page,
+					})
+				}
+				threshold={0}
+				rootMargin={"-50px 0px -90%"}
+			>
+				{props.children}
+			</InView>
 		</StyledSection>
 	);
 }

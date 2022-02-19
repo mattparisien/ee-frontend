@@ -150,10 +150,6 @@ export const StyledHeader = styled.div`
 				width: 48px;
 				height: 48px;
 			}
-
-			
-
-		
 		}
 	}
 `;
@@ -164,13 +160,14 @@ export const StyledInnerLayout = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
+	background-color: ${({theme, headerColor}) => theme.colors[headerColor]};
 
 	.logo-wrapper path {
 		transition: 300ms ease;
 		fill: ${(props, theme) =>
 			props.menuIsActive
 				? props.theme.colors["light"]
-				: props.theme.colors["dark"]};
+				: props.theme.colors[props.headerColor]};
 	}
 
 	.burger-circle {
