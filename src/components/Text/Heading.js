@@ -19,6 +19,7 @@ function Heading(props, ref) {
 		weight,
 		capitalize,
 		width,
+		className
 	} = props;
 
 	const headingStyles = {
@@ -71,7 +72,7 @@ function Heading(props, ref) {
 			threshold={1}
 		>
 			<StyledHeading
-				className='styled-heading-wrapper'
+				className={`styled-heading-wrapper ${className && className}`}
 				$headingStyles={headingStyles}
 			>
 				{small && <h4>{children}</h4>}

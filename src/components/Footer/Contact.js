@@ -60,7 +60,7 @@ function Contact() {
 		<>
 			<div className='footer-contact'>
 				<div className='footer-contact__left'>
-					<Heading large color='light' weight='light' ref={addToRefs}>
+					<Heading large color='light' weight='light' ref={addToRefs} className="footer-heading">
 						Hear to listen
 					</Heading>
 					<div className='footer-email'>

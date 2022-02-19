@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { device, deviceSize } from "./device";
 
-export const FOOTERHEIGHT = "75vh";
+
 export const CONTAINERMAXWIDTH = "1900px";
 export const MOBILEFONTSIZE = "4.444vw";
 
@@ -41,13 +41,12 @@ body {
   overflow-x: hidden;
 }
 
-.overflow-fa
 
 
 main {
-	min-height: 100vh;
-	
+	height: 
 }
+
 
 
 

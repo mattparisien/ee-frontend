@@ -5,13 +5,13 @@ import { CONTAINERMAXWIDTH } from "../styles/Global";
 
 const verticalGutter = {
 	desktopL: {
-		padding: "14vw",
+		padding: "9vw",
 	},
 	desktop: {
 		padding: "10vw",
 	},
 	laptopL: {
-		padding: "15vw",
+		padding: "10vw",
 	},
 	laptop: {
 		padding: "12vw",

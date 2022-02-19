@@ -1,22 +1,30 @@
 import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
-import { FOOTERHEIGHT } from "../styles/Global";
 
 export const StyledFooter = styled.footer`
 
 	color: ${({ theme }) => theme.colors.dark};
 	background-color: ${({ theme }) => theme.colors.dark};
 	position: relative;
-	height: ${FOOTERHEIGHT};
+	height: 60vw;
+	max-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-	@media (max-width: ${deviceSize.tablet}px) {
-		height: auto;
-	}
+
+	
 
 	.footer-contact {
 		display: flex;
 		width: 100%;
 		justify-content: space-between;
+
+
+		.footer-heading h2 {
+			font-size: 10.8vw;
+			letter-spacing: -0.1vw;
+		}
 
 		&__left {
 			display: flex;
@@ -26,11 +34,25 @@ export const StyledFooter = styled.footer`
 
 			.footer-email {
 				h2 {
-					font-size: 3.1vw;
+					font-size: 4.3vw;
+					margin-top: 3.1vw;
+					letter-spacing: -0.1vw;
 					line-height: 3.1vw;
 				}
 			}
 
+		}
+
+
+		@media ${device.laptopL} {
+			.footer-heading h2 {
+				font-size: 9rem;
+			}	
+
+			.footer-email h2 {
+				margin-top: 1.23rem;
+				font-size: 3.6rem;
+			}
 		}
 
 		&__right {

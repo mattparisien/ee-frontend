@@ -356,7 +356,7 @@ function FeaturedWork(props) {
 			noGutter
 			isRelative
 		>
-			<Container hasPaddingVertical height='auto' centerInner>
+			<Container hasPaddingVertical height='auto' centerInner hasPaddingBottom>
 				<HeadingSection
 					color='dark'
 					headingSize='large'

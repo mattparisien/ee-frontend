@@ -37,15 +37,11 @@ export default function Footer(props) {
 		<StyledFooter
 			$layout={layout}
 			ref={footerRef}
+			data-scroll
 			data-scroll-section
 			className='Footer'
 		>
-			<Container
-				padding='regular'
-				height='50vw'
-				centerInner
-				flexDirection='column'
-			>
+			<Container centerInner flexDirection='column' height="100%">
 				{layout === "contact" && <Contact />}
 				{layout === "project" && (
 					<Project footerRef={footerRef} title={data && data.title} />
