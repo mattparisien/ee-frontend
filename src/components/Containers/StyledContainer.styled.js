@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { device } from "../styles/device";
+import { CONTAINERMAXWIDTH } from "../styles/Global";
 
 const verticalGutter = {
 	desktopL: {
@@ -62,22 +63,13 @@ export const responsiveGutter = {
 };
 
 const StyledContainer = styled.div`
+	max-width: ${CONTAINERMAXWIDTH};
+	margin: 0 auto;
 	position: ${props => (props.isAbsolute ? "absolute" : "relative")};
 	top: ${props => (props.isAbsolute ? "0" : "")};
 	left: ${props => (props.isAbsolute ? "0" : "")};
 	z-index: ${props => (props.isBelow ? "-1" : props.isAbove ? "1" : "")};
 	clip-path: ${props => (props.clipTo ? `url(${props.clipTo})` : "")};
-	${({ hasMarginBottom, hasMarginTop }) => {
-		return `
-			margin: ${
-				hasMarginBottom && hasMarginTop
-					? "10vw 0"
-					: hasMarginBottom
-					? "0 0 10vw 0"
-					: "0"
-			};
-			`;
-	}}
 
 	${({ $paddingVerticalNone }) => {
 		return (

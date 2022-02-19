@@ -6,7 +6,7 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 export default function Section(props) {
 	const { bg, addToRefs, isRelative, noGutter } = props;
-	const sectionClass = classNames("c-section", props.classes);
+	const sectionClass = classNames("Section", props.classes);
 
 	//Detect when section intersects with header
 	const [intersectingTarget, setIntersectingTarget] = useState(null);

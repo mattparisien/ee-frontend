@@ -10,13 +10,13 @@ import { device } from "../../../styles/device";
 
 export const StyledHero = styled.div`
 	.hero-content {
-		height: 80%;
+		height: 60vw;
 		max-height: 800px;
 		font-family: Kobe Bold;
 		width: 100%;
 		padding: inherit;
 		margin: 0 auto;
-		font-size: 10vw;
+		font-size: 9vw;
 		letter-spacing: -0.4vw;
 		line-height: 10vw;
 		position: absolute;
@@ -90,8 +90,8 @@ export const StyledHero = styled.div`
 			.hero-word-agency {
 				left: ${({ defaultOffsets }) =>
 					defaultOffsets[2] && defaultOffsets[2].left}px;
-				top: ${({ defaultOffsets }) =>
-					defaultOffsets[2] && defaultOffsets[0].top + 150}px;
+				bottom: ${({ defaultOffsets }) =>
+					defaultOffsets[2] && defaultOffsets[0].top - 150}px;
 			}
 		}
 	}
@@ -170,13 +170,15 @@ function Hero(props) {
 					wordRefs.current[0],
 					{
 						top: 0,
+						duration: 2,
+						ease: "expo.inOut",
 					},
 					3
 				)
 				.to(
 					wordRefs.current[2],
 					{
-						top: "100%",
+						bottom: 0,
 						duration: 2,
 						ease: "expo.inOut",
 					},
@@ -189,17 +191,16 @@ function Hero(props) {
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					3.2
+					3.4
 				)
 				.to(
 					wordRefs.current[1],
 					{
 						right: 0,
-
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					3.5
+					3.4
 				)
 				.to(
 					wordRefs.current[2],
@@ -208,7 +209,7 @@ function Hero(props) {
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					3.7
+					3.4
 				)
 				.to(
 					logoRef.current,

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { StyledContainer } from "./StyledContainer.styled";
 
 function Container(props, ref) {
-	const containerClass = classNames("styled-object-container", props.classes);
+	const containerClass = classNames("Container", props.classes);
 
 	return (
 		<StyledContainer

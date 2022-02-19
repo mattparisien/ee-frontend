@@ -34,14 +34,24 @@ export default function Footer(props) {
 	));
 
 	return (
-		<StyledFooter $layout={layout} ref={footerRef} data-scroll-section>
-			<Container padding="regular" height="50vw" centerInner flexDirection="column">
-			{layout === "contact" && <Contact />}
-			{layout === "project" && (
-				<Project footerRef={footerRef} title={data && data.title} />
-			)}
+		<StyledFooter
+			$layout={layout}
+			ref={footerRef}
+			data-scroll-section
+			className='Footer'
+		>
+			<Container
+				padding='regular'
+				height='50vw'
+				centerInner
+				flexDirection='column'
+			>
+				{layout === "contact" && <Contact />}
+				{layout === "project" && (
+					<Project footerRef={footerRef} title={data && data.title} />
+				)}
 
-			<NavList links={navLinks} />
+				<NavList links={navLinks} />
 			</Container>
 		</StyledFooter>
 	);

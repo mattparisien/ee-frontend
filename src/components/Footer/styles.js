@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
+import { FOOTERHEIGHT } from "../styles/Global";
 
 export const StyledFooter = styled.footer`
+
 	color: ${({ theme }) => theme.colors.dark};
 	background-color: ${({ theme }) => theme.colors.dark};
 	position: relative;
-	height: ${({ $height }) => $height ? $height : 'auto'};
+	height: ${FOOTERHEIGHT};
 
 	@media (max-width: ${deviceSize.tablet}px) {
 		height: auto;
@@ -117,7 +119,7 @@ export const StyledFooter = styled.footer`
 	}
 
 	.link-list {
-		color: ${({theme}) => theme.colors.light};
+		color: ${({ theme }) => theme.colors.light};
 		justify-content: end;
 	
 		li {
@@ -131,14 +133,14 @@ export const StyledFooter = styled.footer`
 
 export const StyledProjectFooterInner = styled.div`
 	width: 100%;
-`
+`;
 
 export const StyledContactFooterInner = styled.div`
-text-align: left;
-`
+	text-align: left;
+`;
 
 export const StyledFooterBottom = styled.div`
-	color: ${({theme}) => theme.colors.light};
+	color: ${({ theme }) => theme.colors.light};
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -146,4 +148,4 @@ export const StyledFooterBottom = styled.div`
 	.footer-brand-name {
 		width: 13rem;
 	}
-`
+`;

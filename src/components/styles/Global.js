@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 import { device, deviceSize } from "./device";
 
+
+export const FOOTERHEIGHT = '75vh';
+export const CONTAINERMAXWIDTH = '1900px';
+
+
 const GlobalStyles = createGlobalStyle`
 
 
@@ -34,6 +39,7 @@ body {
 
 main {
 	min-height: 100vh;
+	
 }
 
 
