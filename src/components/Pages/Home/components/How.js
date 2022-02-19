@@ -6,6 +6,7 @@ import { useTheme } from "styled-components";
 import Scene from "../../../Engine/Scene";
 import HeadingSection from "../../../Containers/HeadingSection";
 import { InstrumentPlayer } from "../../../Vector/Svg";
+import Button from "../../../Button/Button";
 
 function How() {
 	const theme = useTheme();
@@ -22,6 +23,7 @@ function How() {
 				/>
 			</Container>
 			<Steps />
+			<Button variant="contained" color="dark">Get in touch</Button>
 		</>
 	);
 }

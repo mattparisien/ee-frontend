@@ -15,9 +15,9 @@ import { LineYellow, LineBlue, LineRed, LineGreen } from "../../../Vector/Svg";
 
 export const StyledFeaturedWorkList = styled.ul`
 	width: 100%;
-	height: auto;
+	
 	position: relative;
-	height: 120vw;
+	height: 160vw;
 
 	.ul-frame {
 		width: 100%;
@@ -54,8 +54,15 @@ export const StyledFeaturedWorkList = styled.ul`
 		}
 
 		&:nth-of-type(3) {
-			bottom: -6vw;
+			bottom: 34vw;
 			left: 30vw;
+		}
+
+		&:nth-of-type(4) {
+			width: 41vw;
+			height: 40vw;	
+			bottom: 0;
+			left: 0;
 		}
 
 	
@@ -95,10 +102,7 @@ export const StyledFeaturedWorkList = styled.ul`
 					&:hover .featured-work-uoList__title {
 						opacity: 1;
 					}
-
 				}
-
-			
 			}
 
 			
@@ -196,9 +200,9 @@ export const StyledFeaturedWorkList = styled.ul`
 				.title {
 					text-align: center;
 					
-					font-size: 8vw;
-					letter-spacing: -0.4vw;
-					line-height: 6vw;
+					font-size: 5vw;
+					letter-spacing: -0.2vw;
+					line-height: 4vw;
 					color: ${({ theme }) => theme.colors.light};
 					z-index: 1;
 				}
@@ -243,7 +247,7 @@ function FeaturedWork(props) {
 				return a.name > b.name ? 1 : -1;
 			});
 
-		data.posts && setFeaturedPosts(data.posts.slice(0, 3));
+		data.posts && setFeaturedPosts(data.posts.slice(0, 4));
 	}, [data]);
 
 	// const handleMouseEnter = id => {
