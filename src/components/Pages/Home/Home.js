@@ -1,14 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
-import gsap from "gsap";
-import DrawSVGPlugin from "gsap/DrawSVGPlugin";
-import useResize from "../../../helpers/hooks/useResize";
-import { useTheme } from "styled-components";
-import useScroll from "../../../helpers/hooks/useScrollDir";
+import React, { useRef } from "react";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import How from "./components/How";
 import Section from "../../Containers/Section";
-
 import FeaturedWork from "./components/FeaturedWork";
 
 function Home(props) {
@@ -22,25 +16,25 @@ function Home(props) {
 					id: 1,
 					name: "hero",
 					page: "home",
-					backgroundColor: "light"
+					backgroundColor: "light",
 				},
 				{
 					id: 2,
 					name: "about",
 					page: "home",
-					backgroundColor: "dark"
+					backgroundColor: "dark",
 				},
 				{
 					id: 3,
 					name: "how",
 					page: "home",
-					backgroundColor: "light"
+					backgroundColor: "light",
 				},
 				{
 					id: 4,
 					name: "featuredWork",
 					page: "home",
-					backgroundColor: "light"
+					backgroundColor: "light",
 				},
 			],
 		},
@@ -52,8 +46,6 @@ function Home(props) {
 		how: How,
 		featuredWork: FeaturedWork,
 	};
-
-	//Featured work titles
 
 	return (
 		<>

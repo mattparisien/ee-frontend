@@ -19,7 +19,7 @@ export default function Section(props) {
 	useEffect(() => {
 		
 		intersectingTarget && console.log(intersectingTarget);
-		intersectingTarget && intersectingTarget.id !== 1 && toggleHeaderColor();
+		intersectingTarget && intersectingTarget.id !== 1 && toggleHeaderColor(bg);
 	}, [intersectingTarget]);
 
 	return (

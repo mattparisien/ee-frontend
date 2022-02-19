@@ -77,11 +77,11 @@ function App() {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
 	};
 
-	const toggleHeaderColor = () => {
+	const toggleHeaderColor = sectionBgColor => {
 		console.log("this should only be called twice");
 		setState(prev => ({
 			...prev,
-			headerColor: prev.headerColor === "dark" ? "light" : "dark",
+			headerColor: sectionBgColor === "dark" ? "light" : "dark",
 		}));
 	};
 

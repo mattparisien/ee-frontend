@@ -160,7 +160,7 @@ export const StyledInnerLayout = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
-	background-color: ${({theme, headerColor}) => theme.colors[headerColor]};
+	
 
 	.logo-wrapper path {
 		transition: 300ms ease;
