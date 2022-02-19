@@ -18,15 +18,12 @@ function useSplit(arrayOfElements, options) {
 	useEffect(() => {
 		gsap.registerPlugin(SplitText);
 
-		console.log(arrayOfElements)
 
 		if (!arrayOfElements || !arrayOfElements[0]) {
-			console.log('in herwss!s')
 			return;
 		}
 
 		if (arrayOfElements.length >= 0 && !isSplit) {
-			console.log(arrayOfElements)
 			const mySplitText = new SplitText(arrayOfElements, options);
 			
 			setIsSplit(true);

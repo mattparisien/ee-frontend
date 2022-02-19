@@ -23,7 +23,6 @@ export default function useScroll(scroller) {
 
 	useEffect(() => {
 		if (scroller) {
-			console.log(scroller);
 			scroller.on("scroll", e => toggleScrollDirection(e));
 		}
 

@@ -24,7 +24,6 @@ function SiteTransition(props) {
 	useEffect(() => {
 		if (text.current && isSplit && morphPath.current) {
 			if (isTransitioning) {
-				console.log('in hessssssre!')
 				const animation = pageTransitionAnimation(
 					transitionTl,
 					text,

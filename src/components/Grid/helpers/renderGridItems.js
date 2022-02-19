@@ -11,8 +11,6 @@ export default function renderGridItems(data) {
 
 	arrayofGrids = divideArray(data, 7);
 
-	console.log("array of grid", arrayofGrids);
-
 	return arrayofGrids.map(nested => {
 		return (
 			<Grid

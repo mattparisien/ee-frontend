@@ -78,7 +78,6 @@ function App() {
 	};
 
 	const toggleHeaderColor = sectionBgColor => {
-		console.log("this should only be called twice");
 		setState(prev => ({
 			...prev,
 			headerColor: sectionBgColor === "dark" ? "light" : "dark",

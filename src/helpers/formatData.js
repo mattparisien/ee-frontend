@@ -1,6 +1,5 @@
 export const formatPosts = arr => {
 	const formattedPosts = arr.map(post => {
-		console.log(post);
 		return {
 			id: post.id,
 			title: post.attributes.Title,

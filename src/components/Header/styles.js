@@ -177,6 +177,6 @@ export const StyledInnerLayout = styled.div`
 	.bottom,
 	.top {
 		transition: 300ms ease;
-		background-color: ${({ theme }) => theme.colors.dark};
+		background-color: ${({ headerColor, theme }) => theme.colors[headerColor]};
 	}
 `;

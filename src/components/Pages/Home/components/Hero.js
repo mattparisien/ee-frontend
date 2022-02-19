@@ -4,6 +4,7 @@ import { Container, Section } from "../../../index";
 import gsap from "gsap";
 import useSplit from "../../../../helpers/hooks/useSplit";
 import { DrawnLogo } from "../../../index";
+import Tilt from "react-tilt";
 
 import styled from "styled-components";
 import { device } from "../../../styles/device";
@@ -16,9 +17,12 @@ export const StyledHero = styled.div`
 		width: 100%;
 		padding: inherit;
 		margin: 0 auto;
-		font-size: 9vw;
-		letter-spacing: -0.4vw;
-		line-height: 10vw;
+		font-size: 25vw;
+
+	
+
+		letter-spacing: -0.8vw;
+		line-height: 20vw;
 		position: absolute;
 		left: 50%;
 		top: 50%;
@@ -32,9 +36,8 @@ export const StyledHero = styled.div`
 			.drawnLogo-wrapper-overflowHidden {
 				top: 50%;
 				left: 50%;
-				width: 14vw;
-				height: 20vw;
-
+				width: 20vw;
+				height: 28vw;
 				position: absolute;
 				transform: translate(-50%, -50%);
 				overflow: hidden;
@@ -58,13 +61,13 @@ export const StyledHero = styled.div`
 				}
 			}
 
-			@media ${device.desktop} {
+			@media ${device.laptop} {
 				.drawnLogo {
 					width: 300px;
 				}
 
 				.hero-word {
-					font-size: 200px;
+					font-size: 250px;
 				}
 			}
 
@@ -76,8 +79,7 @@ export const StyledHero = styled.div`
 			.hero-word-social {
 				left: ${({ defaultOffsets }) =>
 					defaultOffsets[0] && defaultOffsets[0].left}px;
-				top: ${({ defaultOffsets }) =>
-					defaultOffsets[0] && defaultOffsets[0].top - 150}px;
+				top: 0;
 			}
 
 			.hero-word-impact {
@@ -90,8 +92,7 @@ export const StyledHero = styled.div`
 			.hero-word-agency {
 				left: ${({ defaultOffsets }) =>
 					defaultOffsets[2] && defaultOffsets[2].left}px;
-				bottom: ${({ defaultOffsets }) =>
-					defaultOffsets[2] && defaultOffsets[0].top - 150}px;
+				bottom: 0;
 			}
 		}
 	}
@@ -117,6 +118,8 @@ function Hero(props) {
 		type: "chars",
 		charsClass: "char",
 	});
+
+	const [isTiltActive, setTiltActive] = useState(false);
 
 	const containerRef = useRef(null);
 	const logoRef = useRef(null);
@@ -148,8 +151,6 @@ function Hero(props) {
 					},
 				}));
 			});
-
-			console.log(defaultOffsets);
 		}
 
 		if (isSplit && wordRefs.current.length > 2 && logoRef.current) {
@@ -169,47 +170,29 @@ function Hero(props) {
 				.to(
 					wordRefs.current[0],
 					{
-						top: 0,
+						left: "-120%",
 						duration: 2,
 						ease: "expo.inOut",
 					},
 					3
-				)
-				.to(
-					wordRefs.current[2],
-					{
-						bottom: 0,
-						duration: 2,
-						ease: "expo.inOut",
-					},
-					3
-				)
-				.to(
-					wordRefs.current[0],
-					{
-						left: 0,
-						duration: 2,
-						ease: "expo.inOut",
-					},
-					3.4
 				)
 				.to(
 					wordRefs.current[1],
 					{
-						right: 0,
+						right: "-120%",
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					3.4
+					3
 				)
 				.to(
 					wordRefs.current[2],
 					{
-						left: 0,
+						left: "-120%",
 						duration: 2,
 						ease: "expo.inOut",
 					},
-					3.4
+					3
 				)
 				.to(
 					logoRef.current,
@@ -218,30 +201,42 @@ function Hero(props) {
 						duration: 1,
 						ease: "expo.inOut",
 					},
-					3.9
-				);
+					3.5
+				)
+				.set(wordRefs.current[0], {
+					display: "none",
+				})
+				.set(wordRefs.current[1], {
+					display: "none",
+				})
+				.set(wordRefs.current[2], {
+					display: "none",
+				});
 		}
 	}, [isSplit, wordRefs]);
 	return (
 		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
 			<Container padding='regular' height='100vh'>
-				<div className='hero-content'>
-					<div className='hero-content__inner' ref={containerRef}>
-						<div className='drawnLogo-wrapper-overflowHidden'>
-							<div className='drawnLogo__inner-relative'>
-								<div className='drawnLogo__inner-absolute' ref={logoRef}>
-									<DrawnLogo width='400px' />
+				<div className='Tilt-inner'>
+					<div className='hero-content'>
+						<div className='hero-content__inner' ref={containerRef}>
+							<div className='drawnLogo-wrapper-overflowHidden'>
+								<div className='drawnLogo__inner-relative'>
+									<div className='drawnLogo__inner-absolute' ref={logoRef}>
+										<DrawnLogo width='400px' />
+									</div>
 								</div>
 							</div>
-						</div>
-						<div className='hero-word hero-word-social' ref={addToRefs}>
-							Social
-						</div>
-						<div className='hero-word hero-word-impact' ref={addToRefs}>
-							Impact
-						</div>
-						<div className='hero-word hero-word-agency' ref={addToRefs}>
-							Agency
+
+							<div className='hero-word hero-word-social' ref={addToRefs}>
+								Social
+							</div>
+							<div className='hero-word hero-word-impact' ref={addToRefs}>
+								Impact
+							</div>
+							<div className='hero-word hero-word-agency' ref={addToRefs}>
+								Agency
+							</div>
 						</div>
 					</div>
 				</div>

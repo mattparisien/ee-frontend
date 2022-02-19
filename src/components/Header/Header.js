@@ -30,10 +30,7 @@ export default function Header(props) {
 		}
 	}, [menuState]);
 
-	useEffect(() => {
-		console.log(headerColor);
-	}, [headerColor]);
-
+	
 	const headerStyles = {
 		padding: "2rem 4rem",
 		color: headerColor,
@@ -44,7 +41,6 @@ export default function Header(props) {
 	};
 
 	useEffect(() => {
-		console.log(menuState);
 		if (windowWidth && windowWidth < 700) {
 			setDevice("mobile");
 		} else {
