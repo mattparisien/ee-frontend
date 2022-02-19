@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Image, Section, Container } from "../../../index";
 import UnorderedList from "../../../Lists/UnorderedList";
-
+import { device, deviceSize } from "../../../styles/device";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
 import useMouseMove from "../../../../helpers/hooks/useMouseMove";
@@ -34,7 +34,7 @@ export const StyledFeaturedWorkList = styled.ul`
 		position: absolute;
 		height: 54vw;
 		width: 40vw;
-		border-radius: 10px;
+		border-radius: 2vw;
 		overflow: visible;
 		
 
@@ -72,19 +72,31 @@ export const StyledFeaturedWorkList = styled.ul`
 				left: 0;
 				transform: scale(1.1);
 
-
 				.decorative-line {
+					
 					opacity: 0;
 					transition: 300ms ease;
+
+					@media (max-width: ${deviceSize.tablet}px) {
+						display: none;
+					}
+
+
 				}
 
-				&:hover .decorative-line {
-					opacity: 1;
+
+				@media ${device.tablet} {
+					&:hover .decorative-line {
+						opacity: 1;
+					}
+	
+					&:hover .featured-work-uoList__title {
+						opacity: 1;
+					}
+
 				}
 
-				&:hover .featured-work-uoList__title {
-					opacity: 1;
-				}
+			
 			}
 
 			
@@ -145,6 +157,7 @@ export const StyledFeaturedWorkList = styled.ul`
 				width: 100%;
 				background-size: cover;
 				background-position: center;
+				border-radius: 2vw;
 			}
 
 			.featured-work-uoList__frame {
@@ -168,7 +181,14 @@ export const StyledFeaturedWorkList = styled.ul`
 				justify-content: center;
 				padding: 3vw;
 				transition: 300ms ease;
-				opacity: 0;
+				opacity: 1;
+
+				
+				@media ${device.tablet} {
+					opacity: 0;
+
+				}
+
 
 				
 				.title {
@@ -183,6 +203,7 @@ export const StyledFeaturedWorkList = styled.ul`
 
 				.background {
 					position: absolute;
+					border-radius: 2vw;
 					top: 0;
 					left: 0;
 					background-color: black;
