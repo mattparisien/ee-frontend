@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
+	${({ style }) => {
+		return style && style;
+	}}
+
 	position: relative;
 	border-radius: 5px;
 	padding: 0.6rem 1.9rem;
@@ -12,21 +16,7 @@ const StyledButton = styled.button`
 	display: block;
 	transition: 300ms ease;
 	overflow: hidden;
-
-	.button-circle {
-		transition: 400ms ease;
-		position: absolute;
-		transform-origin: center;
-		left: ${({ mousePos }) => (mousePos ? mousePos.x : "50%")};
-		top: ${({ mousePos }) => (mousePos ? mousePos.y : "50%")};
-		top: 50%;
-		transform: translate(-50%, -50%) scale(0.3);
-		z-index: 0;
-		width: 10rem;
-		height: 10rem;p
-		border-radius: 50%;
-		background-color: ${({ theme }) => theme.colors.red};
-	}
+	width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
 
 	.button-text {
 		position: sticky;
@@ -80,6 +70,7 @@ function Button(props) {
 	return (
 		<StyledButton
 			{...props}
+			type={props.type ? props.type : "button"}
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
 			mousePos={mousePos}

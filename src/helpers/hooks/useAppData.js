@@ -41,6 +41,9 @@ export default function useAppData(scrollRef) {
 	const [pending, setPending] = useState(true);
 
 	const [state, setState] = useState({
+		user: {
+			isVisitor: true,
+		},
 		scroller: null,
 		headerColor: "dark",
 		sidebar: {

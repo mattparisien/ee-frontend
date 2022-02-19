@@ -3,7 +3,7 @@ import { StyledSection } from "./StyledSection";
 import classNames from "classnames";
 import { InView } from "react-intersection-observer";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import { SiteWideControls } from "../../App";
+import { SiteWideControls } from "./Temp/Authenticated";
 
 export default function Section(props) {
 	const { bg, addToRefs, isRelative, noGutter, id, page } = props;
@@ -17,7 +17,7 @@ export default function Section(props) {
 	const { toggleHeaderColor } = useContext(SiteWideControls);
 
 	useEffect(() => {
-		intersectingTarget && console.log(intersectingTarget)
+		intersectingTarget && console.log(intersectingTarget);
 		intersectingTarget && toggleHeaderColor(bg);
 	}, [intersectingTarget]);
 

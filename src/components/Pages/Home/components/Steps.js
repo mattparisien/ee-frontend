@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useContext, useState } from "react";
 import { Heading, Paragraph, Grid, GridItem, Container } from "../../../index";
 import Drawings from "./Drawings";
-import { DataContext } from "../../../../App";
+import { DataContext } from "../../../Containers/Temp/Authenticated";
 import Notes from "./Notes/Notes";
 import { Scroll, useLocomotiveScroll } from "react-locomotive-scroll";
 import ScrollTrigger from "gsap/ScrollTrigger";

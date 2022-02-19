@@ -26,7 +26,9 @@ html {
 }
 
 html,
-body {
+body,
+#root,
+.App {
 	height: 100%;
 	width: 100%;
 	line-height: 1.6;

@@ -4,7 +4,7 @@ import useFetch from "../../../../helpers/hooks/useFetch";
 import Spinner from "../../../Vector/Spinner";
 import { StyledAbout } from "./styles";
 import { Megaphone } from "../../../Vector/Svg";
-import { DataContext } from "../../../../App";
+import { DataContext } from "../../../Containers/Temp/Authenticated";
 import SplitText from "gsap/SplitText";
 
 function About(props) {

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import useMouseMove from "../../../../helpers/hooks/useMouseMove";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import useFetch from "../../../../helpers/hooks/useFetch";
-import { DataContext } from "../../../../App";
+import { DataContext } from "../../../Containers/Temp/Authenticated";
 import HeadingSection from "../../../Containers/HeadingSection";
 import styled from "styled-components";
 import { responsiveGutter } from "../../../Containers/StyledContainer.styled";
@@ -15,7 +15,6 @@ import { LineYellow, LineBlue, LineRed, LineGreen } from "../../../Vector/Svg";
 
 export const StyledFeaturedWorkList = styled.ul`
 	width: 100%;
-	
 	position: relative;
 	height: 160vw;
 
