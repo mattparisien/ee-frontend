@@ -11,6 +11,9 @@ function App() {
 	const { state, themes, setState } = useAppData();
 
 	useEffect(() => {
+
+		console.log('Built by Matthew Parisien 🛠')
+
 		const cookies = new Cookies();
 		const user = cookies.get("user");
 
