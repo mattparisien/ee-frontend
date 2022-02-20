@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device, deviceSize } from "../styles/device";
+import { device } from "../styles/device";
 
 export const StyledFooter = styled.footer`
 

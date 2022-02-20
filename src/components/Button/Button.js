@@ -12,7 +12,7 @@ const StyledButton = styled.button`
 	height: auto;
 	font-family: "Kobe";
 	font-size: 1rem;
-	margin: 0 auto;
+	margin: 1rem auto;
 	display: block;
 	transition: 300ms ease;
 	overflow: hidden;
@@ -47,6 +47,7 @@ const StyledButton = styled.button`
        border: none;
        background-color: ${theme.colors[color]};
        color: ${theme.colors[color === "dark" ? "light" : "dark"]}
+
 
      
 

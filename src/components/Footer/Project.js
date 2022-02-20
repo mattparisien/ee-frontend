@@ -2,9 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import Line from "../Line";
-import { Arrow } from "../index";
 import SlidingText from "../Marquee";
-import { StyledProjectFooterInner, StyledContactFooterInner } from "./styles";
+import { StyledProjectFooterInner } from "./styles";
 import useHoverEffect from "../../effects/LinkHover";
 
 function Project(props) {
@@ -12,13 +11,14 @@ function Project(props) {
 	const container = useRef(null);
 	const hoverEffect = useHoverEffect(container.current);
 
-	
-
 	return (
 		<StyledProjectFooterInner className='project-footer-inner'>
 			<Link to='/' className={"footer-next-project-clickable"}>
 				<Line color={"light"} />
-				<div className='footer-next-btn-wrapper footer-horiz-band'  ref={container}>
+				<div
+					className='footer-next-btn-wrapper footer-horiz-band'
+					ref={container}
+				>
 					<Link to='/' id='next-link'>
 						Next
 					</Link>

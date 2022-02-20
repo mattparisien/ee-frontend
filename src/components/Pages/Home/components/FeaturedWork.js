@@ -1,17 +1,11 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
-import { Image, Section, Container } from "../../../index";
-import UnorderedList from "../../../Lists/UnorderedList";
-import { device, deviceSize } from "../../../styles/device";
-import gsap from "gsap";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import useMouseMove from "../../../../helpers/hooks/useMouseMove";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import useFetch from "../../../../helpers/hooks/useFetch";
-import { DataContext } from "../../../Containers/Temp/Authenticated";
-import HeadingSection from "../../../Containers/HeadingSection";
 import styled from "styled-components";
-import { responsiveGutter } from "../../../Containers/StyledContainer.styled";
-import { LineYellow, LineBlue, LineRed, LineGreen } from "../../../Vector/Svg";
+import HeadingSection from "../../../Containers/HeadingSection";
+import { DataContext } from "../../../Containers/Temp/Authenticated";
+import { Container } from "../../../index";
+import { device, deviceSize } from "../../../styles/device";
+import { LineBlue, LineGreen, LineRed, LineYellow } from "../../../Vector/Svg";
 
 export const StyledFeaturedWorkList = styled.ul`
 	width: 100%;
@@ -223,7 +217,6 @@ export const StyledFeaturedWorkList = styled.ul`
 `;
 
 function FeaturedWork(props) {
-	const [location] = useMouseMove();
 	const [isHovering, setHovering] = useState(false);
 	const [imageUrl, setImageUrl] = useState(null);
 	const imageRef = useRef(null);
@@ -327,7 +320,11 @@ function FeaturedWork(props) {
 								}}
 							></div>
 
-							<Link className='linkable-frame' to={`/posts/${post.id}`}>
+							<Link
+								className='linkable-frame'
+								to={`/posts/${post.id}`}
+								key={post.id}
+							>
 								<div className='decorative-line decorative-line-yellow'>
 									<LineYellow />
 								</div>

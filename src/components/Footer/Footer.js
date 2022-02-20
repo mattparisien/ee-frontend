@@ -1,14 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-import { StyledFooter } from "./styles";
-import { Container, Svg } from "../index";
-import Contact from "./Contact";
-import Project from "./Project";
-import fetchNextPost from "../../helpers/fetchPostId";
 import gsap from "gsap";
-import NavList from "./NavList";
-import { navigation } from "../../data/data";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../../helpers/hooks/useFetch";
+import { navigation } from "../../data/data";
+import { Container } from "../index";
+import Contact from "./Contact";
+import NavList from "./NavList";
+import { StyledFooter } from "./styles";
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
@@ -19,13 +16,9 @@ export default function Footer(props) {
 
 	const nextPostId = parseInt(location.split("projects/")[1]) + 1;
 
-	const [data, error, loading] = useFetch(`/api/posts/${nextPostId}`, {
-		requestType: "nextPost",
-	});
-
-	useEffect(() => {
-		setLayout(location.includes("projects/") ? "project" : "contact");
-	}, [location, data]);
+	// useEffect(() => {
+	// 	setLayout(location.includes("projects/") ? "project" : "contact");
+	// }, [location, data]);
 
 	const navLinks = navigation.map(listItem => (
 		<li key={listItem.id}>
@@ -41,11 +34,11 @@ export default function Footer(props) {
 			data-scroll-section
 			className='Footer'
 		>
-			<Container centerInner flexDirection='column' height="100%">
+			<Container centerInner flexDirection='column' height='100%'>
 				{layout === "contact" && <Contact />}
-				{layout === "project" && (
+				{/* {layout === "project" && (
 					<Project footerRef={footerRef} title={data && data.title} />
-				)}
+				)} */}
 
 				<NavList links={navLinks} />
 			</Container>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { StyledFooter, StyledFooterBottom } from "./styles";
+import { StyledFooterBottom } from "./styles";
 import { UnorderedList } from '..';
 import useHoverEffect from '../../effects/LinkHover';
 

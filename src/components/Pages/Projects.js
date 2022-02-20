@@ -1,8 +1,6 @@
 import React from "react";
-import { Section, Heading, Container } from "../index";
+import { Container, Heading, Section } from "../index";
 import ListBlogPosts from "../ListBlogPosts";
-import useFetch from "../../helpers/hooks/useFetch";
-import Spinner from "../Vector/Spinner";
 
 function Projects(props) {
 	const { addToRefs } = props;

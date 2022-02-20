@@ -1,12 +1,9 @@
 import React from "react";
-import { ThemeConsumer } from "styled-components";
-import { Section, Container, Heading } from "../../../index";
-import Steps from "../components/Steps";
 import { useTheme } from "styled-components";
-import Scene from "../../../Engine/Scene";
-import HeadingSection from "../../../Containers/HeadingSection";
-import { InstrumentPlayer } from "../../../Vector/Svg";
 import Button from "../../../Button/Button";
+import HeadingSection from "../../../Containers/HeadingSection";
+import { Container } from "../../../index";
+import Steps from "../components/Steps";
 
 function How() {
 	const theme = useTheme();
@@ -23,7 +20,9 @@ function How() {
 				/>
 			</Container>
 			<Steps />
-			<Button variant="contained" color="dark">Get in touch</Button>
+			<Button variant='contained' color='dark'>
+				Get in touch
+			</Button>
 		</>
 	);
 }

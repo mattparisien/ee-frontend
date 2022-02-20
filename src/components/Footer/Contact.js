@@ -1,8 +1,6 @@
-import React, { useRef, useEffect, useState, useDebugValue } from "react";
-import { Container, Heading } from "..";
+import React, { useRef, useState } from "react";
+import { Heading } from "..";
 import { DrawnLogo } from "..";
-import SplitText from "gsap/SplitText";
-import { Section } from "..";
 
 function Contact() {
 	const lines = useRef([]);
@@ -60,7 +58,13 @@ function Contact() {
 		<>
 			<div className='footer-contact'>
 				<div className='footer-contact__left'>
-					<Heading large color='light' weight='light' ref={addToRefs} className="footer-heading">
+					<Heading
+						large
+						color='light'
+						weight='light'
+						ref={addToRefs}
+						className='footer-heading'
+					>
 						Hear to listen
 					</Heading>
 					<div className='footer-email'>

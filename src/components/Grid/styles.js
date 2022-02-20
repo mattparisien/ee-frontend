@@ -1,7 +1,5 @@
-import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { deviceSize, device } from "../styles/device";
-import { responsiveGutter } from "../Containers/StyledContainer.styled";
 
 const StyledGrid = styled.div`
 	overflow: visible;

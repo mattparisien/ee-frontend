@@ -1,8 +1,7 @@
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { StyledSection } from "./StyledSection";
 import classNames from "classnames";
 import { InView } from "react-intersection-observer";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { SiteWideControls } from "./Temp/Authenticated";
 
 export default function Section(props) {

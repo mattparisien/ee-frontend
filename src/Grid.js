@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState } from "react";
 import gsap from "gsap";
 import { useInView } from "react-intersection-observer";
-import SplitText from "gsap/SplitText";
 import useResize from "./helpers/hooks/useResize";
 
 function Grid() {

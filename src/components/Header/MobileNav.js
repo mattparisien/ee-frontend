@@ -1,7 +1,4 @@
 import React, { useRef } from "react";
-import { Ellipse } from "../index";
-
-let isFirstRender = true;
 
 function MobileNav(props) {
 	const { onClick, addToRefs } = props;

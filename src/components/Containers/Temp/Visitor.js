@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { device } from "../../styles/device";
 import { TextLogo } from "../../Vector/Svg";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import ComingSoon from "./Visitor/ComingSoon";
 import Entry from "./Visitor/Entry";
 import useAppData from "../../../helpers/hooks/useAppData";
+import NotFound from "../../404/NotFound";
 
 const StyledVisitorPage = styled.div`
 	background-color: ${({ theme }) => theme.colors.light};
@@ -28,9 +29,7 @@ const StyledVisitorPage = styled.div`
 		left: 50%;
 		transform: translateX(-50%);
 		top: 50px;
-		width: 10vw;
-		max-width: 150px;
-		
+		width: 150px;
 	}
 
 	@media ${device.desktop} {
@@ -41,20 +40,18 @@ const StyledVisitorPage = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
-
 `;
 
 function Visitor() {
-
-	const {setState} = useAppData();
+	const { setState } = useAppData();
 
 	return (
 		<StyledVisitorPage>
 			<TextLogo />
 			<Routes>
 				<Route path='/' element={<ComingSoon />} />
-				<Route path='/entry' element={<Entry setState={setState}/>} />
+				<Route path='/entry' element={<Entry setState={setState} />} />
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</StyledVisitorPage>
 	);

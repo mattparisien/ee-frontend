@@ -1,13 +1,5 @@
-import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import $, { Tween } from "jquery";
 import { gsap } from "gsap";
-import CustomEase from "gsap/CustomEase";
-import { useFirstRender } from "./helpers/hooks/useFirstRender";
-import MorphSVGPlugin from "gsap/MorphSVGPlugin";
-import { reverse } from "lodash";
-import { isCompositeComponentWithType } from "react-dom/cjs/react-dom-test-utils.production.min";
-
-
 
 
 export function setStickySection(end) {

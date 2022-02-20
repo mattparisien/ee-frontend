@@ -1,11 +1,8 @@
-import React, { useRef, useEffect, useContext, useState } from "react";
-import { Section, Container, Paragraph } from "../../..";
-import useFetch from "../../../../helpers/hooks/useFetch";
-import Spinner from "../../../Vector/Spinner";
-import { StyledAbout } from "./styles";
-import { Megaphone } from "../../../Vector/Svg";
+import React, { useContext, useRef, useState } from "react";
+import { Container, Paragraph } from "../../..";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
-import SplitText from "gsap/SplitText";
+import { Megaphone } from "../../../Vector/Svg";
+import { StyledAbout } from "./styles";
 
 function About(props) {
 	const data = useContext(DataContext);
