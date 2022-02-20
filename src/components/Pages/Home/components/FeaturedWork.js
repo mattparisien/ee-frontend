@@ -41,19 +41,6 @@ function FeaturedWork(props) {
 	const data = useContext(DataContext);
 
 	useEffect(() => {
-		//Make sure object is sorted by od
-		const sortedPosts =
-			data.posts &&
-			data.posts.sort(function (a, b) {
-				if (a.id !== b.id) {
-					return a.id - b.id;
-				}
-				if (a.name === b.name) {
-					return 0;
-				}
-				return a.name > b.name ? 1 : -1;
-			});
-
 		data.posts && setFeaturedPosts(formatImageList(data.posts.slice(0, 4)));
 	}, [data]);
 
