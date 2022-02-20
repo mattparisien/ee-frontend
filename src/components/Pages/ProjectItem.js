@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
-import { useLocation } from "react-router-dom";
-
+import React, { useEffect } from "react";
 
 function ProjectItem(props) {
+	const { addToRefs } = props;
 
-  const location = useLocation();
+	useEffect(() => {}, []);
 
-  const { addToRefs } = props;
-
-  useEffect(() => {
-  }, [])
-
-  return (
-    <div className="project-item-page page-wrap" ref={addToRefs}>
-      hi
-    </div>
-  )
+	return (
+		<div className='project-item-page page-wrap' ref={addToRefs}>
+			hi
+		</div>
+	);
 }
 
-export default ProjectItem
+export default ProjectItem;

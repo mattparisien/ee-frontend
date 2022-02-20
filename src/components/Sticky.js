@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from "react";
-import Heading from "./Heading";
-import Paragraph from "./Paragraph";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import React, { useEffect, useRef } from "react";
+import Heading from "./Heading";
+import Paragraph from "./Paragraph";
 
 //Sticky section
 function Sticky({ themes, visionCopy }) {

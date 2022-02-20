@@ -1,7 +1,6 @@
 import React from "react";
-import { Heading } from "..";
 import styled from "styled-components";
-import { responsiveGutter } from "./StyledContainer.styled";
+import { Heading } from "..";
 
 const StyledHeadingSection = styled.div`
 	height: ${({ height }) => height};

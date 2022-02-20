@@ -1,6 +1,6 @@
-import $ from "jquery";
 import gsap from "gsap";
 import CSSRulePlugin from "gsap/CSSRulePlugin";
+import $ from "jquery";
 
 export default function introAnimation() {
 	gsap.registerPlugin(CSSRulePlugin);

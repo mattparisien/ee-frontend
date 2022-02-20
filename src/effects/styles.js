@@ -1,4 +1,3 @@
-import { shuffle } from "lodash";
 import styled from "styled-components";
 import { shuffleColors } from "../helpers/shuffleColors";
 

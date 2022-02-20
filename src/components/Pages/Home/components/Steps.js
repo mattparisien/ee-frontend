@@ -1,20 +1,16 @@
-import React, { useEffect, useRef, useContext, useState } from "react";
-import { Heading, Paragraph, Grid, GridItem, Container } from "../../../index";
-import Drawings from "./Drawings";
-import { DataContext } from "../../../Containers/Temp/Authenticated";
-import Notes from "./Notes/Notes";
-import { Scroll, useLocomotiveScroll } from "react-locomotive-scroll";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import React, { useContext, useRef, useState } from "react";
 import useSplit from "../../../../helpers/hooks/useSplit";
-import SplitText from "gsap/SplitText";
+import { DataContext } from "../../../Containers/Temp/Authenticated";
+import { Container, Grid, GridItem, Heading } from "../../../index";
+import Drawings from "./Drawings";
+import Notes from "./Notes/Notes";
 
 function Steps() {
 	const { steps } = useContext(DataContext);
 	const stepRefs = useRef([]);
 
 	const [itemInView, setItemInView] = useState(null);
-	const { scroll } = useLocomotiveScroll();
 	const [rotation, setRotation] = useState(null);
 	const noteContainerRef = useRef(null);
 	const rotationRefs = useRef([]);

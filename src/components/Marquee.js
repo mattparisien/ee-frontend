@@ -1,19 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-
-import useResize from "../helpers/hooks/useResize";
-
-import StyledMarquee from "./styles/StyledMarquee";
-import Marquee, {
-	Scale,
-	Motion,
-	randomIntFromInterval,
-	randomFloatFromInterval,
-} from "react-marquee-slider";
 import gsap from "gsap";
-import $ from "jquery";
-import { rest } from "lodash";
+import React, { useRef, useState } from "react";
+import Marquee from "react-marquee-slider";
+import useResize from "../helpers/hooks/useResize";
 import useScroll from "../helpers/hooks/useScrollDir";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import StyledMarquee from "./styles/StyledMarquee";
+
+
 
 function SlidingText(props) {
 	const { text, triggerRef } = props;

@@ -1,9 +1,9 @@
-import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import $ from "jquery";
-import useSplit from "../helpers/hooks/useSplit";
-import useResize from "../helpers/hooks/useResize";
+import { useEffect } from "react";
 import { deviceSize } from "../components/styles/device";
+import useResize from "../helpers/hooks/useResize";
+import useSplit from "../helpers/hooks/useSplit";
 
 export default function useHoverEffect(container) {
 

@@ -1,12 +1,12 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import { device } from "../../styles/device";
-import { TextLogo } from "../../Vector/Svg";
-import { Routes, Route } from "react-router-dom";
-import ComingSoon from "./Visitor/ComingSoon";
-import Entry from "./Visitor/Entry";
 import useAppData from "../../../helpers/hooks/useAppData";
 import NotFound from "../../404/NotFound";
+import { device } from "../../styles/device";
+import { TextLogo } from "../../Vector/Svg";
+import ComingSoon from "./Visitor/ComingSoon";
+import Entry from "./Visitor/Entry";
 
 const StyledVisitorPage = styled.div`
 	background-color: ${({ theme }) => theme.colors.light};

@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
-import { StyledSvg } from "./StyledSvg";
+import classNames from "classnames";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import $ from "jquery";
-import classNames from "classnames";
+import React, { useRef, useState } from "react";
 import { useTheme } from "styled-components";
+import { StyledSvg } from "./StyledSvg";
 import { StyledDrawnLogo } from "./styles";
 
 export function Arrow(props) {

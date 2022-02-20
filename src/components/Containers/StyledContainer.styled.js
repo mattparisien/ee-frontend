@@ -1,4 +1,3 @@
-import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { device } from "../styles/device";
 import { CONTAINERMAXWIDTH } from "../styles/Global";

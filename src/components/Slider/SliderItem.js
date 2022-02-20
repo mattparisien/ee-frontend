@@ -1,6 +1,5 @@
-import SliderImage from "./SliderImage";
 import imagesArr from "../tempImages/imageExports";
-import Slider from "./Slider";
+import SliderImage from "./SliderImage";
 
 export default function SliderItem() {
 	return (

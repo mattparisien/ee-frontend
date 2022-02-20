@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import HeadingSection from "../../../Containers/HeadingSection";
-import { DataContext } from "../../../Containers/Temp/Authenticated";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { Container } from "../../../index";
 import { device, deviceSize } from "../../../styles/device";
-import { LineBlue, LineGreen, LineRed, LineYellow } from "../../../Vector/Svg";
+import { Link } from "react-router-dom";
+import { DataContext } from "../../../Containers/Temp/Authenticated";
+import HeadingSection from "../../../Containers/HeadingSection";
+import styled from "styled-components";
+import { LineYellow, LineBlue, LineRed, LineGreen } from "../../../Vector/Svg";
 
 export const StyledFeaturedWorkList = styled.ul`
 	width: 100%;
@@ -311,9 +311,16 @@ function FeaturedWork(props) {
 		featuredPosts.map(post => {
 			return (
 				<>
-					<li key={post.id} className='featured-work-uoList__item'>
-						<div className='inner'>
+					<li
+						key={Math.random().toString(36).substr(2, 9)}
+						className='featured-work-uoList__item'
+					>
+						<div
+							className='inner'
+							key={Math.random().toString(36).substr(2, 9)}
+						>
 							<div
+								key={Math.random().toString(36).substr(2, 9)}
 								className='featured-work-uoList__image'
 								style={{
 									backgroundImage: `url(${post.media.featureImage.url})`,
@@ -322,24 +329,47 @@ function FeaturedWork(props) {
 
 							<Link
 								className='linkable-frame'
-								to={`/posts/${post.id}`}
-								key={post.id}
+								to={`/posts/${Math.random().toString(36).substr(2, 9)}`}
+								key={Math.random().toString(36).substr(2, 9)}
 							>
-								<div className='decorative-line decorative-line-yellow'>
-									<LineYellow />
+								<div
+									className='decorative-line decorative-line-yellow'
+									key={Math.random().toString(36).substr(2, 9)}
+								>
+									<LineYellow key={Math.random().toString(36).substr(2, 9)} />
 								</div>
-								<div className='decorative-line decorative-line-red'>
-									<LineRed />
+								<div
+									className='decorative-line decorative-line-red'
+									key={Math.random().toString(36).substr(2, 9)}
+								>
+									<LineRed key={Math.random().toString(36).substr(2, 9)} />
 								</div>
-								<div className='decorative-line decorative-line-green'>
-									<LineGreen />
+								<div
+									className='decorative-line decorative-line-green'
+									key={Math.random().toString(36).substr(2, 9)}
+								>
+									<LineGreen key={Math.random().toString(36).substr(2, 9)} />
 								</div>
-								<div className='decorative-line decorative-line-blue'>
-									<LineBlue />
+								<div
+									className='decorative-line decorative-line-blue'
+									key={Math.random().toString(36).substr(2, 9)}
+								>
+									<LineBlue key={Math.random().toString(36).substr(2, 9)} />
 								</div>
-								<div className='featured-work-uoList__title'>
-									<div className='title'>{post.title}</div>
-									<div className='background'></div>
+								<div
+									className='featured-work-uoList__title'
+									key={Math.random().toString(36).substr(2, 9)}
+								>
+									<div
+										className='title'
+										key={Math.random().toString(36).substr(2, 9)}
+									>
+										{post.title}
+									</div>
+									<div
+										className='background'
+										key={Math.random().toString(36).substr(2, 9)}
+									></div>
 								</div>
 							</Link>
 						</div>

@@ -1,5 +1,5 @@
-import $, { Tween } from "jquery";
 import { gsap } from "gsap";
+import $ from "jquery";
 
 
 export function setStickySection(end) {

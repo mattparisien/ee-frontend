@@ -1,8 +1,6 @@
 import React from "react";
-import { Scroll } from "react-locomotive-scroll";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Contact, Projects, ProjectItem } from "./components/Pages/index";
-import ScrollToTop from "./helpers/ScrollToTop";
+import { Route, Routes } from "react-router-dom";
+import { Contact, Home, ProjectItem, Projects } from "./components/Pages/index";
 
 function SiteRoutes(props) {
 	const { location, addToRefs } = props;

@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useState } from "react";
-
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import useHoverEffect from "../../effects/LinkHover";
 import Line from "../Line";
 import SlidingText from "../Marquee";
 import { StyledProjectFooterInner } from "./styles";
-import useHoverEffect from "../../effects/LinkHover";
+
 
 function Project(props) {
 	const { footerRef, title } = props;

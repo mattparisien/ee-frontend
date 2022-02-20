@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import SliderItem from "./SliderItem";
-import $ from "jquery";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
-
 import InertiaPlugin from "gsap/InertiaPlugin";
+import $ from "jquery";
+import React, { useEffect, useRef } from "react";
+import SliderItem from "./SliderItem";
+
 
 export default function Slider(props) {
 	gsap.registerPlugin(Draggable, InertiaPlugin);

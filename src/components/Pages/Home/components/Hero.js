@@ -1,13 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
-
-import { Container, Section } from "../../../index";
 import gsap from "gsap";
-import useSplit from "../../../../helpers/hooks/useSplit";
-import { DrawnLogo } from "../../../index";
-import Tilt from "react-tilt";
-
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import useSplit from "../../../../helpers/hooks/useSplit";
+import { Container, DrawnLogo } from "../../../index";
 import { device } from "../../../styles/device";
+
+
 
 export const StyledHero = styled.div`
 	.hero-content {
