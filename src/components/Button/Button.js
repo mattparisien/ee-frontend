@@ -12,7 +12,7 @@ const StyledButton = styled.button`
 	height: auto;
 	font-family: "Kobe";
 	font-size: 1rem;
-	margin: 1rem auto;
+	margin: 4rem auto;
 	display: block;
 	transition: 300ms ease;
 	overflow: hidden;
