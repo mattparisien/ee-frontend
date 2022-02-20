@@ -44,17 +44,21 @@ const StyledProjectsGrid = styled(ImageList)`
 			grid-row: 3/4;
 			height: 50%;
 			transform: translateY(-${GRIDOFFSET * 2}vw);
+			z-index: 3;
 		}
 
 		&:nth-of-type(4) {
-			grid-column: 6/13;
-			grid-row: 9/13;
-			
+			grid-column: 2/8;
+			grid-row: 3/4;
+
+			transform: translateY(-100%});
 		}
 
 		&:nth-of-type(5) {
-			grid-column: 1/5;
-			grid-row: 13/15;
+			height: 60%;
+			grid-column: 7/13;
+			grid-row: 4/5;
+			
 		}
 
 		&:nth-of-type(6) {
