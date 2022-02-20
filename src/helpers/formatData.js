@@ -42,3 +42,17 @@ export const formatAbout = object => {
 		body2: object.attributes.Body2,
 	};
 };
+
+export const formatImageList = array => {
+	return array.map(post => {
+		return {
+			id: post.id,
+			title: post.title,
+			subtitle: post.subtitle,
+			image: {
+				src: post.media.featureImage.url,
+				alt: post.media.featureImage.altText,
+			},
+		};
+	});
+};

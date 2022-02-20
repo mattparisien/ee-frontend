@@ -4,6 +4,7 @@ import { DataContext } from "../../../Containers/Temp/Authenticated";
 import HeadingSection from "../../../Containers/HeadingSection";
 import ImageList from "../../../ImageList/ImageList";
 import styled from "styled-components";
+import { formatImageList } from "../../../../helpers/formatData";
 
 const StyledFeaturedWorkImageList = styled(ImageList)`
 	li {
@@ -53,20 +54,7 @@ function FeaturedWork(props) {
 				return a.name > b.name ? 1 : -1;
 			});
 
-		data.posts &&
-			setFeaturedPosts(
-				data.posts.slice(0, 4).map(post => {
-					return {
-						id: post.id,
-						title: post.title,
-						subtitle: post.subtitle,
-						image: {
-							src: post.media.featureImage.url,
-							alt: post.media.featureImage.altText,
-						},
-					};
-				})
-			);
+		data.posts && setFeaturedPosts(formatImageList(data.posts.slice(0, 4)));
 	}, [data]);
 
 	return (
