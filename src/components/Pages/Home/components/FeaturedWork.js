@@ -1,12 +1,39 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Container } from "../../../index";
-import { device, deviceSize } from "../../../styles/device";
-import { Link } from "react-router-dom";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
 import HeadingSection from "../../../Containers/HeadingSection";
-import styled from "styled-components";
-import { LineYellow, LineBlue, LineRed, LineGreen } from "../../../Vector/Svg";
 import ImageList from "../../../ImageList/ImageList";
+import styled from "styled-components";
+
+const StyledFeaturedWorkImageList = styled(ImageList)`
+	li {
+		position: absolute;
+		&:nth-of-type(1) {
+			top: 7.5vw;
+			left: 8vw;
+			transform: rotate(-20deg);
+		}
+
+		&:nth-of-type(2) {
+			top: 30vw;
+			right: 0;
+			width: 48vw;
+			height: 48vw;
+		}
+
+		&:nth-of-type(3) {
+			bottom: 34vw;
+			left: 30vw;
+		}
+
+		&:nth-of-type(4) {
+			width: 41vw;
+			height: 40vw;
+			bottom: 0;
+			left: 0;
+		}
+	}
+`;
 
 function FeaturedWork(props) {
 	const [featuredPosts, setFeaturedPosts] = useState(null);
@@ -42,140 +69,6 @@ function FeaturedWork(props) {
 			);
 	}, [data]);
 
-	useEffect(() => {
-		console.log(featuredPosts);
-	}, [featuredPosts]);
-
-	// const handleMouseEnter = id => {
-	// 	setHovering(true);
-	// 	let imageUrl = getFeatureImageById(id);
-
-	// 	setImageUrl(imageUrl);
-	// };
-
-	// const handleMouseLeave = () => {
-	// 	setHovering(false);
-	// 	setImageUrl(null);
-	// };
-
-	// const addToRefs = link => {
-	// 	if (listRefs.current && !listRefs.current.includes(link)) {
-	// 		listRefs.current.push(link);
-	// 	}
-	// };
-
-	// const featured =
-	// 	data &&
-	// 	data[1].map((title, index) => (
-	// 		<li
-	// 			key={index}
-	// 			className='featured-list-item'
-	// 			onMouseEnter={() => handleMouseEnter(title.id)}
-	// 			onMouseLeave={handleMouseLeave}
-	// 		>
-	// 			<Link
-	// 				key={index}
-	// 				className='featured-list-item-link'
-	// 				to={`/projects/${title.id}`}
-	// 			>
-	// 				{title.attributes.Title}
-	// 			</Link>
-	// 		</li>
-	// 	));
-
-	// useEffect(() => {
-	// 	gsap.registerPlugin(ScrollTrigger);
-	// 	let proxy = { skew: 0 },
-	// 		skewSetter = gsap.quickSetter(listRefs.current, "skewY", "deg"), // fast
-	// 		clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
-
-	// 	ScrollTrigger.create({
-	// 		onUpdate: self => {
-	// 			let skew = clamp(self.getVelocity() / -300);
-	// 			// only do something if the skew is MORE severe. Remember, we're always tweening back to 0, so if the user slows their scrolling quickly, it's more natural to just let the tween handle that smoothly rather than jumping to the smaller skew.
-	// 			if (Math.abs(skew) > Math.abs(proxy.skew)) {
-	// 				proxy.skew = skew;
-	// 				gsap.to(proxy, {
-	// 					skew: 0,
-	// 					duration: 0.8,
-	// 					ease: "power3",
-	// 					overwrite: true,
-	// 					onUpdate: () => skewSetter(proxy.skew),
-	// 				});
-	// 			}
-	// 		},
-	// 	});
-
-	// make the right edge "stick" to the scroll bar. force3D: true improves performance
-	// 	gsap.set(".skewElem", { transformOrigin: "left", force3D: true });
-	// }, [listRefs.current]);
-
-	// const renderedPosts =
-	// 	featuredPosts &&
-	// 	featuredPosts.map(post => {
-	// 		return (
-	// 			<li key={post.id} className='featured-work-uoList__item'>
-	// 				<div className='inner' key={Math.random().toString(36).substr(2, 9)}>
-	// 					<div
-	// 						key={Math.random().toString(36).substr(2, 9)}
-	// 						className='featured-work-uoList__image'
-	// 					>
-	// 						<img
-	// 							src={post.media.featureImage.url}
-	// 							alt={post.media.featureImage.altText}
-	// 						></img>
-	// 					</div>
-
-	// 					<Link
-	// 						className='linkable-frame'
-	// 						to={`/posts/${Math.random().toString(36).substr(2, 9)}`}
-	// 						key={Math.random().toString(36).substr(2, 9)}
-	// 					>
-	// 						<div
-	// 							className='decorative-line decorative-line-yellow'
-	// 							key={Math.random().toString(36).substr(2, 9)}
-	// 						>
-	// 							<LineYellow key={Math.random().toString(36).substr(2, 9)} />
-	// 						</div>
-	// 						<div
-	// 							className='decorative-line decorative-line-red'
-	// 							key={Math.random().toString(36).substr(2, 9)}
-	// 						>
-	// 							<LineRed key={Math.random().toString(36).substr(2, 9)} />
-	// 						</div>
-	// 						<div
-	// 							className='decorative-line decorative-line-green'
-	// 							key={Math.random().toString(36).substr(2, 9)}
-	// 						>
-	// 							<LineGreen key={Math.random().toString(36).substr(2, 9)} />
-	// 						</div>
-	// 						<div
-	// 							className='decorative-line decorative-line-blue'
-	// 							key={Math.random().toString(36).substr(2, 9)}
-	// 						>
-	// 							<LineBlue key={Math.random().toString(36).substr(2, 9)} />
-	// 						</div>
-	// 						<div
-	// 							className='featured-work-uoList__title'
-	// 							key={Math.random().toString(36).substr(2, 9)}
-	// 						>
-	// 							<div
-	// 								className='title'
-	// 								key={Math.random().toString(36).substr(2, 9)}
-	// 							>
-	// 								{post.title}
-	// 							</div>
-	// 							<div
-	// 								className='background'
-	// 								key={Math.random().toString(36).substr(2, 9)}
-	// 							></div>
-	// 						</div>
-	// 					</Link>
-	// 				</div>
-	// 			</li>
-	// 		);
-	// 	});
-
 	return (
 		<Container
 			classes={"featured-work-container"}
@@ -194,7 +87,10 @@ function FeaturedWork(props) {
 				/>
 			</Container>
 
-			<ImageList listItems={featuredPosts} />
+			<StyledFeaturedWorkImageList
+				listItems={featuredPosts}
+				className='featured-work-image-list'
+			/>
 		</Container>
 	);
 }

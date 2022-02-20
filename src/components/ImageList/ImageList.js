@@ -8,6 +8,8 @@ const StyledImageList = styled.ul`
 	width: 100%;
 	position: relative;
 	height: 160vw;
+	display: flex;
+	
 
 	.ul-frame {
 		width: 100%;
@@ -21,7 +23,7 @@ const StyledImageList = styled.ul`
 	}
 
 	li {
-		position: absolute;
+		
 		height: 54vw;
 		width: 40vw;
 		max-width: 795px;
@@ -30,30 +32,7 @@ const StyledImageList = styled.ul`
 		overflow: visible;
 		
 
-		&:nth-of-type(1) {
-			top: 7.5vw;
-			left: 8vw;
-			transform: rotate(-20deg);
-		}
-
-		&:nth-of-type(2) {
-			top: 30vw;
-			right: 0;
-			width: 48vw;
-			height: 48vw;	
-		}
-
-		&:nth-of-type(3) {
-			bottom: 34vw;
-			left: 30vw;
-		}
-
-		&:nth-of-type(4) {
-			width: 41vw;
-			height: 40vw;	
-			bottom: 0;
-			left: 0;
-		}
+	
 
 	
 		.inner {
@@ -151,7 +130,7 @@ const StyledImageList = styled.ul`
 			.featured-work-uoList__image {
 				height: 100%;
 				width: 100%;
-				background-size: cover;
+				
 				background-position: center;
 				border-radius: 0.7vw;
 				overflow: hidden;
@@ -226,9 +205,6 @@ const StyledImageList = styled.ul`
 	}`;
 
 function ImageList({ listItems, className }) {
-	useEffect(() => {
-		console.log(listItems)
-	}, [])
 	const renderedImages =
 		listItems &&
 		listItems.map(item => {
