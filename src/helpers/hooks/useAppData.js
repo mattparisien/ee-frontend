@@ -51,7 +51,7 @@ export default function useAppData(scrollRef) {
 			hasShown: false,
 		},
 		menuOffset: "-101%",
-		isScrollLock: location.pathname === "/" ? true : false,
+		isScrollLock: false,
 		data: {},
 	});
 

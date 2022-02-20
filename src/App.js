@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { ThemeProvider } from "styled-components";
 import Cookies from "universal-cookie";
 import Authenticated from "./components/Containers/Temp/Authenticated";
@@ -6,13 +6,14 @@ import Visitor from "./components/Containers/Temp/Visitor";
 import { GlobalStyles } from "./components/styles/Global";
 import useAppData from "./helpers/hooks/useAppData";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 function App() {
 	const { state, themes, setState } = useAppData();
+	const scrollWrapper = useRef(null);
 
 	useEffect(() => {
-
-		console.log('Built by Matthew Parisien 🛠')
+		console.log("Built by Matthew Parisien 🛠");
 
 		const cookies = new Cookies();
 		const user = cookies.get("user");
@@ -43,7 +44,21 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				</Helmet>
 				<ThemeProvider theme={themes}>
 					<GlobalStyles />
-					{state.user.isVisitor ? <Visitor /> : <Authenticated />}
+					<LocomotiveScrollProvider
+						options={{
+							smooth: true,
+							getDirection: true,
+						}}
+						onLocationChange={scroll =>
+							scroll.scrollTo(0, { duration: 0, disableLerp: true })
+						}
+						watch={[location.pathname]}
+						containerRef={scrollWrapper}
+					>
+						<div className='scroll-wrapper' ref={scrollWrapper} data-scroll-container>
+							{state.user.isVisitor ? <Visitor /> : <Authenticated />}
+						</div>
+					</LocomotiveScrollProvider>
 				</ThemeProvider>
 			</div>
 		</HelmetProvider>

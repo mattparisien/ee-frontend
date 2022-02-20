@@ -24,7 +24,7 @@ function Container(props, ref) {
 			ref={ref}
 			hasPaddingBottom={props.hasPaddingBottom}
 			hasPaddingTop={props.hasPaddingTop}
-			isOverflowVisible={props.isOverflowVisible}
+			
 		>
 			{props.children}
 		</StyledContainer>

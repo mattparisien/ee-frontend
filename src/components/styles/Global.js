@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { device, deviceSize } from "./device";
 
-
 export const CONTAINERMAXWIDTH = "1900px";
 export const MOBILEFONTSIZE = "4.444vw";
 
@@ -28,7 +27,7 @@ html {
 html,
 body,
 #root,
-.App {
+.App,  {
 	height: 100%;
 	width: 100%;
 	line-height: 1.6;
@@ -37,6 +36,10 @@ body,
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: none;
 	cursor: ${({ isTransitioning }) => isTransitioning && "wait"};
+}
+
+.scroll-wrapper {
+	min-height: 100vh;
 }
 
 body {
