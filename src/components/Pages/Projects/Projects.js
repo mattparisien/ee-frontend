@@ -14,9 +14,8 @@ const StyledProjectsGrid = styled(ImageList)`
 	display: grid;
 	grid-gap: ${GRIDGAP};
 	height: 300vw;
-
 	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(10, 800px);
+	grid-template-rows: repeat(10, 50vw);
 
 	@media only screen and (max-width: ${deviceSize.mobileL}px) {
 		grid-column: 1/13 !important;
@@ -58,7 +57,6 @@ const StyledProjectsGrid = styled(ImageList)`
 			height: 60%;
 			grid-column: 7/13;
 			grid-row: 4/5;
-			
 		}
 
 		&:nth-of-type(6) {
