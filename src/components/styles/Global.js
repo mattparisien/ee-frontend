@@ -32,6 +32,7 @@ body,
 	width: 100%;
 	line-height: 1.6;
 	font-family: "Kobe";
+	
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: none;
