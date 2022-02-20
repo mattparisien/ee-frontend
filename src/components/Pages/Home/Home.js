@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import How from "./components/How";
 import Section from "../../Containers/Section";
+import About from "./components/About";
 import FeaturedWork from "./components/FeaturedWork";
+import Hero from "./components/Hero";
+import How from "./components/How";
 
 function Home(props) {
 	const { addToRefs } = props;

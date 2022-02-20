@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyledCookieBar } from "./styles";
-import { Paragraph } from "../index";
 
 function CookieBar() {
 	const [isClosed, setIsClosed] = useState(false);
@@ -25,3 +24,4 @@ function CookieBar() {
 }
 
 export default CookieBar;
+

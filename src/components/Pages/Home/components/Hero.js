@@ -117,7 +117,6 @@ function Hero(props) {
 		charsClass: "char",
 	});
 
-	const [isTiltActive, setTiltActive] = useState(false);
 
 	const containerRef = useRef(null);
 	const logoRef = useRef(null);

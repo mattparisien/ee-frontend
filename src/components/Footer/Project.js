@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import useHoverEffect from "../../effects/LinkHover";
 import Line from "../Line";
 import SlidingText from "../Marquee";
 import { StyledProjectFooterInner } from "./styles";
@@ -9,7 +8,6 @@ import { StyledProjectFooterInner } from "./styles";
 function Project(props) {
 	const { footerRef, title } = props;
 	const container = useRef(null);
-	const hoverEffect = useHoverEffect(container.current);
 
 	return (
 		<StyledProjectFooterInner className='project-footer-inner'>

@@ -6,7 +6,11 @@ function ComingSoon() {
 		<>
 			<div>Coming Soon</div>
 			<Button variant='contained' color='dark'>
-				<a href='mailto:sammy@eyesandearsagency.com' target='_blank'>
+				<a
+					href='mailto:sammy@eyesandearsagency.com'
+					target='_blank'
+					rel='noreferrer'
+				>
 					Get in touch
 				</a>
 			</Button>

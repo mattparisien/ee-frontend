@@ -1,11 +1,9 @@
-import React, { forwardRef, useState, useEffect, useRef } from "react";
-import { StyledHeading } from "./styles";
-import $ from "jquery";
-import classNames from "classnames";
-import { capitalize } from "lodash";
-import { InView } from "react-intersection-observer";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
+import $ from "jquery";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { InView } from "react-intersection-observer";
+import { StyledHeading } from "./styles";
 
 function Heading(props, ref) {
 	const {
@@ -15,7 +13,6 @@ function Heading(props, ref) {
 		xl,
 		color,
 		children,
-		size,
 		weight,
 		capitalize,
 		width,
@@ -33,11 +30,7 @@ function Heading(props, ref) {
 	const lineAnim = useRef(gsap.timeline());
 	const [intersectingTarget, setIntersectingTarget] = useState(null);
 
-	const addToRefs = el => {
-		if (el && !heading.current.includes(el)) {
-			heading.current.push(el);
-		}
-	};
+
 
 	useEffect(() => {
 		if (heading.current) {

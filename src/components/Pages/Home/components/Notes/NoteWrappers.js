@@ -1,9 +1,9 @@
-import React, { useRef, forwardRef, useEffect } from "react";
-import { StyledNoteRotationWrapper } from "../styles";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
+import React, { forwardRef, useEffect, useRef } from "react";
 import useResize from "../../../../../helpers/hooks/useResize";
 import { deviceSize } from "../../../../styles/device";
+import { StyledNoteRotationWrapper } from "../styles";
 
 function NoteWrappers({ children, id, rotation, speed, scrollTrigger }, ref) {
 	const noteSpeed = speed;

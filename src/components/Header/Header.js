@@ -1,18 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
-import { TextLogo } from "../index";
-import MobileNav from "./MobileNav";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "styled-components";
 import useResize from "../../helpers/hooks/useResize";
 import useScroll from "../../helpers/hooks/useScrollDir";
-import { useTheme } from "styled-components";
-
+import { TextLogo } from "../index";
+import MobileNav from "./MobileNav";
 import {
-	StyledHeader,
 	StyledDynamicWrapper,
+	StyledHeader,
 	StyledInnerLayout,
 } from "./styles";
 
 export default function Header(props) {
-	const theme = useTheme();
 	const { menuState, toggleMenu, appRefs, addToRefs, headerColor } = props;
 	const [device, setDevice] = useState(null);
 	const [windowWidth] = useResize();
@@ -30,7 +28,6 @@ export default function Header(props) {
 		}
 	}, [menuState]);
 
-	
 	const headerStyles = {
 		padding: "2rem 4rem",
 		color: headerColor,

@@ -1,12 +1,10 @@
 import React from "react";
-import { useTheme } from "styled-components";
 import Button from "../../../Button/Button";
 import HeadingSection from "../../../Containers/HeadingSection";
 import { Container } from "../../../index";
 import Steps from "../components/Steps";
 
 function How() {
-	const theme = useTheme();
 
 	return (
 		<>

@@ -1,21 +1,15 @@
 import gsap from "gsap";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Marquee from "react-marquee-slider";
-import useResize from "../helpers/hooks/useResize";
-import useScroll from "../helpers/hooks/useScrollDir";
 import StyledMarquee from "./styles/StyledMarquee";
 
 
 
 function SlidingText(props) {
-	const { text, triggerRef } = props;
+	const { text } = props;
 	const wrapper = useRef(null);
 	const q = gsap.utils.selector(wrapper);
-	const sliders = q(".sc-furwcr");
 	const marqueeItem = useRef(null);
-	const [windowWidth, isResized] = useResize();
-	const [speed, setSpeed] = useState(null);
-	const [isScrolling, scrollDirection] = useScroll();
 
 	const velocity = 10;
 	const reactMarquees = 3;

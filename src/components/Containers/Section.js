@@ -16,7 +16,6 @@ export default function Section(props) {
 	const { toggleHeaderColor } = useContext(SiteWideControls);
 
 	useEffect(() => {
-		intersectingTarget && console.log(intersectingTarget);
 		intersectingTarget && toggleHeaderColor(bg);
 	}, [intersectingTarget]);
 

@@ -22,7 +22,7 @@ function App() {
 				},
 			}));
 		}
-	}, []);
+	}, [setState]);
 
 	return (
 		<HelmetProvider>

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { Container, Paragraph } from "../../..";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
 import { Megaphone } from "../../../Vector/Svg";
@@ -6,14 +6,8 @@ import { StyledAbout } from "./styles";
 
 function About(props) {
 	const data = useContext(DataContext);
-	const [paras, setParas] = useState(null);
 	const paragraphRefs = useRef([]);
 
-	const addToRefs = el => {
-		if (el && !paragraphRefs.current.includes(el)) {
-			setParas(paragraphRefs.current);
-		}
-	};
 
 	return (
 		<Container height={"auto"} hasPaddingVertical>

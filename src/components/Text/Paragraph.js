@@ -1,11 +1,7 @@
-import React, { useRef, useState, useEffect, forwardRef } from "react";
-import $ from "jquery";
-import { StyledParagraph } from "./styles";
-import useResize from "../../helpers/hooks/useResize";
 import classNames from "classnames";
-import SplitText from "gsap/SplitText";
+import React, { forwardRef, useRef, useState } from "react";
 import { InView } from "react-intersection-observer";
-import gsap from "gsap";
+import { StyledParagraph } from "./styles";
 
 function Paragraph(props, ref) {
 	const {
@@ -18,11 +14,8 @@ function Paragraph(props, ref) {
 		offset,
 		className,
 	} = props;
-	const styledParagraph = useRef(null);
 	const paragraph = useRef([]);
-	const lineAnim = useRef(gsap.timeline());
 	const paragraphWrapper = useRef(null);
-	const [windowWidth, isResized] = useResize();
 	const [intersectingTarget, setIntersectingTarget] = useState(null);
 
 	const paragraphClass = classNames("paragraph", {

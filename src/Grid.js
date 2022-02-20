@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import gsap from "gsap";
+import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import useResize from "./helpers/hooks/useResize";
 

@@ -1,11 +1,12 @@
-import Home from "./Home/Home";
 import Contact from "./Contact";
-import Projects from "./Projects";
+import Home from "./Home/Home";
 import ProjectItem from "./ProjectItem";
+import Projects from "./Projects";
 
 export {
   Home,
   Contact,
   Projects,
   ProjectItem
-}
+};
+

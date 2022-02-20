@@ -7,7 +7,6 @@ function Container(props, ref) {
 
 	return (
 		<StyledContainer
-			ref={props.addToRefs}
 			padding={props.padding}
 			$height={props.height}
 			$width={props.width}

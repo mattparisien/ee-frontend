@@ -3,7 +3,7 @@ import { Container, Heading, Section } from "../index";
 import ListBlogPosts from "../ListBlogPosts";
 
 function Projects(props) {
-	const { addToRefs } = props;
+	
 
 	return (
 		<Section bg={"light"}>

@@ -217,12 +217,7 @@ export const StyledFeaturedWorkList = styled.ul`
 `;
 
 function FeaturedWork(props) {
-	const [isHovering, setHovering] = useState(false);
-	const [imageUrl, setImageUrl] = useState(null);
-	const imageRef = useRef(null);
-	const listRefs = useRef(null);
 	const [featuredPosts, setFeaturedPosts] = useState(null);
-
 	const data = useContext(DataContext);
 
 	useEffect(() => {

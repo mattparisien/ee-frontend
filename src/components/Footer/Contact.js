@@ -1,18 +1,13 @@
-import React, { useRef, useState } from "react";
-import { Heading } from "..";
-import { DrawnLogo } from "..";
+import React, { useRef } from "react";
+import { DrawnLogo, Heading } from "..";
 
 function Contact() {
 	const lines = useRef([]);
 
 	const containers = useRef(null);
 	containers.current = [];
-	const [coords, setCoords] = useState({
-		x: 0,
-		y: 0,
-	});
 
-	const [linesToBeSplit, setLinesToBeSplit] = useState(null);
+
 
 	const addToRefs = el => {
 		if (el && !lines.current.includes(el)) {
@@ -20,11 +15,7 @@ function Contact() {
 		}
 	};
 
-	const addToContainerRefs = el => {
-		if (containers.current && !containers.current.includes(el)) {
-			containers.current.push(el);
-		}
-	};
+
 
 	// useEffect(() => {
 	// 	const lineRef = line.current;
