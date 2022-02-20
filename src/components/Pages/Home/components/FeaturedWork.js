@@ -157,6 +157,19 @@ export const StyledFeaturedWorkList = styled.ul`
 				background-size: cover;
 				background-position: center;
 				border-radius: 0.7vw;
+				overflow: hidden;
+				position: relative;
+
+
+				img {
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 100%;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
 			}
 
 			.featured-work-uoList__frame {
@@ -310,10 +323,9 @@ function FeaturedWork(props) {
 						<div
 							key={Math.random().toString(36).substr(2, 9)}
 							className='featured-work-uoList__image'
-							style={{
-								backgroundImage: `url(${post.media.featureImage.url})`,
-							}}
-						></div>
+						>
+							<img src={post.media.featureImage.url} alt={post.media.featureImage.altText}></img>
+						</div>
 
 						<Link
 							className='linkable-frame'
