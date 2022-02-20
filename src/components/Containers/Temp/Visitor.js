@@ -12,11 +12,12 @@ const StyledVisitorPage = styled.div`
 	background-color: ${({ theme }) => theme.colors.light};
 	color: ${({ theme }) => theme.colors.dark};
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	font-family: "Kobe";
 	font-size: 15vw;
 	letter-spacing: -0.6vw;
 	position: relative;
+	
 
 	.entry-heading {
 		font-size: 4rem;
