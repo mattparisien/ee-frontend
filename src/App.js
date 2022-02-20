@@ -52,10 +52,13 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						onLocationChange={scroll =>
 							scroll.scrollTo(0, { duration: 0, disableLerp: true })
 						}
-						watch={[location.pathname]}
 						containerRef={scrollWrapper}
 					>
-						<div className='scroll-wrapper' ref={scrollWrapper} data-scroll-container>
+						<div
+							className='scroll-wrapper'
+							ref={scrollWrapper}
+							data-scroll-container
+						>
 							{state.user.isVisitor ? <Visitor /> : <Authenticated />}
 						</div>
 					</LocomotiveScrollProvider>
