@@ -9,7 +9,7 @@ const StyledImageList = styled.ul`
 	position: relative;
 	height: 160vw;
 	display: flex;
-	
+	margin:
 
 	.ul-frame {
 		width: 100%;
@@ -135,13 +135,18 @@ const StyledImageList = styled.ul`
 				border-radius: 0.7vw;
 				overflow: hidden;
 				position: relative;
+				
 
 
 				img {
+					
+					
 					position: absolute;
 					top: 0;
 					left: 0;
+					width: 100%;
 					height: 100%;
+					object-fit: cover;
 					top: 50%;
 					left: 50%;
 					transform: translate(-50%, -50%);
