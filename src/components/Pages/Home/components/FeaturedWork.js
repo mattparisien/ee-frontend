@@ -6,228 +6,7 @@ import { DataContext } from "../../../Containers/Temp/Authenticated";
 import HeadingSection from "../../../Containers/HeadingSection";
 import styled from "styled-components";
 import { LineYellow, LineBlue, LineRed, LineGreen } from "../../../Vector/Svg";
-
-export const StyledFeaturedWorkList = styled.ul`
-	width: 100%;
-	position: relative;
-	height: 160vw;
-
-	.ul-frame {
-		width: 100%;
-		height: 100%;
-		transform: rotate(10deg);
-		position: sticky;
-		z-index: -10;
-		
-		}
-
-	}
-
-	li {
-		position: absolute;
-		height: 54vw;
-		width: 40vw;
-		max-width: 795px;
-		max-height: 1000px;
-		border-radius: 0.7vw;
-		overflow: visible;
-		
-
-		&:nth-of-type(1) {
-			top: 7.5vw;
-			left: 8vw;
-			transform: rotate(-20deg);
-		}
-
-		&:nth-of-type(2) {
-			top: 30vw;
-			right: 0;
-			width: 48vw;
-			height: 48vw;	
-		}
-
-		&:nth-of-type(3) {
-			bottom: 34vw;
-			left: 30vw;
-		}
-
-		&:nth-of-type(4) {
-			width: 41vw;
-			height: 40vw;	
-			bottom: 0;
-			left: 0;
-		}
-
-	
-		.inner {
-			
-			display: block;
-			width: 100%;
-			height: 100%;
-			position: relative;
-
-			.linkable-frame {
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
-				transform: scale(1.1);
-
-				.decorative-line {
-					
-					opacity: 0;
-					transition: 300ms ease;
-
-					@media (max-width: ${deviceSize.tablet}px) {
-						display: none;
-					}
-
-
-				}
-
-
-				@media ${device.tablet} {
-					&:hover .decorative-line {
-						opacity: 1;
-					}
-	
-					&:hover .featured-work-uoList__title {
-						opacity: 1;
-					}
-				}
-			}
-
-			
-
-			.decorative-line-yellow {
-				transform: none;
-				position: absolute;
-				width: 100%;
-				bottom: -4vw;
-				z-index: 999;
-
-				svg {
-					transform: rotate(12deg);
-				}
-			}
-			
-
-			.decorative-line-red {
-				transform: none;
-				position: absolute;
-				width: 100%;
-				top: -5vw;
-				z-index: 999;
-
-				svg {
-					transform: rotate(12deg);
-				}
-			}
-
-			.decorative-line-green {
-				transform: none;
-				position: absolute;
-				height: 106%;
-				top: 0;
-				left: -6vw;
-				z-index: 999;
-
-				svg {
-					transform: rotate(12deg);
-				}
-			}
-
-			.decorative-line-blue {
-				transform: none;
-				position: absolute;
-				height: 106%;
-				top: -3vw;
-				right: -6vw;
-				z-index: 999;
-
-				svg {
-					transform: rotate(12deg);
-				}
-			}
-
-			.featured-work-uoList__image {
-				height: 100%;
-				width: 100%;
-				background-size: cover;
-				background-position: center;
-				border-radius: 0.7vw;
-				overflow: hidden;
-				position: relative;
-
-
-				img {
-					position: absolute;
-					top: 0;
-					left: 0;
-					height: 100%;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-				}
-			}
-
-			.featured-work-uoList__frame {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				width: 100%;
-				height: 100%;
-				display: none;
-			}
-
-			.featured-work-uoList__title {
-				height: 100%;
-				width: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 3vw;
-				transition: 300ms ease;
-				opacity: 1;
-
-				
-				@media ${device.tablet} {
-					opacity: 0;
-
-				}
-
-
-				
-				.title {
-					text-align: center;
-					
-					font-size: 5vw;
-					letter-spacing: -0.2vw;
-					line-height: 4vw;
-					color: ${({ theme }) => theme.colors.light};
-					z-index: 1;
-				}
-
-				.background {
-					position: absolute;
-					border-radius: 0.7vw;
-					top: 0;
-					left: 0;
-					background-color: black;
-					opacity: 0.4;
-					width: 100%;
-					height: 100%;
-					transform: scale(-0.91);
-				}
-			}
-		}
-	}
-`;
+import ImageList from "../../../ImageList/ImageList";
 
 function FeaturedWork(props) {
 	const [featuredPosts, setFeaturedPosts] = useState(null);
@@ -247,8 +26,25 @@ function FeaturedWork(props) {
 				return a.name > b.name ? 1 : -1;
 			});
 
-		data.posts && setFeaturedPosts(data.posts.slice(0, 4));
+		data.posts &&
+			setFeaturedPosts(
+				data.posts.slice(0, 4).map(post => {
+					return {
+						id: post.id,
+						title: post.title,
+						subtitle: post.subtitle,
+						image: {
+							src: post.media.featureImage.url,
+							alt: post.media.featureImage.altText,
+						},
+					};
+				})
+			);
 	}, [data]);
+
+	useEffect(() => {
+		console.log(featuredPosts);
+	}, [featuredPosts]);
 
 	// const handleMouseEnter = id => {
 	// 	setHovering(true);
@@ -314,68 +110,71 @@ function FeaturedWork(props) {
 	// 	gsap.set(".skewElem", { transformOrigin: "left", force3D: true });
 	// }, [listRefs.current]);
 
-	const renderedPosts =
-		featuredPosts &&
-		featuredPosts.map(post => {
-			return (
-				<li key={post.id} className='featured-work-uoList__item'>
-					<div className='inner' key={Math.random().toString(36).substr(2, 9)}>
-						<div
-							key={Math.random().toString(36).substr(2, 9)}
-							className='featured-work-uoList__image'
-						>
-							<img src={post.media.featureImage.url} alt={post.media.featureImage.altText}></img>
-						</div>
+	// const renderedPosts =
+	// 	featuredPosts &&
+	// 	featuredPosts.map(post => {
+	// 		return (
+	// 			<li key={post.id} className='featured-work-uoList__item'>
+	// 				<div className='inner' key={Math.random().toString(36).substr(2, 9)}>
+	// 					<div
+	// 						key={Math.random().toString(36).substr(2, 9)}
+	// 						className='featured-work-uoList__image'
+	// 					>
+	// 						<img
+	// 							src={post.media.featureImage.url}
+	// 							alt={post.media.featureImage.altText}
+	// 						></img>
+	// 					</div>
 
-						<Link
-							className='linkable-frame'
-							to={`/posts/${Math.random().toString(36).substr(2, 9)}`}
-							key={Math.random().toString(36).substr(2, 9)}
-						>
-							<div
-								className='decorative-line decorative-line-yellow'
-								key={Math.random().toString(36).substr(2, 9)}
-							>
-								<LineYellow key={Math.random().toString(36).substr(2, 9)} />
-							</div>
-							<div
-								className='decorative-line decorative-line-red'
-								key={Math.random().toString(36).substr(2, 9)}
-							>
-								<LineRed key={Math.random().toString(36).substr(2, 9)} />
-							</div>
-							<div
-								className='decorative-line decorative-line-green'
-								key={Math.random().toString(36).substr(2, 9)}
-							>
-								<LineGreen key={Math.random().toString(36).substr(2, 9)} />
-							</div>
-							<div
-								className='decorative-line decorative-line-blue'
-								key={Math.random().toString(36).substr(2, 9)}
-							>
-								<LineBlue key={Math.random().toString(36).substr(2, 9)} />
-							</div>
-							<div
-								className='featured-work-uoList__title'
-								key={Math.random().toString(36).substr(2, 9)}
-							>
-								<div
-									className='title'
-									key={Math.random().toString(36).substr(2, 9)}
-								>
-									{post.title}
-								</div>
-								<div
-									className='background'
-									key={Math.random().toString(36).substr(2, 9)}
-								></div>
-							</div>
-						</Link>
-					</div>
-				</li>
-			);
-		});
+	// 					<Link
+	// 						className='linkable-frame'
+	// 						to={`/posts/${Math.random().toString(36).substr(2, 9)}`}
+	// 						key={Math.random().toString(36).substr(2, 9)}
+	// 					>
+	// 						<div
+	// 							className='decorative-line decorative-line-yellow'
+	// 							key={Math.random().toString(36).substr(2, 9)}
+	// 						>
+	// 							<LineYellow key={Math.random().toString(36).substr(2, 9)} />
+	// 						</div>
+	// 						<div
+	// 							className='decorative-line decorative-line-red'
+	// 							key={Math.random().toString(36).substr(2, 9)}
+	// 						>
+	// 							<LineRed key={Math.random().toString(36).substr(2, 9)} />
+	// 						</div>
+	// 						<div
+	// 							className='decorative-line decorative-line-green'
+	// 							key={Math.random().toString(36).substr(2, 9)}
+	// 						>
+	// 							<LineGreen key={Math.random().toString(36).substr(2, 9)} />
+	// 						</div>
+	// 						<div
+	// 							className='decorative-line decorative-line-blue'
+	// 							key={Math.random().toString(36).substr(2, 9)}
+	// 						>
+	// 							<LineBlue key={Math.random().toString(36).substr(2, 9)} />
+	// 						</div>
+	// 						<div
+	// 							className='featured-work-uoList__title'
+	// 							key={Math.random().toString(36).substr(2, 9)}
+	// 						>
+	// 							<div
+	// 								className='title'
+	// 								key={Math.random().toString(36).substr(2, 9)}
+	// 							>
+	// 								{post.title}
+	// 							</div>
+	// 							<div
+	// 								className='background'
+	// 								key={Math.random().toString(36).substr(2, 9)}
+	// 							></div>
+	// 						</div>
+	// 					</Link>
+	// 				</div>
+	// 			</li>
+	// 		);
+	// 	});
 
 	return (
 		<Container
@@ -395,9 +194,7 @@ function FeaturedWork(props) {
 				/>
 			</Container>
 
-			<StyledFeaturedWorkList className='featured-work-uoList'>
-				{renderedPosts}
-			</StyledFeaturedWorkList>
+			<ImageList listItems={featuredPosts} />
 		</Container>
 	);
 }
