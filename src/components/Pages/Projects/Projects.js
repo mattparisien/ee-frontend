@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { DataContext } from "../../Containers/Temp/Authenticated";
 import { formatImageList } from "../../../helpers/formatData";
 import { deviceSize } from "../../styles/device";
+import divideArray from "../../Grid/helpers/divideArray";
 
 const GRIDOFFSET = `8`;
 const GRIDGAP = "4vw";
@@ -60,13 +61,14 @@ const StyledProjectsGrid = styled(ImageList)`
 		}
 
 		&:nth-of-type(6) {
-			grid-column: 10/13;
-			grid-row: 14/15;
+			height: 600px;
+			grid-column: 1/7;
+			grid-row: 5/6;
 		}
 
 		&:nth-of-type(7) {
-			grid-column: 5/9;
-			grid-row: 16/18;
+			grid-column: 10/11;
+			grid-row: 15/16;
 		}
 	}
 `;
@@ -76,7 +78,12 @@ function Projects(props) {
 	const [projects, setProjects] = useState(null);
 
 	useEffect(() => {
-		posts && setProjects(formatImageList(posts));
+		if (posts) {
+			const formattedProjects = formatImageList(posts);
+			const dividedGridItems = divideArray(formattedProjects, 5);
+			setProjects(dividedGridItems);
+		}
+		// posts && setProjects(formatImageList(posts));
 	}, [posts]);
 
 	return (

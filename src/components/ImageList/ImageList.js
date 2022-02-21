@@ -212,22 +212,36 @@ const StyledImageList = styled.ul`
 function ImageList({ listItems, className }) {
 	const renderedImages =
 		listItems &&
-		listItems.map(item => {
-			return (
-				<ImageListItem
-					id={item.id}
-					title={item.title}
-					subtitle={item.subtitle}
-					imageSrc={item.image.src}
-					imageAlt={item.image.altText}
-				/>
+		listItems.map((item, i) => {
+			return !Array.isArray(listItems[0]) ? (
+				<StyledImageList className={`ImageList ${className ? className : ""}`}>
+					<ImageListItem
+						id={item.id}
+						title={item.title}
+						subtitle={item.subtitle}
+						imageSrc={item.image.src}
+						imageAlt={item.image.altText}
+					/>
+				</StyledImageList>
+			) : (
+				<StyledImageList
+					className={`ImageList projects-image-list__${(i += 1)} ${
+						className ? className : ""
+					}`}
+				>
+					{item.map(subItem => {
+						<ImageListItem
+							id={subItem.id}
+							title={subItem.title}
+							subtitle={subItem.subtitle}
+							imageSrc={subItem.image.src}
+							imageAlt={subItem.image.altText}
+						/>;
+					})}
+				</StyledImageList>
 			);
 		});
-	return (
-		<StyledImageList className={`ImageList ${className ? className : ""}`}>
-			{renderedImages}
-		</StyledImageList>
-	);
+	return <>{renderedImages}</>;
 }
 
 function ImageListItem({ id, title, subtitle, imageSrc, imageAlt }) {
