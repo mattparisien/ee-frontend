@@ -14,9 +14,9 @@ const GRIDGAP = "4vw";
 const StyledProjectsGrid = styled(ImageList)`
 	display: grid;
 	grid-gap: ${GRIDGAP};
-	height: 300vw;
+	height: auto;
 	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(10, 50vw);
+	grid-template-rows: repeat(4, 50vw);
 
 	@media only screen and (max-width: ${deviceSize.mobileL}px) {
 		grid-column: 1/13 !important;
@@ -58,17 +58,6 @@ const StyledProjectsGrid = styled(ImageList)`
 			height: 60%;
 			grid-column: 7/13;
 			grid-row: 4/5;
-		}
-
-		&:nth-of-type(6) {
-			height: 600px;
-			grid-column: 1/7;
-			grid-row: 5/6;
-		}
-
-		&:nth-of-type(7) {
-			grid-column: 10/11;
-			grid-row: 15/16;
 		}
 	}
 `;

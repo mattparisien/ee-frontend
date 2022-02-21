@@ -30,9 +30,6 @@ const StyledImageList = styled.ul`
 		max-height: 1000px;
 		border-radius: 0.7vw;
 		overflow: visible;
-		
-
-	
 
 	
 		.inner {
@@ -182,8 +179,6 @@ const StyledImageList = styled.ul`
 
 				}
 
-
-				
 				.title {
 					text-align: center;
 					
