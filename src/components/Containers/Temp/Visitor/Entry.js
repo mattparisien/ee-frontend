@@ -42,7 +42,7 @@ function Entry({ setState }) {
 
 		if (success) {
 			cookies.set("user", "Pacman", { path: "/" });
-			window.location.href = "http://localhost:3000/";
+			window.location.href = process.env.REACT_APP_URL;
 		}
 	}, [success]);
 
