@@ -3,6 +3,9 @@ import { device } from "../styles/device";
 
 export const StyledFooter = styled.footer`
 
+
+	
+
 	color: ${({ theme }) => theme.colors.dark};
 	background-color: ${({ theme }) => theme.colors.dark};
 	position: relative;

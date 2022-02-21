@@ -33,6 +33,7 @@ export default function Footer(props) {
 			data-scroll
 			data-scroll-section
 			className='Footer'
+			location={location.pathname}
 		>
 			<Container centerInner flexDirection='column' height='100%'>
 				{layout === "contact" && <Contact />}

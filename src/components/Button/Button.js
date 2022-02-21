@@ -46,8 +46,11 @@ const StyledButton = styled.button`
 			: `
        border: none;
        background-color: ${theme.colors[color]};
-       color: ${theme.colors[color === "dark" ? "light" : "dark"]}
+       color: ${theme.colors[color === "dark" ? "light" : "dark"]};
 
+			 &:hover {
+				 opacity: 0.7;
+			 }
 
      
 
