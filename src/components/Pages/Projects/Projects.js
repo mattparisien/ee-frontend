@@ -10,13 +10,19 @@ import divideArray from "../../Grid/helpers/divideArray";
 
 const GRIDOFFSET = `8`;
 const GRIDGAP = "4vw";
+const ROWHEIGHT = "50";
+const ULTRANSLATE = 0.6 * ROWHEIGHT;
 
 const StyledProjectsGrid = styled(ImageList)`
 	display: grid;
 	grid-gap: ${GRIDGAP};
 	height: auto;
 	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(4, 50vw);
+	grid-template-rows: repeat(4, ${ROWHEIGHT}vw);
+
+	&:nth-of-type(2) {
+		transform: translateY(-${ULTRANSLATE - 14}vw);
+	}
 
 	@media only screen and (max-width: ${deviceSize.mobileL}px) {
 		grid-column: 1/13 !important;
@@ -50,7 +56,6 @@ const StyledProjectsGrid = styled(ImageList)`
 		&:nth-of-type(4) {
 			grid-column: 2/8;
 			grid-row: 3/4;
-
 			transform: translateY(-100%});
 		}
 
