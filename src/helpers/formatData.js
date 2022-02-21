@@ -1,4 +1,17 @@
 export const formatPosts = arr => {
+	let sortedPosts = arr.sort(function (a, b) {
+		if (a.id !== b.id) {
+			return a.id - b.id;
+		}
+		if (a.name === b.name) {
+			return 0;
+		}
+		return a.name > b.name ? 1 : -1;
+	});
+
+	//Store in posted order
+	sortedPosts = sortedPosts.reverse();
+
 	const formattedPosts = arr.map(post => {
 		return {
 			id: post.id,
@@ -41,4 +54,18 @@ export const formatAbout = object => {
 		body1: object.attributes.Body1,
 		body2: object.attributes.Body2,
 	};
+};
+
+export const formatImageList = array => {
+	return array.map(post => {
+		return {
+			id: post.id,
+			title: post.title,
+			subtitle: post.subtitle,
+			image: {
+				src: post.media.featureImage.url,
+				alt: post.media.featureImage.altText,
+			},
+		};
+	});
 };
