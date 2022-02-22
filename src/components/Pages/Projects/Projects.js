@@ -9,16 +9,37 @@ import { deviceSize } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
 import { getTabId } from "@mui/base";
 
-const GRIDOFFSET = `8`;
-const GRIDGAP = "4";
-const ROWHEIGHT = "50";
-const ULTRANSLATE = (0.6 * ROWHEIGHT - 10 - GRIDGAP);
+//General styles constants
+const ROWHEIGHT = 50;
+const GRIDOFFSET = 8;
+const GRIDGAP = 4;
+const ULTRANSLATE = 0.6 * ROWHEIGHT - 10 - GRIDGAP;
+const GRIDCOLUMNS = {
+	amount: 12,
+	fraction: 1,
+};
+
+//Grid one constants
+
+const GRIDSTYLES = {
+	general: {
+		GRIDOFFSET,
+		GRIDGAP,
+		ROWHEIGHT,
+		ULTRANSLATE,
+		GRIDCOLUMNS,
+	},
+	gridOne: {},
+};
 
 const StyledProjectsGrid = styled(ImageList)`
 	display: grid;
-	grid-gap: ${GRIDGAP}vw;
+	grid-gap: ${GRIDSTYLES.general.GRIDGAP}vw;
 	height: auto;
-	grid-template-columns: repeat(12, 1fr);
+	grid-template-columns: repeat(
+		${GRIDSTYLES.general.GRIDCOLUMNS.amount},
+		${GRIDSTYLES.general.GRIDCOLUMNS.fraction}fr
+	);
 
 	${({ rowAmounts }) => {
 		return (
@@ -26,7 +47,7 @@ const StyledProjectsGrid = styled(ImageList)`
 			rowAmounts.map(amount => {
 				return `
 					&:nth-of-type(${amount.id}) {
-						grid-template-rows: repeat(${amount.amount}, ${ROWHEIGHT}vw);
+						grid-template-rows: repeat(${amount.amount}, ${GRIDSTYLES.general.ROWHEIGHT}vw);
 						
 					}
 					
@@ -36,13 +57,21 @@ const StyledProjectsGrid = styled(ImageList)`
 	}};
 
 	:not(:first-of-type) {
-		transform: translateY(-${ULTRANSLATE}vw);
+		transform: translateY(-${GRIDSTYLES.general.ULTRANSLATE}vw);
 	}
 
 	@media only screen and (max-width: ${deviceSize.mobileL}px) {
 		grid-column: 1/13 !important;
 		grid-row: repeat(10, 200px);
 		transform: none !important;
+	}
+
+	li {
+		width: auto;
+		height: auto;
+	}
+
+	&:nth-of-type(odd) {
 	}
 
 	li {
@@ -57,14 +86,14 @@ const StyledProjectsGrid = styled(ImageList)`
 		&:nth-of-type(2) {
 			grid-column: 1/7;
 			grid-row: 2/3;
-			transform: translateY(-${GRIDOFFSET}vw);
+			transform: translateY(-${GRIDSTYLES.general.GRIDOFFSET}vw);
 		}
 
 		&:nth-of-type(3) {
 			grid-column: 7/13;
 			grid-row: 3/4;
 			height: 50%;
-			transform: translateY(-${GRIDOFFSET * 2}vw);
+			transform: translateY(-${GRIDSTYLES.general.GRIDOFFSET * 2}vw);
 			z-index: 3;
 		}
 
@@ -108,11 +137,9 @@ function Projects(props) {
 
 	return (
 		<Section bg={"light"}>
-			<Section bg={"light"}>
-				<Container padding={"5vw"} height='auto'>
-					<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} />
-				</Container>
-			</Section>
+			<Container padding={"5vw"} height='auto'>
+				<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} />
+			</Container>
 		</Section>
 	);
 }
