@@ -107,36 +107,45 @@ const StyledProjectsGrid = styled(ImageList)`
 		width: auto;
 		height: auto;
 
-		&:nth-of-type(1) {
-			grid-column: 7/13;
-			grid-row: 1/2;
-		}
+		${GRIDSTYLES.GRIDONE.ITEMS.map(item => {
+			return `
+				&:nth-of-type(${item.id}) {
+					grid-column: ${item.columnArea};
+					grid-row: ${item.rowArea};
+				}
+				`;
+		})};
+		
+		// &:nth-of-type(1) {
+		// 	grid-column: 7/13;
+		// 	grid-row: 1/2;
+		// }
 
-		&:nth-of-type(2) {
-			grid-column: 1/7;
-			grid-row: 2/3;
-			transform: translateY(-${GRIDSTYLES.general.GRIDOFFSET}vw);
-		}
+		// &:nth-of-type(2) {
+		// 	grid-column: 1/7;
+		// 	grid-row: 2/3;
+		// 	transform: translateY(-${GRIDSTYLES.general.GRIDOFFSET}vw);
+		// }
 
-		&:nth-of-type(3) {
-			grid-column: 7/13;
-			grid-row: 3/4;
-			height: 50%;
-			transform: translateY(-${GRIDSTYLES.general.GRIDOFFSET * 2}vw);
-			z-index: 3;
-		}
+		// &:nth-of-type(3) {
+		// 	grid-column: 7/13;
+		// 	grid-row: 3/4;
+		// 	height: 50%;
+		// 	transform: translateY(-${GRIDSTYLES.general.GRIDOFFSET * 2}vw);
+		// 	z-index: 3;
+		// }
 
-		&:nth-of-type(4) {
-			grid-column: 2/8;
-			grid-row: 3/4;
-			transform: translateY(-100%});
-		}
+		// &:nth-of-type(4) {
+		// 	grid-column: 2/8;
+		// 	grid-row: 3/4;
+		// 	transform: translateY(-100%});
+		// }
 
-		&:nth-of-type(5) {
-			height: 60%;
-			grid-column: 7/13;
-			grid-row: 4/5;
-		}
+		// &:nth-of-type(5) {
+		// 	height: 60%;
+		// 	grid-column: 7/13;
+		// 	grid-row: 4/5;
+		// }
 	}
 `;
 
