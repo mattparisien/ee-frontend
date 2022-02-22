@@ -7,7 +7,6 @@ import { DataContext } from "../../Containers/Temp/Authenticated";
 import { formatImageList } from "../../../helpers/formatData";
 import { deviceSize } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
-import { getTabId } from "@mui/base";
 
 //General styles constants
 const ROWHEIGHT = 50;
@@ -18,8 +17,38 @@ const GRIDCOLUMNS = {
 	amount: 12,
 	fraction: 1,
 };
+//Grid rows determined by amount of items in each array
 
-//Grid one constants
+//Grid one styles
+const GRIDONE = {
+	ITEMS: [
+		{
+			id: 1,
+			columnArea: "7/13",
+			rowArea: "1/2",
+		},
+		{
+			id: 2,
+			columnArea: "1/7",
+			rowArea: "2/3",
+		},
+		{
+			id: 3,
+			columnArea: "1/7",
+			rowArea: "2/3",
+		},
+		{
+			id: 4,
+			columnArea: "2/8",
+			rowArea: "3/4",
+		},
+		{
+			id: 5,
+			columnArea: "7/13",
+			rowArea: "4/5",
+		},
+	],
+};
 
 const GRIDSTYLES = {
 	general: {
@@ -29,7 +58,7 @@ const GRIDSTYLES = {
 		ULTRANSLATE,
 		GRIDCOLUMNS,
 	},
-	gridOne: {},
+	GRIDONE,
 };
 
 const StyledProjectsGrid = styled(ImageList)`
