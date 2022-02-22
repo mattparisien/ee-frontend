@@ -149,12 +149,6 @@ const StyledProjectsGrid = styled(ImageList)`
 		);
 	}};
 
-	@media only screen and (max-width: ${deviceSize.mobileL}px) {
-		grid-column: 1/13 !important;
-		grid-row: repeat(10, 200px);
-		transform: none !important;
-	}
-
 	li {
 		width: auto;
 		height: auto;
@@ -197,6 +191,7 @@ const StyledProjectsGrid = styled(ImageList)`
 					`;
 			})};
 		}
+	}
 	}
 `;
 
