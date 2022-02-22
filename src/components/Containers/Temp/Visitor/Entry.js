@@ -49,7 +49,7 @@ function Entry({ setState }) {
 	return (
 		<>
 			<div className='entry-heading'>Enter</div>
-			<Box component='form' sx={{ width: "400px" }} onSubmit={handleSubmit} s>
+			<Box component='form' sx={{ minWidth: "300px", maxWidth: "400px", width: "90vw", padding: 4 }} onSubmit={handleSubmit} s>
 				<FormGroup sx={{ marginBottom: 4 }}>
 					<TextField
 						label='Email'

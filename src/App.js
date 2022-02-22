@@ -50,6 +50,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								x: 0,
 								y: 0,
 							},
+							
 							smooth: true,
 							getDirection: true,
 						}}
