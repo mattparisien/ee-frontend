@@ -26,26 +26,35 @@ const GRIDONE = {
 			id: 1,
 			columnArea: "7/13",
 			rowArea: "1/2",
+			offset: null,
+			height: null,
 		},
 		{
 			id: 2,
 			columnArea: "1/7",
 			rowArea: "2/3",
+			offset: `-${GRIDOFFSET}vw`,
+			height: null,
 		},
 		{
 			id: 3,
 			columnArea: "1/7",
 			rowArea: "2/3",
+			offset: `-${GRIDOFFSET * 2}vw`,
+			height: "50%",
 		},
 		{
 			id: 4,
 			columnArea: "2/8",
 			rowArea: "3/4",
+			offset: "-100%",
 		},
 		{
 			id: 5,
 			columnArea: "7/13",
 			rowArea: "4/5",
+			offset: null,
+			height: "60%",
 		},
 	],
 };
@@ -112,10 +121,12 @@ const StyledProjectsGrid = styled(ImageList)`
 				&:nth-of-type(${item.id}) {
 					grid-column: ${item.columnArea};
 					grid-row: ${item.rowArea};
+					${item.height && `height: ${item.height}`};
+					${item.offset && `transform: translateY(${item.offset})`};
 				}
 				`;
 		})};
-		
+
 		// &:nth-of-type(1) {
 		// 	grid-column: 7/13;
 		// 	grid-row: 1/2;
