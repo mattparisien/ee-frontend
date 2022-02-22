@@ -7,6 +7,7 @@ import { DataContext } from "../../Containers/Temp/Authenticated";
 import { formatImageList } from "../../../helpers/formatData";
 import { deviceSize } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
+import { getTabId } from "@mui/base";
 
 const GRIDOFFSET = `8`;
 const GRIDGAP = "4vw";
@@ -20,7 +21,7 @@ const StyledProjectsGrid = styled(ImageList)`
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(4, ${ROWHEIGHT}vw);
 
-	&:nth-of-type(2) {
+	:not(:first-of-type) {
 		transform: translateY(-${ULTRANSLATE - 14}vw);
 	}
 
@@ -70,15 +71,23 @@ const StyledProjectsGrid = styled(ImageList)`
 function Projects(props) {
 	const { posts } = useContext(DataContext);
 	const [projects, setProjects] = useState(null);
+	const [rowAmount, setRowAmount] = useState(null);
 
 	useEffect(() => {
 		if (posts) {
 			const formattedProjects = formatImageList(posts);
 			const dividedGridItems = divideArray(formattedProjects, 5);
 			setProjects(dividedGridItems);
+
+			dividedGridItems.map((grid, i) => {
+				return setRowAmount(prev => ({ ...prev, id: i, amount: grid.length }));
+			});
 		}
-		// posts && setProjects(formatImageList(posts));
 	}, [posts]);
+
+	useEffect(() => {
+		console.log(rowAmount);
+	}, [rowAmount]);
 
 	return (
 		<Section bg={"light"}>
