@@ -7,16 +7,37 @@ import { DataContext } from "../../Containers/Temp/Authenticated";
 import { formatImageList } from "../../../helpers/formatData";
 import { deviceSize } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
+import { getTabId } from "@mui/base";
 
 const GRIDOFFSET = `8`;
-const GRIDGAP = "4vw";
+const GRIDGAP = "4";
+const ROWHEIGHT = "50";
+const ULTRANSLATE = (0.6 * ROWHEIGHT - 10 - GRIDGAP);
 
 const StyledProjectsGrid = styled(ImageList)`
 	display: grid;
-	grid-gap: ${GRIDGAP};
-	height: 300vw;
+	grid-gap: ${GRIDGAP}vw;
+	height: auto;
 	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(10, 50vw);
+
+	${({ rowAmounts }) => {
+		return (
+			rowAmounts &&
+			rowAmounts.map(amount => {
+				return `
+					&:nth-of-type(${amount.id}) {
+						grid-template-rows: repeat(${amount.amount}, ${ROWHEIGHT}vw);
+						
+					}
+					
+					`;
+			})
+		);
+	}};
+
+	:not(:first-of-type) {
+		transform: translateY(-${ULTRANSLATE}vw);
+	}
 
 	@media only screen and (max-width: ${deviceSize.mobileL}px) {
 		grid-column: 1/13 !important;
@@ -50,7 +71,6 @@ const StyledProjectsGrid = styled(ImageList)`
 		&:nth-of-type(4) {
 			grid-column: 2/8;
 			grid-row: 3/4;
-
 			transform: translateY(-100%});
 		}
 
@@ -59,38 +79,38 @@ const StyledProjectsGrid = styled(ImageList)`
 			grid-column: 7/13;
 			grid-row: 4/5;
 		}
-
-		&:nth-of-type(6) {
-			height: 600px;
-			grid-column: 1/7;
-			grid-row: 5/6;
-		}
-
-		&:nth-of-type(7) {
-			grid-column: 10/11;
-			grid-row: 15/16;
-		}
 	}
 `;
 
 function Projects(props) {
 	const { posts } = useContext(DataContext);
 	const [projects, setProjects] = useState(null);
+	const [rowAmount, setRowAmount] = useState([]);
 
 	useEffect(() => {
 		if (posts) {
 			const formattedProjects = formatImageList(posts);
 			const dividedGridItems = divideArray(formattedProjects, 5);
 			setProjects(dividedGridItems);
+
+			dividedGridItems.map((grid, i) => {
+				return setRowAmount(prev => [
+					...prev,
+					{
+						id: (i += 1),
+						//-1 to make up for offset
+						amount: grid.length - 1,
+					},
+				]);
+			});
 		}
-		// posts && setProjects(formatImageList(posts));
 	}, [posts]);
 
 	return (
 		<Section bg={"light"}>
 			<Section bg={"light"}>
 				<Container padding={"5vw"} height='auto'>
-					<StyledProjectsGrid listItems={projects} />
+					<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} />
 				</Container>
 			</Section>
 		</Section>

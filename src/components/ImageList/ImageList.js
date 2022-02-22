@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 import { LineYellow, LineRed, LineBlue, LineGreen } from "../Vector/Svg";
 import { device, deviceSize } from "../styles/device";
 
@@ -30,9 +30,6 @@ const StyledImageList = styled.ul`
 		max-height: 1000px;
 		border-radius: 0.7vw;
 		overflow: visible;
-		
-
-	
 
 	
 		.inner {
@@ -182,8 +179,6 @@ const StyledImageList = styled.ul`
 
 				}
 
-
-				
 				.title {
 					text-align: center;
 					
@@ -210,38 +205,56 @@ const StyledImageList = styled.ul`
 	}`;
 
 function ImageList({ listItems, className }) {
-	const renderedImages =
-		listItems &&
-		listItems.map((item, i) => {
-			return !Array.isArray(listItems[0]) ? (
+	const singleGrid =
+		listItems && !Array.isArray(listItems[0])
+			? listItems.map((item, i) => {
+					return (
+						<ImageListItem
+							id={item.id}
+							title={item.title}
+							subtitle={item.subtitle}
+							imageSrc={item.image.src}
+							imageAlt={item.image.altText}
+						/>
+					);
+			  })
+			: null;
+
+	const multipleGrids =
+		listItems && Array.isArray(listItems[0])
+			? listItems.map((item, i) => {
+					return (
+						<StyledImageList
+							className={`ImageList projects-image-list__${(i += 1)} ${
+								className ? className : ""
+							}`}
+						>
+							{item.map(subItem => {
+								return (
+									<ImageListItem
+										id={subItem.id}
+										title={subItem.title}
+										subtitle={subItem.subtitle}
+										imageSrc={subItem.image.src}
+										imageAlt={subItem.image.altText}
+									/>
+								);
+							})}
+						</StyledImageList>
+					);
+			  })
+			: null;
+	return (
+		<>
+			{singleGrid ? (
 				<StyledImageList className={`ImageList ${className ? className : ""}`}>
-					<ImageListItem
-						id={item.id}
-						title={item.title}
-						subtitle={item.subtitle}
-						imageSrc={item.image.src}
-						imageAlt={item.image.altText}
-					/>
+					{singleGrid}
 				</StyledImageList>
 			) : (
-				<StyledImageList
-					className={`ImageList projects-image-list__${(i += 1)} ${
-						className ? className : ""
-					}`}
-				>
-					{item.map(subItem => {
-						<ImageListItem
-							id={subItem.id}
-							title={subItem.title}
-							subtitle={subItem.subtitle}
-							imageSrc={subItem.image.src}
-							imageAlt={subItem.image.altText}
-						/>;
-					})}
-				</StyledImageList>
-			);
-		});
-	return <>{renderedImages}</>;
+				multipleGrids
+			)}
+		</>
+	);
 }
 
 function ImageListItem({ id, title, subtitle, imageSrc, imageAlt }) {
