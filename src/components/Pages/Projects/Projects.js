@@ -10,19 +10,33 @@ import divideArray from "../../Grid/helpers/divideArray";
 import { getTabId } from "@mui/base";
 
 const GRIDOFFSET = `8`;
-const GRIDGAP = "4vw";
+const GRIDGAP = "4";
 const ROWHEIGHT = "50";
-const ULTRANSLATE = 0.6 * ROWHEIGHT;
+const ULTRANSLATE = (0.6 * ROWHEIGHT - 10 - GRIDGAP);
 
 const StyledProjectsGrid = styled(ImageList)`
 	display: grid;
-	grid-gap: ${GRIDGAP};
+	grid-gap: ${GRIDGAP}vw;
 	height: auto;
 	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(4, ${ROWHEIGHT}vw);
+
+	${({ rowAmounts }) => {
+		return (
+			rowAmounts &&
+			rowAmounts.map(amount => {
+				return `
+					&:nth-of-type(${amount.id}) {
+						grid-template-rows: repeat(${amount.amount}, ${ROWHEIGHT}vw);
+						
+					}
+					
+					`;
+			})
+		);
+	}};
 
 	:not(:first-of-type) {
-		transform: translateY(-${ULTRANSLATE - 14}vw);
+		transform: translateY(-${ULTRANSLATE}vw);
 	}
 
 	@media only screen and (max-width: ${deviceSize.mobileL}px) {
@@ -71,7 +85,7 @@ const StyledProjectsGrid = styled(ImageList)`
 function Projects(props) {
 	const { posts } = useContext(DataContext);
 	const [projects, setProjects] = useState(null);
-	const [rowAmount, setRowAmount] = useState(null);
+	const [rowAmount, setRowAmount] = useState([]);
 
 	useEffect(() => {
 		if (posts) {
@@ -80,20 +94,23 @@ function Projects(props) {
 			setProjects(dividedGridItems);
 
 			dividedGridItems.map((grid, i) => {
-				return setRowAmount(prev => ({ ...prev, id: i, amount: grid.length }));
+				return setRowAmount(prev => [
+					...prev,
+					{
+						id: (i += 1),
+						//-1 to make up for offset
+						amount: grid.length - 1,
+					},
+				]);
 			});
 		}
 	}, [posts]);
-
-	useEffect(() => {
-		console.log(rowAmount);
-	}, [rowAmount]);
 
 	return (
 		<Section bg={"light"}>
 			<Section bg={"light"}>
 				<Container padding={"5vw"} height='auto'>
-					<StyledProjectsGrid listItems={projects} />
+					<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} />
 				</Container>
 			</Section>
 		</Section>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 import { LineYellow, LineRed, LineBlue, LineGreen } from "../Vector/Svg";
 import { device, deviceSize } from "../styles/device";
 
