@@ -167,9 +167,9 @@ const StyledImageList = styled.ul`
 				top: 0;
 				left: 0;
 				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 3vw;
+				
+				flex-direction: column;
+				padding: 4vw;
 				transition: 300ms ease;
 				opacity: 1;
 
@@ -179,14 +179,17 @@ const StyledImageList = styled.ul`
 
 				}
 
-				.title {
-					text-align: center;
+				.title, .subtitle {
+					font-size: 2.5vw;
 					
-					font-size: 5vw;
-					letter-spacing: -0.2vw;
-					line-height: 4vw;
+					line-height: 3vw;
 					color: ${({ theme }) => theme.colors.light};
 					z-index: 1;
+				}
+
+				.title {
+					font-family: 'Kobe Bold';
+					text-transform: uppercase;
 				}
 
 				.background {
@@ -307,6 +310,7 @@ function ImageListItem({ id, title, subtitle, imageSrc, imageAlt }) {
 						>
 							{title}
 						</div>
+						<div className='subtitle'>{subtitle}</div>
 						<div
 							className='background'
 							key={Math.random().toString(36).substr(2, 9)}

@@ -126,11 +126,23 @@ const StyledProjectsGrid = styled(ImageList)`
 			rowAmounts.map(amount => {
 				return `
 					&:nth-of-type(${amount.id}) {
-						grid-template-rows: repeat(${amount.amount - 1}, ${
-					GRIDSTYLES.general.ROWHEIGHTREPEAT
-				}vw) 30vw ;
+						grid-template-rows: repeat(${
+							amount.amount !== 1 ? amount.amount - 1 : amount.amount
+						}, ${GRIDSTYLES.general.ROWHEIGHTREPEAT}vw) 30vw ;
 						
+					};
+
+					${
+						amount.amount === 1
+							? `
+				&:nth-of-type(${amount.id}) {
+					li:nth-of-type(2) {
+						margin-bottom: -${GRIDOFFSET}vw;
 					}
+				}
+					`
+							: ""
+					};
 					
 					`;
 			})
@@ -160,7 +172,10 @@ const StyledProjectsGrid = styled(ImageList)`
 						grid-row: ${item.rowArea};
 						${item.height ? `height: ${item.height}` : ""};
 						${item.offset ? `transform: translateY(${item.offset})` : ""};
-					}
+						
+					};
+
+					
 					`;
 			})};
 		}
@@ -208,6 +223,10 @@ function Projects(props) {
 			});
 		}
 	}, [posts]);
+
+	useEffect(() => {
+		console.log(rowAmount);
+	}, [rowAmount]);
 
 	return (
 		<Section bg={"light"}>
