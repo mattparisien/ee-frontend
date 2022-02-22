@@ -9,10 +9,11 @@ import { deviceSize } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
 
 //General styles constants
-const ROWHEIGHT = 50;
+const ROWHEIGHTREPEAT = 50;
+const ROWHEIGHTLAST = 30;
 const GRIDOFFSET = 8;
 const GRIDGAP = 4;
-const ULTRANSLATE = 0.6 * ROWHEIGHT - 10 - GRIDGAP;
+
 const GRIDCOLUMNS = {
 	amount: 12,
 	fraction: 1,
@@ -54,7 +55,45 @@ const GRIDONE = {
 			columnArea: "7/13",
 			rowArea: "4/5",
 			offset: null,
-			height: "60%",
+			height: null,
+		},
+	],
+};
+const GRIDTWO = {
+	ITEMS: [
+		{
+			id: 1,
+			columnArea: "1/7",
+			rowArea: "1/2",
+			offset: null,
+			height: null,
+		},
+		{
+			id: 2,
+			columnArea: "7/13",
+			rowArea: "2/3",
+			offset: `-${GRIDOFFSET}vw`,
+			height: null,
+		},
+		{
+			id: 3,
+			columnArea: "1/7",
+			rowArea: "3/4",
+			offset: `-${GRIDOFFSET * 2}vw`,
+			height: "50%",
+		},
+		{
+			id: 4,
+			columnArea: "6/13",
+			rowArea: "3/4",
+			offset: null,
+		},
+		{
+			id: 5,
+			columnArea: "1/7",
+			rowArea: "4/5",
+			offset: null,
+			height: null,
 		},
 	],
 };
@@ -63,11 +102,13 @@ const GRIDSTYLES = {
 	general: {
 		GRIDOFFSET,
 		GRIDGAP,
-		ROWHEIGHT,
-		ULTRANSLATE,
+		ROWHEIGHTREPEAT,
+		ROWHEIGHTLAST,
+
 		GRIDCOLUMNS,
 	},
 	GRIDONE,
+	GRIDTWO,
 };
 
 const StyledProjectsGrid = styled(ImageList)`
@@ -85,7 +126,9 @@ const StyledProjectsGrid = styled(ImageList)`
 			rowAmounts.map(amount => {
 				return `
 					&:nth-of-type(${amount.id}) {
-						grid-template-rows: repeat(${amount.amount}, ${GRIDSTYLES.general.ROWHEIGHT}vw);
+						grid-template-rows: repeat(${amount.amount - 1}, ${
+					GRIDSTYLES.general.ROWHEIGHTREPEAT
+				}vw) 30vw ;
 						
 					}
 					
@@ -93,10 +136,6 @@ const StyledProjectsGrid = styled(ImageList)`
 			})
 		);
 	}};
-
-	:not(:first-of-type) {
-		transform: translateY(-${GRIDSTYLES.general.ULTRANSLATE}vw);
-	}
 
 	@media only screen and (max-width: ${deviceSize.mobileL}px) {
 		grid-column: 1/13 !important;
@@ -115,6 +154,24 @@ const StyledProjectsGrid = styled(ImageList)`
 			height: auto;
 
 			${GRIDSTYLES.GRIDONE.ITEMS.map(item => {
+				return `
+					&:nth-of-type(${item.id}) {
+						grid-column: ${item.columnArea};
+						grid-row: ${item.rowArea};
+						${item.height ? `height: ${item.height}` : ""};
+						${item.offset ? `transform: translateY(${item.offset})` : ""};
+					}
+					`;
+			})};
+		}
+	}
+
+	&:nth-of-type(even) {
+		li {
+			width: auto;
+			height: auto;
+
+			${GRIDSTYLES.GRIDTWO.ITEMS.map(item => {
 				return `
 					&:nth-of-type(${item.id}) {
 						grid-column: ${item.columnArea};
