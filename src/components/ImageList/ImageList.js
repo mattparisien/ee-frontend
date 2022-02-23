@@ -207,7 +207,7 @@ const StyledImageList = styled.ul`
 				.title, .subtitle {
 					
 					bottom: 0;
-					
+					font-size: ${({theme}) => theme.typography.paragraph.scale.mobile.fontSize}vw;
 					z-index: 1;
 				}
 

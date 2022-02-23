@@ -37,7 +37,7 @@ export default function useAppData(scrollRef) {
 			},
 			imageList: {
 				gutter: {
-					mobile: "4vw",
+					mobile: "12vw",
 				},
 			},
 		},
