@@ -3,6 +3,7 @@ import { device, deviceSize } from "./device";
 
 export const CONTAINERMAXWIDTH = "1900px";
 export const MOBILEFONTSIZE = "4.444vw";
+export const MOBILEIMAGELISTITEMHEIGHT = "450px"
 
 const GlobalStyles = createGlobalStyle`
 

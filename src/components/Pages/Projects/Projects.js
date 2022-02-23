@@ -7,6 +7,7 @@ import { DataContext } from "../../Containers/Temp/Authenticated";
 import { formatImageList } from "../../../helpers/formatData";
 import { device } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
+import { MOBILEIMAGELISTITEMHEIGHT } from "../../styles/Global";
 
 //General styles constants
 const ROWHEIGHTREPEAT = 50;
@@ -118,22 +119,28 @@ const StyledProjectsGrid = styled(ImageList)`
 	display: grid;
 	grid-gap: ${GRIDSTYLES.general.GRIDGAP}vw;
 	height: auto;
-	grid-template-columns: repeat(
-		${GRIDSTYLES.general.GRIDCOLUMNS.amount},
-		${GRIDSTYLES.general.GRIDCOLUMNS.fraction}fr
-	);
 
 	${({ rowAmounts }) => {
 		return (
 			rowAmounts &&
 			rowAmounts.map(amount => {
 				return `
+
+				&:nth-of-type(${amount.id}) {
+					grid-template-rows: repeat(${amount.amount}, ${MOBILEIMAGELISTITEMHEIGHT});
+				};
+
+
+					@media ${device.mobileL} {
+
 					&:nth-of-type(${amount.id}) {
 						grid-template-rows: repeat(${
 							amount.amount !== 1 ? amount.amount - 1 : amount.amount
 						}, ${GRIDSTYLES.general.ROWHEIGHTREPEAT}vw) 30vw ;
-						
 					};
+
+					}
+
 
 					${
 						amount.amount === 1
@@ -157,46 +164,60 @@ const StyledProjectsGrid = styled(ImageList)`
 		height: auto;
 	}
 
-	&:nth-of-type(odd) {
-		li {
-			width: auto;
-			height: auto;
+	@media ${device.mobileL} {
 
-			${GRIDSTYLES.GRIDONE.ITEMS.map(item => {
-				return `
-					&:nth-of-type(${item.id}) {
-						grid-column: ${item.columnArea};
-						grid-row: ${item.rowArea};
-						${item.height ? `height: ${item.height}` : ""};
-						${item.offset ? `transform: translateY(${item.offset})` : ""};
+		grid-template-columns: repeat(
+			${GRIDSTYLES.general.GRIDCOLUMNS.amount},
+			${GRIDSTYLES.general.GRIDCOLUMNS.fraction}fr
+		);
+	
+		
+
+		&:nth-of-type(odd) {
+			li {
+		
+	
+				${GRIDSTYLES.GRIDONE.ITEMS.map(item => {
+					return `
+						&:nth-of-type(${item.id}) {
+							grid-column: ${item.columnArea};
+							grid-row: ${item.rowArea};
+							${item.height ? `height: ${item.height}` : ""};
+							${item.offset ? `transform: translateY(${item.offset})` : ""};
+							
+						};
+	
 						
-					};
-
-					
-					`;
-			})};
+						`;
+				})};
+			}
+		}
+	
+		&:nth-of-type(even) {
+			li {
+				width: auto;
+				height: auto;
+	
+				${GRIDSTYLES.GRIDTWO.ITEMS.map(item => {
+					return `
+						&:nth-of-type(${item.id}) {
+							grid-column: ${item.columnArea};
+							grid-row: ${item.rowArea};
+							${item.height ? `height: ${item.height}` : ""};
+							${item.offset ? `transform: translateY(${item.offset})` : ""};
+						}
+						`;
+				})};
+			}
+		}
 		}
 	}
-
-	&:nth-of-type(even) {
-		li {
-			width: auto;
-			height: auto;
-
-			${GRIDSTYLES.GRIDTWO.ITEMS.map(item => {
-				return `
-					&:nth-of-type(${item.id}) {
-						grid-column: ${item.columnArea};
-						grid-row: ${item.rowArea};
-						${item.height ? `height: ${item.height}` : ""};
-						${item.offset ? `transform: translateY(${item.offset})` : ""};
-					}
-					`;
-			})};
-		}
-	}
+<<<<<<< HEAD
 	}
 }
+=======
+
+>>>>>>> 40a05f83ff0d4e8f5e4e69ec194ef8dfbe0720a9
 	
 `;
 
