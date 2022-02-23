@@ -212,12 +212,8 @@ const StyledProjectsGrid = styled(ImageList)`
 		}
 		}
 	}
-<<<<<<< HEAD
 	}
 }
-=======
-
->>>>>>> 40a05f83ff0d4e8f5e4e69ec194ef8dfbe0720a9
 	
 `;
 
@@ -245,14 +241,14 @@ function Projects(props) {
 		}
 	}, [posts]);
 
-	useEffect(() => {
-		console.log(rowAmount);
-	}, [rowAmount]);
-
 	return (
 		<Section bg={"light"}>
 			<Container padding={"5vw"} height='auto'>
-				<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} direction="vertical"/>
+				<StyledProjectsGrid
+					listItems={projects}
+					rowAmounts={rowAmount}
+					direction='vertical'
+				/>
 			</Container>
 		</Section>
 	);

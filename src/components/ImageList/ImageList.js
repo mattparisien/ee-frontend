@@ -13,7 +13,7 @@ const StyledImageList = styled.ul`
 	gap ${({ theme }) => theme.components.imageList.gutter.mobile};
 
 	&:not(:first-of-type) {
-		margin-top: ${({theme}) => theme.components.imageList.gutter.mobile};
+		margin-top: ${({ theme }) => theme.components.imageList.gutter.mobile};
 	}
 	
 
@@ -279,7 +279,7 @@ function ImageListItem({ id, title, subtitle, imageSrc, imageAlt }) {
 
 				<Link
 					className='linkable-frame'
-					to={`/posts/${Math.random().toString(36).substr(2, 9)}`}
+					to={`/projects/${id}`}
 					key={Math.random().toString(36).substr(2, 9)}
 				>
 					<div
