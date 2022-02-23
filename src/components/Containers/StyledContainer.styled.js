@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { device } from "../styles/device";
 import { CONTAINERMAXWIDTH } from "../styles/Global";
+import { themes } from "../../helpers/hooks/useAppData";
 
 const verticalGutter = {
 	desktopL: {
@@ -46,10 +47,10 @@ const horizontalGutter = {
 		padding: "9vw",
 	},
 	mobileL: {
-		padding: "4vw",
+		padding: "3vw",
 	},
 	mobileM: {
-		padding: "1.9rem",
+		padding: "4vw",
 	},
 	mobileS: {
 		padding: "3rem",
@@ -132,7 +133,7 @@ const StyledContainer = styled.div`
 										padding-right: ${responsiveGutter["horizontal"][deviceName]["padding"]};
 										`
 												: `
-												padding: 0 ${responsiveGutter["vertical"][deviceName]["padding"]};
+												padding: 0 ${responsiveGutter["horizontal"][deviceName]["padding"]};
 												`
 										}
 											

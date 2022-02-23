@@ -5,7 +5,7 @@ import ImageList from "../../ImageList/ImageList";
 import { useContext } from "react";
 import { DataContext } from "../../Containers/Temp/Authenticated";
 import { formatImageList } from "../../../helpers/formatData";
-import { deviceSize } from "../../styles/device";
+import { device } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
 
 //General styles constants
@@ -112,6 +112,9 @@ const GRIDSTYLES = {
 };
 
 const StyledProjectsGrid = styled(ImageList)`
+
+
+@media ${device.mobileL} {
 	display: grid;
 	grid-gap: ${GRIDSTYLES.general.GRIDGAP}vw;
 	height: auto;
@@ -193,6 +196,8 @@ const StyledProjectsGrid = styled(ImageList)`
 		}
 	}
 	}
+}
+	
 `;
 
 function Projects(props) {
@@ -226,7 +231,7 @@ function Projects(props) {
 	return (
 		<Section bg={"light"}>
 			<Container padding={"5vw"} height='auto'>
-				<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} />
+				<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} direction="vertical"/>
 			</Container>
 		</Section>
 	);

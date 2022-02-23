@@ -29,6 +29,18 @@ export default function useAppData(scrollRef) {
 				},
 			},
 		},
+		components: {
+			container: {
+				gutter: {
+					mobile: "4vw",
+				},
+			},
+			imageList: {
+				gutter: {
+					mobile: "4vw",
+				},
+			},
+		},
 	};
 
 	const [windowWidth, isResized] = useResize();

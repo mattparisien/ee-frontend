@@ -7,9 +7,15 @@ import { device, deviceSize } from "../styles/device";
 const StyledImageList = styled.ul`
 	width: 100%;
 	position: relative;
-	height: 160vw;
+	height: auto;
 	display: flex;
-	margin:
+	flex-direction: column;
+	gap ${({ theme }) => theme.components.imageList.gutter.mobile};
+
+	&:not(:first-of-type) {
+		margin-top: ${({theme}) => theme.components.imageList.gutter.mobile};
+	}
+	
 
 	.ul-frame {
 		width: 100%;
@@ -24,8 +30,8 @@ const StyledImageList = styled.ul`
 
 	li {
 		
-		height: 54vw;
-		width: 40vw;
+		height: 140vw;
+		width: 100%
 		max-width: 795px;
 		max-height: 1000px;
 		border-radius: 0.7vw;
