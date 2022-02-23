@@ -10,7 +10,7 @@ const StyledImageList = styled.ul`
 	height: auto;
 	display: flex;
 	flex-direction: column;
-	gap ${({ theme }) => theme.components.imageList.gutter.mobile};
+	gap: ${({ theme }) => theme.components.imageList.gutter.mobile};
 
 	&:not(:first-of-type) {
 		margin-top: ${({ theme }) => theme.components.imageList.gutter.mobile};
@@ -45,13 +45,17 @@ const StyledImageList = styled.ul`
 			height: 100%;
 			position: relative;
 
-			.linkable-frame {
+			.linkable-frame-desktop {
 				width: 100%;
 				height: 100%;
 				position: absolute;
 				top: 0;
 				left: 0;
-				transform: scale(1.1);
+				
+
+				@media ${device.mobileL} {
+					transform: scale(1.1);
+				}
 
 				.decorative-line {
 					
@@ -131,15 +135,17 @@ const StyledImageList = styled.ul`
 			}
 
 			.featured-work-uoList__image {
-				height: 100%;
+				height: 90%;
 				width: 100%;
-				
 				background-position: center;
 				border-radius: 0.7vw;
 				overflow: hidden;
 				position: relative;
 				
-
+				@media ${device.mobileL} {
+					height: 100%;
+				}
+ 
 
 				img {
 					
@@ -167,17 +173,30 @@ const StyledImageList = styled.ul`
 			}
 
 			.featured-work-uoList__title {
-				height: 100%;
+				height: 10%;
 				width: 100%;
+				bottom: 0;
 				position: absolute;
-				top: 0;
-				left: 0;
+				color: black;
 				display: flex;
-				
 				flex-direction: column;
 				padding: 4vw;
 				transition: 300ms ease;
 				opacity: 1;
+
+				@media ${device.mobileL} {
+					height: 100%;
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					color: ${({ theme }) => theme.colors.dark};
+
+					.title, .subtitle {
+						color: ${({ theme }) => theme.colors.light};
+						font-size: 2.5vw;
+						line-height: 3vw;	
+					}
+				}
 
 				
 				@media ${device.tablet} {
@@ -186,10 +205,9 @@ const StyledImageList = styled.ul`
 				}
 
 				.title, .subtitle {
-					font-size: 2.5vw;
 					
-					line-height: 3vw;
-					color: ${({ theme }) => theme.colors.light};
+					bottom: 0;
+					
 					z-index: 1;
 				}
 
@@ -199,6 +217,7 @@ const StyledImageList = styled.ul`
 				}
 
 				.background {
+					display: none;
 					position: absolute;
 					border-radius: 0.7vw;
 					top: 0;
@@ -208,6 +227,10 @@ const StyledImageList = styled.ul`
 					width: 100%;
 					height: 100%;
 					transform: scale(-0.91);
+
+					@media ${device.mobileL} {
+						display: block;
+					}
 				}
 			}
 		}
@@ -278,7 +301,7 @@ function ImageListItem({ id, title, subtitle, imageSrc, imageAlt }) {
 				</div>
 
 				<Link
-					className='linkable-frame'
+					className='linkable-frame-desktop'
 					to={`/projects/${id}`}
 					key={Math.random().toString(36).substr(2, 9)}
 				>
