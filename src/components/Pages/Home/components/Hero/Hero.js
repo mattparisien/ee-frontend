@@ -33,7 +33,7 @@ export const StyledHero = styled.div`
 				height: 28vw;
 				position: absolute;
 				transform: translate(-50%, -50%);
-				overflow: hidden;
+				
 
 				.drawnLogo__inner-relative {
 					position: relative;

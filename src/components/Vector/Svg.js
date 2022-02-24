@@ -2,7 +2,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import $ from "jquery";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import { StyledSvg } from "./StyledSvg";
 import { StyledDrawnLogo } from "./styles";
@@ -800,6 +800,49 @@ export function DrawingBlue() {
 }
 
 export function DrawnLogo(props) {
+	const vibrationOuter = useRef(null);
+	const vibrationCenter = useRef(null);
+	const vibrationInner = useRef(null);
+	const masterTimeline = useRef(gsap.timeline({}));
+	const outerTimeline = useRef(gsap.timeline());
+	const centerTimeline = useRef(gsap.timeline());
+	const innerTimeline = useRef(gsap.timeline());
+
+	useEffect(() => {
+		if (vibrationOuter && vibrationCenter && vibrationInner) {
+			const outer = () => {
+				outerTimeline.current.to(vibrationOuter.current, {
+					x: "0",
+					duration: 2,
+					opacity: 0,
+				});
+				return outerTimeline.current;
+			};
+
+			const center = () => {
+				centerTimeline.current.to(vibrationCenter.current, {
+					x: "0",
+					duration: 2,
+					opacity: 0,
+					delay: 0.5,
+				});
+
+				return centerTimeline.current;
+			};
+
+			const inner = () => {
+				innerTimeline.current.to(vibrationInner.current, {
+					x: "0",
+					duration: 2,
+					opacity: 0,
+					delay: 1,
+				});
+				return innerTimeline.current;
+			};
+			masterTimeline.current.add(outer()).add(center()).add(inner());
+		}
+	}, [vibrationOuter, vibrationCenter, vibrationInner]);
+
 	return (
 		<StyledDrawnLogo
 			animateSoundWaves={props.animateSoundWaves}
@@ -821,16 +864,19 @@ export function DrawnLogo(props) {
 					className='vibration vibration-outer'
 					d='M-62.75,426.45c5-.11,7.46,3.11,5.64,6.41a107.9,107.9,0,0,1-8.3,12.24c-10.92,14.61-14.39,31.26-12.64,49,1,9.85,6.91,17.65,13.43,24.86,1.76,2,3.77,3.87,4.85,6.18.82,1.74,1.16,4.78.18,6s-4.1,1.58-5.89,1c-13-4-21.44-13.07-26.22-25.48a66.83,66.83,0,0,1-3.73-35.29A54.43,54.43,0,0,1-81,442.3c4-4.25,8-8.44,12.34-12.34C-66.76,428.2-64.1,427.22-62.75,426.45Z'
 					transform='translate(96.32 -24.01)'
+					ref={vibrationOuter}
 				/>
 				<path
 					className='vibration vibration-center'
 					d='M-29.34,438.88c4.32,0,5.65,2.07,4.35,4.59-1,1.86-2.05,3.64-3.17,5.41-6.79,10.79-9.4,22.8-10.55,35.3-.84,9.2,3.19,16.61,8.09,23.8a47.49,47.49,0,0,1,3.17,5c1,2,1.9,4.14-.12,6.07a4.83,4.83,0,0,1-6.39.6,90.91,90.91,0,0,1-11.58-9.14c-8.69-8.62-9.9-19.69-8.36-31C-52,465.46-46.33,452.89-36,442.87-33.89,440.84-30.87,439.77-29.34,438.88Z'
 					transform='translate(96.32 -24.01)'
+					ref={vibrationCenter}
 				/>
 				<path
 					className='vibration vibration-inner'
 					d='M-22.25,474.43c0-9.88,9-22.19,17.65-23.86,2.16-.41,5.31-.42,6.66.83,2.18,2,1.35,5.16.2,8A168,168,0,0,0-4,476.71c-2.49,8.84-1,16.32,7.32,21.18,1.9,1.11,4.08,3,2.72,5.28a6.67,6.67,0,0,1-5.32,2.69c-3.14-.35-6.72-1.19-9.1-3.09C-17.36,495.59-22.31,486.16-22.25,474.43Z'
 					transform='translate(96.32 -24.01)'
+					ref={vibrationInner}
 				/>
 				<path
 					className='eye'
