@@ -5,81 +5,216 @@ import ImageList from "../../ImageList/ImageList";
 import { useContext } from "react";
 import { DataContext } from "../../Containers/Temp/Authenticated";
 import { formatImageList } from "../../../helpers/formatData";
-import { deviceSize } from "../../styles/device";
+import { device } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
-import { getTabId } from "@mui/base";
+import { MOBILEIMAGELISTITEMHEIGHT } from "../../styles/Global";
 
-const GRIDOFFSET = `8`;
-const GRIDGAP = "4";
-const ROWHEIGHT = "50";
-const ULTRANSLATE = (0.6 * ROWHEIGHT - 10 - GRIDGAP);
+//General styles constants
+const ROWHEIGHTREPEAT = 50;
+const ROWHEIGHTLAST = 30;
+const GRIDOFFSET = 8;
+const GRIDGAP = 4;
+
+const GRIDCOLUMNS = {
+	amount: 12,
+	fraction: 1,
+};
+//Grid rows determined by amount of items in each array
+
+//Grid one styles
+const GRIDONE = {
+	ITEMS: [
+		{
+			id: 1,
+			columnArea: "7/13",
+			rowArea: "1/2",
+			offset: null,
+			height: null,
+		},
+		{
+			id: 2,
+			columnArea: "1/7",
+			rowArea: "2/3",
+			offset: `-${GRIDOFFSET}vw`,
+			height: null,
+		},
+		{
+			id: 3,
+			columnArea: "7/13",
+			rowArea: "3/4",
+			offset: `-${GRIDOFFSET * 2}vw`,
+			height: "50%",
+		},
+		{
+			id: 4,
+			columnArea: "2/8",
+			rowArea: "3/4",
+			offset: null,
+		},
+		{
+			id: 5,
+			columnArea: "7/13",
+			rowArea: "4/5",
+			offset: null,
+			height: null,
+		},
+	],
+};
+const GRIDTWO = {
+	ITEMS: [
+		{
+			id: 1,
+			columnArea: "1/7",
+			rowArea: "1/2",
+			offset: null,
+			height: null,
+		},
+		{
+			id: 2,
+			columnArea: "7/13",
+			rowArea: "2/3",
+			offset: `-${GRIDOFFSET}vw`,
+			height: null,
+		},
+		{
+			id: 3,
+			columnArea: "1/7",
+			rowArea: "3/4",
+			offset: `-${GRIDOFFSET * 2}vw`,
+			height: "50%",
+		},
+		{
+			id: 4,
+			columnArea: "6/13",
+			rowArea: "3/4",
+			offset: null,
+		},
+		{
+			id: 5,
+			columnArea: "1/7",
+			rowArea: "4/5",
+			offset: null,
+			height: null,
+		},
+	],
+};
+
+const GRIDSTYLES = {
+	general: {
+		GRIDOFFSET,
+		GRIDGAP,
+		ROWHEIGHTREPEAT,
+		ROWHEIGHTLAST,
+
+		GRIDCOLUMNS,
+	},
+	GRIDONE,
+	GRIDTWO,
+};
 
 const StyledProjectsGrid = styled(ImageList)`
+
+
+@media ${device.mobileL} {
 	display: grid;
-	grid-gap: ${GRIDGAP}vw;
+	grid-gap: ${GRIDSTYLES.general.GRIDGAP}vw;
 	height: auto;
-	grid-template-columns: repeat(12, 1fr);
 
 	${({ rowAmounts }) => {
 		return (
 			rowAmounts &&
 			rowAmounts.map(amount => {
 				return `
+
+				&:nth-of-type(${amount.id}) {
+					grid-template-rows: repeat(${amount.amount}, ${MOBILEIMAGELISTITEMHEIGHT});
+				};
+
+
+					@media ${device.mobileL} {
+
 					&:nth-of-type(${amount.id}) {
-						grid-template-rows: repeat(${amount.amount}, ${ROWHEIGHT}vw);
-						
+						grid-template-rows: repeat(${
+							amount.amount !== 1 ? amount.amount - 1 : amount.amount
+						}, ${GRIDSTYLES.general.ROWHEIGHTREPEAT}vw) 30vw ;
+					};
+
 					}
+
+
+					${
+						amount.amount === 1
+							? `
+				&:nth-of-type(${amount.id}) {
+					li:nth-of-type(2) {
+						margin-bottom: -${GRIDOFFSET}vw;
+					}
+				}
+					`
+							: ""
+					};
 					
 					`;
 			})
 		);
 	}};
 
-	:not(:first-of-type) {
-		transform: translateY(-${ULTRANSLATE}vw);
-	}
-
-	@media only screen and (max-width: ${deviceSize.mobileL}px) {
-		grid-column: 1/13 !important;
-		grid-row: repeat(10, 200px);
-		transform: none !important;
-	}
-
 	li {
 		width: auto;
 		height: auto;
+	}
 
-		&:nth-of-type(1) {
-			grid-column: 7/13;
-			grid-row: 1/2;
+	@media ${device.mobileL} {
+
+		grid-template-columns: repeat(
+			${GRIDSTYLES.general.GRIDCOLUMNS.amount},
+			${GRIDSTYLES.general.GRIDCOLUMNS.fraction}fr
+		);
+	
+		
+
+		&:nth-of-type(odd) {
+			li {
+		
+	
+				${GRIDSTYLES.GRIDONE.ITEMS.map(item => {
+					return `
+						&:nth-of-type(${item.id}) {
+							grid-column: ${item.columnArea};
+							grid-row: ${item.rowArea};
+							${item.height ? `height: ${item.height}` : ""};
+							${item.offset ? `transform: translateY(${item.offset})` : ""};
+							
+						};
+	
+						
+						`;
+				})};
+			}
 		}
-
-		&:nth-of-type(2) {
-			grid-column: 1/7;
-			grid-row: 2/3;
-			transform: translateY(-${GRIDOFFSET}vw);
+	
+		&:nth-of-type(even) {
+			li {
+				width: auto;
+				height: auto;
+	
+				${GRIDSTYLES.GRIDTWO.ITEMS.map(item => {
+					return `
+						&:nth-of-type(${item.id}) {
+							grid-column: ${item.columnArea};
+							grid-row: ${item.rowArea};
+							${item.height ? `height: ${item.height}` : ""};
+							${item.offset ? `transform: translateY(${item.offset})` : ""};
+						}
+						`;
+				})};
+			}
 		}
-
-		&:nth-of-type(3) {
-			grid-column: 7/13;
-			grid-row: 3/4;
-			height: 50%;
-			transform: translateY(-${GRIDOFFSET * 2}vw);
-			z-index: 3;
-		}
-
-		&:nth-of-type(4) {
-			grid-column: 2/8;
-			grid-row: 3/4;
-			transform: translateY(-100%});
-		}
-
-		&:nth-of-type(5) {
-			height: 60%;
-			grid-column: 7/13;
-			grid-row: 4/5;
 		}
 	}
+	}
+}
+	
 `;
 
 function Projects(props) {
@@ -108,11 +243,13 @@ function Projects(props) {
 
 	return (
 		<Section bg={"light"}>
-			<Section bg={"light"}>
-				<Container padding={"5vw"} height='auto'>
-					<StyledProjectsGrid listItems={projects} rowAmounts={rowAmount} />
-				</Container>
-			</Section>
+			<Container padding={"5vw"} height='auto'>
+				<StyledProjectsGrid
+					listItems={projects}
+					rowAmounts={rowAmount}
+					direction='vertical'
+				/>
+			</Container>
 		</Section>
 	);
 }

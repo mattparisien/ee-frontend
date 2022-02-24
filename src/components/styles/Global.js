@@ -3,6 +3,7 @@ import { device, deviceSize } from "./device";
 
 export const CONTAINERMAXWIDTH = "1900px";
 export const MOBILEFONTSIZE = "4.444vw";
+export const MOBILEIMAGELISTITEMHEIGHT = "450px"
 
 const GlobalStyles = createGlobalStyle`
 
@@ -18,11 +19,7 @@ html {
 }
 
 
-#root, .has-scroll-smooth [data-scroll-container] {	
-	${({ isScrollLock }) => {
-		return isScrollLock && `overflow: hidden`;
-	}}
-}
+
 
 html,
 body,
@@ -33,10 +30,11 @@ body,
 	line-height: 1.6;
 	font-family: "Kobe";
 	
+	
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: none;
-	cursor: ${({ isTransitioning }) => isTransitioning && "wait"};
+	
 }
 
 .scroll-wrapper {

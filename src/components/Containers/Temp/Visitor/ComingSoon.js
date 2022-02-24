@@ -4,7 +4,7 @@ import Button from "../../../Button/Button";
 function ComingSoon() {
 	return (
 		<>
-			<div>Coming Soon</div>
+			<div className="coming-soon-text">Coming Soon</div>
 			<Button variant='contained' color='dark'>
 				<a
 					href='mailto:sammy@eyesandearsagency.com'
