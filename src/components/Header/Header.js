@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "styled-components";
 import useResize from "../../helpers/hooks/useResize";
 import useScroll from "../../helpers/hooks/useScrollDir";
 import { TextLogo } from "../index";
-import MobileNav from "./MobileNav";
-import {
-	StyledDynamicWrapper,
-	StyledHeader,
-	StyledInnerLayout,
-} from "./styles";
+import { StyledHeader, StyledInnerLayout } from "./styles";
+import Navigation from "./Navigation/Navigation";
+import { Container } from "../index";
 
 export default function Header(props) {
 	const { menuState, toggleMenu, appRefs, addToRefs, headerColor } = props;
@@ -53,29 +49,14 @@ export default function Header(props) {
 			ref={addToRefs}
 			id='site-header'
 		>
-			<StyledDynamicWrapper
-				className='header-dynamic-wrapper'
-				isScrollingDown={scrollDirection === "down"}
-			>
-				<StyledInnerLayout
-					headerColor={headerColor}
-					className='header-inner-layout'
-					menuIsActive={menuState}
-				>
-					<div className='logo-wrapper -absolute-center'>
-						<a href='/'>
-							<TextLogo logoRef={addToRefs} />
-						</a>
-					</div>
-
-					<MobileNav
-						onClick={toggleMenu}
-						menuState={menuState}
-						linkRefs={props.linkRefs}
-						addToRefs={addToRefs}
-					/>
-				</StyledInnerLayout>
-			</StyledDynamicWrapper>
+			<Container height='100%'>
+				<div className='logo-wrapper -absolute-center'>
+					<a href='/'>
+						<TextLogo logoRef={addToRefs} />
+					</a>
+				</div>
+				<Navigation />
+			</Container>
 		</StyledHeader>
 	);
 }

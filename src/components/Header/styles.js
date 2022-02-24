@@ -61,23 +61,6 @@ export const StyledHeader = styled.div`
 		align-items: center;
 		justify-content: flex-end;
 		align-self: flex-end;
-
-		ul {
-			li {
-				display: inline;
-
-				&:not(:last-of-type) {
-					padding-right: 8rem;
-				}
-
-				a {
-					position: relative;
-					text-decoration: none;
-					color: $dark;
-					font-size: 1.4rem;
-				}
-			}
-		}
 	}
 
 	button {
