@@ -803,43 +803,112 @@ export function DrawnLogo(props) {
 	const vibrationOuter = useRef(null);
 	const vibrationCenter = useRef(null);
 	const vibrationInner = useRef(null);
-	const masterTimeline = useRef(gsap.timeline({}));
+	const masterTimelineOne = useRef(
+		gsap.timeline({
+			onComplete: () => masterTimelineOne.current.restart(),
+		})
+	);
+
+	const masterTimelineTwo = useRef(
+		gsap.timeline({
+			onComplete: () => masterTimelineTwo.current.progress(0).play(),
+			paused: true,
+		})
+	);
 	const outerTimeline = useRef(gsap.timeline());
 	const centerTimeline = useRef(gsap.timeline());
 	const innerTimeline = useRef(gsap.timeline());
 
 	useEffect(() => {
 		if (vibrationOuter && vibrationCenter && vibrationInner) {
+			const duration = 2;
+
 			const outer = () => {
-				outerTimeline.current.to(vibrationOuter.current, {
-					x: "0",
-					duration: 2,
-					opacity: 0,
-				});
+				outerTimeline.current
+					.to(vibrationOuter.current, {
+						x: "0",
+						duration: duration,
+						ease: "linear",
+					})
+					.to(
+						vibrationOuter.current,
+						{
+							opacity: 1,
+						},
+						duration / 2
+					)
+					.to(
+						vibrationOuter.current,
+						{
+							opacity: 0,
+						},
+						duration
+					);
 				return outerTimeline.current;
 			};
 
 			const center = () => {
-				centerTimeline.current.to(vibrationCenter.current, {
-					x: "0",
-					duration: 2,
-					opacity: 0,
-					delay: 0.5,
-				});
+				centerTimeline.current
+					.to(vibrationCenter.current, {
+						x: "0",
+						duration: duration,
+						ease: "linear",
+					})
+					.to(
+						vibrationCenter.current,
+						{
+							opacity: 1,
+						},
+						duration / 2
+					)
+					.to(
+						vibrationCenter.current,
+						{
+							opacity: 0,
+						},
+						duration
+					);
 
 				return centerTimeline.current;
 			};
 
 			const inner = () => {
-				innerTimeline.current.to(vibrationInner.current, {
-					x: "0",
-					duration: 2,
-					opacity: 0,
-					delay: 1,
-				});
+				innerTimeline.current
+					.to(vibrationInner.current, {
+						x: "0",
+						duration: duration,
+						ease: "linear",
+					})
+					.to(
+						vibrationInner.current,
+						{
+							opacity: 1,
+						},
+						duration / 2
+					)
+					.to(
+						vibrationInner.current,
+						{
+							opacity: 0,
+						},
+						duration
+					);
 				return innerTimeline.current;
 			};
-			masterTimeline.current.add(outer()).add(center()).add(inner());
+			masterTimelineOne.current
+				.set(vibrationInner.current, { opacity: 0 })
+				.set(vibrationCenter.current, { opacity: 0 })
+				.set(vibrationOuter.current, { opacity: 0 })
+				.add(outer())
+				.add(center(), 0.4)
+				.add(inner(), 0.8)
+				.timeScale(2);
+
+			// masterTimelineTwo.current
+			// 	.add(outer())
+			// 	.add(center(), 0.4)
+			// 	.add(inner(), 0.8)
+			// 	.timeScale(2);
 		}
 	}, [vibrationOuter, vibrationCenter, vibrationInner]);
 
