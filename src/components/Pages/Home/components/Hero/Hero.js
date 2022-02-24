@@ -1,11 +1,11 @@
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import useSplit from "../../../../helpers/hooks/useSplit";
-import { Container, DrawnLogo } from "../../../index";
-import { device } from "../../../styles/device";
-
-
+import useSplit from "../../../../../helpers/hooks/useSplit";
+import { Container, DrawnLogo } from "../../../../index";
+import { device } from "../../../../styles/device";
+import { calculateWordOffsets } from "./helpers/helpers";
+import useResize from "../../../../../helpers/hooks/useResize";
 
 export const StyledHero = styled.div`
 	.hero-content {
@@ -16,8 +16,6 @@ export const StyledHero = styled.div`
 		padding: inherit;
 		margin: 0 auto;
 		font-size: 25vw;
-
-	
 
 		letter-spacing: -0.8vw;
 		line-height: 20vw;
@@ -116,8 +114,7 @@ function Hero(props) {
 		type: "chars",
 		charsClass: "char",
 	});
-
-
+	const [windowWidth] = useResize();
 	const containerRef = useRef(null);
 	const logoRef = useRef(null);
 
@@ -133,84 +130,70 @@ function Hero(props) {
 
 	useEffect(() => {
 		if (wordRefs.current.length > 2 && containerRef.current) {
-			const containerWidth = containerRef.current.offsetWidth;
-
-			const containerHeight = containerRef.current.offsetHeight;
-
-			wordRefs.current.forEach((word, id) => {
-				const wordWidth = word.offsetWidth;
-				const wordHeight = word.offsetHeight;
-				setDefaultOffsets(prev => ({
-					...prev,
-					[id]: {
-						left: containerWidth / 2 - wordWidth / 2,
-						top: containerHeight / 2 - wordHeight / 2,
-					},
-				}));
-			});
+			calculateWordOffsets(containerRef, wordRefs, setDefaultOffsets);
 		}
 
-		if (isSplit && wordRefs.current.length > 2 && logoRef.current) {
-			introAnimation.current
-				.fromTo(
-					chars,
-					{
-						y: "100%",
-					},
-					{
-						y: "0",
-						duration: 3,
-						ease: "expo.inOut",
-						stagger: 0.05,
-					}
-				)
-				.to(
-					wordRefs.current[0],
-					{
-						left: "-120%",
-						duration: 2,
-						ease: "expo.inOut",
-					},
-					3
-				)
-				.to(
-					wordRefs.current[1],
-					{
-						right: "-120%",
-						duration: 2,
-						ease: "expo.inOut",
-					},
-					3
-				)
-				.to(
-					wordRefs.current[2],
-					{
-						left: "-120%",
-						duration: 2,
-						ease: "expo.inOut",
-					},
-					3
-				)
-				.to(
-					logoRef.current,
-					{
-						right: 0,
-						duration: 1,
-						ease: "expo.inOut",
-					},
-					3.5
-				)
-				.set(wordRefs.current[0], {
-					display: "none",
-				})
-				.set(wordRefs.current[1], {
-					display: "none",
-				})
-				.set(wordRefs.current[2], {
-					display: "none",
-				});
-		}
-	}, [isSplit, wordRefs]);
+		// if (isSplit && wordRefs.current.length > 2 && logoRef.current) {
+		// 	introAnimation.current
+		// 		.fromTo(
+		// 			chars,
+		// 			{
+		// 				y: "100%",
+		// 			},
+		// 			{
+		// 				y: "0",
+		// 				duration: 3,
+		// 				ease: "expo.inOut",
+		// 				stagger: 0.05,
+		// 			}
+		// 		)
+		// 		.to(
+		// 			wordRefs.current[0],
+		// 			{
+		// 				left: "-120%",
+		// 				duration: 2,
+		// 				ease: "expo.inOut",
+		// 			},
+		// 			3
+		// 		)
+		// 		.to(
+		// 			wordRefs.current[1],
+		// 			{
+		// 				right: "-120%",
+		// 				duration: 2,
+		// 				ease: "expo.inOut",
+		// 			},
+		// 			3
+		// 		)
+		// 		.to(
+		// 			wordRefs.current[2],
+		// 			{
+		// 				left: "-120%",
+		// 				duration: 2,
+		// 				ease: "expo.inOut",
+		// 			},
+		// 			3
+		// 		)
+		// 		.to(
+		// 			logoRef.current,
+		// 			{
+		// 				right: 0,
+		// 				duration: 1,
+		// 				ease: "expo.inOut",
+		// 			},
+		// 			3.5
+		// 		)
+		// 		.set(wordRefs.current[0], {
+		// 			display: "none",
+		// 		})
+		// 		.set(wordRefs.current[1], {
+		// 			display: "none",
+		// 		})
+		// 		.set(wordRefs.current[2], {
+		// 			display: "none",
+		// 		});
+		// }
+	}, [isSplit, wordRefs, windowWidth]);
 	return (
 		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
 			<Container padding='regular' height='100vh'>

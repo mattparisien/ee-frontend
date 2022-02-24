@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Section from "../../Containers/Section";
 import About from "./components/About";
 import FeaturedWork from "./components/FeaturedWork";
-import Hero from "./components/Hero";
+import Hero from "./components/Hero/Hero";
 import How from "./components/How";
 
 function Home(props) {
@@ -30,12 +30,12 @@ function Home(props) {
 					page: "home",
 					backgroundColor: "light",
 				},
-				{
-					id: 4,
-					name: "featuredWork",
-					page: "home",
-					backgroundColor: "light",
-				},
+				// {
+				// 	id: 4,
+				// 	name: "featuredWork",
+				// 	page: "home",
+				// 	backgroundColor: "light",
+				// },
 			],
 		},
 	};
@@ -44,7 +44,7 @@ function Home(props) {
 		hero: Hero,
 		about: About,
 		how: How,
-		featuredWork: FeaturedWork,
+		// featuredWork: FeaturedWork,
 	};
 
 	return (

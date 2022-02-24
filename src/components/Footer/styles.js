@@ -135,13 +135,6 @@ export const StyledFooter = styled.footer`
 
 	};
 
-	.footer-navList-wrapper {
-		position: absolute;
-		bottom: 0;
-		padding: inherit;
-		margin-bottom: 2rem;
-		
-	}
 
 	.link-list {
 		color: ${({ theme }) => theme.colors.light};
@@ -166,9 +159,15 @@ export const StyledContactFooterInner = styled.div`
 
 export const StyledFooterBottom = styled.div`
 	color: ${({ theme }) => theme.colors.light};
+	position: absolute;
+	bottom: 0;
+	left: 0;
 	display: flex;
 	align-items: center;
 	width: 100%;
+	padding-left: inherit;
+	padding-right: inherit;
+	padding-bottom: inherit;
 
 	.footer-brand-name {
 		width: 13rem;

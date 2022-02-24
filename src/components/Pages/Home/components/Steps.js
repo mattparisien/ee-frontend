@@ -67,10 +67,10 @@ function Steps() {
 				itemInView={itemInView}
 			>
 				{steps && renderSteps()}
-				<Notes addToRefs={addToRefs} scrollTrigger={noteContainerRef.current} />
-				<div className='drawings-wrapper'>
+				{/* <Notes addToRefs={addToRefs} scrollTrigger={noteContainerRef.current} /> */}
+				{/* <div className='drawings-wrapper'>
 					<Drawings />
-				</div>
+				</div> */}
 			</Grid>
 		</Container>
 	);

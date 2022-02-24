@@ -15,7 +15,6 @@ export const StyledHeader = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding: 2rem 4rem;
 
 	@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
 		padding: 1.8rem !important;
