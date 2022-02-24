@@ -4,21 +4,17 @@ import styled from "styled-components";
 import useSplit from "../../../../../helpers/hooks/useSplit";
 import { Container, DrawnLogo } from "../../../../index";
 import { device } from "../../../../styles/device";
-import { calculateWordOffsets } from "./helpers/helpers";
+import { calculateWordOffsets, animateIntro } from "./helpers/helpers";
 import useResize from "../../../../../helpers/hooks/useResize";
 
 export const StyledHero = styled.div`
 	.hero-content {
-		height: 60vw;
+		height: 800px;
 		max-height: 800px;
 		font-family: Kobe Bold;
 		width: 100%;
 		padding: inherit;
 		margin: 0 auto;
-		font-size: 25vw;
-
-		letter-spacing: -0.8vw;
-		line-height: 20vw;
 		position: absolute;
 		left: 50%;
 		top: 50%;
@@ -28,6 +24,7 @@ export const StyledHero = styled.div`
 			position: relative;
 			width: 100%;
 			height: 100%;
+			
 
 			.drawnLogo-wrapper-overflowHidden {
 				top: 50%;
@@ -57,19 +54,24 @@ export const StyledHero = styled.div`
 				}
 			}
 
+			.hero-word {
+				letter-spacing: -0.8vw;
+				line-height: 20vw;
+				font-size: 20vw;
+				position: absolute;
+				overflow: hidden;
+			}
+
 			@media ${device.laptop} {
 				.drawnLogo {
 					width: 300px;
 				}
 
 				.hero-word {
-					font-size: 250px;
+					font-size: 200px;
+					line-height: 200px;
+					letter-spacing: -9px;
 				}
-			}
-
-			.hero-word {
-				position: absolute;
-				overflow: hidden;
 			}
 
 			.hero-word-social {
@@ -114,6 +116,7 @@ function Hero(props) {
 		type: "chars",
 		charsClass: "char",
 	});
+	const [defaultOffsets, setDefaultOffsets] = useState({});
 	const [windowWidth] = useResize();
 	const containerRef = useRef(null);
 	const logoRef = useRef(null);
@@ -124,8 +127,6 @@ function Hero(props) {
 		}
 	};
 
-	const [defaultOffsets, setDefaultOffsets] = useState({});
-
 	const introAnimation = useRef(gsap.timeline());
 
 	useEffect(() => {
@@ -133,71 +134,15 @@ function Hero(props) {
 			calculateWordOffsets(containerRef, wordRefs, setDefaultOffsets);
 		}
 
-		// if (isSplit && wordRefs.current.length > 2 && logoRef.current) {
-		// 	introAnimation.current
-		// 		.fromTo(
-		// 			chars,
-		// 			{
-		// 				y: "100%",
-		// 			},
-		// 			{
-		// 				y: "0",
-		// 				duration: 3,
-		// 				ease: "expo.inOut",
-		// 				stagger: 0.05,
-		// 			}
-		// 		)
-		// 		.to(
-		// 			wordRefs.current[0],
-		// 			{
-		// 				left: "-120%",
-		// 				duration: 2,
-		// 				ease: "expo.inOut",
-		// 			},
-		// 			3
-		// 		)
-		// 		.to(
-		// 			wordRefs.current[1],
-		// 			{
-		// 				right: "-120%",
-		// 				duration: 2,
-		// 				ease: "expo.inOut",
-		// 			},
-		// 			3
-		// 		)
-		// 		.to(
-		// 			wordRefs.current[2],
-		// 			{
-		// 				left: "-120%",
-		// 				duration: 2,
-		// 				ease: "expo.inOut",
-		// 			},
-		// 			3
-		// 		)
-		// 		.to(
-		// 			logoRef.current,
-		// 			{
-		// 				right: 0,
-		// 				duration: 1,
-		// 				ease: "expo.inOut",
-		// 			},
-		// 			3.5
-		// 		)
-		// 		.set(wordRefs.current[0], {
-		// 			display: "none",
-		// 		})
-		// 		.set(wordRefs.current[1], {
-		// 			display: "none",
-		// 		})
-		// 		.set(wordRefs.current[2], {
-		// 			display: "none",
-		// 		});
-		// }
+		if (isSplit && wordRefs.current.length > 2 && logoRef.current) {
+			animateIntro(introAnimation, wordRefs, chars, logoRef);
+		}
 	}, [isSplit, wordRefs, windowWidth]);
+
 	return (
 		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
 			<Container padding='regular' height='100vh'>
-				<div className='Tilt-inner'>
+				
 					<div className='hero-content'>
 						<div className='hero-content__inner' ref={containerRef}>
 							<div className='drawnLogo-wrapper-overflowHidden'>
@@ -219,7 +164,7 @@ function Hero(props) {
 							</div>
 						</div>
 					</div>
-				</div>
+				
 			</Container>
 		</StyledHero>
 	);

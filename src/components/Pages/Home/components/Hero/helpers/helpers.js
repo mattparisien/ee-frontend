@@ -18,3 +18,55 @@ export const calculateWordOffsets = (
 		}));
 	});
 };
+
+export const animateIntro = (timeline, wordRefs, chars, logoRef) => {
+	timeline.current
+		.fromTo(
+			chars,
+			{
+				y: "100%",
+			},
+			{
+				y: "0",
+				duration: 3,
+				ease: "expo.inOut",
+				stagger: 0.05,
+			}
+		)
+		.to(
+			wordRefs.current[0],
+			{
+				left: "0",
+				duration: 2,
+				ease: "expo.inOut",
+			},
+			3
+		)
+		.to(
+			wordRefs.current[1],
+			{
+				right: "0",
+				duration: 2,
+				ease: "expo.inOut",
+			},
+			3
+		)
+		.to(
+			wordRefs.current[2],
+			{
+				left: "0",
+				duration: 2,
+				ease: "expo.inOut",
+			},
+			3
+		)
+		.to(
+			logoRef.current,
+			{
+				right: 0,
+				duration: 1,
+				ease: "expo.inOut",
+			},
+			3.5
+		);
+};
