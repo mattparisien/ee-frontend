@@ -804,14 +804,11 @@ export function DrawnLogo(props) {
 	const vibrationCenter = useRef(null);
 	const vibrationInner = useRef(null);
 	const masterTimelineOne = useRef(
-		gsap.timeline({
-			onComplete: () => masterTimelineOne.current.restart(),
-		})
+		gsap.timeline({ onComplete: () => masterTimelineOne.current.restart() })
 	);
 
 	const masterTimelineTwo = useRef(
 		gsap.timeline({
-			onComplete: () => masterTimelineTwo.current.progress(0).play(),
 			paused: true,
 		})
 	);
