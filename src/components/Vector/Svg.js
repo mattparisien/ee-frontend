@@ -843,6 +843,15 @@ export function DrawnLogo(props) {
 							opacity: 0,
 						},
 						duration
+					)
+					.to(
+						vibrationOuter.current,
+						{
+							transformOrigin: "center",
+							scale: 1.5,
+							duration: duration,
+						},
+						0
 					);
 				return outerTimeline.current;
 			};
@@ -867,6 +876,15 @@ export function DrawnLogo(props) {
 							opacity: 0,
 						},
 						duration
+					)
+					.to(
+						vibrationCenter.current,
+						{
+							transformOrigin: "center",
+							scale: 1.5,
+							duration: duration,
+						},
+						0
 					);
 
 				return centerTimeline.current;
@@ -892,6 +910,15 @@ export function DrawnLogo(props) {
 							opacity: 0,
 						},
 						duration
+					)
+					.to(
+						vibrationInner.current,
+						{
+							transformOrigin: "center",
+							scale: 1.5,
+							duration: duration,
+						},
+						0
 					);
 				return innerTimeline.current;
 			};
