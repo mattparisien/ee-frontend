@@ -31,7 +31,7 @@ const StyledImageList = styled.ul`
 	li {
 		
 		height: 140vw;
-		width: 100%
+		width: 100%;
 		max-width: 795px;
 		max-height: 1000px;
 		border-radius: 0.7vw;
@@ -207,13 +207,15 @@ const StyledImageList = styled.ul`
 				.title, .subtitle {
 					
 					bottom: 0;
-					font-size: ${({theme}) => theme.typography.paragraph.scale.mobile.fontSize}vw;
+					
 					z-index: 1;
+
+					${({ theme }) => theme.typography.setSize(2)};
 				}
 
 				.title {
 					font-family: 'Kobe Bold';
-					text-transform: uppercase;
+					
 				}
 
 				.background {

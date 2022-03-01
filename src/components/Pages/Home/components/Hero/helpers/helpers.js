@@ -19,7 +19,13 @@ export const calculateWordOffsets = (
 	});
 };
 
-export const animateIntro = (timeline, wordRefs, chars, logoRef) => {
+export const animateIntro = (
+	timeline,
+	wordRefs,
+	chars,
+	logoRef,
+	overlayRef
+) => {
 	timeline.current
 		.fromTo(
 			chars,
@@ -61,9 +67,9 @@ export const animateIntro = (timeline, wordRefs, chars, logoRef) => {
 			3
 		)
 		.to(
-			logoRef.current,
+			overlayRef.current,
 			{
-				right: 0,
+				x: "110%",
 				duration: 1,
 				ease: "expo.inOut",
 			},

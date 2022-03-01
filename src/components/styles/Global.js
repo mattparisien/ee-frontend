@@ -3,19 +3,20 @@ import { device, deviceSize } from "./device";
 
 export const CONTAINERMAXWIDTH = "1900px";
 export const MOBILEFONTSIZE = "4.444vw";
-export const MOBILEIMAGELISTITEMHEIGHT = "450px"
+export const MOBILEIMAGELISTITEMHEIGHT = "450px";
 
 const GlobalStyles = createGlobalStyle`
 
 
 * {
-	box-sizing: border-box;
+	
 	margin: 0;
 	padding: 0;
 }
 
 html {
 	font-family: 'Kobe';
+	min-height: 100vh;
 }
 
 
@@ -31,25 +32,30 @@ body,
 	font-family: "Kobe";
 	
 	
+	
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: none;
 	
 }
 
-.scroll-wrapper {
-	min-height: 100vh;
-}
+
 
 body {
   overflow-x: hidden;
+	height: 100%;
+	min-height: 100vh;
+	
+	top: 0;
+	height: 100%;
+	
 }
 
 
-
-main {
-	height: 
+.temporary-authenticated-wrapper, .scroll-wrapper {
+	height: 100%;
 }
+
 
 
 

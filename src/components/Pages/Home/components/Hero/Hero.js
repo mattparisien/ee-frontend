@@ -24,21 +24,31 @@ export const StyledHero = styled.div`
 			position: relative;
 			width: 100%;
 			height: 100%;
-			
 
 			.drawnLogo-wrapper-overflowHidden {
 				top: 50%;
 				left: 50%;
 				width: 20vw;
-				height: 28vw;
+				height: 30vw;
+				max-width: 300px;
+				
 				position: absolute;
 				transform: translate(-50%, -50%);
-				
 
 				.drawnLogo__inner-relative {
 					position: relative;
 					height: 100%;
 					width: 100%;
+
+					.drawnLogo__overlay {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 150%;
+						height: 100%;
+						background-color: ${({ theme }) => theme.colors.light};
+						z-index: 99;
+					}
 				}
 
 				.drawnLogo__inner-absolute {
@@ -46,7 +56,6 @@ export const StyledHero = styled.div`
 					top: 0;
 					height: 100%;
 					width: 100%;
-					right: -100%;
 				}
 
 				.drawnLogo {
@@ -63,8 +72,9 @@ export const StyledHero = styled.div`
 			}
 
 			@media ${device.laptop} {
-				.drawnLogo {
+				.drawnLogo-wrapper-overflowHidden {
 					width: 300px;
+					height: 420px;
 				}
 
 				.hero-word {
@@ -120,6 +130,7 @@ function Hero(props) {
 	const [windowWidth] = useResize();
 	const containerRef = useRef(null);
 	const logoRef = useRef(null);
+	const overlayRef = useRef(null);
 
 	const addToRefs = el => {
 		if (el && !wordRefs.current.includes(el)) {
@@ -135,36 +146,35 @@ function Hero(props) {
 		}
 
 		if (isSplit && wordRefs.current.length > 2 && logoRef.current) {
-			animateIntro(introAnimation, wordRefs, chars, logoRef);
+			animateIntro(introAnimation, wordRefs, chars, logoRef, overlayRef);
 		}
 	}, [isSplit, wordRefs, windowWidth]);
 
 	return (
 		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
 			<Container padding='regular' height='100vh'>
-				
-					<div className='hero-content'>
-						<div className='hero-content__inner' ref={containerRef}>
-							<div className='drawnLogo-wrapper-overflowHidden'>
-								<div className='drawnLogo__inner-relative'>
-									<div className='drawnLogo__inner-absolute' ref={logoRef}>
-										<DrawnLogo width='400px' />
-									</div>
+				<div className='hero-content'>
+					<div className='hero-content__inner' ref={containerRef}>
+						<div className='drawnLogo-wrapper-overflowHidden'>
+							<div className='drawnLogo__inner-relative'>
+								<div className='drawnLogo__overlay' ref={overlayRef}></div>
+								<div className='drawnLogo__inner-absolute' ref={logoRef}>
+									<DrawnLogo width='400px' />
 								</div>
 							</div>
+						</div>
 
-							<div className='hero-word hero-word-social' ref={addToRefs}>
-								Social
-							</div>
-							<div className='hero-word hero-word-impact' ref={addToRefs}>
-								Impact
-							</div>
-							<div className='hero-word hero-word-agency' ref={addToRefs}>
-								Agency
-							</div>
+						<div className='hero-word hero-word-social' ref={addToRefs}>
+							Social
+						</div>
+						<div className='hero-word hero-word-impact' ref={addToRefs}>
+							Impact
+						</div>
+						<div className='hero-word hero-word-agency' ref={addToRefs}>
+							Agency
 						</div>
 					</div>
-				
+				</div>
 			</Container>
 		</StyledHero>
 	);

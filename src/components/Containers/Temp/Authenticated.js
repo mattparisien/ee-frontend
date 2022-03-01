@@ -56,7 +56,6 @@ function Authenticated() {
 		toggleHeaderColor,
 	};
 
-	console.log(state.headerColor)
 
 	return (
 		<div className='temporary-authenticated-wrapper'>
@@ -100,7 +99,7 @@ function Authenticated() {
 						</TransitionGroup>
 					</main>
 
-					<Footer addToRefs={addToRefs} location={location.pathname} />
+					{/* <Footer addToRefs={addToRefs} location={location.pathname} /> */}
 
 					{/* <CookieBar /> */}
 				</DataContext.Provider>

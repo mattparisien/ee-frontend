@@ -42,6 +42,23 @@ export default function useAppData(scrollRef) {
 			yellow: "#F1DA0A",
 			grey: "#AFAFAF",
 		},
+		spacing: (multiplier, property) => {
+			return Object.entries(device).map(size => {
+				return `@media ${size[1]} {
+						${
+							Array.isArray(property)
+								? property.map(
+										prop => `${prop}: ${baseSpacing[size[0]] * multiplier}rem;`
+								  )
+								: `
+								${property}: ${baseSpacing[size[0]] * multiplier}rem;
+								`
+						};
+					}
+
+					`;
+			});
+		},
 		typography: {
 			setSize: multiplier => {
 				return `

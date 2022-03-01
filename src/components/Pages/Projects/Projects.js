@@ -10,6 +10,7 @@ import divideArray from "../../Grid/helpers/divideArray";
 import { MOBILEIMAGELISTITEMHEIGHT } from "../../styles/Global";
 import { Masonry } from "masonic";
 import Columns from "react-columns";
+import { Paragraph } from "../..";
 
 //General styles constants
 const ROWHEIGHTREPEAT = 50;
@@ -255,15 +256,17 @@ function Projects(props) {
 	}, [posts]);
 
 	return (
-		<Section bg={"light"}>
-			<Container padding={"5vw"} height='auto'>
-				<StyledProjectsGrid
-					listItems={projects}
-					rowAmounts={rowAmount}
-					direction='vertical'
-				/>
-			</Container>
-		</Section>
+		<>
+			<Section bg={"light"}>
+				<Container height='auto'>
+					<StyledProjectsGrid
+						listItems={projects}
+						rowAmounts={rowAmount}
+						direction='vertical'
+					/>
+				</Container>
+			</Section>
+		</>
 	);
 }
 

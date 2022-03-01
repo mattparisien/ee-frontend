@@ -16,7 +16,7 @@ function Heading(props, ref) {
 		weight,
 		capitalize,
 		width,
-		className
+		className,
 	} = props;
 
 	const headingStyles = {
@@ -29,8 +29,6 @@ function Heading(props, ref) {
 	const heading = useRef(null);
 	const lineAnim = useRef(gsap.timeline());
 	const [intersectingTarget, setIntersectingTarget] = useState(null);
-
-
 
 	useEffect(() => {
 		if (heading.current) {
@@ -65,13 +63,10 @@ function Heading(props, ref) {
 			threshold={1}
 		>
 			<StyledHeading
-				className={`styled-heading-wrapper ${className && className}`}
+				className={`styled-heading-wrapper ${className ? className : ''}`}
 				$headingStyles={headingStyles}
 			>
-				{small && <h4>{children}</h4>}
-				{medium && <h3>{children}</h3>}
 				{large && <h2 ref={heading}>{children}</h2>}
-				{xl && <h1>{children}</h1>}
 			</StyledHeading>
 		</InView>
 	);

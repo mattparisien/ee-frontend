@@ -44,7 +44,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				</Helmet>
 				<ThemeProvider theme={themes}>
 					<GlobalStyles />
-					<LocomotiveScrollProvider
+					{/* <LocomotiveScrollProvider
 						options={{
 							initPosition: {
 								x: 0,
@@ -58,7 +58,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							scroll.scrollTo(0, { duration: 0, disableLerp: true })
 						}
 						containerRef={scrollWrapper}
-					>
+					> */}
 						<div
 							className='scroll-wrapper'
 							ref={scrollWrapper}
@@ -66,7 +66,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						>
 							{state.user.isVisitor ? <Visitor /> : <Authenticated />}
 						</div>
-					</LocomotiveScrollProvider>
+					{/* </LocomotiveScrollProvider> */}
 				</ThemeProvider>
 			</div>
 		</HelmetProvider>

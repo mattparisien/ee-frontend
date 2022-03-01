@@ -134,14 +134,9 @@ text-transform: ${({ $headingStyles }) =>
 
 
 h2 {
-  	
-		${Object.keys(device).map(deviceName => {
-			return `@media ${device[deviceName]} {
-									font-size: ${headingFontSizes["h2"][deviceName]["fontSize"]};
-									line-height: ${headingFontSizes["h2"][deviceName]["lineHeight"]};
-									letter-spacing: ${headingFontSizes["h2"][deviceName]["letterSpacing"]};
-								}`;
-		})}
+	
+	${({ theme }) => theme.typography.setSize(6)};
+
 }}
 `;
 
@@ -150,7 +145,7 @@ export const StyledParagraph = styled.div`
 	letter-spacing: -1px;
 
 	p {
-		${({theme}) => theme.typography.setSize(3)};
+		${({ theme }) => theme.typography.setSize(3)};
 		letter-spacing: -0.8px;
 	}
 
