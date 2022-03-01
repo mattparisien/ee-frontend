@@ -5,8 +5,31 @@ import { useTransition } from "../../animations";
 import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
 import { formatPosts, formatSteps, formatAbout } from "../formatData";
+import { device } from "../../components/styles/device";
 
 export default function useAppData(scrollRef) {
+	const baseSpacing = {
+		desktopL: 2,
+		desktop: 1.5,
+		laptopL: 2,
+		laptop: 2,
+		tablet: 1,
+		mobileL: 1,
+		mobileM: 0.5,
+		mobileS: 0.4,
+	};
+
+	const baseFontSize = {
+		desktopL: 1.2,
+		desktop: 1.2,
+		laptopL: 1,
+		laptop: 1,
+		tablet: 0.8,
+		mobileL: 0.7,
+		mobileM: 0.7,
+		mobileS: 0.6,
+	};
+
 	//Themes
 	const themes = {
 		colors: {
@@ -20,13 +43,44 @@ export default function useAppData(scrollRef) {
 			grey: "#AFAFAF",
 		},
 		typography: {
-			paragraph: {
-				scale: {
-					mobile: {
-						fontSize: "4.9",
-						lineHeight: "5.9",
-					},
-				},
+			setSize: multiplier => {
+				return `
+			@media ${device.mobileS} {
+				
+				font-size: ${baseFontSize.mobileS * multiplier}rem;
+			}
+		
+			@media ${device.mobileL} {
+				
+				font-size: ${baseFontSize.mobileL * multiplier}rem;
+			}
+		
+			@media ${device.tablet} {
+				
+				font-size: ${baseFontSize.tablet * multiplier}rem;
+			}
+		
+			@media ${device.laptop} {
+				
+				font-size: 8rem;
+				font-size: ${baseFontSize.laptop * multiplier}rem;
+			}
+		
+			@media ${device.laptopL} {
+			
+				font-size: ${baseFontSize.laptopL * multiplier}rem;
+			}
+
+			@media ${device.desktop} {
+			
+				font-size: ${baseFontSize.desktop * multiplier}rem;
+			}
+
+			@media ${device.desktopL} {
+			
+				font-size: ${baseFontSize.desktopL * multiplier}rem;
+			}
+			`;
 			},
 		},
 		components: {

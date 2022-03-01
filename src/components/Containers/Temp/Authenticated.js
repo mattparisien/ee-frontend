@@ -56,6 +56,8 @@ function Authenticated() {
 		toggleHeaderColor,
 	};
 
+	console.log(state.headerColor)
+
 	return (
 		<div className='temporary-authenticated-wrapper'>
 			<SiteWideControls.Provider value={siteControls}>

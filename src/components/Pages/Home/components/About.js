@@ -10,16 +10,16 @@ function About(props) {
 
 
 	return (
-		<Container height={"auto"} hasPaddingVertical>
+		<Container height={"100vh"} hasPaddingVertical>
 			<StyledAbout>
 				{data.about && (
 					<>
-						<Paragraph size='large' className='section-who__paragraph1'>
+						<Paragraph size='large' indent indentTitle="About" className='section-who__paragraph1'>
 							{data.about.body1}
 						</Paragraph>
 					</>
 				)}
-				<Megaphone />
+				{/* <Megaphone /> */}
 			</StyledAbout>
 		</Container>
 	);

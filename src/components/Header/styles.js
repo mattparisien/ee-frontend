@@ -10,6 +10,14 @@ export const StyledDynamicWrapper = styled.div`
 `;
 
 export const StyledHeader = styled.div`
+	ul li {
+		color: ${({ color, theme }) => theme.colors[color]} !important;
+	}
+
+	svg {
+		fill: ${({ color, theme }) => theme.colors[color]} !important;
+	}
+
 	width: 100%;
 	height: 100px;
 	position: fixed;

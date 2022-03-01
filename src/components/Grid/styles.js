@@ -50,8 +50,6 @@ const StyledGrid = styled.div`
 
 	.grid-item-wrapper {
 		grid-column: 1/ span 6;
-		margin-bottom: ${({ theme }) =>
-			theme.typography.paragraph.scale.mobile.lineHeight * 2.5}vw;;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -64,16 +62,12 @@ const StyledGrid = styled.div`
 			letter-spacing: -0.1vw;
 			text-transform: uppercase;
 			font-family: 'Kobe';
-			margin-bottom: ${({ theme }) =>
-				theme.typography.paragraph.scale.mobile.lineHeight}vw;			
+		
 		}
 
 		p {
 			text-align: center;
-			font-size: ${({ theme }) => theme.typography.paragraph.scale.mobile.fontSize}vw;
-			line-height: ${({ theme }) =>
-				theme.typography.paragraph.scale.mobile.lineHeight}vw;
-			
+		
 		}
 	}
 

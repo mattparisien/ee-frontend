@@ -57,7 +57,7 @@ main {
 .char {
 	display: inline-block;
 	position: relative;
-	
+	transform: translateY(100%);
 	
 }
 
@@ -85,10 +85,8 @@ body {
 }
 
 
-.line {
-	transform: translateY(100%);
-	opacity: 0;
-	text-align: center !important;
+.line-wrapper {
+	overflow: hidden;
 }
 
 

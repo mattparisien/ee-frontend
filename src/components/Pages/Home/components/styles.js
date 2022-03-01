@@ -83,9 +83,6 @@ export const StyledHero = styled.div`
 `;
 
 export const StyledAbout = styled.div`
-	display: flex;
-	flex-direction: row-reverse;
-
 	.megaphone-svg {
 		min-width: 400px;
 		width: 30vw;

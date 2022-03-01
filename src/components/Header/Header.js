@@ -46,6 +46,7 @@ export default function Header(props) {
 			isMenuActive={menuState}
 			$headerStyles={headerStyles}
 			$isHoverable={isHoverable}
+			color={props.headerColor}
 			ref={addToRefs}
 			id='site-header'
 		>

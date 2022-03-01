@@ -8,6 +8,8 @@ import { formatImageList } from "../../../helpers/formatData";
 import { device } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
 import { MOBILEIMAGELISTITEMHEIGHT } from "../../styles/Global";
+import { Masonry } from "masonic";
+import Columns from "react-columns";
 
 //General styles constants
 const ROWHEIGHTREPEAT = 50;
@@ -217,15 +219,26 @@ const StyledProjectsGrid = styled(ImageList)`
 	
 `;
 
+function Card({ data: { id, title, subtitle, image } }) {
+	return (
+		<div>
+			<img src={image.src}></img>
+		</div>
+	);
+}
+
 function Projects(props) {
 	const { posts } = useContext(DataContext);
 	const [projects, setProjects] = useState(null);
+	const [masonryProjects, setMasonryProjects] = useState(null);
 	const [rowAmount, setRowAmount] = useState([]);
 
 	useEffect(() => {
 		if (posts) {
 			const formattedProjects = formatImageList(posts);
 			const dividedGridItems = divideArray(formattedProjects, 5);
+
+			setMasonryProjects(formattedProjects);
 			setProjects(dividedGridItems);
 
 			dividedGridItems.map((grid, i) => {
