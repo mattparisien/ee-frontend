@@ -34,22 +34,33 @@ function Heading(props, ref) {
 	useEffect(() => {
 		if (heading.current) {
 			const mySplitText = new SplitText(heading.current, {
-				type: "chars",
+				type: "chars, words, lines",
 				charsClass: "heading-char",
+				wordsClass: "word",
+				linesClass: "heading-line"
 			});
 			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
+			$(mySplitText.lines).append("<div class='highlight-line'></div>")
 		}
 	}, [heading]);
 
 	useEffect(() => {
 		if (intersectingTarget) {
 			const chars = $(intersectingTarget).find(".heading-char");
+			const highlight = $(intersectingTarget).find(".highlight-line");
 			lineAnim.current.to(chars, {
 				opacity: 1,
 				y: 0,
 				duration: 0.6,
 				stagger: 0.05,
 				ease: "power2.out",
+				onComplete: () => {
+					gsap.to(highlight, {
+						width: "100%",
+						ease: "circ.inOut",
+						duration: 2
+					})
+				}
 			});
 		}
 	}, [intersectingTarget]);
@@ -69,6 +80,7 @@ function Heading(props, ref) {
 				align={align}
 			>
 				{large && <h2 ref={heading}>{children}</h2>}
+				{small && <h4 ref={heading}>{children}</h4>}
 			</StyledHeading>
 		</InView>
 	);

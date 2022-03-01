@@ -12,13 +12,6 @@ function GridItem(props, ref) {
 				rootMargin={"-30%"}
 				threshold={0}
 				className='grid-item-view-wrapper'
-				onChange={(inView, entry) =>
-					inView &&
-					props.setItemInView({
-						id: props.id,
-						target: entry.target,
-					})
-				}
 			>
 				{props.children}
 			</InView>

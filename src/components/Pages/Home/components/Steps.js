@@ -6,12 +6,12 @@ import { Grid, GridItem, Heading } from "../../../index";
 import ContainerFluid from "../../../Containers/ContainerFluid";
 import Drawings from "./Drawings";
 import Notes from "./Notes/Notes";
+import { Paragraph } from "../../../index";
 
 function Steps() {
 	const { steps } = useContext(DataContext);
 	const stepRefs = useRef([]);
 
-	const [itemInView, setItemInView] = useState(null);
 	const [rotation, setRotation] = useState(null);
 	const noteContainerRef = useRef(null);
 	const rotationRefs = useRef([]);
@@ -46,13 +46,12 @@ function Steps() {
 					<GridItem
 						key={step.id}
 						classes={`steps-grid__item steps-grid__item${index + 1}`}
-						setItemInView={setItemInView}
 						id={step.id}
 					>
 						<Heading small ref={addToHeadingRefs}>
 							{step.title.split(" ").slice(0, 3).join(" ")}
 						</Heading>
-						<p>{step.body}</p>
+						<Paragraph>{step.body}</Paragraph>
 					</GridItem>
 				);
 			})
@@ -60,13 +59,13 @@ function Steps() {
 	};
 
 	return (
-		<ContainerFluid height='auto' isAbove ref={noteContainerRef} hasMarginBottom>
-			<Grid
-				name={"steps"}
-				columns={12}
-				classes={"steps-grid"}
-				itemInView={itemInView}
-			>
+		<ContainerFluid
+			height='auto'
+			isAbove
+			ref={noteContainerRef}
+			hasMarginBottom
+		>
+			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
 				{steps && renderSteps()}
 				{/* <Notes addToRefs={addToRefs} scrollTrigger={noteContainerRef.current} /> */}
 				{/* <div className='drawings-wrapper'>

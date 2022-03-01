@@ -5,6 +5,8 @@ import { StyledParagraph } from "./styles";
 import SplitText from "gsap/SplitText";
 import gsap from "gsap";
 import useResize from "../../helpers/hooks/useResize";
+import CSSPlugin from "gsap/CSSPlugin";
+import CSSRulePlugin from "gsap/CSSRulePlugin";
 
 function Paragraph(props, ref) {
 	const {
@@ -19,6 +21,7 @@ function Paragraph(props, ref) {
 	} = props;
 	const paragraph = useRef([]);
 	const [windowWidth] = useResize();
+	const highlightAnim = useRef(gsap.timeline({ paused: true }));
 	const lineAnim = useRef(gsap.timeline());
 	const paragraphWrapper = useRef(null);
 	const [intersectingTarget, setIntersectingTarget] = useState(null);
@@ -39,18 +42,18 @@ function Paragraph(props, ref) {
 
 	useEffect(() => {
 		if (paragraph.current && !isSplit) {
+			gsap.registerPlugin(SplitText);
+			gsap.registerPlugin(CSSPlugin, CSSRulePlugin);
+
 			const mySplitText = new SplitText(paragraph.current, {
-				type: "lines, chars",
+				type: "lines, chars, words",
 				linesClass: "line",
 				charsClass: "char",
+				wordsClass: "word",
 			});
 			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
 			setIsSplit(true);
 			setSplitText(mySplitText);
-		}
-
-		if (isSplit && splitText) {
-			setSplitText(splitText.revert().split());
 		}
 	}, [paragraph, windowWidth]);
 
@@ -60,6 +63,7 @@ function Paragraph(props, ref) {
 
 			lines.each((index, el) => {
 				const chars = $(el).find(".char");
+
 				let delay = 0;
 				gsap.set(chars, {
 					y: "100%",

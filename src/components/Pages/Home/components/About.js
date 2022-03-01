@@ -10,6 +10,8 @@ function About(props) {
 	const data = useContext(DataContext);
 	const paragraphRefs = useRef([]);
 
+
+
 	return (
 		<ContainerFluid height={"100vh"} hasPaddingVertical>
 			<StyledAbout>

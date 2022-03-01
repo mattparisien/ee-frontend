@@ -145,7 +145,7 @@ const StyledGrid = styled.div`
 		
 
 		grid-template-columns: repeat(12, 1fr);
-		grid-template-rows: repeat(5, 1fr);
+		grid-template-rows: repeat(5, 400px);
 		grid-column-gap: 1.042vw;
 		align-items: flex-start;
 		
@@ -170,9 +170,8 @@ const StyledGrid = styled.div`
 				font-family: 'Kobe';
 				line-height: 3vw;
 				margin-bottom: 2vw;
+				margin-right: 0;
 				width: 15vw;
-				
-				
 			}
 	
 			p {
@@ -187,7 +186,7 @@ const StyledGrid = styled.div`
 		}
 
 		.steps-grid__item {
-			opacity: 0.3;
+			
 
 				&1 {
 					grid-column: 1/5;
@@ -226,15 +225,6 @@ const StyledGrid = styled.div`
 			height: 100%;
 		}
 
-		
-
-		
-
-		
-
-
-	
-	
 		
 		.steps-grid__item {
 

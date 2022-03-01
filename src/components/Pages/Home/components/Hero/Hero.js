@@ -2,7 +2,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import useSplit from "../../../../../helpers/hooks/useSplit";
-import {  DrawnLogo } from "../../../../index";
+import { DrawnLogo } from "../../../../index";
 import ContainerFluid from "../../../../Containers/ContainerFluid";
 import { device } from "../../../../styles/device";
 import { calculateWordOffsets, animateIntro } from "./helpers/helpers";
@@ -14,12 +14,8 @@ export const StyledHero = styled.div`
 		max-height: 800px;
 		font-family: Kobe Bold;
 		width: 100%;
-		padding: inherit;
+		
 		margin: 0 auto;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
 
 		&__inner {
 			position: relative;
@@ -32,7 +28,7 @@ export const StyledHero = styled.div`
 				width: 20vw;
 				height: 30vw;
 				max-width: 300px;
-				
+
 				position: absolute;
 				transform: translate(-50%, -50%);
 
@@ -64,15 +60,17 @@ export const StyledHero = styled.div`
 				}
 			}
 
+	
+
 			.hero-word {
-				letter-spacing: -0.8vw;
+				letter-spacing: -0.6vw;
 				line-height: 20vw;
-				font-size: 20vw;
+				font-size: 10vw;
 				position: absolute;
 				overflow: hidden;
 			}
 
-			@media ${device.laptop} {
+			@media ${device.desktop} {
 				.drawnLogo-wrapper-overflowHidden {
 					width: 300px;
 					height: 420px;

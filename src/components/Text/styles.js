@@ -122,6 +122,22 @@ ${({ $headingStyles, theme }) => {
 		$headingStyles.color && `color: ${theme.colors[$headingStyles.color]};`
 	);
 }}
+
+.heading-line {
+	position: relative;
+}
+
+.highlight-line {
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 100%;
+	background-color: ${({theme}) => theme.colors.yellow};
+	z-index: -1;
+}
+
 text-align: ${({ align }) => (align ? align : "center")};
 width: ${({ $headingStyles }) =>
 	$headingStyles.width ? $headingStyles.width : "100%"};
@@ -137,24 +153,40 @@ h2 {
 	${({ theme }) => theme.spacing(0.5, "margin-top")};
 	${({ theme }) => theme.spacing(0.5, "margin-bottom")};
 	${({ theme }) => theme.typography.setSize(6)};
-
 }}
+
+
 `;
 
 export const StyledParagraph = styled.div`
+	.word {
+		position: relative;
+	}
+
+	.word-highlight {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0%;
+		height: 100%;
+		background-color: ${({ theme }) => theme.colors.yellow};
+		z-index: -1;
+		
+	}
+
 	position: relative;
 	letter-spacing: -1px;
 
 	p {
-		${({ theme, size }) => theme.typography.setSize(size === "small" ? 1.2 : 3)};
+		${({ theme, size }) =>
+			theme.typography.setSize(size === "small" ? 1.2 : 3)};
 		${({ theme }) => theme.spacing(2, "margin-top")};
 		${({ theme }) => theme.spacing(2, "margin-bottom")};
 		letter-spacing: -0.8px;
 	}
 
 	.indent-spacer {
-		width: 		${({ theme, size }) => size === "small" ? "100px" : "300px"};
-;
+		width: ${({ theme, size }) => (size === "small" ? "100px" : "300px")};
 		height: 100%;
 		display: inline-block;
 	}
