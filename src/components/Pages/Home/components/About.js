@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { render } from "react-dom";
-import { Container, Paragraph } from "../../..";
+import { Paragraph } from "../../..";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
 import { Megaphone } from "../../../Vector/Svg";
 import { StyledAbout } from "./styles";
+import ContainerFluid from "../../../Containers/ContainerFluid";
 
 function About(props) {
 	const data = useContext(DataContext);
 	const paragraphRefs = useRef([]);
 
 	return (
-		<Container height={"100vh"} hasPaddingVertical>
+		<ContainerFluid height={"100vh"} hasPaddingVertical>
 			<StyledAbout>
 				{data.about && (
 					<>
@@ -26,7 +27,7 @@ function About(props) {
 				)}
 				{/* <Megaphone /> */}
 			</StyledAbout>
-		</Container>
+		</ContainerFluid>
 	);
 }
 

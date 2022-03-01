@@ -5,10 +5,8 @@ import { Transition, TransitionGroup } from "react-transition-group";
 import { SideMenu } from "../..";
 import useAppData from "../../../helpers/hooks/useAppData";
 import SiteRoutes from "../../../Routes";
-import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import LoadingScreen from "../../Loading/LoadingScreen";
-import { GlobalStyles } from "../../styles/Global";
 import SiteTransition from "../../Transition/Transition";
 
 export const DataContext = createContext();
@@ -55,7 +53,6 @@ function Authenticated() {
 		toggleScrollLock,
 		toggleHeaderColor,
 	};
-
 
 	return (
 		<div className='temporary-authenticated-wrapper'>

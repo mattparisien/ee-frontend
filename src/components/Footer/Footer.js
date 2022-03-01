@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { navigation } from "../../data/data";
-import { Container } from "../index";
+import ContainerFluid from "../Containers/ContainerFluid";
 import Contact from "./Contact";
 import NavList from "./NavList";
 import { StyledFooter } from "./styles";
@@ -37,14 +37,14 @@ export default function Footer(props) {
 			data-scroll
 			data-scroll-speed={-8}
 		>
-			<Container centerInner flexDirection='column' height='100%'>
+			<ContainerFluid centerInner flexDirection='column' height='100%'>
 				{layout === "contact" && <Contact />}
 				{/* {layout === "project" && (
 					<Project footerRef={footerRef} title={data && data.title} />
 				)} */}
 
 				<NavList links={navLinks} />
-			</Container>
+			</ContainerFluid>
 		</StyledFooter>
 	);
 }

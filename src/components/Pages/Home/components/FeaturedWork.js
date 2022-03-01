@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import { Container } from "../../../index";
+import ContainerFluid from "../../../Containers/ContainerFluid";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
 import HeadingSection from "../../../Containers/HeadingSection";
 import ImageList from "../../../ImageList/ImageList";
@@ -45,14 +45,14 @@ function FeaturedWork(props) {
 	}, [data]);
 
 	return (
-		<Container
+		<ContainerFluid
 			classes={"featured-work-container"}
 			centerInner
 			flexDirection='column'
 			noGutter
 			isRelative
 		>
-			<Container hasPaddingVertical height='auto' centerInner hasPaddingBottom>
+			<ContainerFluid hasPaddingVertical height='auto' centerInner hasPaddingBottom>
 				<HeadingSection
 					color='dark'
 					headingSize='large'
@@ -60,13 +60,13 @@ function FeaturedWork(props) {
 					width='100%'
 					headingText={"Featured Work"}
 				/>
-			</Container>
+			</ContainerFluid>
 
 			<StyledFeaturedWorkImageList
 				listItems={featuredPosts}
 				className='featured-work-image-list'
 			/>
-		</Container>
+		</ContainerFluid>
 	);
 }
 

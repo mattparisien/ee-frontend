@@ -17,6 +17,7 @@ function Heading(props, ref) {
 		capitalize,
 		width,
 		className,
+		align
 	} = props;
 
 	const headingStyles = {
@@ -65,6 +66,7 @@ function Heading(props, ref) {
 			<StyledHeading
 				className={`styled-heading-wrapper ${className ? className : ''}`}
 				$headingStyles={headingStyles}
+				align={align}
 			>
 				{large && <h2 ref={heading}>{children}</h2>}
 			</StyledHeading>

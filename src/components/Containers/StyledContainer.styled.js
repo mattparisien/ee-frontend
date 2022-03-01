@@ -5,75 +5,6 @@ import { themes } from "../../helpers/hooks/useAppData";
 import { map } from "lodash";
 import { render } from "react-three-fiber";
 
-const verticalGutter = {
-	desktopL: {
-		padding: "14vw",
-	},
-	desktop: {
-		padding: "10vw",
-	},
-	laptopL: {
-		padding: "15vw",
-	},
-	laptop: {
-		padding: "12vw",
-	},
-	tablet: {
-		padding: "9vw",
-	},
-	mobileL: {
-		padding: "3vw",
-	},
-	mobileM: {
-		padding: "4vw",
-	},
-	mobileS: {
-		padding: "3rem",
-	},
-};
-
-const horizontalGutter = {
-	desktopL: {
-		padding: "14vw",
-	},
-	desktop: {
-		padding: "10vw",
-	},
-	laptopL: {
-		padding: "15vw",
-	},
-	laptop: {
-		padding: "12vw",
-	},
-	tablet: {
-		padding: "9vw",
-	},
-	mobileL: {
-		padding: "3vw",
-	},
-	mobileM: {
-		padding: "4vw",
-	},
-	mobileS: {
-		padding: "4vw",
-	},
-};
-
-const renderContainerPadding = () => {
-	return Object.keys(horizontalGutter).map(deviceName => {
-		return `
-					@media ${device[deviceName]} {
-						padding: ${horizontalGutter[deviceName].padding};
-					}
-				`;
-	});
-};
-
-export const responsiveGutter = {
-	horizontal: horizontalGutter,
-	vertical: verticalGutter,
-};
-
 const StyledContainer = styled.div`
 	overflow: visible;
 	max-width: ${CONTAINERMAXWIDTH};
@@ -125,9 +56,6 @@ const StyledContainer = styled.div`
  }
 `;
 	}};
-
-	padding: 4vw;
-	${renderContainerPadding()};
 `;
 
 export { StyledContainer };

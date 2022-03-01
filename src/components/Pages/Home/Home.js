@@ -13,6 +13,7 @@ export const pages = {
 				name: "hero",
 				page: "home",
 				backgroundColor: "light",
+				height: "100vh"
 			},
 			{
 				id: 2,
@@ -41,12 +42,14 @@ export const pages = {
 				name: "hero",
 				page: "projects",
 				backgroundColor: "dark",
-				height: "auto"
+				height: "auto",
+				headerOffset: true
 			},
 			{
 				id: 2,
 				name: "projects",
 				page: "projects",
+				
 				backgroundColor: "dark",
 				height: "auto"
 			},
@@ -78,6 +81,7 @@ function Home(props) {
 					>
 						{React.createElement(innerComponents[section.name], {
 							key: section.id,
+							height: section.height
 						})}
 					</Section>
 				);

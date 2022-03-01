@@ -18,8 +18,11 @@ export const StyledHeader = styled.div`
 		fill: ${({ color, theme }) => theme.colors[color]} !important;
 	}
 
+	${({theme}) => theme.spacing(4, "height")};
+
 	width: 100%;
-	height: 100px;
+	
+
 	position: fixed;
 	top: 0;
 	left: 0;

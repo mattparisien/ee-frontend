@@ -2,7 +2,8 @@ import gsap from "gsap";
 import React, { useContext, useRef, useState } from "react";
 import useSplit from "../../../../helpers/hooks/useSplit";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
-import { Container, Grid, GridItem, Heading } from "../../../index";
+import { Grid, GridItem, Heading } from "../../../index";
+import ContainerFluid from "../../../Containers/ContainerFluid";
 import Drawings from "./Drawings";
 import Notes from "./Notes/Notes";
 
@@ -59,7 +60,7 @@ function Steps() {
 	};
 
 	return (
-		<Container height='auto' isAbove ref={noteContainerRef} hasMarginBottom>
+		<ContainerFluid height='auto' isAbove ref={noteContainerRef} hasMarginBottom>
 			<Grid
 				name={"steps"}
 				columns={12}
@@ -72,7 +73,7 @@ function Steps() {
 					<Drawings />
 				</div> */}
 			</Grid>
-		</Container>
+		</ContainerFluid>
 	);
 }
 

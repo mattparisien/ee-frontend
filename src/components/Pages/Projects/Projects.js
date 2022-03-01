@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Container, Heading, Section } from "../..";
-import styled from "styled-components";
+import { Heading, Section } from "../..";
+import ContainerFluid from "../../Containers/ContainerFluid";
+// import styled from "styled-components";
 import ImageList from "../../ImageList/ImageList";
 import { useContext } from "react";
 import { DataContext } from "../../Containers/Temp/Authenticated";
@@ -8,9 +9,13 @@ import { formatImageList } from "../../../helpers/formatData";
 import { device } from "../../styles/device";
 import divideArray from "../../Grid/helpers/divideArray";
 import { MOBILEIMAGELISTITEMHEIGHT } from "../../styles/Global";
-import { Masonry } from "masonic";
-import Columns from "react-columns";
-import { Paragraph } from "../..";
+import { Grid } from "@mui/material";
+import { Paper } from "@mui/material";
+import styled from "styled-components";
+import InView from "react-intersection-observer";
+import gsap from "gsap";
+import { useTheme } from "styled-components";
+import { Link } from "react-router-dom";
 
 //General styles constants
 const ROWHEIGHTREPEAT = 50;
@@ -228,14 +233,104 @@ function Card({ data: { id, title, subtitle, image } }) {
 	);
 }
 
+const Title = styled.div`
+	display: flex;
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-transform: uppercase;
+	${({ theme }) => theme.spacing(2, "padding")};
+	${({ theme }) => theme.typography.setSize(2)};
+
+	.Title__inner {
+		width: 100%;
+		height: 100%;
+		position: relative;
+
+		&::after {
+			position: absolute;
+			content: '';
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 1px;
+			background-color: ${({theme}) => theme.colors.light};
+			transform-origin: left;
+			transform: scaleX(0);
+			transition: 500ms ease;
+		}
+	}
+`;
+
+const Item = styled.div`
+	position: relative;
+	height: 50vw;
+	${({ theme }) => theme.spacing(2, "padding")};
+
+	.Item__link {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+
+		&:hover .Title__inner::after {
+			transform: scaleX(1);
+		}
+
+		&:hover .image-wrapper {
+			transform: scale(1.1);
+		}
+	}
+
+	.item-background {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		background-color: ${({ theme }) => theme.colors.blue};
+	}
+
+	.image-wrapper {
+		width: 100%;
+		height: 50%;
+		overflow: hidden;
+		transition: 800ms ease;
+	}
+`;
+
+const GridWrapper = styled(Grid)``;
+
 function Projects(props) {
 	const { posts } = useContext(DataContext);
 	const [projects, setProjects] = useState(null);
 	const [masonryProjects, setMasonryProjects] = useState(null);
 	const [rowAmount, setRowAmount] = useState([]);
+	const [delay, setDelay] = useState(0.1);
+	const [intersecting, setIntersecting] = useState(false);
+	const theme = useTheme();
+
+	useEffect(() => {
+		if (intersecting) {
+			if (delay === 0.1) {
+				setDelay(0.2);
+			}
+
+			if (delay === 0.2) {
+				setDelay(0.1);
+			}
+
+			gsap.to($(intersecting).parent(), {
+				y: 0,
+				opacity: 1,
+				duration: 1,
+			});
+		}
+	}, [intersecting]);
 
 	useEffect(() => {
 		if (posts) {
+			console.log(posts);
 			const formattedProjects = formatImageList(posts);
 			const dividedGridItems = divideArray(formattedProjects, 5);
 
@@ -257,15 +352,61 @@ function Projects(props) {
 
 	return (
 		<>
-			<Section bg={"light"}>
-				<Container height='auto'>
+			<GridWrapper container spacing={3} className='GridWrapper'>
+				{posts &&
+					posts.map(post => {
+						return (
+							<Grid
+								item
+								xs={6}
+								sx={{ transform: "translateY(50%)", opacity: 0 }}
+								key={post.id}
+							>
+								<InView
+									className='grid-item-item-view-wrapper'
+									threshold={0.2}
+									onChange={(inView, entry) =>
+										inView && setIntersecting(entry.target)
+									}
+								>
+									<Item className='Item' style={{ position: "relative" }}>
+										<Link
+											className='Item__link'
+											style={{
+												width: "100%",
+												height: "100%",
+											}}
+											to={`/projects/${post.id}`}
+										>
+											<div className='image-wrapper'>
+												<img
+													style={{
+														width: "100%",
+														height: "50vw",
+														maxHeight: "1200px",
+														objectFit: "cover",
+													}}
+													src={post.media.featureImage.url}
+												></img>
+											</div>
+											<Title>
+												<div className='Title__inner'>{post.title}</div>
+											</Title>
+											<div className='item-background'></div>
+										</Link>
+									</Item>
+								</InView>
+							</Grid>
+						);
+					})}
+			</GridWrapper>
+
+			{/* 			
 					<StyledProjectsGrid
 						listItems={projects}
 						rowAmounts={rowAmount}
 						direction='vertical'
-					/>
-				</Container>
-			</Section>
+					/> */}
 		</>
 	);
 }

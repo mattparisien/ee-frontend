@@ -1,7 +1,7 @@
 import React from "react";
 import { pages } from "../Home/Home";
 import Section from "../../Containers/Section";
-import Container from "../../Containers/Container";
+import ContainerFluid from "../../Containers/ContainerFluid";
 import Hero from "./Hero";
 import { Projects } from "..";
 
@@ -23,12 +23,15 @@ function ProjectPage() {
 						noGutter={section.id === 1}
 						bg={section.backgroundColor}
 					>
-						<Container height={section.height}>
+						<ContainerFluid
+							height={section.height}
+							headerOffset={section.headerOffset}
+						>
 							{React.createElement(innerComponents[section.name], {
 								key: section.id,
 								height: section.height,
 							})}
-						</Container>
+						</ContainerFluid>
 					</Section>
 				);
 			})}

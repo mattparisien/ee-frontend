@@ -4,7 +4,7 @@ import useScroll from "../../helpers/hooks/useScrollDir";
 import { TextLogo } from "../index";
 import { StyledHeader, StyledInnerLayout } from "./styles";
 import Navigation from "./Navigation/Navigation";
-import { Container } from "../index";
+import ContainerFluid from "../Containers/ContainerFluid";
 
 export default function Header(props) {
 	const { menuState, toggleMenu, appRefs, addToRefs, headerColor } = props;
@@ -50,14 +50,14 @@ export default function Header(props) {
 			ref={addToRefs}
 			id='site-header'
 		>
-			<Container height='100%'>
+			<ContainerFluid height='100%' noVerticalGutter>
 				<div className='logo-wrapper -absolute-center'>
 					<a href='/'>
 						<TextLogo logoRef={addToRefs} />
 					</a>
 				</div>
 				<Navigation />
-			</Container>
+			</ContainerFluid>
 		</StyledHeader>
 	);
 }

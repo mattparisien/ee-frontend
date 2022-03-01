@@ -1,14 +1,14 @@
 import React from "react";
 import Button from "../../../Button/Button";
 import HeadingSection from "../../../Containers/HeadingSection";
-import { Container } from "../../../index";
 import Steps from "../components/Steps";
+import ContainerFluid from "../../../Containers/ContainerFluid";
 
 function How() {
 
 	return (
 		<>
-			<Container padding='regular' height='auto' hasPaddingBottom>
+			<ContainerFluid padding='regular' height='auto' >
 				<HeadingSection
 					headingSize='large'
 					color='dark'
@@ -16,7 +16,7 @@ function How() {
 					headingWeight='light'
 					headingWidth='100%'
 				/>
-			</Container>
+			</ContainerFluid>
 			<Steps />
 			<Button variant='contained' color='dark'>
 				Get in touch

@@ -44,6 +44,7 @@ export default function useAppData(scrollRef) {
 		},
 		spacing: (multiplier, property) => {
 			return Object.entries(device).map(size => {
+				
 				return `@media ${size[1]} {
 						${
 							Array.isArray(property)
@@ -58,6 +59,10 @@ export default function useAppData(scrollRef) {
 
 					`;
 			});
+		},
+		transition: {
+			easing: 'cubic-bezier(.17,.67,.83,.67)',
+			timing: '2s'
 		},
 		typography: {
 			setSize: multiplier => {

@@ -122,7 +122,7 @@ ${({ $headingStyles, theme }) => {
 		$headingStyles.color && `color: ${theme.colors[$headingStyles.color]};`
 	);
 }}
-text-align: center;
+text-align: ${({ align }) => (align ? align : "center")};
 width: ${({ $headingStyles }) =>
 	$headingStyles.width ? $headingStyles.width : "100%"};
 
@@ -134,7 +134,8 @@ text-transform: ${({ $headingStyles }) =>
 
 
 h2 {
-	
+	${({ theme }) => theme.spacing(0.5, "margin-top")};
+	${({ theme }) => theme.spacing(0.5, "margin-bottom")};
 	${({ theme }) => theme.typography.setSize(6)};
 
 }}
@@ -146,6 +147,8 @@ export const StyledParagraph = styled.div`
 
 	p {
 		${({ theme }) => theme.typography.setSize(3)};
+		${({ theme }) => theme.spacing(2, "margin-top")};
+		${({ theme }) => theme.spacing(2, "margin-bottom")};
 		letter-spacing: -0.8px;
 	}
 

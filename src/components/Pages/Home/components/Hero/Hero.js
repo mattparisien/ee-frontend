@@ -2,7 +2,8 @@ import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import useSplit from "../../../../../helpers/hooks/useSplit";
-import { Container, DrawnLogo } from "../../../../index";
+import {  DrawnLogo } from "../../../../index";
+import ContainerFluid from "../../../../Containers/ContainerFluid";
 import { device } from "../../../../styles/device";
 import { calculateWordOffsets, animateIntro } from "./helpers/helpers";
 import useResize from "../../../../../helpers/hooks/useResize";
@@ -152,7 +153,7 @@ function Hero(props) {
 
 	return (
 		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
-			<Container padding='regular' height='100vh'>
+			<ContainerFluid padding='regular' height='100vh'>
 				<div className='hero-content'>
 					<div className='hero-content__inner' ref={containerRef}>
 						<div className='drawnLogo-wrapper-overflowHidden'>
@@ -175,7 +176,7 @@ function Hero(props) {
 						</div>
 					</div>
 				</div>
-			</Container>
+			</ContainerFluid>
 		</StyledHero>
 	);
 }
