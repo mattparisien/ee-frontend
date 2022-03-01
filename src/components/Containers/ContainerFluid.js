@@ -6,9 +6,14 @@ import { Container } from "@mui/material";
 import { Box } from "@mui/system";
 
 const StyledContainer = styled(Container)`
-	height: ${({height}) => height ? height : "100vh"};
-	
+	height: ${({ height }) => (height ? height : "100vh")};
+
 	width: 100%;
+
+	&.css-19r6kue-MuiContainer-root {
+		${({ theme }) => theme.spacing(2, "padding-left")}
+		${({ theme }) => theme.spacing(2, "padding-right")}
+	}
 `;
 
 const StyledVerticalGutterContainer = styled(Box)`
@@ -25,7 +30,9 @@ function ContainerFluid(props, ref) {
 				<StyledVerticalGutterContainer className='vertical-gutter-container'>
 					{props.children}
 				</StyledVerticalGutterContainer>
-			) : props.children}
+			) : (
+				props.children
+			)}
 		</StyledContainer>
 	);
 }

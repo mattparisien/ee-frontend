@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { navigation } from "../../data/data";
-import ContainerFluid from "../Containers/ContainerFluid";
+
 import Contact from "./Contact";
 import NavList from "./NavList";
 import { StyledFooter } from "./styles";

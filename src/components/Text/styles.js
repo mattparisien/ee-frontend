@@ -146,14 +146,15 @@ export const StyledParagraph = styled.div`
 	letter-spacing: -1px;
 
 	p {
-		${({ theme }) => theme.typography.setSize(3)};
+		${({ theme, size }) => theme.typography.setSize(size === "small" ? 1.2 : 3)};
 		${({ theme }) => theme.spacing(2, "margin-top")};
 		${({ theme }) => theme.spacing(2, "margin-bottom")};
 		letter-spacing: -0.8px;
 	}
 
 	.indent-spacer {
-		width: 300px;
+		width: 		${({ theme, size }) => size === "small" ? "100px" : "300px"};
+;
 		height: 100%;
 		display: inline-block;
 	}

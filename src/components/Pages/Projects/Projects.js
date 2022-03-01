@@ -16,6 +16,8 @@ import InView from "react-intersection-observer";
 import gsap from "gsap";
 import { useTheme } from "styled-components";
 import { Link } from "react-router-dom";
+import Paragraph from "../../Text/Paragraph";
+import { shuffleColors } from "../../../helpers/shuffleColors";
 
 //General styles constants
 const ROWHEIGHTREPEAT = 50;
@@ -221,7 +223,7 @@ const StyledProjectsGrid = styled(ImageList)`
 		}
 	}
 	}
-}
+
 	
 `;
 
@@ -249,12 +251,12 @@ const Title = styled.div`
 
 		&::after {
 			position: absolute;
-			content: '';
+			content: "";
 			left: 0;
 			bottom: 0;
 			width: 100%;
 			height: 1px;
-			background-color: ${({theme}) => theme.colors.light};
+			background-color: ${({ theme }) => theme.colors.dark};
 			transform-origin: left;
 			transform: scaleX(0);
 			transition: 500ms ease;
@@ -266,6 +268,8 @@ const Item = styled.div`
 	position: relative;
 	height: 50vw;
 	${({ theme }) => theme.spacing(2, "padding")};
+	color: ${({theme}) => theme.colors.dark};
+
 
 	.Item__link {
 		display: flex !important;
@@ -279,6 +283,10 @@ const Item = styled.div`
 		&:hover .image-wrapper {
 			transform: scale(1.1);
 		}
+
+		&:hover .item-background {
+			filter: brightness(100%);
+		}
 	}
 
 	.item-background {
@@ -288,7 +296,9 @@ const Item = styled.div`
 		top: 0;
 		left: 0;
 		z-index: -1;
-		background-color: ${({ theme }) => theme.colors.blue};
+		background-color: ${({ color }) => color};
+		filter: brightness(75%);
+		transition: 800ms ease;
 	}
 
 	.image-wrapper {
@@ -296,10 +306,24 @@ const Item = styled.div`
 		height: 50%;
 		overflow: hidden;
 		transition: 800ms ease;
+
+		img {
+			object-fit: cover;
+		}
 	}
 `;
 
-const GridWrapper = styled(Grid)``;
+const PreviewText = styled.div`
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 50%;
+	${({ theme }) => theme.spacing(2, "padding-left")};
+`;
+
+const GridWrapper = styled(Grid)`
+
+`;
 
 function Projects(props) {
 	const { posts } = useContext(DataContext);
@@ -327,10 +351,20 @@ function Projects(props) {
 			});
 		}
 	}, [intersecting]);
+	const [itemColors, setItemColors] = useState(null);
 
 	useEffect(() => {
+		if (!itemColors && posts) {
+			const array = [];
+			for (let i = 0; i < posts.length; i++) {
+				array.push(shuffleColors(theme));
+			}
+
+			setItemColors(array);
+		}
+
 		if (posts) {
-			console.log(posts);
+			console.log(itemColors);
 			const formattedProjects = formatImageList(posts);
 			const dividedGridItems = divideArray(formattedProjects, 5);
 
@@ -354,6 +388,7 @@ function Projects(props) {
 		<>
 			<GridWrapper container spacing={3} className='GridWrapper'>
 				{posts &&
+					itemColors &&
 					posts.map(post => {
 						return (
 							<Grid
@@ -369,9 +404,14 @@ function Projects(props) {
 										inView && setIntersecting(entry.target)
 									}
 								>
-									<Item className='Item' style={{ position: "relative" }}>
+									<Item
+										className='Item'
+										style={{ position: "relative" }}
+										color={itemColors[post.id]}
+									>
 										<Link
 											className='Item__link'
+											
 											style={{
 												width: "100%",
 												height: "100%",
@@ -382,7 +422,7 @@ function Projects(props) {
 												<img
 													style={{
 														width: "100%",
-														height: "50vw",
+														height: "100%",
 														maxHeight: "1200px",
 														objectFit: "cover",
 													}}
@@ -393,6 +433,13 @@ function Projects(props) {
 												<div className='Title__inner'>{post.title}</div>
 											</Title>
 											<div className='item-background'></div>
+											<PreviewText className='PreviewText'>
+												<Paragraph size='small' indent>
+													Lorem ipsum dolor sit amet consectetur adipisicing
+													elit. Rem natus autem eligendi quos sapiente sint
+													nihil odio, placeat fugiat cumque.
+												</Paragraph>
+											</PreviewText>
 										</Link>
 									</Item>
 								</InView>
