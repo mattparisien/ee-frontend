@@ -11,48 +11,42 @@ const StyledSteps = styled.div`
 	grid-column-gap: 1.042vw;
 	grid-template-columns: repeat(12, 5.5vw);
 
-	h4 {
-		font-family: "Kobe";
-		text-align: left;
 
-		#text {
-			margin-right: 10px;
-		} 
-	}
 
-	.Steps__step:nth-of-type(1) {
-		grid-column: 3/7;
-	}
+	@media ${device.tablet} {
+		.Steps__step:nth-of-type(1) {
+			grid-column: 3/7;
+		}
 
-	.Steps__step:nth-of-type(2) {
-		grid-column: 6/10;
-	}
+		.Steps__step:nth-of-type(2) {
+			grid-column: 6/10;
+		}
 
-	.Steps__step:nth-of-type(3) {
-		grid-column: 9/13;
-	}
+		.Steps__step:nth-of-type(3) {
+			grid-column: 9/13;
+		}
 
-	.Steps__step:nth-of-type(4) {
-		grid-column: 6/10;
-	}
+		.Steps__step:nth-of-type(4) {
+			grid-column: 6/10;
+		}
 
-	.Steps__step:nth-of-type(5) {
-		grid-column: 3/8;
-	}
+		.Steps__step:nth-of-type(5) {
+			grid-column: 3/8;
+		}
 
-	.Steps__step:nth-of-type(7) {
-		grid-column: 7/12;
-	}
+		.Steps__step:nth-of-type(7) {
+			grid-column: 7/12;
+		}
 
-	@media ${device.mobileL} {
 		h4 {
 			font-size: 4.167vw;
+			text-align: left;
 			margin: 1.719vw 0;
 			line-height: 3.8vw;
 		}
 
 		p {
-			width: 14vw;
+			width: 14vw !important;
 		}
 	}
 `;
@@ -85,7 +79,7 @@ function Steps() {
 					{wordIndex === 1 && (
 						<>
 							<br></br>
-							{word}
+							{word + " "}
 						</>
 					)}
 				</>
@@ -97,7 +91,7 @@ function Steps() {
 					{wordIndex === 1 && (
 						<>
 							<br></br>
-							{word}
+							{word + " "}
 						</>
 					)}
 					{wordIndex === 2 && word}
@@ -111,7 +105,7 @@ function Steps() {
 					{wordIndex === 1 && (
 						<>
 							<br></br>
-							{word}
+							{word + " "}
 						</>
 					)}
 					{wordIndex === 2 && word}
@@ -125,7 +119,7 @@ function Steps() {
 					{wordIndex === 2 && (
 						<>
 							<br></br>
-							{word}
+							{word + " "}
 						</>
 					)}
 					{wordIndex === 1 && word}
@@ -139,7 +133,7 @@ function Steps() {
 					{wordIndex === 2 && (
 						<>
 							<br></br>
-							{word}
+							{word + " "}
 						</>
 					)}
 					{wordIndex === 1 && word}
