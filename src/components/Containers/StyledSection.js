@@ -3,6 +3,7 @@ import { device } from "../styles/device";
 
 const StyledSection = styled.section`
 	height: ${({ height }) => (height ? height : "auto")};
+	min-height: ${({ minHeight }) => (minHeight ? minHeight : "auto")};
 	position: ${props => (props.isRelative ? "relative" : "inherit")};
 
 	background-color: ${({ theme, $bg }) => {

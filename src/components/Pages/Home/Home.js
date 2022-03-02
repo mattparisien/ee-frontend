@@ -5,6 +5,7 @@ import FeaturedWork from "./components/FeaturedWork";
 import Hero from "./components/Hero/Hero";
 import How from "./components/How";
 import SectionLayout from "../../Containers/SectionLayout";
+import About2 from "./components/About2";
 
 export const pages = {
 	home: {
@@ -25,6 +26,13 @@ export const pages = {
 			},
 			{
 				id: 3,
+				name: "about2",
+				page: "home",
+				backgroundColor: "light",
+				height: "60vw"
+			},
+			{
+				id: 4,
 				name: "how",
 				page: "home",
 				backgroundColor: "light",
@@ -34,6 +42,7 @@ export const pages = {
 			// 	name: "featuredWork",
 			// 	page: "home",
 			// 	backgroundColor: "light",
+			// 	minHeight: "100vh"
 			// },
 		],
 	},
@@ -65,6 +74,7 @@ function Home(props) {
 	const innerComponents = {
 		hero: Hero,
 		about: About,
+		about2: About2,
 		how: How,
 		// featuredWork: FeaturedWork,
 	};
@@ -79,6 +89,7 @@ function Home(props) {
 						page={section.page}
 						bg={section.backgroundColor}
 						height={section.height}
+						minHeight={section.minHeight}
 					>
 						{React.createElement(innerComponents[section.name], {
 							key: section.id,

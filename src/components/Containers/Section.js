@@ -6,7 +6,7 @@ import { SiteWideControls } from "./Temp/Authenticated";
 import SectionBackground from "./SectionBackground";
 
 export default function Section(props) {
-	const { bg, addToRefs, isRelative, height, id, page } = props;
+	const { bg, addToRefs, isRelative, height, id, page, minHeight } = props;
 	const sectionClass = classNames(
 		`Section section-${page} section-${page}__${id}`,
 		props.classes
@@ -28,7 +28,7 @@ export default function Section(props) {
 			ref={addToRefs}
 			
 			data-scroll-section
-			
+			minHeight={minHeight}
 			height={height}
 		>
 			<InView

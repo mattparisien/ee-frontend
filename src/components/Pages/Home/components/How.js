@@ -3,20 +3,13 @@ import Button from "../../../Button/Button";
 import HeadingSection from "../../../Containers/HeadingSection";
 import Steps from "../components/Steps";
 import ContainerFluid from "../../../Containers/ContainerFluid";
+import { Heading } from "../../..";
 
 function How() {
-
 	return (
 		<>
-			<ContainerFluid padding='regular' height='auto' >
-				<HeadingSection
-					headingSize='large'
-					color='dark'
-					headingText={"How We Do It"}
-					headingWeight='light'
-					headingWidth='100%'
-				/>
-			</ContainerFluid>
+			<Heading large>How We Do It</Heading>
+
 			<Steps />
 			<Button variant='contained' color='dark'>
 				Get in touch

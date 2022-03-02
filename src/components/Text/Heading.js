@@ -17,7 +17,7 @@ function Heading(props, ref) {
 		capitalize,
 		width,
 		className,
-		align
+		align,
 	} = props;
 
 	const headingStyles = {
@@ -34,13 +34,13 @@ function Heading(props, ref) {
 	useEffect(() => {
 		if (heading.current) {
 			const mySplitText = new SplitText(heading.current, {
-				type: "chars, words",
+				type: "chars, words, lines",
 				charsClass: "heading-char",
 				wordsClass: "word",
-				linesClass: "heading-line"
+				linesClass: "heading-line",
 			});
 			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
-			$(mySplitText.lines).append("<div class='highlight-line'></div>")
+			$(mySplitText.lines).append("<div class='highlight-line'></div>");
 		}
 	}, [heading]);
 
@@ -51,16 +51,16 @@ function Heading(props, ref) {
 			lineAnim.current.to(chars, {
 				opacity: 1,
 				y: 0,
-				duration: 3,
+				duration: 2,
 				stagger: 0.03,
 				ease: "expo.inOut",
 				onComplete: () => {
 					gsap.to(highlight, {
 						width: "100%",
 						ease: "circ.inOut",
-						duration: 2
-					})
-				}
+						duration: 1,
+					});
+				},
 			});
 		}
 	}, [intersectingTarget]);
@@ -73,10 +73,10 @@ function Heading(props, ref) {
 			}
 			className='heading-view-wrapper'
 			threshold={1}
-			style={{width: "100%"}}
+			style={{ width: "100%" }}
 		>
 			<StyledHeading
-				className={`styled-heading-wrapper ${className ? className : ''}`}
+				className={`styled-heading-wrapper ${className ? className : ""}`}
 				$headingStyles={headingStyles}
 				align={align}
 			>

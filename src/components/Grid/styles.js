@@ -154,7 +154,7 @@ const StyledGrid = styled.div`
 
 
 		.note {
-			width: 4vw;
+			width: 2.4vw;
 		}
 
 		.location-note-wrapper {

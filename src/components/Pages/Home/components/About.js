@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { render } from "react-dom";
-import { Paragraph } from "../../..";
+import React, { useContext, useRef } from "react";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
-import { Megaphone } from "../../../Vector/Svg";
-import { StyledAbout } from "./styles";
-import ContainerFluid from "../../../Containers/ContainerFluid";
 import ParagraphLayout from "../../../Text/ParagraphLayout";
+import { StyledAbout } from "./styles";
+
 
 function About(props) {
 	const data = useContext(DataContext);
@@ -15,7 +12,12 @@ function About(props) {
 		<StyledAbout>
 			{data.about && (
 				<>
-					<ParagraphLayout size='large' className='section-who__paragraph1'>
+					<ParagraphLayout
+						size='large'
+						className='section-who__paragraph1'
+						indent
+						indentTitle={"About"}
+					>
 						{data.about && data.about.body1}
 					</ParagraphLayout>
 				</>

@@ -59,7 +59,11 @@ function Paragraph(props, ref) {
 			setIsSplit(true);
 			setSplitText(mySplitText);
 		}
-	}, [paragraph, windowWidth, delayAnim]);
+
+		if (isSplit) {
+			gsap.set(paragraph.current, {opacity: 1})
+		}
+	}, [paragraph, windowWidth, delayAnim, isSplit]);
 
 	useEffect(() => {
 		if (intersectingTarget) {
@@ -67,19 +71,15 @@ function Paragraph(props, ref) {
 
 			lines.each((index, el) => {
 				const chars = $(el).find(".char");
+				let delay = 0;
 
-				gsap.set(chars, {
-					y: "100%",
-					opacity: 0,
-				});
 				gsap.to(chars, {
 					y: 0,
 					opacity: 1,
 					stagger: 0.02,
 					duration: 2,
 					ease: "expo.inOut",
-					delay: delayAnim
-					
+					delay: delay + index / 5,
 				});
 			});
 		}

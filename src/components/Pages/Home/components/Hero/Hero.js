@@ -1,15 +1,15 @@
+import { Box } from "@mui/material";
 import gsap from "gsap";
-import React, { useEffect, useRef, useState, useContext } from "react";
-import styled from "styled-components";
-import useSplit from "../../../../../helpers/hooks/useSplit";
-import { DrawnLogo } from "../../../../index";
-import ContainerFluid from "../../../../Containers/ContainerFluid";
-import { device } from "../../../../styles/device";
-import { calculateWordOffsets, animateIntro } from "./helpers/helpers";
-import useResize from "../../../../../helpers/hooks/useResize";
-import { Paragraph } from "../../../../index";
 import SplitText from "gsap/SplitText";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import useResize from "../../../../../helpers/hooks/useResize";
+import useSplit from "../../../../../helpers/hooks/useSplit";
 import { SiteWideControls } from "../../../../Containers/Temp/Authenticated";
+import { Paragraph } from "../../../../index";
+import { device } from "../../../../styles/device";
+import { animateIntro, calculateWordOffsets } from "./helpers/helpers";
+import { DrawnLogo } from "../../../../index";
 
 const HeroHeading = styled.h1`
 	font-size: 21vw !important;
@@ -25,6 +25,17 @@ export const StyledHero = styled.div`
 	.line {
 		white-space: nowrap;
 		overflow: hidden;
+	}
+
+	.hero-brand-line {
+		position: relative;
+		&__logo {
+			width: 5rem;
+			position: absolute;
+			right: -7vw;
+			top: 50%;
+			transform: translateY(-50%);
+		}
 	}
 
 	& h1 {
@@ -153,6 +164,7 @@ export const StyledHero = styled.div`
 
 function Hero(props) {
 	const wordRefs = useRef([]);
+	const [isParagraphRevealed, setParagraphRevealed] = useState(false);
 	const [isSplit, chars, splitCount, words] = useSplit(wordRefs.current, {
 		type: "chars",
 		charsClass: "char",
@@ -226,9 +238,14 @@ function Hero(props) {
 					duration: wordEntryDuration,
 					stagger: -0.1,
 					ease: "expo.inOut",
+					onUpdate: () => {
+						if (line2Timeline.current.progress() > 0.5) {
+							setParagraphRevealed(true);
+						}
+					},
 					onComplete: () => {
-						toggleScrollLock()
-					}
+						toggleScrollLock();
+					},
 				});
 		}
 	}, [headingRefs, isHeadingSplit]);
@@ -279,10 +296,16 @@ function Hero(props) {
 					Impact
 				</HeroHeading>
 			</div>
-			<Paragraph animationDelay={wordEntryDuration + 1}>
-				We are the Eyes & Ears agency.
-			</Paragraph>{" "}
-			<br></br>
+			{isParagraphRevealed && (
+				<Box className='hero-brand-line'>
+					<Paragraph animationDelay={wordEntryDuration + 1}>
+						We are the Eyes & Ears agency.
+					</Paragraph>
+					<Box className="hero-brand-line__logo">
+						<DrawnLogo />
+					</Box>
+				</Box>
+			)}
 			{/* <HeroHeading ref={headingRef} data-scroll data-scroll-speed={3}>Impact</HeroHeading> */}
 		</StyledHero>
 	);

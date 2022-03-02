@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { formatImageList } from "../../../../helpers/formatData";
 
 const StyledFeaturedWorkImageList = styled(ImageList)`
+	height: 100%;
+
 	li {
 		position: absolute;
 		&:nth-of-type(1) {
@@ -45,28 +47,20 @@ function FeaturedWork(props) {
 	}, [data]);
 
 	return (
-		<ContainerFluid
-			classes={"featured-work-container"}
-			centerInner
-			flexDirection='column'
-			noGutter
-			isRelative
-		>
-			<ContainerFluid hasPaddingVertical height='auto' centerInner hasPaddingBottom>
-				<HeadingSection
-					color='dark'
-					headingSize='large'
-					weight='light'
-					width='100%'
-					headingText={"Featured Work"}
-				/>
-			</ContainerFluid>
+		<>
+			<HeadingSection
+				color='dark'
+				headingSize='large'
+				weight='light'
+				width='100%'
+				headingText={"Featured Work"}
+			/>
 
 			<StyledFeaturedWorkImageList
 				listItems={featuredPosts}
 				className='featured-work-image-list'
 			/>
-		</ContainerFluid>
+		</>
 	);
 }
 

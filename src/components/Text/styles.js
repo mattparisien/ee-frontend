@@ -181,6 +181,7 @@ export const StyledParagraph = styled.div`
 	letter-spacing: -1px;
 
 	p {
+		opacity: 0;
 		${({ theme, size }) =>
 			theme.typography.setSize(size === "small" ? 1.2 : 3)};
 		${({ theme, size }) =>
@@ -210,6 +211,10 @@ export const StyledParagraph = styled.div`
 
 		.word:not(:first-of-type) {
 			margin-left: 0.2em;
+		}
+
+		.char {
+			transform: translateY(-100%);
 		}
 	}
 `;
