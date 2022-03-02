@@ -1,7 +1,8 @@
 import React, { useContext, useRef } from "react";
 import { DataContext } from "../../../../Containers/Temp/Authenticated";
 import Heading from "../../../../Text/Heading";
-import { device } from "../../../../styles/device";
+import { device, deviceSize } from "../../../../styles/device";
+
 import { Grid } from "@mui/material";
 import Notes from "./Notes/Notes";
 import styled from "styled-components";
@@ -11,7 +12,25 @@ const StyledSteps = styled.div`
 	grid-column-gap: 1.042vw;
 	grid-template-columns: repeat(12, 5.5vw);
 
+	@media (max-width: ${deviceSize.tablet}px) {
+		.Steps__step {
+			grid-column: 1/12;
+			margin: 4.5vw 0;
 
+			h4 {
+				text-align: center;
+				font-size: 12vw;
+				line-height: 12vw;
+				margin: 4vw 0;
+			}
+
+			p {
+				text-align: center;
+				font-size: 3.3vw;
+				width: 100%;
+			}
+		}
+	}
 
 	@media ${device.tablet} {
 		.Steps__step:nth-of-type(1) {
