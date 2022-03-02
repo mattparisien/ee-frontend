@@ -1,4 +1,3 @@
-import Container from "./Containers/Container";
 import Section from "./Containers/Section";
 import Grid from "./Grid/Grid";
 import GridItem from "./Grid/GridItem";
@@ -18,15 +17,12 @@ import {
 	Ellipse,
 	Eye,
 	TextLogo,
-	Trumpet
+	Trumpet,
 } from "./Vector/Svg";
-
-
 
 export {
 	Paragraph,
 	Heading,
-	Container,
 	Section,
 	UnorderedList,
 	Header,

@@ -1,65 +1,9 @@
 import styled from "styled-components";
 import { device } from "../styles/device";
 import { CONTAINERMAXWIDTH } from "../styles/Global";
-
-const verticalGutter = {
-	desktopL: {
-		padding: "9vw",
-	},
-	desktop: {
-		padding: "10vw",
-	},
-	laptopL: {
-		padding: "10vw",
-	},
-	laptop: {
-		padding: "12vw",
-	},
-	tablet: {
-		padding: "9vw",
-	},
-	mobileL: {
-		padding: "6vw",
-	},
-	mobileM: {
-		padding: "4rem",
-	},
-	mobileS: {
-		padding: "4rem",
-	},
-};
-
-const horizontalGutter = {
-	desktopL: {
-		padding: "14vw",
-	},
-	desktop: {
-		padding: "10vw",
-	},
-	laptopL: {
-		padding: "15vw",
-	},
-	laptop: {
-		padding: "12vw",
-	},
-	tablet: {
-		padding: "9vw",
-	},
-	mobileL: {
-		padding: "4vw",
-	},
-	mobileM: {
-		padding: "1.9rem",
-	},
-	mobileS: {
-		padding: "3rem",
-	},
-};
-
-export const responsiveGutter = {
-	horizontal: horizontalGutter,
-	vertical: verticalGutter,
-};
+import { themes } from "../../helpers/hooks/useAppData";
+import { map } from "lodash";
+import { render } from "react-three-fiber";
 
 const StyledContainer = styled.div`
 	overflow: visible;
@@ -111,45 +55,7 @@ const StyledContainer = styled.div`
 			: `display: block`
  }
 `;
-	}}
-
-	${({ noGutter, hasPaddingTop, hasPaddingBottom }) => {
-		return !noGutter
-			? Object.keys(device).map(deviceName => {
-					return `@media ${device[deviceName]} {
-										${
-											hasPaddingTop
-												? `
-										padding-top: ${responsiveGutter["vertical"][deviceName]["padding"]};
-										padding-left: ${responsiveGutter["horizontal"][deviceName]["padding"]};
-										padding-right: ${responsiveGutter["horizontal"][deviceName]["padding"]};
-
-										`
-												: hasPaddingBottom
-												? `
-										padding-bottom: ${responsiveGutter["vertical"][deviceName]["padding"]};
-										padding-left: ${responsiveGutter["horizontal"][deviceName]["padding"]};
-										padding-right: ${responsiveGutter["horizontal"][deviceName]["padding"]};
-										`
-												: `
-												padding: 0 ${responsiveGutter["vertical"][deviceName]["padding"]};
-												`
-										}
-											
-										}`;
-			  })
-			: "";
-	}}
-
-	${({ isAbsoluteCenter }) => {
-		return isAbsoluteCenter
-			? `
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-			`
-			: "";
-	}}
+	}};
 `;
 
 export { StyledContainer };

@@ -5,11 +5,10 @@ import { Transition, TransitionGroup } from "react-transition-group";
 import { SideMenu } from "../..";
 import useAppData from "../../../helpers/hooks/useAppData";
 import SiteRoutes from "../../../Routes";
-import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import LoadingScreen from "../../Loading/LoadingScreen";
-import { GlobalStyles } from "../../styles/Global";
 import SiteTransition from "../../Transition/Transition";
+import Footer from "../../Footer/Footer";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -40,7 +39,8 @@ function Authenticated() {
 	};
 
 	const toggleScrollLock = () => {
-		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
+		console.log('hello!')
+		setState(prev => ({ ...prev, isScrollLocked: !state.isScrollLocked }));
 	};
 
 	const toggleHeaderColor = sectionBgColor => {

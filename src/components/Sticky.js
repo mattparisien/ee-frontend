@@ -3,6 +3,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import React, { useEffect, useRef } from "react";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
+import ContainerFluid from "./Containers/ContainerFluid";
 
 //Sticky section
 function Sticky({ themes, visionCopy }) {
@@ -31,7 +32,7 @@ function Sticky({ themes, visionCopy }) {
 
 	return (
 		<div ref={stickyWrapper} className="sticky-container">
-			<Container
+			<ContainerFluid
 				flex
 				column
 				alignCenter
@@ -51,12 +52,12 @@ function Sticky({ themes, visionCopy }) {
 						scroll here
 					</span>
 				</div>
-			</Container>
-			<Container sectionTheme={themes.revealed} isBelow>
+			</ContainerFluid>
+			<ContainerFluid sectionTheme={themes.revealed} isBelow>
 				<div>
 					<Paragraph large>{visionCopy}</Paragraph>
 				</div>
-			</Container>
+			</ContainerFluid>
 		</div>
 	);
 }

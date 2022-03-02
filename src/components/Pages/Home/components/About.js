@@ -1,27 +1,29 @@
 import React, { useContext, useRef } from "react";
-import { Container, Paragraph } from "../../..";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
-import { Megaphone } from "../../../Vector/Svg";
+import ParagraphLayout from "../../../Text/ParagraphLayout";
 import { StyledAbout } from "./styles";
+
 
 function About(props) {
 	const data = useContext(DataContext);
 	const paragraphRefs = useRef([]);
 
-
 	return (
-		<Container height={"auto"} hasPaddingVertical>
-			<StyledAbout>
-				{data.about && (
-					<>
-						<Paragraph size='large' className='section-who__paragraph1'>
-							{data.about.body1}
-						</Paragraph>
-					</>
-				)}
-				<Megaphone />
-			</StyledAbout>
-		</Container>
+		<StyledAbout>
+			{data.about && (
+				<>
+					<ParagraphLayout
+						size='large'
+						className='section-who__paragraph1'
+						indent
+						indentTitle={"About"}
+					>
+						{data.about && data.about.body1}
+					</ParagraphLayout>
+				</>
+			)}
+			{/* <Megaphone /> */}
+		</StyledAbout>
 	);
 }
 

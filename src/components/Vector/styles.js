@@ -35,5 +35,7 @@ export const StyledDrawnLogo = styled.div`
 		.eye {
 			fill: ${({ theme }) => theme.colors.yellow};
 		}
+
+		
 	}
 `;

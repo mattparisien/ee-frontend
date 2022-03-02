@@ -39,7 +39,7 @@ function useSplit(arrayOfElements, options) {
 	useEffect(() => {
 		if (splitText) {
 			setSplitText(splitText.revert().split());
-			$(splitText.lines).wrap('<div class="line-wrapper"></div>');
+			$(splitText.lines).wrap('<div class="line-wrapper data-scroll data-scroll-speed=2"></div>');
 			setSplitCount(prev => prev + 1);
 		}
 	}, [windowWidth]);

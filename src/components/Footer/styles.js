@@ -4,17 +4,6 @@ import { device } from "../styles/device";
 export const StyledFooter = styled.footer`
 
 
-	
-
-	color: ${({ theme }) => theme.colors.dark};
-	background-color: ${({ theme }) => theme.colors.dark};
-	position: relative;
-	height: 60vw;
-	max-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
 
 	
 
@@ -22,10 +11,16 @@ export const StyledFooter = styled.footer`
 		display: flex;
 		width: 100%;
 		justify-content: space-between;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding-left: inherit;
 
 
 		.footer-heading h2 {
-			font-size: 10.8vw;
+			font-size: 9vw;
+			text-align: left;
 			letter-spacing: -0.1vw;
 		}
 
@@ -47,14 +42,14 @@ export const StyledFooter = styled.footer`
 		}
 
 
-		@media ${device.laptopL} {
+		@media ${device.laptop} {
 			.footer-heading h2 {
-				font-size: 9rem;
+				font-size: 7rem;
 			}	
 
 			.footer-email h2 {
 				margin-top: 1.23rem;
-				font-size: 3.6rem;
+				font-size: 2.8rem;
 			}
 		}
 
@@ -135,13 +130,6 @@ export const StyledFooter = styled.footer`
 
 	};
 
-	.footer-navList-wrapper {
-		position: absolute;
-		bottom: 0;
-		padding: inherit;
-		margin-bottom: 2rem;
-		
-	}
 
 	.link-list {
 		color: ${({ theme }) => theme.colors.light};
@@ -166,9 +154,15 @@ export const StyledContactFooterInner = styled.div`
 
 export const StyledFooterBottom = styled.div`
 	color: ${({ theme }) => theme.colors.light};
+	position: absolute;
+	bottom: 0;
+	left: 0;
 	display: flex;
 	align-items: center;
 	width: 100%;
+	padding-left: inherit;
+	padding-right: inherit;
+	padding-bottom: inherit;
 
 	.footer-brand-name {
 		width: 13rem;

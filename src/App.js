@@ -9,7 +9,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 function App() {
-	const { state, themes, setState } = useAppData();
+	const { appRefs, state, setState, pending, themes, location } = useAppData();
 	const scrollWrapper = useRef(null);
 
 	useEffect(() => {
@@ -43,14 +43,14 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					/>
 				</Helmet>
 				<ThemeProvider theme={themes}>
-					<GlobalStyles />
+					<GlobalStyles isScrollLocked={state.isScrollLocked} />
 					<LocomotiveScrollProvider
 						options={{
 							initPosition: {
 								x: 0,
 								y: 0,
 							},
-							
+
 							smooth: true,
 							getDirection: true,
 						}}

@@ -1,33 +1,32 @@
 import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
 
-export const StyledDynamicWrapper = styled.div`
-	width: 100%;
-	height: 100%;
-
-	transition: 300ms ease;
-	transform: translateY(${props => (props.isScrollingDown ? "-400%" : "0")});
-`;
 
 export const StyledHeader = styled.div`
+	ul li {
+		color: ${({ color, theme }) => theme.colors[color]} !important;
+	}
+
+	svg {
+		fill: ${({ color, theme }) => theme.colors[color]} !important;
+	}
+
+	${({theme}) => theme.spacing(4, "height")};
+	padding-bottom: 1rem;
+	padding-top: 1rem;
+
 	width: 100%;
-	height: 100px;
+
 	position: fixed;
 	top: 0;
 	left: 0;
-	padding: 2rem 4rem;
-
-	@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
-		padding: 1.8rem !important;
-		height: 75px;
-	}
-
 	z-index: 9999;
 	display: flex;
 	align-items: center;
 
 	.logo-wrapper {
-		width: 150px;
+		${({theme}) => theme.spacing(5, "width")};
+
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -61,23 +60,6 @@ export const StyledHeader = styled.div`
 		align-items: center;
 		justify-content: flex-end;
 		align-self: flex-end;
-
-		ul {
-			li {
-				display: inline;
-
-				&:not(:last-of-type) {
-					padding-right: 8rem;
-				}
-
-				a {
-					position: relative;
-					text-decoration: none;
-					color: $dark;
-					font-size: 1.4rem;
-				}
-			}
-		}
 	}
 
 	button {

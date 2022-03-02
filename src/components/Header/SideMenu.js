@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { navigation } from "../../data/data";
 import useSplit from "../../helpers/hooks/useSplit";
-import { Container } from "../index";
 import { StyledViewportNav } from "../styles/StyledViewportNav";
+import ContainerFluid from "../Containers/ContainerFluid";
 
 export default function SideMenu(props) {
 	const { appRefs, toggleMenu, isOpen, hasShown } = props;
@@ -147,9 +147,9 @@ export default function SideMenu(props) {
 			ref={menuRef}
 			$menuStyles={menuStyles}
 		>
-			<Container classes={"viewport-nav__inner"} bg={"dark"}>
+			<ContainerFluid classes={"viewport-nav__inner"} bg={"dark"}>
 				<ul className='-position-absolute-center'>{navLinks}</ul>
-			</Container>
+			</ContainerFluid>
 		</StyledViewportNav>
 	);
 }

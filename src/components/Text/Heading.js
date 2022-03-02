@@ -16,7 +16,8 @@ function Heading(props, ref) {
 		weight,
 		capitalize,
 		width,
-		className
+		className,
+		align,
 	} = props;
 
 	const headingStyles = {
@@ -30,27 +31,36 @@ function Heading(props, ref) {
 	const lineAnim = useRef(gsap.timeline());
 	const [intersectingTarget, setIntersectingTarget] = useState(null);
 
-
-
 	useEffect(() => {
 		if (heading.current) {
 			const mySplitText = new SplitText(heading.current, {
-				type: "chars",
+				type: "chars, words, lines",
 				charsClass: "heading-char",
+				wordsClass: "word",
+				linesClass: "heading-line",
 			});
 			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
+			$(mySplitText.lines).append("<div class='highlight-line'></div>");
 		}
 	}, [heading]);
 
 	useEffect(() => {
 		if (intersectingTarget) {
 			const chars = $(intersectingTarget).find(".heading-char");
+			const highlight = $(intersectingTarget).find(".highlight-line");
 			lineAnim.current.to(chars, {
 				opacity: 1,
 				y: 0,
-				duration: 0.6,
-				stagger: 0.05,
-				ease: "power2.out",
+				duration: 2,
+				stagger: 0.03,
+				ease: "expo.inOut",
+				onComplete: () => {
+					gsap.to(highlight, {
+						width: "100%",
+						ease: "circ.inOut",
+						duration: 1,
+					});
+				},
 			});
 		}
 	}, [intersectingTarget]);
@@ -63,15 +73,15 @@ function Heading(props, ref) {
 			}
 			className='heading-view-wrapper'
 			threshold={1}
+			style={{ width: "100%" }}
 		>
 			<StyledHeading
-				className={`styled-heading-wrapper ${className && className}`}
+				className={`styled-heading-wrapper ${className ? className : ""}`}
 				$headingStyles={headingStyles}
+				align={align}
 			>
-				{small && <h4>{children}</h4>}
-				{medium && <h3>{children}</h3>}
 				{large && <h2 ref={heading}>{children}</h2>}
-				{xl && <h1>{children}</h1>}
+				{small && <h4 ref={heading}>{children}</h4>}
 			</StyledHeading>
 		</InView>
 	);

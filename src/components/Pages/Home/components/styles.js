@@ -23,8 +23,8 @@ export const StyledHero = styled.div`
 			height: 100%;
 
 			.drawnLogo {
-				width: 30vw;
-				max-width: 15vw;
+				
+				
 				top: 50%;
 				left: 50%;
 				position: absolute;
@@ -34,7 +34,7 @@ export const StyledHero = styled.div`
 
 			@media ${device.desktop} {
 				.drawnLogo {
-					width: 300px;
+					width: 200px;
 					opacity: 0;
 				}
 
@@ -83,9 +83,6 @@ export const StyledHero = styled.div`
 `;
 
 export const StyledAbout = styled.div`
-	display: flex;
-	flex-direction: row-reverse;
-
 	.megaphone-svg {
 		min-width: 400px;
 		width: 30vw;

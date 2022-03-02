@@ -2,9 +2,8 @@ import React from "react";
 import { NoteFilled, NoteOutline } from "../../../../Vector/Svg";
 import NoteWrappers from "./NoteWrappers";
 
-
 function Notes({ addToRefs, scrollTrigger }) {
-	const notes = ["filled", "filled", "outline", "outline"];
+	const notes = ["filled", "filled", "outline", "outline", "outline", "filled"];
 	let noteSpeed = 3;
 
 	return notes.map((note, i) => {
@@ -13,7 +12,7 @@ function Notes({ addToRefs, scrollTrigger }) {
 				key={i}
 				id={i}
 				ref={addToRefs}
-				speed={(noteSpeed += 1)}
+				speed={noteSpeed}
 				scrollTrigger={scrollTrigger}
 			>
 				{note === "filled" ? <NoteFilled /> : <NoteOutline />}

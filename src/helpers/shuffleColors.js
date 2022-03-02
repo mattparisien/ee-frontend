@@ -2,24 +2,17 @@
 
 function shuffleColors(theme) {
 	let randomColor;
-	const colors = [];
-	
-	//Push only colors that aren't b&w & check if array includes
-	for (let key in theme.colors) {
-		if (
-			key !== "light" &&
-			key !== "dark" &&
-			!colors.includes(theme.colors[key])
-		) {
-			colors.push(theme.colors[key]);
-		}
-	}
 
-	const randomColorIndex = Math.ceil(Math.random() * colors.length);
+	const themeObject = Object.assign({}, theme.colors);
+	delete themeObject.dark;
+	delete themeObject.lighterDark;
 
-	randomColor = colors[randomColorIndex];
+	const themeColors = Object.values(themeObject);
+	console.log(themeColors);
 
-	return randomColor;
+	const randomIndex = Math.floor(Math.random() * (themeColors.length + 0) + 0);
+
+	return themeColors[randomIndex];
 }
 
 export { shuffleColors };

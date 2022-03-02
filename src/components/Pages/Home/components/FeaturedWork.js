@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import { Container } from "../../../index";
+import ContainerFluid from "../../../Containers/ContainerFluid";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
 import HeadingSection from "../../../Containers/HeadingSection";
 import ImageList from "../../../ImageList/ImageList";
@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { formatImageList } from "../../../../helpers/formatData";
 
 const StyledFeaturedWorkImageList = styled(ImageList)`
+	height: 100%;
+
 	li {
 		position: absolute;
 		&:nth-of-type(1) {
@@ -45,28 +47,20 @@ function FeaturedWork(props) {
 	}, [data]);
 
 	return (
-		<Container
-			classes={"featured-work-container"}
-			centerInner
-			flexDirection='column'
-			noGutter
-			isRelative
-		>
-			<Container hasPaddingVertical height='auto' centerInner hasPaddingBottom>
-				<HeadingSection
-					color='dark'
-					headingSize='large'
-					weight='light'
-					width='100%'
-					headingText={"Featured Work"}
-				/>
-			</Container>
+		<>
+			<HeadingSection
+				color='dark'
+				headingSize='large'
+				weight='light'
+				width='100%'
+				headingText={"Featured Work"}
+			/>
 
 			<StyledFeaturedWorkImageList
 				listItems={featuredPosts}
 				className='featured-work-image-list'
 			/>
-		</Container>
+		</>
 	);
 }
 

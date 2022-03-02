@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "styled-components";
 import useResize from "../../helpers/hooks/useResize";
 import useScroll from "../../helpers/hooks/useScrollDir";
 import { TextLogo } from "../index";
-import MobileNav from "./MobileNav";
-import {
-	StyledDynamicWrapper,
-	StyledHeader,
-	StyledInnerLayout,
-} from "./styles";
+import { StyledHeader, StyledInnerLayout } from "./styles";
+import Navigation from "./Navigation/Navigation";
+import ContainerFluid from "../Containers/ContainerFluid";
 
 export default function Header(props) {
 	const { menuState, toggleMenu, appRefs, addToRefs, headerColor } = props;
@@ -28,15 +24,6 @@ export default function Header(props) {
 		}
 	}, [menuState]);
 
-	const headerStyles = {
-		padding: "2rem 4rem",
-		color: headerColor,
-		burger: {
-			transition: menuState ? "none" : "300ms ease",
-			color: headerColor,
-		},
-	};
-
 	useEffect(() => {
 		if (windowWidth && windowWidth < 700) {
 			setDevice("mobile");
@@ -48,34 +35,19 @@ export default function Header(props) {
 	return (
 		<StyledHeader
 			isMenuActive={menuState}
-			$headerStyles={headerStyles}
 			$isHoverable={isHoverable}
+			color={props.headerColor}
 			ref={addToRefs}
 			id='site-header'
 		>
-			<StyledDynamicWrapper
-				className='header-dynamic-wrapper'
-				isScrollingDown={scrollDirection === "down"}
-			>
-				<StyledInnerLayout
-					headerColor={headerColor}
-					className='header-inner-layout'
-					menuIsActive={menuState}
-				>
-					<div className='logo-wrapper -absolute-center'>
-						<a href='/'>
-							<TextLogo logoRef={addToRefs} />
-						</a>
-					</div>
-
-					<MobileNav
-						onClick={toggleMenu}
-						menuState={menuState}
-						linkRefs={props.linkRefs}
-						addToRefs={addToRefs}
-					/>
-				</StyledInnerLayout>
-			</StyledDynamicWrapper>
+			<ContainerFluid height='100%' noVerticalGutter>
+				<div className='logo-wrapper -absolute-center'>
+					<a href='/'>
+						<TextLogo logoRef={addToRefs} />
+					</a>
+				</div>
+				<Navigation />
+			</ContainerFluid>
 		</StyledHeader>
 	);
 }

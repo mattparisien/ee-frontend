@@ -3,9 +3,10 @@ import { StyledSection } from "./StyledSection";
 import classNames from "classnames";
 import { InView } from "react-intersection-observer";
 import { SiteWideControls } from "./Temp/Authenticated";
+import SectionBackground from "./SectionBackground";
 
 export default function Section(props) {
-	const { bg, addToRefs, isRelative, noGutter, id, page } = props;
+	const { bg, addToRefs, isRelative, height, id, page, minHeight } = props;
 	const sectionClass = classNames(
 		`Section section-${page} section-${page}__${id}`,
 		props.classes
@@ -25,13 +26,15 @@ export default function Section(props) {
 			className={sectionClass}
 			$bg={bg}
 			ref={addToRefs}
-			isRelative={isRelative}
+			
 			data-scroll-section
-			noGutter={noGutter}
+			minHeight={minHeight}
+			height={height}
 		>
 			<InView
 				className='section-view-wrapper'
 				as='div'
+				style={{height: "100%"}}
 				onChange={(inView, entry) =>
 					inView &&
 					setIntersectingTarget({
@@ -45,6 +48,7 @@ export default function Section(props) {
 			>
 				{props.children}
 			</InView>
+			{/* <SectionBackground bg={bg}/> */}
 		</StyledSection>
 	);
 }

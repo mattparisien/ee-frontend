@@ -43,19 +43,15 @@ function NoteWrappers({ children, id, rotation, speed, scrollTrigger }, ref) {
 	return (
 		<div
 			className={`location-note-wrapper location-note-wrapper__${(id += 1)}`}
+			data-scroll
+			data-scroll-speed={speed}
 		>
-			<div
-				className='scroll-speed-note-wrapper'
-				data-scroll
-				data-scroll-speed={noteSpeed}
+			<StyledNoteRotationWrapper
+				className='rotate-note-container'
+				ref={addToRefs}
 			>
-				<StyledNoteRotationWrapper
-					className='rotate-note-container'
-					ref={addToRefs}
-				>
-					{children}
-				</StyledNoteRotationWrapper>
-			</div>
+				{children}
+			</StyledNoteRotationWrapper>
 		</div>
 	);
 }

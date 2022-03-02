@@ -7,9 +7,15 @@ import { device, deviceSize } from "../styles/device";
 const StyledImageList = styled.ul`
 	width: 100%;
 	position: relative;
-	height: 160vw;
+	height: auto;
 	display: flex;
-	margin:
+	flex-direction: column;
+	gap: ${({ theme }) => theme.components.imageList.gutter.mobile};
+
+	&:not(:first-of-type) {
+		margin-top: ${({ theme }) => theme.components.imageList.gutter.mobile};
+	}
+	
 
 	.ul-frame {
 		width: 100%;
@@ -24,11 +30,11 @@ const StyledImageList = styled.ul`
 
 	li {
 		
-		height: 54vw;
-		width: 40vw;
+		height: 140vw;
+		width: 100%;
 		max-width: 795px;
 		max-height: 1000px;
-		border-radius: 0.7vw;
+		
 		overflow: visible;
 
 	
@@ -39,13 +45,17 @@ const StyledImageList = styled.ul`
 			height: 100%;
 			position: relative;
 
-			.linkable-frame {
+			.linkable-frame-desktop {
 				width: 100%;
 				height: 100%;
 				position: absolute;
 				top: 0;
 				left: 0;
-				transform: scale(1.1);
+				
+
+				@media ${device.mobileL} {
+					transform: scale(1.1);
+				}
 
 				.decorative-line {
 					
@@ -125,15 +135,17 @@ const StyledImageList = styled.ul`
 			}
 
 			.featured-work-uoList__image {
-				height: 100%;
+				height: 90%;
 				width: 100%;
-				
 				background-position: center;
-				border-radius: 0.7vw;
+				
 				overflow: hidden;
 				position: relative;
 				
-
+				@media ${device.mobileL} {
+					height: 100%;
+				}
+ 
 
 				img {
 					
@@ -161,17 +173,30 @@ const StyledImageList = styled.ul`
 			}
 
 			.featured-work-uoList__title {
-				height: 100%;
+				height: 10%;
 				width: 100%;
+				bottom: 0;
 				position: absolute;
-				top: 0;
-				left: 0;
+				color: black;
 				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 3vw;
+				flex-direction: column;
+				padding: 4vw;
 				transition: 300ms ease;
 				opacity: 1;
+
+				@media ${device.mobileL} {
+					height: 100%;
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					color: ${({ theme }) => theme.colors.dark};
+
+					.title, .subtitle {
+						color: ${({ theme }) => theme.colors.light};
+						font-size: 2.5vw;
+						line-height: 3vw;	
+					}
+				}
 
 				
 				@media ${device.tablet} {
@@ -179,19 +204,24 @@ const StyledImageList = styled.ul`
 
 				}
 
-				.title {
-					text-align: center;
+				.title, .subtitle {
 					
-					font-size: 5vw;
-					letter-spacing: -0.2vw;
-					line-height: 4vw;
-					color: ${({ theme }) => theme.colors.light};
+					bottom: 0;
+					
 					z-index: 1;
+
+					${({ theme }) => theme.typography.setSize(2)};
+				}
+
+				.title {
+					font-family: 'Kobe Bold';
+					
 				}
 
 				.background {
+					display: none;
 					position: absolute;
-					border-radius: 0.7vw;
+					
 					top: 0;
 					left: 0;
 					background-color: black;
@@ -199,6 +229,10 @@ const StyledImageList = styled.ul`
 					width: 100%;
 					height: 100%;
 					transform: scale(-0.91);
+
+					@media ${device.mobileL} {
+						display: block;
+					}
 				}
 			}
 		}
@@ -269,8 +303,8 @@ function ImageListItem({ id, title, subtitle, imageSrc, imageAlt }) {
 				</div>
 
 				<Link
-					className='linkable-frame'
-					to={`/posts/${Math.random().toString(36).substr(2, 9)}`}
+					className='linkable-frame-desktop'
+					to={`/projects/${id}`}
 					key={Math.random().toString(36).substr(2, 9)}
 				>
 					<div
@@ -307,6 +341,7 @@ function ImageListItem({ id, title, subtitle, imageSrc, imageAlt }) {
 						>
 							{title}
 						</div>
+						<div className='subtitle'>{subtitle}</div>
 						<div
 							className='background'
 							key={Math.random().toString(36).substr(2, 9)}
