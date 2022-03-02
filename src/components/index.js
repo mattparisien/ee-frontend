@@ -5,7 +5,6 @@ import SideMenu from "./Header/SideMenu";
 import ListBlogPosts from "./ListBlogPosts";
 import UnorderedList from "./Lists/UnorderedList";
 import Heading from "./Text/Heading";
-import Paragraph from "./Text/Paragraph";
 import SlidingText from "./Marquee";
 import {
 	Amperstand,
@@ -20,7 +19,6 @@ import {
 
 export {
 	Section,
-	Paragraph,
 	Heading,
 	UnorderedList,
 	Header,

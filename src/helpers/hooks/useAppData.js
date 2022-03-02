@@ -6,6 +6,7 @@ import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
 import { formatPosts, formatSteps, formatAbout } from "../formatData";
 import { device } from "../../components/styles/device";
+import { createTheme } from "@mui/material";
 
 export default function useAppData(scrollRef) {
 	const baseSpacing = {
@@ -31,92 +32,52 @@ export default function useAppData(scrollRef) {
 	};
 
 	//Themes
-	const themes = {
-		colors: {
-			light: "#FCFCF0",
-			dark: "#010201",
-			lighterDark: "#111111",
-			red: "#DF181F",
-			green: "#039924",
-			blue: "#1E70DD",
-			yellow: "#F1DA0A",
-			grey: "#AFAFAF",
-		},
-		spacing: (multiplier, property) => {
-			return Object.entries(device).map(size => {
-				return `@media ${size[1]} {
-						${
-							Array.isArray(property)
-								? property.map(
-										prop => `${prop}: ${baseSpacing[size[0]] * multiplier}rem;`
-								  )
-								: `
-								${property}: ${baseSpacing[size[0]] * multiplier}rem;
-								`
-						};
-					}
 
-					`;
-			});
-		},
-		transition: {
-			easing: "cubic-bezier(.17,.67,.83,.67)",
-			timing: "2s",
+	const theme = createTheme({
+		palette: {
+			primary: {
+				dark: "#191919",
+				light: "#F9F8F4",
+				main: "#FDD20A",
+			},
+			secondary: {
+				main: "#FDD20A",
+			},
 		},
 		typography: {
-			setSize: multiplier => {
-				return `
-			@media ${device.mobileS} {
-				
-				font-size: ${baseFontSize.mobileS * multiplier}rem;
-			}
-		
-			@media ${device.mobileL} {
-				
-				font-size: ${baseFontSize.mobileL * multiplier}rem;
-			}
-		
-			@media ${device.tablet} {
-				
-				font-size: ${baseFontSize.tablet * multiplier}rem;
-			}
-		
-			@media ${device.laptop} {
-				
-				font-size: 8rem;
-				font-size: ${baseFontSize.laptop * multiplier}rem;
-			}
-		
-			@media ${device.laptopL} {
-			
-				font-size: ${baseFontSize.laptopL * multiplier}rem;
-			}
-
-			@media ${device.desktop} {
-			
-				font-size: ${baseFontSize.desktop * multiplier}rem;
-			}
-
-			@media ${device.desktopL} {
-			
-				font-size: ${baseFontSize.desktopL * multiplier}rem;
-			}
-			`;
-			},
+			fontFamily: [
+				"-apple-system",
+				"BlinkMacSystemFont",
+				'"Segoe UI"',
+				"Roboto",
+				'"Helvetica Neue"',
+				"Arial",
+				"sans-serif",
+				'"Apple Color Emoji"',
+				'"Segoe UI Emoji"',
+				'"Segoe UI Symbol"',
+			].join(","),
 		},
+
 		components: {
-			container: {
-				gutter: {
-					mobile: "4vw",
-				},
-			},
-			imageList: {
-				gutter: {
-					mobile: "12vw",
+			MuiTypography: {
+				defaultProps: {
+					variantMapping: {
+						h1: "h2",
+						h2: "h2",
+						h3: "h2",
+						h4: "h2",
+						h5: "h2",
+						h6: "h2",
+						subtitle1: "h2",
+						subtitle2: "h2",
+						body1: "span",
+						body2: "span",
+					},
 				},
 			},
 		},
-	};
+	});
 
 	const [windowWidth, isResized] = useResize();
 	const location = useLocation();
@@ -181,5 +142,5 @@ export default function useAppData(scrollRef) {
 			.finally(() => setPending(false));
 	}, []);
 
-	return { appRefs, state, setState, pending, themes, location  };
+	return { appRefs, state, setState, pending, theme };
 }

@@ -6,10 +6,11 @@ import styled from "styled-components";
 import useResize from "../../../../../helpers/hooks/useResize";
 import useSplit from "../../../../../helpers/hooks/useSplit";
 import { SiteWideControls } from "../../../../Containers/Temp/Authenticated";
-import { Paragraph } from "../../../../index";
+// import { Paragraph } from "../../../../index";
 import { device } from "../../../../styles/device";
 import { animateIntro, calculateWordOffsets } from "./helpers/helpers";
 import { DrawnLogo } from "../../../../index";
+import { Typography } from "@mui/material";
 
 const HeroHeading = styled.h1`
 	font-size: 21vw !important;
@@ -163,104 +164,7 @@ export const StyledHero = styled.div`
 `;
 
 function Hero(props) {
-	const wordRefs = useRef([]);
-	const [isParagraphRevealed, setParagraphRevealed] = useState(false);
-	const [isSplit, chars, splitCount, words] = useSplit(wordRefs.current, {
-		type: "chars",
-		charsClass: "char",
-	});
 
-	const { toggleScrollLock } = useContext(SiteWideControls);
-
-	const [split, setSplit] = useState(null);
-	const [isHeadingSplit, setHeadingsplit] = useState(null);
-	const headingRefs = useRef([]);
-	headingRefs.current = [];
-	const [defaultOffsets, setDefaultOffsets] = useState({});
-	const [windowWidth] = useResize();
-	const containerRef = useRef(null);
-	const logoRef = useRef(null);
-	const overlayRef = useRef(null);
-	const line1Timeline = useRef(gsap.timeline({ delay: 0.5 }));
-	const line2Timeline = useRef(gsap.timeline({ delay: 0.5 }));
-	const wordEntryDuration = 2;
-
-	const addToRefs = el => {
-		if (el && !wordRefs.current.includes(el)) {
-			wordRefs.current.push(el);
-		}
-	};
-
-	const addToHeadingRefs = el => {
-		if (el && !headingRefs.current.includes(el)) {
-			headingRefs.current.push(el);
-		}
-	};
-
-	useEffect(() => {
-		if (headingRefs.current && !isHeadingSplit) {
-			const mySplitText = new SplitText(headingRefs.current, {
-				type: "lines, chars, words",
-				charsClass: "hero-heading-char",
-				linesClass: "line",
-				wordClass: "word",
-			});
-
-			setHeadingsplit(true);
-		}
-
-		if (isHeadingSplit) {
-			const charsLine1 = $(headingRefs.current[0]).find(".hero-heading-char");
-			const charsLine2 = $(headingRefs.current[1]).find(".hero-heading-char");
-
-			line1Timeline.current
-				.to(charsLine1, {
-					x: 0,
-					duration: wordEntryDuration,
-					stagger: -0.1,
-					ease: "expo.inOut",
-				})
-				.to(charsLine1, {
-					y: "-100%",
-					duration: wordEntryDuration,
-					stagger: -0.1,
-					ease: "expo.inOut",
-				});
-			line2Timeline.current
-				.to(charsLine2, {
-					x: 0,
-					duration: wordEntryDuration,
-					stagger: 0.1,
-					ease: "expo.inOut",
-				})
-				.to(charsLine2, {
-					y: "100%",
-					duration: wordEntryDuration,
-					stagger: -0.1,
-					ease: "expo.inOut",
-					onUpdate: () => {
-						if (line2Timeline.current.progress() > 0.5) {
-							setParagraphRevealed(true);
-						}
-					},
-					onComplete: () => {
-						toggleScrollLock();
-					},
-				});
-		}
-	}, [headingRefs, isHeadingSplit]);
-
-	const introAnimation = useRef(gsap.timeline());
-
-	useEffect(() => {
-		if (wordRefs.current.length > 2 && containerRef.current) {
-			calculateWordOffsets(containerRef, wordRefs, setDefaultOffsets);
-		}
-
-		if (isSplit && wordRefs.current.length > 2 && logoRef.current) {
-			animateIntro(introAnimation, wordRefs, chars, logoRef, overlayRef);
-		}
-	}, [isSplit, wordRefs, windowWidth]);
 
 	return (
 		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
@@ -298,10 +202,10 @@ function Hero(props) {
 			</div>
 			{isParagraphRevealed && (
 				<Box className='hero-brand-line'>
-					<Paragraph animationDelay={wordEntryDuration + 1}>
+					<Typography variant='body2' animationDelay={wordEntryDuration + 1}>
 						We are the Eyes & Ears agency.
-					</Paragraph>
-					<Box className="hero-brand-line__logo">
+					</Typography>
+					<Box className='hero-brand-line__logo'>
 						<DrawnLogo />
 					</Box>
 				</Box>

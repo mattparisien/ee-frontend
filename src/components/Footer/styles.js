@@ -1,170 +1,170 @@
-import styled from "styled-components";
-import { device } from "../styles/device";
+// import styled from "styled-components";
+// import { device } from "../styles/device";
 
-export const StyledFooter = styled.footer`
+// export const StyledFooter = styled.footer`
 
 
 
 	
 
-	.footer-contact {
-		display: flex;
-		width: 100%;
-		justify-content: space-between;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		padding-left: inherit;
+// 	.footer-contact {
+// 		display: flex;
+// 		width: 100%;
+// 		justify-content: space-between;
+// 		position: absolute;
+// 		top: 50%;
+// 		left: 50%;
+// 		transform: translate(-50%, -50%);
+// 		padding-left: inherit;
 
 
-		.footer-heading h2 {
-			font-size: 9vw;
-			text-align: left;
-			letter-spacing: -0.1vw;
-		}
+// 		.footer-heading h2 {
+// 			font-size: 9vw;
+// 			text-align: left;
+// 			letter-spacing: -0.1vw;
+// 		}
 
-		&__left {
-			display: flex;
-			align-items: flex-start;
-			flex-direction: column;
-			justify-content: center;
+// 		&__left {
+// 			display: flex;
+// 			align-items: flex-start;
+// 			flex-direction: column;
+// 			justify-content: center;
 
-			.footer-email {
-				h2 {
-					font-size: 4.3vw;
-					margin-top: 3.1vw;
-					letter-spacing: -0.1vw;
-					line-height: 3.1vw;
-				}
-			}
+// 			.footer-email {
+// 				h2 {
+// 					font-size: 4.3vw;
+// 					margin-top: 3.1vw;
+// 					letter-spacing: -0.1vw;
+// 					line-height: 3.1vw;
+// 				}
+// 			}
 
-		}
+// 		}
 
 
-		@media ${device.laptop} {
-			.footer-heading h2 {
-				font-size: 7rem;
-			}	
+// 		@media ${device.laptop} {
+// 			.footer-heading h2 {
+// 				font-size: 7rem;
+// 			}	
 
-			.footer-email h2 {
-				margin-top: 1.23rem;
-				font-size: 2.8rem;
-			}
-		}
+// 			.footer-email h2 {
+// 				margin-top: 1.23rem;
+// 				font-size: 2.8rem;
+// 			}
+// 		}
 
-		&__right {
-			width: 15vw;
+// 		&__right {
+// 			width: 15vw;
 
-			@media ${device.desktop} {
-				.drawnLogo {
-					width: 300px;
-			}
+// 			@media ${device.desktop} {
+// 				.drawnLogo {
+// 					width: 300px;
+// 			}
 				
-			}
-		}
-	}
+// 			}
+// 		}
+// 	}
 
-	#next-link, .marquee-text {
-		font-size: 15vw;
-		font-family: 'Kobe Bold';
-		letter-spacing: -0.6vw;
+// 	#next-link, .marquee-text {
+// 		font-size: 15vw;
+// 		font-family: 'Kobe Bold';
+// 		letter-spacing: -0.6vw;
 
-		color: ${({ theme }) => theme.colors.light};
+// 		color: ${({ theme }) => theme.colors.light};
 
 
-		@media ${device.laptopL} {
-			font-size: 300px;
-		};
-	};
+// 		@media ${device.laptopL} {
+// 			font-size: 300px;
+// 		};
+// 	};
 
-	.styled-object-container {
-		padding-bottom: 0px;
-	}
+// 	.styled-object-container {
+// 		padding-bottom: 0px;
+// 	}
 
-	#scene {
+// 	#scene {
 		
-		left: 0;
-		top: 0;
-	}
+// 		left: 0;
+// 		top: 0;
+// 	}
 
 
-	.footer-horiz-band {
-		height: 30vw;
-		max-height: 500px;
-		min-height: 200px;
-		display: flex;
-		align-items: center;
-	}
+// 	.footer-horiz-band {
+// 		height: 30vw;
+// 		max-height: 500px;
+// 		min-height: 200px;
+// 		display: flex;
+// 		align-items: center;
+// 	}
 
-	.footer-next-title-wrapper {
-		h2 {
-			white-space: nowrap;
-			font-family: "Kobe";
-			font-weight: 200;
-		};
-	};
+// 	.footer-next-title-wrapper {
+// 		h2 {
+// 			white-space: nowrap;
+// 			font-family: "Kobe";
+// 			font-weight: 200;
+// 		};
+// 	};
 
-	.footer-email {
-		font-size: 5rem;
-		position: relative;
+// 	.footer-email {
+// 		font-size: 5rem;
+// 		position: relative;
 
 		
-	};
+// 	};
 
 	
 
-	a.footer-next-project-clickable {
-		width: 100%;
+// 	a.footer-next-project-clickable {
+// 		width: 100%;
 
-		.footer-next-btn-wrapper {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
+// 		.footer-next-btn-wrapper {
+// 			display: flex;
+// 			align-items: center;
+// 			justify-content: space-between;
 
-			.next-arrow {
-				width: 30vw;
-				margin-left: 10vw;
-			};
-		};
+// 			.next-arrow {
+// 				width: 30vw;
+// 				margin-left: 10vw;
+// 			};
+// 		};
 
-	};
+// 	};
 
 
-	.link-list {
-		color: ${({ theme }) => theme.colors.light};
-		justify-content: end;
+// 	.link-list {
+// 		color: ${({ theme }) => theme.colors.light};
+// 		justify-content: end;
 	
-		li {
-			padding: 0 2vw;
-		}
-	}
+// 		li {
+// 			padding: 0 2vw;
+// 		}
+// 	}
 
 	
-	} ;
-`;
+// 	} ;
+// `;
 
-export const StyledProjectFooterInner = styled.div`
-	width: 100%;
-`;
+// export const StyledProjectFooterInner = styled.div`
+// 	width: 100%;
+// `;
 
-export const StyledContactFooterInner = styled.div`
-	text-align: left;
-`;
+// export const StyledContactFooterInner = styled.div`
+// 	text-align: left;
+// `;
 
-export const StyledFooterBottom = styled.div`
-	color: ${({ theme }) => theme.colors.light};
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	padding-left: inherit;
-	padding-right: inherit;
-	padding-bottom: inherit;
+// export const StyledFooterBottom = styled.div`
+// 	color: ${({ theme }) => theme.colors.light};
+// 	position: absolute;
+// 	bottom: 0;
+// 	left: 0;
+// 	display: flex;
+// 	align-items: center;
+// 	width: 100%;
+// 	padding-left: inherit;
+// 	padding-right: inherit;
+// 	padding-bottom: inherit;
 
-	.footer-brand-name {
-		width: 13rem;
-	}
-`;
+// 	.footer-brand-name {
+// 		width: 13rem;
+// 	}
+// `;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@mui/material";
 import Cookies from "universal-cookie";
 import Authenticated from "./components/Containers/Temp/Authenticated";
 import Visitor from "./components/Containers/Temp/Visitor";
@@ -7,10 +7,13 @@ import { GlobalStyles } from "./components/styles/Global";
 import useAppData from "./helpers/hooks/useAppData";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import ResetHome from "./components/ResetHome";
+import { Header } from "./components";
 
 function App() {
-	const { appRefs, state, setState, pending, themes, location } = useAppData();
+	const { appRefs, state, setState, pending, theme, location } = useAppData();
 	const scrollWrapper = useRef(null);
+	
 
 	useEffect(() => {
 		console.log("Built by Matthew Parisien 🛠");
@@ -42,8 +45,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 '
 					/>
 				</Helmet>
-				<ThemeProvider theme={themes}>
-					<GlobalStyles
+				<ThemeProvider theme={theme}>
+					{/* <GlobalStyles
 						isScrollLocked={state.isScrollLocked}
 						location={location}
 					/>
@@ -61,15 +64,17 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							scroll.scrollTo(0, { duration: 0, disableLerp: true })
 						}
 						containerRef={scrollWrapper}
+					> */}
+					<div
+						className='scroll-wrapper'
+						ref={scrollWrapper}
+						data-scroll-container
 					>
-						<div
-							className='scroll-wrapper'
-							ref={scrollWrapper}
-							data-scroll-container
-						>
-							{state.user.isVisitor ? <Visitor /> : <Authenticated />}
-						</div>
-					</LocomotiveScrollProvider>
+						<Header/>
+						<ResetHome />
+						{/* {state.user.isVisitor ? <Visitor /> : <Authenticated />} */}
+					</div>
+					{/* </LocomotiveScrollProvider> */}
 				</ThemeProvider>
 			</div>
 		</HelmetProvider>
