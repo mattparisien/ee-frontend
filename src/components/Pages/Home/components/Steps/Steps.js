@@ -14,6 +14,10 @@ const StyledSteps = styled.div`
 	h4 {
 		font-family: "Kobe";
 		text-align: left;
+
+		#text {
+			margin-right: 10px;
+		} 
 	}
 
 	.Steps__step:nth-of-type(1) {
@@ -44,7 +48,7 @@ const StyledSteps = styled.div`
 		h4 {
 			font-size: 4.167vw;
 			margin: 1.719vw 0;
-			line-height: 3.5vw;
+			line-height: 3.8vw;
 		}
 
 		p {
