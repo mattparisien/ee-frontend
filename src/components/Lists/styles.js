@@ -7,6 +7,7 @@ export const StyledUnorderedList = styled.ul`
 	align-items: ${props => props.alignCenter && "center"};
 	justify-content: ${props => props.justifyCenter && "center"};
 	width: 100%;
+	text-transform: uppercase;
 
 	li,
 	li a {

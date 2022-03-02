@@ -7,18 +7,51 @@ import ContainerFluid from "../../../../Containers/ContainerFluid";
 import { device } from "../../../../styles/device";
 import { calculateWordOffsets, animateIntro } from "./helpers/helpers";
 import useResize from "../../../../../helpers/hooks/useResize";
-import { Heading } from "../../../../index";
+import { Paragraph } from "../../../../index";
+import SplitText from "gsap/SplitText";
 
-const HeroHeading = styled(Heading)`
-
-h2 {
-	font-size: 13vw !important;
+const HeroHeading = styled.h1`
+	font-size: 21vw !important;
 	letter-spacing: -0.5vw;
-}
-	
-`
+`;
 
 export const StyledHero = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+
+	.line {
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	& h1 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.rotate-heading-wrapper__social {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		.hero-heading-char {
+			transform: translateX(-110vw);
+		}
+	}
+
+	.rotate-heading-wrapper__impact {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+
+		.hero-heading-char {
+			transform: translateX(110vw);
+		}
+	}
+
 	.hero-content {
 		height: 800px;
 		max-height: 800px;
@@ -29,7 +62,6 @@ export const StyledHero = styled.div`
 		margin: 0 auto;
 
 		&__inner {
-			position: relative;
 			width: 100%;
 			height: 100%;
 
@@ -124,17 +156,76 @@ function Hero(props) {
 		type: "chars",
 		charsClass: "char",
 	});
+
+	const [split, setSplit] = useState(null);
+	const [isHeadingSplit, setHeadingsplit] = useState(null);
+	const headingRefs = useRef([]);
+	headingRefs.current = [];
 	const [defaultOffsets, setDefaultOffsets] = useState({});
 	const [windowWidth] = useResize();
 	const containerRef = useRef(null);
 	const logoRef = useRef(null);
 	const overlayRef = useRef(null);
+	const line1Timeline = useRef(gsap.timeline({ delay: 0.5 }));
+	const line2Timeline = useRef(gsap.timeline({ delay: 0.5 }));
+	const wordEntryDuration = 2;
 
 	const addToRefs = el => {
 		if (el && !wordRefs.current.includes(el)) {
 			wordRefs.current.push(el);
 		}
 	};
+
+	const addToHeadingRefs = el => {
+		if (el && !headingRefs.current.includes(el)) {
+			headingRefs.current.push(el);
+		}
+	};
+
+	useEffect(() => {
+		if (headingRefs.current && !isHeadingSplit) {
+			const mySplitText = new SplitText(headingRefs.current, {
+				type: "lines, chars, words",
+				charsClass: "hero-heading-char",
+				linesClass: "line",
+				wordClass: "word",
+			});
+
+			setHeadingsplit(true);
+		}
+
+		if (isHeadingSplit) {
+			const charsLine1 = $(headingRefs.current[0]).find(".hero-heading-char");
+			const charsLine2 = $(headingRefs.current[1]).find(".hero-heading-char");
+
+			line1Timeline.current
+				.to(charsLine1, {
+					x: 0,
+					duration: wordEntryDuration,
+					stagger: -0.1,
+					ease: "expo.inOut",
+				})
+				.to(charsLine1, {
+					y: "-100%",
+					duration: wordEntryDuration,
+					stagger: -0.1,
+					ease: "expo.inOut",
+				});
+			line2Timeline.current
+				.to(charsLine2, {
+					x: 0,
+					duration: wordEntryDuration,
+					stagger: 0.1,
+					ease: "expo.inOut",
+				})
+				.to(charsLine2, {
+					y: "100%",
+					duration: wordEntryDuration,
+					stagger: -0.1,
+					ease: "expo.inOut",
+				});
+		}
+	}, [headingRefs, isHeadingSplit]);
 
 	const introAnimation = useRef(gsap.timeline());
 
@@ -172,10 +263,21 @@ function Hero(props) {
 					</div>
 				</div>
 			</div> */}
-			<HeroHeading color='dark' large>
-				<span>Social</span>
-				<span style={{marginLeft: "2rem"}}>Impact</span>
-			</HeroHeading>
+			<div className='rotate-heading-wrapper__social'>
+				<HeroHeading ref={addToHeadingRefs} className='heading-social'>
+					Social
+				</HeroHeading>
+			</div>
+			<div className='rotate-heading-wrapper__impact'>
+				<HeroHeading ref={addToHeadingRefs} className='heading-social'>
+					Impact
+				</HeroHeading>
+			</div>
+			<Paragraph animationDelay={wordEntryDuration + 1}>
+				We are Eyes & Ears.
+			</Paragraph>{" "}
+			<br></br>
+			{/* <HeroHeading ref={headingRef} data-scroll data-scroll-speed={3}>Impact</HeroHeading> */}
 		</StyledHero>
 	);
 }

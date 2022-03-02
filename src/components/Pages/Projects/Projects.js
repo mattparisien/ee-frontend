@@ -124,6 +124,14 @@ const GRIDSTYLES = {
 
 const StyledProjectsGrid = styled(ImageList)`
 
+li {
+	background-color: ${({theme}) => theme.colors.light};
+}
+
+.featured-work-uoList__image {
+	transform: scale(0.5);
+}
+
 
 @media ${device.mobileL} {
 	display: grid;
@@ -311,7 +319,7 @@ const Item = styled.div`
 		transition: 800ms ease;
 		filter: brightness(60%);
 		transform: scale(0.5);
-		
+
 		img {
 			object-fit: cover;
 			transition: 800ms ease;
@@ -390,68 +398,11 @@ function Projects(props) {
 
 	return (
 		<>
-			<GridWrapper container spacing={3} className='GridWrapper'>
-				{posts &&
-					itemColors &&
-					posts.map(post => {
-						return (
-							<Grid item xs={6} key={post.id}>
-								{/* <InView
-									className='grid-item-item-view-wrapper'
-									threshold={0.2}
-									onChange={(inView, entry) =>
-										inView && setIntersecting(entry.target)
-									}
-								> */}
-								<Item
-									className='Item'
-									style={{ position: "relative" }}
-									color={itemColors[post.id]}
-								>
-									<Link
-										className='Item__link'
-										style={{
-											width: "100%",
-											height: "100%",
-										}}
-										to={`/projects/${post.id}`}
-									>
-										<div className='image-wrapper'>
-											<img
-												style={{
-													width: "100%",
-													height: "100%",
-													maxHeight: "1200px",
-													objectFit: "cover",
-												}}
-												src={post.media.featureImage.url}
-											></img>
-										</div>
-										<Title>
-											<div className='Title__inner'>{post.title}</div>
-										</Title>
-										<div className='item-background'></div>
-										{/* <PreviewText className='PreviewText'>
-												<Paragraph size='small' indent>
-													Lorem ipsum dolor sit amet consectetur adipisicing
-													elit. Rem natus autem eligendi quos sapiente sint
-													nihil odio, placeat fugiat cumque.
-												</Paragraph>
-											</PreviewText> */}
-									</Link>
-								</Item>
-								{/* </InView> */}
-							</Grid>
-						);
-					})}
-			</GridWrapper>
-
-			{/* 			
-					<StyledProjectsGrid
-						listItems={projects}
-						rowAmounts={rowAmount}
-						direction='vertical'
-					/> */}
+			<StyledProjectsGrid
+				listItems={projects}
+				rowAmounts={rowAmount}
+				direction='vertical'
+			/>
 		</>
 	);
 }

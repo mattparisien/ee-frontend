@@ -205,5 +205,10 @@ export const StyledParagraph = styled.div`
 		justify-content: start;
 
 		${({ theme }) => theme.typography.setSize(1)};
+
+
+		.word:not(:first-of-type) {
+			margin-left: 0.2em;
+		}
 	}
 `;

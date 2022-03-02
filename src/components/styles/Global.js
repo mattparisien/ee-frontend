@@ -56,8 +56,10 @@ body {
 	height: 100%;
 }
 
-
-
+#site-header svg
+ {
+	opacity: 0;
+}
 
 
 .char {
@@ -91,10 +93,10 @@ body {
 }
 
 section:nth-of-type(1)  {
-	${({ theme }) => theme.spacing(4, "padding-top")};
+	
 		
 	.ContainerVertical {
-		padding-top: 0;
+		padding: 0;
 	}
 
 	}

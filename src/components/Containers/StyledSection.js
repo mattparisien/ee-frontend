@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { device } from "../styles/device";
 
 const StyledSection = styled.section`
-	height: ${({height}) => height ? height : 'auto'};
+	height: ${({ height }) => (height ? height : "auto")};
 	position: ${props => (props.isRelative ? "relative" : "inherit")};
+
 	background-color: ${({ theme, $bg }) => {
 		return (
 			($bg === "light" && theme.colors.light) ||
@@ -16,8 +17,6 @@ const StyledSection = styled.section`
 			($bg === "dark" && theme.colors.light)
 		);
 	}};
-
-
 `;
 
 export { StyledSection };

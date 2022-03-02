@@ -14,8 +14,8 @@ export const pages = {
 				name: "hero",
 				page: "home",
 				backgroundColor: "light",
-				headerOffset: true,
-				height: "100vh"
+
+				height: "100vh",
 			},
 			{
 				id: 2,
@@ -45,7 +45,6 @@ export const pages = {
 				page: "projects",
 				backgroundColor: "dark",
 				height: "auto",
-				headerOffset: true,
 			},
 			{
 				id: 2,

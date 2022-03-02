@@ -34,7 +34,7 @@ const StyledImageList = styled.ul`
 		width: 100%;
 		max-width: 795px;
 		max-height: 1000px;
-		border-radius: 0.7vw;
+		
 		overflow: visible;
 
 	
@@ -138,7 +138,7 @@ const StyledImageList = styled.ul`
 				height: 90%;
 				width: 100%;
 				background-position: center;
-				border-radius: 0.7vw;
+				
 				overflow: hidden;
 				position: relative;
 				
@@ -221,7 +221,7 @@ const StyledImageList = styled.ul`
 				.background {
 					display: none;
 					position: absolute;
-					border-radius: 0.7vw;
+					
 					top: 0;
 					left: 0;
 					background-color: black;

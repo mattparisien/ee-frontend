@@ -18,6 +18,7 @@ function Paragraph(props, ref) {
 		padding,
 		offset,
 		className,
+		animationDelay
 	} = props;
 	const paragraph = useRef([]);
 	const [windowWidth] = useResize();
@@ -27,6 +28,7 @@ function Paragraph(props, ref) {
 	const [intersectingTarget, setIntersectingTarget] = useState(null);
 	const [isSplit, setIsSplit] = useState(false);
 	const [splitText, setSplitText] = useState(null);
+	const [delayAnim, setDelayAnim] = useState(null);
 
 	const paragraphClass = classNames("paragraph", {
 		"fade-up-lines": fadeUp && fadeUp === "lines",
@@ -41,6 +43,9 @@ function Paragraph(props, ref) {
 	};
 
 	useEffect(() => {
+
+		animationDelay && setDelayAnim(animationDelay)
+
 		if (paragraph.current && !isSplit) {
 			gsap.registerPlugin(SplitText);
 			gsap.registerPlugin(CSSPlugin, CSSRulePlugin);
@@ -55,7 +60,7 @@ function Paragraph(props, ref) {
 			setIsSplit(true);
 			setSplitText(mySplitText);
 		}
-	}, [paragraph, windowWidth]);
+	}, [paragraph, windowWidth, delayAnim]);
 
 	useEffect(() => {
 		if (intersectingTarget) {
@@ -64,7 +69,7 @@ function Paragraph(props, ref) {
 			lines.each((index, el) => {
 				const chars = $(el).find(".char");
 
-				let delay = 0;
+				
 				gsap.set(chars, {
 					y: "100%",
 					opacity: 0,
@@ -75,11 +80,11 @@ function Paragraph(props, ref) {
 					stagger: 0.02,
 					duration: 2,
 					ease: "expo.inOut",
-					delay: delay + index / 4,
+					delay: delayAnim
 				});
 			});
 		}
-	}, [intersectingTarget]);
+	}, [intersectingTarget, delayAnim]);
 
 	return (
 		<InView
