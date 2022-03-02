@@ -5,7 +5,7 @@ import ContainerVertical from "./ContainerVertical";
 
 function SectionLayout(props) {
 
-  console.log(props.headerOffset)
+  
   return (
     <Section {...props}>
       <ContainerFluid>

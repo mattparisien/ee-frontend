@@ -1,16 +1,6 @@
-import gsap from "gsap";
-import React, { useState } from "react";
-import { useInView } from "react-intersection-observer";
-import useResize from "./helpers/hooks/useResize";
+import React from "react";
 
 function Grid() {
-	const { ref, inView, entry } = useInView({ threshold: 0.8 });
-
-	const paragraph = useRef([]);
-	const fadeUpRows = useRef(gsap.timeline());
-	const [lines, setLines] = useState([]);
-	const { size } = useResize();
-
 	return (
 		<div className='grid how-grid'>
 			{data &&

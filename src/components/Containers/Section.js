@@ -1,14 +1,13 @@
-import { useState, useEffect, useContext } from "react";
-import { StyledSection } from "./StyledSection";
 import classNames from "classnames";
+import { useContext, useEffect, useState } from "react";
 import { InView } from "react-intersection-observer";
+import { StyledSection } from "./StyledSection";
 import { SiteWideControls } from "./Temp/Authenticated";
 
 export default function Section(props) {
 	const {
 		bg,
 		addToRefs,
-		isRelative,
 		height,
 		id,
 		page,

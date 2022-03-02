@@ -1,9 +1,9 @@
 import Hero from "./Hero/Hero";
 import About from "./About";
-import How from "./How";
+import How from "./Steps/How";
 
 export const HomeInnerComponents = {
-	About,
-	Hero,
-	How,
+	about: About,
+	hero: Hero,
+	how: How,
 };
