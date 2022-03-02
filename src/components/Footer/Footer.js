@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { navigation } from "../../data/data";
 import SectionLayout from "../Containers/SectionLayout";
 import Contact from "./Contact";
-import NavList from "./NavList";
 import { StyledFooter } from "./styles";
 
 export default function Footer(props) {

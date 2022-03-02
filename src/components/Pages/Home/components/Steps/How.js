@@ -7,7 +7,6 @@ function How() {
 	return (
 		<>
 			<Heading large>Finding your Rhythm</Heading>
-
 			<Steps />
 			<Button variant='contained' color='dark'>
 				Get in touch

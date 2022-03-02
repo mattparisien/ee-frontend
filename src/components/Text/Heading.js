@@ -34,12 +34,12 @@ function Heading(props, ref) {
 	useEffect(() => {
 		if (heading.current) {
 			const mySplitText = new SplitText(heading.current, {
-				type: "chars, words, lines",
+				type: "chars, words",
 				charsClass: "heading-char",
 				wordsClass: "word",
-				linesClass: "heading-line",
+				
 			});
-			$(mySplitText.lines).wrap("<div class='line-wrapper'></div>");
+
 			$(mySplitText.lines).append("<div class='highlight-line'></div>");
 		}
 	}, [heading]);
