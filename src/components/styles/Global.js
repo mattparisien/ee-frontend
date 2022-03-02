@@ -53,6 +53,7 @@ body {
 
 
 
+
 .temporary-authenticated-wrapper, .scroll-wrapper {
 	height: 100%;
 }
@@ -93,18 +94,17 @@ body {
 	background-color: ${({ theme }) => theme.colors.light};
 }
 
-section:nth-of-type(1)  {
-	
-		
-	.ContainerVertical {
-		padding: 0;
-	}
 
-	}
+	
 
 
 .line-wrapper {
 	overflow: hidden;
+}
+
+
+.section-projects__1 {
+	${({theme}) => theme.spacing(4, "padding-top")};
 }
 
 

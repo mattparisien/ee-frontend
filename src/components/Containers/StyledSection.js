@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { device } from "../styles/device";
 
 const StyledSection = styled.section`
+	${({ theme, headerOffset }) =>
+		headerOffset && theme.spacing(4, "padding-top")};
 	height: ${({ height }) => (height ? height : "auto")};
 	min-height: ${({ minHeight }) => (minHeight ? minHeight : "auto")};
 	position: ${props => (props.isRelative ? "relative" : "inherit")};

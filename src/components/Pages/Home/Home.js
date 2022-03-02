@@ -29,7 +29,7 @@ export const pages = {
 				name: "about2",
 				page: "home",
 				backgroundColor: "light",
-				height: "60vw"
+				height: "60vw",
 			},
 			{
 				id: 4,
@@ -90,11 +90,11 @@ function Home(props) {
 						bg={section.backgroundColor}
 						height={section.height}
 						minHeight={section.minHeight}
+						headerOffset={section.headerOffset}
 					>
 						{React.createElement(innerComponents[section.name], {
 							key: section.id,
 							height: section.height,
-							headerOffset: section.headerOffset,
 						})}
 					</SectionLayout>
 				);

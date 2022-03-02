@@ -43,7 +43,10 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					/>
 				</Helmet>
 				<ThemeProvider theme={themes}>
-					<GlobalStyles isScrollLocked={state.isScrollLocked} />
+					<GlobalStyles
+						isScrollLocked={state.isScrollLocked}
+						location={location}
+					/>
 					<LocomotiveScrollProvider
 						options={{
 							initPosition: {

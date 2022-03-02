@@ -6,7 +6,16 @@ import { SiteWideControls } from "./Temp/Authenticated";
 import SectionBackground from "./SectionBackground";
 
 export default function Section(props) {
-	const { bg, addToRefs, isRelative, height, id, page, minHeight } = props;
+	const {
+		bg,
+		addToRefs,
+		isRelative,
+		height,
+		id,
+		page,
+		minHeight,
+		headerOffset,
+	} = props;
 	const sectionClass = classNames(
 		`Section section-${page} section-${page}__${id}`,
 		props.classes
@@ -26,7 +35,7 @@ export default function Section(props) {
 			className={sectionClass}
 			$bg={bg}
 			ref={addToRefs}
-			
+			headerOffset={headerOffset}
 			data-scroll-section
 			minHeight={minHeight}
 			height={height}
@@ -34,7 +43,7 @@ export default function Section(props) {
 			<InView
 				className='section-view-wrapper'
 				as='div'
-				style={{height: "100%"}}
+				style={{ height: "100%" }}
 				onChange={(inView, entry) =>
 					inView &&
 					setIntersectingTarget({
