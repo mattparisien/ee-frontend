@@ -44,7 +44,6 @@ export default function useAppData(scrollRef) {
 		},
 		spacing: (multiplier, property) => {
 			return Object.entries(device).map(size => {
-				
 				return `@media ${size[1]} {
 						${
 							Array.isArray(property)
@@ -61,8 +60,8 @@ export default function useAppData(scrollRef) {
 			});
 		},
 		transition: {
-			easing: 'cubic-bezier(.17,.67,.83,.67)',
-			timing: '2s'
+			easing: "cubic-bezier(.17,.67,.83,.67)",
+			timing: "2s",
 		},
 		typography: {
 			setSize: multiplier => {
@@ -139,7 +138,7 @@ export default function useAppData(scrollRef) {
 			hasShown: false,
 		},
 		menuOffset: "-101%",
-		isScrollLock: false,
+		isScrollLocked: location.pathname === "/" ? true : false,
 		data: {},
 	});
 
@@ -182,5 +181,5 @@ export default function useAppData(scrollRef) {
 			.finally(() => setPending(false));
 	}, []);
 
-	return { appRefs, state, setState, pending, themes };
+	return { appRefs, state, setState, pending, themes, location  };
 }

@@ -51,7 +51,7 @@ function Steps() {
 						<Heading small ref={addToHeadingRefs}>
 							{step.title.split(" ").slice(0, 3).join(" ")}
 						</Heading>
-						<Paragraph >{step.body}</Paragraph>
+						<Paragraph>{step.body}</Paragraph>
 					</GridItem>
 				);
 			})
@@ -59,20 +59,13 @@ function Steps() {
 	};
 
 	return (
-		<ContainerFluid
-			height='auto'
-			isAbove
-			ref={noteContainerRef}
-			hasMarginBottom
-		>
-			<Grid name={"steps"} columns={12} classes={"steps-grid"}>
-				{steps && renderSteps()}
-				<Notes addToRefs={addToRefs} scrollTrigger={noteContainerRef.current} />
-				{/* <div className='drawings-wrapper'>
+		<Grid name={"steps"} columns={12} classes={"steps-grid"}>
+			{steps && renderSteps()}
+			<Notes addToRefs={addToRefs} scrollTrigger={noteContainerRef.current} />
+			{/* <div className='drawings-wrapper'>
 					<Drawings />
 				</div> */}
-			</Grid>
-		</ContainerFluid>
+		</Grid>
 	);
 }
 

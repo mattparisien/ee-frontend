@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import styled from "styled-components";
 import useSplit from "../../../../../helpers/hooks/useSplit";
 import { DrawnLogo } from "../../../../index";
@@ -9,6 +9,7 @@ import { calculateWordOffsets, animateIntro } from "./helpers/helpers";
 import useResize from "../../../../../helpers/hooks/useResize";
 import { Paragraph } from "../../../../index";
 import SplitText from "gsap/SplitText";
+import { SiteWideControls } from "../../../../Containers/Temp/Authenticated";
 
 const HeroHeading = styled.h1`
 	font-size: 21vw !important;
@@ -157,6 +158,8 @@ function Hero(props) {
 		charsClass: "char",
 	});
 
+	const { toggleScrollLock } = useContext(SiteWideControls);
+
 	const [split, setSplit] = useState(null);
 	const [isHeadingSplit, setHeadingsplit] = useState(null);
 	const headingRefs = useRef([]);
@@ -223,6 +226,9 @@ function Hero(props) {
 					duration: wordEntryDuration,
 					stagger: -0.1,
 					ease: "expo.inOut",
+					onComplete: () => {
+						toggleScrollLock()
+					}
 				});
 		}
 	}, [headingRefs, isHeadingSplit]);
@@ -274,7 +280,7 @@ function Hero(props) {
 				</HeroHeading>
 			</div>
 			<Paragraph animationDelay={wordEntryDuration + 1}>
-				We are Eyes & Ears.
+				We are the Eyes & Ears agency.
 			</Paragraph>{" "}
 			<br></br>
 			{/* <HeroHeading ref={headingRef} data-scroll data-scroll-speed={3}>Impact</HeroHeading> */}

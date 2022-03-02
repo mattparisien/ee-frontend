@@ -34,7 +34,7 @@ function Heading(props, ref) {
 	useEffect(() => {
 		if (heading.current) {
 			const mySplitText = new SplitText(heading.current, {
-				type: "chars, words, lines",
+				type: "chars, words",
 				charsClass: "heading-char",
 				wordsClass: "word",
 				linesClass: "heading-line"
@@ -73,6 +73,7 @@ function Heading(props, ref) {
 			}
 			className='heading-view-wrapper'
 			threshold={1}
+			style={{width: "100%"}}
 		>
 			<StyledHeading
 				className={`styled-heading-wrapper ${className ? className : ''}`}

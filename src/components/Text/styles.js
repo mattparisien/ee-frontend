@@ -154,6 +154,7 @@ h2 {
 	${({ theme }) => theme.spacing(0.5, "margin-top")};
 	${({ theme }) => theme.spacing(0.5, "margin-bottom")};
 	${({ theme }) => theme.typography.setSize(6)};
+	
 }}
 
 

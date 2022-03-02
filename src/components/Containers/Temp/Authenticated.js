@@ -8,6 +8,7 @@ import SiteRoutes from "../../../Routes";
 import Header from "../../Header/Header";
 import LoadingScreen from "../../Loading/LoadingScreen";
 import SiteTransition from "../../Transition/Transition";
+import Footer from "../../Footer/Footer";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -38,7 +39,8 @@ function Authenticated() {
 	};
 
 	const toggleScrollLock = () => {
-		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
+		console.log('hello!')
+		setState(prev => ({ ...prev, isScrollLocked: !state.isScrollLocked }));
 	};
 
 	const toggleHeaderColor = sectionBgColor => {
@@ -96,7 +98,7 @@ function Authenticated() {
 						</TransitionGroup>
 					</main>
 
-					{/* <Footer addToRefs={addToRefs} location={location.pathname} /> */}
+					<Footer addToRefs={addToRefs} location={location.pathname} />
 
 					{/* <CookieBar /> */}
 				</DataContext.Provider>

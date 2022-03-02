@@ -18,7 +18,7 @@ function Paragraph(props, ref) {
 		padding,
 		offset,
 		className,
-		animationDelay
+		animationDelay,
 	} = props;
 	const paragraph = useRef([]);
 	const [windowWidth] = useResize();
@@ -43,8 +43,7 @@ function Paragraph(props, ref) {
 	};
 
 	useEffect(() => {
-
-		animationDelay && setDelayAnim(animationDelay)
+		animationDelay && setDelayAnim(animationDelay);
 
 		if (paragraph.current && !isSplit) {
 			gsap.registerPlugin(SplitText);
@@ -69,7 +68,6 @@ function Paragraph(props, ref) {
 			lines.each((index, el) => {
 				const chars = $(el).find(".char");
 
-				
 				gsap.set(chars, {
 					y: "100%",
 					opacity: 0,
@@ -81,6 +79,7 @@ function Paragraph(props, ref) {
 					duration: 2,
 					ease: "expo.inOut",
 					delay: delayAnim
+					
 				});
 			});
 		}

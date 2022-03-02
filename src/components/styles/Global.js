@@ -43,13 +43,14 @@ body,
 
 body {
   overflow-x: hidden;
+	
 	height: 100%;
 	min-height: 100vh;
-	
 	top: 0;
 	height: 100%;
 	
 }
+
 
 
 .temporary-authenticated-wrapper, .scroll-wrapper {
