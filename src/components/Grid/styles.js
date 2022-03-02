@@ -25,28 +25,44 @@ const StyledGrid = styled.div`
 	
 
 		&__1 {
-			top: 30vw;
+			top: 10vw;
 			left: -5vw;
 			
 		}
 
 		&__2 {
 			
-			bottom: 25vw;
-			left: -10vw;
+			bottom: 75vw;
+			left: 20vw;
+			
 		}
 
 		&__3 {
-			right: -7vw;
+			right: 9vw;
 			
 		}
 
 		&__4 {
-			right: -8vw;
-			top: 135vw;
+			right: 8vw;
+			bottom: -50vw;
+			transform: rotate(-30deg);
+		}
+
+		&__5 {
+			top: -10vw;
+			left: 30vw;
+			transform: rotate(-30deg);
+		}
+
+		&__6 {
+			bottom: 5vw;
+			left: 40vw;
+			transform: rotate(30deg);
 		}
 
 	}
+
+
 
 	.grid-item-wrapper {
 		grid-column: 1/ span 6;
@@ -62,17 +78,41 @@ const StyledGrid = styled.div`
 			letter-spacing: -0.1vw;
 			text-transform: uppercase;
 			font-family: 'Kobe';
-		
+			margin: 0 !important;
 		}
 
 		p {
 			text-align: center;
 		
 		}
+
+		${({ theme }) => {
+			return `
+				&:first-of-type h4 .highlight-line{
+					background-color: ${theme.colors.blue};
+				}
+				&:nth-of-type(2) h4 .highlight-line{
+					background-color: ${theme.colors.yellow};
+				}
+				&:nth-of-type(3) h4 .highlight-line{
+					background-color: ${theme.colors.green};
+				}
+				&:nth-of-type(4) h4 .highlight-line{
+					background-color: ${theme.colors.red};
+				}			
+				&:nth-of-type(5) h4 .highlight-line{
+					background-color: ${theme.colors.grey};
+				}			
+				`;
+		}}
+
+	
 	}
 
 
 	@media ${device.mobileL} {
+
+	
 
 		.drawings-wrapper{
 			width: 100%;
@@ -120,7 +160,7 @@ const StyledGrid = styled.div`
 		.location-note-wrapper {
 
 			&__1 {
-				grid-row: 3/4;
+				grid-row: 1/2;
 				grid-column: 11/12;
 			}
 
@@ -145,7 +185,7 @@ const StyledGrid = styled.div`
 		
 
 		grid-template-columns: repeat(12, 1fr);
-		grid-template-rows: repeat(5, 400px);
+		grid-template-rows: repeat(5, 30vw);
 		grid-column-gap: 1.042vw;
 		align-items: flex-start;
 		
@@ -168,10 +208,10 @@ const StyledGrid = styled.div`
 				letter-spacing: -0.1vw;
 				text-transform: uppercase;
 				font-family: 'Kobe';
-				line-height: 3vw;
-				margin-bottom: 2vw;
-				margin-right: 0;
+				line-height: 3vw;	
 				width: 15vw;
+
+	
 			}
 	
 			p {
@@ -221,9 +261,7 @@ const StyledGrid = styled.div`
 
 	&.steps-grid {
 
-		.styled-object-container {
-			height: 100%;
-		}
+
 
 		
 		.steps-grid__item {
@@ -307,6 +345,8 @@ const StyledGrid = styled.div`
 		&__1 {
 			grid-column: 1/7;
 			grid-row: 1/4;
+			
+			
 		}
 
 		&__2 {

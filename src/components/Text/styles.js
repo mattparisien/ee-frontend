@@ -127,14 +127,16 @@ ${({ $headingStyles, theme }) => {
 	position: relative;
 }
 
+
+
 .highlight-line {
-	
+
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 0%;
 	height: 100%;
-	background-color: ${({theme}) => theme.colors.yellow};
+
 	z-index: -1;
 }
 
@@ -171,7 +173,6 @@ export const StyledParagraph = styled.div`
 		height: 100%;
 		background-color: ${({ theme }) => theme.colors.yellow};
 		z-index: -1;
-		
 	}
 
 	position: relative;
@@ -180,8 +181,10 @@ export const StyledParagraph = styled.div`
 	p {
 		${({ theme, size }) =>
 			theme.typography.setSize(size === "small" ? 1.2 : 3)};
-		${({ theme }) => theme.spacing(2, "margin-top")};
-		${({ theme }) => theme.spacing(2, "margin-bottom")};
+		${({ theme, size }) =>
+			theme.spacing(size === "large" ? 2 : 1, "margin-top")};
+		${({ theme, size }) =>
+			theme.spacing(size === "large" ? 2 : 1, "margin-bottom")};
 		letter-spacing: -0.8px;
 	}
 
