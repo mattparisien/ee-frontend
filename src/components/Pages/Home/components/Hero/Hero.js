@@ -12,7 +12,7 @@ import { Heading } from "../../../../index";
 const HeroHeading = styled(Heading)`
 
 h2 {
-	font-size: 14vw !important;
+	font-size: 13vw !important;
 	letter-spacing: -0.5vw;
 }
 	

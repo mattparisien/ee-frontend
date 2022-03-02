@@ -51,9 +51,9 @@ function Heading(props, ref) {
 			lineAnim.current.to(chars, {
 				opacity: 1,
 				y: 0,
-				duration: 0.6,
-				stagger: 0.05,
-				ease: "power2.out",
+				duration: 3,
+				stagger: 0.03,
+				ease: "expo.inOut",
 				onComplete: () => {
 					gsap.to(highlight, {
 						width: "100%",

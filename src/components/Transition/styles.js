@@ -52,7 +52,7 @@ export const StyledTransition = styled.div`
 
 		.transition-brand-saying__sentence {
 			text-align: center;
-			
+
 			font-size: 2.5rem;
 			line-height: 2.5rem;
 
@@ -60,7 +60,6 @@ export const StyledTransition = styled.div`
 				font-family: "Blc";
 				letter-spacing: -1px;
 				transform: translateY(100%);
-				opacity: 0;
 			}
 		}
 	}
