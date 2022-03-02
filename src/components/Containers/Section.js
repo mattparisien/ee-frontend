@@ -3,7 +3,6 @@ import { StyledSection } from "./StyledSection";
 import classNames from "classnames";
 import { InView } from "react-intersection-observer";
 import { SiteWideControls } from "./Temp/Authenticated";
-import SectionBackground from "./SectionBackground";
 
 export default function Section(props) {
 	const {
@@ -57,7 +56,6 @@ export default function Section(props) {
 			>
 				{props.children}
 			</InView>
-			{/* <SectionBackground bg={bg}/> */}
 		</StyledSection>
 	);
 }

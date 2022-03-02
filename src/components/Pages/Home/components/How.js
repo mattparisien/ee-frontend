@@ -8,7 +8,7 @@ import { Heading } from "../../..";
 function How() {
 	return (
 		<>
-			<Heading large>How We Do It</Heading>
+			<Heading large>Finding your Rhythm</Heading>
 
 			<Steps />
 			<Button variant='contained' color='dark'>

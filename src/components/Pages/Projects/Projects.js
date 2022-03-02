@@ -128,9 +128,8 @@ li {
 	background-color: ${({theme}) => theme.colors.light};
 }
 
-.featured-work-uoList__image {
-	transform: scale(0.5);
-}
+
+
 
 
 @media ${device.mobileL} {

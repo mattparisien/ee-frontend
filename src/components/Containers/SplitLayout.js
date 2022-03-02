@@ -9,10 +9,9 @@ const SplitLayoutContainer = styled(Box)`
 	justify-content: space-between;
 	flex-direction: ${({ textLocation }) =>
 		textLocation === "left" ? "row" : "row-reverse"};
-		.SplitLayout__graphic-wrapper		 {
-			display: none;
-		}
-		
+	.SplitLayout__graphic-wrapper {
+		display: none;
+	}
 `;
 
 function SplitLayout({ paragraphText, graphic, textLocation }) {

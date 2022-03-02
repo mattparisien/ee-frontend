@@ -8,6 +8,9 @@ import { Box } from "@mui/system";
 const StyledContainer = styled(Box)`
 	height: 100%;
 	width: 100%;
+	max-width: 1280px;
+	
+	margin: 0 auto;
 
 	@media ${device.mobileS} {
 		padding-left: 1.3rem;
