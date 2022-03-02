@@ -24,15 +24,6 @@ export default function Header(props) {
 		}
 	}, [menuState]);
 
-	const headerStyles = {
-		padding: "2rem 4rem",
-		color: headerColor,
-		burger: {
-			transition: menuState ? "none" : "300ms ease",
-			color: headerColor,
-		},
-	};
-
 	useEffect(() => {
 		if (windowWidth && windowWidth < 700) {
 			setDevice("mobile");
@@ -44,7 +35,6 @@ export default function Header(props) {
 	return (
 		<StyledHeader
 			isMenuActive={menuState}
-			$headerStyles={headerStyles}
 			$isHoverable={isHoverable}
 			color={props.headerColor}
 			ref={addToRefs}

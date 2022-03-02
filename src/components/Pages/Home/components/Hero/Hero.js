@@ -7,14 +7,25 @@ import ContainerFluid from "../../../../Containers/ContainerFluid";
 import { device } from "../../../../styles/device";
 import { calculateWordOffsets, animateIntro } from "./helpers/helpers";
 import useResize from "../../../../../helpers/hooks/useResize";
+import { Heading } from "../../../../index";
+
+const HeroHeading = styled(Heading)`
+
+h2 {
+	font-size: 14vw !important;
+	letter-spacing: -0.5vw;
+}
+	
+`
 
 export const StyledHero = styled.div`
 	.hero-content {
 		height: 800px;
 		max-height: 800px;
 		font-family: Kobe Bold;
+
 		width: 100%;
-		
+
 		margin: 0 auto;
 
 		&__inner {
@@ -25,8 +36,8 @@ export const StyledHero = styled.div`
 			.drawnLogo-wrapper-overflowHidden {
 				top: 50%;
 				left: 50%;
-				width: 20vw;
-				height: 30vw;
+				width: 12vw;
+				height: 18vw;
 				max-width: 300px;
 
 				position: absolute;
@@ -59,8 +70,6 @@ export const StyledHero = styled.div`
 					width: 100%;
 				}
 			}
-
-	
 
 			.hero-word {
 				letter-spacing: -0.6vw;
@@ -106,16 +115,6 @@ export const StyledHero = styled.div`
 
 	#hero-amperstand {
 		overflow: hidden;
-
-		.amperstand-inner {
-			transform: translateY(100%);
-
-			#amperstand {
-				fill: ${({ theme }) => theme.colors.yellow};
-				height: 30vw;
-				max-height: 600px;
-			}
-		}
 	}
 `;
 
@@ -151,30 +150,32 @@ function Hero(props) {
 
 	return (
 		<StyledHero className='hero-wrapper' defaultOffsets={defaultOffsets}>
-			<ContainerFluid padding='regular' height='100vh'>
-				<div className='hero-content'>
-					<div className='hero-content__inner' ref={containerRef}>
-						<div className='drawnLogo-wrapper-overflowHidden'>
-							<div className='drawnLogo__inner-relative'>
-								<div className='drawnLogo__overlay' ref={overlayRef}></div>
-								<div className='drawnLogo__inner-absolute' ref={logoRef}>
-									<DrawnLogo width='400px' />
-								</div>
+			{/* <div className='hero-content'>
+				<div className='hero-content__inner' ref={containerRef}>
+					<div className='drawnLogo-wrapper-overflowHidden'>
+						<div className='drawnLogo__inner-relative'>
+							<div className='drawnLogo__overlay' ref={overlayRef}></div>
+							<div className='drawnLogo__inner-absolute' ref={logoRef}>
+								<DrawnLogo width='400px' />
 							</div>
 						</div>
+					</div>
 
-						<div className='hero-word hero-word-social' ref={addToRefs}>
-							Social
-						</div>
-						<div className='hero-word hero-word-impact' ref={addToRefs}>
-							Impact
-						</div>
-						<div className='hero-word hero-word-agency' ref={addToRefs}>
-							Agency
-						</div>
+					<div className='hero-word hero-word-social' ref={addToRefs}>
+						Social
+					</div>
+					<div className='hero-word hero-word-impact' ref={addToRefs}>
+						Impact
+					</div>
+					<div className='hero-word hero-word-agency' ref={addToRefs}>
+						Agency
 					</div>
 				</div>
-			</ContainerFluid>
+			</div> */}
+			<HeroHeading color='dark' large>
+				<span>Social</span>
+				<span style={{marginLeft: "2rem"}}>Impact</span>
+			</HeroHeading>
 		</StyledHero>
 	);
 }

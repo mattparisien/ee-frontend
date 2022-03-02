@@ -2,37 +2,55 @@ import classNames from "classnames";
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { Container } from "@mui/material";
+import { device } from "../styles/device";
 import { Box } from "@mui/system";
 
-const StyledContainer = styled(Container)`
-	height: ${({ height }) => (height ? height : "100vh")};
-
+const StyledContainer = styled(Box)`
+	height: 100%;
 	width: 100%;
 
-	&.css-19r6kue-MuiContainer-root {
-		${({ theme }) => theme.spacing(2, "padding-left")}
-		${({ theme }) => theme.spacing(2, "padding-right")}
+	@media ${device.mobileS} {
+		padding-left: 1.3rem;
+		padding-right: 1.3rem;
 	}
-`;
 
-const StyledVerticalGutterContainer = styled(Box)`
-	${({ theme, headerOffset }) => theme.spacing(4, "padding-top")}
-	${({ theme, headerOffset }) => theme.spacing(4, "padding-bottom")}
+	@media ${device.mobileL} {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+
+	@media ${device.tablet} {
+		padding-left: 5rem;
+		padding-right: 5rem;
+	}
+
+	@media ${device.laptop} {
+		padding-left: 9.5rem;
+		padding-right: 9.5rem;
+	}
+
+	@media ${device.laptopL} {
+		padding-left: 11rem;
+		padding-right: 11rem;
+	}
+
+	@media ${device.desktop} {
+		padding-left: 11rem;
+		padding-right: 9rem;
+	}
+
+	@media ${device.desktopL} {
+		padding-left: 12rem;
+		padding-right: 12rem;
+	}
 `;
 
 function ContainerFluid(props, ref) {
 	const containerClass = classNames("Container", props.classes);
 
 	return (
-		<StyledContainer {...props} maxWidth='xl' className='Container'>
-			{!props.noVerticalGutter ? (
-				<StyledVerticalGutterContainer className='vertical-gutter-container'>
-					{props.children}
-				</StyledVerticalGutterContainer>
-			) : (
-				props.children
-			)}
+		<StyledContainer {...props} className='Container'>
+			{props.children}
 		</StyledContainer>
 	);
 }

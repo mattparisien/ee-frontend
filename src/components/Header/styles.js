@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { device, deviceSize } from "../styles/device";
 
-export const StyledDynamicWrapper = styled.div`
-	width: 100%;
-	height: 100%;
-
-	transition: 300ms ease;
-	transform: translateY(${props => (props.isScrollingDown ? "-400%" : "0")});
-`;
 
 export const StyledHeader = styled.div`
 	ul li {
@@ -19,25 +12,21 @@ export const StyledHeader = styled.div`
 	}
 
 	${({theme}) => theme.spacing(4, "height")};
+	padding-bottom: 1rem;
+	padding-top: 1rem;
 
 	width: 100%;
-	
 
 	position: fixed;
 	top: 0;
 	left: 0;
-
-	@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
-		padding: 1.8rem !important;
-		height: 75px;
-	}
-
 	z-index: 9999;
 	display: flex;
 	align-items: center;
 
 	.logo-wrapper {
-		width: 150px;
+		${({theme}) => theme.spacing(5, "width")};
+
 		position: absolute;
 		top: 50%;
 		left: 50%;

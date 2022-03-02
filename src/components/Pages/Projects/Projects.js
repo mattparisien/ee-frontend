@@ -267,9 +267,8 @@ const Title = styled.div`
 const Item = styled.div`
 	position: relative;
 	height: 50vw;
-	${({ theme }) => theme.spacing(2, "padding")};
-	color: ${({theme}) => theme.colors.dark};
 
+	color: ${({ theme }) => theme.colors.dark};
 
 	.Item__link {
 		display: flex !important;
@@ -280,8 +279,12 @@ const Item = styled.div`
 			transform: scaleX(1);
 		}
 
-		&:hover .image-wrapper {
+		&:hover .image-wrapper img {
 			transform: scale(1.1);
+		}
+
+		&:hover .image-wrapper {
+			filter: brightness(100%);
 		}
 
 		&:hover .item-background {
@@ -303,12 +306,15 @@ const Item = styled.div`
 
 	.image-wrapper {
 		width: 100%;
-		height: 50%;
+		height: 100%;
 		overflow: hidden;
 		transition: 800ms ease;
-
+		filter: brightness(60%);
+		transform: scale(0.5);
+		
 		img {
 			object-fit: cover;
+			transition: 800ms ease;
 		}
 	}
 `;
@@ -321,9 +327,7 @@ const PreviewText = styled.div`
 	${({ theme }) => theme.spacing(2, "padding-left")};
 `;
 
-const GridWrapper = styled(Grid)`
-
-`;
+const GridWrapper = styled(Grid)``;
 
 function Projects(props) {
 	const { posts } = useContext(DataContext);
@@ -334,23 +338,23 @@ function Projects(props) {
 	const [intersecting, setIntersecting] = useState(false);
 	const theme = useTheme();
 
-	useEffect(() => {
-		if (intersecting) {
-			if (delay === 0.1) {
-				setDelay(0.2);
-			}
+	// useEffect(() => {
+	// 	if (intersecting) {
+	// 		if (delay === 0.1) {
+	// 			setDelay(0.2);
+	// 		}
 
-			if (delay === 0.2) {
-				setDelay(0.1);
-			}
+	// 		if (delay === 0.2) {
+	// 			setDelay(0.1);
+	// 		}
 
-			gsap.to($(intersecting).parent(), {
-				y: 0,
-				opacity: 1,
-				duration: 1,
-			});
-		}
-	}, [intersecting]);
+	// 		gsap.to($(intersecting).parent(), {
+	// 			y: 0,
+	// 			opacity: 1,
+	// 			duration: 1,
+	// 		});
+	// 	}
+	// }, [intersecting]);
 	const [itemColors, setItemColors] = useState(null);
 
 	useEffect(() => {
@@ -391,58 +395,52 @@ function Projects(props) {
 					itemColors &&
 					posts.map(post => {
 						return (
-							<Grid
-								item
-								xs={6}
-								sx={{ transform: "translateY(50%)", opacity: 0 }}
-								key={post.id}
-							>
-								<InView
+							<Grid item xs={6} key={post.id}>
+								{/* <InView
 									className='grid-item-item-view-wrapper'
 									threshold={0.2}
 									onChange={(inView, entry) =>
 										inView && setIntersecting(entry.target)
 									}
+								> */}
+								<Item
+									className='Item'
+									style={{ position: "relative" }}
+									color={itemColors[post.id]}
 								>
-									<Item
-										className='Item'
-										style={{ position: "relative" }}
-										color={itemColors[post.id]}
+									<Link
+										className='Item__link'
+										style={{
+											width: "100%",
+											height: "100%",
+										}}
+										to={`/projects/${post.id}`}
 									>
-										<Link
-											className='Item__link'
-											
-											style={{
-												width: "100%",
-												height: "100%",
-											}}
-											to={`/projects/${post.id}`}
-										>
-											<div className='image-wrapper'>
-												<img
-													style={{
-														width: "100%",
-														height: "100%",
-														maxHeight: "1200px",
-														objectFit: "cover",
-													}}
-													src={post.media.featureImage.url}
-												></img>
-											</div>
-											<Title>
-												<div className='Title__inner'>{post.title}</div>
-											</Title>
-											<div className='item-background'></div>
-											<PreviewText className='PreviewText'>
+										<div className='image-wrapper'>
+											<img
+												style={{
+													width: "100%",
+													height: "100%",
+													maxHeight: "1200px",
+													objectFit: "cover",
+												}}
+												src={post.media.featureImage.url}
+											></img>
+										</div>
+										<Title>
+											<div className='Title__inner'>{post.title}</div>
+										</Title>
+										<div className='item-background'></div>
+										{/* <PreviewText className='PreviewText'>
 												<Paragraph size='small' indent>
 													Lorem ipsum dolor sit amet consectetur adipisicing
 													elit. Rem natus autem eligendi quos sapiente sint
 													nihil odio, placeat fugiat cumque.
 												</Paragraph>
-											</PreviewText>
-										</Link>
-									</Item>
-								</InView>
+											</PreviewText> */}
+									</Link>
+								</Item>
+								{/* </InView> */}
 							</Grid>
 						);
 					})}

@@ -128,7 +128,6 @@ ${({ $headingStyles, theme }) => {
 }
 
 
-
 .highlight-line {
 
 	position: absolute;
@@ -165,6 +164,8 @@ export const StyledParagraph = styled.div`
 		position: relative;
 	}
 
+	
+
 	.word-highlight {
 		position: absolute;
 		top: 0;
@@ -186,6 +187,7 @@ export const StyledParagraph = styled.div`
 		${({ theme, size }) =>
 			theme.spacing(size === "large" ? 2 : 1, "margin-bottom")};
 		letter-spacing: -0.8px;
+
 	}
 
 	.indent-spacer {

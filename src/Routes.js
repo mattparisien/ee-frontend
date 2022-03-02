@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Contact, Home, ProjectItem, Projects } from "./components/Pages/index";
+import { Contact, Home, Projects } from "./components/Pages/index";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import NotFound from "./components/404/NotFound";
 
@@ -20,11 +20,11 @@ function SiteRoutes(props) {
 					element={<ProjectPage addToRefs={addToRefs} />}
 					key={location.pathname}
 				/>
-				<Route
+				{/* <Route
 					path='/projects/:id'
 					element={<ProjectItem addToRefs={addToRefs} />}
 					key={location.pathname}
-				/>
+				/> */}
 				<Route path='/*' element={<NotFound />} key={location.pathname} />
 			</Routes>
 		</>

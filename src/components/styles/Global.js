@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
 
 
 * {
-	
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
@@ -89,6 +89,15 @@ body {
 body {
 	background-color: ${({ theme }) => theme.colors.light};
 }
+
+section:nth-of-type(1)  {
+	${({ theme }) => theme.spacing(4, "padding-top")};
+		
+	.ContainerVertical {
+		padding-top: 0;
+	}
+
+	}
 
 
 .line-wrapper {

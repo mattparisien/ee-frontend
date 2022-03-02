@@ -4,6 +4,7 @@ import About from "./components/About";
 import FeaturedWork from "./components/FeaturedWork";
 import Hero from "./components/Hero/Hero";
 import How from "./components/How";
+import SectionLayout from "../../Containers/SectionLayout";
 
 export const pages = {
 	home: {
@@ -13,6 +14,7 @@ export const pages = {
 				name: "hero",
 				page: "home",
 				backgroundColor: "light",
+				headerOffset: true,
 				height: "100vh"
 			},
 			{
@@ -43,15 +45,15 @@ export const pages = {
 				page: "projects",
 				backgroundColor: "dark",
 				height: "auto",
-				headerOffset: true
+				headerOffset: true,
 			},
 			{
 				id: 2,
 				name: "projects",
 				page: "projects",
-				
+
 				backgroundColor: "dark",
-				height: "auto"
+				height: "auto",
 			},
 		],
 	},
@@ -72,18 +74,19 @@ function Home(props) {
 		<>
 			{pages.home.sections.map(section => {
 				return (
-					<Section
+					<SectionLayout
 						key={section.id}
 						id={section.id}
 						page={section.page}
-						noGutter={section.id === 1}
 						bg={section.backgroundColor}
+						height={section.height}
 					>
 						{React.createElement(innerComponents[section.name], {
 							key: section.id,
-							height: section.height
+							height: section.height,
+							headerOffset: section.headerOffset,
 						})}
-					</Section>
+					</SectionLayout>
 				);
 			})}
 		</>

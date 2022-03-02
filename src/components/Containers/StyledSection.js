@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "../styles/device";
 
 const StyledSection = styled.section`
-	min-height: ${({ isFullHeight }) => isFullHeight && "100vh"};
+	height: ${({height}) => height ? height : 'auto'};
 	position: ${props => (props.isRelative ? "relative" : "inherit")};
 	background-color: ${({ theme, $bg }) => {
 		return (
