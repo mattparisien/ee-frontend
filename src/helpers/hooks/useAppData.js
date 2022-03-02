@@ -9,30 +9,6 @@ import { device } from "../../components/styles/device";
 import { createTheme } from "@mui/material";
 
 export default function useAppData(scrollRef) {
-	const baseSpacing = {
-		desktopL: 2,
-		desktop: 1.5,
-		laptopL: 2,
-		laptop: 2,
-		tablet: 1,
-		mobileL: 1,
-		mobileM: 0.5,
-		mobileS: 0.4,
-	};
-
-	const baseFontSize = {
-		desktopL: 1.2,
-		desktop: 1.2,
-		laptopL: 1,
-		laptop: 1,
-		tablet: 0.8,
-		mobileL: 0.7,
-		mobileM: 0.7,
-		mobileS: 0.6,
-	};
-
-	//Themes
-
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -45,18 +21,13 @@ export default function useAppData(scrollRef) {
 			},
 		},
 		typography: {
-			fontFamily: [
-				"-apple-system",
-				"BlinkMacSystemFont",
-				'"Segoe UI"',
-				"Roboto",
-				'"Helvetica Neue"',
-				"Arial",
-				"sans-serif",
-				'"Apple Color Emoji"',
-				'"Segoe UI Emoji"',
-				'"Segoe UI Symbol"',
-			].join(","),
+			fontSize: 20,
+			fontFamily: ["Kobe"].join(","),
+			h2: {
+				fontFamily: ["Kobe Bold"].join(","),
+				"fontWeight": 600,
+
+			}
 		},
 
 		components: {

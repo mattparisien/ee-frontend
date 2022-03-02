@@ -995,8 +995,8 @@ export function Megaphone() {
 	return (
 		<svg
 			className='megaphone-svg'
-			width='985'
-			height='876'
+			width='100%'
+			height='100%'
 			viewBox='0 0 985 876'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'

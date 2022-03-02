@@ -8,7 +8,11 @@ import { Box } from "@mui/system";
 function ContainerFluid(props, ref) {
 	const containerClass = classNames("Container", props.classes);
 
-	return <Container className='Container' maxWidth="xl" sx={{height: "100%"}}>{props.children}</Container>;
+	return (
+		<Container className='Container' maxWidth='xl' sx={{ height: "100%" }}>
+			{props.children}
+		</Container>
+	);
 }
 
 export default forwardRef(ContainerFluid);

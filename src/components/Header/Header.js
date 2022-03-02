@@ -12,7 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const pages = ["About", "Work", "Connect"];
+const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Header(props) {
@@ -30,14 +30,17 @@ export default function Header(props) {
 		setAnchorElNav(null);
 	};
 
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
-	};
-
 	return (
-		<AppBar position='fixed' sx={{background: "transparent", color: "black", boxShadow: "none"}} >
-			<Container maxWidth='xl' >
-				<Toolbar disableGutters  >
+		<AppBar
+			position='fixed'
+			sx={{
+				backgroundColor: "transparent",
+				color: "primary.dark",
+				boxShadow: "none",
+			}}
+		>
+			<Container maxWidth='xl'>
+				<Toolbar disableGutters>
 					<Typography
 						variant='h6'
 						noWrap
@@ -47,27 +50,64 @@ export default function Header(props) {
 						The Eyes & Ears Agency
 					</Typography>
 
+					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+						<IconButton
+							size='large'
+							aria-label='account of current user'
+							aria-controls='menu-appbar'
+							aria-haspopup='true'
+							onClick={handleOpenNavMenu}
+							color='inherit'
+						>
+							<MenuIcon />
+						</IconButton>
+						<Menu
+							id='menu-appbar'
+							anchorEl={anchorElNav}
+							anchorOrigin={{
+								vertical: "bottom",
+								horizontal: "left",
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: "top",
+								horizontal: "left",
+							}}
+							open={Boolean(anchorElNav)}
+							onClose={handleCloseNavMenu}
+							sx={{
+								display: { xs: "block", md: "none" },
+							}}
+						>
+							{pages.map(page => (
+								<MenuItem key={page} onClick={handleCloseNavMenu}>
+									<Typography textAlign='center'>{page}</Typography>
+								</MenuItem>
+							))}
+						</Menu>
+					</Box>
 					<Typography
 						variant='h6'
 						noWrap
 						component='div'
 						sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
 					>
-						LOGO
+						The Eyes & Ears Agency
 					</Typography>
 					<Box
 						sx={{
 							flexGrow: 1,
-							display: { xs: "none", md: "flex" },
-							justifyContent: "flex-end",
+							display: { xs: "none", md: "flex", justifyContent: "flex-end" },
 						}}
 					>
 						{pages.map(page => (
 							<Button
+								variant='secondary'
+								disableRipple
+								disableFocusRipple
 								key={page}
 								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: "black", display: "block" }}
-								disableRipple
+								sx={{ my: 2, display: "block" }}
 							>
 								{page}
 							</Button>

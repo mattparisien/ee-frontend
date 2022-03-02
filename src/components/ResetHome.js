@@ -6,6 +6,8 @@ import useResize from "../helpers/hooks/useResize";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import { Megaphone } from "./Vector/Svg";
 
 function ResetHome() {
 	const wordRefs = useRef([]);
@@ -100,7 +102,7 @@ function ResetHome() {
 
 	return (
 		<Page pageName='Home'>
-			<SectionWrapper height="100vh">
+			<SectionWrapper height='100vh' bg='light'>
 				{/* <div className='hero-content'>
 				<div className='hero-content__inner' ref={containerRef}>
 					<div className='drawnLogo-wrapper-overflowHidden'>
@@ -155,8 +157,40 @@ function ResetHome() {
 				)}
 				{/* <HeroHeading ref={headingRef} data-scroll data-scroll-speed={3}>Impact</HeroHeading> */}
 			</SectionWrapper>
-			<SectionWrapper></SectionWrapper>
-			<SectionWrapper></SectionWrapper>
+			<SectionWrapper height='100vh' bg='dark'>
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						height: "100%",
+						flexDirection: "column",
+					}}
+				>
+					<Typography
+						variant='h2'
+						sx={{ alignSelf: "flex-start" }}
+						gutterBottom
+						fontWeight='400'
+					>
+						About us
+					</Typography>
+					<Typography variant='h4'>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor,
+						amet eligendi illo maiores consectetur eveniet voluptate modi
+						mollitia. Omnis, aperiam quas aut maxime ipsam optio nemo veritatis
+						debitis voluptatibus facere dolor ducimus consequuntur dicta, id
+						assumenda reprehenderit numquam dolorum architecto?
+					</Typography>
+					<Box
+						className='megaphone-wrapper'
+						sx={{ width: "300px", position: "absolute", bottom: 0, right: 0, transform: "scaleX(-100%)" }}
+					>
+						<Megaphone />
+					</Box>
+				</Box>
+			</SectionWrapper>
+			<SectionWrapper height='100vh' bg='light'></SectionWrapper>
 			<SectionWrapper></SectionWrapper>
 		</Page>
 	);
