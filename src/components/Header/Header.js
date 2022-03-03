@@ -11,9 +11,22 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [
+	{
+		name: "About",
+		path: "/home",
+	},
+	{
+		name: "Work",
+		path: "/projects",
+	},
+	{
+		name: "Connect",
+		path: "/contact",
+	},
+];
 
 export default function Header(props) {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -78,9 +91,9 @@ export default function Header(props) {
 								display: { xs: "block", md: "none" },
 							}}
 						>
-							{pages.map(page => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign='center'>{page}</Typography>
+							{pages.map((page, i) => (
+								<MenuItem key={i} onClick={handleCloseNavMenu}>
+									<Typography textAlign='center'>{page.name}</Typography>
 								</MenuItem>
 							))}
 						</Menu>
@@ -99,16 +112,16 @@ export default function Header(props) {
 							display: { xs: "none", md: "flex", justifyContent: "flex-end" },
 						}}
 					>
-						{pages.map(page => (
+						{pages.map((page, i) => (
 							<Button
 								variant='secondary'
 								disableRipple
 								disableFocusRipple
-								key={page}
+								key={i}
 								onClick={handleCloseNavMenu}
 								sx={{ my: 2, display: "block" }}
 							>
-								{page}
+								<Link to={page.path}>{page.name}</Link>
 							</Button>
 						))}
 					</Box>

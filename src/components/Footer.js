@@ -10,7 +10,7 @@ function Footer() {
 	const matches = useMediaQuery("(max-width: 1000px)");
 
 	return (
-		<Box component='footer' sx={{ height: "60vh" }}>
+		<Box component='footer' sx={{ height: matches ? "90vw" : "60vh" }}>
 			<SectionWrapper height='100%' bg='dark'>
 				<Box
 					display='flex'
