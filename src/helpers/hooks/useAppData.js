@@ -10,13 +10,12 @@ import { createTheme } from "@mui/material";
 import { makeStyles } from "@material-ui/styles";
 
 export default function useAppData(scrollRef) {
-
 	const globalStyle = {
 		body: {
 			margin: 0,
 			padding: 0,
-		}
-	}
+		},
+	};
 
 	const theme = createTheme({
 		palette: {

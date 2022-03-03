@@ -39,7 +39,7 @@ function Authenticated() {
 	};
 
 	const toggleScrollLock = () => {
-		console.log('hello!')
+		console.log("hello!");
 		setState(prev => ({ ...prev, isScrollLocked: !state.isScrollLocked }));
 	};
 

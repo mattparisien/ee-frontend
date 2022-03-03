@@ -9,44 +9,91 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
 import { Megaphone } from "./Vector/Svg";
 import { Grid } from "@mui/material";
-import PropTypes from 'prop-types';
-
-
+import PropTypes from "prop-types";
+import { DataContext } from "../App";
 
 function Item(props) {
-  const { sx, ...other } = props;
-  return (
-    <Box
-      sx={{
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
-        border: '1px solid',
-        borderColor: (theme) =>
-          theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-        p: 1,
-        borderRadius: 2,
-        fontSize: '0.875rem',
-        fontWeight: '700',
-        ...sx,
-      }}
-      {...other}
-    />
-  );
+	const { sx, ...other } = props;
+	return (
+		<Box
+			sx={{
+				bgcolor: theme => (theme.palette.mode === "dark" ? "#101010" : "#fff"),
+				color: theme =>
+					theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+				border: "1px solid",
+				borderColor: theme =>
+					theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+				p: 1,
+				borderRadius: 2,
+				fontSize: "0.875rem",
+				fontWeight: "700",
+				...sx,
+			}}
+			{...other}
+		/>
+	);
 }
 
 Item.propTypes = {
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-    ),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
+	sx: PropTypes.oneOfType([
+		PropTypes.arrayOf(
+			PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
+		),
+		PropTypes.func,
+		PropTypes.object,
+	]),
 };
+
+const StepSchema = {
+	1: {
+		id: 1,
+		gridColumn: "1/5",
+		gridRow: "1/2",
+		heading: null,
+		paragraph: null,
+	},
+	2: {
+		id: 2,
+		gridColumn: "5/9",
+		gridRow: "2/3",
+		heading: null,
+		paragraph: null,
+	},
+	3: {
+		id: 3,
+		gridColumn: "9/13",
+		gridRow: "3/4",
+		heading: null,
+		paragraph: null,
+	},
+	4: {
+		id: 4,
+		gridColumn: "5/9",
+		gridRow: "4/5",
+		heading: null,
+		paragraph: null,
+	},
+	5: {
+		id: 5,
+		gridColumn: "1/5",
+		gridRow: "5/6",
+		heading: null,
+		paragraph: null,
+	},
+};
+
+{
+	/* <Item sx={{gridColumn: "1/5", gridRow: "1/2"}}>1</Item>
+<Item sx={{gridColumn: "5/9", gridRow: "2/3"}}>2</Item>
+<Item sx={{gridColumn: "9/13", gridRow: "3/4"}}>3</Item>
+<Item sx={{gridColumn: "5/9", gridRow: "4/5"}}>4</Item>
+<Item sx={{gridColumn: "1/5", gridRow: "5/6"}}>4</Item> */
+}
 
 function ResetHome() {
 	const wordRefs = useRef([]);
 	const [isParagraphRevealed, setParagraphRevealed] = useState(false);
+	const [steps, setSteps] = useState(StepSchema);
 
 	const [split, setSplit] = useState(null);
 	const [isHeadingSplit, setHeadingsplit] = useState(null);
@@ -72,6 +119,25 @@ function ResetHome() {
 			headingRefs.current.push(el);
 		}
 	};
+
+	const data = useContext(DataContext);
+
+	useEffect(() => {
+		if (data.steps) {
+			data.steps.forEach(step => {
+				setSteps(prev => {
+					return {
+						...prev,
+						[step.id]: {
+							...prev[step.id],
+							heading: step.title,
+							paragraph: step.body,
+						},
+					};
+				});
+			});
+		}
+	}, [data]);
 
 	// useEffect(() => {
 	// 	if (headingRefs.current && !isHeadingSplit) {
@@ -231,18 +297,40 @@ function ResetHome() {
 					</Box>
 				</Box>
 			</SectionWrapper>
-			<SectionWrapper height='100vh' bg='light'>
+			<SectionWrapper height='auto' bg='light'>
 				<Typography variant='h2' textAlign='center'>
 					Feel the Rhythm
 				</Typography>
-				<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 1 }}>…
-						<Item>1</Item>
-						<Item>2</Item>
-						<Item>3</Item>
-						<Item>4</Item>
-						<Item>5</Item>
-				</Box>
+				<Box
+					sx={{
+						display: "grid",
+						gridTemplateColumns: "repeat(12, 1fr)",
+						gap: 1,
+						gridTemplateRows: "repeat(6, 300px)",
+					}}
+					mt={4}
+				>
+					{steps &&
+						Object.values(steps).map(step => {
+							return (
+								<Item
+									sx={{ gridColumn: step.gridColumn, gridRow: step.gridRow }}
+								>
+									<Typography variant='h4' component='h4'>
+										{step.heading}
+									</Typography>
+									<Typography variant='body2' component='p'>
+										{step.paragraph}
+									</Typography>
+								</Item>
+							);
+						})}
 
+					{/* <Item sx={{ gridColumn: "5/9", gridRow: "2/3" }}>2</Item>
+					<Item sx={{ gridColumn: "9/13", gridRow: "3/4" }}>3</Item>
+					<Item sx={{ gridColumn: "5/9", gridRow: "4/5" }}>4</Item>
+					<Item sx={{ gridColumn: "1/5", gridRow: "5/6" }}>4</Item> */}
+				</Box>
 			</SectionWrapper>
 			<SectionWrapper></SectionWrapper>
 		</Page>

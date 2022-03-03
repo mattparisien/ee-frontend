@@ -6,6 +6,10 @@ import { Header } from "./components";
 import ResetHome from "./components/ResetHome";
 import useAppData from "./helpers/hooks/useAppData";
 import { GlobalStyles } from "@mui/material";
+import { useContext, createContext } from "react";
+
+export const DataContext = createContext();
+
 
 function App() {
 	const { appRefs, state, setState, pending, theme, location, globalStyle } = useAppData();
@@ -46,6 +50,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				</Helmet>
 				<GlobalStyles styles={globalStyle}/>
 				<ThemeProvider theme={theme}>
+					<DataContext.Provider value={state.data}>
 					{/* <GlobalStyles
 						isScrollLocked={state.isScrollLocked}
 						location={location}
@@ -75,6 +80,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						{/* {state.user.isVisitor ? <Visitor /> : <Authenticated />} */}
 					</div>
 					{/* </LocomotiveScrollProvider> */}
+					</DataContext.Provider>
 				</ThemeProvider>
 			</div>
 		</HelmetProvider>
