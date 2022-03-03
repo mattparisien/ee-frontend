@@ -18,7 +18,7 @@ function Item(props) {
 	return (
 		<Box
 			sx={{
-				bgcolor: theme => (theme.palette.mode === "dark" ? "#101010" : "#fff"),
+				
 				color: theme =>
 					theme.palette.mode === "dark" ? "grey.300" : "grey.800",
 				border: "1px solid",
@@ -78,23 +78,23 @@ const locationsDesktop = {
 
 const locationsMobile = {
 	1: {
-		gridColumn: "1/12",
+		gridColumn: "1/13",
 		gridRow: "1/2",
 	},
 	2: {
-		gridColumn: "1/12",
+		gridColumn: "1/13",
 		gridRow: "2/3",
 	},
 	3: {
-		gridColumn: "1/12",
+		gridColumn: "1/13",
 		gridRow: "3/4",
 	},
 	4: {
-		gridColumn: "1/12",
+		gridColumn: "1/13",
 		gridRow: "4/5",
 	},
 	5: {
-		gridColumn: "1/12",
+		gridColumn: "1/13",
 		gridRow: "5/6",
 	},
 };
@@ -202,10 +202,9 @@ function ResetHome() {
 		}
 	}, [data, matches, stepDevice, stepLocations]);
 
-
 	useEffect(() => {
-		console.log(stepLocations)
-	},[stepLocations])
+		console.log(stepLocations);
+	}, [stepLocations]);
 
 	// useEffect(() => {
 	// 	if (headingRefs.current && !isHeadingSplit) {
@@ -373,7 +372,7 @@ function ResetHome() {
 					sx={{
 						display: "grid",
 						gridTemplateColumns: "repeat(12, 1fr)",
-						gap: 1,
+						gap: 4,
 						gridTemplateRows: "repeat(6, 300px)",
 					}}
 					mt={4}
@@ -390,6 +389,8 @@ function ResetHome() {
 										variant='h4'
 										component='h4'
 										className='GridItem__heading'
+										mt={2}
+										mb={2}
 									>
 										{step.heading}
 									</Typography>

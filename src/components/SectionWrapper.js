@@ -16,7 +16,7 @@ function SectionWrapper({ children, height, bg }) {
 				position: "relative",
 			}}
 		>
-			<Container maxwidth='xl' sx={{ height: "100%" }}>
+			<Container maxWidth='lg' sx={{ height: "100%" }}>
 				{children}
 			</Container>
 		</Box>
