@@ -29,12 +29,20 @@ function Footer() {
 	];
 
 	return (
-		<Box component='footer' sx={{ height: matches ? "90vw" : "60vh" }}>
+		<Box
+			component='footer'
+			sx={{
+				height: matches ? "90vw" : "60vh",
+
+				width: "100vw",
+				zIndex: -1,
+			}}
+		>
 			<SectionWrapper height='100%' bg='dark'>
 				<Box sx={{ height: "100%" }}>
 					<Box
 						display='flex'
-						height={"90%"}
+						height={"80%"}
 						alignItems='center'
 						justifyContent={matches ? "space-evenly" : "space-between"}
 						flexDirection={matches ? "column" : "row"}
@@ -69,14 +77,19 @@ function Footer() {
 					<Box
 						className='bottom-navigation'
 						sx={{
-							height: "10%",
+							boxSizing: "border-box",
+							height: "20%",
 							width: "100%",
+
 							borderTop: "1px solid white",
 							alignItems: "center",
 							display: "flex",
 							alignItems: "center",
 						}}
 					>
+						<Typography variant='body1' component='span'>
+							The Eyes & Ears Agency
+						</Typography>
 						<Box
 							className='footer-navigation-socialLinks'
 							sx={{
@@ -92,7 +105,10 @@ function Footer() {
 										target='_blank'
 										style={{ display: "inline-block", marginLeft: "2rem" }}
 									>
-										{React.createElement(link.component, { key: i, size: "small" })}
+										{React.createElement(link.component, {
+											key: i,
+											size: "small",
+										})}
 									</a>
 								);
 							})}

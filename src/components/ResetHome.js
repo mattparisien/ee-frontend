@@ -10,6 +10,7 @@ import SectionWrapper from "./SectionWrapper";
 import Testimonials from "./Testimonials";
 import Footer from "./Footer";
 import { Megaphone } from "./Vector/Svg";
+import SplitText from "gsap/SplitText";
 
 // function Item(props) {
 // 	return (
@@ -202,124 +203,121 @@ function ResetHome() {
 		console.log(stepLocations);
 	}, [stepLocations]);
 
-	// useEffect(() => {
-	// 	if (headingRefs.current && !isHeadingSplit) {
-	// 		const mySplitText = new SplitText(headingRefs.current, {
-	// 			type: "lines, chars, words",
-	// 			charsClass: "hero-heading-char",
-	// 			linesClass: "line",
-	// 			wordClass: "word",
-	// 		});
+	useEffect(() => {
+		if (headingRefs.current && !isHeadingSplit) {
+			const mySplitText = new SplitText(headingRefs.current, {
+				type: "lines, chars, words",
+				charsClass: "hero-heading-char",
+				linesClass: "line",
+				wordClass: "word",
+			});
 
-	// 		setHeadingsplit(true);
-	// 	}
+			setHeadingsplit(true);
+		}
 
-	// 	if (isHeadingSplit) {
-	// 		const charsLine1 = $(headingRefs.current[0]).find(".hero-heading-char");
-	// 		const charsLine2 = $(headingRefs.current[1]).find(".hero-heading-char");
+		if (isHeadingSplit) {
+			const charsLine1 = $(headingRefs.current[0]).find(".hero-heading-char");
+			const charsLine2 = $(headingRefs.current[1]).find(".hero-heading-char");
+			console.log(charsLine1),
+				line1Timeline.current
+					.to(charsLine1, {
+						x: 0,
+						duration: wordEntryDuration,
+						stagger: -0.1,
+						ease: "expo.inOut",
+					})
+					.to(charsLine1, {
+						y: "-100%",
+						duration: wordEntryDuration,
+						stagger: -0.1,
+						ease: "expo.inOut",
+					});
+			line2Timeline.current
+				.to(charsLine2, {
+					x: 0,
+					duration: wordEntryDuration,
+					stagger: 0.1,
+					ease: "expo.inOut",
+				})
+				.to(charsLine2, {
+					y: "100%",
+					duration: wordEntryDuration,
+					stagger: -0.1,
+					ease: "expo.inOut",
+					onUpdate: () => {
+						if (line2Timeline.current.progress() > 0.5) {
+							setParagraphRevealed(true);
+						}
+					},
+				});
+		}
+	}, [headingRefs, isHeadingSplit]);
 
-	// 		line1Timeline.current
-	// 			.to(charsLine1, {
-	// 				x: 0,
-	// 				duration: wordEntryDuration,
-	// 				stagger: -0.1,
-	// 				ease: "expo.inOut",
-	// 			})
-	// 			.to(charsLine1, {
-	// 				y: "-100%",
-	// 				duration: wordEntryDuration,
-	// 				stagger: -0.1,
-	// 				ease: "expo.inOut",
-	// 			});
-	// 		line2Timeline.current
-	// 			.to(charsLine2, {
-	// 				x: 0,
-	// 				duration: wordEntryDuration,
-	// 				stagger: 0.1,
-	// 				ease: "expo.inOut",
-	// 			})
-	// 			.to(charsLine2, {
-	// 				y: "100%",
-	// 				duration: wordEntryDuration,
-	// 				stagger: -0.1,
-	// 				ease: "expo.inOut",
-	// 				onUpdate: () => {
-	// 					if (line2Timeline.current.progress() > 0.5) {
-	// 						setParagraphRevealed(true);
-	// 					}
-	// 				},
-	// 			});
-	// 	}
-	// }, [headingRefs, isHeadingSplit]);
+	const introAnimation = useRef(gsap.timeline());
 
-	// const introAnimation = useRef(gsap.timeline());
+	useEffect(() => {
+		if (wordRefs.current.length > 2 && containerRef.current) {
+			calculateWordOffsets(containerRef, wordRefs, setDefaultOffsets);
+		}
 
-	// useEffect(() => {
-	// 	if (wordRefs.current.length > 2 && containerRef.current) {
-	// 		calculateWordOffsets(containerRef, wordRefs, setDefaultOffsets);
-	// 	}
-
-	// 	if (wordRefs.current.length > 2 && logoRef.current) {
-	// 		animateIntro(introAnimation, wordRefs, chars, logoRef, overlayRef);
-	// 	}
-	// }, [wordRefs, windowWidth]);
+		if (wordRefs.current.length > 2 && logoRef.current) {
+			animateIntro(introAnimation, wordRefs, chars, logoRef, overlayRef);
+		}
+	}, [wordRefs, windowWidth]);
 
 	return (
 		<Page pageName='Home'>
 			<SectionWrapper height='100vh' bg='light'>
-				{/* <div className='hero-content'>
-				<div className='hero-content__inner' ref={containerRef}>
-					<div className='drawnLogo-wrapper-overflowHidden'>
-						<div className='drawnLogo__inner-relative'>
-							<div className='drawnLogo__overlay' ref={overlayRef}></div>
-							<div className='drawnLogo__inner-absolute' ref={logoRef}>
-								<DrawnLogo width='400px' />
-							</div>
-						</div>
-					</div>
+				{/* <div className='drawnLogo__overlay' ref={overlayRef}></div> */}
+				{/* <div className='drawnLogo__inner-absolute' ref={logoRef}>
+					<DrawnLogo width='400px' />
+				</div> */}
 
-					<div className='hero-word hero-word-social' ref={addToRefs}>
-						Social
-					</div>
-					<div className='hero-word hero-word-impact' ref={addToRefs}>
-						Impact
-					</div>
-					<div className='hero-word hero-word-agency' ref={addToRefs}>
-						Agency
-					</div>
-				</div>
-			</div> */}
-				<div className='rotate-heading-wrapper__social'>
+				<Box className='hero-word hero-word-social'>
 					<Typography
-						variant='h1'
-						component='h1'
 						ref={addToHeadingRefs}
-						className='heading-social'
+						component='h1'
+						sx={{
+							fontSize: "20vw",
+							position: "absolute",
+							top: 0,
+							left: 0,
+							"& .hero-heading-char": {
+								transform: "translateX(-100vw)",
+							},
+						}}
 					>
 						Social
 					</Typography>
-				</div>
-				<div className='rotate-heading-wrapper__impact'>
+				</Box>
+				<Box className='hero-word hero-word-impact'>
 					<Typography
-						variant='h1'
-						component='h1'
 						ref={addToHeadingRefs}
-						className='heading-social'
+						component='h1'
+						sx={{
+							fontSize: "20vw",
+							position: "absolute",
+							bottom: 0,
+							right: 0,
+							"& .hero-heading-char": {
+								transform: "translateX(100vw)",
+							},
+						}}
 					>
 						Impact
 					</Typography>
-				</div>
+				</Box>
+
 				{isParagraphRevealed && (
 					<Box className='hero-brand-line'>
 						<Typography variant='body2' animationDelay={wordEntryDuration + 1}>
 							We are the Eyes & Ears agency.
 						</Typography>
-						<Box className='hero-brand-line__logo'>
+						{/* <Box className='hero-brand-line__logo'>
 							<DrawnLogo />
-						</Box>
+						</Box> */}
 					</Box>
 				)}
-				{/* <HeroHeading ref={headingRef} data-scroll data-scroll-speed={3}>Impact</HeroHeading> */}
 			</SectionWrapper>
 			<SectionWrapper height='100vh' bg='dark'>
 				<Box
@@ -489,7 +487,6 @@ function ResetHome() {
 			<SectionWrapper height='80vh' bg='light'>
 				<Testimonials items={data.stories && data.stories} />
 			</SectionWrapper>
-			<Footer />
 		</Page>
 	);
 }

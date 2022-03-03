@@ -7,6 +7,7 @@ import ResetHome from "./components/ResetHome";
 import useAppData from "./helpers/hooks/useAppData";
 import { GlobalStyles } from "@mui/material";
 import { useContext, createContext } from "react";
+import Footer from "./components/Footer";
 
 export const DataContext = createContext();
 
@@ -16,7 +17,7 @@ function App() {
 	const scrollWrapper = useRef(null);
 
 	useEffect(() => {
-		console.log(theme)
+		console.log(theme);
 		console.log("Built by Matthew Parisien 🛠");
 
 		const cookies = new Cookies();
@@ -75,6 +76,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						>
 							<Header />
 							<ResetHome />
+							<Footer />
 							{/* {state.user.isVisitor ? <Visitor /> : <Authenticated />} */}
 						</div>
 						{/* </LocomotiveScrollProvider> */}
