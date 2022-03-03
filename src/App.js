@@ -10,15 +10,13 @@ import { useContext, createContext } from "react";
 
 export const DataContext = createContext();
 
-
 function App() {
-	const { appRefs, state, setState, pending, theme, location, globalStyle } = useAppData();
+	const { appRefs, state, setState, pending, theme, location, globalStyle } =
+		useAppData();
 	const scrollWrapper = useRef(null);
 
-
-	
-
 	useEffect(() => {
+		console.log(theme)
 		console.log("Built by Matthew Parisien 🛠");
 
 		const cookies = new Cookies();
@@ -48,10 +46,10 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 '
 					/>
 				</Helmet>
-				<GlobalStyles styles={globalStyle}/>
+				<GlobalStyles styles={globalStyle} />
 				<ThemeProvider theme={theme}>
 					<DataContext.Provider value={state.data}>
-					{/* <GlobalStyles
+						{/* <GlobalStyles
 						isScrollLocked={state.isScrollLocked}
 						location={location}
 					/>
@@ -70,16 +68,16 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						}
 						containerRef={scrollWrapper}
 					> */}
-					<div
-						className='scroll-wrapper'
-						ref={scrollWrapper}
-						data-scroll-container
-					>
-						<Header/>
-						<ResetHome />
-						{/* {state.user.isVisitor ? <Visitor /> : <Authenticated />} */}
-					</div>
-					{/* </LocomotiveScrollProvider> */}
+						<div
+							className='scroll-wrapper'
+							ref={scrollWrapper}
+							data-scroll-container
+						>
+							<Header />
+							<ResetHome />
+							{/* {state.user.isVisitor ? <Visitor /> : <Authenticated />} */}
+						</div>
+						{/* </LocomotiveScrollProvider> */}
 					</DataContext.Provider>
 				</ThemeProvider>
 			</div>

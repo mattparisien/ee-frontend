@@ -1,58 +1,53 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import gsap from "gsap";
+import PropTypes from "prop-types";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { DrawnLogo } from ".";
+import { DataContext } from "../App";
+import useResize from "../helpers/hooks/useResize";
 import Page from "./Page";
 import SectionWrapper from "./SectionWrapper";
-import useResize from "../helpers/hooks/useResize";
-import gsap from "gsap";
-import SplitText from "gsap/SplitText";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/material";
-import { Megaphone } from "./Vector/Svg";
-import { Grid } from "@mui/material";
-import PropTypes from "prop-types";
-import { DataContext } from "../App";
-import { useMediaQuery } from "@mui/material";
-
 import Testimonials from "./Testimonials";
+import Footer from "./Footer";
+import { Megaphone } from "./Vector/Svg";
 
-function Item(props) {
-	const { sx, ...other } = props;
-	return (
-		<Box
-			sx={{
-				color: theme =>
-					theme.palette.mode === "dark" ? "grey.300" : "grey.800",
-				border: "1px solid",
-				borderColor: theme =>
-					theme.palette.mode === "dark" ? "grey.800" : "grey.300",
-				p: 1,
-				borderRadius: 2,
-				fontSize: "0.875rem",
-				fontWeight: "700",
-				...sx,
-			}}
-			{...other}
-		/>
-	);
-}
+// function Item(props) {
+// 	return (
+// 		<Box
+// 			sx={{
+// 				color: theme =>
+// 					theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+// 				border: "1px solid",
+// 				borderColor: theme =>
+// 					theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+// 				p: 1,
+// 				borderRadius: 2,
+// 				fontSize: "0.875rem",
+// 				fontWeight: "700",
+// 				...sx,
+// 			}}
+// 			{...other}
+// 		/>
+// 	);
+// }
 
-Item.propTypes = {
-	sx: PropTypes.oneOfType([
-		PropTypes.arrayOf(
-			PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
-		),
-		PropTypes.func,
-		PropTypes.object,
-	]),
-};
+// Item.propTypes = {
+// 	sx: PropTypes.oneOfType([
+// 		PropTypes.arrayOf(
+// 			PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])
+// 		),
+// 		PropTypes.func,
+// 		PropTypes.object,
+// 	]),
+// };
 
-{
-	/* <Item sx={{gridColumn: "1/5", gridRow: "1/2"}}>1</Item>
+// {
+/* <Item sx={{gridColumn: "1/5", gridRow: "1/2"}}>1</Item>
 <Item sx={{gridColumn: "5/9", gridRow: "2/3"}}>2</Item>
 <Item sx={{gridColumn: "9/13", gridRow: "3/4"}}>3</Item>
 <Item sx={{gridColumn: "5/9", gridRow: "4/5"}}>4</Item>
 <Item sx={{gridColumn: "1/5", gridRow: "5/6"}}>4</Item> */
-}
+// }
 
 const locationsDesktop = {
 	1: {
@@ -381,7 +376,7 @@ function ResetHome() {
 					{steps &&
 						Object.values(steps).map(step => {
 							return (
-								<Item
+								<Box
 									className='GridItem'
 									sx={{ gridColumn: step.gridColumn, gridRow: step.gridRow }}
 									key={step.id}
@@ -402,7 +397,7 @@ function ResetHome() {
 									>
 										{step.paragraph}
 									</Typography>
-								</Item>
+								</Box>
 							);
 						})}
 				</Box>
@@ -492,18 +487,9 @@ function ResetHome() {
 				</Box>
 			</SectionWrapper> */}
 			<SectionWrapper height='80vh' bg='light'>
-				<Box
-					sx={{
-						height: "100%",
-						width: "100%",
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-					}}
-				>
-					<Testimonials items={data.stories && data.stories} />
-				</Box>
+				<Testimonials items={data.stories && data.stories} />
 			</SectionWrapper>
+			<Footer />
 		</Page>
 	);
 }

@@ -68,4 +68,8 @@ function CarouselItem(props) {
 	);
 }
 
+function Frame() {
+	
+}
+
 export default Testimonials;

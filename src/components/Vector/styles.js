@@ -1,4 +1,4 @@
-// import styled, { ThemeConsumer } from "styled-components";
+import styled, { ThemeConsumer } from "styled-components";
 
 // export const StyledLoader = styled.div`
 // 	height: 100%;
@@ -17,25 +17,3 @@
 // 	}
 // `;
 
-// export const StyledDrawnLogo = styled.div`
-// 	#drawn-logo {
-// 		overflow: visible;
-
-// 		.faceLine {
-// 			fill: ${({ theme, color }) =>
-// 				color === "light" ? theme.colors.light : theme.colors.dark};
-// 		}
-
-// 		.nose,
-// 		.ear {
-// 			fill: none;
-// 		}
-
-// 		.vibration,
-// 		.eye {
-// 			fill: ${({ theme }) => theme.colors.yellow};
-// 		}
-
-		
-// 	}
-// `;
