@@ -13,12 +13,13 @@ import PropTypes from "prop-types";
 import { DataContext } from "../App";
 import { useMediaQuery } from "@mui/material";
 
+import Testimonials from "./Testimonials";
+
 function Item(props) {
 	const { sx, ...other } = props;
 	return (
 		<Box
 			sx={{
-				
 				color: theme =>
 					theme.palette.mode === "dark" ? "grey.300" : "grey.800",
 				border: "1px solid",
@@ -373,7 +374,7 @@ function ResetHome() {
 						display: "grid",
 						gridTemplateColumns: "repeat(12, 1fr)",
 						gap: 4,
-						gridTemplateRows: "repeat(6, 300px)",
+						gridTemplateRows: "repeat(5, 300px)",
 					}}
 					mt={4}
 				>
@@ -404,14 +405,105 @@ function ResetHome() {
 								</Item>
 							);
 						})}
-
-					{/* <Item sx={{ gridColumn: "5/9", gridRow: "2/3" }}>2</Item>
-					<Item sx={{ gridColumn: "9/13", gridRow: "3/4" }}>3</Item>
-					<Item sx={{ gridColumn: "5/9", gridRow: "4/5" }}>4</Item>
-					<Item sx={{ gridColumn: "1/5", gridRow: "5/6" }}>4</Item> */}
 				</Box>
 			</SectionWrapper>
-			<SectionWrapper></SectionWrapper>
+			{/* <SectionWrapper height='100vh' bg='light'>
+				<Typography variant='h2' component='h2' textAlign='center'>
+					Featured work
+				</Typography>
+				<Box
+					className='images-container'
+					sx={{ height: "100%", position: "relative" }}
+				>
+					<Box
+						className='image-wrapper'
+						sx={{
+							overflow: "hidden",
+							width: "30vw",
+							height: "40vw",
+							maxWidth: "500px",
+							maxHeight: "700px",
+							position: "absolute",
+							top: 0,
+							transform: "rotate(-16deg)",
+							padding: "inherit",
+							margin: "5vw"
+						}}
+					>
+						<img
+							style={{ height: "100%", width: "100%", objectFit: "cover" }}
+							src='https://images.pexels.com/photos/9527445/pexels-photo-9527445.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+						></img>
+					</Box>
+					<Box
+						className='image-wrapper'
+						sx={{
+							overflow: "hidden",
+							width: "30vw",
+							height: "40vw",
+							maxWidth: "500px",
+							maxHeight: "700px",
+							position: "absolute",
+							right: 0,
+							
+							padding: "inherit",
+							margin: "5vw"
+						}}
+					>
+						<img
+							style={{ height: "100%", width: "100%", objectFit: "cover" }}
+							src='https://images.pexels.com/photos/6094204/pexels-photo-6094204.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+						></img>
+					</Box>
+					<Box
+						className='image-wrapper'
+						sx={{
+							overflow: "hidden",
+							width: "30vw",
+							height: "40vw",
+							maxWidth: "500px",
+							maxHeight: "700px",
+							position: "absolute",
+							bottom: 0,
+						}}
+					>
+						<img
+							style={{ height: "100%", width: "100%", objectFit: "cover" }}
+							src='https://images.pexels.com/photos/10369605/pexels-photo-10369605.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+						></img>
+					</Box>
+					<Box
+						className='image-wrapper'
+						sx={{
+							overflow: "hidden",
+							width: "30vw",
+							height: "40vw",
+							maxWidth: "500px",
+							maxHeight: "700px",
+							position: "absolute",
+							bottom: 0,
+						}}
+					>
+						<img
+							style={{ height: "100%", width: "100%", objectFit: "cover" }}
+							src='https://images.pexels.com/photos/11101677/pexels-photo-11101677.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+						></img>
+					</Box>
+				</Box>
+			</SectionWrapper> */}
+			<SectionWrapper height='80vh' bg='light'>
+				<Box
+					sx={{
+						height: "100%",
+						width: "100%",
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+					}}
+				>
+					<Testimonials items={data.stories && data.stories} />
+				</Box>
+			</SectionWrapper>
 		</Page>
 	);
 }

@@ -38,7 +38,7 @@ export default function Header(props) {
 				color: "primary.dark",
 			}}
 		>
-			<Container maxWidth='xl'>
+			<Container maxWidth='lg'>
 				<Toolbar disableGutters>
 					<Typography
 						variant='h6'
