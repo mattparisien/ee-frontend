@@ -184,13 +184,23 @@ function ResetHome() {
 					</Typography>
 					<Box
 						className='megaphone-wrapper'
-						sx={{ width: "300px", position: "absolute", bottom: 0, right: 0, transform: "scaleX(-100%)" }}
+						sx={{
+							width: "300px",
+							position: "absolute",
+							bottom: 0,
+							right: 0,
+							transform: "scaleX(-100%)",
+						}}
 					>
 						<Megaphone />
 					</Box>
 				</Box>
 			</SectionWrapper>
-			<SectionWrapper height='100vh' bg='light'></SectionWrapper>
+			<SectionWrapper height='100vh' bg='light'>
+				<Typography variant='h2' textAlign='center'>
+					Feel the Rhythm
+				</Typography>
+			</SectionWrapper>
 			<SectionWrapper></SectionWrapper>
 		</Page>
 	);
