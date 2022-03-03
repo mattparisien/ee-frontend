@@ -1,18 +1,17 @@
-import React, { useEffect, useRef } from "react";
 import { ThemeProvider } from "@mui/material";
-import Cookies from "universal-cookie";
-import Authenticated from "./components/Containers/Temp/Authenticated";
-import Visitor from "./components/Containers/Temp/Visitor";
-import { GlobalStyles } from "./components/styles/Global";
-import useAppData from "./helpers/hooks/useAppData";
+import React, { useEffect, useRef } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
-import ResetHome from "./components/ResetHome";
+import Cookies from "universal-cookie";
 import { Header } from "./components";
+import ResetHome from "./components/ResetHome";
+import useAppData from "./helpers/hooks/useAppData";
+import { GlobalStyles } from "@mui/material";
 
 function App() {
-	const { appRefs, state, setState, pending, theme, location } = useAppData();
+	const { appRefs, state, setState, pending, theme, location, globalStyle } = useAppData();
 	const scrollWrapper = useRef(null);
+
+
 	
 
 	useEffect(() => {
@@ -45,6 +44,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 '
 					/>
 				</Helmet>
+				<GlobalStyles styles={globalStyle}/>
 				<ThemeProvider theme={theme}>
 					{/* <GlobalStyles
 						isScrollLocked={state.isScrollLocked}

@@ -7,8 +7,17 @@ import axios from "axios";
 import { formatPosts, formatSteps, formatAbout } from "../formatData";
 import { device } from "../../components/styles/device";
 import { createTheme } from "@mui/material";
+import { makeStyles } from "@material-ui/styles";
 
 export default function useAppData(scrollRef) {
+
+	const globalStyle = {
+		body: {
+			margin: 0,
+			padding: 0,
+		}
+	}
+
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -25,12 +34,17 @@ export default function useAppData(scrollRef) {
 			fontFamily: ["Kobe"].join(","),
 			h2: {
 				fontFamily: ["Kobe Bold"].join(","),
-				"fontWeight": 600,
-
-			}
+				fontWeight: 600,
+			},
 		},
-
 		components: {
+			MuiCssBaseline: {
+				styleOverrides: {
+					body: {
+						margin: 0,
+					},
+				},
+			},
 			MuiTypography: {
 				defaultProps: {
 					variantMapping: {
@@ -113,5 +127,5 @@ export default function useAppData(scrollRef) {
 			.finally(() => setPending(false));
 	}, []);
 
-	return { appRefs, state, setState, pending, theme };
+	return { appRefs, state, setState, pending, theme, globalStyle };
 }
