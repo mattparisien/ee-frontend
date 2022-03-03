@@ -8,6 +8,41 @@ import SplitText from "gsap/SplitText";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
 import { Megaphone } from "./Vector/Svg";
+import { Grid } from "@mui/material";
+import PropTypes from 'prop-types';
+
+
+
+function Item(props) {
+  const { sx, ...other } = props;
+  return (
+    <Box
+      sx={{
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
+        border: '1px solid',
+        borderColor: (theme) =>
+          theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+        p: 1,
+        borderRadius: 2,
+        fontSize: '0.875rem',
+        fontWeight: '700',
+        ...sx,
+      }}
+      {...other}
+    />
+  );
+}
+
+Item.propTypes = {
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+    ),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+};
 
 function ResetHome() {
 	const wordRefs = useRef([]);
@@ -200,6 +235,14 @@ function ResetHome() {
 				<Typography variant='h2' textAlign='center'>
 					Feel the Rhythm
 				</Typography>
+				<Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 1 }}>…
+						<Item>1</Item>
+						<Item>2</Item>
+						<Item>3</Item>
+						<Item>4</Item>
+						<Item>5</Item>
+				</Box>
+
 			</SectionWrapper>
 			<SectionWrapper></SectionWrapper>
 		</Page>

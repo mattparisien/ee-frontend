@@ -34,9 +34,8 @@ export default function Header(props) {
 		<AppBar
 			position='fixed'
 			sx={{
-				backgroundColor: "transparent",
+				backgroundColor: "primary.light",
 				color: "primary.dark",
-				boxShadow: "none",
 			}}
 		>
 			<Container maxWidth='xl'>
