@@ -4,119 +4,78 @@ import { useLocation } from "react-router-dom";
 import { useTransition } from "../../animations";
 import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
-import { formatPosts, formatSteps, formatAbout } from "../formatData";
+import {
+	formatPosts,
+	formatSteps,
+	formatAbout,
+	formatStories,
+} from "../formatData";
 import { device } from "../../components/styles/device";
+import { createTheme } from "@mui/material";
+import { makeStyles } from "@material-ui/styles";
 
 export default function useAppData(scrollRef) {
-	const baseSpacing = {
-		desktopL: 2,
-		desktop: 1.5,
-		laptopL: 2,
-		laptop: 2,
-		tablet: 1,
-		mobileL: 1,
-		mobileM: 0.5,
-		mobileS: 0.4,
+	const globalStyle = {
+		body: {
+			margin: 0,
+			padding: 0,
+		},
 	};
 
-	const baseFontSize = {
-		desktopL: 1.2,
-		desktop: 1.2,
-		laptopL: 1,
-		laptop: 1,
-		tablet: 0.8,
-		mobileL: 0.7,
-		mobileM: 0.7,
-		mobileS: 0.6,
-	};
-
-	//Themes
-	const themes = {
-		colors: {
-			light: "#FCFCF0",
-			dark: "#010201",
-			lighterDark: "#111111",
-			red: "#DF181F",
-			green: "#039924",
-			blue: "#1E70DD",
-			yellow: "#F1DA0A",
-			grey: "#AFAFAF",
-		},
-		spacing: (multiplier, property) => {
-			return Object.entries(device).map(size => {
-				return `@media ${size[1]} {
-						${
-							Array.isArray(property)
-								? property.map(
-										prop => `${prop}: ${baseSpacing[size[0]] * multiplier}rem;`
-								  )
-								: `
-								${property}: ${baseSpacing[size[0]] * multiplier}rem;
-								`
-						};
-					}
-
-					`;
-			});
-		},
-		transition: {
-			easing: "cubic-bezier(.17,.67,.83,.67)",
-			timing: "2s",
+	const theme = createTheme({
+		palette: {
+			primary: {
+				dark: "#191919",
+				light: "#F9F8F4",
+				main: "#FDD20A",
+			},
+			secondary: {
+				main: "#FDD20A",
+			},
 		},
 		typography: {
-			setSize: multiplier => {
-				return `
-			@media ${device.mobileS} {
-				
-				font-size: ${baseFontSize.mobileS * multiplier}rem;
-			}
-		
-			@media ${device.mobileL} {
-				
-				font-size: ${baseFontSize.mobileL * multiplier}rem;
-			}
-		
-			@media ${device.tablet} {
-				
-				font-size: ${baseFontSize.tablet * multiplier}rem;
-			}
-		
-			@media ${device.laptop} {
-				
-				font-size: 8rem;
-				font-size: ${baseFontSize.laptop * multiplier}rem;
-			}
-		
-			@media ${device.laptopL} {
-			
-				font-size: ${baseFontSize.laptopL * multiplier}rem;
-			}
-
-			@media ${device.desktop} {
-			
-				font-size: ${baseFontSize.desktop * multiplier}rem;
-			}
-
-			@media ${device.desktopL} {
-			
-				font-size: ${baseFontSize.desktopL * multiplier}rem;
-			}
-			`;
+			fontSize: 20,
+			fontFamily: ["Kobe"].join(","),
+			h2: {
+				fontFamily: ["Kobe Bold"].join(","),
+				fontWeight: 600,
 			},
 		},
 		components: {
-			container: {
-				gutter: {
-					mobile: "4vw",
+			MuiCssBaseline: {
+				styleOverrides: {
+					body: {
+						margin: 0,
+					},
 				},
 			},
-			imageList: {
-				gutter: {
-					mobile: "12vw",
+			MuiDivider: {
+				styleOverrides: {
+					root: {
+						color: "#F9F8F4",
+						borderColor: "#F9F8F4",
+						backgroundColor: "#F9F8F4",
+					},
+				},
+			},
+			MuiTypography: {
+				defaultProps: {
+					variantMapping: {
+						h1: "h2",
+						h2: "h2",
+						h3: "h2",
+						h4: "h2",
+						h5: "h2",
+						h6: "h2",
+						subtitle1: "h2",
+						subtitle2: "h2",
+						body1: "span",
+						body2: "span",
+					},
 				},
 			},
 		},
-	};
+	});
 
 	const [windowWidth, isResized] = useResize();
 	const location = useLocation();
@@ -157,15 +116,18 @@ export default function useAppData(scrollRef) {
 			`${basePath}/projects?populate=*`,
 			`${basePath}/steps`,
 			`${basePath}/about`,
+			`${basePath}/stories?populate=*`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
 
 		Promise.all(promiseArray)
 			.then(data => {
+				console.log(data);
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
+				const formattedStories = formatStories(data[3].data.data);
 
 				setState(prev => ({
 					...prev,
@@ -174,6 +136,7 @@ export default function useAppData(scrollRef) {
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
+						stories: formattedStories,
 					},
 				}));
 			})
@@ -181,5 +144,5 @@ export default function useAppData(scrollRef) {
 			.finally(() => setPending(false));
 	}, []);
 
-	return { appRefs, state, setState, pending, themes, location  };
+	return { appRefs, state, setState, pending, theme, globalStyle };
 }

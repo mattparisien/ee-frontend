@@ -1,14 +1,11 @@
 import Section from "./Containers/Section";
 import Grid from "./Grid/Grid";
-import GridItem from "./Grid/GridItem";
 import Header from "./Header/Header";
 import SideMenu from "./Header/SideMenu";
-import Line from "./Line";
 import ListBlogPosts from "./ListBlogPosts";
 import UnorderedList from "./Lists/UnorderedList";
-import SlidingText from "./Marquee";
 import Heading from "./Text/Heading";
-import Paragraph from "./Text/Paragraph";
+import SlidingText from "./Marquee";
 import {
 	Amperstand,
 	Arrow,
@@ -21,13 +18,11 @@ import {
 } from "./Vector/Svg";
 
 export {
-	Paragraph,
-	Heading,
 	Section,
+	Heading,
 	UnorderedList,
 	Header,
 	Grid,
-	GridItem,
 	Eye,
 	Amperstand,
 	Ear,
@@ -37,7 +32,6 @@ export {
 	TextLogo,
 	DrawnLogo,
 	SlidingText,
-	Line,
 	ListBlogPosts,
 	SideMenu,
 };

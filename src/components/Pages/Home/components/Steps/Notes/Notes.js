@@ -1,5 +1,5 @@
 import React from "react";
-import { NoteFilled, NoteOutline } from "../../../../Vector/Svg";
+import { NoteFilled, NoteOutline } from "../../../../../Vector/Svg";
 import NoteWrappers from "./NoteWrappers";
 
 function Notes({ addToRefs, scrollTrigger }) {

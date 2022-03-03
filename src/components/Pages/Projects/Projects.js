@@ -16,7 +16,7 @@ import InView from "react-intersection-observer";
 import gsap from "gsap";
 import { useTheme } from "styled-components";
 import { Link } from "react-router-dom";
-import Paragraph from "../../Text/Paragraph";
+import { Typography } from "@mui/material";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 
 //General styles constants
@@ -128,9 +128,8 @@ li {
 	background-color: ${({theme}) => theme.colors.light};
 }
 
-.featured-work-uoList__image {
-	transform: scale(0.5);
-}
+
+
 
 
 @media ${device.mobileL} {

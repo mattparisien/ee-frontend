@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from "react";
 import { DataContext } from "../../../Containers/Temp/Authenticated";
-import ParagraphLayout from "../../../Text/ParagraphLayout";
-import { StyledAbout } from "./styles";
 
+import { StyledAbout } from "./styles";
+import { Typography } from "@mui/material";
 
 function About(props) {
 	const data = useContext(DataContext);
@@ -12,14 +12,7 @@ function About(props) {
 		<StyledAbout>
 			{data.about && (
 				<>
-					<ParagraphLayout
-						size='large'
-						className='section-who__paragraph1'
-						indent
-						indentTitle={"About"}
-					>
-						{data.about && data.about.body1}
-					</ParagraphLayout>
+					<Typography variant="body1">{data.about && data.about.body1}</Typography>
 				</>
 			)}
 			{/* <Megaphone /> */}

@@ -1,164 +1,164 @@
-import styled from "styled-components";
-import { device, deviceSize } from "../styles/device";
+// import styled from "styled-components";
+// import { device, deviceSize } from "../styles/device";
 
 
-export const StyledHeader = styled.div`
-	ul li {
-		color: ${({ color, theme }) => theme.colors[color]} !important;
-	}
+// export const StyledHeader = styled.div`
+// 	ul li {
+// 		color: ${({ color, theme }) => theme.colors[color]} !important;
+// 	}
 
-	svg {
-		fill: ${({ color, theme }) => theme.colors[color]} !important;
-	}
+// 	svg {
+// 		fill: ${({ color, theme }) => theme.colors[color]} !important;
+// 	}
 
-	${({theme}) => theme.spacing(4, "height")};
-	padding-bottom: 1rem;
-	padding-top: 1rem;
+// 	${({theme}) => theme.spacing(4, "height")};
+// 	padding-bottom: 1rem;
+// 	padding-top: 1rem;
 
-	width: 100%;
+// 	width: 100%;
 
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 9999;
-	display: flex;
-	align-items: center;
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: 9999;
+// 	display: flex;
+// 	align-items: center;
 
-	.logo-wrapper {
-		${({theme}) => theme.spacing(5, "width")};
+// 	.logo-wrapper {
+// 		${({theme}) => theme.spacing(5, "width")};
 
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+// 		position: absolute;
+// 		top: 50%;
+// 		left: 50%;
+// 		transform: translate(-50%, -50%);
 
-		@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
-			top: 50%;
-			left: 0;
-			transform: translate(0, -50%);
-			width: 150px;
-		}
+// 		@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
+// 			top: 50%;
+// 			left: 0;
+// 			transform: translate(0, -50%);
+// 			width: 150px;
+// 		}
 
-		a {
-			height: 100%;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-	}
+// 		a {
+// 			height: 100%;
+// 			width: 100%;
+// 			display: flex;
+// 			justify-content: center;
+// 			align-items: center;
+// 		}
+// 	}
 
-	#header-logo {
-		width: 100%;
-		height: 100%;
-	}
+// 	#header-logo {
+// 		width: 100%;
+// 		height: 100%;
+// 	}
 
-	nav {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		align-self: flex-end;
-	}
+// 	nav {
+// 		width: 100%;
+// 		height: 100%;
+// 		display: flex;
+// 		align-items: center;
+// 		justify-content: flex-end;
+// 		align-self: flex-end;
+// 	}
 
-	button {
-		margin-left: auto;
-		outline: none;
-		border: 0px;
-		background: transparent;
-		position: relative;
-		width: 35px;
+// 	button {
+// 		margin-left: auto;
+// 		outline: none;
+// 		border: 0px;
+// 		background: transparent;
+// 		position: relative;
+// 		width: 35px;
 
-		@media ${device.mobileS} {
-			width: 2rem;
-			height: 100%;
-		}
+// 		@media ${device.mobileS} {
+// 			width: 2rem;
+// 			height: 100%;
+// 		}
 
-		${props => {
-			return !props.isMenuActive
-				? `&:hover{
-						.top {
-							left: 10px;
-						}
+// 		${props => {
+// 			return !props.isMenuActive
+// 				? `&:hover{
+// 						.top {
+// 							left: 10px;
+// 						}
 
-						.bottom {
-							left: -10px;
-						}
-					}`
-				: "";
-		}}
+// 						.bottom {
+// 							left: -10px;
+// 						}
+// 					}`
+// 				: "";
+// 		}}
 
-		.top {
-			transform: ${props =>
-				props.isMenuActive
-					? "translate(-50%, -50%)rotate(45deg)"
-					: "translate(0, 5px)rotate(0deg)"};
-		}
+// 		.top {
+// 			transform: ${props =>
+// 				props.isMenuActive
+// 					? "translate(-50%, -50%)rotate(45deg)"
+// 					: "translate(0, 5px)rotate(0deg)"};
+// 		}
 
-		.bottom {
-			transform: ${props =>
-				props.isMenuActive
-					? "translate(-50%, -50%)rotate(-45deg)"
-					: "translate(0, -5px)rotate(0deg)"};
-		}
+// 		.bottom {
+// 			transform: ${props =>
+// 				props.isMenuActive
+// 					? "translate(-50%, -50%)rotate(-45deg)"
+// 					: "translate(0, -5px)rotate(0deg)"};
+// 		}
 
-		.top,
-		.bottom {
-			height: 2.5px;
-			width: 100%;
-			position: absolute;
-			top: ${props => (props.isMenuActive ? "50%" : "")};
-			left: ${props => (props.isMenuActive ? "50%" : "0")};
-			transform-origin: center;
-			transition: 300ms ease;
-		}
+// 		.top,
+// 		.bottom {
+// 			height: 2.5px;
+// 			width: 100%;
+// 			position: absolute;
+// 			top: ${props => (props.isMenuActive ? "50%" : "")};
+// 			left: ${props => (props.isMenuActive ? "50%" : "0")};
+// 			transform-origin: center;
+// 			transition: 300ms ease;
+// 		}
 
-		.burger-circle {
-			width: 66px;
-			height: 66px;
-			display: block;
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform-origin: center;
-			transform: translate(-50%, -50%) scale(0);
-			background-color: ${({ theme }) => theme.colors.light};
-			border-radius: 50%;
-			z-index: -1;
-			overflow: hidden;
+// 		.burger-circle {
+// 			width: 66px;
+// 			height: 66px;
+// 			display: block;
+// 			position: absolute;
+// 			left: 50%;
+// 			top: 50%;
+// 			transform-origin: center;
+// 			transform: translate(-50%, -50%) scale(0);
+// 			background-color: ${({ theme }) => theme.colors.light};
+// 			border-radius: 50%;
+// 			z-index: -1;
+// 			overflow: hidden;
 
-			@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
-				width: 48px;
-				height: 48px;
-			}
-		}
-	}
-`;
+// 			@media (min-width: ${deviceSize.mobileS}px) and (max-width: ${deviceSize.mobileL}px) {
+// 				width: 48px;
+// 				height: 48px;
+// 			}
+// 		}
+// 	}
+// `;
 
-export const StyledInnerLayout = styled.div`
-	width: 100%;
-	height: 100%;
-	position: relative;
-	display: flex;
-	align-items: center;
+// export const StyledInnerLayout = styled.div`
+// 	width: 100%;
+// 	height: 100%;
+// 	position: relative;
+// 	display: flex;
+// 	align-items: center;
 
-	.logo-wrapper path {
-		transition: 300ms ease;
-		fill: ${(props, theme) =>
-			props.menuIsActive
-				? props.theme.colors["light"]
-				: props.theme.colors[props.headerColor]};
-	}
+// 	.logo-wrapper path {
+// 		transition: 300ms ease;
+// 		fill: ${(props, theme) =>
+// 			props.menuIsActive
+// 				? props.theme.colors["light"]
+// 				: props.theme.colors[props.headerColor]};
+// 	}
 
-	.burger-circle {
-		fill: ${({ theme }) => theme.colors.light};
-	}
+// 	.burger-circle {
+// 		fill: ${({ theme }) => theme.colors.light};
+// 	}
 
-	.bottom,
-	.top {
-		transition: 300ms ease;
-		background-color: ${({ headerColor, theme, menuIsActive }) =>
-			theme.colors[menuIsActive ? "light" : headerColor]};
-	}
-`;
+// 	.bottom,
+// 	.top {
+// 		transition: 300ms ease;
+// 		background-color: ${({ headerColor, theme, menuIsActive }) =>
+// 			theme.colors[menuIsActive ? "light" : headerColor]};
+// 	}
+// `;

@@ -56,6 +56,26 @@ export const formatAbout = object => {
 	};
 };
 
+export const formatStories = arr => {
+	const formattedStories = arr.map(story => {
+		return {
+			id: story.id,
+			heading: story.attributes.Heading,
+			quote: story.attributes.Quote,
+			author: story.attributes.Author,
+			media: story.attributes.AuthorImage.data
+				? {
+						authorImage: story.attributes.AuthorImage.data.attributes.url,
+						altText:
+							story.attributes.AuthorImage.data.attributes.alternativeText,
+				  }
+				: null,
+		};
+	});
+
+	return formattedStories;
+};
+
 export const formatImageList = array => {
 	return array.map(post => {
 		return {
