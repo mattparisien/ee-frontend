@@ -11,6 +11,7 @@ import { Megaphone } from "./Vector/Svg";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { DataContext } from "../App";
+import { useMediaQuery } from "@mui/material";
 
 function Item(props) {
 	const { sx, ...other } = props;
@@ -44,44 +45,6 @@ Item.propTypes = {
 	]),
 };
 
-const StepSchema = {
-	1: {
-		id: 1,
-		gridColumn: "1/5",
-		gridRow: "1/2",
-		heading: null,
-		paragraph: null,
-	},
-	2: {
-		id: 2,
-		gridColumn: "5/9",
-		gridRow: "2/3",
-		heading: null,
-		paragraph: null,
-	},
-	3: {
-		id: 3,
-		gridColumn: "9/13",
-		gridRow: "3/4",
-		heading: null,
-		paragraph: null,
-	},
-	4: {
-		id: 4,
-		gridColumn: "5/9",
-		gridRow: "4/5",
-		heading: null,
-		paragraph: null,
-	},
-	5: {
-		id: 5,
-		gridColumn: "1/5",
-		gridRow: "5/6",
-		heading: null,
-		paragraph: null,
-	},
-};
-
 {
 	/* <Item sx={{gridColumn: "1/5", gridRow: "1/2"}}>1</Item>
 <Item sx={{gridColumn: "5/9", gridRow: "2/3"}}>2</Item>
@@ -90,9 +53,97 @@ const StepSchema = {
 <Item sx={{gridColumn: "1/5", gridRow: "5/6"}}>4</Item> */
 }
 
+const locationsDesktop = {
+	1: {
+		gridColumn: "1/5",
+		gridRow: "1/2",
+	},
+	2: {
+		gridColumn: "5/9",
+		gridRow: "2/3",
+	},
+	3: {
+		gridColumn: "9/13",
+		gridRow: "3/4",
+	},
+	4: {
+		gridColumn: "5/9",
+		gridRow: "4/5",
+	},
+	5: {
+		gridColumn: "1/5",
+		gridRow: "5/6",
+	},
+};
+
+const locationsMobile = {
+	1: {
+		gridColumn: "1/12",
+		gridRow: "1/2",
+	},
+	2: {
+		gridColumn: "1/12",
+		gridRow: "2/3",
+	},
+	3: {
+		gridColumn: "1/12",
+		gridRow: "3/4",
+	},
+	4: {
+		gridColumn: "1/12",
+		gridRow: "4/5",
+	},
+	5: {
+		gridColumn: "1/12",
+		gridRow: "5/6",
+	},
+};
+
 function ResetHome() {
 	const wordRefs = useRef([]);
 	const [isParagraphRevealed, setParagraphRevealed] = useState(false);
+	const matches = useMediaQuery("(max-width: 600px)");
+	const [stepDevice, setStepDevice] = useState("desktop");
+	const [stepLocations, setStepLocations] = useState(locationsDesktop);
+
+	const StepSchema = {
+		1: {
+			id: 1,
+			gridColumn: stepLocations[1].gridColumn,
+			gridRow: stepLocations[1].gridRow,
+			heading: null,
+			paragraph: null,
+		},
+		2: {
+			id: 2,
+			gridColumn: stepLocations[2].gridColumn,
+			gridRow: stepLocations[2].gridRow,
+			heading: null,
+			paragraph: null,
+		},
+		3: {
+			id: 3,
+			gridColumn: stepLocations[3].gridColumn,
+			gridRow: stepLocations[3].gridRow,
+			heading: null,
+			paragraph: null,
+		},
+		4: {
+			id: 4,
+			gridColumn: stepLocations[4].gridColumn,
+			gridRow: stepLocations[4].gridRow,
+			heading: null,
+			paragraph: null,
+		},
+		5: {
+			id: 5,
+			gridColumn: stepLocations[5].gridColumn,
+			gridRow: stepLocations[5].gridRow,
+			heading: null,
+			paragraph: null,
+		},
+	};
+
 	const [steps, setSteps] = useState(StepSchema);
 
 	const [split, setSplit] = useState(null);
@@ -123,13 +174,25 @@ function ResetHome() {
 	const data = useContext(DataContext);
 
 	useEffect(() => {
+		if (matches) {
+			setStepDevice("mobile");
+		} else {
+			setStepDevice("desktop");
+		}
+
+		if (stepDevice === "desktop") {
+			setStepLocations(locationsDesktop);
+		} else if (stepDevice === "mobile") {
+			setStepLocations(locationsMobile);
+		}
+
 		if (data.steps) {
 			data.steps.forEach(step => {
 				setSteps(prev => {
 					return {
 						...prev,
 						[step.id]: {
-							...prev[step.id],
+							...StepSchema[step.id],
 							heading: step.title,
 							paragraph: step.body,
 						},
@@ -137,7 +200,12 @@ function ResetHome() {
 				});
 			});
 		}
-	}, [data]);
+	}, [data, matches, stepDevice, stepLocations]);
+
+
+	useEffect(() => {
+		console.log(stepLocations)
+	},[stepLocations])
 
 	// useEffect(() => {
 	// 	if (headingRefs.current && !isHeadingSplit) {
@@ -314,12 +382,22 @@ function ResetHome() {
 						Object.values(steps).map(step => {
 							return (
 								<Item
+									className='GridItem'
 									sx={{ gridColumn: step.gridColumn, gridRow: step.gridRow }}
+									key={step.id}
 								>
-									<Typography variant='h4' component='h4'>
+									<Typography
+										variant='h4'
+										component='h4'
+										className='GridItem__heading'
+									>
 										{step.heading}
 									</Typography>
-									<Typography variant='body2' component='p'>
+									<Typography
+										variant='body2'
+										component='p'
+										className='GridItem__body'
+									>
 										{step.paragraph}
 									</Typography>
 								</Item>
