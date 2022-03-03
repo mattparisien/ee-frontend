@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Page from "./Page";
 import SectionWrapper from "./SectionWrapper";
 import { Typography } from "@mui/material";
@@ -8,9 +8,54 @@ import { Paper } from "@mui/material";
 import { ImageList, ImageListItem } from "@mui/material";
 import Masonry from "@mui/lab/Masonry";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import InputBase from "@mui/material/InputBase";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import DirectionsIcon from "@mui/icons-material/Directions";
 
 function ProjectPage() {
 	const data = useContext(DataContext);
+
+	const [searchValue, setSearchValue] = useState(null);
+	const [projects, setProjects] = useState(null);
+
+	const handleChange = e => {
+		setSearchValue(e.target.value);
+	};
+
+	useEffect(() => {
+		if (data.posts) {
+			setProjects(data.posts);
+		}
+
+		if (data.posts && searchValue) {
+			const array = Object.values(data.posts);
+
+			const filterByValue = (array, string) => {
+				let count = 0;
+				for (let obj of array) {
+					if (
+						obj.title.toLowerCase().includes(string.toLowerCase()) ||
+						obj.subtitle.toLowerCase().includes(string.toLowerCase())
+					) {
+						count > 0
+							? setProjects(prev => [...prev, obj])
+							: setProjects([obj]);
+						count++;
+					}
+				}
+			};
+
+			filterByValue(array, searchValue);
+		}
+	}, [searchValue, data]);
+
+	useEffect(() => {
+		console.log(projects);
+	}, [projects]);
 
 	return (
 		<Page pageName='Projects'>
@@ -29,6 +74,29 @@ function ProjectPage() {
 				</Box>
 			</SectionWrapper>
 			<SectionWrapper height='auto' bg='light'>
+				<Box className='SearchBar' mb={4} width='100%'>
+					<Paper
+						component='form'
+						sx={{
+							p: "2px 4px",
+							display: "flex",
+							alignItems: "center",
+							width: 400,
+						}}
+					>
+						<InputBase
+							sx={{ ml: 1, flex: 1 }}
+							placeholder='Search Projects'
+							inputProps={{ "aria-label": "search projects" }}
+							onChange={handleChange}
+              autoFocus
+						/>
+						<IconButton type='submit' sx={{ p: "10px" }} aria-label='search'>
+							<SearchIcon />
+						</IconButton>
+						<Divider sx={{ height: 28, m: 0.5 }} orientation='vertical' />
+					</Paper>
+				</Box>
 				<Masonry
 					variant='quilted'
 					columns={2}
@@ -39,8 +107,8 @@ function ProjectPage() {
 						},
 					}}
 				>
-					{data.posts &&
-						data.posts.map(post => {
+					{projects &&
+						projects.map(post => {
 							return (
 								<Paper
 									elevation={5}
@@ -48,42 +116,57 @@ function ProjectPage() {
 										position: "relative",
 										borderRadius: "10px",
 										overflow: "hidden",
-                    "&:hover .background": {
-                      opacity: "0 !important",
-                    }
+										"&:hover .background": {
+											opacity: "0 !important",
+										},
+										"&:hover img": {
+											transform: "scale(1.1)",
+										},
 									}}
 								>
 									<Box>
-										<img
-											className='GridItem__image'
-											src={post.media.featureImage.url}
+										<Link
+											to={`/projects/${post.id}`}
 											style={{
-												height: "100%",
-												width: "100%",
-												objectFit: "cover",
-											}}
-										></img>
-										<Box
-											className='title-overlay'
-											sx={{
-												position: "absolute",
+												display: "block",
 												width: "100%",
 												height: "100%",
-												top: 0,
-												left: 0,
 											}}
 										>
+											<img
+												className='GridItem__image'
+												loading='lazy'
+												src={post.media.featureImage.url}
+												style={{
+													height: "100%",
+													width: "100%",
+													objectFit: "cover",
+													transition: "2s ease",
+												}}
+											></img>
 											<Box
-												className='title-overlay__inner'
-												sx={{ position: "relative", height: "100%" }}
-                        p={4}
+												className='label'
+												sx={{
+													position: "absolute",
+													width: "100%",
+													height: "100%",
+
+													bottom: 0,
+													left: 0,
+												}}
 											>
-												<Typography variant='h5' component='div'>
-													{post.title}
-												</Typography>
-												<Typography variant='h5' component='div'>
-													{post.subtitle}
-												</Typography>
+												<Box
+													className='label__inner'
+													sx={{ position: "relative", height: "100%" }}
+													p={4}
+												>
+													<Typography variant='h6' component='div'>
+														{post.title}
+													</Typography>
+													<Typography variant='h6' component='div'>
+														{post.subtitle}
+													</Typography>
+												</Box>
 											</Box>
 											<Box
 												className='background'
@@ -98,7 +181,7 @@ function ProjectPage() {
 													opacity: 0,
 												}}
 											></Box>
-										</Box>
+										</Link>
 									</Box>
 								</Paper>
 							);
