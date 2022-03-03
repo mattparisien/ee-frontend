@@ -49,7 +49,7 @@ function ProjectPage() {
 										borderRadius: "10px",
 										overflow: "hidden",
                     "&:hover .background": {
-                      opacity: 0,
+                      opacity: "0 !important",
                     }
 									}}
 								>
@@ -94,7 +94,7 @@ function ProjectPage() {
 													width: "100%",
 													height: "100%",
 													backgroundColor: "black",
-													transition: "800ms ease",
+													transition: "400ms ease",
 													opacity: 0,
 												}}
 											></Box>
