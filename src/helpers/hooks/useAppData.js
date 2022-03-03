@@ -144,5 +144,5 @@ export default function useAppData(scrollRef) {
 			.finally(() => setPending(false));
 	}, []);
 
-	return { appRefs, state, setState, pending, theme, globalStyle };
+	return { appRefs, state, setState, pending, theme, globalStyle, location };
 }

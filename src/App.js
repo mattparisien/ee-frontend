@@ -8,6 +8,8 @@ import useAppData from "./helpers/hooks/useAppData";
 import { GlobalStyles } from "@mui/material";
 import { useContext, createContext } from "react";
 import Footer from "./components/Footer";
+import { Route, Routes } from "react-router-dom";
+import ProjectPage from "./components/ProjectPage";
 
 export const DataContext = createContext();
 
@@ -75,7 +77,11 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							data-scroll-container
 						>
 							<Header />
-							<ResetHome />
+
+							<Routes key={location.pathname}>
+								<Route element={<ProjectPage />} path='/projects' />
+								<Route element={<ResetHome />} path='/' />
+							</Routes>
 							<Footer />
 							{/* {state.user.isVisitor ? <Visitor /> : <Authenticated />} */}
 						</div>
