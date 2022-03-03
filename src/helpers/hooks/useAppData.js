@@ -4,7 +4,12 @@ import { useLocation } from "react-router-dom";
 import { useTransition } from "../../animations";
 import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
-import { formatPosts, formatSteps, formatAbout, formatStories } from "../formatData";
+import {
+	formatPosts,
+	formatSteps,
+	formatAbout,
+	formatStories,
+} from "../formatData";
 import { device } from "../../components/styles/device";
 import { createTheme } from "@mui/material";
 import { makeStyles } from "@material-ui/styles";
@@ -41,6 +46,15 @@ export default function useAppData(scrollRef) {
 				styleOverrides: {
 					body: {
 						margin: 0,
+					},
+				},
+			},
+			MuiDivider: {
+				styleOverrides: {
+					root: {
+						color: "#F9F8F4",
+						borderColor: "#F9F8F4",
+						backgroundColor: "#F9F8F4",
 					},
 				},
 			},
@@ -102,19 +116,18 @@ export default function useAppData(scrollRef) {
 			`${basePath}/projects?populate=*`,
 			`${basePath}/steps`,
 			`${basePath}/about`,
-			`${basePath}/stories?populate=*`
+			`${basePath}/stories?populate=*`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data)
+				console.log(data);
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
-				const formattedStories = formatStories(data[3].data.data)
-				
+				const formattedStories = formatStories(data[3].data.data);
 
 				setState(prev => ({
 					...prev,
@@ -123,7 +136,7 @@ export default function useAppData(scrollRef) {
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
-						stories: formattedStories
+						stories: formattedStories,
 					},
 				}));
 			})

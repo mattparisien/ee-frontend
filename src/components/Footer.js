@@ -1,49 +1,102 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Box } from "@mui/material";
-import SectionWrapper from "./SectionWrapper";
-import { Typography } from "@mui/material";
 import { useTheme } from "@material-ui/styles";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import gsap from "gsap";
-import { useMediaQuery } from "@mui/material";
+import React, { useEffect, useRef } from "react";
+import SectionWrapper from "./SectionWrapper";
+import IconButton from "@mui/material/IconButton";
+
+import { Instagram, Facebook, LinkedIn } from "@mui/icons-material";
 
 function Footer() {
 	const matches = useMediaQuery("(max-width: 1000px)");
 
+	const socialLinks = [
+		{
+			name: "Instagram",
+			href: "/",
+			component: Instagram,
+		},
+		{
+			name: "Facebook",
+			href: "/",
+			component: Facebook,
+		},
+		{
+			name: "LinkedIn",
+			href: "/",
+			component: LinkedIn,
+		},
+	];
+
 	return (
 		<Box component='footer' sx={{ height: matches ? "90vw" : "60vh" }}>
 			<SectionWrapper height='100%' bg='dark'>
-				<Box
-					display='flex'
-					height='100%'
-					alignItems='center'
-					justifyContent={matches ? "space-evenly" : "space-between"}
-					flexDirection={matches ? "column" : "row"}
-				>
+				<Box sx={{ height: "100%" }}>
 					<Box
-						className='footer-desktop-left'
 						display='flex'
-						flexDirection={"column"}
-						justifyContent='center'
-						alignItems={matches ? "center" : "start"}
-						height={matches ? "auto" : "100%"}
+						height={"90%"}
+						alignItems='center'
+						justifyContent={matches ? "space-evenly" : "space-between"}
+						flexDirection={matches ? "column" : "row"}
 					>
-						<Typography
-							variant='h1'
-							sx={{ fontSize: matches ? "16vw" : "typography.h1" }}
+						<Box
+							className='footer-desktop-left'
+							display='flex'
+							flexDirection={"column"}
+							justifyContent='center'
+							alignItems={matches ? "center" : "start"}
+							height={matches ? "auto" : "100%"}
 						>
-							Hear to listen
-						</Typography>
-						<Typography
-							variant='h4'
-							sx={{ fontSize: matches ? "6.2vw" : "3.3rem" }}
-						>
-							<a href='mailto:sammy@eyesandearsagency.com' target='_blank'>
-								sammy@eyesandearsagency.com
-							</a>
-						</Typography>
+							<Typography
+								variant='h1'
+								sx={{ fontSize: matches ? "16vw" : "typography.h1" }}
+							>
+								Hear to listen
+							</Typography>
+							<Typography
+								variant='h4'
+								sx={{ fontSize: matches ? "6.2vw" : "3.3rem" }}
+							>
+								<a href='mailto:sammy@eyesandearsagency.com' target='_blank'>
+									sammy@eyesandearsagency.com
+								</a>
+							</Typography>
+						</Box>
+						<Box width={matches ? "25vw" : "200px"}>
+							<DrawnLogo color='light' />
+						</Box>
 					</Box>
-					<Box width={matches ? "25vw" : "200px"}>
-						<DrawnLogo color='light' />
+					<Box
+						className='bottom-navigation'
+						sx={{
+							height: "10%",
+							width: "100%",
+							borderTop: "1px solid white",
+							alignItems: "center",
+							display: "flex",
+							alignItems: "center",
+						}}
+					>
+						<Box
+							className='footer-navigation-socialLinks'
+							sx={{
+								marginLeft: "auto",
+								display: "flex",
+								justifyContent: "flex-end",
+							}}
+						>
+							{socialLinks.map((link, i) => {
+								return (
+									<a
+										href={link.href}
+										target='_blank'
+										style={{ display: "inline-block", marginLeft: "2rem" }}
+									>
+										{React.createElement(link.component, { key: i, size: "small" })}
+									</a>
+								);
+							})}
+						</Box>
 					</Box>
 				</Box>
 			</SectionWrapper>

@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 const pages = [
 	{
 		name: "About",
-		path: "/home",
+		path: "/",
 	},
 	{
 		name: "Work",
@@ -53,14 +53,16 @@ export default function Header(props) {
 		>
 			<Container maxWidth='lg'>
 				<Toolbar disableGutters>
-					<Typography
-						variant='h6'
-						noWrap
-						component='div'
-						sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-					>
-						The Eyes & Ears Agency
-					</Typography>
+					<Link to='/'>
+						<Typography
+							variant='h6'
+							noWrap
+							component='div'
+							sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+						>
+							The Eyes & Ears Agency
+						</Typography>
+					</Link>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
@@ -98,14 +100,16 @@ export default function Header(props) {
 							))}
 						</Menu>
 					</Box>
-					<Typography
-						variant='h6'
-						noWrap
-						component='div'
-						sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-					>
-						The Eyes & Ears Agency
-					</Typography>
+					<Link to='/'>
+						<Typography
+							variant='h6'
+							noWrap
+							component='div'
+							sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+						>
+							The Eyes & Ears Agency
+						</Typography>
+					</Link>
 					<Box
 						sx={{
 							flexGrow: 1,
