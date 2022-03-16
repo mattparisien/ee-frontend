@@ -1,18 +1,19 @@
 import React, { useEffect, useRef } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { ThemeProvider } from "styled-components";
 import Cookies from "universal-cookie";
 import Authenticated from "./components/Containers/Temp/Authenticated";
-import Visitor from "./components/Containers/Temp/Visitor";
 import { GlobalStyles } from "./components/styles/Global";
 import useAppData from "./helpers/hooks/useAppData";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 function App() {
 	const { state, themes, setState } = useAppData();
 	const scrollWrapper = useRef(null);
 
 	useEffect(() => {
+		{
+		}
 		console.log("Built by Matthew Parisien 🛠");
 
 		const cookies = new Cookies();
@@ -43,14 +44,14 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					/>
 				</Helmet>
 				<ThemeProvider theme={themes}>
-					<GlobalStyles />
+					{/* <GlobalStyles /> */}
 					<LocomotiveScrollProvider
 						options={{
 							initPosition: {
 								x: 0,
 								y: 0,
 							},
-							
+
 							smooth: true,
 							getDirection: true,
 						}}
@@ -64,7 +65,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							ref={scrollWrapper}
 							data-scroll-container
 						>
-							{state.user.isVisitor ? <Visitor /> : <Authenticated />}
+							<Authenticated />
 						</div>
 					</LocomotiveScrollProvider>
 				</ThemeProvider>

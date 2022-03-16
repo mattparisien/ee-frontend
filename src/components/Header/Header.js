@@ -46,7 +46,7 @@ export default function Header(props) {
 						<TextLogo logoRef={addToRefs} />
 					</a>
 				</div>
-				<Navigation />
+				{/* <Navigation /> */}
 			</ContainerFluid>
 		</StyledHeader>
 	);

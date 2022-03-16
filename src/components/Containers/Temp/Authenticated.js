@@ -2,6 +2,7 @@ import gsap from "gsap";
 import React, { createContext, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Transition, TransitionGroup } from "react-transition-group";
+import { LoadingManager } from "three";
 import { SideMenu } from "../..";
 import useAppData from "../../../helpers/hooks/useAppData";
 import SiteRoutes from "../../../Routes";
@@ -11,6 +12,9 @@ import SiteTransition from "../../Transition/Transition";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
+export const LoadingContext = createContext();
+export const ColorContext = createContext();
+export const CursorContext = createContext();
 
 function Authenticated() {
 	const location = useLocation();
@@ -54,51 +58,59 @@ function Authenticated() {
 		toggleHeaderColor,
 	};
 
+	
+
 	return (
 		<div className='temporary-authenticated-wrapper'>
 			<SiteWideControls.Provider value={siteControls}>
 				<DataContext.Provider value={state.data}>
-					<LoadingScreen isActive={pending} />
+					<ColorContext.Provider>
+						<CursorContext.Provider>
+							<LoadingContext.Provider>
+								<LoadingScreen isActive={pending} />
 
-					{/* <ModalWrapper hoverState={hoverState} /> */}
-					<SiteTransition
-						addToRefs={addToRefs}
-						appRefs={appRefs}
-						themes={themes}
-						isTransitioning={state.isTransitioning}
-					/>
-					<Header
-						toggleMenu={toggleMenu}
-						menuState={state.sidebar.showSidebar}
-						addToRefs={addToRefs}
-						headerColor={state.headerColor}
-						appRefs={appRefs}
-					/>
+								{/* <ModalWrapper hoverState={hoverState} /> */}
+								<SiteTransition
+									addToRefs={addToRefs}
+									appRefs={appRefs}
+									themes={themes}
+									isTransitioning={state.isTransitioning}
+								/>
+								{/* <Header
+									toggleMenu={toggleMenu}
+									menuState={state.sidebar.showSidebar}
+									addToRefs={addToRefs}
+									headerColor={state.headerColor}
+									appRefs={appRefs}
+								/> */}
 
-					<SideMenu
-						isOpen={state.sidebar.showSidebar}
-						hasShown={state.sidebar.hasShown}
-						appRefs={appRefs}
-						addToRefs={addToRefs}
-						offset={state.menuOffset}
-						toggleMenu={toggleMenu}
-					/>
+								{/* <SideMenu
+									isOpen={state.sidebar.showSidebar}
+									hasShown={state.sidebar.hasShown}
+									appRefs={appRefs}
+									addToRefs={addToRefs}
+									offset={state.menuOffset}
+									toggleMenu={toggleMenu}
+								/> */}
 
-					<main>
-						<TransitionGroup className='transition-group'>
-							<Transition
-								key={location.pathname}
-								onExiting={handleTransition}
-								timeout={300}
-							>
-								<SiteRoutes location={location} addToRefs={addToRefs} />
-							</Transition>
-						</TransitionGroup>
-					</main>
+								<main>
+									<TransitionGroup className='transition-group'>
+										<Transition
+											key={location.pathname}
+											onExiting={handleTransition}
+											timeout={300}
+										>
+											<SiteRoutes location={location} addToRefs={addToRefs} />
+										</Transition>
+									</TransitionGroup>
+								</main>
 
-					{/* <Footer addToRefs={addToRefs} location={location.pathname} /> */}
+								{/* <Footer addToRefs={addToRefs} location={location.pathname} /> */}
 
-					{/* <CookieBar /> */}
+								{/* <CookieBar /> */}
+							</LoadingContext.Provider>
+						</CursorContext.Provider>
+					</ColorContext.Provider>
 				</DataContext.Provider>
 			</SiteWideControls.Provider>
 		</div>

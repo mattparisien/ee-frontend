@@ -1,0 +1,288 @@
+
+@import "./breakpoints";
+//Utility classes
+
+.-padding-huge {
+	padding: $space-xxxl 0;
+}
+
+.-padding-top-huge {
+	padding-top: $space-xxxl;
+}
+
+.-padding-bottom-huge {
+	padding-bottom: $space-xxxl;
+}
+
+.-ml-auto {
+	margin-left: auto;
+}
+
+.-mr-auto {
+	margin-right: auto;
+}
+
+.-flex {
+	display: flex;
+}
+
+.-desktop {
+	@include media("<=tablet") {
+		display: none;
+	}
+}
+
+.-mobile {
+	@include media(">=tablet") {
+		display: none;
+	}
+}
+
+.-flex-column {
+	flex-direction: column;
+}
+
+.-align-center {
+	align-items: center;
+}
+
+.-ul-horizontal {
+	display: flex;
+}
+
+.-ul-horizontal-spacing-md {
+	li {
+		margin-right: var(--space-md);
+	}
+}
+
+.-split {
+	overflow: hidden;
+}
+
+.-align-end {
+	align-items: flex-end;
+}
+
+.-absolute {
+	position: absolute;
+}
+
+.-fade-up-load {
+	transform: translateY(40%);
+	opacity: 0;
+	transition: 800ms ease;
+}
+
+.-delay-1 {
+	transition-delay: 100ms;
+}
+
+.-delay-2 {
+	transition-delay: 200ms;
+}
+
+.-delay-3 {
+	transition-delay: 300ms;
+}
+
+.-delay-4 {
+	transition-delay: 400ms;
+}
+
+.-delay-5 {
+	transition-delay: 400ms;
+}
+
+.-delay-6 {
+	transition-delay: 400ms;
+}
+
+.is-dom-loaded .-fade-up-load {
+	transform: translateY(0%);
+	opacity: 1;
+}
+
+.-text-switch {
+	overflow: hidden;
+}
+
+.c-char, .loader-char {
+	transform: translateY(100%);
+	opacity: 0;
+	
+}
+
+.-top {
+	top: 0;
+}
+
+.-inline {
+	display: inline;
+}
+
+.-left {
+	left: 0;
+}
+
+.-right {
+	right: 0;
+}
+
+.-bottom {
+	bottom: 0;
+}
+
+.-relative {
+	position: relative;
+}
+
+.-justify-center {
+	justify-content: center;
+
+	
+}
+.-fullWidth {
+	width: 100%;
+}
+
+.-halfWidth {
+	width: 50%;
+}
+
+.-fullHeight {
+	min-height: 100vh;
+}
+
+.-height-auto {
+	height: auto !important;
+}
+
+.-gap2 {
+	gap: 2rem;
+}
+
+.-justify-between {
+	justify-content: space-between;
+}
+
+.-gradient-primary {
+	background: $gradient-primary;
+}
+
+.-gradient-secondary {
+	background: linear-gradient(to right, $gradient-secondary);
+}
+
+.-bg-light {
+	background-color: $light;
+}
+
+.-bg-purple {
+	background-color: $purple;
+	color: $pink;
+}
+
+.-bg-pink {
+	background-color: $pink;
+}
+
+.-bg-green {
+	background-color: $green;
+}
+
+.-bg-dark {
+	background-color: $dark;
+	color: $light;
+}
+
+.-stroke-light {
+	stroke: $light !important;
+}
+
+.-fill-light {
+	fill: $light !important;
+}
+
+.-bg-yellow {
+	background-color: #faf281;
+}
+
+.-bg-black {
+	background-color: black;
+}
+
+.-ul-small,
+.-text-tiny {
+	font-size: 0.6rem;
+	font-family: 'Roboto Mono', monospace;
+	text-transform: uppercase;
+}
+
+.-indent {
+	.line:nth-of-type(1) {
+		padding-left: 30%;
+	}
+}
+
+.-block {
+	display: block;
+}
+
+.-text-big {
+	font-size: 2.2rem;
+
+
+	@include media("<=tablet") {
+		.c-star.-inline svg, .c-planet.-inline svg {
+			width: 2rem !important;
+			height: 2rem !important;
+		}
+	}
+
+	@include media(">=phoneL")   {
+		font-size: 3.7rem;
+	}
+
+	@include media(">=desktop") {
+		font-size: 5rem;
+	}
+
+}
+
+.-stretchY {
+	height: 100%;
+}
+
+.-stretchX {
+	width: 100%;
+}
+
+.-text-small {
+	font-size: 1.4rem;
+	line-height: 1.8rem !important;
+
+	@include media(">=tablet") {
+		font-size: 2.8rem;
+		line-height: 3rem !important;
+	}
+}
+
+//ITCSS Utilies
+.u-gsap-fill-animate {
+	opacity: 0
+}
+
+.u-line-translate {
+	transform: translateY(100%);
+	opacity: 0;
+}
+
+.is-paused .o-loader_background {
+	-webkit-animation-play-state:paused;
+	-moz-animation-play-state:paused;
+	-o-animation-play-state:paused; 
+	animation-play-state:paused !important;
+	
+}
+

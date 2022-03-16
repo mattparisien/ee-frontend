@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
-import ContainerFluid from "../../../Containers/ContainerFluid";
-import { DataContext } from "../../../Containers/Temp/Authenticated";
-import HeadingSection from "../../../Containers/HeadingSection";
-import ImageList from "../../../ImageList/ImageList";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { formatImageList } from "../../../../helpers/formatData";
+import ContainerFluid from "../../../Containers/ContainerFluid";
+import { DataContext } from "../../../Containers/Temp/Authenticated";
+import ImageList from "../../../ImageList/ImageList";
 
 const StyledFeaturedWorkImageList = styled(ImageList)`
 	li {
@@ -52,7 +51,7 @@ function FeaturedWork(props) {
 			noGutter
 			isRelative
 		>
-			<ContainerFluid hasPaddingVertical height='auto' centerInner hasPaddingBottom>
+			{/* <ContainerFluid hasPaddingVertical height='auto' centerInner hasPaddingBottom>
 				<HeadingSection
 					color='dark'
 					headingSize='large'
@@ -60,7 +59,7 @@ function FeaturedWork(props) {
 					width='100%'
 					headingText={"Featured Work"}
 				/>
-			</ContainerFluid>
+			</ContainerFluid> */}
 
 			<StyledFeaturedWorkImageList
 				listItems={featuredPosts}

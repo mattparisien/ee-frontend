@@ -1,7 +1,6 @@
 import React from "react";
-import ParagraphLayout from "../../Text/ParagraphLayout";
-import HeadingSection from "../../Containers/HeadingSection";
 import { Heading } from "../..";
+import ParagraphLayout from "../../Text/ParagraphLayout";
 
 function Hero() {
 	return (

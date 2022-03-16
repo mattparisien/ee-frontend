@@ -42,69 +42,12 @@ export default function useAppData(scrollRef) {
 			yellow: "#F1DA0A",
 			grey: "#AFAFAF",
 		},
-		spacing: (multiplier, property) => {
-			return Object.entries(device).map(size => {
-				
-				return `@media ${size[1]} {
-						${
-							Array.isArray(property)
-								? property.map(
-										prop => `${prop}: ${baseSpacing[size[0]] * multiplier}rem;`
-								  )
-								: `
-								${property}: ${baseSpacing[size[0]] * multiplier}rem;
-								`
-						};
-					}
 
-					`;
-			});
-		},
 		transition: {
-			easing: 'cubic-bezier(.17,.67,.83,.67)',
-			timing: '2s'
+			easing: "cubic-bezier(.17,.67,.83,.67)",
+			timing: "2s",
 		},
-		typography: {
-			setSize: multiplier => {
-				return `
-			@media ${device.mobileS} {
-				
-				font-size: ${baseFontSize.mobileS * multiplier}rem;
-			}
-		
-			@media ${device.mobileL} {
-				
-				font-size: ${baseFontSize.mobileL * multiplier}rem;
-			}
-		
-			@media ${device.tablet} {
-				
-				font-size: ${baseFontSize.tablet * multiplier}rem;
-			}
-		
-			@media ${device.laptop} {
-				
-				font-size: 8rem;
-				font-size: ${baseFontSize.laptop * multiplier}rem;
-			}
-		
-			@media ${device.laptopL} {
-			
-				font-size: ${baseFontSize.laptopL * multiplier}rem;
-			}
 
-			@media ${device.desktop} {
-			
-				font-size: ${baseFontSize.desktop * multiplier}rem;
-			}
-
-			@media ${device.desktopL} {
-			
-				font-size: ${baseFontSize.desktopL * multiplier}rem;
-			}
-			`;
-			},
-		},
 		components: {
 			container: {
 				gutter: {

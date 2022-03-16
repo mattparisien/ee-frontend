@@ -1,0 +1,78 @@
+@import "./breakpoints";
+
+//Spacing
+$space-unit: 2rem;
+$space-xxs: calc(0.25 * 2rem); // 4px
+$space-xs: calc(0.5 * 2rem); // 8px
+$space-sm: calc(0.75 * 2rem); // 12px
+$space-md: calc(1.25 * 2rem); // 20px
+$space-lg: calc(2 * 2rem); // 32px
+$space-xl: calc(3.25 * 2rem); // 52px
+$space-xxl: calc(3 * 2rem);
+$space-xxxl: calc(7 * 2rem);
+
+@include media("<=tablet") {
+	$space-xxl: calc(3 * 2rem);
+}
+
+@include media("<=phone") {
+	$space-xxl: calc(1 * 2rem);
+}
+
+@include media(">=tablet") {
+	$space-xxl: calc(5.25 * 2rem); // 84px
+}
+
+//Colors
+$light: #f5f3ef;
+$dark: #101010;
+$dark2: #2e2e2e;
+$lighterDark: #111111;
+$navy: #12233F;
+$red: #030303;
+$green: #c0ff0d;
+$blue: #0A4D98;
+$yellow: #edc835;
+$pink: #f1b9b8;
+$orange: #E94934;
+$grey: rgb(174, 174, 174);
+$purple: #5b487c;
+$gradient-primary: linear-gradient(
+	#516dc1,
+	#ce4469,
+	#ce4469,
+	#fb986c,
+	#fb986c,
+	#a99af4,
+	#a99af4,
+	#2fd8a8,
+	#2fd8a8,
+	#009b8e,
+	#009b8e,
+	#516dc1,
+	#516dc1,
+	#ce4469
+);
+$gradient-secondary: #785b75, #326461, #d4a263;
+
+//Loader
+$loader-duration: 1.2;
+$loader-delay: 0.8;
+
+//Transition
+$transition: 600ms ease;
+$transition-expo: 1.2s cubic-bezier(1, 0, 0, 1);
+$translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
+transform 0.3s cubic-bezier(0.35, 0.755, 0.42, 0.95);
+
+//Shadows
+$shadow: -2px 4px 27px 3px rgba(0,0,0,0.32);
+
+
+
+
+
+:export {
+	loaderDuration: $loader-duration;
+	loaderDelay: $loader-delay;
+}
