@@ -1,9 +1,6 @@
 import classNames from "classnames";
-import React, { forwardRef, useContext } from "react";
+import React, { forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
-// import { CursorContext, LoadingContext } from "../../App/App";
-import { CursorContext } from "../Containers/Temp/Authenticated";
-import { LoadingContext } from "../Containers/Temp/Authenticated";
 import variables from "../../styles/scss/_vars.module.scss";
 
 function Link(props, ref) {

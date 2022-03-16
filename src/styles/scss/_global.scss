@@ -9,6 +9,21 @@
 	src: url("../assets//fonts/Kobe.woff")
 }
 
+@font-face {
+	font-family: "Kobe Bold";
+	src: url("../assets//fonts/KobeBold.woff")
+}
+
+@font-face {
+	font-family: "Courier";
+	src: url("../assets//fonts/Soehne.woff2")
+}
+
+@font-face {
+	font-family: "Soehne Body";
+	src: url("../assets//fonts/SoehneBody.woff2")
+}
+
 
 
 h1,
@@ -16,7 +31,6 @@ h2 {
 	&,
 	& div {
 		font-family: "Kobe";
-		text-transform: uppercase;
 	}
 }
 
@@ -42,6 +56,7 @@ h6 {
 .o-h6 {
 	// opacity: 0;
 	transition: $transition;
+	
 }
 
 .o-h1.-split,
@@ -87,7 +102,7 @@ ul {
 }
 @media (min-width: 1200px) and (max-width: 1399px) {
 	html {
-		font-size: 14px;
+		font-size: 15px;
 	}
 }
 @media (min-width: 1400px) and (max-width: 1599px) {

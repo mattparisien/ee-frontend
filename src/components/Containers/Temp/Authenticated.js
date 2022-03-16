@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import React, { createContext, useRef } from "react";
+import React, { createContext, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Transition, TransitionGroup } from "react-transition-group";
 import { LoadingManager } from "three";
@@ -9,6 +9,7 @@ import SiteRoutes from "../../../Routes";
 import Header from "../../Header/Header";
 import LoadingScreen from "../../Loading/LoadingScreen";
 import SiteTransition from "../../Transition/Transition";
+import SingleProject from "../../Pages/SingleProject/SingleProject";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -52,13 +53,15 @@ function Authenticated() {
 		}));
 	};
 
+	useEffect(() => {
+		console.log(state.data);
+	}, [state]);
+
 	const siteControls = {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
 		toggleHeaderColor,
 	};
-
-	
 
 	return (
 		<div className='temporary-authenticated-wrapper'>

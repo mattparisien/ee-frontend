@@ -1,18 +1,23 @@
-//Shuffles theme colors
+import variables from "../styles/scss/_vars.module.scss";
 
-function shuffleColors(theme) {
-	let randomColor;
+export const shuffleColors = () => {
+	const getKeyByValue = (object, value) => {
+		return Object.keys(object).find(key => object[key] === value);
+	};
 
-	const themeObject = Object.assign({}, theme.colors);
-	delete themeObject.dark;
-	delete themeObject.lighterDark;
+	const colors = [];
 
-	const themeColors = Object.values(themeObject);
-	console.log(themeColors);
+	for (const item in variables) {
+		if (item.startsWith("color")) {
+			colors.push(variables[item]);
+		}
+	}
 
-	const randomIndex = Math.floor(Math.random() * (themeColors.length + 0) + 0);
-
-	return themeColors[randomIndex];
-}
-
-export { shuffleColors };
+	const randomIndex = Math.ceil(Math.random() * colors.length - 1);
+	const randomColorHex = colors[randomIndex];
+	const randomColorName = getKeyByValue(variables, randomColorHex).replace(
+		"colors-",
+		""
+	);
+	return randomColorName;
+};

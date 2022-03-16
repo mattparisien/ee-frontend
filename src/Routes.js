@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Contact, Home, Projects } from "./components/Pages/index";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import NotFound from "./components/404/NotFound";
+import SingleProject from "./components/Pages/SingleProject/SingleProject";
 
 function SiteRoutes(props) {
 	const { location, addToRefs } = props;
@@ -18,6 +19,11 @@ function SiteRoutes(props) {
 				<Route
 					path='/projects'
 					element={<ProjectPage addToRefs={addToRefs} />}
+					key={location.pathname}
+				/>
+				<Route
+					path='/projects/:id'
+					element={<SingleProject location={location}/>}
 					key={location.pathname}
 				/>
 				{/* <Route

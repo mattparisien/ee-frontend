@@ -107,6 +107,7 @@ export default function useAppData(scrollRef) {
 
 		Promise.all(promiseArray)
 			.then(data => {
+				
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
