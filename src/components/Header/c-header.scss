@@ -1,0 +1,88 @@
+.c-header {
+	position: fixed;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	height: $headerHeight;
+	z-index: 9999;
+
+	.o-container {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&_logo {
+		width: 100px;
+	}
+
+	&_nav.desktop .c-header_nav-list {
+		@include media("<=tablet") {
+			display: none;
+		}
+
+		display: flex;
+		li:not(:last-child) {
+			padding-right: 4rem;
+		}
+
+		.c-link {
+			font-size: 1rem;
+			font-family: $bodyFont;
+		}
+	}
+
+	&_nav-btn.mobile {
+		border: 0px;
+		height: 20%;
+		width: 20px;
+		transition: 600ms ease;
+
+		&.is-active {
+			&::after {
+				top: 50%;
+				transform: rotate(-45deg);
+			}
+
+			&::before {
+				top: 50%;
+				transform: rotate(45deg);
+				height: 2px;
+			}
+		}
+
+		position: relative;
+		&:hover {
+			transform: rotate(180deg);
+		}
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			content: "";
+			height: 3px;
+			background-color: $dark;
+			transform-origin: center;
+			transition: 200ms ease;
+		}
+
+		&::after {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			content: "";
+			height: 2px;
+			background-color: $dark;
+			transform-origin: center;
+			transition: 200ms ease;
+		}
+
+		@include media(">=tablet") {
+			display: none;
+		}
+	}
+}

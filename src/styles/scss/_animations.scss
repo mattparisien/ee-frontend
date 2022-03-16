@@ -1,0 +1,9 @@
+@keyframes scaleMenuBg {
+  0% {
+    transform: scaleX(0.001);
+
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}

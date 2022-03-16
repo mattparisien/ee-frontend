@@ -1,15 +1,14 @@
 import gsap from "gsap";
-import React, { createContext, useEffect, useRef } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Transition, TransitionGroup } from "react-transition-group";
-import { LoadingManager } from "three";
-import { SideMenu } from "../..";
 import useAppData from "../../../helpers/hooks/useAppData";
 import SiteRoutes from "../../../Routes";
-import Header from "../../Header/Header";
 import LoadingScreen from "../../Loading/LoadingScreen";
 import SiteTransition from "../../Transition/Transition";
-import SingleProject from "../../Pages/SingleProject/SingleProject";
+import Header from "../../Header/Header";
+import Menu from "../../Menu/Menu";
+
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -53,15 +52,13 @@ function Authenticated() {
 		}));
 	};
 
-	useEffect(() => {
-		console.log(state.data);
-	}, [state]);
-
 	const siteControls = {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
 		toggleHeaderColor,
 	};
+
+	const [menuActive, setMenuActive] = useState(false);
 
 	return (
 		<div className='temporary-authenticated-wrapper'>
@@ -79,13 +76,8 @@ function Authenticated() {
 									themes={themes}
 									isTransitioning={state.isTransitioning}
 								/>
-								{/* <Header
-									toggleMenu={toggleMenu}
-									menuState={state.sidebar.showSidebar}
-									addToRefs={addToRefs}
-									headerColor={state.headerColor}
-									appRefs={appRefs}
-								/> */}
+								<Header toggleMenu={() => setMenuActive(!menuActive)}/>
+								<Menu isActive={menuActive}/>
 
 								{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}

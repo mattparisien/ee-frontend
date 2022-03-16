@@ -1,53 +1,64 @@
-import React, { useEffect, useState } from "react";
-import useResize from "../../helpers/hooks/useResize";
-import useScroll from "../../helpers/hooks/useScrollDir";
-import { TextLogo } from "../index";
-import { StyledHeader, StyledInnerLayout } from "./styles";
-import Navigation from "./Navigation/Navigation";
+import React, { useState } from "react";
+import { TextLogo } from "../Vector/Svg";
 import ContainerFluid from "../Containers/ContainerFluid";
+import Link from "../Link/Link";
+import classNames from "classnames";
 
-export default function Header(props) {
-	const { menuState, toggleMenu, appRefs, addToRefs, headerColor } = props;
-	const [device, setDevice] = useState(null);
-	const [windowWidth] = useResize();
-	const [isHoverable, setHoverable] = useState(true);
-	const [isScrolling, scrollDirection] = useScroll(props.scroller);
+const navItems = [
+	{
+		name: "About",
+		path: "/",
+	},
+	{
+		name: "Projects",
+		path: "/projects",
+	},
+	{
+		name: "Connect",
+		path: "/contact",
+	},
+];
 
-	useEffect(() => {
-		if (menuState) {
-			setHoverable(false);
-		} else if (!menuState) {
-			//Add delay for making burger hoverable again --> wait for menu to be off screen
-			setTimeout(() => {
-				setHoverable(true);
-			}, 1500);
-		}
-	}, [menuState]);
+function Header({toggleMenu}) {
+	const [active, setActive] = useState(false);
+	const [firstRender, setFirstRender] = useState(true);
 
-	useEffect(() => {
-		if (windowWidth && windowWidth < 700) {
-			setDevice("mobile");
-		} else {
-			setDevice("desktop");
-		}
-	}, [windowWidth]);
+	const mobileNavClasses = classNames("c-header_nav-btn mobile", {
+		'is-active': active,
+	});
+
+	const handleClick = () => {
+		
+		setActive(!active)
+		toggleMenu();
+	}
 
 	return (
-		<StyledHeader
-			isMenuActive={menuState}
-			$isHoverable={isHoverable}
-			color={props.headerColor}
-			ref={addToRefs}
-			id='site-header'
-		>
-			<ContainerFluid height='100%' noVerticalGutter>
-				<div className='logo-wrapper -absolute-center'>
-					<a href='/'>
-						<TextLogo logoRef={addToRefs} />
-					</a>
+		<header className='c-header'>
+			<ContainerFluid>
+				<div className='c-header_logo'>
+					<TextLogo width='100%' />
 				</div>
-				{/* <Navigation /> */}
+				<nav className='c-header_nav desktop'>
+					<ul className='c-header_nav-list'>
+						{navItems.map((item, index) => {
+							return (
+								<li key={index}>
+									<Link isRouterLink href={item.path}>
+										{item.name}
+									</Link>
+								</li>
+							);
+						})}
+					</ul>
+				</nav>
+				<button
+					className={mobileNavClasses}
+					onClick={handleClick}
+				></button>
 			</ContainerFluid>
-		</StyledHeader>
+		</header>
 	);
 }
+
+export default Header;
