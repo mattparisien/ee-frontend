@@ -4,8 +4,9 @@ import ProjectGrid from "./ProjectGrid";
 import { useContext, useEffect } from "react";
 import { DataContext } from "../../../App";
 
-export default function ProjectPage() {
+export default function ProjectPage({ transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
+
 
 	return (
 		<div className='o-page o-page_project'>
@@ -13,7 +14,7 @@ export default function ProjectPage() {
 				<Section>
 					<h2 className='o-h2'>Projects</h2>
 				</Section>
-				<Section classes="-padding-lg">
+				<Section classes='-padding-lg'>
 					<ProjectGrid items={data.posts} />
 				</Section>
 			</ContainerFluid>

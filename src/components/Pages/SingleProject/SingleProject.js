@@ -8,13 +8,15 @@ import Arrow from "../../Vector/Arrow";
 import Link from "../../Link/Link";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
-function SingleProject({ location }) {
+function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
 
 	const [param, setParam] = useState(null);
 	const [info, setInfo] = useState(null);
 	const [themeColor, setThemeColor] = useState(null);
 	const scroll = useLocomotiveScroll();
+
+
 
 	useEffect(() => {
 		setThemeColor(shuffleColors());

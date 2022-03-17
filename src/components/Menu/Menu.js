@@ -4,6 +4,8 @@ import Link from "../Link/Link";
 import ContainerFluid from "../Containers/ContainerFluid";
 import variables from "../../styles/scss/_vars.module.scss";
 import { useMediaQuery } from "@mui/material";
+import $ from "jquery";
+import gsap from "gsap";
 
 function Menu({ isActive, navItems, toggleMenu }) {
 	const matches = useMediaQuery(
@@ -15,19 +17,46 @@ function Menu({ isActive, navItems, toggleMenu }) {
 	});
 	const card = useRef(null);
 
+	const container = useRef(null);
+	const tl = useRef(gsap.timeline());
+
 	useEffect(() => {
 		matches && toggleMenu();
-	}, [matches]);
+
+		if (isActive) {
+			tl.current.progress(0).play();
+			tl.current.to(
+				$(container.current).find(".c-char"),
+				{
+					y: 0,
+					opacity: 1,
+					duration: 1,
+					ease: "expo.inOut",
+					stagger: 0.04,
+				},
+				0.1
+			);
+		} else {
+			gsap.to($(container.current).find(".c-char"), {
+				opacity: 0,
+				duration: 0.3,
+				onComplete: () => {
+					gsap.set($(container.current).find(".c-char"), { y: "-100%", opacity: 0 });
+				}
+			});
+			
+		}
+	}, [matches, isActive]);
 
 	return (
-		<div className={classes}>
+		<div className={classes} ref={card}>
 			<ContainerFluid classes='-stretchY'>
 				<nav className='c-menu_nav'>
-					<ul>
+					<ul ref={container}>
 						{navItems.map((link, i) => {
 							return (
 								<li key={i}>
-									<h2 className='o-h2 -uppercase'>
+									<h2 className='o-h2 -uppercase -split'>
 										<Link isRouterLink href={link.href}>
 											{link.name}
 										</Link>

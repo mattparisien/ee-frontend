@@ -13,24 +13,27 @@
 		justify-content: space-between;
 	}
 
+	.c-list li {
+		color: $grey;
+		
+		&:hover {
+			color: $dark;
+		}
+
+		&:hover::after {
+			background-color: $dark;
+		}
+	}
+
 	&_logo {
 		width: 100px;
 	}
 
-	&_nav.desktop .c-header_nav-list {
+	&_nav.desktop .c-list {
 		@include media("<=tablet") {
 			display: none;
 		}
 
-		display: flex;
-		li:not(:last-child) {
-			padding-right: 4rem;
-		}
-
-		.c-link {
-			font-size: 1rem;
-			font-family: $bodyFont;
-		}
 	}
 
 	&_nav-btn.mobile {

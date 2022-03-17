@@ -1,7 +1,7 @@
 .c-footer {
 	height: $footerHeight;
 	position: relative;
-	position: fixed;
+	
 	bottom: 0;
 	left: 0;
 	z-index: -1;
@@ -47,9 +47,7 @@
 				height: 100%;
 				justify-content: flex-end;
 
-				li:not(:last-child) {
-					padding-right: 4rem;
-				}
+		
 			}
 		}
 

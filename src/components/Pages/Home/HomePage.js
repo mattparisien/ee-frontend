@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import { useContext } from "react";
 import { DataContext } from "../../../App";
 import ProjectGrid from "../Projects/ProjectGrid";
 
-function HomePage() {
+function HomePage({toggleTransitioning, transitioning}) {
 	const data = useContext(DataContext);
+
+
 
 	return (
 		<>

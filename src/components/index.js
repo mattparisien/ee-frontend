@@ -2,7 +2,7 @@ import Section from "./Containers/Section";
 import Header from "./Header/Header";
 import Line from "./Line";
 import ListBlogPosts from "./ListBlogPosts";
-import UnorderedList from "./Lists/UnorderedList";
+
 import SlidingText from "./Marquee";
 import Heading from "./Text/Heading";
 import Paragraph from "./Text/Paragraph";
@@ -21,7 +21,6 @@ export {
 	Paragraph,
 	Heading,
 	Section,
-	UnorderedList,
 	Header,
 	// Grid,
 	// GridItem,

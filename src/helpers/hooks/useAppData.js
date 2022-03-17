@@ -30,21 +30,20 @@ export default function useAppData(scrollRef) {
 		mobileS: 0.6,
 	};
 
-
-const navItems = [
-	{
-		name: "About",
-		path: "/",
-	},
-	{
-		name: "Projects",
-		path: "/projects",
-	},
-	{
-		name: "Connect",
-		path: "/contact",
-	},
-];
+	const navItems = [
+		{
+			name: "About",
+			path: "/",
+		},
+		{
+			name: "Projects",
+			path: "/projects",
+		},
+		{
+			name: "Connect",
+			path: "/contact",
+		},
+	];
 
 	//Themes
 	const themes = {
@@ -79,13 +78,11 @@ const navItems = [
 	};
 
 	const [windowWidth, isResized] = useResize();
-	const location = useLocation();
 	const appRefs = useRef({});
 	appRefs.current = {};
 
 	//App state
-
-	const [pending, setPending] = useState(true);
+	const [transitioning, setTransitioning] = useState(false);
 
 	const [state, setState] = useState({
 		user: {
@@ -123,7 +120,6 @@ const navItems = [
 
 		Promise.all(promiseArray)
 			.then(data => {
-				
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
@@ -139,8 +135,16 @@ const navItems = [
 				}));
 			})
 			.catch(err => console.log(err))
-			.finally(() => setPending(false));
+			.finally(() => setTransitioning(false));
 	}, []);
 
-	return { appRefs, state, setState, pending, themes, navItems };
+	return {
+		appRefs,
+		state,
+		setState,
+		themes,
+		navItems,
+		transitioning,
+		setTransitioning,
+	};
 }

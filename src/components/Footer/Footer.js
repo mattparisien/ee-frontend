@@ -4,6 +4,7 @@ import { navigation } from "../../data/data";
 import ContainerFluid from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
 import { DrawnLogo } from "../Vector/Svg";
+import List from "../Lists/List";
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
@@ -24,17 +25,7 @@ export default function Footer(props) {
 					<div className='c-footer_bottom'>
 						<h4 className='o-h4 c-footer_brand'>The Eyes & Ears Agency</h4>
 						<nav className='c-footer_nav'>
-							<ul>
-								{props.navItems.map((item, i) => {
-									return (
-										<li key={i}>
-											<Link href={item.url} isRouterLink>
-												{item.name}
-											</Link>
-										</li>
-									);
-								})}
-							</ul>
+							<List items={props.navItems} color="light"/>
 						</nav>
 					</div>
 				</div>

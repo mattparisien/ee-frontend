@@ -12,20 +12,40 @@ function SiteRoutes(props) {
 	return (
 		<>
 			<Routes location={location} key={location.pathname}>
-				<Route path='/' element={<HomePage addToRefs={addToRefs} />} />
+				<Route
+					path='/'
+					element={
+						<HomePage
+							addToRefs={addToRefs}
+							toggleTransitioning={props.siteControls.setTransitioning}
+							transitioning={props.siteControls.transitioning}
+						/>
+					}
+				/>
 				<Route
 					path='/contact'
-					element={<Contact addToRefs={addToRefs} key={location.pathname} />}
+					element={
+						<Contact
+							addToRefs={addToRefs}
+							key={location.pathname}
+							toggleTransitioning={props.siteControls.setTransitioning}
+							transitioning={props.siteControls.transitioning}
+						/>
+					}
 				/>
 				<Route
 					path='/projects'
 					element={<ProjectPage addToRefs={addToRefs} />}
 					key={location.pathname}
+					toggleTransitioning={props.siteControls.setTransitioning}
+					transitioning={props.siteControls.transitioning}
 				/>
 				<Route
 					path='/projects/:id'
 					element={<SingleProject location={location} />}
 					key={location.pathname}
+					toggleTransitioning={props.siteControls.setTransitioning}
+					transitioning={props.siteControls.transitioning}
 				/>
 				{/* <Route
 					path='/projects/:id'

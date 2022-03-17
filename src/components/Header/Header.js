@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { TextLogo } from "../Vector/Svg";
 import ContainerFluid from "../Containers/ContainerFluid";
+import List from "../Lists/List";
 import Link from "../Link/Link";
 import classNames from "classnames";
 
-function Header({ toggleMenu, navItems }) {
+function Header({ toggleMenu, navItems, toggleTransitioning }) {
 	const [active, setActive] = useState(false);
 	const [firstRender, setFirstRender] = useState(true);
 
@@ -26,17 +27,11 @@ function Header({ toggleMenu, navItems }) {
 					</Link>
 				</div>
 				<nav className='c-header_nav desktop'>
-					<ul className='c-header_nav-list'>
-						{navItems.map((item, index) => {
-							return (
-								<li key={index}>
-									<Link isRouterLink href={item.path}>
-										{item.name}
-									</Link>
-								</li>
-							);
-						})}
-					</ul>
+					<List
+						items={navItems}
+						color='dark'
+						toggleTransitioning={toggleTransitioning}
+					/>
 				</nav>
 				<button className={mobileNavClasses} onClick={handleClick}></button>
 			</ContainerFluid>

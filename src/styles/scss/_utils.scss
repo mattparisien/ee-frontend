@@ -227,6 +227,16 @@
 
 .-text-light {
 	color: $light;
+	*::after {
+		background-color: $light;
+	}
+}
+.-text-dark {
+	color: $dark;
+
+	*::after {
+		background-color: $dark;
+	}
 }
 
 .-ul-small,

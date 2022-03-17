@@ -12,6 +12,8 @@ import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import SplitText from "gsap/SplitText";
 import gsap from "gsap";
+import classNames from "classnames";
+import TransitionCard from "./components/Transition/TransitionCard";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -25,8 +27,17 @@ function App() {
 	const app = useRef(null);
 	gsap.registerPlugin(SplitText);
 
-	const { addToRefs, appRefs, state, setState, pending, themes, navItems } =
-		useAppData();
+	const {
+		addToRefs,
+		appRefs,
+		state,
+		setState,
+		pending,
+		themes,
+		navItems,
+		transitioning,
+		setTransitioning,
+	} = useAppData();
 
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
@@ -39,14 +50,13 @@ function App() {
 
 			setTimeout(() => {
 				const text = new SplitText($(".-split"), {
-					type: "chars",
+					type: "chars, lines",
 					charsClass: "c-char",
+					linesClass: "c-line",
 				});
-	
-				split.current = text;		
-			}, 300);
 
-		
+				split.current = text;
+			}, 300);
 		}
 	}, [isSplit, location]);
 
@@ -65,6 +75,8 @@ function App() {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
 		toggleHeaderColor,
+		transitioning,
+		setTransitioning,
 	};
 
 	const [menuActive, setMenuActive] = useState(false);
@@ -85,9 +97,11 @@ function App() {
 		}
 	}, [setState]);
 
+	const classes = classNames("App", { "is-dom-loaded": !transitioning });
+
 	return (
 		<HelmetProvider>
-			<div className='App'>
+			<div className={classes}>
 				<Helmet>
 					<html lang='en' />
 					<title>The Eyes & Ears Agency</title>
@@ -119,7 +133,9 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						<Header
 							toggleMenu={() => setMenuActive(!menuActive)}
 							navItems={navItems}
+							toggleTransitioning={() => setTransitioning(!transitioning)}
 						/>
+						<TransitionCard transitioning={transitioning} />
 
 						<div
 							className='scroll-wrapper'
@@ -156,6 +172,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 													<SiteRoutes
 														addToRefs={addToRefs}
 														location={location}
+														siteControls={siteControls}
 													/>
 												</main>
 
