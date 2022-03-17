@@ -30,7 +30,7 @@ $dark2: #2e2e2e;
 $lighterDark: #111111;
 $navy: #12233f;
 $red: #e94034;
-$green: #16854B;
+$green: #16854b;
 $blue: #0a4d98;
 $yellow: #edc835;
 $pink: #f1b9b8;
@@ -69,13 +69,16 @@ $translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),
 $shadow: -2px 4px 27px 3px rgba(0, 0, 0, 0.32);
 
 //Font config
-$bodyFont: 'Soehne Body';
+$bodyFont: "Soehne Body";
 
 //Header vars
 $headerHeight: 75px;
 
 //Footer vars
 $footerHeight: 60vh;
+
+//Breakpoints
+$tablet: 820px;
 
 :export {
 	loaderDuration: $loader-duration;
@@ -86,5 +89,8 @@ $footerHeight: 60vh;
 		green: $green;
 		blue: $blue;
 		yellow: $yellow;
+	}
+	breakpoints: {
+		tablet: $tablet;
 	}
 }

@@ -38,7 +38,6 @@ function SingleProject({ location }) {
 					counter += 1;
 
 					if (counter > 1) {
-						console.log(" in here");
 						param = location.pathname.slice(i + 1, location.pathname.length);
 					}
 				}
@@ -54,8 +53,6 @@ function SingleProject({ location }) {
 					x.id ==
 					(parseInt(param) - 1 == 0 ? data.posts.length : parseInt(param) - 1)
 			);
-			// console.log('next post...', nextPost)
-			console.log(nextPost);
 
 			setInfo({ ...match, nextPost: nextPost });
 		}
@@ -84,7 +81,7 @@ function SingleProject({ location }) {
 				<Section classes={`o-hero-2 -bg-${themeColor}`}>
 					<div className='o-hero_text'>
 						<h3 className='o-h3'>{info && info[0].title}</h3>
-						<h2 className='o-h2 -bold'>{info && info[0].subtitle}</h2>
+						<h2 className='o-h2 -bold -split'>{info && info[0].subtitle}</h2>
 						{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
 					</div>
 					{/* 				
@@ -180,7 +177,6 @@ function SingleProject({ location }) {
 				)}
 			</ContainerFluid>
 			<ContainerFluid classes='-bg-dark'>
-				
 				<Section classes='o-info_about -padding-lg'>
 					<div>
 						<h4 className='o-h4 -bold'>About the Artist</h4>
@@ -205,7 +201,7 @@ function SingleProject({ location }) {
 				</Section>
 			</ContainerFluid>
 			<ContainerFluid classes='o-additional-media -bg-light'>
-				<Section classes="-padding-lg">
+				<Section classes='-padding-lg'>
 					<div className='c-grid'>
 						{info &&
 							info[0].media.additional &&

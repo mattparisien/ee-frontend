@@ -250,8 +250,14 @@
 	display: block;
 }
 
+.-uppercase {
+	text-transform: uppercase;
+}
+
 .-text-big {
 	font-size: 2.2rem;
+	font-family: 'Courier' !important;
+	line-height: 6rem !important;
 
 
 	@include media("<=tablet") {

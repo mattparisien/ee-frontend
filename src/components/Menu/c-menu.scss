@@ -6,20 +6,55 @@
 	width: 100vw;
 	display: block;
 	z-index: 999;
-	transform: scaleX(0.0001);
+	transform: translateX(-100%);
 	transform-origin: left;
 	transition: 600ms ease;
-
-	&_bg {
-		background-color: $dark;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+	padding-top: $headerHeight;
+	background-color: $dark;
+	transition: $transition-expo;
 
 	&.is-active {
-		transform: scaleY(1);
+		transform: translateX(0%);
+	}
+
+	&_nav {
+		height: 100%;
+		width: 100%;
+
+		ul {
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: space-around;
+			height: 100%;
+
+			li .c-link {
+				transition: 300ms ease;
+			}
+
+			li:hover .c-link {
+				color: lighten($yellow, 10%);
+			}
+
+			li:nth-of-type(even) {
+				align-self: flex-end;
+				@include media("<=tablet") {
+					align-self: flex-start;
+				}
+			}
+
+			
+
+			.c-link {
+				color: $light;
+				font-family: "Kobe";
+
+				@include media("<=tablet") {
+					font-size: 18vw;
+				}
+			}
+		}
 	}
 }

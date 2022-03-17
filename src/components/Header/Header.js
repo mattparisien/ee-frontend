@@ -4,25 +4,26 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
 import classNames from "classnames";
 
-function Header({toggleMenu, navItems}) {
+function Header({ toggleMenu, navItems }) {
 	const [active, setActive] = useState(false);
 	const [firstRender, setFirstRender] = useState(true);
 
 	const mobileNavClasses = classNames("c-header_nav-btn mobile", {
-		'is-active': active,
+		"is-active": active,
 	});
 
 	const handleClick = () => {
-		
-		setActive(!active)
+		setActive(!active);
 		toggleMenu();
-	}
+	};
 
 	return (
 		<header className='c-header'>
 			<ContainerFluid>
 				<div className='c-header_logo'>
-					<TextLogo width='100%' />
+					<Link isRouterLink href={"/"}>
+						<TextLogo width='100%' />
+					</Link>
 				</div>
 				<nav className='c-header_nav desktop'>
 					<ul className='c-header_nav-list'>
@@ -37,10 +38,7 @@ function Header({toggleMenu, navItems}) {
 						})}
 					</ul>
 				</nav>
-				<button
-					className={mobileNavClasses}
-					onClick={handleClick}
-				></button>
+				<button className={mobileNavClasses} onClick={handleClick}></button>
 			</ContainerFluid>
 		</header>
 	);

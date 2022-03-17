@@ -10,6 +10,8 @@ import LoadingScreen from "./components/Loading/LoadingScreen";
 import Menu from "./components/Menu/Menu";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
+import SplitText from "gsap/SplitText";
+import gsap from "gsap";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -21,13 +23,32 @@ function App() {
 	const scrollWrapper = useRef(null);
 	const location = useLocation();
 	const app = useRef(null);
+	gsap.registerPlugin(SplitText);
 
 	const { addToRefs, appRefs, state, setState, pending, themes, navItems } =
 		useAppData();
 
+	const [isSplit, setSplit] = useState(false);
+	const split = useRef(null);
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, [location]);
+
+		if (!isSplit) {
+			setSplit(true);
+
+			setTimeout(() => {
+				const text = new SplitText($(".-split"), {
+					type: "chars",
+					charsClass: "c-char",
+				});
+	
+				split.current = text;		
+			}, 300);
+
+		
+		}
+	}, [isSplit, location]);
 
 	const toggleScrollLock = () => {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
@@ -99,7 +120,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							toggleMenu={() => setMenuActive(!menuActive)}
 							navItems={navItems}
 						/>
-						
+
 						<div
 							className='scroll-wrapper'
 							ref={scrollWrapper}
@@ -116,7 +137,11 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 												{/* <CursorFollower /> */}
 
-												<Menu isActive={menuActive} navItems={navItems} />
+												<Menu
+													isActive={menuActive}
+													navItems={navItems}
+													toggleMenu={() => setMenuActive(!menuActive)}
+												/>
 
 												{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
