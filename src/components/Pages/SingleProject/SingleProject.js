@@ -6,6 +6,7 @@ import Section from "../../Containers/Section";
 import { DataContext } from "../../Containers/Temp/Authenticated";
 import Arrow from "../../Vector/Arrow";
 import Link from "../../Link/Link";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function SingleProject({ location }) {
 	const data = useContext(DataContext);
@@ -13,10 +14,19 @@ function SingleProject({ location }) {
 	const [param, setParam] = useState(null);
 	const [info, setInfo] = useState(null);
 	const [themeColor, setThemeColor] = useState(null);
+	const scroll = useLocomotiveScroll();
 
 	useEffect(() => {
 		setThemeColor(shuffleColors());
 	}, []);
+
+	useEffect(() => {
+
+		//Ensure page scrolls to top on location change
+		window.scrollTo(0, 0);
+
+		scroll && scroll.scroll && scroll.scroll.scrollTo(0, { duration: 0, disableLerp: true });
+	}, [location, scroll]);
 
 	useEffect(() => {
 		//Find query param
@@ -166,14 +176,14 @@ function SingleProject({ location }) {
 			</ContainerFluid>
 
 			<Link
-				classes='-stretchX -stretchY -padding-lg'
+				classes='o-next -stretchX -stretchY -padding-lg -bg-dark'
 				isRouterLink
 				href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
 			>
-				<Arrow/>
-				<h2 className='o-h2 -bold'>
+				<Arrow />
+				<div className='o-next_title'>
 					{info && info.nextPost && info.nextPost[0].title}
-				</h2>
+				</div>
 			</Link>
 		</div>
 	);

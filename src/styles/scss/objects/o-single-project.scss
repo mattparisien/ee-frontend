@@ -102,8 +102,27 @@
 		}
 	}
 
+	.o-next_title {
+		font-size: 3rem;
+		position: relative;
+
+		&::after {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background-color: $light;
+			content: "";
+			transform-origin: left;
+			transform: scaleX(0);
+			transition: $transition;
+		}
+	}
+
 	.c-link {
-		height: 30vh;
+		padding: 0 4rem;
+		height: 40vh;
 		display: block;
 		display: flex;
 		align-items: center;
@@ -115,6 +134,9 @@
 		&:hover .c-arrow_svg:nth-child(2) {
 			animation: arrowIn 600ms ease forwards;
 			animation-delay: 300ms;
+		}
+		&:hover .o-next_title::after {
+			transform: scaleX(1);
 		}
 	}
 

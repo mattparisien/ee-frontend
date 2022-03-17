@@ -9,10 +9,12 @@ import useAppData from "./helpers/hooks/useAppData";
 function App() {
 	const { state, themes, setState } = useAppData();
 	const scrollWrapper = useRef(null);
+	
 
 	useEffect(() => {
-		{
-		}
+	
+
+
 		console.log("Built by Matthew Parisien 🛠");
 
 		const cookies = new Cookies();
@@ -27,6 +29,7 @@ function App() {
 			}));
 		}
 	}, [setState]);
+	
 
 	return (
 		<HelmetProvider>
@@ -45,6 +48,9 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				<ThemeProvider theme={themes}>
 					{/* <GlobalStyles /> */}
 					<LocomotiveScrollProvider
+						onLocationChange={scroll =>
+							scroll.scrollTo(0, { duration: 0, disableLerp: true })
+						}
 						options={{
 							initPosition: {
 								x: 0,
@@ -54,9 +60,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							smooth: true,
 							getDirection: true,
 						}}
-						onLocationChange={scroll =>
-							scroll.scrollTo(0, { duration: 0, disableLerp: true })
-						}
+					
 						containerRef={scrollWrapper}
 					>
 						<div

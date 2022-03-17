@@ -4,22 +4,7 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
 import classNames from "classnames";
 
-const navItems = [
-	{
-		name: "About",
-		path: "/",
-	},
-	{
-		name: "Projects",
-		path: "/projects",
-	},
-	{
-		name: "Connect",
-		path: "/contact",
-	},
-];
-
-function Header({toggleMenu}) {
+function Header({toggleMenu, navItems}) {
 	const [active, setActive] = useState(false);
 	const [firstRender, setFirstRender] = useState(true);
 

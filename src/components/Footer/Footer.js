@@ -1,20 +1,15 @@
 import gsap from "gsap";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { navigation } from "../../data/data";
 
-import Contact from "./Contact";
-import NavList from "./NavList";
-import { StyledFooter } from "./styles";
+import { navigation } from "../../data/data";
+// import { StyledFooter } from "./styles";
+import ContainerFluid from "../Containers/ContainerFluid";
+import { DrawnLogo } from "../Vector/Svg";
+import Link from "../Link/Link";
 
 export default function Footer(props) {
 	const footerRef = useRef(null);
-	const { location, addToRefs } = props;
-	const [layout, setLayout] = useState("contact");
-	const q = gsap.utils.selector(footerRef.current);
-	const lines = q(".line");
-
-	const nextPostId = parseInt(location.split("projects/")[1]) + 1;
+	const { location } = props;
 
 	// useEffect(() => {
 	// 	setLayout(location.includes("projects/") ? "project" : "contact");
@@ -27,24 +22,33 @@ export default function Footer(props) {
 	));
 
 	return (
-		<StyledFooter
-			$layout={layout}
-			ref={footerRef}
-			data-scroll
-			data-scroll-section
-			className='Footer'
-			location={location.pathname}
-			data-scroll
-			data-scroll-speed={-8}
-		>
-			<ContainerFluid centerInner flexDirection='column' height='100%'>
-				{layout === "contact" && <Contact />}
+		<footer className='c-footer -bg-dark'>
+			<ContainerFluid classes='-stretchY'>
+				<div className='c-footer_content'>
+					<h2 className='o-h2'>Hear to listen</h2>
+					<DrawnLogo />
+				</div>
+				{/* {layout === "contact" && <Contact />} */}
 				{/* {layout === "project" && (
 					<Project footerRef={footerRef} title={data && data.title} />
 				)} */}
-
-				<NavList links={navLinks} />
+				<div className='c-footer_bottom'>
+					<nav className='c-footer_nav'>
+						<ul>
+							{props.navItems.map((item, i) => {
+								return (
+									<li key={i}>
+										<Link href={item.url} isRouterLink>
+											{item.name}
+										</Link>
+									</li>
+								);
+							})}
+						</ul>
+					</nav>
+				</div>
+				{/* <NavList links={navLinks} /> */}
 			</ContainerFluid>
-		</StyledFooter>
+		</footer>
 	);
 }

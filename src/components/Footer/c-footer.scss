@@ -1,0 +1,31 @@
+.c-footer {
+  height: 60vh;
+  position: relative;
+  
+
+  &_content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .drawnLogo {
+      width: 12vw;
+
+      .faceLine {
+        fill: $light !important;
+      }
+    }
+  }
+
+  &_bottom {
+
+    width: 100%;
+    height: 10rem;
+    background-color: $red;
+
+
+    ul li a {
+      color: $light;
+    }
+  }
+}

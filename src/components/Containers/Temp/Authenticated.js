@@ -9,6 +9,7 @@ import SiteTransition from "../../Transition/Transition";
 import Header from "../../Header/Header";
 import Menu from "../../Menu/Menu";
 import CursorFollower from "../../CursorFollower/CursorFollower";
+import Footer from "../../Footer/Footer";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -20,7 +21,8 @@ function Authenticated() {
 	const location = useLocation();
 	const app = useRef(null);
 
-	const { addToRefs, appRefs, state, setState, pending, themes } = useAppData();
+	const { addToRefs, appRefs, state, setState, pending, themes, navItems } =
+		useAppData();
 
 	const q = gsap.utils.selector(app.current);
 
@@ -71,8 +73,11 @@ function Authenticated() {
 									isTransitioning={state.isTransitioning}
 								/>
 								{/* <CursorFollower /> */}
-								<Header toggleMenu={() => setMenuActive(!menuActive)} />
-								<Menu isActive={menuActive} />
+								<Header
+									toggleMenu={() => setMenuActive(!menuActive)}
+									navItems={navItems}
+								/>
+								<Menu isActive={menuActive} navItems={navItems} />
 
 								{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
@@ -95,7 +100,11 @@ function Authenticated() {
 									</TransitionGroup>
 								</main>
 
-								{/* <Footer addToRefs={addToRefs} location={location.pathname} /> */}
+								<Footer
+									addToRefs={addToRefs}
+									location={location.pathname}
+									navItems={navItems}
+								/>
 
 								{/* <CookieBar /> */}
 							</LoadingContext.Provider>

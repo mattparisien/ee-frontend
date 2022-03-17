@@ -30,6 +30,22 @@ export default function useAppData(scrollRef) {
 		mobileS: 0.6,
 	};
 
+
+const navItems = [
+	{
+		name: "About",
+		path: "/",
+	},
+	{
+		name: "Projects",
+		path: "/projects",
+	},
+	{
+		name: "Connect",
+		path: "/contact",
+	},
+];
+
 	//Themes
 	const themes = {
 		colors: {
@@ -126,5 +142,5 @@ export default function useAppData(scrollRef) {
 			.finally(() => setPending(false));
 	}, []);
 
-	return { appRefs, state, setState, pending, themes };
+	return { appRefs, state, setState, pending, themes, navItems };
 }
