@@ -193,6 +193,11 @@
 
 .-bg-green {
 	background-color: $green;
+	color: $light;
+
+	svg path {
+		stroke: $light;
+	}
 }
 
 .-bg-dark {

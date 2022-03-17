@@ -59,36 +59,73 @@
 .-bg-dark {
 	background-color: $dark;
 	color: $light;
+
+	.o-next_title::after {
+		color: $light;
+	}
 }
 
 .-bg-green {
 	background-color: $green;
 	color: $light;
+
+
+	.o-next_title::after {
+		color: $light;
+	}
 }
 
 .-bg-light {
 	background-color: $light;
 	color: $dark;
+
+	.o-next_title::after {
+		color: $dark;
+	}
 }
 
 .-bg-yellow {
 	background-color: $yellow;
-	color: $light;
+	color: $dark;
+
+	
+	.o-next_title::after {
+		color: $dark;
+	}
 }
 
 .-bg-blue {
 	background-color: $blue;
 	color: $light;
+
+
+	.o-next_title::after {
+		color: $light;
+	}
 }
 
 .-bg-navy {
 	background-color: $navy;
 	color: $light;
+
+
+	.o-next_title::after {
+		color: $light;
+	}
 }
 
 .-bg-red {
 	background-color: $red;
-	color: $light;
+	h3, h4 {
+		color: $light;
+	}
+
+
+	.o-next_title::after {
+		color: $light;
+	}
+
+	
 }
 
 .-big {

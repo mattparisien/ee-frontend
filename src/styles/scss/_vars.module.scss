@@ -30,7 +30,7 @@ $dark2: #2e2e2e;
 $lighterDark: #111111;
 $navy: #12233f;
 $red: #030303;
-$green: #c0ff0d;
+$green: #16854B;
 $blue: #0a4d98;
 $yellow: #edc835;
 $pink: #f1b9b8;
@@ -73,6 +73,9 @@ $bodyFont: 'Soehne Body';
 
 //Header vars
 $headerHeight: 75px;
+
+//Footer vars
+$footerHeight: 60vh;
 
 :export {
 	loaderDuration: $loader-duration;

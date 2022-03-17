@@ -1,20 +1,54 @@
-import React, { useEffect, useRef } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import { useLocation } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Cookies from "universal-cookie";
-import Authenticated from "./components/Containers/Temp/Authenticated";
+import { Header } from "./components";
+import Footer from "./components/Footer/Footer";
+import LoadingScreen from "./components/Loading/LoadingScreen";
+import Menu from "./components/Menu/Menu";
 import useAppData from "./helpers/hooks/useAppData";
+import SiteRoutes from "./Routes";
+
+export const DataContext = createContext();
+export const SiteWideControls = createContext();
+export const LoadingContext = createContext();
+export const ColorContext = createContext();
+export const CursorContext = createContext();
 
 function App() {
-	const { state, themes, setState } = useAppData();
 	const scrollWrapper = useRef(null);
-	
+	const location = useLocation();
+	const app = useRef(null);
+
+	const { addToRefs, appRefs, state, setState, pending, themes, navItems } =
+		useAppData();
 
 	useEffect(() => {
-	
+		window.scrollTo(0, 0);
+	}, [location]);
 
+	const toggleScrollLock = () => {
+		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
+	};
 
+	const toggleHeaderColor = sectionBgColor => {
+		setState(prev => ({
+			...prev,
+			headerColor: sectionBgColor === "dark" ? "light" : "dark",
+		}));
+	};
+
+	const siteControls = {
+		isScrollLock: state.isScrollLock,
+		toggleScrollLock,
+		toggleHeaderColor,
+	};
+
+	const [menuActive, setMenuActive] = useState(false);
+
+	useEffect(() => {
 		console.log("Built by Matthew Parisien 🛠");
 
 		const cookies = new Cookies();
@@ -29,7 +63,6 @@ function App() {
 			}));
 		}
 	}, [setState]);
-	
 
 	return (
 		<HelmetProvider>
@@ -60,15 +93,58 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							smooth: true,
 							getDirection: true,
 						}}
-					
 						containerRef={scrollWrapper}
 					>
+						<Header
+							toggleMenu={() => setMenuActive(!menuActive)}
+							navItems={navItems}
+						/>
 						<div
 							className='scroll-wrapper'
 							ref={scrollWrapper}
 							data-scroll-container
 						>
-							<Authenticated />
+							<SiteWideControls.Provider value={siteControls}>
+								<DataContext.Provider value={state.data}>
+									<ColorContext.Provider>
+										<CursorContext.Provider>
+											<LoadingContext.Provider>
+												<LoadingScreen isActive={pending} />
+
+												{/* <ModalWrapper hoverState={hoverState} /> */}
+
+												{/* <CursorFollower /> */}
+
+												<Menu isActive={menuActive} navItems={navItems} />
+
+												{/* <SideMenu
+									isOpen={state.sidebar.showSidebar}
+									hasShown={state.sidebar.hasShown}
+									appRefs={appRefs}
+									addToRefs={addToRefs}
+									offset={state.menuOffset}
+									toggleMenu={toggleMenu}
+								/> */}
+
+												<main>
+													<SiteRoutes
+														addToRefs={addToRefs}
+														location={location}
+													/>
+												</main>
+
+												<Footer
+													addToRefs={addToRefs}
+													location={location.pathname}
+													navItems={navItems}
+												/>
+
+												{/* <CookieBar /> */}
+											</LoadingContext.Provider>
+										</CursorContext.Provider>
+									</ColorContext.Provider>
+								</DataContext.Provider>
+							</SiteWideControls.Provider>
 						</div>
 					</LocomotiveScrollProvider>
 				</ThemeProvider>

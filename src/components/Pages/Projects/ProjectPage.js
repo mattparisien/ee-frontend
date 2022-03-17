@@ -2,7 +2,7 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ProjectGrid from "./ProjectGrid";
 import { useContext, useEffect } from "react";
-import { DataContext } from "../../Containers/Temp/Authenticated";
+import { DataContext } from "../../../App";
 
 export default function ProjectPage() {
 	const data = useContext(DataContext);
@@ -13,7 +13,7 @@ export default function ProjectPage() {
 				<Section>
 					<h2 className='o-h2'>Projects</h2>
 				</Section>
-				<Section>
+				<Section classes="-padding-lg">
 					<ProjectGrid items={data.posts} />
 				</Section>
 			</ContainerFluid>

@@ -1,31 +1,60 @@
 .c-footer {
-  height: 60vh;
-  position: relative;
-  
+	height: $footerHeight;
+	position: relative;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	width: 100vw;
 
-  &_content {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .drawnLogo {
-      width: 12vw;
+	&_content {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: relative;
 
-      .faceLine {
-        fill: $light !important;
-      }
-    }
-  }
+		.drawnLogo {
+			width: 12vw;
 
-  &_bottom {
+			.faceLine {
+				fill: $light !important;
+			}
+		}
+	}
 
-    width: 100%;
-    height: 10rem;
-    background-color: $red;
+	&_bottom {
+		width: 100%;
+		height: 5rem;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 
+		.c-footer_brand {
+			width: 100%;
+		}
 
-    ul li a {
-      color: $light;
-    }
-  }
+		nav {
+			width: 100%;
+			height: 100%;
+			ul {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				height: 100%;
+				justify-content: flex-end;
+
+				li:not(:last-child) {
+					padding-right: 4rem;
+				}
+			}
+		}
+
+		ul li a {
+			color: $light;
+		}
+	}
 }

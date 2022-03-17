@@ -3,7 +3,7 @@ import { setQuaternionFromProperEuler } from "three/src/math/MathUtils";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import { DataContext } from "../../Containers/Temp/Authenticated";
+import { DataContext } from "../../../App";
 import Arrow from "../../Vector/Arrow";
 import Link from "../../Link/Link";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
@@ -20,13 +20,13 @@ function SingleProject({ location }) {
 		setThemeColor(shuffleColors());
 	}, []);
 
-	useEffect(() => {
+	// useEffect(() => {
 
-		//Ensure page scrolls to top on location change
-		window.scrollTo(0, 0);
+	// 	//Ensure page scrolls to top on location change
+	// 	window.scrollTo(0, 0);
 
-		scroll && scroll.scroll && scroll.scroll.scrollTo(0, { duration: 0, disableLerp: true });
-	}, [location, scroll]);
+	// 	scroll && scroll.scroll && scroll.scroll.scrollTo(0, { duration: 0, disableLerp: true });
+	// }, [location, scroll]);
 
 	useEffect(() => {
 		//Find query param
@@ -126,29 +126,58 @@ function SingleProject({ location }) {
 							</p>
 						</div>
 						<div className='o-info_overview_index'>
-							<h3 className='o-h3'>Services</h3>
-							<h3 className='o-h3'>Personality</h3>
-							<h3 className='o-h3'>Typefaces</h3>
-							<h3 className='o-h3'>Completed</h3>
+							<div>
+								<h3 className='o-h3'>Services</h3>
+								<ul>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+								</ul>
+							</div>
+							<div>
+								<h3 className='o-h3'>Personality</h3>
+								<ul>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+								</ul>
+							</div>
+							<div>
+								<h3 className='o-h3'>Typefaces</h3>
+								<ul>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+									<li className='o-text'>Naming</li>
+								</ul>
+							</div>
+							<div>
+								<h3 className='o-h3'>Completed</h3>
+								<p className='o-text'>Spring 2021</p>
+							</div>
 						</div>
 					</div>
 				</Section>
-				<Section classes='o-info_media -padding-lg'>
-					<div className='o-info_image-wrapper'>
-						<img
-							src={
-								info &&
-								info[0].media.additional &&
-								info[0].media.additional[0].attributes.url
-							}
-							alt={
-								info &&
-								info[0].media.additional &&
-								info[0].media.additional[0].attributes.alternativeText
-							}
-						/>
-					</div>
-				</Section>
+				{info && info[0].media.additional && (
+					<Section classes='o-info_media -padding-lg'>
+						<div className='o-info_image-wrapper'>
+							<img
+								src={
+									info &&
+									info[0].media.additional &&
+									info[0].media.additional[0].attributes.url
+								}
+								alt={
+									info &&
+									info[0].media.additional &&
+									info[0].media.additional[0].attributes.alternativeText
+								}
+							/>
+						</div>
+					</Section>
+				)}
 			</ContainerFluid>
 			<ContainerFluid classes='-bg-dark'>
 				<Section classes='o-info_about -padding-lg'>
@@ -174,9 +203,30 @@ function SingleProject({ location }) {
 					</div>
 				</Section>
 			</ContainerFluid>
+			<ContainerFluid classes='o-additional-media -bg-light'>
+				<Section classes="-padding-lg">
+					<div className='c-grid'>
+						{info &&
+							info[0].media.additional &&
+							info[0].media.additional.map(image => {
+								return (
+									<div className='c-grid_item'>
+										<div className='c-grid_img-wrapper'>
+											<img
+												src={image.attributes.url}
+												alt={Math.random()}
+												className='c-grid_img'
+											/>
+										</div>
+									</div>
+								);
+							})}
+					</div>
+				</Section>
+			</ContainerFluid>
 
 			<Link
-				classes='o-next -stretchX -stretchY -padding-lg -bg-dark'
+				classes={`o-next -stretchX -stretchY -padding-lg -bg-${themeColor}`}
 				isRouterLink
 				href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
 			>
