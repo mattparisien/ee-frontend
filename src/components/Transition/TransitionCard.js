@@ -57,7 +57,7 @@ function TransitionCard({ transitioning }) {
 	return (
 		<div className='c-transition-card' ref={container}>
 			<h2 className='o-h2 -split -uppercase'>Social Impact</h2>
-			<div className='c-transition-card_bg' ref={bg}></div>
+			<div className='c-transition-card_bg -bg-yellow' ref={bg}></div>
 		</div>
 	);
 }
