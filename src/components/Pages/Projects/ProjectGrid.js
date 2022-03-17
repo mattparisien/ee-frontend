@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 // import { ColorContext, CursorContext } from "../../App/App";
 import { useMediaQuery } from "@mui/material";
 import Link from "../../Link/Link";
+import Frame from "../../Vector/Frame";
 
 function ProjectGrid({ items }) {
 	// const { setPageTheme } = useContext(ColorContext);
@@ -82,7 +83,9 @@ function Item({
 		[inViewRef]
 	);
 
-	const itemClasses = classNames("c-grid_item", { "is-in-view": inView });
+	const itemClasses = classNames("c-grid_item -relative", {
+		"is-in-view": inView,
+	});
 
 	return (
 		<Link
@@ -98,6 +101,7 @@ function Item({
 			<div className='c-grid_img-wrapper'>
 				<img src={src} alt={Math.random()} className='c-grid_img' />
 			</div>
+			{/* <Frame/> */}
 			<div className='c-grid_info'>
 				<h3 className='c-grid_title'>{title}</h3>
 				<p className='c-grid_description -text-tiny'>{previewText}</p>

@@ -99,6 +99,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							toggleMenu={() => setMenuActive(!menuActive)}
 							navItems={navItems}
 						/>
+						
 						<div
 							className='scroll-wrapper'
 							ref={scrollWrapper}

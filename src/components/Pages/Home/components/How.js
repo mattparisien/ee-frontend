@@ -17,7 +17,7 @@ function How() {
 					headingWidth='100%'
 				/> */}
 			</ContainerFluid>
-			<Steps />
+			{/* <Steps /> */}
 			<Button variant='contained' color='dark'>
 				Get in touch
 			</Button>

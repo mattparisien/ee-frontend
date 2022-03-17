@@ -1,8 +1,5 @@
 import Section from "./Containers/Section";
-import Grid from "./Grid/Grid";
-import GridItem from "./Grid/GridItem";
 import Header from "./Header/Header";
-
 import Line from "./Line";
 import ListBlogPosts from "./ListBlogPosts";
 import UnorderedList from "./Lists/UnorderedList";
@@ -26,8 +23,8 @@ export {
 	Section,
 	UnorderedList,
 	Header,
-	Grid,
-	GridItem,
+	// Grid,
+	// GridItem,
 	Eye,
 	Amperstand,
 	Ear,
@@ -39,5 +36,4 @@ export {
 	SlidingText,
 	Line,
 	ListBlogPosts,
-	
 };

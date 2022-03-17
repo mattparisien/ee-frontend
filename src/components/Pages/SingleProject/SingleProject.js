@@ -180,6 +180,7 @@ function SingleProject({ location }) {
 				)}
 			</ContainerFluid>
 			<ContainerFluid classes='-bg-dark'>
+				
 				<Section classes='o-info_about -padding-lg'>
 					<div>
 						<h4 className='o-h4 -bold'>About the Artist</h4>
