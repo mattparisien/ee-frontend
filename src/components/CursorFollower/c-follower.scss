@@ -1,0 +1,48 @@
+.c-follower {
+	position: fixed;
+	z-index: 99999;
+	top: 0;
+	left: 0;
+	background-color: $dark;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	transition: opacity 400ms ease;
+	pointer-events: none;
+	isolation: isolate;
+	will-change: opacity;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	mix-blend-mode: multiply;
+
+	@include media("<=tablet") {
+		display: none;
+	}
+
+	&.is-hidden {
+		opacity: 0;
+	}
+
+	&.is-hovering {
+		mix-blend-mode: difference;
+		background: $pink;
+	}
+	&.is-link-hovering {
+		mix-blend-mode: difference;
+		background: $light ;
+	}
+
+	> div {
+		height: 100%;
+		width: 100%;
+		transform: scale(0.5);
+		transition: all 400ms ease;
+		opacity: 0;
+	}
+
+	.is-hovering &_arrow {
+		opacity: 1;
+	}
+}

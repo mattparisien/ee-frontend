@@ -1,0 +1,22 @@
+.c-arrow {
+	position: relative;
+	overflow: hidden;
+	
+
+	&_svg {
+		height: 100%;
+		width: 100%;
+		
+
+		&:nth-child(2) {
+			position: absolute;
+			left: 0;
+			transform: translateX(-105%);
+			transition-delay: 300ms;
+		}
+	}
+
+	path {
+		stroke: black;
+	}
+}

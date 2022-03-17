@@ -8,7 +8,7 @@ import LoadingScreen from "../../Loading/LoadingScreen";
 import SiteTransition from "../../Transition/Transition";
 import Header from "../../Header/Header";
 import Menu from "../../Menu/Menu";
-
+import CursorFollower from "../../CursorFollower/CursorFollower";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -24,15 +24,9 @@ function Authenticated() {
 
 	const q = gsap.utils.selector(app.current);
 
-	const toggleMenu = () => {
-		setState(prev => ({
-			...prev,
-			sidebar: {
-				showSidebar: !state.sidebar.showSidebar,
-				hasShown: !state.sidebar.hasShown ? true : true,
-			},
-		}));
-	};
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location]);
 
 	const handleTransition = () => {
 		setState(prev => ({
@@ -76,8 +70,9 @@ function Authenticated() {
 									themes={themes}
 									isTransitioning={state.isTransitioning}
 								/>
-								<Header toggleMenu={() => setMenuActive(!menuActive)}/>
-								<Menu isActive={menuActive}/>
+								{/* <CursorFollower /> */}
+								<Header toggleMenu={() => setMenuActive(!menuActive)} />
+								<Menu isActive={menuActive} />
 
 								{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}

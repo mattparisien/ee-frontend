@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { ThemeProvider } from "styled-components";
 import Cookies from "universal-cookie";
 import Authenticated from "./components/Containers/Temp/Authenticated";
-import { GlobalStyles } from "./components/styles/Global";
 import useAppData from "./helpers/hooks/useAppData";
 
 function App() {

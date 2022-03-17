@@ -1,9 +1,26 @@
 @keyframes scaleMenuBg {
-  0% {
-    transform: scaleX(0.001);
+	0% {
+		transform: scaleX(0.001);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
 
-  }
-  100% {
-    transform: scaleX(1);
-  }
+@keyframes arrowOut {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes arrowIn {
+	0% {
+		transform: translateX(-105%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
 }

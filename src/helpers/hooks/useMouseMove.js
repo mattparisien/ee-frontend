@@ -1,17 +1,11 @@
 import { useState, useEffect } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 export default function useMouseMove(array) {
-	const [isMouseOut, setMouseOut] = useState(false);
 	const [location, setLocation] = useState({});
+	const scroll = useLocomotiveScroll();
 
 	useEffect(() => {
-		if (!Array.isArray(array)) {
-			console.error(
-				"You must provide an array of refs to the useMouseMove hook"
-			);
-			return;
-		}
-
 		const handleMouseMove = (e, index) => {
 			setLocation({
 				pageX: e.clientX,
@@ -24,7 +18,7 @@ export default function useMouseMove(array) {
 		return () => {
 			window.removeEventListener("mousemove", handleMouseMove);
 		};
-	}, [array]);
+	}, [scroll]);
 
 	return [location];
 }

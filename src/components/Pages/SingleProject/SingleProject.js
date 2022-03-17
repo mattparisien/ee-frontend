@@ -4,7 +4,8 @@ import { shuffleColors } from "../../../helpers/shuffleColors";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import { DataContext } from "../../Containers/Temp/Authenticated";
-import { Arrow } from "../../Vector/Svg";
+import Arrow from "../../Vector/Arrow";
+import Link from "../../Link/Link";
 
 function SingleProject({ location }) {
 	const data = useContext(DataContext);
@@ -38,9 +39,13 @@ function SingleProject({ location }) {
 		if (data && data.posts && param && !info) {
 			// setInfo(data.posts.filter(x => x.id === param));
 			const match = data.posts.filter(x => x.id == param);
-			const nextPost = data.posts.filter(x => x.id == parseInt(param) + 1);
+			const nextPost = data.posts.filter(
+				x =>
+					x.id ==
+					(parseInt(param) - 1 == 0 ? data.posts.length : parseInt(param) - 1)
+			);
 			// console.log('next post...', nextPost)
-			
+			console.log(nextPost);
 
 			setInfo({ ...match, nextPost: nextPost });
 		}
@@ -159,13 +164,17 @@ function SingleProject({ location }) {
 					</div>
 				</Section>
 			</ContainerFluid>
-			<ContainerFluid classes={`o-next -bg-${themeColor}`}>
-				<Section classes='-padding-lg'>
-					<h2 className='o-h2 -bold'>
-						{info && info.nextPost && info.nextPost[0].title}
-					</h2>
-				</Section>
-			</ContainerFluid>
+
+			<Link
+				classes='-stretchX -stretchY -padding-lg'
+				isRouterLink
+				href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
+			>
+				<Arrow/>
+				<h2 className='o-h2 -bold'>
+					{info && info.nextPost && info.nextPost[0].title}
+				</h2>
+			</Link>
 		</div>
 	);
 }
