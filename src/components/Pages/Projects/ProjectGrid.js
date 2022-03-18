@@ -1,10 +1,11 @@
 import classNames from "classnames";
-import React, { useCallback, useContext, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 // import { ColorContext, CursorContext } from "../../App/App";
 import { useMediaQuery } from "@mui/material";
 import Link from "../../Link/Link";
 import Frame from "../../Vector/Frame";
+import { CircularProgress } from "@mui/material";
 
 function ProjectGrid({ items }) {
 	// const { setPageTheme } = useContext(ColorContext);
@@ -19,24 +20,6 @@ function ProjectGrid({ items }) {
 		"fancy",
 		"orangeCrush",
 	];
-
-	// const getRandomIndex = () => {
-	// 	return Math.ceil(Math.random() * (themes.length - 0 + 1) - 1);
-	// };
-
-	// const handleMouseEnter = () => {
-	// 	if (!tablet) {
-	// 		setPageTheme(themes[getRandomIndex()]);
-	// 		setCursorState("hovering");
-	// 	}
-	// };
-
-	// const handleMouseLeave = () => {
-	// 	if (!tablet) {
-	// 		setPageTheme("regular");
-	// 		setCursorState("following");
-	// 	}
-	// };
 
 	useEffect(() => {}, [items]);
 
@@ -62,16 +45,15 @@ function ProjectGrid({ items }) {
 }
 
 function Item({
-	// onMouseEnter,
-	// onMouseLeave,
 	src,
-	alt,
+
 	previewText,
 	title,
 	url,
 }) {
 	const ref = useRef(null);
 	const [inViewRef, inView] = useInView({ threshold: 0.5 });
+	const [loaded, setLoaded] = useState(false);
 
 	const setRefs = useCallback(
 		node => {
@@ -90,16 +72,24 @@ function Item({
 	return (
 		<Link
 			classes={itemClasses}
-			// onMouseEnter={onMouseEnter}
-			// onMouseLeave={onMouseLeave}
 			href={url}
 			target='_blank'
 			rel='noreferrer'
 			ref={setRefs}
 			isRouterLink
 		>
+			{!loaded && (
+				<div className='c-grid_item_loader'>
+					<CircularProgress color='inherit' />
+				</div>
+			)}
 			<div className='c-grid_img-wrapper'>
-				<img src={src} alt={Math.random()} className='c-grid_img' />
+				<img
+					src={src}
+					alt={Math.random()}
+					className='c-grid_img'
+					onLoad={() => setLoaded(true)}
+				/>
 			</div>
 			{/* <Frame/> */}
 			<div className='c-grid_info'>

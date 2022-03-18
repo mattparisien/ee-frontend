@@ -41,10 +41,12 @@ function Menu({ isActive, navItems, toggleMenu }) {
 				opacity: 0,
 				duration: 0.3,
 				onComplete: () => {
-					gsap.set($(container.current).find(".c-char"), { y: "-100%", opacity: 0 });
-				}
+					gsap.set($(container.current).find(".c-char"), {
+						y: "-100%",
+						opacity: 0,
+					});
+				},
 			});
-			
 		}
 	}, [matches, isActive]);
 
