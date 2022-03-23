@@ -1,0 +1,75 @@
+.c-stories {
+	margin: 0 7vw;
+
+	&_main {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: relative;
+	}
+
+	&_indicator,
+	&_main h2,
+	&_main h4,
+	&_main h4 {
+		margin: 2rem 0;
+	}
+
+	&_content {
+		width: 100%;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&_indicator {
+		width: 100%;
+		padding-left: 9rem;
+		
+
+		.o-text {
+			margin: 0;
+			
+			& span {
+				font-family: 'Riposte';
+			}
+		}
+
+		.o-text span:last-child {
+			color: $grey;
+		}
+	}
+
+	&_controls {
+		width: 50px;
+		height: 50px;
+		border: 0px;
+		padding: 0;
+	}
+
+	&_story {
+		position: absolute;
+		padding: 4rem 6rem;
+		overflow: hidden;
+		width: 100%;
+
+		top: 50%;
+		transform: translateY(-50%);
+
+		&:first-child {
+			position: static;
+			transform: none;
+		}
+
+		& * {
+			opacity: 0;
+		}
+
+		&:first-child {
+			* {
+				opacity: 1;
+			}
+		}
+	}
+}

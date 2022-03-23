@@ -1,11 +1,12 @@
-import { useRef, useState, useEffect } from "react";
-import useResize from "./useResize";
-import { useLocation } from "react-router-dom";
-import { useTransition } from "../../animations";
-import locomotiveScroll from "locomotive-scroll";
 import axios from "axios";
-import { formatPosts, formatSteps, formatAbout } from "../formatData";
-import { device } from "../../components/styles/device";
+import { useEffect, useRef, useState } from "react";
+import {
+	formatAbout,
+	formatPosts,
+	formatSteps,
+	formatStories,
+} from "../formatData";
+import useResize from "./useResize";
 
 export default function useAppData(scrollRef) {
 	const baseSpacing = {
@@ -114,6 +115,7 @@ export default function useAppData(scrollRef) {
 			`${basePath}/projects?populate=*`,
 			`${basePath}/steps`,
 			`${basePath}/about`,
+			`${basePath}/stories`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
@@ -123,6 +125,7 @@ export default function useAppData(scrollRef) {
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
+				const formattedStories = formatStories(data[3].data.data);
 
 				setState(prev => ({
 					...prev,
@@ -131,6 +134,7 @@ export default function useAppData(scrollRef) {
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
+						stories: formattedStories
 					},
 				}));
 			})

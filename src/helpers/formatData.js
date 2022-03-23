@@ -69,3 +69,14 @@ export const formatImageList = array => {
 		};
 	});
 };
+
+export const formatStories = array => {
+	return array.map(story => {
+		return {
+			id: story.id,
+			heading: story.attributes.Heading,
+			author: story.attributes.Author,
+			quote: story.attributes.Quote,
+		};
+	});
+};

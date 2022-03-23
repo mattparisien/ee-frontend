@@ -41,6 +41,10 @@ function Link(props, ref) {
 			target={props.target}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			ref={ref}
+			data-scroll
+			data-scroll-speed={
+				props["data-scroll-speed"] ? props["data-scroll-speed"] : 1
+			}
 		>
 			{props.children}
 		</a>

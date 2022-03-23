@@ -8,6 +8,14 @@
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
+		transform: translateY(50%);
+		opacity: 1;
+		// transition: 500ms ease;
+
+		&.is-in-view {
+			transform: translateY(0);	
+			opacity: 1;
+		}
 
 		&_loader {
 			position: absolute;

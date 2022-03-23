@@ -14,6 +14,7 @@ import SplitText from "gsap/SplitText";
 import gsap from "gsap";
 import classNames from "classnames";
 import TransitionCard from "./components/Transition/TransitionCard";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -39,23 +40,21 @@ function App() {
 		setTransitioning,
 	} = useAppData();
 
-	const [isSplit, setSplit] = useState(false);
+	const isSplit = useRef(false);
 	const split = useRef(null);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
-		if (!isSplit) {
-			setSplit(true);
+		if (!isSplit.current) {
+			isSplit.current = false;
+			console.log($(".-split p"))
 
 			setTimeout(() => {
-				const text = new SplitText($(".-split"), {
-					type: "chars, lines",
-					charsClass: "c-char",
+				const text = new SplitText($(".-split p"), {
+					type: "lines",
 					linesClass: "c-line",
 				});
-
-				split.current = text;
 			}, 300);
 		}
 	}, [isSplit, location]);
@@ -115,51 +114,53 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 				</Helmet>
 				<ThemeProvider theme={themes}>
 					{/* <GlobalStyles /> */}
-					<LocomotiveScrollProvider
-						onLocationChange={scroll =>
-							scroll.scrollTo(0, { duration: 0, disableLerp: true })
-						}
-						options={{
-							initPosition: {
-								x: 0,
-								y: 0,
-							},
+					<ParallaxProvider>
+						<LocomotiveScrollProvider
+							onLocationChange={scroll =>
+								scroll.scrollTo(0, { duration: 0, disableLerp: true })
+							}
+							lerp={1}
+							options={{
+								initPosition: {
+									x: 0,
+									y: 0,
+								},
 
-							smooth: true,
-							getDirection: true,
-						}}
-						containerRef={scrollWrapper}
-					>
-						<Header
-							toggleMenu={() => setMenuActive(!menuActive)}
-							navItems={navItems}
-							toggleTransitioning={() => setTransitioning(!transitioning)}
-						/>
-						<TransitionCard transitioning={transitioning} />
-
-						<div
-							className='scroll-wrapper'
-							ref={scrollWrapper}
-							data-scroll-container
+								smooth: true,
+								getDirection: true,
+							}}
+							containerRef={scrollWrapper}
 						>
-							<SiteWideControls.Provider value={siteControls}>
-								<DataContext.Provider value={state.data}>
-									<ColorContext.Provider>
-										<CursorContext.Provider>
-											<LoadingContext.Provider>
-												<LoadingScreen isActive={pending} />
+							<Header
+								toggleMenu={() => setMenuActive(!menuActive)}
+								navItems={navItems}
+								toggleTransitioning={() => setTransitioning(!transitioning)}
+							/>
+							<TransitionCard transitioning={transitioning} />
 
-												{/* <ModalWrapper hoverState={hoverState} /> */}
+							<div
+								className='scroll-wrapper'
+								ref={scrollWrapper}
+								data-scroll-container
+							>
+								<SiteWideControls.Provider value={siteControls}>
+									<DataContext.Provider value={state.data}>
+										<ColorContext.Provider>
+											<CursorContext.Provider>
+												<LoadingContext.Provider>
+													<LoadingScreen isActive={pending} />
 
-												{/* <CursorFollower /> */}
+													{/* <ModalWrapper hoverState={hoverState} /> */}
 
-												<Menu
-													isActive={menuActive}
-													navItems={navItems}
-													toggleMenu={() => setMenuActive(!menuActive)}
-												/>
+													{/* <CursorFollower /> */}
 
-												{/* <SideMenu
+													<Menu
+														isActive={menuActive}
+														navItems={navItems}
+														toggleMenu={() => setMenuActive(!menuActive)}
+													/>
+
+													{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
 									hasShown={state.sidebar.hasShown}
 									appRefs={appRefs}
@@ -168,28 +169,29 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									toggleMenu={toggleMenu}
 								/> */}
 
-												<main>
-													<SiteRoutes
+													<main>
+														<SiteRoutes
+															addToRefs={addToRefs}
+															location={location}
+															siteControls={siteControls}
+														/>
+													</main>
+
+													<Footer
 														addToRefs={addToRefs}
-														location={location}
-														siteControls={siteControls}
+														location={location.pathname}
+														navItems={navItems}
 													/>
-												</main>
 
-												<Footer
-													addToRefs={addToRefs}
-													location={location.pathname}
-													navItems={navItems}
-												/>
-
-												{/* <CookieBar /> */}
-											</LoadingContext.Provider>
-										</CursorContext.Provider>
-									</ColorContext.Provider>
-								</DataContext.Provider>
-							</SiteWideControls.Provider>
-						</div>
-					</LocomotiveScrollProvider>
+													{/* <CookieBar /> */}
+												</LoadingContext.Provider>
+											</CursorContext.Provider>
+										</ColorContext.Provider>
+									</DataContext.Provider>
+								</SiteWideControls.Provider>
+							</div>
+						</LocomotiveScrollProvider>
+					</ParallaxProvider>
 				</ThemeProvider>
 			</div>
 		</HelmetProvider>

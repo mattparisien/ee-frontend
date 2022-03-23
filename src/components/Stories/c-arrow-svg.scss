@@ -1,0 +1,18 @@
+.c-arrow-svg {
+
+
+
+	path {
+		fill: $dark;
+
+
+    &:first-child {
+      transform: translateX(100%);
+    }
+	}
+
+	circle {
+		stroke: $dark;
+		stroke-width: 2px;
+	}
+}

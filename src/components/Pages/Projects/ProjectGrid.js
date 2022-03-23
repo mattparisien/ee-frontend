@@ -1,27 +1,41 @@
-import classNames from "classnames";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
 // import { ColorContext, CursorContext } from "../../App/App";
-import { useMediaQuery } from "@mui/material";
+import { CircularProgress, useMediaQuery } from "@mui/material";
+import classNames from "classnames";
+import $ from "jquery";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "../../Link/Link";
-import Frame from "../../Vector/Frame";
-import { CircularProgress } from "@mui/material";
 
 function ProjectGrid({ items }) {
 	// const { setPageTheme } = useContext(ColorContext);
 	// const { setCursorState } = useContext(CursorContext);
 	const tablet = useMediaQuery("(max-width: 768px)");
 
-	const themes = [
-		"strawberry",
-		"dark",
-		"sunny",
-		"blue",
-		"fancy",
-		"orangeCrush",
-	];
+	const gridItems = useRef([]);
+	gridItems.current = [];
 
-	useEffect(() => {}, [items]);
+	useEffect(() => {
+		if (gridItems.current) {
+			const handleIntersect = entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting && !$(entry.target).hasClass("is-in-view")) {
+						$(entry.target).addClass("is-in-view");
+					}
+				});
+			};
+
+			const observer = new IntersectionObserver(handleIntersect);
+
+			gridItems.current.forEach(item => observer.observe(item));
+		}
+	}, [gridItems.current]);
+
+	const addToRefs = el => {
+		if (el && !gridItems.current.includes(el)) {
+			gridItems.current.push(el);
+		}
+	};
+
+	const scrollSpeeds = [8, 1, 6, 3];
 
 	return (
 		<div className='c-grid'>
@@ -29,6 +43,7 @@ function ProjectGrid({ items }) {
 				items.map((item, i) => {
 					return (
 						<Item
+							addToRefs={addToRefs}
 							key={i}
 							// onMouseEnter={handleMouseEnter}
 							// onMouseLeave={handleMouseLeave}
@@ -37,6 +52,7 @@ function ProjectGrid({ items }) {
 							previewText={item.subtitle}
 							title={item.title}
 							url={`/projects/${item.id}`}
+							scrollSpeed={scrollSpeeds[i]}
 						/>
 					);
 				})}
@@ -44,29 +60,16 @@ function ProjectGrid({ items }) {
 	);
 }
 
-function Item({
-	src,
-
-	previewText,
-	title,
-	url,
-}) {
+function Item({ src, addToRefs, previewText, title, url, scrollSpeed }) {
 	const ref = useRef(null);
-	const [inViewRef, inView] = useInView({ threshold: 0.5 });
-	const [loaded, setLoaded] = useState(false);
 
-	const setRefs = useCallback(
-		node => {
-			// Ref's from useRef needs to have the node assigned to `current`
-			ref.current = node;
-			// Callback refs, like the one from `useInView`, is a function that takes the node as an argument
-			inViewRef(node);
-		},
-		[inViewRef]
-	);
+	const [loaded, setLoaded] = useState(false);
+	const inViewport = useRef(false);
+
+	const item = useRef(null);
 
 	const itemClasses = classNames("c-grid_item -relative", {
-		"is-in-view": inView,
+		"is-in-view": inViewport.current,
 	});
 
 	return (
@@ -75,8 +78,9 @@ function Item({
 			href={url}
 			target='_blank'
 			rel='noreferrer'
-			ref={setRefs}
 			isRouterLink
+			ref={addToRefs}
+			data-scroll-speed={scrollSpeed}
 		>
 			{!loaded && (
 				<div className='c-grid_item_loader'>

@@ -2,71 +2,52 @@
 	-webkit-font-smoothing: antialiased;
 	font-weight: lighter;
 	box-sizing: border-box;
+	font-family: 'Canela';
+}
+
+// @font-face {
+// 	font-family: "Kobe";
+// 	src: url("../assets//fonts/Kobe.woff")
+// }
+
+// @font-face {
+// 	font-family: "Kobe Bold";
+// 	src: url("../assets//fonts/KobeBold.woff")
+// }
+
+@font-face {
+	font-family: "Canela";
+	src: url("../assets/fonts/Canela-Regular-Trial.otf");
 }
 
 @font-face {
-	font-family: "Kobe";
-	src: url("../assets//fonts/Kobe.woff")
+	font-family: "Canela";
+	src: url("../assets/fonts/Canela-Medium-Trial.otf");
+	font-weight: 500;
 }
 
 @font-face {
-	font-family: "Kobe Bold";
-	src: url("../assets//fonts/KobeBold.woff")
+	font-family: "Canela";
+	font-style: italic;
+	src: url("../assets/fonts/Canela-ThinItalic-Trial.otf");
 }
 
 @font-face {
-	font-family: "Courier";
-	src: url("../assets//fonts/Soehne.woff2")
+	font-family: "Riposte";
+	src: url("../assets/fonts/GTFRiposteTRIAL-Regular.otf");
 }
 
-@font-face {
-	font-family: "Soehne Body";
-	src: url("../assets//fonts/SoehneBody.woff2")
+// @font-face {
+// 	font-family: "Soehne Body";
+// 	src: url("../assets//fonts/SoehneBody.woff2")
+// }
+
+a,
+.c-link, h4 , .o-text {
+	font-family: "Riposte";
 }
 
 
-
-h1,
-h2 {
-	&,
-	& div {
-		font-family: "Kobe";
-	}
-}
-
-a {
-	font-family: "Soehne Body";
-}
-
-h3,
-h4,
-h5,
-h6 {
-	&,
-	& div {
-		font-family: "Kobe";
-	}
-}
-
-.o-h1,
-.o-h2,
-.o-h3,
-.o-h4,
-.o-h5,
-.o-h6 {
-	// opacity: 0;
-	transition: $transition;
-	
-}
-
-.o-h1.-split,
-.o-h2.-split,
-.o-h3.-split,
-.o-h4.-split {
-	> div {
-		overflow: hidden;
-	}
-}
 
 .c-heading.-h2 {
 	font-size: 2rem;

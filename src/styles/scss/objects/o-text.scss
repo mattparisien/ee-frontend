@@ -1,4 +1,29 @@
 .o-text {
-  font-family: 'Soehne Body';
+  
   line-height: 1.55rem;
+}
+
+.-text-big {
+	font-size: 4rem;
+	font-family: "Canela" !important;
+
+	line-height: 5rem;
+
+	@include media("<=tablet") {
+		.c-star.-inline svg,
+		.c-planet.-inline svg {
+			width: 2rem !important;
+			height: 2rem !important;
+		}
+	}
+
+	@include media(">=phoneL") {
+		font-size: 3.7rem;
+		line-height: 4rem;
+	}
+
+	@include media(">=desktop") {
+		font-size: 5rem;
+		line-height: 6rem;
+	}
 }
