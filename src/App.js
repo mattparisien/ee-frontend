@@ -48,10 +48,10 @@ function App() {
 
 		if (!isSplit.current) {
 			isSplit.current = false;
-			console.log($(".-split p"))
+			console.log($(".-split p"));
 
 			setTimeout(() => {
-				const text = new SplitText($(".-split p"), {
+				const text = new SplitText($(".-split p, .-split"), {
 					type: "lines",
 					linesClass: "c-line",
 				});

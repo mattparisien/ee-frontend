@@ -4,7 +4,6 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 function Stories({ slides }) {
 	const [active, setActive] = useState(1);
-	const [hovering, setHovering] = useState(false);
 	const stories = useRef([]);
 	stories.current = [];
 
@@ -21,8 +20,6 @@ function Stories({ slides }) {
 			const prevSlide = $(
 				`[data-story-id=${active === 1 ? slides.length : active - 1}]`
 			);
-
-			console.log("prev", prevSlide);
 
 			gsap.fromTo(
 				$(currentSlide).children(),
@@ -68,7 +65,7 @@ function Stories({ slides }) {
 						)
 					}
 				>
-					<Arrow isHovering={hovering} />
+					<Arrow />
 				</button>
 				<div className='c-stories_content'>
 					{slides &&
@@ -87,15 +84,13 @@ function Stories({ slides }) {
 				</div>
 
 				<button
-					onMouseEnter={() => setHovering(!hovering)}
-					onMouseLeave={() => setHovering(!hovering)}
 					style={{ background: "none " }}
 					className='c-stories_controls c-stories_controls_right'
 					onClick={() =>
 						setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1))
 					}
 				>
-					<Arrow flip={true} isHovering={hovering} />
+					<Arrow flip={true} />
 				</button>
 			</div>
 		</div>
@@ -122,7 +117,6 @@ function Story(
 
 function Arrow({ flip, isHovering }) {
 	const svg = useRef(null);
-	const tl = useRef(gsap.timeline());
 
 	return (
 		<svg

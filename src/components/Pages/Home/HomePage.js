@@ -6,6 +6,7 @@ import { DataContext } from "../../../App";
 import ProjectGrid from "../Projects/ProjectGrid";
 import Stories from "../../Stories/Stories";
 import ReactMarkdown from "react-markdown";
+import gsap from "gsap";
 
 function HomePage({ toggleTransitioning, transitioning }) {
 	const data = useContext(DataContext);
@@ -30,7 +31,14 @@ function HomePage({ toggleTransitioning, transitioning }) {
 			const handleIntersect = entries => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting && !$(entry.target).hasClass("is-in-view")) {
-						$(entry.target).addClass("is-in-view");
+						gsap.to($(entry.target).find(".c-line"), {
+							y: 0,
+							opacity: 1,
+							ease: 'power3.out',
+							stagger: 0.2,
+							duration: 2,
+							delay: 0.5
+						})
 					}
 				});
 			};
@@ -55,7 +63,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 					<ContainerFluid classes='-stretchY'>
 						<ReactMarkdown
 							children={data.about && data.about.body1}
-							className='o-text -text-big'
+							className='o-text -text-big -split -fadeUp'
 						/>
 					</ContainerFluid>
 				</Section>
@@ -72,7 +80,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 												children={step.title}
 												component='h3'
 											/>
-											<p className='o-text'>{step.body}</p>
+											<p className='o-text -split -fadeUp'>{step.body}</p>
 										</div>
 									);
 								})}
