@@ -1,0 +1,17 @@
+.c-quotation {
+	
+	width: 80vw;
+	opacity: 0.8;
+
+	position: absolute;
+  top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	svg {
+		height: 100%;
+		path {
+			fill: $yellow;
+		}
+	}
+}

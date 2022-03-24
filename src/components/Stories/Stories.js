@@ -1,9 +1,14 @@
 import classNames from "classnames";
 import gsap from "gsap";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Quotation from "../Vector/Quotation";
+import variables from "../../styles/scss/_vars.module.scss";
+import { shuffleColors } from "../../helpers/shuffleColors";
 
 function Stories({ slides }) {
 	const [active, setActive] = useState(1);
+	const [fill, setFill] = useState(null);
 	const stories = useRef([]);
 	stories.current = [];
 
@@ -15,44 +20,68 @@ function Stories({ slides }) {
 	};
 
 	useEffect(() => {
+		const getColor = () => {
+			const color = shuffleColors();
+
+			if (color === fill) {
+				return getColor();
+			} else {
+				return color;
+			}
+		};
+
+		setFill(getColor());
+
 		if (stories.current && slides) {
+			const quotation = $(".c-quotation").find("path");
 			const currentSlide = $(`[data-story-id=${active}]`);
 			const prevSlide = $(
 				`[data-story-id=${active === 1 ? slides.length : active - 1}]`
 			);
 
+			gsap.to(quotation, {
+				fill: fill,
+				duration: 0.5,
+				delay: 1
+			});
+
 			gsap.fromTo(
-				$(currentSlide).children(),
+				currentSlide,
 				{
-					y: "50px",
-					opacity: 0,
+					top: "50%",
 				},
 				{
-					y: "-50%",
+					top: 0,
+					duration: 1,
 					opacity: 1,
-					duration: 0.7,
-					delay: 1,
 					ease: "power3.out",
-					stagger: 0.1,
+					delay: 1,
 				}
 			);
 
-			gsap.to($(prevSlide).children(), {
-				y: "-100px",
-				opacity: 0,
-				duration: 0.7,
-				ease: "power3.in",
-				stagger: 0.1,
-			});
+			gsap.fromTo(
+				prevSlide,
+				{
+					top: "0",
+				},
+				{
+					top: "-50%",
+					duration: 1,
+					ease: "power3.in",
+					opacity: 0,
+				}
+			);
 		}
 	}, [stories, active]);
 
 	return (
-		<div className='c-stories'>
+		<div className='c-stories -relative'>
+			<Quotation />
 			<div className='c-stories_indicator'>
 				<p className='o-text -uppercase'>
 					<span>Story ·</span> <span>{active}</span>{" "}
-					<span>/ {slides && slides.length}</span>
+					<span>/</span>
+					<span>{slides && slides.length}</span>
 				</p>
 			</div>
 			<div className='c-stories_main'>
@@ -67,21 +96,20 @@ function Stories({ slides }) {
 				>
 					<Arrow />
 				</button>
-				<div className='c-stories_content'>
-					{slides &&
-						slides.map(slide => (
-							<Story
-								addToRefs={addToRefs}
-								heading={slide.heading}
-								quote={slide.quote}
-								author={slide.author}
-								key={slide.id}
-								id={slide.id}
-								active={active}
-								setActive={setActive}
-							/>
-						))}
-				</div>
+
+				{slides &&
+					slides.map(slide => (
+						<Story
+							addToRefs={addToRefs}
+							heading={slide.heading}
+							quote={slide.quote}
+							author={slide.author}
+							key={slide.id}
+							id={slide.id}
+							active={active}
+							setActive={setActive}
+						/>
+					))}
 
 				<button
 					style={{ background: "none " }}
@@ -108,7 +136,7 @@ function Story(
 
 	return (
 		<div className={classes} ref={addToRefs} data-story-id={id}>
-			<h2 className='o-h2'>{heading}</h2>
+			<h2>{heading}</h2>
 			<h3 className='o-h3'>{quote}</h3>
 			<h4 className='o-h4'>{author}</h4>
 		</div>
@@ -146,18 +174,7 @@ function Arrow({ flip, isHovering }) {
 				r='49'
 				transform='rotate(-180 50 50.3408)'
 			></circle>{" "}
-			<circle
-				class='fill'
-				stroke-dashoffset='311'
-				stroke-dasharray='311'
-				opacity='1'
-				cx='50'
-				cy='50.3408'
-				r='49'
-				transform='matrix(1,0,0,1,0,0)'
-				stroke='white'
-				data-svg-origin='50 50.34080123901367'
-			></circle>{" "}
+			<circle cx='50' cy='50.3408' r='49'></circle>{" "}
 		</svg>
 	);
 }

@@ -1,7 +1,5 @@
 import React from "react";
 import Button from "../../../Button/Button";
-// import HeadingSection from "../../../Containers/HeadingSection";
-import Steps from "../components/Steps";
 import ContainerFluid from "../../../Containers/ContainerFluid";
 
 function How() {

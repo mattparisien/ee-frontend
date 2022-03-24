@@ -1,14 +1,40 @@
 .c-arrow-svg {
+	overflow: hidden;
+	position: relative;
+	display: block;
+	z-index: 999;
 
 
+
+	circle:nth-of-type(2) {
+		transition: 400ms ease;
+		position: static;
+		transform: scale(0.001);
+		transform-origin: center;
+
+		fill: $dark;
+	}
+
+	// &:hover circle:nth-of-type(2) {
+	// 	fill: $dark;
+	// 	transform: scale(1);
+	// 	transition: 400ms ease;
+	// }
+
+	&:hover path {
+		fill: $light;
+	}
 
 	path {
 		fill: $dark;
+		
 
+		position: static;
+		transition: 400ms ease;
 
-    &:first-child {
-      transform: translateX(100%);
-    }
+		&:first-child {
+			transform: translateX(100%);
+		}
 	}
 
 	circle {

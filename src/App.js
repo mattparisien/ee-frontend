@@ -15,6 +15,7 @@ import gsap from "gsap";
 import classNames from "classnames";
 import TransitionCard from "./components/Transition/TransitionCard";
 import { ParallaxProvider } from "react-scroll-parallax";
+import useResize from "./helpers/hooks/useResize";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -26,6 +27,7 @@ function App() {
 	const scrollWrapper = useRef(null);
 	const location = useLocation();
 	const app = useRef(null);
+	const [windowWidth] = useResize();
 	gsap.registerPlugin(SplitText);
 
 	const {
@@ -44,20 +46,45 @@ function App() {
 	const split = useRef(null);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
+		if (isSplit.current) {
+			//If has been split and window is resized, revert and split again
+			split.current.revert().split();
+		}
 
 		if (!isSplit.current) {
-			isSplit.current = false;
-			console.log($(".-split p"));
+			//Split text on initial render
+			isSplit.current = true;
 
 			setTimeout(() => {
-				const text = new SplitText($(".-split p, .-split"), {
+				split.current = new SplitText($(".-split p, .-split"), {
 					type: "lines",
 					linesClass: "c-line",
 				});
 			}, 300);
 		}
-	}, [isSplit, location]);
+	}, [isSplit, location, windowWidth]);
+
+	useEffect(() => {
+		//Handle lines fading up on scroll
+
+		const handleIntersection = entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					gsap.to($(entry.target).find(".c-line"), {
+						y: 0,
+						opacity: 1,
+						ease: "power3.out",
+						stagger: 0.2,
+						duration: 1,
+					});
+				}
+			});
+		};
+
+		const observer = new IntersectionObserver(handleIntersection);
+
+		$(".-fadeUp").each((i, el) => observer.observe(el));
+	});
 
 	const toggleScrollLock = () => {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
@@ -128,15 +155,15 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 								smooth: true,
 								getDirection: true,
+								getSpeed: true,
 							}}
 							containerRef={scrollWrapper}
 						>
 							<Header
 								toggleMenu={() => setMenuActive(!menuActive)}
 								navItems={navItems}
-								toggleTransitioning={() => setTransitioning(!transitioning)}
 							/>
-							<TransitionCard transitioning={transitioning} />
+							{/* <TransitionCard transitioning={transitioning} /> */}
 
 							<div
 								className='scroll-wrapper'

@@ -15,22 +15,13 @@ function Link(props, ref) {
 		props.onClick && props.onClick(e);
 		e.preventDefault();
 
-		// playTransition();
+
 
 		setTimeout(() => {
 			navigate(props.href);
-		}, variables.loaderDuration.replace(".", "").concat("00"));
+		}, 400);
 	};
 
-	// const { setCursorState } = useContext(CursorContext);
-
-	// const handleMouseEnter = () => {
-	// 	setCursorState("link-hovering");
-	// };
-
-	// const handleMouseLeave = () => {
-	// 	setCursorState("following");
-	// };
 
 	return (
 		<a

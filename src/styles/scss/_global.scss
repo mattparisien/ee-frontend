@@ -2,7 +2,7 @@
 	-webkit-font-smoothing: antialiased;
 	font-weight: lighter;
 	box-sizing: border-box;
-	font-family: 'Canela';
+	font-family: "Canela";
 }
 
 // @font-face {
@@ -43,11 +43,26 @@
 // }
 
 a,
-.c-link, h4 , .o-text {
+.c-link,
+h4,
+.o-text {
 	font-family: "Riposte";
 }
 
+.App {
+	background-color: $light;
+}
 
+
+main {
+	opacity: 0;
+	transition: $transition-expo;
+}
+
+
+.is-dom-loaded main {
+	opacity: 1;
+}
 
 .c-heading.-h2 {
 	font-size: 2rem;
@@ -138,6 +153,11 @@ ul {
 
 [data-theme="sunny"] {
 	background-color: $yellow;
+	color: $dark;
+}
+
+[data-theme="light"] {
+	background-color: $light;
 	color: $dark;
 }
 
