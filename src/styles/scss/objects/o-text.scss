@@ -1,6 +1,10 @@
 .o-text {
-  
+	
   line-height: 1.55rem;
+
+	&, & p {
+		font-family: 'Riposte';
+	}
 }
 
 .-text-big {

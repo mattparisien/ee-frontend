@@ -1,26 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import { setQuaternionFromProperEuler } from "three/src/math/MathUtils";
-import { shuffleColors } from "../../../helpers/shuffleColors";
+import React, { useContext, useEffect, useState, useMemo } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { DataContext } from "../../../App";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import { DataContext } from "../../../App";
-import Arrow from "../../Vector/Arrow";
 import Link from "../../Link/Link";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
+import Arrow from "../../Vector/Arrow";
+import { shuffleColors } from "../../../helpers/shuffleColors";
+import { Container } from "@mui/material";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
 
 	const [param, setParam] = useState(null);
 	const [info, setInfo] = useState(null);
-	const [themeColor, setThemeColor] = useState(null);
+
 	const scroll = useLocomotiveScroll();
 
-
-
-	useEffect(() => {
-		setThemeColor(shuffleColors());
-	}, []);
+	const accentColor = useMemo(() => shuffleColors(), []);
 
 	// useEffect(() => {
 
@@ -29,6 +26,10 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 
 	// 	scroll && scroll.scroll && scroll.scroll.scrollTo(0, { duration: 0, disableLerp: true });
 	// }, [location, scroll]);
+
+	useEffect(() => {
+		console.log(info);
+	}, [info]);
 
 	useEffect(() => {
 		//Find query param
@@ -60,14 +61,11 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 		}
 	}, [data, location, param]);
 
-	useEffect(() => {
-		console.log(info);
-	}, [info]);
-
 	return (
 		<div className='o-page o-single-project'>
-			<ContainerFluid classes={`-bg-${themeColor}`}>
-				{/* <Section classes='o-hero -fullHeight'>
+			<Section data-theme='light' classes='o-hero'>
+				<ContainerFluid>
+					{/* <Section classes='o-hero -fullHeight'>
 					<div className='o-hero_text'>
 						<h2 className='o-h2 -bold -text-orange'>{info && info[0].title}</h2>
 						<h3 className='o-h3'>{info && info[0].subtitle}</h3>
@@ -80,11 +78,21 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 						/>
 					</div>
 				</Section> */}
-				<Section classes={`o-hero-2 -bg-${themeColor}`}>
+
 					<div className='o-hero_text'>
-						<h3 className='o-h3'>{info && info[0].title}</h3>
-						<h2 className='o-h2 -bold -split'>{info && info[0].subtitle}</h2>
+						<h3 className='o-h3' style={{ color: accentColor }}>
+							{info && info[0].title}
+						</h3>
+						<h2 className='o-h2 -bold -split' style={{ color: accentColor }}>
+							{info && info[0].subtitle}
+						</h2>
 						{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
+					</div>
+					<div className='o-hero_image'>
+						<img
+							src={info && info[0].media.featureImage.url}
+							alt={info && info[0].media.featureImage.altText}
+						></img>
 					</div>
 					{/* 				
 					<div className='o-hero_image-wrapper-2'>
@@ -93,9 +101,40 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 							alt={info && info[0].media.featureImage.altText}
 						/>
 					</div> */}
+				</ContainerFluid>
+			</Section>
+
+			<Section classes='o-overview -padding-lg' data-theme='light'>
+				<ContainerFluid>
+					<div className='o-overview_left'>
+						<ReactMarkdown className='o-h3' children={info && info[0].goal} />
+					</div>
+					<div className='o-overview_right'>
+						<ReactMarkdown className="o-text -body" children={info && info[0].about1} />
+					</div>
+				</ContainerFluid>
+			</Section>
+			{info && info[0].media.additional && (
+				<Section data-theme='light' classes='o-feature'>
+					<ContainerFluid>
+						<div className='o-feature_item' data-scroll>
+							<div className='item-revealer'></div>
+							<img
+								src={
+									info &&
+									info[0].media.additional &&
+									info[0].media.additional[0].attributes.url
+								}
+							></img>
+						</div>
+					</ContainerFluid>
 				</Section>
-			</ContainerFluid>
-			<ContainerFluid classes='-bg-light'>
+			)}
+			<Section>
+				
+			</Section>
+
+			{/* <ContainerFluid classes='-bg-light'>
 				<div className={`half-bg -bg-${themeColor}`}></div>
 				<div className='o-hero_image-wrapper-2'>
 					<img
@@ -222,10 +261,10 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 							})}
 					</div>
 				</Section>
-			</ContainerFluid>
+			</ContainerFluid> */}
 
 			<Link
-				classes={`o-next -stretchX -stretchY -padding-lg -bg-${themeColor}`}
+				classes={`o-next -stretchX -stretchY -padding-lg `}
 				isRouterLink
 				href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
 			>

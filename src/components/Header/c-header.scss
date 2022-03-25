@@ -6,6 +6,11 @@
 	height: $headerHeight;
 	z-index: 9999;
 
+	.c-link {
+		height: 100%;
+		display: block;
+	}
+
 	.o-container {
 		height: 100%;
 		display: flex;
@@ -16,7 +21,7 @@
 	.c-list li {
 		color: $dark;
 		transition: $transition;
-		
+
 		&:hover {
 			opacity: 0.5;
 		}
@@ -34,7 +39,6 @@
 		@include media("<=tablet") {
 			display: none;
 		}
-
 	}
 
 	&_nav-btn.mobile {

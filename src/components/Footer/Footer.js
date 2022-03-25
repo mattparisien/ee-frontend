@@ -18,12 +18,11 @@ export default function Footer(props) {
 
 	const scrollToTop = () => {
 		if (scroll) {
-			scroll.scroll.scrollTo(0, 0)
+			scroll.scroll.scrollTo(0, 0);
 		} else {
-			window.scrollTo(0, 0)
+			window.scrollTo(0, 0);
 		}
-	}
-	
+	};
 
 	return (
 		<footer className='c-footer -bg-dark'>
@@ -33,14 +32,17 @@ export default function Footer(props) {
 						<h2 className='o-h2'>Hear to listen</h2>
 						<DrawnLogo />
 					</div>
-					
 
 					<div className='c-footer_bottom'>
 						<h4 className='o-h4 c-footer_brand'>The Eyes & Ears Agency</h4>
 						<nav className='c-footer_nav'>
 							<List items={props.navItems} color='light' />
 						</nav>
-						<ArrowButton color='light' rotation={90} handleClick={scrollToTop}/>
+						<ArrowButton
+							color='light'
+							rotation={90}
+							handleClick={scrollToTop}
+						/>
 					</div>
 				</div>
 				{/* {layout === "contact" && <Contact />} */}

@@ -17,6 +17,7 @@ export const formatPosts = arr => {
 			id: post.id,
 			title: post.attributes.Title,
 			subtitle: post.attributes.Subtitle,
+			goal: post.attributes.Goal,
 			about1: post.attributes.About1,
 			about2: post.attributes.About2,
 			media: {
