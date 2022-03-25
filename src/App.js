@@ -42,34 +42,36 @@ function App() {
 		setTransitioning,
 	} = useAppData();
 
+	const [headerColor, setHeaderColor] = useState("light");
+
 	const isSplit = useRef(false);
 	const split = useRef(null);
 
-	useEffect(() => {
-		if (isSplit.current) {
-			//If has been split and window is resized, revert and split again
-			split.current.revert().split();
-		}
+	// useEffect(() => {
+	// 	if (isSplit.current) {
+	// 		//If has been split and window is resized, revert and split again
+	// 		split.current.revert().split();
+	// 	}
 
-		if (!isSplit.current) {
-			//Split text on initial render
-			isSplit.current = true;
+	// 	if (!isSplit.current) {
+	// 		//Split text on initial render
+	// 		isSplit.current = true;
 
-			setTimeout(() => {
-				split.current = new SplitText($(".-split p, .-split"), {
-					type: "lines",
-					linesClass: "c-line",
-				});
-			}, 300);
-		}
-	}, [isSplit, location, windowWidth]);
+	// 		setTimeout(() => {
+	// 			split.current = new SplitText($(".-split p, .-split"), {
+	// 				type: "lines",
+	// 				linesClass: "c-line",
+	// 			});
+	// 		}, 300);
+	// 	}
+	// }, [isSplit, location, windowWidth]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
 
 		const handleIntersection = entries => {
 			entries.forEach(entry => {
-				if (entry.isIntersecting) {
+				if (entry.isIntersecting && !$(entry.target).attr("data-theme")) {
 					gsap.to($(entry.target).find(".c-line"), {
 						y: 0,
 						opacity: 1,
@@ -77,30 +79,24 @@ function App() {
 						stagger: 0.2,
 						duration: 1,
 					});
+					
 				}
 			});
 		};
 
 		const observer = new IntersectionObserver(handleIntersection);
 
-		$(".-fadeUp").each((i, el) => observer.observe(el));
+		$(".-fadeUp, [data-theme]").each((i, el) => observer.observe(el));
 	});
 
 	const toggleScrollLock = () => {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
 	};
 
-	const toggleHeaderColor = sectionBgColor => {
-		setState(prev => ({
-			...prev,
-			headerColor: sectionBgColor === "dark" ? "light" : "dark",
-		}));
-	};
-
 	const siteControls = {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
-		toggleHeaderColor,
+
 		transitioning,
 		setTransitioning,
 	};
@@ -161,6 +157,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						>
 							<Header
 								toggleMenu={() => setMenuActive(!menuActive)}
+								color={headerColor}
 								navItems={navItems}
 							/>
 							{/* <TransitionCard transitioning={transitioning} /> */}

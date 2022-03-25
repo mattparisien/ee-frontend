@@ -5,7 +5,7 @@ import List from "../Lists/List";
 import Link from "../Link/Link";
 import classNames from "classnames";
 
-function Header({ toggleMenu, navItems, toggleTransitioning }) {
+function Header({ toggleMenu, navItems, toggleTransitioning, color }) {
 	const [active, setActive] = useState(false);
 	const [firstRender, setFirstRender] = useState(true);
 
@@ -19,7 +19,7 @@ function Header({ toggleMenu, navItems, toggleTransitioning }) {
 	};
 
 	return (
-		<header className='c-header'>
+		<header className='c-header' data-theme={color}>
 			<ContainerFluid>
 				<div className='c-header_logo'>
 					<Link isRouterLink href={"/"}>

@@ -21,6 +21,7 @@
 	&_indicator {
 		width: 100%;
 		padding-bottom: 3rem;
+		margin-left: 14vw;
 
 		z-index: 99;
 
@@ -84,7 +85,10 @@
 		top: 0;
 		left: 50%;
 		transform: translateX(-50%);
-		opacity: 0;
+		
+		&:not(:first-of-type) {
+			opacity: 0;
+		}
 
 		h2 {
 			font-size: 4.5vw;

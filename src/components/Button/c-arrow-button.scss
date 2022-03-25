@@ -1,0 +1,94 @@
+.c-arrow-button {
+	background: none;
+	width: 5rem;
+	height: 5rem;
+	border: 0px;
+	padding: 0;
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+
+	@include media("<=tablet") {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	&:hover::after {
+		transform: scale(1);
+		top: 0;
+		left: 0;
+	}
+
+	&::after {
+		border-radius: 50%;
+		transition: 600ms ease;
+		position: absolute;
+		top: 50%;
+		left: -50%;
+		content: "";
+		width: 100%;
+		height: 100%;
+		background-color: $dark;
+		transform: scale(0.0001);
+	}
+
+	.c-arrow-svg {
+		overflow: hidden;
+		position: relative;
+		display: block;
+		z-index: 999;
+
+		circle:nth-of-type(2) {
+			transition: 400ms ease;
+			position: static;
+			transform: scale(0.001);
+			transform-origin: center;
+
+			fill: $dark;
+		}
+
+		// &:hover circle:nth-of-type(2) {
+		// 	fill: $dark;
+		// 	transform: scale(1);
+		// 	transition: 400ms ease;
+		// }
+
+		&:hover path {
+			fill: $light;
+		}
+
+		path {
+			fill: $dark;
+
+			position: static;
+			transition: 400ms ease;
+
+			&:first-child {
+				transform: translateX(100%);
+			}
+		}
+
+		circle {
+			stroke: $dark;
+			stroke-width: 2px;
+		}
+	}
+
+	&.is-light {
+		&:hover path {
+			fill: $dark;
+		}
+
+		&::after {
+			background-color: $light;
+		}
+		circle {
+			stroke: $light;
+			stroke-width: 2px;
+		}
+
+		path {
+			fill: $light;
+		}
+	}
+}

@@ -5,6 +5,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Quotation from "../Vector/Quotation";
 import variables from "../../styles/scss/_vars.module.scss";
 import { shuffleColors } from "../../helpers/shuffleColors";
+import ArrowButton from "../Button/ArrowButton";
 
 function Stories({ slides }) {
 	const [active, setActive] = useState(1);
@@ -13,7 +14,6 @@ function Stories({ slides }) {
 	stories.current = [];
 
 	const addToRefs = el => {
-		console.log(el);
 		if (el && !stories.current.includes(el)) {
 			stories.current.push(el);
 		}
@@ -42,7 +42,7 @@ function Stories({ slides }) {
 			gsap.to(quotation, {
 				fill: fill,
 				duration: 0.5,
-				delay: 1
+				delay: 1,
 			});
 
 			gsap.fromTo(
@@ -79,23 +79,18 @@ function Stories({ slides }) {
 			<Quotation />
 			<div className='c-stories_indicator'>
 				<p className='o-text -uppercase'>
-					<span>Story ·</span> <span>{active}</span>{" "}
-					<span>/</span>
+					<span>Story ·</span> <span>{active}</span> <span>/</span>
 					<span>{slides && slides.length}</span>
 				</p>
 			</div>
 			<div className='c-stories_main'>
-				<button
-					style={{ background: "none " }}
-					className='c-stories_controls c-stories_controls_left'
-					onClick={() =>
+				<ArrowButton
+					handleClick={() =>
 						setActive(prev =>
 							prev - 1 === 0 ? slides && slides.length : prev - 1
 						)
 					}
-				>
-					<Arrow />
-				</button>
+				/>
 
 				{slides &&
 					slides.map(slide => (
@@ -111,15 +106,13 @@ function Stories({ slides }) {
 						/>
 					))}
 
-				<button
-					style={{ background: "none " }}
-					className='c-stories_controls c-stories_controls_right'
-					onClick={() =>
+				<ArrowButton
+					flip={true}
+					rotation={180}
+					handleClick={() =>
 						setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1))
 					}
-				>
-					<Arrow flip={true} />
-				</button>
+				/>
 			</div>
 		</div>
 	);

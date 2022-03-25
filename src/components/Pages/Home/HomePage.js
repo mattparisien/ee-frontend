@@ -13,6 +13,8 @@ import $, { Tween } from "jquery";
 import IntertiaPLugin from "gsap/InertiaPlugin";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
+import About from "./About";
+import How from "./How";
 
 function HomePage({ toggleTransitioning, transitioning }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -71,73 +73,17 @@ function HomePage({ toggleTransitioning, transitioning }) {
 	return (
 		<>
 			<div className='o-page o-page_home'>
-				<Section data-theme='light' cxlasses='-fullHeight'></Section>
-				<Section data-theme='dark' classes='o-about -padding-lg'>
-					<ContainerFluid classes='-stretchY'>
-						<ReactMarkdown
-							children={data.about && data.about.body1}
-							className='o-text -text-big -split -fadeUp'
-						/>
-						<Megaphone />
+				<Section data-theme='light' classes='-fullHeight'></Section>
+				<About aboutText={data.about && data.about.body1} />
+				<How steps={data && data.steps} ref={stepsContainer} />
+
+				<Section classes='-padding-lg' data-theme='light'>
+					<ContainerFluid>
+						<ProjectGrid items={data && data.posts && data.posts.slice(0, 4)} />
 					</ContainerFluid>
 				</Section>
-				<Section classes='o-how' data-theme='light' ref={stepsContainer}>
-					<ContainerFluid>
-						<h1 className='o-h1 -padding-lg -text-center -split -fadeUp'>
-							Finding Your <em>Rhythm</em>
-						</h1>
-						<div className='steps-container -relative -margin-top-huge'>
-							<div className='c-steps'>
-								{data &&
-									data.steps &&
-									data.steps.map((step, i) => {
-										return (
-											<div className='c-steps_item' key={i}>
-												<ReactMarkdown
-													className='o-text -text-big -split -fadeUp'
-													children={step.title}
-													component='h3'
-												/>
-												<p className='o-text -split -fadeUp'>{step.body}</p>
-											</div>
-										);
-									})}
-								<div className='c-steps_sheet'>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-									<div className='c-steps_sheet_line' data-scroll></div>
-						
-								</div>
-							</div>
-							<WholeNote />
-							<QuarterNote />
-							<BassClef />
-							<HalfNote />
-						</div>
-
-						<Section classes='-padding-lg'>
-							{/* First option */}
-							<ProjectGrid
-								items={data && data.posts && data.posts.slice(0, 4)}
-							/>
-							{/* Section option */}
-						</Section>
-						<Section classes='-padding-lg'>
-							<Stories slides={data && data.stories} />
-						</Section>
-					</ContainerFluid>
+				<Section classes='-padding-lg' data-theme='light'>
+					<Stories slides={data && data.stories} />
 				</Section>
 			</div>
 		</>

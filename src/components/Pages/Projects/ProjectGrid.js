@@ -115,7 +115,6 @@ const Frame = props => {
 
 	useEffect(() => {
 		if (revealer.current) {
-			console.log("in here!");
 			gsap.to(revealer.current, {
 				drawSVG: "0%",
 				duration: 3,

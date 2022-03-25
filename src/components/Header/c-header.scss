@@ -14,10 +14,11 @@
 	}
 
 	.c-list li {
-		color: $grey;
+		color: $dark;
+		transition: $transition;
 		
 		&:hover {
-			color: $dark;
+			opacity: 0.5;
 		}
 
 		&:hover::after {
