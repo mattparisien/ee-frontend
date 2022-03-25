@@ -8,6 +8,7 @@ import Arrow from "../../Vector/Arrow";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import { Container } from "@mui/material";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import ProjectGrid from "../Projects/ProjectGrid";
 
 function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -110,7 +111,10 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 						<ReactMarkdown className='o-h3' children={info && info[0].goal} />
 					</div>
 					<div className='o-overview_right'>
-						<ReactMarkdown className="o-text -body" children={info && info[0].about1} />
+						<ReactMarkdown
+							className='o-text -body'
+							children={info && info[0].about1}
+						/>
 					</div>
 				</ContainerFluid>
 			</Section>
@@ -130,8 +134,14 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 					</ContainerFluid>
 				</Section>
 			)}
-			<Section>
-				
+			<Section classes='-padding-lg'></Section>
+			<Section classes='o-media' data-theme="light">
+				<ContainerFluid>
+					<ProjectGrid
+						items={info && info[0].media.additional}
+						variant='media'
+					/>
+				</ContainerFluid>
 			</Section>
 
 			{/* <ContainerFluid classes='-bg-light'>

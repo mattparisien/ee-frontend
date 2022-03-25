@@ -4,6 +4,10 @@
 }
 
 .c-grid {
+
+
+
+
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-row-gap: 10vw;
@@ -235,4 +239,17 @@
 		// transition: transition;
 		// transition-delay: 600ms;
 	}
+
+	
+	&.c-grid_media {
+
+
+			.c-grid_item:hover .image img {
+				transform: none;
+			}
+		.c-grid_item::after {
+			display: none;
+		}
+	}
+
 }

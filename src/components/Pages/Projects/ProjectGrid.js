@@ -7,7 +7,7 @@ import Link from "../../Link/Link";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import gsap from "gsap";
 
-function ProjectGrid({ items }) {
+function ProjectGrid({ items, variant }) {
 	// const { setPageTheme } = useContext(ColorContext);
 	// const { setCursorState } = useContext(CursorContext);
 	const tablet = useMediaQuery("(max-width: 768px)");
@@ -40,11 +40,11 @@ function ProjectGrid({ items }) {
 	const scrollSpeeds = [8, 1, 6, 3];
 
 	return (
-		<div className='c-grid'>
+		<div className={`c-grid c-grid_${variant}`}>
 			{items &&
 				items.map((item, i) => {
-					return (
-						<Item
+					return variant !== "media" ? (
+						<ProjectItem
 							addToRefs={addToRefs}
 							key={i}
 							// onMouseEnter={handleMouseEnter}
@@ -56,13 +56,15 @@ function ProjectGrid({ items }) {
 							url={`/projects/${item.id}`}
 							scrollSpeed={scrollSpeeds[i]}
 						/>
+					) : (
+						<MediaItem src={item.attributes.url} />
 					);
 				})}
 		</div>
 	);
 }
 
-function Item({ src, addToRefs, previewText, title, url, scrollSpeed }) {
+function ProjectItem({ src, addToRefs, previewText, title, url, scrollSpeed }) {
 	const ref = useRef(null);
 
 	const [loaded, setLoaded] = useState(false);
@@ -106,6 +108,40 @@ function Item({ src, addToRefs, previewText, title, url, scrollSpeed }) {
 				<p className='c-grid_description -text-tiny'>{previewText}</p>
 			</div>
 		</Link>
+	);
+}
+
+function MediaItem({ src, alt }) {
+	const ref = useRef(null);
+
+	const [loaded, setLoaded] = useState(false);
+	const inViewport = useRef(false);
+
+	const item = useRef(null);
+
+	const itemClasses = classNames("c-grid_item -relative -hover-underline", {
+		"is-in-view": inViewport.current,
+	});
+
+	return (
+		<div className={itemClasses}>
+			{!loaded && (
+				<div className='c-grid_item_loader'>
+					<CircularProgress color='inherit' />
+				</div>
+			)}
+
+			<div className='c-grid_img-wrapper'>
+				<div className='image'>
+					<img
+						src={src}
+						alt={Math.random()}
+						className='c-grid_img'
+						onLoad={() => setLoaded(true)}
+					/>
+				</div>
+			</div>
+		</div>
 	);
 }
 

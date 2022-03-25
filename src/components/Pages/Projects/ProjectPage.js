@@ -15,7 +15,7 @@ export default function ProjectPage({ transitioning, toggleTransitioning }) {
 					<h2 className='o-h2'>Projects</h2>
 				</Section>
 				<Section classes='-padding-lg'>
-					<ProjectGrid items={data.posts} />
+					<ProjectGrid variant="projects" items={data.posts} />
 				</Section>
 			</ContainerFluid>
 		</div>

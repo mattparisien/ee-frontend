@@ -79,7 +79,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 
 				<Section classes='-padding-lg' data-theme='light'>
 					<ContainerFluid>
-						<ProjectGrid items={data && data.posts && data.posts.slice(0, 4)} />
+						<ProjectGrid variant="projects" items={data && data.posts && data.posts.slice(0, 4)} />
 					</ContainerFluid>
 				</Section>
 				<Section classes='-padding-lg' data-theme='light'>
