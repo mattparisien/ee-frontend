@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { TextLogo } from "../Vector/Svg";
 import ContainerFluid from "../Containers/ContainerFluid";
 import List from "../Lists/List";
 import Link from "../Link/Link";
 import classNames from "classnames";
+import ArrowButton from "../Button/ArrowButton";
 
-function Header({ toggleMenu, navItems, toggleTransitioning, color }) {
+function Header({
+	toggleMenu,
+	navItems,
+	toggleTransitioning,
+	color,
+	location,
+}) {
 	const [active, setActive] = useState(false);
-	const [firstRender, setFirstRender] = useState(true);
+	const [arrowOpacity, setArrowOpacity] = useState(1);
 
 	const mobileNavClasses = classNames("c-header_nav-btn mobile", {
 		"is-active": active,
@@ -18,9 +25,30 @@ function Header({ toggleMenu, navItems, toggleTransitioning, color }) {
 		toggleMenu();
 	};
 
+	useEffect(() => {
+		setArrowOpacity(1);
+	}, [location]);
+
 	return (
 		<header className='c-header' data-theme={color}>
 			<ContainerFluid>
+				<div
+					className='c-header_left_spacer'
+					style={{
+						opacity: arrowOpacity,
+						transition: "400ms ease",
+						transitionDelay: "100ms",
+					}}
+				>
+					{location.pathname.includes("/projects") &&
+						/\d/.test(location.pathname) && (
+							<ArrowButton
+								isRouterLink={true}
+								href={"/projects"}
+								handleClick={() => setArrowOpacity(0)}
+							/>
+						)}
+				</div>
 				<div className='c-header_logo'>
 					<Link isRouterLink href={"/"}>
 						<TextLogo width='100%' />

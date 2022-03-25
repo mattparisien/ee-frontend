@@ -51,17 +51,23 @@ h4,
 
 .App {
 	background-color: $light;
+	transition-delay: 300ms;
+
+	&.is-new-page main {
+		opacity: 1;
+	}
+
+	&.is-old-page main {
+		opacity: 0;
+	}
 }
 
+p {
+	margin: $space-xs 0;
+}
 
 main {
-	opacity: 0;
-	transition: $transition-expo;
-}
-
-
-.is-dom-loaded main {
-	opacity: 1;
+	transition: $transition;
 }
 
 .c-heading.-h2 {
@@ -120,10 +126,6 @@ ul {
 	html {
 		font-size: 21px;
 	}
-}
-
-.App {
-	transition: background-color 400ms ease;
 }
 
 [data-theme="regular"] {

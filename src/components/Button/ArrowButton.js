@@ -1,18 +1,37 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import classNames from "classnames";
+import Link from "../Link/Link";
 
+function ArrowButton({
+	handleClick,
+	rotation,
+	classes,
+	color,
+	isRouterLink,
+	href,
+}) {
+	const buttonClasses = classNames("c-arrow-button", {
+		[classes]: classes,
+		[`is-${color}`]: color,
+	});
 
-function ArrowButton({ handleClick, rotation, classes, color }) {
-	const buttonClasses = classNames("c-arrow-button", { [classes]: classes, [`is-${color}`]: color });
-
-	return (
+	return !isRouterLink ? (
 		<button className={buttonClasses} onClick={handleClick}>
-			<Arrow rotation={rotation} color={color}/>
+			<Arrow rotation={rotation} color={color} />
 		</button>
+	) : (
+		<Link
+			isRouterLink={true}
+			classes={buttonClasses}
+			href={href}
+			onClick={handleClick}
+		>
+			<Arrow rotation={rotation} color={color} />
+		</Link>
 	);
 }
 
-function Arrow({rotation, color}) {
+function Arrow({ rotation, color }) {
 	const svg = useRef(null);
 
 	return (

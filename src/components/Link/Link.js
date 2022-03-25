@@ -2,26 +2,32 @@ import classNames from "classnames";
 import React, { forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
 import variables from "../../styles/scss/_vars.module.scss";
+import { useContext } from "react";
+import { SiteWideControls } from "../../App";
+
 
 function Link(props, ref) {
+	
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
 	});
+
+	const {setTransitioning} = useContext(SiteWideControls)
 
 	const navigate = useNavigate();
 	// const { playTransition } = useContext(LoadingContext);
 
 	const handleNavigate = e => {
+		console.log(props.onClick)
+		setTransitioning(true);
 		props.onClick && props.onClick(e);
 		e.preventDefault();
 
-
-
 		setTimeout(() => {
+			console.log('hello!!!')
 			navigate(props.href);
-		}, 400);
+		}, 2000);
 	};
-
 
 	return (
 		<a
@@ -32,10 +38,7 @@ function Link(props, ref) {
 			target={props.target}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			ref={ref}
-			data-scroll
-			data-scroll-speed={
-				props["data-scroll-speed"] ? props["data-scroll-speed"] : 1
-			}
+	
 		>
 			{props.children}
 		</a>

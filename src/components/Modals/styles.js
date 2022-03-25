@@ -13,8 +13,5 @@ export const StyledCookieBar = styled.div`
   color: white;
   padding: 3rem;
 
-  p {
-    width: 50%;
-    height: auto;
-  }
+
 `

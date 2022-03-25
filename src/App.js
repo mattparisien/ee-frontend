@@ -47,24 +47,25 @@ function App() {
 	const isSplit = useRef(false);
 	const split = useRef(null);
 
-	// useEffect(() => {
-	// 	if (isSplit.current) {
-	// 		//If has been split and window is resized, revert and split again
-	// 		split.current.revert().split();
-	// 	}
+	useEffect(() => {
+		if (isSplit.current) {
+			//If has been split and window is resized, revert and split again
+			console.log('helelelelelo!')
+			split.current.revert().split();
+		}
 
-	// 	if (!isSplit.current) {
-	// 		//Split text on initial render
-	// 		isSplit.current = true;
+		if (!isSplit.current) {
+			//Split text on initial render
+			isSplit.current = true;
 
-	// 		setTimeout(() => {
-	// 			split.current = new SplitText($(".-split p, .-split"), {
-	// 				type: "lines",
-	// 				linesClass: "c-line",
-	// 			});
-	// 		}, 300);
-	// 	}
-	// }, [isSplit, location, windowWidth]);
+			setTimeout(() => {
+				split.current = new SplitText($(".-split p, .-split"), {
+					type: "lines",
+					linesClass: "c-line",
+				});
+			}, 300);
+		}
+	}, [isSplit, location, windowWidth]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
@@ -79,7 +80,6 @@ function App() {
 						stagger: 0.2,
 						duration: 1,
 					});
-					
 				}
 			});
 		};
@@ -96,7 +96,6 @@ function App() {
 	const siteControls = {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
-
 		transitioning,
 		setTransitioning,
 	};
@@ -119,7 +118,14 @@ function App() {
 		}
 	}, [setState]);
 
-	const classes = classNames("App", { "is-dom-loaded": !transitioning });
+	useEffect(() => {
+		setTransitioning(false);
+	}, [location]);
+
+	const classes = classNames("App", {
+		"is-new-page": !transitioning,
+		"is-old-page": transitioning,
+	});
 
 	return (
 		<HelmetProvider>
@@ -139,9 +145,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					{/* <GlobalStyles /> */}
 					<ParallaxProvider>
 						<LocomotiveScrollProvider
-							onLocationChange={scroll =>
-								scroll.scrollTo(0, { duration: 0, disableLerp: true })
-							}
+							onLocationChange={scroll => scroll.scrollTo(0, 0)}
 							lerp={1}
 							options={{
 								initPosition: {
@@ -155,25 +159,26 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							}}
 							containerRef={scrollWrapper}
 						>
-							<Header
-								toggleMenu={() => setMenuActive(!menuActive)}
-								color={headerColor}
-								navItems={navItems}
-							/>
 							{/* <TransitionCard transitioning={transitioning} /> */}
+							<SiteWideControls.Provider value={siteControls}>
+								<DataContext.Provider value={state.data}>
+									<ColorContext.Provider>
+										<CursorContext.Provider>
+											<LoadingContext.Provider>
+												<LoadingScreen isActive={pending} />
 
-							<div
-								className='scroll-wrapper'
-								ref={scrollWrapper}
-								data-scroll-container
-							>
-								<SiteWideControls.Provider value={siteControls}>
-									<DataContext.Provider value={state.data}>
-										<ColorContext.Provider>
-											<CursorContext.Provider>
-												<LoadingContext.Provider>
-													<LoadingScreen isActive={pending} />
+												<Header
+													toggleMenu={() => setMenuActive(!menuActive)}
+													color={headerColor}
+													navItems={navItems}
+													location={location}
+												/>
 
+												<div
+													className='scroll-wrapper'
+													ref={scrollWrapper}
+													data-scroll-container
+												>
 													{/* <ModalWrapper hoverState={hoverState} /> */}
 
 													{/* <CursorFollower /> */}
@@ -208,12 +213,12 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 													/>
 
 													{/* <CookieBar /> */}
-												</LoadingContext.Provider>
-											</CursorContext.Provider>
-										</ColorContext.Provider>
-									</DataContext.Provider>
-								</SiteWideControls.Provider>
-							</div>
+												</div>
+											</LoadingContext.Provider>
+										</CursorContext.Provider>
+									</ColorContext.Provider>
+								</DataContext.Provider>
+							</SiteWideControls.Provider>
 						</LocomotiveScrollProvider>
 					</ParallaxProvider>
 				</ThemeProvider>

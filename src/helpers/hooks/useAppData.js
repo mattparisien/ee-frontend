@@ -100,6 +100,10 @@ export default function useAppData(scrollRef) {
 		data: {},
 	});
 
+	useEffect(() => {
+		console.log(transitioning)
+	}, [transitioning])
+
 	//Update menu offset on resize
 	useEffect(() => {
 		setState(prev => ({ ...prev, menuOffset: `-${windowWidth}px` }));
