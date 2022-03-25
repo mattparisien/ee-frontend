@@ -19,7 +19,7 @@
 	transition: 600ms ease;
 	transform-origin: center;
 
-	@include media("<=phoneL") {
+	@include media("<=tablet") {
 		display: none;
 	}
 }

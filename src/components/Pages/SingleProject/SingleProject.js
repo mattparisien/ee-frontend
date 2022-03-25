@@ -33,20 +33,19 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const accentColor = useMemo(() => shuffleColors(), []);
 	useMemo(() => {
 		if (scroll && scroll.scroll) {
-			scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0)
+			scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0);
 		} else {
-			window.scrollTo(0, 0)
+			window.scrollTo(0, 0);
 		}
 	}, [scroll]);
 
 	useLayoutEffect(() => {
-
-		
 		const desktopTimeline = () => {
 			const lines = $(textWrapper.current).find(".c-line");
 			tl.current
 				.set(heroImage.current, { opacity: 0 })
 				.set(revealer.current, { transition: "none" })
+				.set(textWrapper.current, { opacity: 1 })
 
 				.to(lines, {
 					y: 0,
@@ -92,10 +91,11 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 
 		const mobileTimeline = () => {
 			const lines = $(textWrapper.current).find(".c-line");
-			console.log(lines)
+			console.log(lines);
 			tl.current
 				.set(heroImage.current, { opacity: 0 })
 				.set(revealer.current, { transition: "none" })
+				.set(textWrapper.current, { opacity: 1 })
 
 				.to(lines, {
 					y: 0,
@@ -175,10 +175,13 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 				</Section> */}
 
 						<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
-							<h3 className='o-h3 -split' style={{ color: accentColor }}>
+							<h3 className='o-h3 -split' style={{ color: accentColor[0] }}>
 								{info && info[0].title}
 							</h3>
-							<h2 className='o-h2 -bold -split' style={{ color: accentColor }}>
+							<h2
+								className='o-h2 -bold -split'
+								style={{ color: accentColor[0] }}
+							>
 								{info && info[0].subtitle}
 							</h2>
 							{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
@@ -230,7 +233,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 					</ContainerFluid>
 				</Section>
 			)}
-			<Section classes='o-details -padding-lg' data-theme="dark">
+			<Section classes='o-details -padding-lg' data-theme='dark'>
 				<ContainerFluid>
 					<div className='o-details_left'>
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, in?
@@ -273,7 +276,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 					/>
 				</ContainerFluid>
 			</Section> */}
-			<Section classes='o-next'>
+			<Section classes='o-next' data-theme={accentColor[1]}>
 				<ContainerFluid>
 					<Link
 						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}

@@ -23,7 +23,7 @@ function Stories({ slides }) {
 		const getColor = () => {
 			const color = shuffleColors();
 
-			if (color === fill) {
+			if (color[0] === fill) {
 				return getColor();
 			} else {
 				return color;
@@ -40,7 +40,7 @@ function Stories({ slides }) {
 			);
 
 			gsap.to(quotation, {
-				fill: fill,
+				fill: fill && fill[0],
 				duration: 0.5,
 				delay: 1,
 			});
@@ -124,7 +124,6 @@ function Story(
 ) {
 	const story = useRef(null);
 	const tl = useRef(gsap.timeline());
-
 	const classes = classNames(`c-stories_story c-stories_story_${id}`);
 
 	return (

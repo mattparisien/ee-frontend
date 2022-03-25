@@ -9,28 +9,6 @@ import {
 import useResize from "./useResize";
 
 export default function useAppData(scrollRef) {
-	const baseSpacing = {
-		desktopL: 2,
-		desktop: 1.5,
-		laptopL: 2,
-		laptop: 2,
-		tablet: 1,
-		mobileL: 1,
-		mobileM: 0.5,
-		mobileS: 0.4,
-	};
-
-	const baseFontSize = {
-		desktopL: 1.2,
-		desktop: 1.2,
-		laptopL: 1,
-		laptop: 1,
-		tablet: 0.8,
-		mobileL: 0.7,
-		mobileM: 0.7,
-		mobileS: 0.6,
-	};
-
 	const navItems = [
 		{
 			name: "About",
@@ -83,7 +61,7 @@ export default function useAppData(scrollRef) {
 	appRefs.current = {};
 
 	//App state
-	const [transitioning, setTransitioning] = useState(false);
+	const [transitioning, setTransitioning] = useState(true);
 
 	const [state, setState] = useState({
 		user: {
@@ -99,10 +77,6 @@ export default function useAppData(scrollRef) {
 		isScrollLock: false,
 		data: {},
 	});
-
-	useEffect(() => {
-		console.log(transitioning)
-	}, [transitioning])
 
 	//Update menu offset on resize
 	useEffect(() => {
@@ -120,16 +94,19 @@ export default function useAppData(scrollRef) {
 			`${basePath}/steps`,
 			`${basePath}/about`,
 			`${basePath}/stories`,
+			`${basePath}/footer`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
 
 		Promise.all(promiseArray)
 			.then(data => {
+				console.log(data);
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
 				const formattedStories = formatStories(data[3].data.data);
+				const formattedFooter = data[4].data.data.attributes;
 
 				setState(prev => ({
 					...prev,
@@ -138,7 +115,8 @@ export default function useAppData(scrollRef) {
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
-						stories: formattedStories
+						stories: formattedStories,
+						footer: { ...formattedFooter },
 					},
 				}));
 			})

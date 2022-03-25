@@ -1,7 +1,11 @@
+import classNames from "classnames";
+import gsap from "gsap";
+import SplitText from "gsap/SplitText";
 import React, { createContext, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { useLocation } from "react-router-dom";
+import { ParallaxProvider } from "react-scroll-parallax";
 import { ThemeProvider } from "styled-components";
 import Cookies from "universal-cookie";
 import { Header } from "./components";
@@ -9,13 +13,8 @@ import Footer from "./components/Footer/Footer";
 import LoadingScreen from "./components/Loading/LoadingScreen";
 import Menu from "./components/Menu/Menu";
 import useAppData from "./helpers/hooks/useAppData";
-import SiteRoutes from "./Routes";
-import SplitText from "gsap/SplitText";
-import gsap from "gsap";
-import classNames from "classnames";
-import TransitionCard from "./components/Transition/TransitionCard";
-import { ParallaxProvider } from "react-scroll-parallax";
 import useResize from "./helpers/hooks/useResize";
+import SiteRoutes from "./Routes";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -26,7 +25,6 @@ export const CursorContext = createContext();
 function App() {
 	const scrollWrapper = useRef(null);
 	const location = useLocation();
-	const app = useRef(null);
 	const [windowWidth] = useResize();
 	gsap.registerPlugin(SplitText);
 
@@ -50,7 +48,7 @@ function App() {
 	useEffect(() => {
 		if (isSplit.current) {
 			//If has been split and window is resized, revert and split again
-			console.log('helelelelelo!')
+
 			split.current.revert().split();
 		}
 
@@ -69,7 +67,6 @@ function App() {
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
-
 		const handleIntersection = entries => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting && !$(entry.target).attr("data-theme")) {
@@ -83,11 +80,24 @@ function App() {
 				}
 			});
 		};
-
 		const observer = new IntersectionObserver(handleIntersection);
+		$(".-fadeUp").each((i, el) => observer.observe(el));
 
-		$(".-fadeUp, [data-theme]").each((i, el) => observer.observe(el));
-	});
+		//Handle header observer
+		const handleSectionIntersection = entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					$(entry.target).attr("data-theme");
+					const color = $(entry.target).attr("data-theme");
+					setHeaderColor(color);
+				}
+			});
+		};
+		const headerObserver = new IntersectionObserver(handleSectionIntersection, {
+			threshold: 0.3,
+		});
+		$("[data-theme]").each((i, el) => headerObserver.observe(el));
+	}, [location]);
 
 	const toggleScrollLock = () => {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
@@ -146,6 +156,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					<ParallaxProvider>
 						<LocomotiveScrollProvider
 							onLocationChange={scroll => scroll.scrollTo(0, 0)}
+							watch={[location.pathname]}
 							lerp={1}
 							options={{
 								initPosition: {
@@ -207,6 +218,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 													</main>
 
 													<Footer
+														info={state.data.footer}
 														addToRefs={addToRefs}
 														location={location.pathname}
 														navItems={navItems}

@@ -24,7 +24,7 @@ $space-xxxl: calc(7 * 2rem);
 }
 
 //Colors
-$light: #F6F5F1;
+$light: #f6f5f1;
 $dark: #181818;
 $dark2: #2e2e2e;
 $lighterDark: #111111;
@@ -84,7 +84,6 @@ $tablet: 820px;
 	loaderDuration: $loader-duration;
 	loaderDelay: $loader-delay;
 	colors: {
-		navy: $navy;
 		red: $red;
 		green: $green;
 		blue: $blue;

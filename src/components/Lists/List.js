@@ -5,7 +5,7 @@ function List({ items, color, toggleTransitioning }) {
 
 
 	return (
-		<ul className={`c-list -text-${color}`}>
+		<ul className={`c-list`}>
 			{items &&
 				items.map((item, i) => {
 					return (

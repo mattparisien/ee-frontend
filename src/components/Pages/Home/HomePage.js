@@ -1,20 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import IntertiaPLugin from "gsap/InertiaPlugin";
+import ScrollTrigger from "gsap/src/ScrollTrigger";
+import React, { useContext, useEffect, useRef } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { DataContext } from "../../../App";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import { useContext } from "react";
-import { DataContext } from "../../../App";
-import ProjectGrid from "../Projects/ProjectGrid";
 import Stories from "../../Stories/Stories";
-import ReactMarkdown from "react-markdown";
-import Megaphone from "../../Vector/Megaphone";
-import { BassClef, QuarterNote, WholeNote, HalfNote } from "../../Vector/Notes";
-import { Scroll, useLocomotiveScroll } from "react-locomotive-scroll";
-import $, { Tween } from "jquery";
-import IntertiaPLugin from "gsap/InertiaPlugin";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/src/ScrollTrigger";
+import ProjectGrid from "../Projects/ProjectGrid";
 import About from "./About";
 import How from "./How";
+
 
 function HomePage({ toggleTransitioning, transitioning }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -79,11 +75,16 @@ function HomePage({ toggleTransitioning, transitioning }) {
 
 				<Section classes='-padding-lg' data-theme='light'>
 					<ContainerFluid>
-						<ProjectGrid variant="projects" items={data && data.posts && data.posts.slice(0, 4)} />
+						<ProjectGrid
+							variant='projects'
+							items={data && data.posts && data.posts.slice(0, 4)}
+						/>
 					</ContainerFluid>
 				</Section>
 				<Section classes='-padding-lg' data-theme='light'>
-					<Stories slides={data && data.stories} />
+					<ContainerFluid>
+						<Stories slides={data && data.stories} />
+					</ContainerFluid>
 				</Section>
 			</div>
 		</>

@@ -22,8 +22,10 @@
 					.o-hero_text {
 						position: static;
 						transform: none !important;
-						margin-bottom: $space-sm;
+						margin: $space-xl 0;
+
 						width: 100%;
+						
 					}
 
 					.o-hero_image {
@@ -48,6 +50,7 @@
 			position: absolute;
 			bottom: 2vw;
 			left: 0;
+			opacity: 0;
 
 			.c-line {
 				transform: translateY(100%);
@@ -172,8 +175,6 @@
 	}
 
 	.o-next {
-		background-color: darken($light, 10%);
-
 		.c-link:hover .c-arrow {
 			transform: translateX(20%);
 		}

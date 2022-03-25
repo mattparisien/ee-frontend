@@ -128,42 +128,81 @@ ul {
 	}
 }
 
-[data-theme="regular"] {
-	background-color: $light;
-	color: $dark;
-}
-
-[data-theme="strawberry"] {
-	background-color: $red;
-	color: $dark;
-}
-
-[data-theme="fancy"] {
-	background-color: $navy;
+[data-theme="green"] {
+	background-color: $green;
 	color: $light;
+
+	svg path {
+		fill: $light;
+		stroke: $light;
+	}
+
+	*::after {
+		background-color: $light;
+	}
 }
 
-[data-theme="orangeCrush"] {
-	background-color: $orange;
+[data-theme="red"] {
+	background-color: $red;
+	color: $light;
+
+	svg path {
+		fill: $light;
+		stroke: $light;
+	}
+
+	*::after {
+		background-color: $light;
+	}
+}
+
+[data-theme="yellow"] {
+	background-color: $yellow;
 	color: $dark;
+
+	svg path {
+		fill: $dark;
+		stroke: $dark;
+	}
+
+	*::after {
+		background-color: $dark;
+	}
 }
 
 [data-theme="blue"] {
 	background-color: $blue;
 	color: $light;
+
+	svg path {
+		fill: $light;
+		stroke: $light;
+	}
+
+	*::after {
+		background-color: $light;
+	}
 }
 
-[data-theme="sunny"] {
-	background-color: $yellow;
-	color: $dark;
-}
+
+
 
 [data-theme="light"] {
 	background-color: $light;
 	color: $dark;
+	fill: $dark;
+
+	*::after, *::before {
+		background-color: $dark;
+	}
 }
 
 [data-theme="dark"] {
 	background-color: $dark;
 	color: $light !important;
+	fill: $light;
+
+	*::after, *::before {
+		background-color: $light;
+	}
 }

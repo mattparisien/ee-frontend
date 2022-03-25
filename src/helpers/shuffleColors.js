@@ -19,5 +19,5 @@ export const shuffleColors = () => {
 		"colors-",
 		""
 	);
-	return randomColorHex;
+	return [randomColorHex, randomColorName];
 };

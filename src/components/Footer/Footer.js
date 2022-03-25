@@ -28,9 +28,16 @@ export default function Footer(props) {
 		<footer className='c-footer -bg-dark'>
 			<ContainerFluid classes='-stretchY'>
 				<div className='c-footer_content'>
-					<div>
-						<h2 className='o-h2'>Hear to listen</h2>
-						<DrawnLogo />
+					<div className='-flex -align-center -justify-center'>
+						<div className='c-footer_content_contact'>
+							<h2 className='o-h2'>{props.info && props.info.Heading}</h2>
+							<a href={`mailto:${props.info && props.info.Email}`}>
+								<h3 className='o-h3'>{props.info && props.info.Email}</h3>
+							</a>
+						</div>
+						<div className='c-footer_content_logo'>
+							<DrawnLogo />
+						</div>
 					</div>
 
 					<div className='c-footer_bottom'>
