@@ -1,106 +1,166 @@
-.c-stories {
-	width: 70vw;
-	margin: 0 auto;
 
-	@include media("<=tablet") {
-		max-width: 100%;
-		width: 100%;
+.c-quotation {
+	width: 100vw;
+	height: 100vw;
+	transform: rotate(90deg)translate(-50%, -50%);
+
+	svg {
+		
+		height: 100%;
+	}
+}
+
+.c-stories {
+	margin: 0 auto;
+	position: relative;
+
+	&_content {
+		width: 70%;
+		margin: 0 auto;
+		height: 100%;
+		position: relative;
+
+		h2, p {
+			margin: 4vw 0;
+		}
+
+		> div {
+			height: 100%;
+			width: 100%;
+		}
+
+		> div:not(:nth-of-type(1)) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+		}
 	}
 
 	&_main {
 		display: flex;
 		align-items: center;
+		max-width: 70vw;
 		justify-content: space-between;
 		position: relative;
-		height: 40vw;
+		margin: 0 auto;
 		overflow: hidden;
-
-
-	
-	}
-
-	&_indicator,
-	&_main h2,
-	&_main h4,
-	&_main h4 {
-		margin: 0;
-	}
-
-	&_indicator {
-		width: 100%;
-		padding-bottom: 3rem;
-		margin-left: 14vw;
-
-		z-index: 99;
-
-		.o-text {
-			margin: 0;
-
-			& span {
-				font-family: "Riposte";
-			}
-		}
-
-		.o-text span:last-child {
-			color: $grey;
-		}
 	}
 
 	&_controls {
-		width: 5rem;
-		height: 5rem;
-		border: 0px;
-		padding: 0;
-		border-radius: 50%;
-		overflow: hidden;
-		position: relative;
+		display: flex;
+		position: absolute;
+		align-items: center;
+		width: 100%;
+		justify-content: space-between;
+	}
 
-		@include media("<=tablet")  {
-			width: 3rem;
-			height: 3rem;
-		}
-
-		&:hover::after {
-			transform: scale(1);
-			top: 0;
-			left: 0;
-		}
-
-		&::after {
-			border-radius: 50%;
-			transition: 600ms ease;
-			position: absolute;
-
-			top: 50%;
-			left: -50%;
-			content: "";
-			width: 100%;
-			height: 100%;
-			background-color: $dark;
-			transform: scale(0.0001);
+	&_indicator {
+		margin-left: 20.5vw;
+		
+		&, & span {
+			font-family: 'Riposte' !important;
 		}
 	}
 
-	&_story {
-		position: absolute;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		overflow: hidden;
-		width: 60%;
-		height: 100%;
-		top: 0;
-		left: 50%;
-		transform: translateX(-50%);
-		
-		&:not(:first-of-type) {
-			opacity: 0;
+
+
+
+	@include media("<=phoneL") {
+		&_main {
+			flex-direction: column;
+			
+			max-width: 100%;
 		}
 
-		h2 {
-			font-size: 4.5vw;
-			line-height: 4.5vw;
+
+	&_content {
+		width: 100%;
+		
+	}
+
+		&_controls {
+			width: 100%;
+
+			justify-content: center;
+			margin-top: 6vw;
+			position: static;
+
+			& button:first-child {
+				margin-right: 1rem;
+			}
+
+			& button {
+				width: 20vw;
+				height: 20vw;
+			}
+		}
+
+		// &_indicator,
+		// &_main h2,
+		// &_main h4,
+		// &_main h4 {
+		// 	margin: 0;
+		// }
+
+		&_indicator,
+		h4 {
+			margin-left: 0;
+			width: 100%;
+			font-size: 4vw;
+			text-align: center;
+			margin-bottom: 2vw;
+
+			z-index: 99;
+
+			.o-text {
+				margin: 0;
+
+				& span {
+					font-family: "Riposte";
+				}
+			}
+
+			.o-text span:last-child {
+				color: $grey;
+			}
+		}
+
+		&_story {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+			overflow: hidden;
+			width: 60%;
+			height: 100%;
+			top: 0;
+			left: 50%;
+			// transform: translateX(-50%);
+
+			&:not(:first-of-type) {
+				opacity: 0;
+				display: none;
+			}
+
+			h2,
+			h4 {
+				width: 100%;
+				text-align: center;
+			}
+
+			h2 {
+				margin: 10vw 0;
+				font-size: 10vw !important;
+			}
+
+			p {
+				font-size: 6vw !important;
+				line-height: 6.8vw !important;
+				text-align: center;
+				margin-top: 0;
+				margin-bottom: 4vw;
+			}
 		}
 	}
 }

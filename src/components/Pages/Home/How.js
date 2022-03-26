@@ -10,7 +10,9 @@ function How({ steps }, ref) {
 			<ContainerFluid>
 				<h1 className='o-h1 -padding-lg -text-center -split -fadeUp'>
 					Finding Your <em>Rhythm</em>
+					<hr></hr>
 				</h1>
+				
 				<div className='steps-container -relative -margin-top-huge'>
 					<div className='c-steps'>
 						{steps && steps.map((step, i) => {

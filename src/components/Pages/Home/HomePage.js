@@ -81,7 +81,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 						/>
 					</ContainerFluid>
 				</Section>
-				<Section classes='-padding-lg' data-theme='light'>
+				<Section classes='-padding-lg  -fullHeight -flex -align-center -justify-center' data-theme='light'>
 					<ContainerFluid>
 						<Stories slides={data && data.stories} />
 					</ContainerFluid>

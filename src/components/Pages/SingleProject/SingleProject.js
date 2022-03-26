@@ -17,6 +17,7 @@ import Section from "../../Containers/Section";
 import ImageRevealer from "../../ImageRevealer/ImageRevealer";
 import Link from "../../Link/Link";
 import Arrow from "../../Vector/Arrow";
+import { Helmet } from "react-helmet-async";
 
 function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -33,11 +34,12 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const accentColor = useMemo(() => shuffleColors(), []);
 	useMemo(() => {
 		if (scroll && scroll.scroll) {
+			console.log('in here!')
 			scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0);
 		} else {
 			window.scrollTo(0, 0);
 		}
-	}, [scroll]);
+	}, []);
 
 	useLayoutEffect(() => {
 		const desktopTimeline = () => {
@@ -155,24 +157,18 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 		}
 	}, [data, location, param]);
 
+
 	return (
+		<>
+
+		<Helmet>
+		<title>{`${info && info[0].title} - ${info && info[0].subtitle}`} </title>
+			 <meta name="description" content="Helmet application" />
+ </Helmet>
 		<div className='o-page o-single-project'>
 			<Section data-theme='light' classes='o-hero'>
 				<ContainerFluid>
 					<div className='o-container_inner'>
-						{/* <Section classes='o-hero -fullHeight'>
-					<div className='o-hero_text'>
-						<h2 className='o-h2 -bold -text-orange'>{info && info[0].title}</h2>
-						<h3 className='o-h3'>{info && info[0].subtitle}</h3>
-					</div>
-
-					<div className='o-hero_image-wrapper'>
-						<img
-							src={info && info[0].media.featureImage.url}
-							alt={info && info[0].media.featureImage.altText}
-						/>
-					</div>
-				</Section> */}
 
 						<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
 							<h3 className='o-h3 -split' style={{ color: accentColor[0] }}>
@@ -298,6 +294,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 				</ContainerFluid>
 			</Section>
 		</div>
+		</>
 	);
 }
 

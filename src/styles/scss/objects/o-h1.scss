@@ -2,11 +2,12 @@
 	font-size: 8.444vw;
 	letter-spacing: -0.2vw;
 	line-height: 8.444vw;
+	color: $dark;
 
 	margin: 0;
 
 	@include media("<=tablet") {
-		font-size: 16vw;
-		line-height: 14vw;
+		font-size: 22vw;
+		line-height: 20vw;
 	}
 }

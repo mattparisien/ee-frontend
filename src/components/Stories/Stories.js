@@ -7,6 +7,7 @@ import variables from "../../styles/scss/_vars.module.scss";
 import { shuffleColors } from "../../helpers/shuffleColors";
 import ArrowButton from "../Button/ArrowButton";
 
+
 function Stories({ slides }) {
 	const [active, setActive] = useState(1);
 	const [fill, setFill] = useState(null);
@@ -78,48 +79,50 @@ function Stories({ slides }) {
 		<div className='c-stories -relative'>
 			<Quotation />
 			<div className='c-stories_indicator'>
-				<p className='o-text -uppercase'>
+				<h4 className='o-text -uppercase'>
 					<span>Story ·</span> <span>{active}</span> <span>/</span>
 					<span>{slides && slides.length}</span>
-				</p>
+				</h4>
 			</div>
 			<div className='c-stories_main'>
-				<ArrowButton
-					handleClick={() =>
-						setActive(prev =>
-							prev - 1 === 0 ? slides && slides.length : prev - 1
-						)
-					}
-				/>
-
-				{slides &&
-					slides.map(slide => (
-						<Story
-							addToRefs={addToRefs}
-							heading={slide.heading}
-							quote={slide.quote}
-							author={slide.author}
-							key={slide.id}
-							id={slide.id}
-							active={active}
-							setActive={setActive}
-						/>
-					))}
-
-				<ArrowButton
-					flip={true}
-					rotation={180}
-					handleClick={() =>
-						setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1))
-					}
-				/>
+				<div className='c-stories_content'>
+					{slides &&
+						slides.map(slide => (
+							<Story
+								addToRefs={addToRefs}
+								heading={slide.heading}
+								quote={slide.quote}
+								author={slide.author}
+								key={slide.id}
+								id={slide.id}
+								active={active}
+								setActive={setActive}
+							/>
+						))}
+				</div>
+				<div className='c-stories_controls'>
+					<ArrowButton
+						handleClick={() =>
+							setActive(prev =>
+								prev - 1 === 0 ? slides && slides.length : prev - 1
+							)
+						}
+					/>
+					<ArrowButton
+						flip={true}
+						rotation={180}
+						handleClick={() =>
+							setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1))
+						}
+					/>
+				</div>
 			</div>
 		</div>
 	);
 }
 
 function Story(
-	{ heading, author, quote, key, id, active, setActive, addToRefs },
+	{ heading, author, quote, id, active, setActive, addToRefs },
 	ref
 ) {
 	const story = useRef(null);
@@ -128,8 +131,8 @@ function Story(
 
 	return (
 		<div className={classes} ref={addToRefs} data-story-id={id}>
-			<h2>{heading}</h2>
-			<h3 className='o-h3'>{quote}</h3>
+			<h2 className="o-h2"> {heading}</h2>
+			<ReactMarkdown children={quote}/>
 			<h4 className='o-h4'>{author}</h4>
 		</div>
 	);
