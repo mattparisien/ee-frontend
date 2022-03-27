@@ -19,6 +19,9 @@ import Link from "../../Link/Link";
 import Arrow from "../../Vector/Arrow";
 import { Helmet } from "react-helmet-async";
 import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
+
+import Figure from "../../Figure/Figure";
 
 function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -28,68 +31,48 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const textWrapper = useRef(null);
 	const heroImage = useRef(null);
 	const revealer = useRef(null);
-	// const tl = useRef(gsap.timeline());
+	const tl = useRef(gsap.timeline());
 	// const scroll = useLocomotiveScroll();
-	// const mobile = window.matchMedia("(max-width: 820px)");
+	const mobile = window.matchMedia("(max-width: 820px)");
 
 	const accentColor = useMemo(() => shuffleColors(), []);
 
-	// useLayoutEffect(() => {
-	// 	const desktopTimeline = () => {
-	// 		const lines = $(textWrapper.current).find(".c-line");
-	// 		tl.current
-	// 			.set(heroImage.current, { opacity: 0 })
-	// 			.set(revealer.current, { transition: "none" })
-	// 			.set(textWrapper.current, { opacity: 1 })
+	useLayoutEffect(() => {
+		const desktopTimeline = () => {
+			const lines = $(textWrapper.current).find(".c-line");
+			tl.current
 
-	// 			// .to(lines, {
-	// 			// 	y: 0,
-	// 			// 	opacity: 1,
-	// 			// 	ease: "power3.out",
-	// 			// 	duration: 1,
-	// 			// 	stagger: 0.1,
-	// 			// })
-	// 			.to(
-	// 				textWrapper.current,
-	// 				{
-	// 					bottom: 0,
-	// 					top: "50%",
-	// 					y: "-50%",
-	// 					duration: 3,
-	// 					ease: "expo.inOut",
-	// 				},
-	// 				0.4
-	// 			)
+				.set(revealer.current, { transition: "none" })
+				.set(textWrapper.current, { opacity: 1 })
 
-	// 			.to(
-	// 				revealer.current,
-	// 				{
-	// 					scaleY: 1,
-	// 					duration: 2,
-	// 					ease: "expo.inOut",
-	// 				},
-	// 				1.5
-	// 			)
-	// 			.to(
-	// 				revealer.current,
-	// 				{
-	// 					scaleX: 1,
-	// 					duration: 2,
-	// 					ease: "expo.inOut",
-	// 				},
-	// 				1.5
-	// 			)
-	// 			.to(heroImage.current, { opacity: 1, duration: 2 }, 1.4);
+				// .to(lines, {
+				// 	y: 0,
+				// 	opacity: 1,
+				// 	ease: "power3.out",
+				// 	duration: 1,
+				// 	stagger: 0.1,
+				// })
+				.to(
+					textWrapper.current,
+					{
+						bottom: 0,
+						top: "50%",
+						y: "-50%",
+						duration: 3,
+						ease: "expo.inOut",
+					},
+					0.4
+				);
 
-	// 		return tl.current;
-	// 	};
+			return tl.current;
+		};
 
-	// 	setTimeout(() => {
-	// 		if (!mobile.matches) {
-	// 			desktopTimeline();
-	// 		}
-	// 	}, 400);
-	// }, []);
+		setTimeout(() => {
+			if (!mobile.matches) {
+				desktopTimeline();
+			}
+		}, 400);
+	}, []);
 
 	useEffect(() => {
 		//Find query param
@@ -102,7 +85,6 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 
 					if (counter > 1) {
 						param = location.pathname.slice(i + 1, location.pathname.length);
-						console.log(param);
 					}
 				}
 			}
@@ -111,14 +93,16 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 
 		if (data && data.posts && param && !info) {
 			console.clear();
-			console.log(".....", data.posts);
+			console.log(data.posts);
 			// setInfo(data.posts.filter(x => x.id === param));
 			const currentPost = data.posts.filter(x => x.id == param);
-			// const prevPost = data.posts.filter(x => x.id == param);
 
-			const nextPost = data.posts.filter(
-				(post, index) => index === data.posts.indexOf(currentPost) + 1
-			);
+			const nextPostIndex =
+				data.posts.indexOf(data.posts.find(x => x.id === currentPost[0].id)) +
+				1;
+			const nextPost =
+				data.posts[nextPostIndex === data.posts.length ? 0 : nextPostIndex];
+			console.log(nextPost);
 
 			setInfo({ ...currentPost, nextPost: nextPost });
 		}
@@ -138,27 +122,27 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 						<div className='o-container_inner'>
 							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
 								{/* <Fade bottom> */}
-									<h3
-										className='o-h3 -split -fadeUp'
-										style={{ color: accentColor[0] }}
-									>
-										{info && info[0].title}
-									</h3>
-									<h2
-										className='o-h2 -bold -split -fadeUp'
-										style={{ color: accentColor[0] }}
-									>
-										{info && info[0].subtitle}
-									</h2>
-									{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
+								<h3
+									className='o-h3 -split -fadeUp'
+									style={{ color: accentColor[0] }}
+								>
+									{info && info[0].title}
+								</h3>
+								<h2
+									className='o-h2 -bold -split -fadeUp'
+									style={{ color: accentColor[0] }}
+								>
+									{info && info[0].subtitle}
+								</h2>
+								{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
 								{/* </Fade> */}
 							</div>
-							<div className='o-hero_image media-reveal' ref={heroImage}>
-								<ImageRevealer ref={revealer} />
-								<img
+							<div className='o-hero_image' ref={heroImage}>
+								<Figure
+									noFrame
 									src={info && info[0].media.featureImage.url}
 									alt={info && info[0].media.featureImage.altText}
-								></img>
+								/>
 							</div>
 							{/* 				
 					<div className='o-hero_image-wrapper-2'>
@@ -188,14 +172,14 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 					<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
 						<ContainerFluid>
 							<div className='o-feature_item'>
-								<div className='item-revealer'></div>
-								<img
+								<Figure
+									noFrame
 									src={
 										info &&
 										info[0].media.additional &&
 										info[0].media.additional[0].attributes.url
 									}
-								></img>
+								/>
 							</div>
 						</ContainerFluid>
 					</Section>
@@ -209,34 +193,34 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 						<div className='o-details_right'>
 							<div className='about'>
 								{/* <Fade bottom cascade> */}
-									<ReactMarkdown
-										className='o-h3'
-										children={"About the Company"}
-									/>
+								<ReactMarkdown
+									className='o-h3'
+									children={"About the Company"}
+								/>
 
-									<p className='o-text -body'>
-										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-										Molestiae perspiciatis sint quidem. Suscipit commodi,
-										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
-										vel ut repellat labore quis eos non nulla qui obcaecati?
-										Quibusdam quaerat et itaque! Soluta nobis asperiores,
-										blanditiis ducimus adipisci ex exercitationem vero tenetur
-										nostrum tempora deserunt?
-									</p>
+								<p className='o-text -body'>
+									Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+									Molestiae perspiciatis sint quidem. Suscipit commodi, quaerat
+									enim dolorem fugiat quo at blanditiis neque incidunt vel ut
+									repellat labore quis eos non nulla qui obcaecati? Quibusdam
+									quaerat et itaque! Soluta nobis asperiores, blanditiis ducimus
+									adipisci ex exercitationem vero tenetur nostrum tempora
+									deserunt?
+								</p>
 								{/* </Fade> */}
 							</div>
 							<div className='work'>
 								{/* <Fade bottom cascade> */}
-									<ReactMarkdown className='o-h3' children={"Our Work"} />
-									<p className='o-text -body'>
-										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-										Molestiae perspiciatis sint quidem. Suscipit commodi,
-										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
-										vel ut repellat labore quis eos non nulla qui obcaecati?
-										Quibusdam quaerat et itaque! Soluta nobis asperiores,
-										blanditiis ducimus adipisci ex exercitationem vero tenetur
-										nostrum tempora deserunt?
-									</p>
+								<ReactMarkdown className='o-h3' children={"Our Work"} />
+								<p className='o-text -body'>
+									Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+									Molestiae perspiciatis sint quidem. Suscipit commodi, quaerat
+									enim dolorem fugiat quo at blanditiis neque incidunt vel ut
+									repellat labore quis eos non nulla qui obcaecati? Quibusdam
+									quaerat et itaque! Soluta nobis asperiores, blanditiis ducimus
+									adipisci ex exercitationem vero tenetur nostrum tempora
+									deserunt?
+								</p>
 								{/* </Fade> */}
 							</div>
 						</div>
@@ -255,19 +239,19 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 						<Link
 							classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 							isRouterLink
-							href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
+							href={info && info.nextPost && `/projects/${info.nextPost.id}`}
 						>
 							<div className='c-link_inner'>
 								{/* <Fade bottom> */}
-									<Arrow />
-									<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
-										<span className='label'>
-											{info && info.nextPost && info.nextPost[0].title}
-										</span>
-									</div>
-									<div className='o-next_subtitle o-h3 -underline -underline-dark'>
-										{info && info.nextPost && info.nextPost[0].subtitle}
-									</div>
+								<Arrow />
+								<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
+									<span className='label'>
+										{info && info.nextPost && info.nextPost.title}
+									</span>
+								</div>
+								<div className='o-next_subtitle o-h3 -underline -underline-dark'>
+									{info && info.nextPost && info.nextPost.subtitle}
+								</div>
 								{/* </Fade> */}
 							</div>
 						</Link>

@@ -20,6 +20,7 @@ function Link(props, ref) {
 	const handleNavigate = e => {
 		console.log(props.onClick)
 		setTransitioning(true);
+		
 		props.onClick && props.onClick(e);
 		e.preventDefault();
 

@@ -33,7 +33,8 @@ function How({ steps }) {
 				pinType: document.querySelector(".scroll-wrapper")
 					.getElementsByClassName.transform
 					? "transform"
-					: "fixed",
+					: "fixed"
+					
 			});
 
 			noteTl.current = gsap.timeline({

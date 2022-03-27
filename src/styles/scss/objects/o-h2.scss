@@ -7,9 +7,9 @@
 // }
 
 .o-h2 {
-	font-size: 9vw;
+	font-size: 6vw;
 	margin: 0;
-	line-height: 9vw;
+	line-height: 6vw;
 }
 
 .c-stories p {
@@ -17,12 +17,6 @@
 	line-height: 2.7vw;
 }
 
-@keyframes fadeUp {
-	to {
-		transform: translateY(0%);
-		opacity: 1;
-	}
-}
 
 // @media (min-width:700px) and (max-width:1599px) {
 //   .o-h2,

@@ -24,3 +24,19 @@
 		transform: translateX(0%);
 	}
 }
+
+@keyframes imageZoom {
+	0% {
+		transform: scale(0.8)
+	}
+
+	100% {
+		transform: scale(1.2);
+	}
+}
+
+@keyframes figureReveal {
+	to {
+		transform: scale(1);
+	}
+}

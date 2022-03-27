@@ -16,21 +16,6 @@ function ProjectGrid({ items, variant }) {
 	const gridItems = useRef([]);
 	gridItems.current = [];
 
-	useEffect(() => {
-		if (gridItems.current) {
-			const handleIntersect = entries => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting && !$(entry.target).hasClass("is-in-view")) {
-						$(entry.target).addClass("is-in-view");
-					}
-				});
-			};
-
-			const observer = new IntersectionObserver(handleIntersect);
-
-			gridItems.current.forEach(item => observer.observe(item));
-		}
-	}, [gridItems.current]);
 
 	const addToRefs = el => {
 		if (el && !gridItems.current.includes(el)) {
@@ -120,9 +105,7 @@ function MediaItem({ src, alt }) {
 
 	const item = useRef(null);
 
-	const itemClasses = classNames("c-grid_item -relative -hover-underline", {
-		"is-in-view": inViewport.current,
-	});
+	const itemClasses = classNames("c-grid_item -relative -hover-underline");
 
 	return (
 		<div className={itemClasses}>

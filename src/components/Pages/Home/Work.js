@@ -128,6 +128,7 @@ function Work({ projects }) {
 
 function Card({ src, id, rotation, title, subtitle }) {
 	return (
+		
 		<Link classes={`o-work_card o-work_card_${id}`} rotate={rotation}>
 			<div className='o-work_card_inner -relative -stretchX -stretchY'>
 				<Figure src={src} />

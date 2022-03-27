@@ -3,6 +3,8 @@ import React from "react";
 import ImageRevealer from "../ImageRevealer/ImageRevealer";
 import classNames from "classnames";
 
+import Reveal from "react-reveal/Reveal";
+
 function Figure({
 	src,
 	alt,
@@ -11,12 +13,13 @@ function Figure({
 	maxWidth,
 	maxHeight,
 	classes,
-
+	noFrame,
 	rotate,
 }) {
 	const figureClasses = classNames("c-figure", { [classes]: classes });
 
 	return (
+		<Reveal effect={"-scale-reveal"}>
 		<figure
 			className={figureClasses}
 			style={{
@@ -27,12 +30,16 @@ function Figure({
 			}}
 			data-rotate={rotate}
 		>
-			<div className='c-figure_inner -relative -stretchX -stretchY'>
-				<img src={src} alt={alt}></img>
-				<Frame />
-				<ImageRevealer />
-			</div>
+			
+			
+				<div className='c-figure_inner -relative -stretchX -stretchY'>
+					<img src={src} alt={alt}></img>
+					{!noFrame && <Frame />}
+					{/* <ImageRevealer /> */}
+				</div>
+				
 		</figure>
+		</Reveal>
 	);
 }
 

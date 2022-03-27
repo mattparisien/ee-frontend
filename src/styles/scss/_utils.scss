@@ -326,6 +326,11 @@
 // 	opacity: 0;
 // }
 
+.-imageZoom {
+	animation: imageZoom 5s ease forwards;
+
+}
+
 .-ul-small,
 .-text-tiny {
 	font-size: 0.6rem;
