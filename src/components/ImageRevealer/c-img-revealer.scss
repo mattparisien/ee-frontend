@@ -3,12 +3,14 @@
 	overflow: hidden;
 }
 
-.media-reveal.is-inview .c-image-revealer {
-	animation-delay: 300ms;
-	animation: imageAnimation 3s ease forwards;
-}
+// .is-inview .c-image-revealer {
+// 	animation-delay: 400ms;
+// 	animation: imageAnimation 6s ease forwards;
+	
+// }
 
 .c-image-revealer {
+	z-index: -1;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -19,9 +21,9 @@
 	transition: 600ms ease;
 	transform-origin: center;
 
-	@include media("<=tablet") {
-		display: none;
-	}
+	// @include media("<=tablet") {
+	// 	display: none;
+	// }
 }
 
 

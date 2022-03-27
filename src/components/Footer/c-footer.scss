@@ -13,12 +13,14 @@
 		position: relative;
 		flex-direction: column;
 
+
+
 		&_contact {
 			display: flex;
 			flex-direction: column;
 
-			h3 {
-				margin-bottom: 0;
+			.email {
+				font-size: 3vw;
 			}
 		}
 

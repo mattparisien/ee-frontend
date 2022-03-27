@@ -2,10 +2,8 @@ import * as React from "react";
 
 export const QuarterNote = props => (
 	<div
-		className='c-note c-note_quarter'
-		data-rotate={14}
-		data-scroll
-		data-scroll-speed={2}
+		className={`c-note c-note_${props.id} c-note_quarter`}
+
 	>
 		<div className='rotation-wrapper'>
 			<svg
@@ -21,10 +19,8 @@ export const QuarterNote = props => (
 
 export const HalfNote = props => (
 	<div
-		className='c-note c-note_half'
-		data-rotate={14}
-		data-scroll
-		data-scroll-speed={2}
+		className={`c-note c-note_${props.id}  c-note_half`}
+
 	>
 		<div className='rotation-wrapper'>
 			<svg
@@ -41,9 +37,7 @@ export const HalfNote = props => (
 export const BassClef = props => (
 	<div
 		className='c-note c-note_clef'
-		data-rotate={-14}
-		data-scroll
-		data-scroll-speed={2}
+
 	>
 		<div className='rotation-wrapper'>
 			<svg
@@ -60,9 +54,7 @@ export const BassClef = props => (
 export const WholeNote = props => (
 	<div
 		className='c-note c-note_whole'
-		data-rotate={14}
-		data-scroll
-		data-scroll-speed={2}
+	
 	>
 		<div className='rotation-wrapper'>
 			<svg

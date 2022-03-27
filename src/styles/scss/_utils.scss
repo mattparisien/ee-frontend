@@ -312,12 +312,19 @@
 	}
 }
 
-.-fadeUp {
-	.c-line {
-		transform: translateY(100%);
-		opacity: 0;
-	}
-}
+// .-fadeUp {
+// 	.c-line {
+// 		animation-delay: 20s;
+// 		transform: translateY(100%);
+// 		opacity: 0;
+// 	}
+// }
+
+// p.-fadeUp {
+// 	animation-delay: 20s;
+// 	transform: translateY(100%);
+// 	opacity: 0;
+// }
 
 .-ul-small,
 .-text-tiny {

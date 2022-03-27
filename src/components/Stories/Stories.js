@@ -2,14 +2,14 @@ import classNames from "classnames";
 import gsap from "gsap";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import Quotation from "../Vector/Quotation";
-import variables from "../../styles/scss/_vars.module.scss";
+import Fade from "react-reveal/Fade";
 import { shuffleColors } from "../../helpers/shuffleColors";
 import ArrowButton from "../Button/ArrowButton";
-
+import Quotation from "../Vector/Quotation";
 
 function Stories({ slides }) {
 	const [active, setActive] = useState(1);
+	const [prev, setPrev] = useState(slides && slides.length);
 	const [fill, setFill] = useState(null);
 	const stories = useRef([]);
 	stories.current = [];
@@ -36,9 +36,9 @@ function Stories({ slides }) {
 		if (stories.current && slides) {
 			const quotation = $(".c-quotation").find("path");
 			const currentSlide = $(`[data-story-id=${active}]`);
-			const prevSlide = $(
-				`[data-story-id=${active === 1 ? slides.length : active - 1}]`
-			);
+			const prevSlide = $(`[data-story-id=${prev}]`);
+
+			// console.log("prev slide", prevSlide);
 
 			gsap.to(quotation, {
 				fill: fill && fill[0],
@@ -49,10 +49,10 @@ function Stories({ slides }) {
 			gsap.fromTo(
 				currentSlide,
 				{
-					top: "50%",
+					y: "50%",
 				},
 				{
-					top: 0,
+					y: 0,
 					duration: 1,
 					opacity: 1,
 					ease: "power3.out",
@@ -63,10 +63,10 @@ function Stories({ slides }) {
 			gsap.fromTo(
 				prevSlide,
 				{
-					top: "0",
+					y: 0,
 				},
 				{
-					top: "-50%",
+					y: "-50%",
 					duration: 1,
 					ease: "power3.in",
 					opacity: 0,
@@ -75,9 +75,23 @@ function Stories({ slides }) {
 		}
 	}, [stories, active]);
 
+	const handlePrevClick = () => {
+		setPrev(active);
+		setActive(prev => (prev - 1 === 0 ? slides.length : prev - 1));
+	};
+
+	const handleNextClick = () => {
+		console.log(active);
+		setPrev(active);
+		setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1));
+	};
+
 	return (
 		<div className='c-stories -relative'>
+			<Fade bottom>
 			<Quotation />
+			</Fade>
+			<div className='c-stories_mobile-bg'></div>
 			<div className='c-stories_indicator'>
 				<h4 className='o-text -uppercase'>
 					<span>Story ·</span> <span>{active}</span> <span>/</span>
@@ -100,22 +114,16 @@ function Stories({ slides }) {
 							/>
 						))}
 				</div>
-				<div className='c-stories_controls'>
-					<ArrowButton
-						handleClick={() =>
-							setActive(prev =>
-								prev - 1 === 0 ? slides && slides.length : prev - 1
-							)
-						}
-					/>
-					<ArrowButton
-						flip={true}
-						rotation={180}
-						handleClick={() =>
-							setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1))
-						}
-					/>
-				</div>
+				<Fade left>
+					<div className='c-stories_controls'>
+						<ArrowButton handleClick={handlePrevClick} />
+						<ArrowButton
+							flip={true}
+							rotation={180}
+							handleClick={handleNextClick}
+						/>
+					</div>
+				</Fade>
 			</div>
 		</div>
 	);
@@ -131,9 +139,13 @@ function Story(
 
 	return (
 		<div className={classes} ref={addToRefs} data-story-id={id}>
-			<h2 className="o-h2"> {heading}</h2>
-			<ReactMarkdown children={quote}/>
-			<h4 className='o-h4'>{author}</h4>
+			<Fade bottom>
+				<h3 className='o-h3'> {heading}</h3>
+
+				<ReactMarkdown children={quote} />
+
+				<h4 className='o-h4'>{author}</h4>
+			</Fade>
 		</div>
 	);
 }

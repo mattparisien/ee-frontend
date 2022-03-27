@@ -1,0 +1,48 @@
+.o-page_contact {
+	
+	.o-bio {
+		position: relative;
+
+		min-height: 90vh;
+
+		&_heading {
+			width: 30vw;
+			top: 0;
+			left: 0;
+			
+		}
+
+		.o-container {
+			&_inner {
+				position: relative;
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				height: 100%;
+			}
+
+			h1 {
+				margin-bottom: 5vw;
+			}
+
+			.o-bio_content {
+				width: 40vw;
+
+		
+			}
+
+			@include media("<=tablet") {
+				flex-direction: column;
+				justify-content: flex-start;
+
+				h1 {
+					margin-bottom: 4vw;
+				}
+
+				* {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

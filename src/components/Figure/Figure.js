@@ -1,167 +1,57 @@
-// import { ColorContext, CursorContext } from "../../App/App";
-import { CircularProgress, useMediaQuery } from "@mui/material";
+import { maxWidth } from "@mui/system";
+import React from "react";
+import ImageRevealer from "../ImageRevealer/ImageRevealer";
 import classNames from "classnames";
-import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
-import Link from "../../Link/Link";
-import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import gsap from "gsap";
-import Fade from "react-reveal/Fade";
 
-function ProjectGrid({ items, variant }) {
-	// const { setPageTheme } = useContext(ColorContext);
-	// const { setCursorState } = useContext(CursorContext);
-	const tablet = useMediaQuery("(max-width: 768px)");
+function Figure({
+	src,
+	alt,
+	width,
+	height,
+	maxWidth,
+	maxHeight,
+	classes,
 
-	const gridItems = useRef([]);
-	gridItems.current = [];
-
-	useEffect(() => {
-		if (gridItems.current) {
-			const handleIntersect = entries => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting && !$(entry.target).hasClass("is-in-view")) {
-						$(entry.target).addClass("is-in-view");
-					}
-				});
-			};
-
-			const observer = new IntersectionObserver(handleIntersect);
-
-			gridItems.current.forEach(item => observer.observe(item));
-		}
-	}, [gridItems.current]);
-
-	const addToRefs = el => {
-		if (el && !gridItems.current.includes(el)) {
-			gridItems.current.push(el);
-		}
-	};
-
-	const scrollSpeeds = [8, 1, 6, 3];
+	rotate,
+}) {
+	const figureClasses = classNames("c-figure", { [classes]: classes });
 
 	return (
-		<div className={`c-grid c-grid_${variant}`}>
-			{items &&
-				items.map((item, i) => {
-					return variant !== "media" ? (
-						<ProjectItem
-							addToRefs={addToRefs}
-							key={i}
-							// onMouseEnter={handleMouseEnter}
-							// onMouseLeave={handleMouseLeave}
-							src={item.media.featureImage.url}
-							alt={item.media.featureImage.altText}
-							previewText={item.subtitle}
-							title={item.title}
-							url={`/projects/${item.id}`}
-							scrollSpeed={scrollSpeeds[i]}
-						/>
-					) : (
-						<MediaItem src={item.attributes.url} />
-					);
-				})}
-		</div>
-	);
-}
-
-function ProjectItem({ src, addToRefs, previewText, title, url, scrollSpeed }) {
-	const ref = useRef(null);
-
-	const [loaded, setLoaded] = useState(false);
-	const inViewport = useRef(false);
-
-	const item = useRef(null);
-
-	const itemClasses = classNames("c-grid_item -relative -hover-underline", {
-		"is-in-view": inViewport.current,
-	});
-
-	return (
-		<Link
-			classes={itemClasses}
-			href={url}
-			target='_blank'
-			rel='noreferrer'
-			isRouterLink
-			ref={addToRefs}
+		<figure
+			className={figureClasses}
+			style={{
+				width: width,
+				height: height,
+				maxWidth: maxWidth,
+				maxHeight: maxHeight,
+			}}
+			data-rotate={rotate}
 		>
-			{/* <Frame /> */}
-			{!loaded && (
-				<div className='c-grid_item_loader'>
-					<CircularProgress color='inherit' />
-				</div>
-			)}
-
-			<div className='c-grid_img-wrapper'>
-				<div className='image'>
-					<img
-						src={src}
-						alt={Math.random()}
-						className='c-grid_img'
-						onLoad={() => setLoaded(true)}
-					/>
-				</div>
+			<div className='c-figure_inner -relative -stretchX -stretchY'>
+				<img src={src} alt={alt}></img>
+				<Frame />
+				<ImageRevealer />
 			</div>
-
-			<div className='c-grid_info'>
-				<h3 className='c-grid_title -underline'>{title}</h3>
-				<p className='c-grid_description -text-tiny'>{previewText}</p>
-			</div>
-		</Link>
-	);
-}
-
-function MediaItem({ src, alt }) {
-	const ref = useRef(null);
-
-	const [loaded, setLoaded] = useState(false);
-	const inViewport = useRef(false);
-
-	const item = useRef(null);
-
-	const itemClasses = classNames("c-grid_item -relative -hover-underline", {
-		"is-in-view": inViewport.current,
-	});
-
-	return (
-		<div className={itemClasses}>
-			{!loaded && (
-				<div className='c-grid_item_loader'>
-					<CircularProgress color='inherit' />
-				</div>
-			)}
-
-			<div className='c-grid_img-wrapper'>
-				<div className='image'>
-					<img
-						src={src}
-						alt={Math.random()}
-						className='c-grid_img'
-						onLoad={() => setLoaded(true)}
-					/>
-				</div>
-			</div>
-		</div>
+		</figure>
 	);
 }
 
 const Frame = props => {
-	gsap.registerPlugin(DrawSVGPlugin);
-	const revealer = useRef(null);
+	// gsap.registerPlugin(DrawSVGPlugin);
+	// const revealer = useRef(null);
 
-	useEffect(() => {
-		if (revealer.current) {
-			gsap.to(revealer.current, {
-				drawSVG: "0%",
-				duration: 3,
-				ease: "power3.out",
-			});
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (revealer.current) {
+	// 		gsap.to(revealer.current, {
+	// 			drawSVG: "0%",
+	// 			duration: 3,
+	// 			ease: "power3.out",
+	// 		});
+	// 	}
+	// }, []);
 
 	return (
-		<div className='c-frame'>
+		<div className='c-figure_frame'>
 			<svg
 				id='a'
 				xmlns='http://www.w3.org/2000/svg'
@@ -197,14 +87,9 @@ const Frame = props => {
 						fillRule: "evenodd",
 					}}
 				/>
-				<path
-					className='c-frame_revealer'
-					ref={revealer}
-					d='M26.3 6.29v349.29M367.15 346.76H0M352.79 348.98V0M15.14 18.82h348.98'
-				/>
 			</svg>
 		</div>
 	);
 };
 
-export default ProjectGrid;
+export default Figure;

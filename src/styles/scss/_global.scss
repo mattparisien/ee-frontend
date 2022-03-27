@@ -184,17 +184,13 @@ ul {
 	}
 }
 
-
-
-
 [data-theme="light"] {
 	background-color: $light;
 	color: $dark;
 	fill: $dark;
 
-	
-
-	*::after, *::before {
+	*::after,
+	*::before {
 		background-color: $dark;
 	}
 }
@@ -204,7 +200,8 @@ ul {
 	color: $light !important;
 	fill: $light;
 
-	*::after, *::before {
+	*::after,
+	*::before {
 		background-color: $light;
 	}
 }

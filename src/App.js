@@ -137,6 +137,8 @@ function App() {
 		"is-old-page": transitioning,
 	});
 
+
+
 	return (
 		<HelmetProvider>
 			<div className={classes}>
@@ -211,7 +213,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 													<main>
 														<SiteRoutes
-															addToRefs={addToRefs}
+															addToRdefs={addToRefs}
 															location={location}
 															siteControls={siteControls}
 														/>

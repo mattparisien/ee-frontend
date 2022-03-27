@@ -10,11 +10,12 @@ import Stories from "../../Stories/Stories";
 import ProjectGrid from "../Projects/ProjectGrid";
 import About from "./About";
 import How from "./How";
-
+import Work from "./Work";
 
 function HomePage({ toggleTransitioning, transitioning }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 	const data = useContext(DataContext);
+
 	const scroll = useLocomotiveScroll();
 
 	const stepsContainer = useRef(null);
@@ -73,15 +74,11 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				<About aboutText={data.about && data.about.body1} />
 				<How steps={data && data.steps} ref={stepsContainer} />
 
-				<Section classes='-padding-lg' data-theme='light'>
-					<ContainerFluid>
-						<ProjectGrid
-							variant='projects'
-							items={data && data.posts && data.posts.slice(0, 4)}
-						/>
-					</ContainerFluid>
-				</Section>
-				<Section classes='-padding-lg  -fullHeight -flex -align-center -justify-center' data-theme='light'>
+				<Work projects={data.posts && data.posts.slice(0, 3)} />
+				<Section
+					classes='-padding-lg  -fullHeight -flex -align-center -justify-center'
+					data-theme='light'
+				>
 					<ContainerFluid>
 						<Stories slides={data && data.stories} />
 					</ContainerFluid>

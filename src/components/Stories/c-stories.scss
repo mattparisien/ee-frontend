@@ -1,11 +1,12 @@
-
 .c-quotation {
-	width: 100vw;
-	height: 100vw;
-	transform: rotate(90deg)translate(-50%, -50%);
+	width: 80vw;
+	height: 80vw;
+	transform: translate(-50%, -10%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	svg {
-		
 		height: 100%;
 	}
 }
@@ -14,13 +15,31 @@
 	margin: 0 auto;
 	position: relative;
 
+	&_mobile-bg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 120vw;
+		height: 120vw;
+		background-color: $yellow;
+		border-radius: 50%;
+		transform: translate(-50%, -50%) scaleX(2) scaleY(1.2);
+		display: none;
+
+		@include media("<=phoneL") {
+			display: block;
+		}
+	}
+
 	&_content {
 		width: 70%;
 		margin: 0 auto;
 		height: 100%;
 		position: relative;
+		overflow: hidden;
 
-		h2, p {
+		h2,
+		p {
 			margin: 4vw 0;
 		}
 
@@ -56,28 +75,27 @@
 	}
 
 	&_indicator {
-		margin-left: 20.5vw;
-		
-		&, & span {
-			font-family: 'Riposte' !important;
+		margin-left: 11vw;
+		z-index: 999;
+		position: static;
+
+		&,
+		& span {
+			font-family: "Riposte" !important;
 		}
 	}
-
-
-
 
 	@include media("<=phoneL") {
 		&_main {
 			flex-direction: column;
-			
+
 			max-width: 100%;
 		}
 
-
-	&_content {
-		width: 100%;
-		
-	}
+		&_content {
+			width: 100%;
+			overflow: hidden;
+		}
 
 		&_controls {
 			width: 100%;
@@ -138,10 +156,10 @@
 			left: 50%;
 			// transform: translateX(-50%);
 
-			&:not(:first-of-type) {
-				opacity: 0;
-				display: none;
-			}
+			// &:not(:first-of-type) {
+			// 	// opacity: 0;
+			// 	// display: none;
+			// }
 
 			h2,
 			h4 {

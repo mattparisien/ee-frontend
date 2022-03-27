@@ -1,10 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./components/404/NotFound";
-import { Contact } from "./components/Pages/index";
+
 import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProject from "./components/Pages/SingleProject/SingleProject";
+import ContactPage from "./components/Pages/Contact/ContactPage";
 
 function SiteRoutes(props) {
 	const { addToRefs, location } = props;
@@ -25,11 +26,11 @@ function SiteRoutes(props) {
 				<Route
 					path='/contact'
 					element={
-						<Contact
+						<ContactPage
 							addToRefs={addToRefs}
 							key={location.pathname}
-							toggleTransitioning={props.siteControls.setTransitioning}
-							transitioning={props.siteControls.transitioning}
+							// toggleTransitioning={props.siteControls.setTransitioning}
+							// transitioning={props.siteControls.transitioning}
 						/>
 					}
 				/>

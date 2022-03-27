@@ -11,8 +11,29 @@
 	}
 }
 
-.c-note {
+.steps-container .c-note {
 	position: absolute;
+	height: 8vw;
+
+	&_1 {
+		top: 0;
+		left: 0;
+	}
+
+	&_2 {
+		top: 20vw;
+		right: 10vw;
+	}
+
+	&_3 {
+		left: 0;
+		bottom: 25vw;
+	}
+
+	&_clef,
+	&_whole {
+		display: none;
+	}
 
 	> div {
 		height: 100%;
@@ -31,19 +52,18 @@
 		height: 7vw;
 	}
 
-	&_half {
-		right: 20vw;
-		top: 15vw;
-		height: 5vw;
-		transform: rotate(30deg);
-	}
+	// &_half {
+	// 	right: 20vw;
+	// 	top: 15vw;
+	// 	height: 5vw;
+	// 	transform: rotate(30deg);
+	// }
 
-	&_quarter {
-		left: 20vw;
-		top: 40vw;
-		height: 5vw;
-		transform: rotate(270deg);
-	}
+	// &_quarter {
+	// 	left: 20vw;
+	// 	top: 40vw;
+	// 	height: 5vw;
+	// }
 
 	&_whole {
 		right: 15vw;
@@ -84,6 +104,9 @@
 	}
 }
 
+
+
+
 .title,
 .body {
 	width: 17vw;
@@ -113,6 +136,10 @@
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-column-gap: 1.5vw;
+
+	p {
+		animation-delay: 2s;
+	}
 
 	&_sheet {
 		position: absolute;

@@ -1,45 +1,53 @@
-
-
-.o-page_home {
-  .o-h2 {
-    font-size: 4.167vw;
-    line-height: 4.167vw;
-
-  }
-
-  .c-stories p {
-    font-size: 2.3vw;
-    line-height: 2.7vw;
-  }
-}
-
-@media (min-width:700px) and (max-width:1599px) {
-  .o-h2,
-  h2 {
-      font-size: 8rem;
-      line-height: 7rem;
-  }
-}
-@media (min-width:1600px) {
-  .o-h2,
-  h2 {
-      font-size: 8rem;
-      line-height: 8rem;
-      
-  }
-  
-}
-
+// .o-page {
+// 	.is-inview {
+// 		.-fadeUp, .c-line {
+// 			animation: fadeUp 2s ease forwards;
+// 		}
+// 	}
+// }
 
 .o-h2 {
-  margin: 0;
+	font-size: 10vw;
+	margin: 0;
+	line-height: 10vw;
+}
 
-  @include media("<=tablet") {
-		font-size: 10vw;
-    line-height: 10vw;
-		
+.c-stories p {
+	font-size: 2.3vw;
+	line-height: 2.7vw;
+}
+
+@keyframes fadeUp {
+	to {
+		transform: translateY(0%);
+		opacity: 1;
 	}
+}
 
+// @media (min-width:700px) and (max-width:1599px) {
+//   .o-h2,
+//   h2 {
+//       font-size: 8rem;
+//       line-height: 7rem;
+//   }
+// }
+// @media (min-width:1600px) {
+//   .o-h2,
+//   h2 {
+//       font-size: 8rem;
+//       line-height: 8rem;
 
-} 
+//   }
 
+// }
+
+// .o-h2 {
+//   margin: 0;
+
+//   @include media("<=tablet") {
+// 		font-size: 10vw;
+//     line-height: 10vw;
+
+// 	}
+
+// }

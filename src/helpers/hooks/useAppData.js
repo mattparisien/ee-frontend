@@ -95,6 +95,7 @@ export default function useAppData(scrollRef) {
 			`${basePath}/about`,
 			`${basePath}/stories`,
 			`${basePath}/footer`,
+			`${basePath}/bio?populate=*`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
@@ -107,6 +108,9 @@ export default function useAppData(scrollRef) {
 				const formattedAbout = formatAbout(data[2].data.data);
 				const formattedStories = formatStories(data[3].data.data);
 				const formattedFooter = data[4].data.data.attributes;
+				const formattedBio = data[5].data.data.attributes;
+
+				console.log(formattedBio)
 
 				setState(prev => ({
 					...prev,
@@ -117,6 +121,13 @@ export default function useAppData(scrollRef) {
 						steps: formattedSteps,
 						stories: formattedStories,
 						footer: { ...formattedFooter },
+						bio: {
+							body: formattedBio.Body,
+							image: {
+								src: formattedBio.SelfImage.data.attributes.url,
+								alt: formattedBio.SelfImage.data.attributes.alternativeText,
+							},
+						},
 					},
 				}));
 			})

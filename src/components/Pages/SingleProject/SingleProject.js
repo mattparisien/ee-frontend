@@ -18,6 +18,7 @@ import ImageRevealer from "../../ImageRevealer/ImageRevealer";
 import Link from "../../Link/Link";
 import Arrow from "../../Vector/Arrow";
 import { Helmet } from "react-helmet-async";
+import Fade from "react-reveal/Fade";
 
 function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -32,14 +33,14 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const mobile = window.matchMedia("(max-width: 820px)");
 
 	const accentColor = useMemo(() => shuffleColors(), []);
-	useMemo(() => {
-		if (scroll && scroll.scroll) {
-			console.log('in here!')
-			scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0);
-		} else {
-			window.scrollTo(0, 0);
-		}
-	}, []);
+	// useMemo(() => {
+	// 	if (scroll && scroll.scroll) {
+	// 		console.log("in here!");
+	// 		scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0);
+	// 	} else {
+	// 		window.scrollTo(0, 0);
+	// 	}
+	// }, []);
 
 	useLayoutEffect(() => {
 		const desktopTimeline = () => {
@@ -49,13 +50,13 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 				.set(revealer.current, { transition: "none" })
 				.set(textWrapper.current, { opacity: 1 })
 
-				.to(lines, {
-					y: 0,
-					opacity: 1,
-					ease: "power3.out",
-					duration: 1,
-					stagger: 0.1,
-				})
+				// .to(lines, {
+				// 	y: 0,
+				// 	opacity: 1,
+				// 	ease: "power3.out",
+				// 	duration: 1,
+				// 	stagger: 0.1,
+				// })
 				.to(
 					textWrapper.current,
 					{
@@ -91,29 +92,8 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 			return tl.current;
 		};
 
-		const mobileTimeline = () => {
-			const lines = $(textWrapper.current).find(".c-line");
-			console.log(lines);
-			tl.current
-				.set(heroImage.current, { opacity: 0 })
-				.set(revealer.current, { transition: "none" })
-				.set(textWrapper.current, { opacity: 1 })
-
-				.to(lines, {
-					y: 0,
-					opacity: 1,
-					ease: "power3.out",
-					duration: 1,
-					stagger: 0.1,
-				})
-				.to(heroImage.current, { opacity: 1, duration: 1 }, 0.5);
-			return tl.current;
-		};
-
 		setTimeout(() => {
-			if (mobile.matches) {
-				mobileTimeline();
-			} else {
+			if (!mobile.matches) {
 				desktopTimeline();
 			}
 		}, 400);
@@ -157,114 +137,125 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 		}
 	}, [data, location, param]);
 
-
 	return (
 		<>
-
-		<Helmet>
-		<title>{`${info && info[0].title} - ${info && info[0].subtitle}`} </title>
-			 <meta name="description" content="Helmet application" />
- </Helmet>
-		<div className='o-page o-single-project'>
-			<Section data-theme='light' classes='o-hero'>
-				<ContainerFluid>
-					<div className='o-container_inner'>
-
-						<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
-							<h3 className='o-h3 -split' style={{ color: accentColor[0] }}>
-								{info && info[0].title}
-							</h3>
-							<h2
-								className='o-h2 -bold -split'
-								style={{ color: accentColor[0] }}
-							>
-								{info && info[0].subtitle}
-							</h2>
-							{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
-						</div>
-						<div className='o-hero_image media-reveal' ref={heroImage}>
-							<ImageRevealer ref={revealer} />
-							<img
-								src={info && info[0].media.featureImage.url}
-								alt={info && info[0].media.featureImage.altText}
-							></img>
-						</div>
-						{/* 				
+			<Helmet>
+				<title>
+					{`${info && info[0].title} - ${info && info[0].subtitle}`}{" "}
+				</title>
+				<meta name='description' content='Helmet application' />
+			</Helmet>
+			<div className='o-page o-single-project'>
+				<Section data-theme='light' classes='o-hero'>
+					<ContainerFluid>
+						<div className='o-container_inner'>
+							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
+								<Fade bottom>
+									<h3
+										className='o-h3 -split -fadeUp'
+										style={{ color: accentColor[0] }}
+									>
+										{info && info[0].title}
+									</h3>
+									<h2
+										className='o-h2 -bold -split -fadeUp'
+										style={{ color: accentColor[0] }}
+									>
+										{info && info[0].subtitle}
+									</h2>
+									{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
+								</Fade>
+							</div>
+							<div className='o-hero_image media-reveal' ref={heroImage}>
+								<ImageRevealer ref={revealer} />
+								<img
+									src={info && info[0].media.featureImage.url}
+									alt={info && info[0].media.featureImage.altText}
+								></img>
+							</div>
+							{/* 				
 					<div className='o-hero_image-wrapper-2'>
 						<img
 							src={info && info[0].media.featureImage.url}
 							alt={info && info[0].media.featureImage.altText}
 						/>
 					</div> */}
-					</div>
-				</ContainerFluid>
-			</Section>
-
-			<Section classes='o-overview -padding-lg' data-theme='light'>
-				<ContainerFluid>
-					<div className='o-overview_left'>
-						<ReactMarkdown className='o-h3' children={info && info[0].goal} />
-					</div>
-					<div className='o-overview_right'>
-						<ReactMarkdown
-							className='o-text -body'
-							children={info && info[0].about1}
-						/>
-					</div>
-				</ContainerFluid>
-			</Section>
-			{info && info[0].media.additional && (
-				<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
-					<ContainerFluid>
-						<div className='o-feature_item' data-scroll>
-							<div className='item-revealer'></div>
-							<img
-								src={
-									info &&
-									info[0].media.additional &&
-									info[0].media.additional[0].attributes.url
-								}
-							></img>
 						</div>
 					</ContainerFluid>
 				</Section>
-			)}
-			<Section classes='o-details -padding-lg' data-theme='dark'>
-				<ContainerFluid>
-					<div className='o-details_left'>
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, in?
-					</div>
-					<div className='o-details_right'>
-						<div className='about'>
-							<ReactMarkdown className='o-h3' children={"About the Company"} />
 
-							<p className='o-text -body'>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-								Molestiae perspiciatis sint quidem. Suscipit commodi, quaerat
-								enim dolorem fugiat quo at blanditiis neque incidunt vel ut
-								repellat labore quis eos non nulla qui obcaecati? Quibusdam
-								quaerat et itaque! Soluta nobis asperiores, blanditiis ducimus
-								adipisci ex exercitationem vero tenetur nostrum tempora
-								deserunt?
-							</p>
+				<Section classes='o-overview -padding-lg' data-theme='light'>
+					<ContainerFluid>
+						<div className='o-overview_left'>
+							<ReactMarkdown className='o-h3' children={info && info[0].goal} />
 						</div>
-						<div className='work'>
-							{" "}
-							<ReactMarkdown className='o-h3' children={"Our Work"} />
-							<p className='o-text -body'>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-								Molestiae perspiciatis sint quidem. Suscipit commodi, quaerat
-								enim dolorem fugiat quo at blanditiis neque incidunt vel ut
-								repellat labore quis eos non nulla qui obcaecati? Quibusdam
-								quaerat et itaque! Soluta nobis asperiores, blanditiis ducimus
-								adipisci ex exercitationem vero tenetur nostrum tempora
-								deserunt?
-							</p>
+						<div className='o-overview_right'>
+							<ReactMarkdown
+								className='o-text -body'
+								children={info && info[0].about1}
+							/>
 						</div>
-					</div>
-				</ContainerFluid>
-			</Section>
-			{/* <Section classes='o-media' data-theme='light'>
+					</ContainerFluid>
+				</Section>
+				{info && info[0].media.additional && (
+					<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
+						<ContainerFluid>
+							<div className='o-feature_item' data-scroll>
+								<div className='item-revealer'></div>
+								<img
+									src={
+										info &&
+										info[0].media.additional &&
+										info[0].media.additional[0].attributes.url
+									}
+								></img>
+							</div>
+						</ContainerFluid>
+					</Section>
+				)}
+				<Section classes='o-details -padding-lg' data-theme='dark'>
+					<ContainerFluid>
+						<div className='o-details_left'>
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
+							in?
+						</div>
+						<div className='o-details_right'>
+							<div className='about'>
+								<Fade bottom cascade>
+									<ReactMarkdown
+										className='o-h3'
+										children={"About the Company"}
+									/>
+
+									<p className='o-text -body'>
+										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+										Molestiae perspiciatis sint quidem. Suscipit commodi,
+										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
+										vel ut repellat labore quis eos non nulla qui obcaecati?
+										Quibusdam quaerat et itaque! Soluta nobis asperiores,
+										blanditiis ducimus adipisci ex exercitationem vero tenetur
+										nostrum tempora deserunt?
+									</p>
+								</Fade>
+							</div>
+							<div className='work'>
+								<Fade bottom cascade>
+									<ReactMarkdown className='o-h3' children={"Our Work"} />
+									<p className='o-text -body'>
+										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+										Molestiae perspiciatis sint quidem. Suscipit commodi,
+										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
+										vel ut repellat labore quis eos non nulla qui obcaecati?
+										Quibusdam quaerat et itaque! Soluta nobis asperiores,
+										blanditiis ducimus adipisci ex exercitationem vero tenetur
+										nostrum tempora deserunt?
+									</p>
+								</Fade>
+							</div>
+						</div>
+					</ContainerFluid>
+				</Section>
+				{/* <Section classes='o-media' data-theme='light'>
 				<ContainerFluid>
 					<ProjectGrid
 						items={info && info[0].media.additional}
@@ -272,28 +263,30 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 					/>
 				</ContainerFluid>
 			</Section> */}
-			<Section classes='o-next' data-theme={accentColor[1]}>
-				<ContainerFluid>
-					<Link
-						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
-						isRouterLink
-						href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
-					>
-						<div className='c-link_inner'>
-							<Arrow />
-							<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
-								<span className='label'>
-									{info && info.nextPost && info.nextPost[0].title}
-								</span>
+				<Section classes='o-next' data-theme={accentColor[1]}>
+					<ContainerFluid>
+						<Link
+							classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
+							isRouterLink
+							href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
+						>
+							<div className='c-link_inner'>
+								<Fade bottom >
+								<Arrow />
+								<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
+									<span className='label'>
+										{info && info.nextPost && info.nextPost[0].title}
+									</span>
+								</div>
+								<div className='o-next_subtitle o-h3 -underline -underline-dark'>
+									{info && info.nextPost && info.nextPost[0].subtitle}
+								</div>
+								</Fade>
 							</div>
-							<div className='o-next_subtitle o-h3 -underline -underline-dark'>
-								{info && info.nextPost && info.nextPost[0].subtitle}
-							</div>
-						</div>
-					</Link>
-				</ContainerFluid>
-			</Section>
-		</div>
+						</Link>
+					</ContainerFluid>
+				</Section>
+			</div>
 		</>
 	);
 }
