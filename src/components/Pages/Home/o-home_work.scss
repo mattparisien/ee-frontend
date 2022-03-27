@@ -1,6 +1,12 @@
 .o-work {
 
 
+	.o-h2 {
+		span {
+			display: block;
+		}
+	}
+
 
 
 	.o-h1 {
@@ -51,6 +57,7 @@
 			height: 100%;
 			padding: 2vw;
 			color: $light;
+			display: none;
 
 			* {
 				transform: translateY(50%);
@@ -64,9 +71,9 @@
 			}
 		}
 
-		&:hover .c-figure_inner::after {
-			opacity: 0.4;
-		}
+		// &:hover .c-figure_inner::after {
+		// 	opacity: 0.4;
+		// }
 
 		&:hover .card-info * {
 			opacity: 1;

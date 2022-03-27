@@ -80,16 +80,27 @@ function Work({ projects }) {
 						scroller: ".scroll-wrapper",
 						trigger: triggers[i],
 						pin: false,
-						end: "+=3000",
+
 						scrub: 1,
 						animation: gsap
 							.timeline()
-							.to($(triggers[i]).find(".o-work_card_1"), {
-								rotate: "-10deg",
-							})
-							.to($(triggers[i]).find(".o-work_card_2"), {
-								rotate: "30deg",
-							}),
+							.to(
+								$(triggers[i]).find(".o-work_card_1"),
+								{
+									rotate: "15deg",
+									y: -100,
+									duration: 2,
+								},
+								0
+							)
+							.to(
+								$(triggers[i]).find(".o-work_card_2"),
+								{
+									rotate: "-10deg",
+									duration: 2,
+								},
+								0
+							),
 					}))
 			);
 
@@ -163,7 +174,7 @@ function Work({ projects }) {
 									rotation={rotations[index]}
 								/>
 							))}
-						<h1 className='o-h2 -text-center' data-scroll data-scroll-speed={2}>
+						<h1 className='o-h2 -text-center' >
 							Erez Robary
 						</h1>
 					</div>
@@ -184,8 +195,7 @@ function Work({ projects }) {
 							))}
 						<h1
 							className='o-h2 -text-center o-work_title'
-							data-scroll
-							data-scroll-speed={2}
+							
 						>
 							Ekali
 						</h1>
@@ -207,10 +217,9 @@ function Work({ projects }) {
 							))}
 						<h1
 							className='o-h2 -text-center o-work_title'
-							data-scroll
-							data-scroll-speed={2}
+							
 						>
-							Charlie Burg
+							<span>Charlie Burg</span>
 						</h1>
 					</div>
 				</div>
