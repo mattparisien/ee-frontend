@@ -1,16 +1,17 @@
 .o-text {
-	
-  line-height: 1.55rem;
+	line-height: 1.55rem;
 
-	&, & p {
-		font-family: 'Riposte';
+	&,
+	& p {
+		font-family: "Riposte";
 	}
 }
 
 .-text-big {
-	font-size: 3w;
+	font-size: 3vw;
+	line-height: 3vw;
 	font-family: "Canela" !important;
-	line-height: 5rem;
+	
 
 	@include media("<=tablet") {
 		.c-star.-inline svg,
@@ -18,15 +19,5 @@
 			width: 2rem !important;
 			height: 2rem !important;
 		}
-	}
-
-	@include media(">=phoneL") {
-		font-size: 3.7rem;
-		line-height: 4rem;
-	}
-
-	@include media(">=desktop") {
-		font-size: 5rem;
-		line-height: 6rem;
 	}
 }

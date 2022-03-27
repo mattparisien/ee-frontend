@@ -1,6 +1,12 @@
 .o-work {
 
 
+	.c-grid_title {
+		&::after {
+			background-color: $light !important;
+		}
+	}
+
 	.o-h2 {
 		span {
 			display: block;

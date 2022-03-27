@@ -1,0 +1,32 @@
+.o-about {
+position: relative;
+
+.o-text {
+  width: 50vw;
+}
+
+  .c-megaphone {
+    position: absolute;
+    right: -3vw;
+    width: 35vw;
+    transform: scaleX(-100%);
+    bottom: 0;
+
+  }
+
+  min-height: 80vh;
+
+  &_content {
+
+    .o-about_left, .o-about_right {
+      flex: 50%;
+    }
+  }
+  &_left {
+    
+
+    .o-text p:nth-of-type(1){
+      margin-bottom: $space-md;
+    }
+  }
+}
