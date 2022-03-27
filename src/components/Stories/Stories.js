@@ -114,7 +114,7 @@ function Stories({ slides }) {
 							/>
 						))}
 				</div>
-				<Fade left>
+				<Fade>
 					<div className='c-stories_controls'>
 						<ArrowButton handleClick={handlePrevClick} />
 						<ArrowButton

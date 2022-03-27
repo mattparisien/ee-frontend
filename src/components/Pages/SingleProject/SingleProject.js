@@ -28,84 +28,68 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 	const textWrapper = useRef(null);
 	const heroImage = useRef(null);
 	const revealer = useRef(null);
-	const tl = useRef(gsap.timeline());
-	const scroll = useLocomotiveScroll();
-	const mobile = window.matchMedia("(max-width: 820px)");
+	// const tl = useRef(gsap.timeline());
+	// const scroll = useLocomotiveScroll();
+	// const mobile = window.matchMedia("(max-width: 820px)");
 
 	const accentColor = useMemo(() => shuffleColors(), []);
-	// useMemo(() => {
-	// 	if (scroll && scroll.scroll) {
-	// 		console.log("in here!");
-	// 		scroll && scroll.scroll && scroll.scroll.scrollTo(0, 0);
-	// 	} else {
-	// 		window.scrollTo(0, 0);
-	// 	}
+
+	// useLayoutEffect(() => {
+	// 	const desktopTimeline = () => {
+	// 		const lines = $(textWrapper.current).find(".c-line");
+	// 		tl.current
+	// 			.set(heroImage.current, { opacity: 0 })
+	// 			.set(revealer.current, { transition: "none" })
+	// 			.set(textWrapper.current, { opacity: 1 })
+
+	// 			// .to(lines, {
+	// 			// 	y: 0,
+	// 			// 	opacity: 1,
+	// 			// 	ease: "power3.out",
+	// 			// 	duration: 1,
+	// 			// 	stagger: 0.1,
+	// 			// })
+	// 			.to(
+	// 				textWrapper.current,
+	// 				{
+	// 					bottom: 0,
+	// 					top: "50%",
+	// 					y: "-50%",
+	// 					duration: 3,
+	// 					ease: "expo.inOut",
+	// 				},
+	// 				0.4
+	// 			)
+
+	// 			.to(
+	// 				revealer.current,
+	// 				{
+	// 					scaleY: 1,
+	// 					duration: 2,
+	// 					ease: "expo.inOut",
+	// 				},
+	// 				1.5
+	// 			)
+	// 			.to(
+	// 				revealer.current,
+	// 				{
+	// 					scaleX: 1,
+	// 					duration: 2,
+	// 					ease: "expo.inOut",
+	// 				},
+	// 				1.5
+	// 			)
+	// 			.to(heroImage.current, { opacity: 1, duration: 2 }, 1.4);
+
+	// 		return tl.current;
+	// 	};
+
+	// 	setTimeout(() => {
+	// 		if (!mobile.matches) {
+	// 			desktopTimeline();
+	// 		}
+	// 	}, 400);
 	// }, []);
-
-	useLayoutEffect(() => {
-		const desktopTimeline = () => {
-			const lines = $(textWrapper.current).find(".c-line");
-			tl.current
-				.set(heroImage.current, { opacity: 0 })
-				.set(revealer.current, { transition: "none" })
-				.set(textWrapper.current, { opacity: 1 })
-
-				// .to(lines, {
-				// 	y: 0,
-				// 	opacity: 1,
-				// 	ease: "power3.out",
-				// 	duration: 1,
-				// 	stagger: 0.1,
-				// })
-				.to(
-					textWrapper.current,
-					{
-						bottom: 0,
-						top: "50%",
-						y: "-50%",
-						duration: 3,
-						ease: "expo.inOut",
-					},
-					0.4
-				)
-
-				.to(
-					revealer.current,
-					{
-						scaleY: 1,
-						duration: 2,
-						ease: "expo.inOut",
-					},
-					1.5
-				)
-				.to(
-					revealer.current,
-					{
-						scaleX: 1,
-						duration: 2,
-						ease: "expo.inOut",
-					},
-					1.5
-				)
-				.to(heroImage.current, { opacity: 1, duration: 2 }, 1.4);
-
-			return tl.current;
-		};
-
-		setTimeout(() => {
-			if (!mobile.matches) {
-				desktopTimeline();
-			}
-		}, 400);
-	}, []);
-
-	// useEffect(() => {
-
-	// 	//Ensure page scrolls to top on location change
-	// 	window.scrollTo(0, 0);
-
-	// 	scroll && scroll.scroll && scroll.scroll.scrollTo(0, { duration: 0, disableLerp: true });
-	// }, [location, scroll]);
 
 	useEffect(() => {
 		//Find query param
@@ -118,6 +102,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 
 					if (counter > 1) {
 						param = location.pathname.slice(i + 1, location.pathname.length);
+						console.log(param);
 					}
 				}
 			}
@@ -125,15 +110,17 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 		}
 
 		if (data && data.posts && param && !info) {
+			console.clear();
+			console.log(".....", data.posts);
 			// setInfo(data.posts.filter(x => x.id === param));
-			const match = data.posts.filter(x => x.id == param);
+			const currentPost = data.posts.filter(x => x.id == param);
+			// const prevPost = data.posts.filter(x => x.id == param);
+
 			const nextPost = data.posts.filter(
-				x =>
-					x.id ==
-					(parseInt(param) - 1 == 0 ? data.posts.length : parseInt(param) - 1)
+				(post, index) => index === data.posts.indexOf(currentPost) + 1
 			);
 
-			setInfo({ ...match, nextPost: nextPost });
+			setInfo({ ...currentPost, nextPost: nextPost });
 		}
 	}, [data, location, param]);
 
@@ -150,7 +137,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 					<ContainerFluid>
 						<div className='o-container_inner'>
 							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
-								<Fade bottom>
+								{/* <Fade bottom> */}
 									<h3
 										className='o-h3 -split -fadeUp'
 										style={{ color: accentColor[0] }}
@@ -164,7 +151,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 										{info && info[0].subtitle}
 									</h2>
 									{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
-								</Fade>
+								{/* </Fade> */}
 							</div>
 							<div className='o-hero_image media-reveal' ref={heroImage}>
 								<ImageRevealer ref={revealer} />
@@ -200,7 +187,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 				{info && info[0].media.additional && (
 					<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
 						<ContainerFluid>
-							<div className='o-feature_item' data-scroll>
+							<div className='o-feature_item'>
 								<div className='item-revealer'></div>
 								<img
 									src={
@@ -221,7 +208,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 						</div>
 						<div className='o-details_right'>
 							<div className='about'>
-								<Fade bottom cascade>
+								{/* <Fade bottom cascade> */}
 									<ReactMarkdown
 										className='o-h3'
 										children={"About the Company"}
@@ -236,10 +223,10 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 										blanditiis ducimus adipisci ex exercitationem vero tenetur
 										nostrum tempora deserunt?
 									</p>
-								</Fade>
+								{/* </Fade> */}
 							</div>
 							<div className='work'>
-								<Fade bottom cascade>
+								{/* <Fade bottom cascade> */}
 									<ReactMarkdown className='o-h3' children={"Our Work"} />
 									<p className='o-text -body'>
 										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -250,7 +237,7 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 										blanditiis ducimus adipisci ex exercitationem vero tenetur
 										nostrum tempora deserunt?
 									</p>
-								</Fade>
+								{/* </Fade> */}
 							</div>
 						</div>
 					</ContainerFluid>
@@ -271,17 +258,17 @@ function SingleProject({ location, transitioning, toggleTransitioning }) {
 							href={info && info.nextPost && `/projects/${info.nextPost[0].id}`}
 						>
 							<div className='c-link_inner'>
-								<Fade bottom >
-								<Arrow />
-								<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
-									<span className='label'>
-										{info && info.nextPost && info.nextPost[0].title}
-									</span>
-								</div>
-								<div className='o-next_subtitle o-h3 -underline -underline-dark'>
-									{info && info.nextPost && info.nextPost[0].subtitle}
-								</div>
-								</Fade>
+								{/* <Fade bottom> */}
+									<Arrow />
+									<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
+										<span className='label'>
+											{info && info.nextPost && info.nextPost[0].title}
+										</span>
+									</div>
+									<div className='o-next_subtitle o-h3 -underline -underline-dark'>
+										{info && info.nextPost && info.nextPost[0].subtitle}
+									</div>
+								{/* </Fade> */}
 							</div>
 						</Link>
 					</ContainerFluid>

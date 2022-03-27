@@ -41,10 +41,14 @@ function How({ steps }) {
 					scroller: ".scroll-wrapper",
 					trigger: $(".o-how .o-container"),
 					pin: false,
-					onUpdate: () => console.log("updating!"),
+					
 					scrub: 1,
 				},
 			});
+		}
+
+		return () => {
+			console.log(ScrollTrigger.kill())
 		}
 	}, [scroll.isReady]);
 

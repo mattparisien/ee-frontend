@@ -7,6 +7,7 @@ import gsap from "gsap";
 import $ from "jquery";
 import Figure from "../../Figure/Figure";
 import Fade from "react-reveal/Fade";
+import Link from "../../Link/Link";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
@@ -52,7 +53,7 @@ function Work({ projects }) {
 					{
 						rotate: $(".o-work_card_1").attr("data-rotate"),
 						duration: 2,
-						y: "-100",
+						y: "200",
 					},
 					0
 				)
@@ -61,7 +62,7 @@ function Work({ projects }) {
 					{
 						rotate: $(".o-work_card_2").attr("data-rotate"),
 						duration: 2,
-						y: "-200",
+						// y: "-200",
 					},
 					0
 				)
@@ -70,7 +71,7 @@ function Work({ projects }) {
 					{
 						rotate: $(".o-work_card_3").attr("data-rotate"),
 						duration: 2,
-						y: -"100",
+						// y: -"100",
 					},
 					0
 				);
@@ -88,6 +89,7 @@ function Work({ projects }) {
 	}, [scroll]);
 
 	const speeds = [1, 2, 1];
+	const rotations = [0, 10, -10];
 
 	return (
 		<Section classes='o-work -padding-huge' data-theme='light'>
@@ -108,10 +110,12 @@ function Work({ projects }) {
 								<Fade bottom>
 									<Card
 										key={project.id}
+										title={project.title}
+										subtitle={project.subtitle}
 										id={(index += 1)}
 										src={project.media.featureImage.url}
 										scrollSpeed={speeds[index]}
-										rotation={index % 2 === 0 ? "-30" : "10"}
+										rotation={rotations[index]}
 									/>
 								</Fade>
 							))}
@@ -122,13 +126,18 @@ function Work({ projects }) {
 	);
 }
 
-function Card({ src, id, rotation }) {
+function Card({ src, id, rotation, title, subtitle }) {
 	return (
-		<Figure
-			src={src}
-			classes={`o-work_card o-work_card_${id}`}
-			rotate={rotation}
-		/>
+		<Link classes={`o-work_card o-work_card_${id}`} rotate={rotation}>
+			<div className='o-work_card_inner -relative -stretchX -stretchY'>
+				<Figure src={src} />
+
+				<div className='card-info'>
+					<h3 className='card-info_title -underline'>{title}</h3>
+					<p className='card-info_description -text-tiny'>{subtitle}</p>
+				</div>
+			</div>
+		</Link>
 	);
 }
 
