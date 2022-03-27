@@ -8,6 +8,7 @@ import SlidingText from "./Marquee";
 // import Paragraph from "./Text/Paragraph";
 import {
 	Amperstand,
+	
 	Arrow,
 	DrawnLogo,
 	Ear,

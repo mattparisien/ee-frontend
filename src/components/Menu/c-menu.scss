@@ -6,15 +6,15 @@
 	width: 100vw;
 	display: block;
 	z-index: 999;
-	transform: translateX(-100%);
-	transform-origin: left;
+	transform: scaleY(0.0001);
+	transform-origin: top;
 	transition: 600ms ease;
 	padding-top: $headerHeight;
 	background-color: $dark;
-	transition: $transition-expo;
+	transition: $transition-menu;
 
 	&.is-active {
-		transform: translateX(0%);
+		transform: scaleY(1);
 	}
 
 	&_nav {
@@ -27,8 +27,23 @@
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
-			justify-content: space-around;
+			justify-content: center;
 			height: 100%;
+			
+			li {
+				opacity: 0;
+
+				&:not(:last-child) {
+					margin-bottom: 3rem;
+				}
+
+				&:nth-of-type(2) {
+					transition-delay: 100ms;
+				}
+				&:nth-of-type(3) {
+					transition-delay: 200ms;
+				}
+			}
 
 			li .c-link {
 				transition: 300ms ease;
@@ -49,7 +64,8 @@
 
 			.c-link {
 				color: $light;
-				font-family: "Kobe";
+				font-family: 'Canela';
+		text-transform: none;					
 
 				@include media("<=tablet") {
 					font-size: 18vw;

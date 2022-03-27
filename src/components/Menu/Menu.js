@@ -6,8 +6,19 @@ import variables from "../../styles/scss/_vars.module.scss";
 import { useMediaQuery } from "@mui/material";
 import $ from "jquery";
 import gsap from "gsap";
+import Fade from "react-reveal/Fade";
 
 function Menu({ isActive, navItems, toggleMenu }) {
+	const [reveal, setReveal] = useState(false);
+
+	useEffect(() => {
+		if (isActive) {
+			setTimeout(() => {
+				setReveal(true);
+			}, 500);
+		}
+	}, [isActive]);
+
 	const matches = useMediaQuery(
 		`(min-width: ${variables["breakpoints-tablet"]}px)`
 	);
@@ -31,7 +42,7 @@ function Menu({ isActive, navItems, toggleMenu }) {
 					y: 0,
 					opacity: 1,
 					duration: 1,
-					ease: "expo.inOut",
+					ease: "power3.out",
 					stagger: 0.04,
 				},
 				0.1
@@ -55,17 +66,19 @@ function Menu({ isActive, navItems, toggleMenu }) {
 			<ContainerFluid classes='-stretchY'>
 				<nav className='c-menu_nav'>
 					<ul ref={container}>
-						{navItems.map((link, i) => {
-							return (
-								<li key={i}>
-									<h2 className='o-h2 -uppercase -split'>
-										<Link isRouterLink href={link.href}>
-											{link.name}
-										</Link>
-									</h2>
-								</li>
-							);
-						})}
+						<Fade bottom when={reveal} cascade>
+							{navItems.map((link, i) => {
+								return (
+									<li key={i}>
+										<h2 className='o-h2 -uppercase -split'>
+											<Link isRouterLink href={link.href}>
+												{link.name}
+											</Link>
+										</h2>
+									</li>
+								);
+							})}
+						</Fade>
 					</ul>
 				</nav>
 			</ContainerFluid>

@@ -61,6 +61,7 @@ $loader-delay: 0.8;
 
 //Transition
 $transition: 600ms ease;
+$transition-menu: 0.7s cubic-bezier(0.645, 0.045, 0.355, 1.000);
 $transition-expo: 1.2s cubic-bezier(1, 0, 0, 1);
 $transition-zoom: 4s cubic-bezier(0.075, 0.82, 0.165, 1);
 $translate-transition: opacity 0s cubic-bezier(0.35, 0.755, 0.42, 0.95),

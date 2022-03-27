@@ -182,7 +182,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 												<Header
 													toggleMenu={() => setMenuActive(!menuActive)}
-													color={headerColor}
+													color={menuActive ? "dark" : headerColor}
 													navItems={navItems}
 													location={location}
 												/>
