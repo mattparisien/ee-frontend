@@ -73,7 +73,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				<Section data-theme='light' classes='-fullHeight'></Section>
 				<About aboutText={data.about && data.about.body1} />
 				<How steps={data && data.steps} ref={stepsContainer} />
-
+			
 				<Work projects={data.posts && data.posts.slice(0, 3)} />
 				<Section
 					classes='-padding-lg  -fullHeight -flex -align-center -justify-center'

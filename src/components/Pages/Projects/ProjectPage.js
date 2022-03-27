@@ -4,6 +4,7 @@ import ProjectGrid from "./ProjectGrid";
 import { useContext, useEffect } from "react";
 import { DataContext } from "../../../App";
 
+
 export default function ProjectPage({ transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
 
