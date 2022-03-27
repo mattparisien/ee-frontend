@@ -37,23 +37,24 @@ function Menu({ isActive, navItems, toggleMenu }) {
 		if (isActive) {
 			tl.current.progress(0).play();
 			tl.current.to(
-				$(container.current).find(".c-char"),
+				$(container.current).find("li"),
 				{
 					y: 0,
 					opacity: 1,
 					duration: 1,
 					ease: "power3.out",
-					stagger: 0.04,
+					stagger: 0.1,
+					delay: 0.3
 				},
 				0.1
 			);
 		} else {
-			gsap.to($(container.current).find(".c-char"), {
+			gsap.to($(container.current).find("li"), {
 				opacity: 0,
 				duration: 0.3,
 				onComplete: () => {
-					gsap.set($(container.current).find(".c-char"), {
-						y: "-100%",
+					gsap.set($(container.current).find("li"), {
+						y: "150%",
 						opacity: 0,
 					});
 				},
@@ -66,19 +67,17 @@ function Menu({ isActive, navItems, toggleMenu }) {
 			<ContainerFluid classes='-stretchY'>
 				<nav className='c-menu_nav'>
 					<ul ref={container}>
-						<Fade bottom when={reveal} cascade>
-							{navItems.map((link, i) => {
-								return (
-									<li key={i}>
-										<h2 className='o-h2 -uppercase -split'>
-											<Link isRouterLink href={link.href}>
-												{link.name}
-											</Link>
-										</h2>
-									</li>
-								);
-							})}
-						</Fade>
+						{navItems.map((link, i) => {
+							return (
+								<li key={i}>
+									<h2 className='o-h2 -uppercase -split'>
+										<Link isRouterLink href={link.href}>
+											{link.name}
+										</Link>
+									</h2>
+								</li>
+							);
+						})}
 					</ul>
 				</nav>
 			</ContainerFluid>

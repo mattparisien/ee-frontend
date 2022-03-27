@@ -151,6 +151,11 @@ ul {
 		stroke: $light;
 	}
 
+	svg circle {
+		stroke: $light;
+		stroke-width: 1px;
+	}
+
 	*::after {
 		background-color: $light;
 	}

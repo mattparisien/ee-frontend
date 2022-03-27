@@ -4,14 +4,72 @@
 
 .o-page_home {
 	.o-how {
+		position: relative;
+
+		.c-drawing {
+			position: absolute;
+
+			width: 200vw;
+
+			&_blue {
+				top: -5vw;
+				left: -14vw;
+				width: 37vw;
+			}
+
+			&_green {
+				right: -10vw;
+				top: -5vw;
+				width: 45vw;
+			}
+
+			&_red {
+				top: 50vw;
+				right: -8vw;
+				width: 30vw;
+			}
+
+			&_yellow {
+				bottom: -12vw;
+				left: -8vw;
+				width: 50vw;
+			}
+
+			&_small_yellow {
+				top: 10vw;
+				right: 30vw !important;
+				width: 10vw !important;
+				display: none;
+			}
+
+			&_small_pink {
+				top: 8vw;
+				right: 20vw;
+				width: 8vw !important;
+				display: none;
+			}
+
+			&_lightBlue {
+				top: 0;
+				left: 0;
+				width: 100vw;
+				display: none;
+			}
+		}
+
 		.o-h1 {
+			z-index: 99;
+			position: static;
 			margin: 0 auto;
 			text-align: center;
+			width: 35vw;
+			z-index: 999;
 		}
 	}
 }
 
 .steps-container .c-note {
+	display: none;
 	position: absolute;
 	height: 8vw;
 
@@ -104,9 +162,6 @@
 	}
 }
 
-
-
-
 .title,
 .body {
 	width: 17vw;
@@ -177,6 +232,7 @@
 	}
 
 	&_item {
+		z-index: 99;
 		grid-column: span 3;
 		z-index: 99;
 

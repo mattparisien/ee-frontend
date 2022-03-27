@@ -14,12 +14,13 @@ function Figure({
 	maxHeight,
 	classes,
 	noFrame,
+	noReveal,
 	rotate,
 }) {
 	const figureClasses = classNames("c-figure", { [classes]: classes });
 
 	return (
-		<Reveal effect={"-scale-reveal"}>
+		<Reveal effect={!noReveal ? "-scale-reveal" : null}>
 		<figure
 			className={figureClasses}
 			style={{

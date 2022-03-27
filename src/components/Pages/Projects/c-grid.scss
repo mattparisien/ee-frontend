@@ -12,11 +12,19 @@
 		grid-row-gap: $space-sm;
 	}
 
-	&_item {
+	.react-reveal {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		opacity: 1;
+		opacity: 0;
+		position: relative;
+
+		.c-link {
+			width: 100%;
+			height: 100%;
+			display: block;
+			overflow: hidden;
+		}
 
 		&:hover::after {
 			opacity: 0.5;
@@ -138,6 +146,7 @@
 
 	&_img-wrapper {
 		width: 100%;
+		height: 100%;
 		flex-grow: 1;
 		background-size: cover;
 		background-position: center;

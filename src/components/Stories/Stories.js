@@ -140,7 +140,7 @@ function Story(
 	return (
 		<div className={classes} ref={addToRefs} data-story-id={id}>
 			<Fade bottom>
-				<h3 className='o-h3'> {heading}</h3>
+				<h2 className='o-h2'> {heading}</h2>
 
 				<ReactMarkdown children={quote} />
 

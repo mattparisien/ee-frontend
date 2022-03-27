@@ -4,7 +4,7 @@ import NotFound from "./components/404/NotFound";
 
 import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
-import SingleProject from "./components/Pages/SingleProject/SingleProject";
+import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
 import ContactPage from "./components/Pages/Contact/ContactPage";
 
 function SiteRoutes(props) {
@@ -43,7 +43,7 @@ function SiteRoutes(props) {
 				/>
 				<Route
 					path='/projects/:id'
-					element={<SingleProject location={location} />}
+					element={<SingleProjectPage location={location} />}
 					key={location.pathname}
 					toggleTransitioning={props.siteControls.setTransitioning}
 					transitioning={props.siteControls.transitioning}

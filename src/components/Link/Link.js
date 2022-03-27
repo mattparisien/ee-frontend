@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import variables from "../../styles/scss/_vars.module.scss";
 import { useContext } from "react";
 import { SiteWideControls } from "../../App";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 
 function Link(props, ref) {
 	
+	const scroll = useLocomotiveScroll();
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
 	});
@@ -18,6 +20,8 @@ function Link(props, ref) {
 	// const { playTransition } = useContext(LoadingContext);
 
 	const handleNavigate = e => {
+		scroll.isReady && scroll.scroll.scrollTo(0, 0)
+		window.scrollTo(0, 0)
 		console.log(props.onClick)
 		setTransitioning(true);
 		

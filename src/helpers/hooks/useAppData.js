@@ -132,7 +132,7 @@ export default function useAppData(scrollRef) {
 				}));
 			})
 			.catch(err => console.log(err))
-			.finally(() => setTransitioning(false));
+			.finally(() => console.log('is done transitioning'));
 	}, []);
 
 	return {

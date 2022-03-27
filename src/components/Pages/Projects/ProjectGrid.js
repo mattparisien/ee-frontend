@@ -16,7 +16,6 @@ function ProjectGrid({ items, variant }) {
 	const gridItems = useRef([]);
 	gridItems.current = [];
 
-
 	const addToRefs = el => {
 		if (el && !gridItems.current.includes(el)) {
 			gridItems.current.push(el);
@@ -27,25 +26,27 @@ function ProjectGrid({ items, variant }) {
 
 	return (
 		<div className={`c-grid c-grid_${variant}`}>
-			{items &&
-				items.map((item, i) => {
-					return variant !== "media" ? (
-						<ProjectItem
-							addToRefs={addToRefs}
-							key={i}
-							// onMouseEnter={handleMouseEnter}
-							// onMouseLeave={handleMouseLeave}
-							src={item.media.featureImage.url}
-							alt={item.media.featureImage.altText}
-							previewText={item.subtitle}
-							title={item.title}
-							url={`/projects/${item.id}`}
-							scrollSpeed={scrollSpeeds[i]}
-						/>
-					) : (
-						<MediaItem src={item.attributes.url} />
-					);
-				})}
+			<Fade bottom>
+				{items &&
+					items.map((item, i) => {
+						return variant !== "media" ? (
+							<ProjectItem
+								addToRefs={addToRefs}
+								key={i}
+								// onMouseEnter={handleMouseEnter}
+								// onMouseLeave={handleMouseLeave}
+								src={item.media.featureImage.url}
+								alt={item.media.featureImage.altText}
+								previewText={item.subtitle}
+								title={item.title}
+								url={`/projects/${item.id}`}
+								scrollSpeed={scrollSpeeds[i]}
+							/>
+						) : (
+							<MediaItem src={item.attributes.url} />
+						);
+					})}
+			</Fade>
 		</div>
 	);
 }

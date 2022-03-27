@@ -9,6 +9,11 @@
 	}
 
 	.o-hero {
+
+		.c-figure.-scale-reveal::after {
+			animation-delay: 3s;
+		}
+
 		.o-container {
 			height: calc(100vh - $headerHeight);
 
@@ -181,7 +186,22 @@
 		}
 	}
 
+	.o-next_candidate .c-arrow {
+		top: 0 !important;
+		right:  0 !important;
+		z-index: 999;
+		fill: $light;
+		stroke: $light;
+		stroke-width: 2px;
+	}
+
+
+
 	.o-next {
+		.marquee-item {
+			margin-right: 10vw;
+		}
+
 		.c-link:hover .c-arrow {
 			transform: translateX(20%);
 		}

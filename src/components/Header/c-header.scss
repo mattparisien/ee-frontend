@@ -12,9 +12,12 @@
 		height: 3rem;
 	}
 
+	
+
 	.c-arrow-button {
 		width: 100%;
 		height: 100%;
+		background-color: $light;
 	}
 
 	.c-link {
@@ -29,10 +32,6 @@
 	}
 
 	.c-list li {
-		
-		
-		
-
 		&:hover {
 			opacity: 0.5;
 		}

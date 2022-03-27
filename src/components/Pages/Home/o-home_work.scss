@@ -1,4 +1,8 @@
 .o-work {
+
+
+
+
 	.o-h1 {
 		width: 60%;
 		margin: 0 auto;
@@ -13,6 +17,18 @@
 		justify-content: center;
 		position: relative;
 		padding: $space-xl 0;
+		align-items: flex-end;
+		justify-content: center;
+
+	
+		
+
+		&_inner {
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+		}
+
 	}
 
 	&_card {
@@ -81,22 +97,22 @@
 					transition: $transition;
 				}
 			}
-
 		}
 
 		&_1 {
-			z-index: 99;
+			left: 4vw;
+			top: 0;
+
+			transform: rotate(-10deg);
 		}
 
 		&_2 {
-			left: 10vw;
-			top: 0;
-			z-index: -99;
+			top: 30vw;
 		}
 
 		&_3 {
-			left: 40vw;
-			top: 20vw;
+			left: 60vw;
+			top: 30vw;
 			display: none;
 		}
 

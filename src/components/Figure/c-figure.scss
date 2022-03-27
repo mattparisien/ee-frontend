@@ -12,11 +12,11 @@
 			height: 100%;
 			content: "";
 			background: none;
-			transform: scale(0.1);
+			transform: scale(0.01);
 			box-shadow: 20px 20px 20px 4000vw $light;
 			transform-origin: center;
 			animation: figureReveal 7s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
-			// animation-delay: 200ms;
+			
 		}
 	}
 
