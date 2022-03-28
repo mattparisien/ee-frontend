@@ -12,7 +12,7 @@ function DragCursor({ cursorState }) {
     console.log('cursor srare', cursorState)
   }, [cursorState])
 
-	const location = useMouseMove();
+	// const location = useMouseMove();
 
 	return (
 		<div

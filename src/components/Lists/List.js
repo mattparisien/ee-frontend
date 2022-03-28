@@ -15,9 +15,7 @@ function List({
 		[classes]: classes,
 	});
 
-	useEffect(() => {
-		console.log(items);
-	}, [items]);
+
 
 	return (
 		<ul className={listClasses}>
