@@ -6,7 +6,7 @@ import React, {
 	useLayoutEffect,
 	useMemo,
 	useRef,
-	useState
+	useState,
 } from "react";
 import { Helmet } from "react-helmet-async";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -18,6 +18,7 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Figure from "../../Figure/Figure";
 import Next from "./Next";
+import ProjectGrid from "../Projects/ProjectGrid";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -103,6 +104,10 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 		}
 	}, [data, location, param]);
 
+	useEffect(() => {
+		console.log(info);
+	}, [info]);
+
 	return (
 		<>
 			<Helmet>
@@ -138,7 +143,6 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 							<div className='o-hero_image' ref={heroImage}>
 								<Figure
-									noFrame
 									noReveal
 									effectDelay={5000}
 									src={info && info[0].media.featureImage.url}
@@ -181,23 +185,21 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				{info && info[0].media.additional && (
 					<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
 						<ContainerFluid>
-							<Zoom>
-								<div className='o-feature_item'>
-									<Figure
-										noFrame
-										noReveal
-										src={
-											info &&
-											info[0].media.additional &&
-											info[0].media.additional[0].attributes.url
-										}
-									/>
-								</div>
-							</Zoom>
+							<div className='o-feature_item'>
+								<Figure
+									noFrame
+									
+									src={
+										info &&
+										info[0].media.additional &&
+										info[0].media.additional[0].attributes.url
+									}
+								/>
+							</div>
 						</ContainerFluid>
 					</Section>
 				)}
-				<Section classes='o-details -padding-lg' data-theme='dark'>
+				<Section classes='o-details -padding-lg' data-theme='light'>
 					<ContainerFluid>
 						<div className='o-details_left'>
 							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
@@ -244,6 +246,14 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						</div>
 					</ContainerFluid>
 				</Section>
+
+				{info && info[0].media.additional && (
+					<Section classes='o-additionalMedia -padding-lg' data-theme='light'>
+						<ContainerFluid>
+							<ProjectGrid variant='media' items={info[0].media.additional} />
+						</ContainerFluid>
+					</Section>
+				)}
 
 				<Next color={accentColor[1]} nextPost={info && info.nextPost} />
 			</div>

@@ -1,7 +1,11 @@
 .c-figure {
 	position: relative;
-	overflow: hidden;
+	
 	margin: 0;
+
+	&_inner {
+		overflow: hidden;
+	}
 
 	img {
 		opacity: 0;

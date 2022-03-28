@@ -1,0 +1,54 @@
+@mixin frameRevealDefaultStyles() {
+	transform: scale(0.9) rotate(-5deg);
+
+	&_svg_yellow,
+	&_svg_blue {
+		transform: scaleY(0.01);
+
+		opacity: 0;
+	}
+
+	&_svg_green,
+	&_svg_red {
+		transform: scaleX(0.01);
+
+		opacity: 0;
+	}
+}
+
+@mixin frameReveal($delay) {
+	animation: frameScale $transition-zoom forwards;
+	animation-delay: $delay;
+
+	&_svg_yellow,
+	&_svg_blue {
+		transform: scaleY(0.01);
+		animation: frameRevealY 1s cubic-bezier(1, 0, 0, 1) forwards;
+		opacity: 0;
+	}
+
+	&_svg_green,
+	&_svg_red {
+		transform: scaleX(0.01);
+		animation: frameRevealX 1s cubic-bezier(1, 0, 0, 1) forwards;
+		opacity: 0;
+	}
+
+	&_svg_green {
+		animation-delay: $delay;
+	}
+
+	&_svg_yellow {
+		animation-delay: $delay + 100ms;
+	}
+
+	&_svg_red {
+		animation-delay: $delay + 400ms;
+	}
+
+
+
+	&_svg_blue {
+		animation-delay: $delay + 350ms;
+	}
+}

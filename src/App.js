@@ -15,6 +15,7 @@ import Menu from "./components/Menu/Menu";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
+import ArrowButton from "./components/Button/ArrowButton";
 import $ from "jquery";
 
 export const DataContext = createContext();
@@ -138,7 +139,13 @@ function App() {
 		"is-old-page": transitioning,
 	});
 
-
+	const scrollToTop = () => {
+		if (scroll) {
+			scroll.scroll.scrollTo(0, 0);
+		} else {
+			window.scrollTo(0, 0);
+		}
+	};
 
 	return (
 		<HelmetProvider>
@@ -193,6 +200,13 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 													ref={scrollWrapper}
 													data-scroll-container
 												>
+
+<ArrowButton
+														classes='scroll-to-top'
+														color='light'
+														rotation={90}
+														handleClick={scrollToTop}
+													/>
 													{/* <ModalWrapper hoverState={hoverState} /> */}
 
 													{/* <CursorFollower /> */}
@@ -218,7 +232,10 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 															location={location}
 															siteControls={siteControls}
 														/>
+
+										
 													</main>
+
 
 													<Footer
 														info={state.data.footer}

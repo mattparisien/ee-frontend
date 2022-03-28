@@ -1,5 +1,6 @@
 .c-list {
 	display: flex;
+
 	li:not(:last-child) {
 		margin-right: 4rem;
 	}
@@ -25,6 +26,33 @@
 
 		&:hover .c-link {
 			transform: translateY(-20%);
+		}
+	}
+
+	&_social {
+		align-items: center;
+		justify-content: center;
+		li {
+
+			&:hover a svg {
+				opacity: 0.4;
+			}
+
+			a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				svg {
+					transition: 400ms ease;
+				}
+
+				
+			}
+
+			&:not(:last-of-type) {
+				margin-right: 1rem;
+			}
 		}
 	}
 

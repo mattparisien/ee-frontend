@@ -8,6 +8,10 @@
 	grid-template-columns: repeat(12, 1fr);
 	grid-row-gap: 10vw;
 
+	@include media("<=tablet") {
+		grid-row-gap: 10vw !important;
+	}
+
 	.c-frame {
 		position: absolute;
 		top: 0;
@@ -16,18 +20,20 @@
 		height: 100%;
 		transform: scale(0.9) rotate(-5deg);
 		transform-origin: center;
-		
-		transition: all 1s cubic-bezier(1.000, 0.000, 0.000, 1.000);;
 
-		&_svg_yellow, &_svg_blue {
+		transition: all 1s cubic-bezier(1, 0, 0, 1);
+
+		&_svg_yellow,
+		&_svg_blue {
 			transform: scaleY(0.01);
-			transition: all 1s cubic-bezier(1.000, 0.000, 0.000, 1.000);;
+			transition: all 1s cubic-bezier(1, 0, 0, 1);
 			opacity: 0;
 		}
 
-		&_svg_green, &_svg_red {
+		&_svg_green,
+		&_svg_red {
 			transform: scaleX(0.01);
-			transition: all 1s cubic-bezier(1.000, 0.000, 0.000, 1.000);;
+			transition: all 1s cubic-bezier(1, 0, 0, 1);
 			opacity: 0;
 		}
 
@@ -99,16 +105,16 @@
 		}
 
 		&:hover .c-frame {
-			&_svg_yellow, &_svg_blue {
+			&_svg_yellow,
+			&_svg_blue {
 				opacity: 1;
 				transform: scaleY(1);
-				
 			}
-	
-			&_svg_green, &_svg_red {
+
+			&_svg_green,
+			&_svg_red {
 				opacity: 1;
 				transform: scaleX(1);
-				
 			}
 		}
 
@@ -202,7 +208,15 @@
 
 		@include media("<=tablet") {
 			grid-column: 1/13 !important;
-			height: 80vw !important;
+			height: 110vw !important;
+
+			.c-frame {
+				display: none;
+			}
+
+			.c-grid_img-wrapper {
+				height: 90%;
+			}
 
 			&::after {
 				display: none;
@@ -214,7 +228,7 @@
 
 			.c-grid_info {
 				position: static;
-				height: 15%;
+				height: 10%;
 				flex-direction: row;
 				align-items: center;
 				padding: 0;
@@ -231,6 +245,7 @@
 
 				.c-grid_description {
 					align-self: center;
+					display: none;
 				}
 			}
 		}
@@ -332,11 +347,21 @@
 	}
 
 	&.c-grid_media {
-		.c-grid_item:hover .image img {
-			transform: none;
+		.c-grid_item {
+			overflow: hidden;
+			height: 100%;
+
+			img {
+				object-position: center;
+				transform: none !important;
+			}
 		}
-		.c-grid_item::after {
-			display: none;
+
+		.c-grid_item:hover .image img {
+			transform: none !important;
+		}
+		.react-reveal::after {
+			display: none !important;
 		}
 	}
 }

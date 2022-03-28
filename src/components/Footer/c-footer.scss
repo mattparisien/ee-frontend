@@ -1,5 +1,6 @@
 .c-footer {
 	height: $footerHeight;
+	max-height: 600px;
 	position: relative;
 	bottom: 0;
 	left: 0;
@@ -11,17 +12,24 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		flex-direction: column;
+		// flex-direction: column;
 
-
+	
 
 		&_contact {
 			display: flex;
 			flex-direction: column;
 
+			
+
 			.email {
-				font-size: 3vw;
+				font-size: 2.8vw;
+
+				@include media("<=tablet") {
+					font-size: 4.629vw;
+				}
 			}
+		
 		}
 
 		.c-arrow-button {
@@ -35,6 +43,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			
 		}
 
 		.drawnLogo {
@@ -57,14 +66,8 @@
 		justify-content: space-between;
 		padding: 2rem 0;
 
-		.social-list {
-			li:not(:last-of-type) {
-				margin-right: 1rem;
-			}
-
-			li  .c-link::after {
-				bottom: -2px;
-			}
+		.c-list_social {
+			margin-left: 1rem;
 		}
 
 		nav {

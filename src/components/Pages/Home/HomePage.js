@@ -71,10 +71,10 @@ function HomePage({ toggleTransitioning, transitioning }) {
 		<>
 			<div className='o-page o-page_home'>
 				<Section data-theme='light' classes='-fullHeight'></Section>
-				<About aboutText={data.about && data.about.body1} />
+				{/* <About aboutText={data.about && data.about.body1} /> */}
 				<How steps={data && data.steps} />
 
-				<Work projects={data.posts && data.posts.slice(0, 3)} />
+				<Work projects={data.posts && data.posts.slice(0, 4)} />
 				<Section
 					classes='-padding-lg  -fullHeight -flex -align-center -justify-center'
 					data-theme='light'
@@ -91,17 +91,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 						<Stories slides={data && data.stories} withFrame/>
 					</ContainerFluid>
 				</Section>
-				<Section
-					classes='fonts -padding-lg  -fullHeight -flex -align-center -justify-center'
-					data-theme='light'
-				>
-					<ContainerFluid>
-						<h1 className="o-h1">Creating a <em>Vision</em></h1>
-						<h1 className="o-h1">Creating a Vision</h1>
-						<h1 className="o-h1">Creating a Vision</h1>
-						<h1 className="o-h1">Creating a Vision</h1>
-					</ContainerFluid>
-				</Section>
+			
 			</div>
 		</>
 	);

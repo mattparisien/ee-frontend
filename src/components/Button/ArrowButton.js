@@ -56,7 +56,7 @@ function Arrow({ rotation, color }) {
 				className='c-arrow-svg_arrow'
 			></path>{" "}
 			<circle
-				opacity='0.2'
+				
 				cx='50'
 				cy='50.3408'
 				r='49'

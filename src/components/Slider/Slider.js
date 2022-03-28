@@ -1,57 +1,58 @@
+import React, { useEffect, useRef } from "react";
+import Figure from "../Figure/Figure";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
-import InertiaPlugin from "gsap/InertiaPlugin";
-import $ from "jquery";
-import React, { useEffect, useRef } from "react";
-import SliderItem from "./SliderItem";
 
-
-export default function Slider(props) {
-	gsap.registerPlugin(Draggable, InertiaPlugin);
-
-	const ref = useRef(null);
-
-	const { hoverState, setHoverState } = props;
+function Slider({ items }) {
+	gsap.registerPlugin(Draggable);
+	const draggable = useRef(null);
+	const container = useRef(null);
+	const slider = useRef(null);
 
 	useEffect(() => {
-		const onDragTransform = function () {
-			gsap.to($(".slider-item"), {
-				scale: 0.8,
-				duration: 1,
-				ease: "expo.out",
-			});
-		};
-
-		const dragEndRevert = function () {
-			gsap.to($(".slider-item"), {
-				scale: 1,
-				duration: 1,
-				ease: "expo.out",
-				skewX: 0,
-			});
-		};
-
-		Draggable.create(ref.current, {
-			bounds: $(".slider-wrapper"),
+		draggable.current = Draggable.create(slider.current, {
+			edgeResistance: 1,
+			dragResistance: 0.4,
 			type: "x",
+			bounds: container.current,
 			inertia: true,
-			onDragStart: function () {
-				onDragTransform();
-			},
-			onDragEnd: function () {
-				dragEndRevert();
-			},
+			throwProps: true,
+			onPress: () =>
+				gsap.to(slider.current, {
+					scale: 0.9,
+					ease: "power3.out",
+					duration: 1,
+				}),
+			onRelease: () =>
+				gsap.to(slider.current, { scale: 1, ease: "power3.out", duration: 1 }),
 		});
 	}, []);
 
 	return (
-		<div className='slider-wrapper'>
-			<div ref={ref} className='slider-inner'>
-				<SliderItem />
-				<SliderItem />
-				<SliderItem />
-				<SliderItem />
+		<div className='o-slider -relative' ref={container}>
+			<div className='o-slider_inner' ref={slider}>
+				{items &&
+					items.map((item, i) => (
+						<SliderItem
+							key={i}
+							title={item.title}
+							subtitle={item.subtitle}
+							src={item.media.featureImage.url}
+						/>
+					))}
 			</div>
 		</div>
 	);
 }
+
+function SliderItem({ title, subtitle, src, alt }) {
+	return (
+		<div className='o-slider_item'>
+			<div className='o-slider_image'>
+				<Figure src={src} noFrame />
+			</div>
+		</div>
+	);
+}
+
+export default Slider;

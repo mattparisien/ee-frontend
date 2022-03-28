@@ -9,8 +9,9 @@ import Figure from "../../Figure/Figure";
 import Fade from "react-reveal/Fade";
 import Link from "../../Link/Link";
 import ProjectGrid from "../Projects/ProjectGrid";
-import { Slider } from "react-draggable-slider";
+
 import gsapCore from "gsap/gsap-core";
+import Slider from "../../Slider/Slider";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
@@ -151,80 +152,7 @@ function Work({ projects }) {
 
 	return (
 		<Section classes='o-work -padding-huge' data-theme='light'>
-			<ContainerFluid>
-				<Fade bottom>
-					<h1 className='o-h1 -text-center -split -fadeUp'>
-						Some of our <em>Selected Works</em>
-					</h1>
-				</Fade>
-				<div className='-padding-huge'>
-					<ProjectGrid variant='projects' items={projects && projects} />
-				</div>
-				<div className='o-work_card-layout'>
-					<div className='o-work_card-layout_inner -relative -stretchX -stretchY'>
-						{projects &&
-							projects.map((project, index) => (
-								<Card
-									key={project.id}
-									title={project.title}
-									subtitle={project.subtitle}
-									id={(index += 1)}
-									src={project.media.featureImage.url}
-									scrollSpeed={speeds[index]}
-									rotation={rotations[index]}
-								/>
-							))}
-						<h1 className='o-h2 -text-center' >
-							Erez Robary
-						</h1>
-					</div>
-				</div>
-				<div className='o-work_card-layout'>
-					<div className='o-work_card-layout_inner -relative -stretchX -stretchY'>
-						{projects &&
-							projects.map((project, index) => (
-								<Card
-									key={project.id}
-									title={project.title}
-									subtitle={project.subtitle}
-									id={(index += 1)}
-									src={project.media.featureImage.url}
-									scrollSpeed={speeds[index]}
-									rotation={rotations[index]}
-								/>
-							))}
-						<h1
-							className='o-h2 -text-center o-work_title'
-							
-						>
-							Ekali
-						</h1>
-					</div>
-				</div>
-				<div className='o-work_card-layout'>
-					<div className='o-work_card-layout_inner -relative -stretchX -stretchY'>
-						{projects &&
-							projects.map((project, index) => (
-								<Card
-									key={project.id}
-									title={project.title}
-									subtitle={project.subtitle}
-									id={(index += 1)}
-									src={project.media.featureImage.url}
-									scrollSpeed={speeds[index]}
-									rotation={rotations[index]}
-								/>
-							))}
-						<h1
-							className='o-h2 -text-center o-work_title'
-							
-						>
-							<span>Charlie Burg</span>
-						</h1>
-					</div>
-				</div>
-				<div className='-padding-huge'></div>
-			</ContainerFluid>
+			<Slider items={projects} />
 		</Section>
 	);
 }

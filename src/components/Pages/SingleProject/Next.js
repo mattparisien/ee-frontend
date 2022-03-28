@@ -10,7 +10,7 @@ import { Container } from "@mui/material";
 function Next({ color, nextPost }) {
 	return (
 		<>
-			<Section classes='o-next' data-theme={color}>
+			{/* <Section classes='o-next' data-theme={color}>
 				<ContainerFluid>
 					<Link
 						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
@@ -33,8 +33,8 @@ function Next({ color, nextPost }) {
 						</div>
 					</Link>
 				</ContainerFluid>
-			</Section>
-			<Section classes='o-next o-next_candidateç' data-theme={"dark"}>
+			</Section> */}
+			<Section classes='o-next' data-theme={color}>
 				<Link
 					classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 					isRouterLink
@@ -42,7 +42,7 @@ function Next({ color, nextPost }) {
 				>
 					<div className='c-link_inner'>
 						
-            <ContainerFluid classes="-relative">
+            <ContainerFluid classes="-relative -flex -align-center -justify-between">
               <h2 className="o-h1 -padding-bottom-huge">Next</h2>
               <Arrow color="light"/>
             </ContainerFluid>
@@ -51,7 +51,9 @@ function Next({ color, nextPost }) {
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.subtitle}</div>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.subtitle}</div>
-							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
+							
+							
+							
 						</Marquee>
 
 						{/* <Fade bottom>

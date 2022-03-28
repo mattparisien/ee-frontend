@@ -3,6 +3,7 @@
 @import "utils";
 @import "global";
 @import "animations";
+@import "mixins";
 @import "objects/o-h1.scss";
 @import "objects/o-h2.scss";
 @import "objects/o-h3.scss";
@@ -32,6 +33,7 @@
 @import "../../components/ImageRevealer/c-img-revealer.scss";
 @import "../../components/Figure/c-figure.scss";
 @import "../../components/Vector/c-frame.scss";
+@import "../../components/Slider/o-slider.scss";
 
 
 

@@ -17,7 +17,7 @@
 
 @font-face {
 	font-family: "Canela";
-	src: url("../assets/fonts/Canela-Regular-Trial.otf");
+	src: url("../assets/fonts/Kobe1.1-Regular.woff");
 }
 
 @font-face {
@@ -52,6 +52,12 @@ a,
 h4,
 .o-text {
 	font-family: "Riposte";
+}
+
+.scroll-to-top {
+	position: fixed !important;
+	bottom: 0;
+	right: 0;
 }
 
 .App {

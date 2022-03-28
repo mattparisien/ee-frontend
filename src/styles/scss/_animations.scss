@@ -40,3 +40,25 @@
 		transform: scale(1);
 	}
 }
+
+@keyframes frameRevealY {
+	to {
+		transform: scaleY(1);
+		opacity: 1;
+	}
+}
+
+@keyframes frameRevealX {
+	to {
+		transform: scaleX(1);
+		opacity: 1;
+	}
+}
+
+@keyframes frameScale {
+	to {
+		transform: rotate(0deg)scale(1.1);
+		opacity: 1;
+
+	}
+}
