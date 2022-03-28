@@ -15,7 +15,11 @@ const Frame = props => {
 	// }, []);
 
 	return (
-		<div className='c-frame'>
+		<div
+			className={`c-frame ${
+				!props.static ? "c-frame_hover" : "c-frame_static"
+			}`}
+		>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 1159.18 33.35'

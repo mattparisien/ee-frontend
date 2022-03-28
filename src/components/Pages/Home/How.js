@@ -41,13 +41,11 @@ function How({ steps }) {
 					scroller: ".scroll-wrapper",
 					trigger: $(".o-how .o-container"),
 					pin: false,
-					
+
 					scrub: 1,
 				},
 			});
 		}
-
-
 	}, [scroll.isReady]);
 
 	useEffect(() => {
@@ -74,7 +72,7 @@ function How({ steps }) {
 									<div className='c-steps_item' key={i} data-scroll>
 										<Fade bottom>
 											<ReactMarkdown
-												renderers={{
+												components={{
 													root: React.createElement("p", { className: "hi" }),
 												}}
 												className='title -split'
@@ -113,15 +111,15 @@ function How({ steps }) {
 					{/* <BassClef /> */}
 					{/* <HalfNote /> */}
 					<HalfNote id={3} />
-					<DrawingBlue />
+					{/* <DrawingBlue />
 					<DrawingGreen />
 					<DrawingYellowSmall />
 					<DrawingPinkSmall />
 					<DrawingRed />
-					<DrawingYellow />
+					<DrawingYellow /> */}
 				</div>
 			</ContainerFluid>
-			<DrawingLightBlue/>
+			<DrawingLightBlue />
 		</Section>
 	);
 }
@@ -237,4 +235,4 @@ const DrawingBlue = props => (
 	</svg>
 );
 
-export default forwardRef(How);
+export default How;

@@ -5,6 +5,9 @@ import List from "../Lists/List";
 import { DrawnLogo } from "../Vector/Svg";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import Fade from "react-reveal/Fade";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Link from "../Link/Link";
 
 export default function Footer(props) {
 	// const footerRef = useRef(null);
@@ -34,7 +37,9 @@ export default function Footer(props) {
 							<Fade bottom>
 								<h2 className='o-h2'>{props.info && props.info.Heading}</h2>
 								<a href={`mailto:${props.info && props.info.Email}`}>
-									<div className='email'>{props.info && props.info.Email}</div>
+									<div className='email -underline -hover-underline -relative'>
+										{props.info && props.info.Email}
+									</div>
 								</a>
 							</Fade>
 						</div>
@@ -51,11 +56,32 @@ export default function Footer(props) {
 							<nav className='c-footer_nav'>
 								<List items={props.navItems} color='light' />
 							</nav>
-							<ArrowButton
+							{/* <ArrowButton
 								color='light'
 								rotation={90}
 								handleClick={scrollToTop}
-							/>
+							/> */}
+							<ul className='social-list -flex o-text'>
+								<li>
+									<Link
+										href='https://www.instagram.com/eyes__ears/'
+										target='_blank'
+										classes='-underline -hover-underline -relative'
+									>
+										Instagram
+									</Link>
+								</li>
+								<li>
+									<Link classes='-underline -hover-underline -relative'>
+										Facebook
+									</Link>
+								</li>
+								<li>
+									<Link classes='-underline -hover-underline -relative'>
+										LinkedIn
+									</Link>
+								</li>
+							</ul>
 						</Fade>
 					</div>
 				</div>

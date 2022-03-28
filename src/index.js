@@ -5,13 +5,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./styles/scss/main.scss";
 
-
 ReactDOM.render(
-	// <React.StrictMode>
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>,
-	// </React.StrictMode>,
+	<>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</>,
 	document.getElementById("root")
 );
 

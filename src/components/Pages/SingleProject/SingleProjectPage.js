@@ -6,20 +6,16 @@ import React, {
 	useLayoutEffect,
 	useMemo,
 	useRef,
-	useState,
+	useState
 } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { Helmet } from "react-helmet-async";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
 import { DataContext } from "../../../App";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import ImageRevealer from "../../ImageRevealer/ImageRevealer";
-import Link from "../../Link/Link";
-import Arrow from "../../Vector/Arrow";
-import { Helmet } from "react-helmet-async";
-import Fade from "react-reveal/Fade";
-import Zoom from "react-reveal/Zoom";
 import Figure from "../../Figure/Figure";
 import Next from "./Next";
 
@@ -93,7 +89,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 		if (data && data.posts && param && !info) {
 			console.clear();
-			console.log(data.posts);
+
 			// setInfo(data.posts.filter(x => x.id === param));
 			const currentPost = data.posts.filter(x => x.id == param);
 
@@ -102,7 +98,6 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				1;
 			const nextPost =
 				data.posts[nextPostIndex === data.posts.length ? 0 : nextPostIndex];
-			console.log(nextPost);
 
 			setInfo({ ...currentPost, nextPost: nextPost });
 		}
@@ -140,17 +135,17 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 								{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
 								{/* </Fade> */}
 							</div>
-							
-								<div className='o-hero_image' ref={heroImage}>
-									<Figure
-										noFrame
-										noReveal
-										effectDelay={5000}
-										src={info && info[0].media.featureImage.url}
-										alt={info && info[0].media.featureImage.altText}
-									/>
-								</div>
-							
+
+							<div className='o-hero_image' ref={heroImage}>
+								<Figure
+									noFrame
+									noReveal
+									effectDelay={5000}
+									src={info && info[0].media.featureImage.url}
+									alt={info && info[0].media.featureImage.altText}
+								/>
+							</div>
+
 							{/* 				
 					<div className='o-hero_image-wrapper-2'>
 						<img

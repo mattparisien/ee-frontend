@@ -48,9 +48,9 @@ function Next({ color, nextPost }) {
             </ContainerFluid>
 						<Marquee gradient={false} direction={"right"}>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
+							<div className='o-h1 marquee-item'>{nextPost && nextPost.subtitle}</div>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
-							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
-							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
+							<div className='o-h1 marquee-item'>{nextPost && nextPost.subtitle}</div>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
 						</Marquee>
 

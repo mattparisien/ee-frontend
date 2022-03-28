@@ -3,7 +3,7 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 export default function useMouseMove(array) {
 	const [location, setLocation] = useState({});
-	const scroll = useLocomotiveScroll();
+	
 
 	useEffect(() => {
 		const handleMouseMove = (e, index) => {

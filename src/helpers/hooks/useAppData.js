@@ -102,15 +102,12 @@ export default function useAppData(scrollRef) {
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data);
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
 				const formattedStories = formatStories(data[3].data.data);
 				const formattedFooter = data[4].data.data.attributes;
 				const formattedBio = data[5].data.data.attributes;
-
-				console.log(formattedBio)
 
 				setState(prev => ({
 					...prev,
@@ -132,7 +129,7 @@ export default function useAppData(scrollRef) {
 				}));
 			})
 			.catch(err => console.log(err))
-			.finally(() => console.log('is done transitioning'));
+			.finally(() => setTransitioning(false));
 	}, []);
 
 	return {

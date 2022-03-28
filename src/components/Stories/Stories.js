@@ -1,13 +1,14 @@
 import classNames from "classnames";
 import gsap from "gsap";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Fade from "react-reveal/Fade";
 import { shuffleColors } from "../../helpers/shuffleColors";
 import ArrowButton from "../Button/ArrowButton";
 import Quotation from "../Vector/Quotation";
+import Frame from "../Vector/Frame";
 
-function Stories({ slides }) {
+function Stories({ slides, withFrame }) {
 	const [active, setActive] = useState(1);
 	const [prev, setPrev] = useState(slides && slides.length);
 	const [fill, setFill] = useState(null);
@@ -81,16 +82,13 @@ function Stories({ slides }) {
 	};
 
 	const handleNextClick = () => {
-		console.log(active);
 		setPrev(active);
 		setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1));
 	};
 
 	return (
 		<div className='c-stories -relative'>
-			<Fade bottom>
-			<Quotation />
-			</Fade>
+			<Fade bottom>{withFrame ? <Frame static/> : <Quotation />}</Fade>
 			<div className='c-stories_mobile-bg'></div>
 			<div className='c-stories_indicator'>
 				<h4 className='o-text -uppercase'>
@@ -186,4 +184,4 @@ function Arrow({ flip, isHovering }) {
 	);
 }
 
-export default forwardRef(Stories);
+export default Stories;

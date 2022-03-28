@@ -22,14 +22,14 @@ function Link(props, ref) {
 	const handleNavigate = e => {
 		scroll.isReady && scroll.scroll.scrollTo(0, 0)
 		window.scrollTo(0, 0)
-		console.log(props.onClick)
+		
 		setTransitioning(true);
 		
 		props.onClick && props.onClick(e);
 		e.preventDefault();
 
 		setTimeout(() => {
-			console.log('hello!!!')
+			
 			navigate(props.href);
 		}, 2000);
 	};
@@ -39,7 +39,7 @@ function Link(props, ref) {
 			// onMouseEnter={handleMouseEnter}
 			// onMouseLeave={handleMouseLeave}
 			className={classes}
-			href={!props.isRouterLink && props.href}
+			href={!props.isRouterLink ? props.href : '#'}
 			target={props.target}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			ref={ref}

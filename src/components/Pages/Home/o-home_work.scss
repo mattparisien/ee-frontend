@@ -1,6 +1,18 @@
+.fonts {
+	.o-h1:nth-of-type(2) {
+		font-family: "Kobe" !important;
+	}
+
+	.o-h1:nth-of-type(3) {
+		font-family: "Dahlia" !important;
+	}
+
+	.o-h1 {
+		margin: $space-xl 0;
+	}
+}
+
 .o-work {
-
-
 	.c-grid_title {
 		&::after {
 			background-color: $light !important;
@@ -12,8 +24,6 @@
 			display: block;
 		}
 	}
-
-
 
 	.o-h1 {
 		width: 60%;
@@ -36,15 +46,11 @@
 		align-items: flex-end;
 		justify-content: center;
 
-	
-		
-
 		&_inner {
 			display: flex;
 			align-items: flex-end;
 			justify-content: center;
 		}
-
 	}
 
 	&_card {
@@ -124,7 +130,7 @@
 		}
 
 		&_2 {
-			top: 30vw;
+			top: 12vw;
 		}
 
 		&_3 {

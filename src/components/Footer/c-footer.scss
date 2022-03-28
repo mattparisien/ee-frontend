@@ -57,6 +57,16 @@
 		justify-content: space-between;
 		padding: 2rem 0;
 
+		.social-list {
+			li:not(:last-of-type) {
+				margin-right: 1rem;
+			}
+
+			li  .c-link::after {
+				bottom: -2px;
+			}
+		}
+
 		nav {
 			display: none;
 
