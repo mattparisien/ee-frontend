@@ -15,6 +15,7 @@ import Menu from "./components/Menu/Menu";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
+import $ from "jquery";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();

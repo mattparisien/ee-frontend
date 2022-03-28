@@ -7,6 +7,7 @@ import { shuffleColors } from "../../helpers/shuffleColors";
 import ArrowButton from "../Button/ArrowButton";
 import Quotation from "../Vector/Quotation";
 import Frame from "../Vector/Frame";
+import $ from "jquery";
 
 function Stories({ slides, withFrame }) {
 	const [active, setActive] = useState(1);
@@ -88,7 +89,7 @@ function Stories({ slides, withFrame }) {
 
 	return (
 		<div className='c-stories -relative'>
-			<Fade bottom>{withFrame ? <Frame static/> : <Quotation />}</Fade>
+			<Fade bottom>{withFrame ? <Frame static /> : <Quotation />}</Fade>
 			<div className='c-stories_mobile-bg'></div>
 			<div className='c-stories_indicator'>
 				<h4 className='o-text -uppercase'>
