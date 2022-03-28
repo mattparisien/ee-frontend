@@ -4,6 +4,7 @@ import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import VelocityTracker from "gsap/utils/VelocityTracker";
 import { CursorContext } from "../../App";
+import $ from "jquery";
 
 function Slider({ items }) {
 	gsap.registerPlugin(Draggable, VelocityTracker);
@@ -15,33 +16,22 @@ function Slider({ items }) {
 	useEffect(() => {
 		// let pressedTo;
 		const tracker = VelocityTracker.track(slider.current, "x");
+		const direction = draggable.current && draggable.current[0].getDirection();
 
 		draggable.current = Draggable.create(slider.current, {
 			edgeResistance: 1,
 			dragResistance: 0.4,
 			type: "x",
+			autoScroll: 1,
 			bounds: container.current,
 			inertia: true,
 			throwProps: true,
-			onPress: () =>
+
+			onPress: e =>
 				gsap.to(slider.current, {
 					scale: 0.9,
 					ease: "power3.out",
 					duration: 1,
-
-					// modifiers: {
-					// 	//skew based on the current velocity, capped at 20 in either direction
-					// 	skewX: function (v) {
-					// 		const skew = tracker
-					// 		console.log(skew.getVelocity("x"))
-					// 		// if (skew > 20) {
-					// 		// 	skew = 20;
-					// 		// } else if (skew < -20) {
-					// 		// 	skew = -20;
-					// 		// }
-					// 		// return skew;
-					// 	},
-					// },
 				}),
 			onRelease: () =>
 				gsap.to(slider.current, { scale: 1, ease: "power3.out", duration: 1 }),

@@ -150,6 +150,8 @@ function App() {
 
 	const [cursorState, setCursorState] = useState("normal");
 
+	console.log('cursor state', cursorState)
+
 	return (
 		<HelmetProvider>
 			<div className={classes}>

@@ -8,9 +8,9 @@ function DragCursor({ cursorState }) {
 		"is-drag": cursorState === "drag",
 	});
 
-  useEffect(() => {
-    console.log('cursor srare', cursorState)
-  }, [cursorState])
+	useEffect(() => {
+		console.log("cursor stateeeee", cursorState);
+	}, [cursorState]);
 
 	// const location = useMouseMove();
 
