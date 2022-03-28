@@ -46,7 +46,7 @@ function Next({ color, nextPost }) {
               <h2 className="o-h1 -padding-bottom-huge">Next</h2>
               <Arrow color="light"/>
             </ContainerFluid>
-						<Marquee gradient={false}>
+						<Marquee gradient={false} direction={"right"}>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
 							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>

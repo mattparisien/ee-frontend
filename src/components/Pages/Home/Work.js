@@ -88,7 +88,7 @@ function Work({ projects }) {
 								$(triggers[i]).find(".o-work_card_1"),
 								{
 									rotate: "15deg",
-									y: -100,
+									// y: -100,
 									duration: 2,
 								},
 								0

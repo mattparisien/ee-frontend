@@ -16,30 +16,29 @@ function Figure({
 	noFrame,
 	noReveal,
 	rotate,
+	effectDelay,
 }) {
 	const figureClasses = classNames("c-figure", { [classes]: classes });
 
 	return (
-		<Reveal effect={!noReveal ? "-scale-reveal" : null}>
-		<figure
-			className={figureClasses}
-			style={{
-				width: width,
-				height: height,
-				maxWidth: maxWidth,
-				maxHeight: maxHeight,
-			}}
-			data-rotate={rotate}
-		>
-			
-			
+		<Reveal effect={"-figure-zoom"}>
+			<figure
+				className={figureClasses}
+				style={{
+					width: width,
+					height: height,
+					maxWidth: maxWidth,
+					maxHeight: maxHeight,
+				}}
+				data-rotate={rotate}
+			>
 				<div className='c-figure_inner -relative -stretchX -stretchY'>
 					<img src={src} alt={alt}></img>
+
 					{!noFrame && <Frame />}
 					{/* <ImageRevealer /> */}
 				</div>
-				
-		</figure>
+			</figure>
 		</Reveal>
 	);
 }

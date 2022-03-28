@@ -140,16 +140,17 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 								{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
 								{/* </Fade> */}
 							</div>
-							<Fade delay={2000}>
+							
 								<div className='o-hero_image' ref={heroImage}>
 									<Figure
 										noFrame
 										noReveal
+										effectDelay={5000}
 										src={info && info[0].media.featureImage.url}
 										alt={info && info[0].media.featureImage.altText}
 									/>
 								</div>
-							</Fade>
+							
 							{/* 				
 					<div className='o-hero_image-wrapper-2'>
 						<img

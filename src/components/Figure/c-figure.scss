@@ -3,6 +3,17 @@
 	overflow: hidden;
 	margin: 0;
 
+	img {
+		opacity: 0;
+	}
+
+	&.-figure-zoom {
+		img {
+			
+			animation: zoomIn $transition-zoom forwards;
+		}
+	}
+
 	&.-scale-reveal {
 		&::after {
 			position: absolute;
@@ -16,7 +27,6 @@
 			box-shadow: 20px 20px 20px 4000vw $light;
 			transform-origin: center;
 			animation: figureReveal 7s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
-			
 		}
 	}
 
@@ -41,5 +51,15 @@
 			height: 100%;
 			width: 100%;
 		}
+	}
+}
+
+@keyframes zoomIn {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(1.2);
+		opacity: 1;
 	}
 }
