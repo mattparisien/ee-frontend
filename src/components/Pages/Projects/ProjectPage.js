@@ -27,7 +27,7 @@ export default function ProjectPage({ transitioning, toggleTransitioning }) {
 					</Fade>
 				</Section>
 				<Section classes='-padding-lg'>
-					<ProjectGrid variant='projects' items={data.posts} />
+					<ProjectGrid variant='projects' items={data.posts} hoverEffect={"frame"}/>
 				</Section>
 			</ContainerFluid>
 		</div>

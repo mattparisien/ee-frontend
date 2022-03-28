@@ -10,65 +10,40 @@ import { Container } from "@mui/material";
 function Next({ color, nextPost }) {
 	return (
 		<>
-			{/* <Section classes='o-next' data-theme={color}>
-				<ContainerFluid>
+			<Fade>
+				<Section classes='o-next' data-theme={color}>
 					<Link
 						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 						isRouterLink
 						href={nextPost && `/projects/${nextPost.id}`}
 					>
 						<div className='c-link_inner'>
-							<Arrow />
-
+							<ContainerFluid classes='-relative -flex -align-center -justify-between'>
+								<Fade bottom>
+									<h2 className='o-h1 -padding-bottom-huge'>Next</h2>
+								</Fade>
+								<Arrow color='light' />
+							</ContainerFluid>
 							<Fade bottom>
-								<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
-									<span className='label'>{nextPost && nextPost.title}</span>
-								</div>
-							</Fade>
-							<Fade bottom>
-								<div className='o-next_subtitle o-h3 -underline -underline-dark'>
-									{nextPost && nextPost.subtitle}
-								</div>
+								<Marquee gradient={false} direction={"right"}>
+									<div className='o-h1 marquee-item'>
+										{nextPost && nextPost.title}
+									</div>
+									<div className='o-h1 marquee-item'>
+										{nextPost && nextPost.subtitle}
+									</div>
+									<div className='o-h1 marquee-item'>
+										{nextPost && nextPost.title}
+									</div>
+									<div className='o-h1 marquee-item'>
+										{nextPost && nextPost.subtitle}
+									</div>
+								</Marquee>
 							</Fade>
 						</div>
 					</Link>
-				</ContainerFluid>
-			</Section> */}
-			<Section classes='o-next' data-theme={color}>
-				<Link
-					classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
-					isRouterLink
-					href={nextPost && `/projects/${nextPost.id}`}
-				>
-					<div className='c-link_inner'>
-						
-            <ContainerFluid classes="-relative -flex -align-center -justify-between">
-              <h2 className="o-h1 -padding-bottom-huge">Next</h2>
-              <Arrow color="light"/>
-            </ContainerFluid>
-						<Marquee gradient={false} direction={"right"}>
-							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
-							<div className='o-h1 marquee-item'>{nextPost && nextPost.subtitle}</div>
-							<div className='o-h1 marquee-item'>{nextPost && nextPost.title}</div>
-							<div className='o-h1 marquee-item'>{nextPost && nextPost.subtitle}</div>
-							
-							
-							
-						</Marquee>
-
-						{/* <Fade bottom>
-							<div className='o-next_title o-h3 -underline-label -underline-label-dark'>
-								<span className='label'>{nextPost && nextPost.title}</span>
-							</div>
-						</Fade>
-						<Fade bottom>
-							<div className='o-next_subtitle o-h3 -underline -underline-dark'>
-								{nextPost && nextPost.subtitle}
-							</div> */}
-						{/* </Fade> */}
-					</div>
-				</Link>
-			</Section>
+				</Section>
+			</Fade>
 		</>
 	);
 }

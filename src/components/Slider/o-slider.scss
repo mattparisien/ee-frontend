@@ -13,10 +13,11 @@ $sliderWidth: 180vw;
     left: 0;
     top: 0;
     width: $sliderWidth;
+    padding: 0 $space-lg;
   }
 
   &_item {
-    overflow: hidden;
+    
     width: 30vw;
     height: $sliderHeight;
   }

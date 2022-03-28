@@ -16,9 +16,10 @@ function Figure({
 	noFrame,
 	noReveal,
 	rotate,
+	hoverEffect,
 	effectDelay,
 }) {
-	const figureClasses = classNames("c-figure", { [classes]: classes });
+	const figureClasses = classNames("c-figure", { [classes]: classes  });
 
 	return (
 		<Reveal effect={"-figure-zoom -frame-reveal"}>

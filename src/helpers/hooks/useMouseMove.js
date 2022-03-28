@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
-export default function useMouseMove(array) {
+export default function useMouseMove() {
 	const [location, setLocation] = useState({});
 	
 
 	useEffect(() => {
 		const handleMouseMove = (e, index) => {
+			
 			setLocation({
 				pageX: e.clientX,
 				pageY: e.clientY,
 			});
 		};
+
+		
 
 		window.addEventListener("mousemove", e => handleMouseMove(e));
 
@@ -20,5 +23,5 @@ export default function useMouseMove(array) {
 		};
 	}, [scroll]);
 
-	return [location];
+	return location;
 }

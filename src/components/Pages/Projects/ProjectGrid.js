@@ -9,7 +9,7 @@ import gsap from "gsap";
 import Fade from "react-reveal/Fade";
 import Frame from "../../Vector/Frame";
 
-function ProjectGrid({ items, variant }) {
+function ProjectGrid({ items, variant, hoverEffect }) {
 	// const { setPageTheme } = useContext(ColorContext);
 	// const { setCursorState } = useContext(CursorContext);
 	const tablet = useMediaQuery("(max-width: 768px)");
@@ -40,6 +40,7 @@ function ProjectGrid({ items, variant }) {
 								alt={item.media.featureImage.altText}
 								previewText={item.subtitle}
 								title={item.title}
+								hoverEffect={hoverEffect}
 								url={`/projects/${item.id}`}
 								scrollSpeed={scrollSpeeds[i]}
 							/>
@@ -52,7 +53,15 @@ function ProjectGrid({ items, variant }) {
 	);
 }
 
-function ProjectItem({ src, addToRefs, previewText, title, url, scrollSpeed }) {
+function ProjectItem({
+	src,
+	addToRefs,
+	previewText,
+	title,
+	url,
+	scrollSpeed,
+	hoverEffect,
+}) {
 	const ref = useRef(null);
 
 	const [loaded, setLoaded] = useState(false);
@@ -62,6 +71,7 @@ function ProjectItem({ src, addToRefs, previewText, title, url, scrollSpeed }) {
 
 	const itemClasses = classNames("c-grid_item -relative -hover-underline", {
 		"is-in-view": inViewport.current,
+		"-hover-frame": hoverEffect === "frame",
 	});
 
 	return (
@@ -95,8 +105,8 @@ function ProjectItem({ src, addToRefs, previewText, title, url, scrollSpeed }) {
 				<h3 className='c-grid_title -underline'>{title}</h3>
 				<p className='c-grid_description -text-tiny'>{previewText}</p>
 			</div>
-			
-			<Frame/>
+
+			<Frame />
 		</Link>
 	);
 }
@@ -132,6 +142,5 @@ function MediaItem({ src, alt }) {
 		</div>
 	);
 }
-
 
 export default ProjectGrid;

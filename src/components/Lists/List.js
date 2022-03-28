@@ -3,8 +3,17 @@ import Link from "../Link/Link";
 import Fade from "react-reveal/Fade";
 import classNames from "classnames";
 
-function List({ items, color, toggleTransitioning, classes, variant }) {
-	const listClasses = classNames("c-list", { [classes]: classes });
+function List({
+	items,
+	color,
+	toggleTransitioning,
+	classes,
+	variant,
+	hoverEffect,
+}) {
+	const listClasses = classNames("c-list", {
+		[classes]: classes,
+	});
 
 	useEffect(() => {
 		console.log(items);
@@ -13,7 +22,11 @@ function List({ items, color, toggleTransitioning, classes, variant }) {
 	return (
 		<ul className={listClasses}>
 			{variant !== "icon" ? (
-				<TextItems items={items} isRouterLink />
+				<TextItems
+					items={items}
+					isRouterLink
+					underline={hoverEffect === "underline"}
+				/>
 			) : (
 				<IconItems items={items && items} />
 			)}
@@ -21,12 +34,17 @@ function List({ items, color, toggleTransitioning, classes, variant }) {
 	);
 }
 
-function TextItems({ items, toggleTransitioning, isRouterLink }) {
+function TextItems({ items, toggleTransitioning, isRouterLink, underline }) {
 	return (
 		items &&
 		items.map((item, i) => {
 			return (
-				<li className='c-list_item' key={i}>
+				<li
+					className={`c-list_item ${
+						underline ? `-relative -underline -hover-underline` : ""
+					}`}
+					key={i}
+				>
 					<Link
 						isRouterLink={isRouterLink}
 						href={item.path}
@@ -45,7 +63,7 @@ function IconItems({ items }) {
 	console.log(items);
 	return items
 		? items.map(item => (
-				<li className="c-list_iconItem">
+				<li className='c-list_iconItem'>
 					<a href={item.url} target='_blank' rel='noreferrer'>
 						{React.createElement(item.component, {
 							key: item.id,

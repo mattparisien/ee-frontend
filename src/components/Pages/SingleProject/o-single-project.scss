@@ -16,7 +16,7 @@
 		}
 
 		.c-figure.-frame-reveal .c-frame {
-			@include frameReveal(2s);
+			@include frameReveal(2s, forwards);
 		}
 
 		.o-container {

@@ -1,15 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import Figure from "../Figure/Figure";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
+import VelocityTracker from "gsap/utils/VelocityTracker";
+import { CursorContext } from "../../App";
 
 function Slider({ items }) {
-	gsap.registerPlugin(Draggable);
+	gsap.registerPlugin(Draggable, VelocityTracker);
 	const draggable = useRef(null);
 	const container = useRef(null);
 	const slider = useRef(null);
+	const { setCursorState } = useContext(CursorContext);
 
 	useEffect(() => {
+		// let pressedTo;
+		const tracker = VelocityTracker.track(slider.current, "x");
+
 		draggable.current = Draggable.create(slider.current, {
 			edgeResistance: 1,
 			dragResistance: 0.4,
@@ -22,15 +28,42 @@ function Slider({ items }) {
 					scale: 0.9,
 					ease: "power3.out",
 					duration: 1,
+
+					// modifiers: {
+					// 	//skew based on the current velocity, capped at 20 in either direction
+					// 	skewX: function (v) {
+					// 		const skew = tracker
+					// 		console.log(skew.getVelocity("x"))
+					// 		// if (skew > 20) {
+					// 		// 	skew = 20;
+					// 		// } else if (skew < -20) {
+					// 		// 	skew = -20;
+					// 		// }
+					// 		// return skew;
+					// 	},
+					// },
 				}),
 			onRelease: () =>
 				gsap.to(slider.current, { scale: 1, ease: "power3.out", duration: 1 }),
 		});
 	}, []);
 
+	// const handleMouseEnter = () => {
+	// 	console.log('hello!')
+	// 	setCursorState("drag");
+	// };
+	// const handleMouseLeave = () => {
+	// 	setCursorState("normal");
+	// };
+
 	return (
 		<div className='o-slider -relative' ref={container}>
-			<div className='o-slider_inner' ref={slider}>
+			<div
+				className='o-slider_inner'
+				ref={slider}
+				// onMouseEnter={handleMouseEnter}
+				// onMouseLeave={handleMouseLeave}
+			>
 				{items &&
 					items.map((item, i) => (
 						<SliderItem
@@ -47,11 +80,11 @@ function Slider({ items }) {
 
 function SliderItem({ title, subtitle, src, alt }) {
 	return (
-		<div className='o-slider_item'>
+		<a className='o-slider_item -hover-frame' href='#'>
 			<div className='o-slider_image'>
-				<Figure src={src} noFrame />
+				<Figure src={src} hoverEffect='frame' />
 			</div>
-		</div>
+		</a>
 	);
 }
 

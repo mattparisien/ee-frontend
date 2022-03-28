@@ -16,21 +16,18 @@
 		height: 3px;
 		position: absolute;
 		right: 0;
-		
+
 		&.bottom {
 			bottom: 0;
 		}
 
 		&.top {
 			top: 0;
-			
 		}
 	}
 }
 
-
-
-//header media queries 
+//header media queries
 @media screen and (max-width: 1200px) {
 	header .logo-wrapper {
 		width: 200px;
@@ -39,7 +36,6 @@
 	.header-burger {
 		width: 4.8rem;
 	}
-
 }
 
 @media screen and (max-width: 900px) {
@@ -90,4 +86,3 @@
 		height: 1rem;
 	}
 }
-

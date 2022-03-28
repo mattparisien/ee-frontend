@@ -16,6 +16,7 @@ import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
 import ArrowButton from "./components/Button/ArrowButton";
+import DragCursor from "./components/Cursors/DragCursor";
 import $ from "jquery";
 
 export const DataContext = createContext();
@@ -147,6 +148,8 @@ function App() {
 		}
 	};
 
+	const [cursorState, setCursorState] = useState("normal");
+
 	return (
 		<HelmetProvider>
 			<div className={classes}>
@@ -184,10 +187,12 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							<SiteWideControls.Provider value={siteControls}>
 								<DataContext.Provider value={state.data}>
 									<ColorContext.Provider>
-										<CursorContext.Provider>
+										<CursorContext.Provider
+											value={{ cursorState, setCursorState }}
+										>
 											<LoadingContext.Provider>
 												<LoadingScreen isActive={pending} />
-
+												<DragCursor cursorState={cursorState} />
 												<Header
 													toggleMenu={() => setMenuActive(!menuActive)}
 													color={menuActive ? "dark" : headerColor}
@@ -200,8 +205,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 													ref={scrollWrapper}
 													data-scroll-container
 												>
-
-<ArrowButton
+													<ArrowButton
 														classes='scroll-to-top'
 														color='light'
 														rotation={90}
@@ -232,10 +236,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 															location={location}
 															siteControls={siteControls}
 														/>
-
-										
 													</main>
-
 
 													<Footer
 														info={state.data.footer}
@@ -246,6 +247,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 													{/* <CookieBar /> */}
 												</div>
+												<DragCursor />
 											</LoadingContext.Provider>
 										</CursorContext.Provider>
 									</ColorContext.Provider>

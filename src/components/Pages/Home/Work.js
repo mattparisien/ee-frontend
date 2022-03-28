@@ -19,25 +19,6 @@ function Work({ projects }) {
 	const cardTl = useRef(gsap.timeline());
 	const cardTimelines = useRef(null);
 
-	const projectList =
-		projects &&
-		projects.map(project => ({
-			title: project.title,
-			image: project.media.featureImage.url,
-			description: project.subtitle,
-		}));
-
-	const sliderSettings = {
-		data: projectList && projectList,
-		speed: 3000,
-		easing: "elastic",
-		bgColor: "rgba(255, 255, 255, 0.05)",
-		buttonHref: "https://www.google.com",
-		buttonTarget: "_self",
-		buttonText: "View project",
-		showButton: true,
-	};
-
 	useEffect(() => {
 		if (scroll && scroll.scroll) {
 			ScrollTrigger.scrollerProxy(".scroll-wrapper", {
@@ -104,46 +85,6 @@ function Work({ projects }) {
 							),
 					}))
 			);
-
-			// cardTl.current
-			// 	.to(
-			// 		$(".o-work_card_1"),
-			// 		{
-			// 			rotate: $(".o-work_card_1").attr("data-rotate"),
-			// 			duration: 2,
-
-			// 			y: "200",
-			// 		},
-			// 		0
-			// 	)
-			// 	.to(
-			// 		$(".o-work_card_2"),
-			// 		{
-			// 			rotate: $(".o-work_card_2").attr("data-rotate"),
-			// 			duration: 2,
-			// 			y: "-200",
-			// 		},
-			// 		0
-			// 	)
-			// 	.to(
-			// 		$(".o-work_card_3"),
-			// 		{
-			// 			rotate: $(".o-work_card_3").attr("data-rotate"),
-			// 			duration: 2,
-			// 			y: -"100",
-			// 		},
-			// 		0
-			// 	);
-
-			// scroll.scroll.on("scroll", e => {
-			// 	let rotation = 2 / e.speed;
-
-			// 	setTimeout(() => {
-			// 		$(".o-work_card").css({
-			// 			transform: `rotate(${rotation += 10}deg)`,
-			// 		});
-			// 	}, 200);
-			// });
 		}
 	}, [scroll]);
 
