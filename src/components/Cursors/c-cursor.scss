@@ -16,5 +16,6 @@
 
 	&.is-drag {
 		cursor: none;
+		pointer-events: none;
 	}
 }

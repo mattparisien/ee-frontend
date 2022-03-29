@@ -43,7 +43,7 @@ function App() {
 		transitioning,
 		setTransitioning,
 		cursor,
-		changeCursor
+		changeCursor,
 	} = useAppData();
 
 	const [headerColor, setHeaderColor] = useState("light");
@@ -141,6 +141,7 @@ function App() {
 	const classes = classNames("App", {
 		"is-new-page": !transitioning,
 		"is-old-page": transitioning,
+		"cursor-hidden": cursor === "drag",
 	});
 
 	const scrollToTop = () => {
@@ -150,10 +151,6 @@ function App() {
 			window.scrollTo(0, 0);
 		}
 	};
-
-	
-
-	
 
 	return (
 		<HelmetProvider>
@@ -192,9 +189,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							<SiteWideControls.Provider value={siteControls}>
 								<DataContext.Provider value={state.data}>
 									<ColorContext.Provider>
-										<CursorContext.Provider
-											value={{cursor, changeCursor}}
-										>
+										<CursorContext.Provider value={{ cursor, changeCursor }}>
 											<LoadingContext.Provider>
 												<LoadingScreen isActive={pending} />
 												<DragCursor cursor={cursor} />

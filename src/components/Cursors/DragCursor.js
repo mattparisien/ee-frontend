@@ -12,6 +12,9 @@ function DragCursor({ cursor }) {
 	const cursorRef = useRef(null);
 
 	useEffect(() => {
+
+		
+
 		if (cursor === "drag") {
 			gsap.to(cursorRef.current, {
 				scale: 1,
@@ -34,7 +37,7 @@ function DragCursor({ cursor }) {
 	return (
 		<div
 			className={classes}
-			style={{ left: location.pageX, top: location.pageY }}
+			style={{ left: location.pageX, top: location.pageY, transform: `translate(-50%, -50%)` }}
 			ref={cursorRef}
 		>
 			Drag

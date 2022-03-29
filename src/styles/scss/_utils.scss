@@ -402,3 +402,6 @@
 	-o-animation-play-state: paused;
 	animation-play-state: paused !important;
 }
+.cursor-hidden * {
+	cursor: none !important;
+}
