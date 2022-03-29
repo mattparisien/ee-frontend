@@ -1,24 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
 import classNames from "classnames";
+import gsap from "gsap";
 
-function DragCursor({ cursorState }) {
+function DragCursor({ cursor }) {
 	const classes = classNames("c-cursor", {
-		"is-normal": cursorState === "normal",
-		"is-drag": cursorState === "drag",
+		"is-normal": cursor === "normal",
+		"is-drag": cursor === "drag",
 	});
 
-	useEffect(() => {
-		console.log("cursor stateeeee", cursorState);
-	}, [cursorState]);
+	const cursorRef = useRef(null);
 
-	// const location = useMouseMove();
+	useEffect(() => {
+		if (cursor === "drag") {
+			gsap.to(cursorRef.current, {
+				scale: 1,
+				duration: 0.5,
+				ease: "power2.out",
+				opacity: 1,
+			});
+		} else {
+			gsap.to(cursorRef.current, {
+				scale: 0,
+				duration: 0.5,
+				ease: "power2.out",
+				opacity: 0,
+			});
+		}
+	}, [cursor]);
+
+	const location = useMouseMove();
 
 	return (
 		<div
 			className={classes}
 			style={{ left: location.pageX, top: location.pageY }}
-		></div>
+			ref={cursorRef}
+		>
+			Drag
+		</div>
 	);
 }
 

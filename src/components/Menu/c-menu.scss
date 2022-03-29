@@ -26,13 +26,21 @@
 			width: 100%;
 			display: flex;
 			flex-direction: column;
-			align-items: flex-start;
+			align-items: center;
 			justify-content: center;
 			height: 100%;
+			text-align: center;
+			
 			
 			li {
-				opacity: 0;
-				transform: translateY(150%);
+				overflow: hidden;
+				
+				.c-link {
+					transform: translateY(-150%);
+					opacity: 0;
+					display: block;
+				}
+				
 
 				&:not(:last-child) {
 					margin-bottom: 3rem;
@@ -40,27 +48,20 @@
 
 			}
 
-			li .c-link {
-				transition: 300ms ease;
-			}
+		
 
 			li:hover .c-link {
 				color: lighten($yellow, 10%);
 			}
 
-			li:nth-of-type(even) {
-				align-self: flex-end;
-				@include media("<=tablet") {
-					align-self: flex-start;
-				}
-			}
+		
 
 			
 
 			.c-link {
 				color: $light;
 				font-family: 'Canela';
-		text-transform: none;					
+			
 
 				@include media("<=tablet") {
 					font-size: 18vw;

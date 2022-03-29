@@ -71,8 +71,8 @@
 		&_image {
 			width: 50%;
 			height: 50vw;
-			max-height: 700px;
-			max-width: 600px;
+			max-height: 650px;
+			max-width: 550px;
 			margin-left: 2rem;
 
 			img {
@@ -152,11 +152,17 @@
 		}
 	}
 
-	.o-media {
+	.o-additionalMedia {
 		@include media("<=tablet") {
 			.c-grid_media {
-				grid-gap: $space-sm;
+				grid-row-gap: 4vw !important;
+
+
+			.c-grid_img-wrapper {
+				height: 100%;
 			}
+			}
+
 		}
 	}
 
@@ -184,6 +190,11 @@
 	}
 
 	.o-next {
+
+		.marquee-container {
+			overflow: hidden;
+		}
+
 		.marquee-item {
 			margin-right: 10vw;
 		}

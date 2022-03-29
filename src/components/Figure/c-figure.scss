@@ -1,3 +1,5 @@
+
+
 .c-figure {
 	position: relative;
 	
@@ -5,6 +7,10 @@
 
 	&_inner {
 		overflow: hidden;
+	}
+
+	&.-frame-reveal .c-frame {
+		@include frameReveal(100ms, forwards);
 	}
 
 	img {
@@ -34,6 +40,10 @@
 		transform: scale(1.2);
 		transform-origin: center;
 		z-index: 99;
+
+		@include media("<=phoneL") {
+			transform: scale(1.1);
+		}
 
 		svg {
 			transform-origin: center;

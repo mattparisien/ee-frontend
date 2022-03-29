@@ -37,7 +37,7 @@ function Menu({ isActive, navItems, toggleMenu }) {
 		if (isActive) {
 			tl.current.progress(0).play();
 			tl.current.to(
-				$(container.current).find("li"),
+				$(container.current).find(".c-link"),
 				{
 					y: 0,
 					opacity: 1,
@@ -49,12 +49,12 @@ function Menu({ isActive, navItems, toggleMenu }) {
 				0.1
 			);
 		} else {
-			gsap.to($(container.current).find("li"), {
+			gsap.to($(container.current).find(".c-link"), {
 				opacity: 0,
 				duration: 0.3,
 				onComplete: () => {
-					gsap.set($(container.current).find("li"), {
-						y: "150%",
+					gsap.set($(container.current).find(".c-link"), {
+						y: "-150%",
 						opacity: 0,
 					});
 				},

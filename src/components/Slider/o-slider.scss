@@ -1,8 +1,14 @@
-$sliderHeight: 40vw;
-$sliderWidth: 180vw;
+
+$itemWidth: 30vw;
+
 
 .o-slider {
-	height: $sliderHeight;
+	height: 40vw;
+
+	@include media("<=tablet") {
+		height: 50vw;
+	}
+	
 
 	&_inner {
 		display: flex;
@@ -11,14 +17,54 @@ $sliderWidth: 180vw;
 		position: absolute;
 		left: 0;
 		top: 0;
-		width: $sliderWidth;
+		
 		padding: 0 $space-lg;
 	}
 
 	&_item {
 		width: 30vw;
-		height: $sliderHeight;
-    overflow: hidden;
+		height: 40vw;
+
+		@include media("<=tablet") {
+			width: 40vw;
+			height: 50vw;
+			
+		}
+
+		&:hover .o-slider_item_title {
+			opacity: 1;
+			transform: none;
+			transition: 400ms ease;
+		}
+
+		&_info {
+			margin: $space-xs 0;
+
+			.o-slider_item_title {
+				transform: translateY(100%);
+				opacity: 0;
+				transition: 400ms ease;
+
+				@include media("<=tablet") {
+					opacity: 1;
+					transform: none;
+				}
+
+				.label::after {
+					background-color: $dark;
+					transition-delay: 100ms;
+
+					@include media("<=tablet") {
+						display: none;
+					}
+				}
+			}
+		}
+
+		&_info * {
+			color: $dark;
+			margin: 0;
+		}
 	}
 
 	&_image {
@@ -29,10 +75,8 @@ $sliderWidth: 180vw;
 		.c-figure {
 			height: 100%;
 			width: 100%;
-			
+
 			position: absolute;
-			
-			
 		}
 	}
 }

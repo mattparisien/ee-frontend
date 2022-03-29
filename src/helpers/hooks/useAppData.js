@@ -73,10 +73,14 @@ export default function useAppData(scrollRef) {
 			showSidebar: false,
 			hasShown: false,
 		},
-		menuOffset: "-101%",
+		cursor: "normal",
 		isScrollLock: false,
 		data: {},
 	});
+
+	const changeCursor = value => {
+		setState(prev => ({ ...prev, cursor: value }));
+	};
 
 	//Update menu offset on resize
 	useEffect(() => {
@@ -131,7 +135,7 @@ export default function useAppData(scrollRef) {
 								alt: formattedBio.SelfImage.data.attributes.alternativeText,
 							},
 						},
-						socials: formattedSocials
+						socials: formattedSocials,
 					},
 				}));
 			})
@@ -147,5 +151,7 @@ export default function useAppData(scrollRef) {
 		navItems,
 		transitioning,
 		setTransitioning,
+		cursor: state.cursor,
+		changeCursor
 	};
 }

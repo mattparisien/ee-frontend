@@ -74,7 +74,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				{/* <About aboutText={data.about && data.about.body1} /> */}
 				<How steps={data && data.steps} />
 
-				<Work projects={data.posts && data.posts.slice(0, 4)} />
+				<Work projects={data.posts && data.posts.slice(0, 6)} />
 				<Section
 					classes='-padding-lg  -fullHeight -flex -align-center -justify-center'
 					data-theme='light'

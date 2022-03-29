@@ -42,6 +42,8 @@ function App() {
 		navItems,
 		transitioning,
 		setTransitioning,
+		cursor,
+		changeCursor
 	} = useAppData();
 
 	const [headerColor, setHeaderColor] = useState("light");
@@ -149,9 +151,9 @@ function App() {
 		}
 	};
 
-	const [cursorState, setCursorState] = useState("normal");
+	
 
-	console.log('cursor state', cursorState)
+	
 
 	return (
 		<HelmetProvider>
@@ -191,12 +193,12 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								<DataContext.Provider value={state.data}>
 									<ColorContext.Provider>
 										<CursorContext.Provider
-											value={{ cursorState, setCursorState }}
+											value={{cursor, changeCursor}}
 										>
 											<LoadingContext.Provider>
 												<LoadingScreen isActive={pending} />
-												<DragCursor cursorState={cursorState} />
-												<IntroCard/>
+												<DragCursor cursor={cursor} />
+												{/* <IntroCard/> */}
 												<Header
 													toggleMenu={() => setMenuActive(!menuActive)}
 													color={menuActive ? "dark" : headerColor}
