@@ -71,7 +71,7 @@ function Menu({ isActive, navItems, toggleMenu }) {
 							return (
 								<li key={i}>
 									<h2 className='o-h2 -uppercase -split'>
-										<Link isRouterLink href={link.href}>
+										<Link isRouterLink href={link.path} 	onClick={() => toggleMenu()}>
 											{link.name}
 										</Link>
 									</h2>

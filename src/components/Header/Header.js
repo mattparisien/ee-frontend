@@ -13,6 +13,7 @@ function Header({
 	toggleTransitioning,
 	color,
 	location,
+	menuActive
 }) {
 	const [active, setActive] = useState(false);
 	const [arrowOpacity, setArrowOpacity] = useState(1);
@@ -22,13 +23,18 @@ function Header({
 	});
 
 	const handleClick = () => {
-		setActive(!active);
+		
 		toggleMenu();
 	};
 
 	useEffect(() => {
 		setArrowOpacity(1);
 	}, [location]);
+
+
+	useEffect(() => {
+		menuActive ? setActive(true) : setActive(false)
+	}, [menuActive])
 
 	return (
 		<header className='c-header' data-theme={color}>

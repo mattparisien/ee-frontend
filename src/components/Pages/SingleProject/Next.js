@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Section from "../../Containers/Section";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Link from "../../Link/Link";
@@ -6,12 +6,19 @@ import Arrow from "../../Vector/Arrow";
 import Fade from "react-reveal/Fade";
 import Marquee from "react-fast-marquee";
 import { Container } from "@mui/material";
+import FlowyImage from "../../Three/FlowyImage";
 
 function Next({ color, nextPost }) {
+	const container = useRef(null);
+
 	return (
 		<>
 			<Fade>
-				<Section classes='o-next' data-theme={color}>
+				<Section classes='o-next' data-theme={color} ref={container}>
+					<FlowyImage
+						container={container.current}
+						imageSrc={nextPost && nextPost.media.featureImage.url}
+					/>
 					<Link
 						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 						isRouterLink

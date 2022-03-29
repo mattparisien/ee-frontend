@@ -5,6 +5,8 @@
 
 		min-height: 90vh;
 
+
+
 		&_heading {
 			width: 30vw;
 			top: 0;
@@ -41,6 +43,23 @@
 					width: 100%;
 				}
 			}
+		}
+		&_main {
+			@include media("<=tablet") {
+				flex-direction: column;
+				align-items: center;
+
+				.react-reveal, .o-bio_content {
+					width: 100% !important;
+				}
+
+				figure.react-reveal.c-figure {
+					height: 90vw !important;
+					margin-bottom: $space-lg;
+				}
+			}
+
+			
 		}
 	}
 }

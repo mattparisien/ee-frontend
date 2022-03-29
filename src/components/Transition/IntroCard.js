@@ -3,6 +3,7 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import ContainerFluid from "../Containers/ContainerFluid";
 import $ from "jquery";
+import { DrawnLogo } from "../Vector/Svg";
 
 function IntroCard() {
 	gsap.registerPlugin(SplitText);
@@ -14,64 +15,64 @@ function IntroCard() {
 	const timelines = useRef([]);
 	timelines.current = [];
 
-	useEffect(() => {
-		if (splitText.current) {
-			$(container.current)
-				.find(".c-line")
-				.each((i, el) =>
-					timelines.current.push(
-						gsap
-							.timeline({
-								paused: true,
-							})
-							.to($(el).find(".c-char"), {
-								y: 0,
-								opacity: 1,
-								ease: "expo.inOut",
-								stagger: 0.03,
-								duration: 2,
-							})
-							.to($(el).find(".c-char"), {
-								y: "-100%",
-								opacity: 0,
-								ease: "expo.inOut",
-								stagger: 0.03,
-								duration: 2,
-							})
-					)
-				);
-		}
+	// useEffect(() => {
+	// 	if (splitText.current) {
+	// 		$(container.current)
+	// 			.find(".c-line")
+	// 			.each((i, el) =>
+	// 				timelines.current.push(
+	// 					gsap
+	// 						.timeline({
+	// 							paused: true,
+	// 						})
+	// 						.to($(el).find(".c-char"), {
+	// 							y: 0,
+	// 							opacity: 1,
+	// 							ease: "expo.inOut",
+	// 							stagger: 0.03,
+	// 							duration: 2,
+	// 						})
+	// 						.to($(el).find(".c-char"), {
+	// 							y: "-100%",
+	// 							opacity: 0,
+	// 							ease: "expo.inOut",
+	// 							stagger: 0.03,
+	// 							duration: 2,
+	// 						})
+	// 				)
+	// 			);
+	// 	}
 
-		if (!splitText.current) {
-			splitText.current = new SplitText(text.current, {
-				type: "lines, chars, words",
-				charsClass: "c-char",
-				linesClass: "c-line",
-			});
-		}
+	// 	if (!splitText.current) {
+	// 		splitText.current = new SplitText(text.current, {
+	// 			type: "lines, chars, words",
+	// 			charsClass: "c-char",
+	// 			linesClass: "c-line",
+	// 		});
+	// 	}
 
-		if (timelines.current.length === splitText.current.lines.length) {
-			gsap.set(text.current, { opacity: 1 });
-			gsap.set(background.current, { transformOrigin: "top" });
+	// 	if (timelines.current.length === splitText.current.lines.length) {
+	// 		gsap.set(text.current, { opacity: 1 });
+	// 		gsap.set(background.current, { transformOrigin: "top" });
 
-			timelines.current.forEach((timeline, index) => {
-				if (index !== timelines.current.length - 1) {
-					timeline.play()
-				}
-			});
+	// 		timelines.current.forEach((timeline, index) => {
+	// 			if (index !== timelines.current.length - 1) {
+	// 				timeline.play()
+	// 			}
+	// 		});
 
-			// gsap.set(container.current, { display: "none" });
-			// .to(
-			// 	background.current,
-			// 	{
-			// 		scaleY: 0,
-			// 		duration: 1.5,
-			// 		ease: "circ.inOut",
-			// 	},
-			// 	2.1
-			// )
-		}
-	}, [splitText.current, timelines.current]);
+	// 		// gsap.set(container.current, { display: "none" });
+	// 		// .to(
+	// 		// 	background.current,
+	// 		// 	{
+	// 		// 		scaleY: 0,
+	// 		// 		duration: 1.5,
+	// 		// 		ease: "circ.inOut",
+	// 		// 	},
+	// 		// 	2.1
+	// 		// )
+	// 	}
+	// }, [splitText.current, timelines.current]);
 
 	return (
 		<div className='o-introCard' ref={container}>

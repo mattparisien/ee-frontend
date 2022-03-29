@@ -15,7 +15,7 @@ function ContactPage() {
 				<ContainerFluid classes='-stretchY '>
 					<div className='o-container_inner'>
 						<h1 className='o-h1 -text-center -padding-bottom-lg'>
-						Letter from <br></br>the <em>Founder</em>
+						Words from <em>Founder</em>
 					</h1>
 
 						<div className='o-bio_main -stretchX -flex -align-start -justify-between'>

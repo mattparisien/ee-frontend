@@ -8,14 +8,18 @@
 	z-index: 99999;
 	border-radius: 50%;
 	transform: scale(0) translate(-50%, -50%);
+	opacity: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-transform: uppercase;
 	font-size: 2rem;
 
+	
+
 	&.is-drag {
-		cursor: none;
+		
 		pointer-events: none;
 	}
 }
+

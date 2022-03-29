@@ -18,6 +18,8 @@ import SiteRoutes from "./Routes";
 import ArrowButton from "./components/Button/ArrowButton";
 import DragCursor from "./components/Cursors/DragCursor";
 import IntroCard from "./components/Transition/IntroCard";
+import FlowyImage from "./components/Three/FlowyImage";
+import axios from "axios";
 import $ from "jquery";
 
 export const DataContext = createContext();
@@ -152,6 +154,21 @@ function App() {
 		}
 	};
 
+	// useEffect(() => {
+	// 	const baseGraphUrl = "https://graph.instagram.com";
+	// 	const baseTokenUrl = axios
+	// 		.get(
+	// 			`https://api.instagram.com/oauth/authorize
+	// 		?client_id=${process.env.REACT_APP_INSTA_ID}
+	// 		&redirect_uri=${process.env.REACT_APP_INSTA_REDIRECT}
+	// 		&scope=user_profile,user_media
+	// 		&response_type=code`
+	// 		)
+
+	// 		.then(data => console.log("data", data))
+	// 		.catch(err => console.log(err));
+	// }, []);
+
 	return (
 		<HelmetProvider>
 			<div className={classes}>
@@ -193,9 +210,10 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 											<LoadingContext.Provider>
 												<LoadingScreen isActive={pending} />
 												<DragCursor cursor={cursor} />
-												{/* <IntroCard/> */}
+												<IntroCard />
 												<Header
 													toggleMenu={() => setMenuActive(!menuActive)}
+													menuActive={menuActive}
 													color={menuActive ? "dark" : headerColor}
 													navItems={navItems}
 													location={location}
@@ -212,6 +230,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 														rotation={90}
 														handleClick={scrollToTop}
 													/>
+
+													<FlowyImage/>
 													{/* <ModalWrapper hoverState={hoverState} /> */}
 
 													{/* <CursorFollower /> */}
