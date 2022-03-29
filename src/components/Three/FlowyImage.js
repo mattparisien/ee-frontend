@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState, useRef } from "react";
 import { DataContext } from "../../App";
 import * as THREE from "three";
+import { CollectionsOutlined, TungstenTwoTone } from "@mui/icons-material";
 
 function FlowyImage({ container, imageSrc }) {
 	// const { posts } = useContext(DataContext);
@@ -15,6 +16,9 @@ function FlowyImage({ container, imageSrc }) {
 		if (imageSrc && container) {
 			const texture = new THREE.TextureLoader().load(imageSrc);
 			textures.current.push(texture);
+
+			let targetX = 0;
+			let targetY = 0;
 
 			class Webgl {
 				constructor() {
@@ -31,6 +35,9 @@ function FlowyImage({ container, imageSrc }) {
 
 					this.addEventListeners(container);
 					this.setupCamera();
+					this.onMouseMove();
+					this.createMesh();
+          this.render();
 				}
 
 				get viewport() {
@@ -52,10 +59,65 @@ function FlowyImage({ container, imageSrc }) {
 				}
 
 				setupCamera() {
+					//Readjust camera dimensions on resize
+					window.addEventListener("resize", this.onWindowResize.bind(this));
+
 					let fov =
-						180 * (2 * Math.atan(this.viewport.height / 2 / this.perspective)) / Math.PI;
+						(180 *
+							(2 * Math.atan(this.viewport.height / 2 / this.perspective))) /
+						Math.PI;
+					this.camera = new THREE.PerspectiveCamera(
+						fov,
+						this.viewport.aspectRatio,
+						0.1,
+						1000
+					);
+
+					this.camera.position.set(0, 0, this.perspective);
+
+					//Rendered/canvas
+					this.renderer = new THREE.WebGL1Renderer({
+						antialias: true,
+						alpha: true,
+					});
+					this.renderer.setSize(this.viewport.width, this.viewport.height);
+					this.renderer.setPixelRatio(window.devicePixelRatio);
+					this.container.appendChild(this.renderer.domElement);
+				}
+
+				onWindowResize() {
+					this.camera.aspect = this.viewport.aspectRatio;
+					this.camera.fov =
+						(180 *
+							(2 * Math.atan(this.viewport.height / 2 / this.perspective))) /
+						Math.PI;
+					this.renderer.setSize(this.viewport.width, this.viewport.height);
+					this.camera.updateProjectionMatrix();
+				}
+
+				onMouseMove() {
+					window.addEventListener("mousemove", e => {
+						targetX = e.clientX;
+						targetY = e.clientY;
+					});
+				}
+
+				createMesh() {
+					this.geometry = new THREE.PlaneGeometry(1, 1, 20, 20);
+					this.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+					this.mesh = new THREE.Mesh(this.geometry, this.material);
+					this.sizes.set(250, 350);
+					this.mesh.scale.set(this.sizes.x, this.sizes.y);
+					this.mesh.position.set(this.offset.x, this.offset.y, 0);
+					this.scene.add(this.mesh);
+				}
+
+				render() {
+					this.renderer.render(this.scene, this.camera);
 				}
 			}
+
+			new Webgl();
 		}
 	}, [imageSrc]);
 
