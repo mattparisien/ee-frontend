@@ -1,0 +1,18 @@
+.o-introCard {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 99999;
+
+	&_text {
+		z-index: 1;
+    opacity: 0;
+		overflow: hidden;
+	}
+
+	&_bg {
+		z-index: 0;
+	}
+}

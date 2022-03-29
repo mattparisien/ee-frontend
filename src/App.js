@@ -17,6 +17,7 @@ import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
 import ArrowButton from "./components/Button/ArrowButton";
 import DragCursor from "./components/Cursors/DragCursor";
+import IntroCard from "./components/Transition/IntroCard";
 import $ from "jquery";
 
 export const DataContext = createContext();
@@ -195,6 +196,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 											<LoadingContext.Provider>
 												<LoadingScreen isActive={pending} />
 												<DragCursor cursorState={cursorState} />
+												<IntroCard/>
 												<Header
 													toggleMenu={() => setMenuActive(!menuActive)}
 													color={menuActive ? "dark" : headerColor}
