@@ -2,6 +2,8 @@ import { useEffect, useContext, useState, useRef } from "react";
 import { DataContext } from "../../App";
 import * as THREE from "three";
 import { CollectionsOutlined, TungstenTwoTone } from "@mui/icons-material";
+import fragment from "./shaders/fragment.glsl";
+import  vertex from "./shaders/vertex.glsl";
 
 function FlowyImage({ container, imageSrc }) {
 	// const { posts } = useContext(DataContext);
@@ -37,7 +39,7 @@ function FlowyImage({ container, imageSrc }) {
 					this.setupCamera();
 					this.onMouseMove();
 					this.createMesh();
-          this.render();
+					this.render();
 				}
 
 				get viewport() {
@@ -104,7 +106,14 @@ function FlowyImage({ container, imageSrc }) {
 
 				createMesh() {
 					this.geometry = new THREE.PlaneGeometry(1, 1, 20, 20);
-					this.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+					// this.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+          this.material = new THREE.ShaderMaterial({
+            uniforms: this.uniforms,
+            vertexShader: vertex,
+            fragmentShader: fragment,
+            transparent: true
+
+          })
 					this.mesh = new THREE.Mesh(this.geometry, this.material);
 					this.sizes.set(250, 350);
 					this.mesh.scale.set(this.sizes.x, this.sizes.y);
@@ -114,6 +123,7 @@ function FlowyImage({ container, imageSrc }) {
 
 				render() {
 					this.renderer.render(this.scene, this.camera);
+					requestAnimationFrame(this.render.bind(this));
 				}
 			}
 
