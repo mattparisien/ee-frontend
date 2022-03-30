@@ -7,8 +7,10 @@ import { useMediaQuery } from "@mui/material";
 import $ from "jquery";
 import gsap from "gsap";
 import Fade from "react-reveal/Fade";
+import List from "../Lists/List";
+import SocialList from "../Lists/SocialList";
 
-function Menu({ isActive, navItems, toggleMenu }) {
+function Menu({ isActive, navItems, toggleMenu, socials }) {
 	const [reveal, setReveal] = useState(false);
 
 	useEffect(() => {
@@ -63,23 +65,24 @@ function Menu({ isActive, navItems, toggleMenu }) {
 	}, [matches, isActive]);
 
 	return (
-		<div className={classes} ref={card}>
+		<div className={classes} ref={card} >
 			<ContainerFluid classes='-stretchY'>
 				<nav className='c-menu_nav'>
-					<ul ref={container}>
+					<List ref={container} items={navItems}>
 						{navItems.map((link, i) => {
-							return (
-								<li key={i}>
-									<h2 className='o-h2 -uppercase -split'>
-										<Link isRouterLink href={link.path} 	onClick={() => toggleMenu()}>
-											{link.name}
-										</Link>
-									</h2>
-								</li>
-							);
+							// return (
+							// 	<li key={i}>
+							// 		<h2 className='o-h2 -uppercase -split'>
+							// 			<Link isRouterLink href={link.path} 	onClick={() => toggleMenu()}>
+							// 				{link.name}
+							// 			</Link>
+							// 		</h2>
+							// 	</li>
+							// );
 						})}
-					</ul>
+					</List>
 				</nav>
+				<SocialList/>
 			</ContainerFluid>
 			<div className='c-menu_bg' ref={card}></div>
 		</div>

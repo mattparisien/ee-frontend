@@ -7,27 +7,56 @@
 		position: relative;
 		overflow: hidden;
 
-		
-
 		.c-drawing {
 			position: absolute;
 			z-index: 99999;
 
-			
+			&_lips {
+				width: 15vw;
+				top: 40vw;
+				left: -1vw;
+				display: block;
+			}
+
+			&_eye {
+				width: 18vw;
+				top: 5vw;
+				right: -5vw;
+				display: block;
+			}
+
+			&_ball {
+				width: 5vw;
+				top: 40vw;
+				left: -1vw;
+				display: block;
+			}
+
+			&_figure {
+				width: 14vw;
+				bottom: 10vw;
+				right: 0;
+				display: block;
+			}
+
+			&_brow {
+				width: 18vw;
+				top: -2vw;
+				right: -5vw;
+				display: block;
+			}
+
 			.c-drawing_assortment {
 				width: 100vw;
 				height: 100%;
 				display: none;
 			}
-			
 
 			.proxy {
 				fill: none;
 				stroke: $light;
 				stroke-width: 3vw;
-			} 
-
-			
+			}
 
 			path {
 				stroke-linecap: round;
@@ -91,7 +120,7 @@
 }
 
 .steps-container .c-note {
-	
+	display: none;
 	position: absolute;
 	height: 5vw;
 	transform: scale(0.01);
@@ -111,7 +140,6 @@
 		left: 10vw;
 		bottom: 30vw;
 	}
-
 
 	&_4 {
 		right: 10vw;
@@ -219,6 +247,17 @@
 }
 
 .c-steps {
+	position: relative;
+	&_background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #6a9ab7;
+		transform: scale(0.7);
+	}
+
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-column-gap: 1.5vw;
@@ -236,6 +275,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		display: none;
 
 		&_line {
 			height: 0.8px;

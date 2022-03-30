@@ -13,6 +13,7 @@
 	position: relative;
 	transition: $transition;
 	
+	
 
 	@include media("<=tablet") {
 		width: 3rem;
@@ -67,7 +68,7 @@
 		}
 
 		path {
-			fill: $dark;
+			fill: $grey;
 
 			position: static;
 			transition: 400ms ease;
@@ -78,8 +79,9 @@
 		}
 
 		circle {
-			stroke: $dark;
+			stroke: $grey !important;
 			stroke-width: 2px;
+
 		}
 	}
 
@@ -92,12 +94,12 @@
 			background-color: $light;
 		}
 		circle {
-			stroke: $light;
+			stroke: $grey;
 			stroke-width: 2px;
 		}
 
 		path {
-			fill: $light;
+			fill: $grey !important;
 		}
 	}
 }

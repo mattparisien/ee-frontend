@@ -5,18 +5,26 @@
 	width: 100vw;
 	height: 100vh;
 	z-index: 99999;
-	background-color: blue;
-	display: none;
 
 	&_text {
 		z-index: 1;
 		opacity: 0;
 		overflow: hidden;
+		color: $dark;
+		
+
+		.c-line {
+			font-size: 4.9vw;
+			line-height: 4.7vw;
+		}
+
+		.c-word {
+			overflow: hidden;
+		}
 	}
 
 	&_bg {
 		z-index: 0;
-		
-		
+		background-color: $light;
 	}
 }

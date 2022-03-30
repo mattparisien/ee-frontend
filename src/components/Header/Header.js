@@ -66,7 +66,7 @@ function Header({
 						
 						<List
 							items={navItems}
-							hoverEffect={"underline"}
+							hoverEffect={"draw"}
 							color='dark'
 							toggleTransitioning={toggleTransitioning}
 						/>

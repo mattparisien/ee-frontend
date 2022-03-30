@@ -1,7 +1,13 @@
 import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, {
+	createContext,
+	useEffect,
+	useRef,
+	useState,
+	useLayoutEffect,
+} from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { useLocation } from "react-router-dom";
@@ -21,6 +27,7 @@ import IntroCard from "./components/Transition/IntroCard";
 import FlowyImage from "./components/Three/FlowyImage";
 import axios from "axios";
 import $ from "jquery";
+import Canvas from "./components/Canvas/Canvas";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -64,32 +71,48 @@ function App() {
 			//Split text on initial render
 			isSplit.current = true;
 
-			setTimeout(() => {
-				split.current = new SplitText($(".-split p, .-split"), {
-					type: "lines",
-					linesClass: "c-line",
-				});
-			}, 300);
+			split.current = new SplitText($(".-split p, .-split"), {
+				type: "lines",
+				linesClass: "c-line",
+			});
 		}
 	}, [isSplit, location, windowWidth]);
 
-	useEffect(() => {
-		//Handle lines fading up on scroll
-		const handleIntersection = entries => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting && !$(entry.target).attr("data-theme")) {
-					gsap.to($(entry.target).find(".c-line"), {
-						y: 0,
-						opacity: 1,
-						ease: "power3.out",
-						stagger: 0.2,
-						duration: 1,
-					});
-				}
+	useLayoutEffect(() => {
+		
+		const revealHeading = lines => {
+			gsap.to(lines, {
+				stagger: 0.1,
+				duration: 2,
+				y: 0,
+				opacity: 1,
+				ease: "power3.out",
+				delay: 0.1
 			});
 		};
-		const observer = new IntersectionObserver(handleIntersection);
-		$(".-fadeUp").each((i, el) => observer.observe(el));
+
+		if (split.current) {
+			const handleIntersection = entries => {
+				entries.forEach(entry => {
+					console.log(entry);
+					if (entry.isIntersecting) {
+						console.clear();
+						
+						revealHeading($(entry.target).find(".c-line"));
+					}
+				});
+			};
+
+			const observer = new IntersectionObserver(handleIntersection, {threshold: 0.4});
+
+			$(".-fadeUpLines").each((i, el) => {
+				observer.observe(el);
+			});
+		}
+	}, [split.current]);
+
+	useEffect(() => {
+		//Handle lines fading up on scroll
 
 		//Handle header observer
 		const handleSectionIntersection = entries => {
@@ -208,6 +231,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									<ColorContext.Provider>
 										<CursorContext.Provider value={{ cursor, changeCursor }}>
 											<LoadingContext.Provider>
+												{/* <Canvas/> */}
 												<LoadingScreen isActive={pending} />
 												<DragCursor cursor={cursor} />
 												<IntroCard />
@@ -217,6 +241,12 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 													color={menuActive ? "dark" : headerColor}
 													navItems={navItems}
 													location={location}
+												/>
+
+												<Menu
+													isActive={menuActive}
+													navItems={navItems}
+													toggleMenu={() => setMenuActive(!menuActive)}
 												/>
 
 												<div
@@ -231,16 +261,9 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 														handleClick={scrollToTop}
 													/>
 
-													<FlowyImage/>
 													{/* <ModalWrapper hoverState={hoverState} /> */}
 
 													{/* <CursorFollower /> */}
-
-													<Menu
-														isActive={menuActive}
-														navItems={navItems}
-														toggleMenu={() => setMenuActive(!menuActive)}
-													/>
 
 													{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
@@ -268,7 +291,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 													{/* <CookieBar /> */}
 												</div>
-												<DragCursor />
+												{/* <DragCursor /> */}
 											</LoadingContext.Provider>
 										</CursorContext.Provider>
 									</ColorContext.Provider>

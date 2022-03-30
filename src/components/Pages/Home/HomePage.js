@@ -75,14 +75,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				<How steps={data && data.steps} />
 
 				<Work projects={data.posts && data.posts.slice(0, 6)} />
-				<Section
-					classes='-padding-lg  -fullHeight -flex -align-center -justify-center'
-					data-theme='light'
-				>
-					<ContainerFluid>
-						<Stories slides={data && data.stories} />
-					</ContainerFluid>
-				</Section>
+				
 				<Section
 					classes='-padding-lg  -fullHeight -flex -align-center -justify-center'
 					data-theme='light'

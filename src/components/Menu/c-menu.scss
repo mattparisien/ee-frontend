@@ -17,6 +17,20 @@
 		transform: translateY(0)
 	}
 
+	.c-list_social {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding-left: inherit;
+		padding-bottom: 1rem;
+
+		a svg {
+		font-size: 2rem;
+		}
+
+		
+	}
+
 	&_nav {
 		height: 100%;
 		width: 100%;
@@ -33,12 +47,22 @@
 			
 			
 			li {
-				overflow: hidden;
 				
+				margin-right: 0 !important;
+				text-transform: uppercase;
+				overflow: hidden;
+
+
+				.c-highlight {
+					height: 100%;
+				}
+
+
 				.c-link {
 					transform: translateY(-150%);
 					opacity: 0;
 					display: block;
+					transition: none;
 				}
 				
 

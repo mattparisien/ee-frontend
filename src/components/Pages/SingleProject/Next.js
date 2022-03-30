@@ -15,10 +15,10 @@ function Next({ color, nextPost }) {
 		<>
 			<Fade>
 				<Section classes='o-next' data-theme={color} ref={container}>
-					<FlowyImage
+					{/* <FlowyImage
 						container={container.current}
 						imageSrc={nextPost && nextPost.media.featureImage.url}
-					/>
+					/> */}
 					<Link
 						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 						isRouterLink

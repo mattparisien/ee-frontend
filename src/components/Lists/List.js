@@ -1,29 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState, forwardRef } from "react";
 import Link from "../Link/Link";
 import Fade from "react-reveal/Fade";
 import classNames from "classnames";
+import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
+import gsap from "gsap";
 
-function List({
-	items,
-	color,
-	toggleTransitioning,
-	classes,
-	variant,
-	hoverEffect,
-}) {
+function List(
+	{ items, color, toggleTransitioning, classes, variant, hoverEffect },
+	ref
+) {
 	const listClasses = classNames("c-list", {
 		[classes]: classes,
 	});
 
-
-
 	return (
-		<ul className={listClasses}>
+		<ul className={listClasses} ref={ref}>
 			{variant !== "icon" ? (
 				<TextItems
 					items={items}
 					isRouterLink
 					underline={hoverEffect === "underline"}
+					draw={hoverEffect === "draw"}
 				/>
 			) : (
 				<IconItems items={items && items} />
@@ -32,7 +29,14 @@ function List({
 	);
 }
 
-function TextItems({ items, toggleTransitioning, isRouterLink, underline }) {
+function TextItems({
+	items,
+	toggleTransitioning,
+	isRouterLink,
+	underline,
+	draw,
+}) {
+	const [hovered, setHovered] = useState(null);
 	return (
 		items &&
 		items.map((item, i) => {
@@ -42,6 +46,8 @@ function TextItems({ items, toggleTransitioning, isRouterLink, underline }) {
 						underline ? `-relative -underline -hover-underline` : ""
 					}`}
 					key={i}
+					onMouseEnter={() => setHovered(i)}
+					onMouseLeave={() => setHovered(false)}
 				>
 					<Link
 						isRouterLink={isRouterLink}
@@ -51,9 +57,54 @@ function TextItems({ items, toggleTransitioning, isRouterLink, underline }) {
 					>
 						{item.name}
 					</Link>
+					{draw && <Highlight hoveredId={i} hovered={hovered} />}
 				</li>
 			);
 		})
+	);
+}
+
+function Highlight({ hoveredId, hovered }) {
+
+	
+
+	gsap.registerPlugin(DrawSVGPlugin);
+	const highlight = useRef(null);
+
+	useEffect(() => {
+		console.log(hovered, hoveredId)
+		hovered === null && gsap.set(highlight.current, { drawSVG: 0 });
+
+		if (hovered && hoveredId === hovered) {
+			gsap.to(highlight.current, {
+				drawSVG: "100%",
+				duration: 1,
+				ease: "power3.out",
+			});
+		} else {
+			gsap.to(highlight.current, {
+				drawSVG: "0",
+				duration: 1,
+				ease: "power3.out",
+			});
+		}
+	}, [hovered, hoveredId]);
+
+	return (
+		<div className='c-highlight'>
+			<svg
+				viewBox='0 0 80 54'
+				fill='none'
+				xmlns='http://www.w3.org/2000/svg'
+				className='c-highlight_svg'
+				preserveAspectRatio='none'
+			>
+				<path
+					d='M4.734 19.171c6 24 54.205 30.296 69.5 15 17.499-17.5-58-31.5-72.5-3.5'
+					ref={highlight}
+				></path>
+			</svg>
+		</div>
 	);
 }
 
@@ -73,4 +124,4 @@ function IconItems({ items }) {
 		: null;
 }
 
-export default List;
+export default forwardRef(List);

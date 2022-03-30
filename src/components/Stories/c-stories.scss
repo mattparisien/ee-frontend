@@ -15,16 +15,32 @@
 	margin: 0 auto;
 	position: relative;
 
+	&_frame {
+		width: 100vw;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%)scale(0.9)rotate(-1deg);
+
+		
+		position: absolute;
+
+
+		// path {
+		// 	stroke: $yellow;
+		// }
+	}
+
 	.c-frame {
 
 		height: 40vw;
 		top:-2.2vw;
 		width: 70vw;
-		transform: scale(1.2);
+		// transform: scale(1.2);
 
-		svg path {
-			fill: $yellow !important;
-		}
+		// svg path {
+		// 	fill: $yellow !important;
+			
+		// }
 		
 	}
 

@@ -316,6 +316,13 @@
 	}
 }
 
+.-fadeUpLines .c-line {
+	transform: translateY(100%);
+	opacity: 0;
+
+	transform-origin: center;
+}
+
 // .-fadeUp {
 // 	.c-line {
 // 		animation-delay: 20s;
@@ -332,7 +339,6 @@
 
 .-imageZoom {
 	animation: imageZoom 5s ease forwards;
-
 }
 
 .-ul-small,
