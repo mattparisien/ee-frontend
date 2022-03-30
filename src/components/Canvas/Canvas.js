@@ -4,8 +4,8 @@ function Canvas() {
 	const scene = useRef(null);
 
 	useEffect(() => {
-		const canvas = scene.current;
-		let ctx = canvas.getContext("2d");
+		const canvas = document.getElementById("scene");
+		const ctx = canvas.getContext("2d");
 
 		let width = (canvas.width = window.innerWidth);
 		let height = (canvas.height = window.innerHeight);
@@ -28,10 +28,10 @@ function Canvas() {
 		function moveBall() {
 			ctx.clearRect(0, 0, width, height);
 			ctx.fillStyle = "black";
-			// ballX = lerp(ballX, x, 0.01);
-			// ballX = lerp(ballY, y, 0.01);
+			ballX = lerp(ballX, x, 0.1);
+			ballY = lerp(ballY, y, 0.1);
 			ctx.beginPath();
-			ctx.arc(ballX, ballY, 50, 0, 2 * Math.PI);
+			ctx.arc(ballX, ballY, 15, 0, 2 * Math.PI);
 			ctx.fill();
 
 			requestAnimationFrame(moveBall);
@@ -40,7 +40,7 @@ function Canvas() {
 		moveBall();
 	}, []);
 
-	return <canvas ref={scene} className='o-scene'></canvas>;
+	return <canvas ref={scene} className='o-scene' id="scene"></canvas>;
 }
 
 export default Canvas;

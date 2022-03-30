@@ -231,9 +231,9 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									<ColorContext.Provider>
 										<CursorContext.Provider value={{ cursor, changeCursor }}>
 											<LoadingContext.Provider>
-												{/* <Canvas/> */}
+												<Canvas/>
 												<LoadingScreen isActive={pending} />
-												<DragCursor cursor={cursor} />
+												{/* <DragCursor cursor={cursor} /> */}
 												<IntroCard />
 												<Header
 													toggleMenu={() => setMenuActive(!menuActive)}
