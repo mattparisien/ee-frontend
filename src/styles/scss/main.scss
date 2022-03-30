@@ -1,9 +1,10 @@
 @import "breakpoints";
 @import "vars.module.scss";
+@import "mixins";
 @import "utils";
 @import "global";
 @import "animations";
-@import "mixins";
+
 @import "objects/o-h1.scss";
 @import "objects/o-h2.scss";
 @import "objects/o-h3.scss";

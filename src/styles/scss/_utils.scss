@@ -316,6 +316,11 @@
 	}
 }
 
+	.-frame-reveal .c-frame {
+		@include frameReveal(100ms, forwards);
+	}
+
+
 .-fadeUpLines .c-line {
 	transform: translateY(100%);
 	opacity: 0;

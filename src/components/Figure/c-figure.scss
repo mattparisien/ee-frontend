@@ -9,9 +9,9 @@
 		overflow: hidden;
 	}
 
-	&.-frame-reveal .c-frame {
-		@include frameReveal(100ms, forwards);
-	}
+	// &.-frame-reveal .c-frame {
+	// 	@include frameReveal(100ms, forwards);
+	// }
 
 	img {
 		opacity: 0;

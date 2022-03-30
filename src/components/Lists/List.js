@@ -65,14 +65,12 @@ function TextItems({
 }
 
 function Highlight({ hoveredId, hovered }) {
-
-	
+	console.log(hoveredId, hovered);
 
 	gsap.registerPlugin(DrawSVGPlugin);
 	const highlight = useRef(null);
 
 	useEffect(() => {
-		console.log(hovered, hoveredId)
 		hovered === null && gsap.set(highlight.current, { drawSVG: 0 });
 
 		if (hovered && hoveredId === hovered) {
