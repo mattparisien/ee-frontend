@@ -56,7 +56,6 @@ function Slider({ items }) {
 	}, []);
 
 	const handleMouseEnter = () => {
-		console.log("hello!");
 		changeCursor("drag");
 	};
 	const handleMouseLeave = () => {
@@ -79,16 +78,14 @@ function Slider({ items }) {
 			>
 				{items &&
 					items.map((item, i) => (
-					
-							<SliderItem
-								addToRefs={addToRefs}
-								itemId={item.id}
-								key={i}
-								title={item.title}
-								subtitle={item.subtitle}
-								src={item.media.featureImage.url}
-							/>
-						
+						<SliderItem
+							addToRefs={addToRefs}
+							itemId={item.id}
+							key={i}
+							title={item.title}
+							subtitle={item.subtitle}
+							src={item.media.featureImage.url}
+						/>
 					))}
 			</div>
 		</div>
@@ -97,7 +94,6 @@ function Slider({ items }) {
 
 function SliderItem({ title, subtitle, src, alt, itemId, addToRefs }) {
 	return (
-		
 		<Link
 			isRouterLink
 			classes='o-slider_item -hover-underline-label'

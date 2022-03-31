@@ -6,7 +6,7 @@ import $ from "jquery";
 import { DrawnLogo } from "../Vector/Svg";
 import { split } from "lodash";
 
-function IntroCard() {
+function IntroCard({ toggleDomAnimationReady }) {
 	gsap.registerPlugin(SplitText);
 	const splitText = useRef(null);
 
@@ -60,6 +60,7 @@ function IntroCard() {
 							});
 						gsap.to(text.current, {
 							opacity: 0,
+							onComplete: () => toggleDomAnimationReady()
 						});
 					}, 2200);
 

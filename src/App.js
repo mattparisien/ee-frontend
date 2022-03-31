@@ -62,28 +62,22 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState("light");
 	const [currentLocation, setCurrentLocation] = useState(location);
-	const [domReady, setDomReady] = useState(false);
-	const isSplit = useRef(false);
+	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
+
+	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 
 	useEffect(() => {
-		if (currentLocation !== location) {
-			setCurrentLocation(location);
-			isSplit.current = false;
-		}
-
-		if (!isSplit.current) {
+		if (!isSplit) {
 			const elements = [];
 
 			setTimeout(() => {
 				$(".-split").each((i, el) => {
 					if ($(el).children().length > 0) {
-						console.log(el);
 						elements.push(...$(el).children());
 					} else {
 						elements.push(el);
 					}
-					console.log(elements);
 				});
 				split.current = new SplitText(elements, {
 					type: "lines, words, chars",
@@ -92,7 +86,7 @@ function App() {
 				});
 			}, 300);
 
-			isSplit.current = true;
+			setSplit(true);
 		}
 	}, [location]);
 
@@ -100,7 +94,9 @@ function App() {
 		split.current && split.current.revert().split();
 	}, [windowWidth]);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
+		console.log("hello!!!!");
+
 		const fadeUp = elements => {
 			gsap.to(elements, {
 				stagger: 0.05,
@@ -111,10 +107,9 @@ function App() {
 			});
 		};
 
-		if (split.current) {
+		if (isSplit && domAnimatedReady) {
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
-					console.log(entry);
 					if (
 						entry.isIntersecting &&
 						entry.target.classList.contains("-fadeUpLines")
@@ -144,7 +139,7 @@ function App() {
 				}
 			);
 		}
-	}, [split.current, location]);
+	}, [split.current, isSplit, location, domAnimatedReady, windowWidth]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
@@ -169,11 +164,16 @@ function App() {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
 	};
 
+	const toggleDomAnimationReady = useCallback(() => {
+		setDomAnimatedReady(!domAnimatedReady);
+	}, []);
+
 	const siteControls = {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
 		transitioning,
 		setTransitioning,
+		toggleDomAnimationReady,
 	};
 
 	const [menuActive, setMenuActive] = useState(false);
@@ -201,6 +201,7 @@ function App() {
 	const classes = classNames("App", {
 		"is-new-page": !transitioning,
 		"is-old-page": transitioning,
+		"is-dom-animated-ready": domAnimatedReady,
 		"cursor-hidden": cursor === "drag",
 	});
 
@@ -269,7 +270,9 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 												<Canvas />
 												<LoadingScreen isActive={pending} />
 												{/* <DragCursor cursor={cursor} /> */}
-												<IntroCard />
+												<IntroCard
+													toggleDomAnimationReady={toggleDomAnimationReady}
+												/>
 												<Header
 													toggleMenu={() => setMenuActive(!menuActive)}
 													menuActive={menuActive}

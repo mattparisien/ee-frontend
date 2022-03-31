@@ -7,7 +7,6 @@
 	path {
 		fill: none !important;
 		stroke: $yellow;
-		
 	}
 }
 
@@ -58,7 +57,7 @@
 			.c-drawing_assortment {
 				width: 100vw;
 				height: 100%;
-				display: none;
+				// display: none;
 			}
 
 			.proxy {
@@ -122,16 +121,15 @@
 			position: static;
 			margin: 0 auto;
 			text-align: center;
-			
+
 			z-index: 999;
 		}
 	}
 }
 
 .steps-container .c-note {
-	display: none;
 	position: absolute;
-	height: 5vw;
+	height: 4vw;
 	transform: scale(0.01);
 
 	&_1 {
@@ -257,6 +255,83 @@
 
 .c-steps {
 	position: relative;
+
+	&_drawing-wrapper {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		.sheets {
+			path {
+				fill: none;
+				opacity: 0.3;
+			}
+		}
+		.eyes {
+
+			position: absolute;
+			right: 0;
+			top: 5vw;
+			width: 20vw;
+
+			path {
+				fill: none;
+				stroke: $yellow;
+			}
+		}
+
+		.player {
+
+			width: 24vw;
+
+			path {
+				fill: none;
+				
+				stroke-width: 5px;
+
+				&:nth-child(odd) {
+					stroke: $blue;
+				}
+
+				&:nth-child(even) {
+					stroke: $yellow;
+				}
+			}
+		}
+
+		.face {
+			position: absolute;
+			left: 0;
+			top: 20vw;
+			width: 10%;
+			transform: rotate(-30deg);
+			display: none;
+
+			path {
+				fill: none;
+				stroke: $blue!important;
+			}
+		}
+		.light {
+			position: absolute;
+			right: 0;
+			top: 2vw;
+			width: 10%;
+			transform: rotate(-30deg);
+			display: none;
+
+			path {
+				fill: none;
+				stroke: $yellow !important;
+			}
+		}
+	}
+
 	&_background {
 		position: absolute;
 		top: 0;
@@ -265,6 +340,7 @@
 		height: 100%;
 		background-color: #6a9ab7;
 		transform: scale(0.7);
+		display: none;
 	}
 
 	display: grid;
@@ -344,6 +420,11 @@
 			grid-row: 5/6;
 			grid-column: 3/7;
 		}
+
+		&:nth-child(6) {
+			grid-row: 1/2;
+			grid-column: 3/7;
+		}
 	}
 
 	@include media("<=phoneL") {
@@ -375,9 +456,10 @@
 		&_item {
 			grid-column: 1/13 !important;
 
-			* {
+			.title,
+			.body {
+				max-width: 100%;
 				width: 100%;
-				max-width: 100% !important;
 				text-align: center;
 			}
 		}

@@ -27,7 +27,7 @@ function Next({ color, nextPost }) {
 						<div className='c-link_inner'>
 							<ContainerFluid classes='-relative -flex -align-center -justify-between'>
 								<Fade bottom>
-									<h2 className='o-h1 -padding-bottom-huge'>Next</h2>
+									<h2 className='o-h1 -padding-bottom-huge -split -fadeUpChars'>Next</h2>
 								</Fade>
 								<Arrow color='light' />
 							</ContainerFluid>

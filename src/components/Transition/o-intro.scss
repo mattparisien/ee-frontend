@@ -21,6 +21,11 @@
 		.c-word {
 			overflow: hidden;
 		}
+
+		.c-char {
+			transform: translateY(100%);
+			opacity: 0;
+		}
 	}
 
 	&_bg {

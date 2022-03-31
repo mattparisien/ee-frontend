@@ -12,7 +12,8 @@ function Link(props, ref) {
 		[props.classes]: props.classes,
 	});
 
-	const { setTransitioning } = useContext(SiteWideControls);
+	const { setTransitioning, toggleDomAnimationReady } =
+		useContext(SiteWideControls);
 
 	const navigate = useNavigate();
 	// const { playTransition } = useContext(LoadingContext);
@@ -26,6 +27,7 @@ function Link(props, ref) {
 			}, 200);
 		}
 
+		// toggleDomAnimationReady();
 		setTransitioning(true);
 
 		props.onClick && props.onClick(e);

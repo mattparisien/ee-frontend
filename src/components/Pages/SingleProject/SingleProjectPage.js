@@ -104,9 +104,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 		}
 	}, [data, location, param]);
 
-	useEffect(() => {
-		console.log(info);
-	}, [info]);
+
 
 	return (
 		<>
@@ -131,7 +129,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 								</Fade>
 								<Fade bottom delay={500}>
 									<h2
-										className='o-h2 -bold -split -fadeUp'
+										className='o-h2 -bold -split -fadeUpChars'
 										style={{ color: accentColor[0] }}
 									>
 										{info && info[0].subtitle}

@@ -65,8 +65,6 @@ function TextItems({
 }
 
 function Highlight({ hoveredId, hovered }) {
-	console.log(hoveredId, hovered);
-
 	gsap.registerPlugin(DrawSVGPlugin);
 	const highlight = useRef(null);
 
@@ -107,7 +105,6 @@ function Highlight({ hoveredId, hovered }) {
 }
 
 function IconItems({ items }) {
-	console.log(items);
 	return items
 		? items.map(item => (
 				<li className='c-list_iconItem'>

@@ -8,7 +8,7 @@ import Reveal from "react-reveal/Reveal";
 import reactMarkdown from "react-markdown";
 
 function About({ aboutText }) {
-	console.log(aboutText);
+	
 
 	return (
 		<>

@@ -70,7 +70,15 @@ function HomePage({ toggleTransitioning, transitioning }) {
 	return (
 		<>
 			<div className='o-page o-page_home'>
-				<Section data-theme='light' classes='-fullHeight'></Section>
+				<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
+					<ContainerFluid classes="-stretchX -stretchY">
+					<div className="o-hero_inner -relative -stretchX -stretchY">
+						<div className="o-hero_word -split -fadeUpChars">Social</div>
+						<div className="o-hero_word -split -fadeUpChars">Impact</div>
+						<div className="o-hero_word -split -fadeUpChars">Agency</div>
+					</div>
+					</ContainerFluid>
+				</Section>
 				<About aboutText={data.about && data.about.body1} />
 				<How steps={data && data.steps} />
 
