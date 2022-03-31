@@ -6,6 +6,10 @@
 	height: 100%;
 	transform-origin: center;
 
+	path {
+		stroke: none;
+	}
+
 	&_svg_green {
 		width: 100%;
 		transform-origin: left;

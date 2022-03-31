@@ -1,0 +1,23 @@
+.o-page_project {
+  .o-colorBlobs {
+    width: 100%;
+    transform: scale(0.2);
+    transform-origin: center;
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: -48vw;
+
+    path {
+      stroke: $yellow;
+    }
+    
+  }
+
+  .o-h2, .o-h3 {
+    z-index: 1;
+    position: static;
+  }
+
+
+}

@@ -14,8 +14,8 @@ function ContactPage() {
 			<Section classes='o-bio -padding-lg' data-theme='light'>
 				<ContainerFluid classes='-stretchY '>
 					<div className='o-container_inner'>
-						<h1 className='o-h1 -text-center -padding-bottom-lg'>
-						Words from <em>Founder</em>
+						<h1 className='o-h1 -text-center -padding-bottom-lg -split -fadeUpChars'>
+						Words from the Founder
 					</h1>
 
 						<div className='o-bio_main -stretchX -flex -align-start -justify-between'>

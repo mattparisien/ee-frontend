@@ -72,7 +72,7 @@ function Slider({ items }) {
 	return (
 		<div className='o-slider -relative' ref={container}>
 			<div
-				className='o-slider_inner'
+				className='o-slider_inner -fadeUpChildren'
 				ref={slider}
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}

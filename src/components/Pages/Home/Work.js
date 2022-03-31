@@ -1,17 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import Section from "../../Containers/Section";
-import ContainerFluid from "../../Containers/ContainerFluid";
-import { Scroll, useLocomotiveScroll } from "react-locomotive-scroll";
-import ScrollTrigger from "gsap/src/ScrollTrigger";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/src/ScrollTrigger";
 import $ from "jquery";
+import React, { useEffect, useRef } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import Section from "../../Containers/Section";
 import Figure from "../../Figure/Figure";
-import Fade from "react-reveal/Fade";
 import Link from "../../Link/Link";
-import ProjectGrid from "../Projects/ProjectGrid";
-
-import gsapCore from "gsap/gsap-core";
 import Slider from "../../Slider/Slider";
+
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
@@ -93,6 +89,7 @@ function Work({ projects }) {
 
 	return (
 		<Section classes='o-work -padding-huge' data-theme='light'>
+			<h1 className="o-h1 -text-center -padding-bottom-lg -split -fadeUpChars">Featured Work</h1>
 			<Slider items={projects} />
 		</Section>
 	);

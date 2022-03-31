@@ -7,6 +7,7 @@ import React, {
 	useRef,
 	useState,
 	useLayoutEffect,
+	useCallback,
 } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
@@ -28,6 +29,7 @@ import FlowyImage from "./components/Three/FlowyImage";
 import axios from "axios";
 import $ from "jquery";
 import Canvas from "./components/Canvas/Canvas";
+// import useCurrentLocation from "./helpers/hooks/useCurrentLocation";
 
 export const DataContext = createContext();
 export const SiteWideControls = createContext();
@@ -37,8 +39,11 @@ export const CursorContext = createContext();
 
 function App() {
 	const scrollWrapper = useRef(null);
-	const location = useLocation();
+
 	const [windowWidth] = useResize();
+
+	const location = useLocation();
+
 	gsap.registerPlugin(SplitText);
 
 	const {
@@ -56,38 +61,53 @@ function App() {
 	} = useAppData();
 
 	const [headerColor, setHeaderColor] = useState("light");
-
+	const [currentLocation, setCurrentLocation] = useState(location);
+	const [domReady, setDomReady] = useState(false);
 	const isSplit = useRef(false);
 	const split = useRef(null);
 
 	useEffect(() => {
-		if (isSplit.current) {
-			//If has been split and window is resized, revert and split again
-
-			split.current.revert().split();
+		if (currentLocation !== location) {
+			setCurrentLocation(location);
+			isSplit.current = false;
 		}
 
 		if (!isSplit.current) {
-			//Split text on initial render
-			isSplit.current = true;
+			const elements = [];
 
-			split.current = new SplitText($(".-split p, .-split"), {
-				type: "lines",
-				linesClass: "c-line",
-			});
+			setTimeout(() => {
+				$(".-split").each((i, el) => {
+					if ($(el).children().length > 0) {
+						console.log(el);
+						elements.push(...$(el).children());
+					} else {
+						elements.push(el);
+					}
+					console.log(elements);
+				});
+				split.current = new SplitText(elements, {
+					type: "lines, words, chars",
+					linesClass: "c-line",
+					charsClass: "c-char",
+				});
+			}, 300);
+
+			isSplit.current = true;
 		}
-	}, [isSplit, location, windowWidth]);
+	}, [location]);
+
+	useEffect(() => {
+		split.current && split.current.revert().split();
+	}, [windowWidth]);
 
 	useLayoutEffect(() => {
-		
-		const revealHeading = lines => {
-			gsap.to(lines, {
-				stagger: 0.1,
-				duration: 2,
+		const fadeUp = elements => {
+			gsap.to(elements, {
+				stagger: 0.05,
+				duration: 1,
+				ease: "power3.out",
 				y: 0,
 				opacity: 1,
-				ease: "power3.out",
-				delay: 0.1
 			});
 		};
 
@@ -95,21 +115,36 @@ function App() {
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
 					console.log(entry);
-					if (entry.isIntersecting) {
-						console.clear();
-						
-						revealHeading($(entry.target).find(".c-line"));
+					if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-fadeUpLines")
+					) {
+						fadeUp($(entry.target).find(".c-line"));
+					} else if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-fadeUpChars")
+					) {
+						fadeUp($(entry.target).find(".c-char"));
+					} else if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-fadeUpChildren")
+					) {
+						fadeUp($(entry.target).children());
 					}
 				});
 			};
 
-			const observer = new IntersectionObserver(handleIntersection, {threshold: 0.4});
-
-			$(".-fadeUpLines").each((i, el) => {
-				observer.observe(el);
+			const observer = new IntersectionObserver(handleIntersection, {
+				threshold: 0.4,
 			});
+
+			$(".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren").each(
+				(i, el) => {
+					observer.observe(el);
+				}
+			);
 		}
-	}, [split.current]);
+	}, [split.current, location]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
@@ -231,7 +266,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									<ColorContext.Provider>
 										<CursorContext.Provider value={{ cursor, changeCursor }}>
 											<LoadingContext.Provider>
-												<Canvas/>
+												<Canvas />
 												<LoadingScreen isActive={pending} />
 												{/* <DragCursor cursor={cursor} /> */}
 												<IntroCard />

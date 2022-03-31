@@ -32,8 +32,10 @@ export default function Footer(props) {
 				<div className='c-footer_content'>
 					<div className='-flex -align-center -justify-center'>
 						<div className='c-footer_content_contact'>
+							<h2 className='o-h1 -split -fadeUpChars'>
+								{props.info && props.info.Heading}
+							</h2>
 							<Fade bottom>
-								<h2 className='o-h1'>{props.info && props.info.Heading}</h2>
 								<a href={`mailto:${props.info && props.info.Email}`}>
 									<div className='email -underline -hover-underline -relative'>
 										{props.info && props.info.Email}
@@ -52,7 +54,7 @@ export default function Footer(props) {
 						<Fade bottom>
 							<div className='-flex -align-center -justify-center'>
 								<h4 className='o-h4 c-footer_brand'>The Eyes & Ears Agency</h4>
-								<SocialList/>
+								<SocialList />
 							</div>
 
 							<nav className='c-footer_nav'>
