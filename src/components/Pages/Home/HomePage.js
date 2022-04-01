@@ -11,6 +11,7 @@ import ProjectGrid from "../Projects/ProjectGrid";
 import About from "./About";
 import How from "./How";
 import Work from "./Work";
+import { DrawnLogo } from "../../Vector/Svg";
 
 function HomePage({ toggleTransitioning, transitioning }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -71,12 +72,18 @@ function HomePage({ toggleTransitioning, transitioning }) {
 		<>
 			<div className='o-page o-page_home'>
 				<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
-					<ContainerFluid classes="-stretchX -stretchY">
-					<div className="o-hero_inner -relative -stretchX -stretchY">
-						<div className="o-hero_word -split -fadeUpChars">Social</div>
-						<div className="o-hero_word -split -fadeUpChars">Impact</div>
-						<div className="o-hero_word -split -fadeUpChars">Agency</div>
-					</div>
+					<ContainerFluid classes='-stretchX -stretchY'>
+						<div className='o-hero_inner -relative -stretchX -stretchY'>
+							<div className='o-hero_word -split -fadeUpChars'>Social</div>
+							<div className='o-hero_word -split -fadeUpChars'>Impact</div>
+							<div className='o-hero_word -split -fadeUpChars'>Agency</div>
+							<div className='o-hero_logo'>
+								<div className='inner -relative'>
+									<DrawnLogo />
+									<div className='revealer'></div>
+								</div>
+							</div>
+						</div>
 					</ContainerFluid>
 				</Section>
 				<About aboutText={data.about && data.about.body1} />

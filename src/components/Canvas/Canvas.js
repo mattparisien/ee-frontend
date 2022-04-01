@@ -27,7 +27,7 @@ function Canvas() {
 
 		function moveBall() {
 			ctx.clearRect(0, 0, width, height);
-			ctx.fillStyle = "black";
+			ctx.fillStyle = "rgba(233, 219, 11, 0.39)";
 			ballX = lerp(ballX, x, 0.1);
 			ballY = lerp(ballY, y, 0.1);
 			ctx.beginPath();

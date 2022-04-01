@@ -1,13 +1,11 @@
 import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
+import $ from "jquery";
 import React, {
-	createContext,
-	useEffect,
+	createContext, useCallback, useEffect,
 	useRef,
-	useState,
-	useLayoutEffect,
-	useCallback,
+	useState
 } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
@@ -16,19 +14,15 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { ThemeProvider } from "styled-components";
 import Cookies from "universal-cookie";
 import { Header } from "./components";
+import ArrowButton from "./components/Button/ArrowButton";
+import Canvas from "./components/Canvas/Canvas";
 import Footer from "./components/Footer/Footer";
 import LoadingScreen from "./components/Loading/LoadingScreen";
 import Menu from "./components/Menu/Menu";
+import IntroCard from "./components/Transition/IntroCard";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
-import ArrowButton from "./components/Button/ArrowButton";
-import DragCursor from "./components/Cursors/DragCursor";
-import IntroCard from "./components/Transition/IntroCard";
-import FlowyImage from "./components/Three/FlowyImage";
-import axios from "axios";
-import $ from "jquery";
-import Canvas from "./components/Canvas/Canvas";
 // import useCurrentLocation from "./helpers/hooks/useCurrentLocation";
 
 export const DataContext = createContext();
@@ -292,12 +286,12 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 													ref={scrollWrapper}
 													data-scroll-container
 												>
-													<ArrowButton
+													{/* <ArrowButton
 														classes='scroll-to-top'
 														color='light'
 														rotation={90}
 														handleClick={scrollToTop}
-													/>
+													/> */}
 
 													{/* <ModalWrapper hoverState={hoverState} /> */}
 
