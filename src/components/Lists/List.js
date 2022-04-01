@@ -37,6 +37,10 @@ function TextItems({
 	draw,
 }) {
 	const [hovered, setHovered] = useState(null);
+
+	useEffect(() => {
+		console.log(hovered);
+	}, [hovered]);
 	return (
 		items &&
 		items.map((item, i) => {
@@ -46,7 +50,7 @@ function TextItems({
 						underline ? `-relative -underline -hover-underline` : ""
 					}`}
 					key={i}
-					onMouseEnter={() => setHovered(i)}
+					onMouseEnter={() => setHovered(i + 1)}
 					onMouseLeave={() => setHovered(false)}
 				>
 					<Link
@@ -57,7 +61,7 @@ function TextItems({
 					>
 						{item.name}
 					</Link>
-					{draw && <Highlight hoveredId={i} hovered={hovered} />}
+					{draw && <Highlight hoveredId={i + 1} hovered={hovered} />}
 				</li>
 			);
 		})
@@ -65,6 +69,8 @@ function TextItems({
 }
 
 function Highlight({ hoveredId, hovered }) {
+	console.log("currently hovered", hoveredId);
+
 	gsap.registerPlugin(DrawSVGPlugin);
 	const highlight = useRef(null);
 
@@ -89,16 +95,20 @@ function Highlight({ hoveredId, hovered }) {
 	return (
 		<div className='c-highlight'>
 			<svg
-				viewBox='0 0 80 54'
-				fill='none'
 				xmlns='http://www.w3.org/2000/svg'
+				viewBox='0 0 157.22 17.19'
 				className='c-highlight_svg'
-				preserveAspectRatio='none'
 			>
 				<path
-					d='M4.734 19.171c6 24 54.205 30.296 69.5 15 17.499-17.5-58-31.5-72.5-3.5'
 					ref={highlight}
-				></path>
+					d='M155.72 17.15c-.24-8.3-8.93-15.28-17.09-13.72-5.99 1.14-10.56 5.86-15.99 8.63s-13.72 2.49-15.81-3.23c-.73-2-.58-4.42-2.04-5.96-1.58-1.66-4.22-1.48-6.49-1.17C65.73 6.14 32.8 11.77.19 7.67'
+					style={{
+						fill: "none",
+
+						strokeMiterlimit: 10,
+						strokeWidth: 3,
+					}}
+				/>
 			</svg>
 		</div>
 	);

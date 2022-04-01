@@ -4,7 +4,6 @@
 @import "utils";
 @import "global";
 @import "animations";
-
 @import "objects/o-h1.scss";
 @import "objects/o-h2.scss";
 @import "objects/o-h3.scss";
@@ -17,9 +16,7 @@
 @import "../../components/Header/c-header.scss";
 @import "../../components/Link/c-link.scss";
 @import "../../components/Menu/c-menu.scss";
-// @import "../../components/CursorFollower/c-follower.scss";
 @import "../../components/Vector/c-arrow.scss";
-// @import "../../components/Vector/c-frame.scss";
 @import "../../components/Vector/svg.scss";
 @import "../../components/Footer/c-footer.scss";
 @import "../../components/Pages/Home/o-home_how.scss";
@@ -39,8 +36,4 @@
 @import "../../components/Slider/o-slider.scss";
 @import "../../components/Cursors/c-cursor.scss";
 @import "../../components/Canvas/o-scene.scss";
-
-
-
-
-
+@import "../../components/Drawings/o-colorBlobs.scss";

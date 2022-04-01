@@ -1,23 +1,109 @@
 .o-page_project {
-  .o-colorBlobs {
-    width: 100%;
-    transform: scale(0.2);
-    transform-origin: center;
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: -48vw;
 
-    path {
-      stroke: $yellow;
-    }
-    
-  }
+	.o-hero {
+		height: 60vw;
+		max-height: calc(100vh - $headerHeight);
 
-  .o-h2, .o-h3 {
-    z-index: 1;
-    position: static;
-  }
+		p {
+			width: 50%;
+			margin-left: auto;
+		}
+	}
 
 
+
+	.o-drawings {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+
+		&_inner {
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	.c-blob {
+		position: absolute;
+
+		&_yellow {
+			width: 30vw;
+			bottom: 0;
+			left: -8vw;
+			fill: $yellow;
+		}
+
+		&_blue {
+			bottom: 0;
+			width: 20vw;
+			right: -6vw;
+			path {
+				fill: $blue;
+			}
+		}
+
+		&_red {
+			top: 0;
+			width: 20vw;
+			left: -3vw;
+			path {
+				fill: $red;
+			}
+		}
+
+		&_pink {
+			top: 13vw;
+			width: 10vw;
+			right: 15vw;
+			path {
+				fill: $pink;
+			}
+		}
+
+		&_green {
+			top: 0;
+			width: 30vw;
+			right: -9vw;
+			path {
+				fill: $green;
+			}
+		}
+	}
+
+	.c-blobRevealer {
+		position: absolute;
+
+		&_right {
+			right: -30vw;
+			width: 60vw;
+			top: -5vw;
+
+			path {
+				stroke: $light !important;
+			}
+		}
+
+		&_left {
+			left: -20vw;
+			width: 70vw;
+			top: -6.5vw;
+
+			path {
+				stroke: $light !important;
+			}
+		}
+	}
+
+	.o-h2 {
+		padding: 0;
+	}
+
+	.o-h2,
+	.o-h3 {
+		z-index: 1;
+		position: sticky;
+	}
 }

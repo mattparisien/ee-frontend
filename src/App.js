@@ -3,9 +3,11 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
 import React, {
-	createContext, useCallback, useEffect,
+	createContext,
+	useCallback,
+	useEffect,
 	useRef,
-	useState
+	useState,
 } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
@@ -61,27 +63,30 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 
+	const toggleDomAnimationReady = () => {
+		console.log("hello!");
+		setDomAnimatedReady(!domAnimatedReady);
+	};
+
 	useEffect(() => {
-		if (!isSplit) {
-			const elements = [];
+		const elements = [];
 
-			setTimeout(() => {
-				$(".-split").each((i, el) => {
-					if ($(el).children().length > 0) {
-						elements.push(...$(el).children());
-					} else {
-						elements.push(el);
-					}
-				});
-				split.current = new SplitText(elements, {
-					type: "lines, words, chars",
-					linesClass: "c-line",
-					charsClass: "c-char",
-				});
-			}, 300);
-
+		setTimeout(() => {
+			$(".-split").each((i, el) => {
+				if ($(el).children().length > 0) {
+					elements.push(...$(el).children());
+				} else {
+					elements.push(el);
+				}
+			});
+			split.current = new SplitText(elements, {
+				type: "lines, words, chars",
+				linesClass: "c-line",
+				charsClass: "c-char",
+			});
 			setSplit(true);
-		}
+			toggleDomAnimationReady();
+		}, 300);
 	}, [location]);
 
 	useEffect(() => {
@@ -89,7 +94,11 @@ function App() {
 	}, [windowWidth]);
 
 	useEffect(() => {
-		console.log("hello!!!!");
+		const show = element => {
+			$(element).css({
+				opacity: 1,
+			});
+		};
 
 		const fadeUp = elements => {
 			gsap.to(elements, {
@@ -108,16 +117,19 @@ function App() {
 						entry.isIntersecting &&
 						entry.target.classList.contains("-fadeUpLines")
 					) {
+						show(entry.target);
 						fadeUp($(entry.target).find(".c-line"));
 					} else if (
 						entry.isIntersecting &&
 						entry.target.classList.contains("-fadeUpChars")
 					) {
+						show(entry.target);
 						fadeUp($(entry.target).find(".c-char"));
 					} else if (
 						entry.isIntersecting &&
 						entry.target.classList.contains("-fadeUpChildren")
 					) {
+						show(entry.target);
 						fadeUp($(entry.target).children());
 					}
 				});
@@ -158,15 +170,12 @@ function App() {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
 	};
 
-	const toggleDomAnimationReady = useCallback(() => {
-		setDomAnimatedReady(!domAnimatedReady);
-	}, []);
-
 	const siteControls = {
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
 		transitioning,
 		setTransitioning,
+		domAnimatedReady: domAnimatedReady,
 		toggleDomAnimationReady,
 	};
 

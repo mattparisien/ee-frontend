@@ -27,8 +27,9 @@ function Link(props, ref) {
 			}, 200);
 		}
 
-		// toggleDomAnimationReady();
+		toggleDomAnimationReady();
 		setTransitioning(true);
+		
 
 		props.onClick && props.onClick(e);
 		e.preventDefault();
