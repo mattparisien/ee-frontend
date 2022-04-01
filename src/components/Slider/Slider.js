@@ -101,7 +101,7 @@ function SliderItem({ title, subtitle, src, alt, itemId, addToRefs }) {
 			ref={addToRefs}
 		>
 			<div className='o-slider_image'>
-				<Figure src={src} noFrame />
+				<Figure src={src} hoverEffect={"frame"}/>
 			</div>
 			<div className='o-slider_item_info'>
 				<h3 className='o-slider_item_title -underline-label -relative '>

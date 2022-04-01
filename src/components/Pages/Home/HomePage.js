@@ -74,9 +74,24 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
 					<ContainerFluid classes='-stretchX -stretchY'>
 						<div className='o-hero_inner -relative -stretchX -stretchY'>
-							<div className='o-hero_word -split -fadeUpChars'>Social</div>
-							<div className='o-hero_word -split -fadeUpChars'>Impact</div>
-							<div className='o-hero_word -split -fadeUpChars'>Agency</div>
+							<div
+								className='o-hero_word -split -fadeUpChars'
+						
+							>
+								Social
+							</div>
+							<div
+								className='o-hero_word -split -fadeUpChars'
+			
+							>
+								Impact
+							</div>
+							<div
+								className='o-hero_word -split -fadeUpChars'
+						
+							>
+								Agency
+							</div>
 							<div className='o-hero_logo'>
 								<div className='inner -relative'>
 									<DrawnLogo />

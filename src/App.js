@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
+import { splitInnerHTML } from "gsap/utils/strings";
 import $ from "jquery";
 import React, {
 	createContext,
@@ -84,6 +85,8 @@ function App() {
 				linesClass: "c-line",
 				charsClass: "c-char",
 			});
+
+			console.log(split.current);
 			setSplit(true);
 			toggleDomAnimationReady();
 		}, 300);

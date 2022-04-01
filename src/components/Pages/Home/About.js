@@ -94,7 +94,7 @@ function About({ aboutText }) {
 									/>
 								</svg> */}
 								<Reveal effect='-frame-reveal'>
-									<Frame />
+									<Frame scrollSpeed={3} />
 								</Reveal>
 							</div>
 						</ContainerFluid>

@@ -1,18 +1,27 @@
 .o-page_project {
 
 	.o-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		height: 60vw;
 		max-height: calc(100vh - $headerHeight);
 
+		&_content {
+			width: 100%;
+			z-index: 99;
+		}
+
 		p {
-			width: 50%;
-			margin-left: auto;
+			width: 65%;
+			text-align: center;
+			margin-top: $space-md;
 		}
 	}
 
 
 
-	.o-drawings {
+	.o-colorBlobs {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -26,11 +35,11 @@
 		}
 	}
 
-	.c-blob {
+	.c-colorBlob {
 		position: absolute;
 
 		&_yellow {
-			width: 30vw;
+			width: 25vw;
 			bottom: 0;
 			left: -8vw;
 			fill: $yellow;
@@ -55,6 +64,7 @@
 		}
 
 		&_pink {
+			display: none !important;
 			top: 13vw;
 			width: 10vw;
 			right: 15vw;

@@ -16,6 +16,8 @@ const Frame = props => {
 
 	return (
 		<div
+			data-scroll={props.scrollSpeed ? true : false}
+			data-scroll-speed={props.scrollSpeed}
 			className={`c-frame ${
 				!props.static ? "c-frame_hover" : "c-frame_static"
 			}`}

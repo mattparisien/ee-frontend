@@ -12,6 +12,44 @@
 
 .o-page_home {
 	.o-how {
+
+		.o-colorBlobs {
+			z-index: 0;
+			display: none;
+
+			.c-colorBlob_red {
+				left: -12vw;
+				width: 30vw;
+			}
+
+			.c-colorBlob_green {
+				right: -3vw;
+				width: 30vw;
+				display: none;
+			}
+
+			.c-colorBlob_blue {
+				right: -10vw;
+				width: 30vw;
+				top: 0;
+			}
+
+			.c-colorBlob_yellow {
+				left: -10vw;
+				width: 50vw;
+				bottom: -8vw;
+				
+
+				path {
+					fill: $yellow !important;
+				}
+			}
+
+			.c-colorBlob_pink {
+				display: none !important;
+			}
+		}
+
 		position: relative;
 		overflow: hidden;
 
@@ -121,7 +159,7 @@
 			position: static;
 			margin: 0 auto;
 			text-align: center;
-
+			max-width: 50%;
 			z-index: 999;
 		}
 	}
@@ -131,6 +169,7 @@
 	position: absolute;
 	height: 4vw;
 	transform: scale(0.01);
+	z-index: 999;
 
 	&_1 {
 		top: 0;
@@ -200,7 +239,7 @@
 		height: 100%;
 	}
 
-	@include media("<=tablet") {
+	@include media("<=phoneL") {
 		&_clef {
 			top: 15vw;
 			height: 12vw;
@@ -265,7 +304,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		
+
 		.sheets {
 			path {
 				fill: none;
@@ -273,7 +312,6 @@
 			}
 		}
 		.eyes {
-
 			position: absolute;
 			right: 0;
 			top: 5vw;
@@ -286,12 +324,11 @@
 		}
 
 		.player {
-
 			width: 24vw;
 
 			path {
 				fill: none;
-				
+
 				stroke-width: 5px;
 
 				&:nth-child(odd) {
@@ -314,7 +351,7 @@
 
 			path {
 				fill: none;
-				stroke: $blue!important;
+				stroke: $blue !important;
 			}
 		}
 		.light {
@@ -360,7 +397,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		display: none;
+		// display: none;
 
 		&_line {
 			height: 0.8px;

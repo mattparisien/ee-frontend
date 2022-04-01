@@ -19,16 +19,14 @@ export default function ProjectPage({ transitioning, toggleTransitioning }) {
 		<div className='o-page o-page_project'>
 			<ContainerFluid classes='-bg-light'>
 				<Section classes='-padding-lg o-hero -relative'>
-					<div className='o-hero_content -flex -align-start -justify-between'>
-						<h2 className='o-h2 -split -fadeUpChars'>Projects</h2>
+					<div className='o-hero_content -flex -flex-column -align-center -justify-center'>
+						<h2 className='o-h1 -split -fadeUpChars' data-scroll data-scroll-speed={2}>Projects</h2>
 
 						<p className='o-h3 -split -fadeUpLines'>
 							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut
 							dolorum perferendis quod recusandae. Magnam a in, architecto quis
 							commodi autem. Dolorum itaque omnis eveniet doloribus placeat
-							veritatis, blanditiis, voluptatum consectetur ipsam animi
-							explicabo beatae ipsum, ratione cum. Porro inventore sequi dolorem
-							aut eos iusto exercitationem esse dolores dicta. Error, commodi!
+							veritatis, blanditiis.
 						</p>
 					</div>
 
