@@ -25,36 +25,36 @@ export default function useAppData(scrollRef) {
 	];
 
 	//Themes
-	const themes = {
-		colors: {
-			light: "#FCFCF0",
-			dark: "#010201",
-			lighterDark: "#111111",
-			red: "#DF181F",
-			green: "#039924",
-			blue: "#1E70DD",
-			yellow: "#F1DA0A",
-			grey: "#AFAFAF",
-		},
+	// const themes = {
+	// 	colors: {
+	// 		light: "#FCFCF0",
+	// 		dark: "#010201",
+	// 		lighterDark: "#111111",
+	// 		red: "#DF181F",
+	// 		green: "#039924",
+	// 		blue: "#1E70DD",
+	// 		yellow: "#F1DA0A",
+	// 		grey: "#AFAFAF",
+	// 	},
 
-		transition: {
-			easing: "cubic-bezier(.17,.67,.83,.67)",
-			timing: "2s",
-		},
+	// 	transition: {
+	// 		easing: "cubic-bezier(.17,.67,.83,.67)",
+	// 		timing: "2s",
+	// 	},
 
-		components: {
-			container: {
-				gutter: {
-					mobile: "4vw",
-				},
-			},
-			imageList: {
-				gutter: {
-					mobile: "12vw",
-				},
-			},
-		},
-	};
+	// 	components: {
+	// 		container: {
+	// 			gutter: {
+	// 				mobile: "4vw",
+	// 			},
+	// 		},
+	// 		imageList: {
+	// 			gutter: {
+	// 				mobile: "12vw",
+	// 			},
+	// 		},
+	// 	},
+	// };
 
 	const [windowWidth, isResized] = useResize();
 	const appRefs = useRef({});
