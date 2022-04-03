@@ -2,14 +2,13 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
 import Canvas from "./components/Canvas/Canvas";
 import Footer from "./components/Footer/Footer";
 import Menu from "./components/Menu/Menu";
-import IntroCard from "./components/Transition/IntroCard";
 import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
@@ -37,14 +36,14 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState("light");
 
-	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
+	// const [domAnimatedReady, setDomAnimatedReady] = useState(false);
 
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 
-	const toggleDomAnimationReady = useCallback(() => {
-		setDomAnimatedReady(!domAnimatedReady);
-	}, [domAnimatedReady]);
+	// const toggleDomAnimationReady = useCallback(() => {
+	// 	setDomAnimatedReady(!domAnimatedReady);
+	// }, []);
 
 	useEffect(() => {
 		const elements = [];
@@ -64,9 +63,9 @@ function App() {
 			});
 
 			setSplit(true);
-			toggleDomAnimationReady();
+			// toggleDomAnimationReady();
 		}, 300);
-	}, [location, toggleDomAnimationReady]);
+	}, [location]);
 
 	useEffect(() => {
 		split.current && split.current.revert().split();
@@ -89,7 +88,7 @@ function App() {
 			});
 		};
 
-		if (isSplit && domAnimatedReady) {
+		if (isSplit) {
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
 					if (
@@ -124,7 +123,7 @@ function App() {
 				}
 			);
 		}
-	}, [isSplit, location, domAnimatedReady, windowWidth]);
+	}, [isSplit, location, windowWidth]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
@@ -154,8 +153,8 @@ function App() {
 		toggleScrollLock,
 		transitioning,
 		setTransitioning,
-		domAnimatedReady: domAnimatedReady,
-		toggleDomAnimationReady,
+		
+		// toggleDomAnimationReady,
 	};
 
 	const [menuActive, setMenuActive] = useState(false);
@@ -167,7 +166,7 @@ function App() {
 	const classes = classNames("App", {
 		"is-new-page": !transitioning,
 		"is-old-page": transitioning,
-		"is-dom-animated-ready": domAnimatedReady,
+		
 		"cursor-hidden": cursor === "drag",
 	});
 
@@ -197,7 +196,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					<Canvas />
 
 					{/* <DragCursor cursor={cursor} /> */}
-					<IntroCard toggleDomAnimationReady={toggleDomAnimationReady} />
+					{/* <IntroCard toggleDomAnimationReady={toggleDomAnimationReady} /> */}
 					<Header
 						toggleMenu={() => setMenuActive(!menuActive)}
 						menuActive={menuActive}

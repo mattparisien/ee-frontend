@@ -1,16 +1,16 @@
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import { useContext } from "react";
-import { DataContext, SiteWideControls } from "../../../context/Context";
+import { DataContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import ProjectGrid from "./ProjectGrid";
 
-export default function ProjectPage({ transitioning, toggleTransitioning }) {
+export default function ProjectPage() {
 	gsap.registerPlugin(DrawSVGPlugin);
 	const data = useContext(DataContext);
-	const controls = useContext(SiteWideControls);
+	
 	
 
 	return (
@@ -331,9 +331,7 @@ export default function ProjectPage({ transitioning, toggleTransitioning }) {
 					</div> */}
 
 					<ColorBlobs
-						isAnimationReady={
-							controls.domAnimatedReady && controls.domAnimatedReady
-						}
+					
 					/>
 				</Section>
 				<Section classes='-padding-lg'>
