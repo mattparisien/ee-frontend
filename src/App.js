@@ -115,7 +115,7 @@ function App() {
 			};
 
 			const observer = new IntersectionObserver(handleIntersection, {
-				threshold: 0.4,
+				threshold: 0.2,
 			});
 
 			$(".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren").each(

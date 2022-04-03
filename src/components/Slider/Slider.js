@@ -1,9 +1,7 @@
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import VelocityTracker from "gsap/utils/VelocityTracker";
-import $ from "jquery";
 import React, { useEffect, useRef } from "react";
-import useResize from "../../helpers/hooks/useResize";
 import Figure from "../Figure/Figure";
 import Link from "../Link/Link";
 
@@ -15,22 +13,6 @@ function Slider({ items }) {
 
 	const itemRefs = useRef([]);
 	itemRefs.current = [];
-
-	const [windowWidth] = useResize();
-
-	useEffect(() => {
-		//Set up slider proxy
-
-		setTimeout(() => {
-			const items = $(".o-slider .o-slider_item");
-			const length = items.length;
-			const itemWidth = $(items[0]).width();
-			const gap = (itemWidth / 4) * length;
-			const sliderWidth = itemWidth * length + gap;
-
-			$(slider.current).css({ width: sliderWidth });
-		}, 200);
-	}, [windowWidth]);
 
 	useEffect(() => {
 		draggable.current = Draggable.create(slider.current, {

@@ -5,7 +5,7 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 import Link from "../Link/Link";
 
 function List(
-	{ items, classes, variant, hoverEffect },
+	{ items, classes, variant, hoverEffect, onClick },
 	ref
 ) {
 	const listClasses = classNames("c-list", {
@@ -20,6 +20,7 @@ function List(
 					isRouterLink
 					underline={hoverEffect === "underline"}
 					draw={hoverEffect === "draw"}
+					onClick={onClick}
 				/>
 			) : (
 				<IconItems items={items && items} />
@@ -34,6 +35,7 @@ function TextItems({
 	isRouterLink,
 	underline,
 	draw,
+	onClick
 }) {
 	const [hovered, setHovered] = useState(null);
 
@@ -43,6 +45,7 @@ function TextItems({
 		items.map((item, i) => {
 			return (
 				<li
+				onClick={onClick}
 					className={`c-list_item ${
 						underline ? `-relative -underline -hover-underline` : ""
 					}`}

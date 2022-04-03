@@ -4,6 +4,10 @@ $itemWidth: 30vw;
 
 .o-slider {
 	height: 40vw;
+	width: 200vw;
+	
+	
+	
 
 	@include media("<=tablet") {
 		height: 90vw;
@@ -27,6 +31,10 @@ $itemWidth: 30vw;
 		width: 30vw;
 		height: 100%;
 		overflow: hidden;
+		
+		&:not(:first-child) {
+			margin-left: 2rem
+		}
 
 		@include media("<=tablet") {
 			overflow: visible;

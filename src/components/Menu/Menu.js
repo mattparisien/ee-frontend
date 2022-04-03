@@ -66,7 +66,7 @@ function Menu({ isActive, navItems, toggleMenu }) {
 		<div className={classes} ref={card}>
 			<ContainerFluid classes='-stretchY' reveal={reveal}>
 				<nav className='c-menu_nav'>
-					<List ref={container} items={navItems}/>
+					<List ref={container} items={navItems} onClick={() => toggleMenu()} isRouterLink />
 				</nav>
 				<SocialList />
 			</ContainerFluid>

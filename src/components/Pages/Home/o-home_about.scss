@@ -34,7 +34,7 @@
 		position: absolute;
 		right: -10vw;
 		stroke: none;
-		transform: rotate(28deg)scaleX(-100%);
+		transform: rotate(28deg) scaleX(-100%);
 		
 	}
 
@@ -45,7 +45,7 @@
 		position: absolute;
 		top: -18vw;
 		left: -15vw;
-		transform: scaleX(-100%)rotate(-20deg);
+		transform: scaleX(-100%) rotate(-20deg);
 
 		svg {
 			height: 100%;
@@ -141,9 +141,14 @@
 	}
 
 	&_content {
-		@include media("<=phoneL") {
+		@include media("<=tablet") {
 			flex-direction: column;
 			justify-content: center;
+
+			.c-vibrations {
+				top: -12vw;
+				left: -9vw
+			}
 
 			.o-about_left,
 			.o-about_right {
@@ -152,11 +157,18 @@
 
 			.o-about_left {
 				width: 100%;
+				margin-top: $space-lg;
 			}
 
 			.o-about_right {
 				width: 80%;
+				height: 50vw;
 				margin: 0 auto;
+				margin-top: $space-lg;
+
+				.c-megaphone {
+					position: static;
+				}
 			}
 		}
 	}

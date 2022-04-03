@@ -2,7 +2,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100vh;
+	min-height: -webkit-fill-available;
 	width: 100vw;
 	display: block;
 	z-index: 999;
@@ -12,9 +12,21 @@
 	padding-top: $headerHeight;
 	background-color: $dark;
 	transition: $transition-menu;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.c-list_social {
+		transition: 300ms ease;
+		opacity: 0;
+	}
 
 	&.is-active {
-		transform: translateY(0)
+		transform: translateY(0);
+
+		.c-list_social {
+			opacity:  1 
+		}
 	}
 
 	.c-list_social {
@@ -26,6 +38,7 @@
 
 		a svg {
 		font-size: 2rem;
+		fill: $light;
 		}
 
 		
