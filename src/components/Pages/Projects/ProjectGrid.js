@@ -1,19 +1,12 @@
 // import { ColorContext, CursorContext } from "../../App/App";
-import { CircularProgress, useMediaQuery } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import classNames from "classnames";
-import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
-import Link from "../../Link/Link";
-import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import gsap from "gsap";
+import React, { useRef, useState } from "react";
 import Fade from "react-reveal/Fade";
+import Link from "../../Link/Link";
 import Frame from "../../Vector/Frame";
 
 function ProjectGrid({ items, variant, hoverEffect }) {
-	// const { setPageTheme } = useContext(ColorContext);
-	// const { setCursorState } = useContext(CursorContext);
-	const tablet = useMediaQuery("(max-width: 768px)");
-
 	const gridItems = useRef([]);
 	gridItems.current = [];
 
@@ -59,15 +52,11 @@ function ProjectItem({
 	previewText,
 	title,
 	url,
-	scrollSpeed,
+
 	hoverEffect,
 }) {
-	const ref = useRef(null);
-
 	const [loaded, setLoaded] = useState(false);
 	const inViewport = useRef(false);
-
-	const item = useRef(null);
 
 	const itemClasses = classNames("c-grid_item -relative -hover-underline", {
 		"is-in-view": inViewport.current,
@@ -112,12 +101,7 @@ function ProjectItem({
 }
 
 function MediaItem({ src, alt }) {
-	const ref = useRef(null);
-
 	const [loaded, setLoaded] = useState(false);
-	const inViewport = useRef(false);
-
-	const item = useRef(null);
 
 	const itemClasses = classNames("c-grid_item -relative -hover-underline");
 

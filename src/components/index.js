@@ -12,7 +12,7 @@ import {
 	Ellipse,
 	Eye,
 	TextLogo,
-	Trumpet,
+	
 } from "./Vector/Svg";
 
 export {
@@ -25,7 +25,7 @@ export {
 	Ear,
 	Arrow,
 	Ellipse,
-	Trumpet,
+	
 	TextLogo,
 	DrawnLogo,
 	SlidingText,

@@ -1,5 +1,15 @@
 .o-text {
-	line-height: 1.55rem;
+		
+	font-size: 1.2rem;
+	line-height: 2.1rem;
+
+	@include media("<=tablet") {
+		&, & p {
+			font-size: 1.8rem;
+			line-height: 2.5rem;
+		}
+			
+	}
 
 	&,
 	& p {
@@ -10,7 +20,7 @@
 .-text-big {
 	font-size: 3vw;
 	line-height: 3vw;
-	font-family: "Canela" !important;
+	
 	
 
 	@include media("<=tablet") {

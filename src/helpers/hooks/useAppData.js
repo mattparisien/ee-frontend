@@ -1,12 +1,11 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	formatAbout,
 	formatPosts,
 	formatSteps,
-	formatStories,
+	formatStories
 } from "../formatData";
-import useResize from "./useResize";
 
 export default function useAppData(scrollRef) {
 	const navItems = [
@@ -81,7 +80,7 @@ export default function useAppData(scrollRef) {
 				setState(prev => ({
 					...prev,
 					data: {
-						...state.data,
+						...prev.data,
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,

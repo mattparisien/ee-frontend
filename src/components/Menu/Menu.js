@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
-import Link from "../Link/Link";
-import ContainerFluid from "../Containers/ContainerFluid";
-import variables from "../../styles/scss/_vars.module.scss";
 import { useMediaQuery } from "@mui/material";
-import $ from "jquery";
+import classNames from "classnames";
 import gsap from "gsap";
-import Fade from "react-reveal/Fade";
+import $ from "jquery";
+import React, { useEffect, useRef, useState } from "react";
+import variables from "../../styles/scss/_vars.module.scss";
+import ContainerFluid from "../Containers/ContainerFluid";
 import List from "../Lists/List";
 import SocialList from "../Lists/SocialList";
 

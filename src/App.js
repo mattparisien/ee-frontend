@@ -2,7 +2,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
@@ -26,11 +26,8 @@ function App() {
 
 	const {
 		addToRefs,
-		appRefs,
 		state,
 		setState,
-		pending,
-		themes,
 		navItems,
 		transitioning,
 		setTransitioning,
@@ -46,7 +43,6 @@ function App() {
 	const split = useRef(null);
 
 	const toggleDomAnimationReady = () => {
-		console.log("hello!");
 		setDomAnimatedReady(!domAnimatedReady);
 	};
 
@@ -67,7 +63,6 @@ function App() {
 				charsClass: "c-char",
 			});
 
-			console.log(split.current);
 			setSplit(true);
 			toggleDomAnimationReady();
 		}, 300);

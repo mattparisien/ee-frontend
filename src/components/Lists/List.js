@@ -38,9 +38,7 @@ function TextItems({
 }) {
 	const [hovered, setHovered] = useState(null);
 
-	useEffect(() => {
-		console.log(hovered);
-	}, [hovered]);
+
 	return (
 		items &&
 		items.map((item, i) => {
@@ -69,7 +67,7 @@ function TextItems({
 }
 
 function Highlight({ hoveredId, hovered }) {
-	console.log("currently hovered", hoveredId);
+	
 
 	gsap.registerPlugin(DrawSVGPlugin);
 	const highlight = useRef(null);
@@ -116,8 +114,8 @@ function Highlight({ hoveredId, hovered }) {
 
 function IconItems({ items }) {
 	return items
-		? items.map(item => (
-				<li className='c-list_iconItem'>
+		? items.map((item, i) => (
+				<li className='c-list_iconItem' key={i}>
 					<a href={item.url} target='_blank' rel='noreferrer'>
 						{React.createElement(item.component, {
 							key: item.id,

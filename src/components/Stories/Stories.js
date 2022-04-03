@@ -1,13 +1,11 @@
 import classNames from "classnames";
 import gsap from "gsap";
+import $ from "jquery";
 import React, { useEffect, useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Fade from "react-reveal/Fade";
 import { shuffleColors } from "../../helpers/shuffleColors";
 import ArrowButton from "../Button/ArrowButton";
-import Quotation from "../Vector/Quotation";
-import Frame from "../Vector/Frame";
-import $ from "jquery";
 
 function Stories({ slides, withFrame }) {
 	const [active, setActive] = useState(1);
@@ -39,8 +37,6 @@ function Stories({ slides, withFrame }) {
 			const quotation = $(".c-quotation").find("path");
 			const currentSlide = $(`[data-story-id=${active}]`);
 			const prevSlide = $(`[data-story-id=${prev}]`);
-
-			// console.log("prev slide", prevSlide);
 
 			gsap.to(quotation, {
 				fill: fill && fill[0],
@@ -75,7 +71,7 @@ function Stories({ slides, withFrame }) {
 				}
 			);
 		}
-	}, [stories, active]);
+	}, [stories, active, fill, prev, slides]);
 
 	const handlePrevClick = () => {
 		setPrev(active);
@@ -147,14 +143,14 @@ function Stories({ slides, withFrame }) {
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 73.29 58.27'
-						className="c-frame_svg c-frame_svg_quote c-frame_svg_quote-top"
+						className='c-frame_svg c-frame_svg_quote c-frame_svg_quote-top'
 					>
 						<path d='M16.1 0c12.15 0 17.87 9.3 17.87 20.74 0 15.02-10.38 33.95-28.25 37.53l-.35-1.43c15-3.22 21.8-15.73 21.8-30.75-2.14 3.58-6.43 6.08-11.07 6.08C7.16 32.18 0 25.03 0 16.1S7.16 0 16.1 0Zm39.3 0c12.17 0 17.89 9.3 17.89 20.74 0 15.02-10.38 33.95-28.25 37.53l-.35-1.43c15-3.22 21.8-15.73 21.8-30.75-2.14 3.58-6.43 6.08-11.09 6.08-8.94 0-16.08-7.15-16.08-16.08S46.47 0 55.4 0Z' />
 					</svg>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 73.29 58.27'
-						className="c-frame_svg c-frame_svg_quote c-frame_svg_quote-bottom"
+						className='c-frame_svg c-frame_svg_quote c-frame_svg_quote-bottom'
 					>
 						<path d='M16.1 0c12.15 0 17.87 9.3 17.87 20.74 0 15.02-10.38 33.95-28.25 37.53l-.35-1.43c15-3.22 21.8-15.73 21.8-30.75-2.14 3.58-6.43 6.08-11.07 6.08C7.16 32.18 0 25.03 0 16.1S7.16 0 16.1 0Zm39.3 0c12.17 0 17.89 9.3 17.89 20.74 0 15.02-10.38 33.95-28.25 37.53l-.35-1.43c15-3.22 21.8-15.73 21.8-30.75-2.14 3.58-6.43 6.08-11.09 6.08-8.94 0-16.08-7.15-16.08-16.08S46.47 0 55.4 0Z' />
 					</svg>
@@ -199,12 +195,7 @@ function Stories({ slides, withFrame }) {
 	);
 }
 
-function Story(
-	{ heading, author, quote, id, active, setActive, addToRefs },
-	ref
-) {
-	const story = useRef(null);
-	const tl = useRef(gsap.timeline());
+function Story({ heading, author, quote, id, addToRefs }) {
 	const classes = classNames(`c-stories_story c-stories_story_${id}`);
 
 	return (
@@ -217,42 +208,6 @@ function Story(
 				<h4 className='o-h4'>{author}</h4>
 			</Fade>
 		</div>
-	);
-}
-
-function Arrow({ flip, isHovering }) {
-	const svg = useRef(null);
-
-	return (
-		<svg
-			ref={svg}
-			className='c-arrow-svg'
-			viewBox='0 0 100 101'
-			fill='none'
-			width='100%'
-			height='100%'
-			xmlns='http://www.w3.org/2000/svg'
-			style={{
-				opacity: 1,
-				visibility: "inherit",
-				transform: `rotate(${flip ? "180deg" : 0})`,
-			}}
-		>
-			{" "}
-			<path d='M42.84 45.3408C42.0133 47.0475 41.24 48.3275 40.52 49.1808L63.84 49.1808V50.8608L40.52 50.8608C41.24 51.7142 42.0133 52.9942 42.84 54.7008H41.44C39.76 52.7542 38 51.3142 36.16 50.3808L36.16 49.6608C38 48.7542 39.76 47.3142 41.44 45.3408L42.84 45.3408Z'></path>{" "}
-			<path
-				d='M42.84 45.3408C42.0133 47.0475 41.24 48.3275 40.52 49.1808L63.84 49.1808V50.8608L40.52 50.8608C41.24 51.7142 42.0133 52.9942 42.84 54.7008H41.44C39.76 52.7542 38 51.3142 36.16 50.3808L36.16 49.6608C38 48.7542 39.76 47.3142 41.44 45.3408L42.84 45.3408Z'
-				className='c-arrow-svg_arrow'
-			></path>{" "}
-			<circle
-				opacity='0.2'
-				cx='50'
-				cy='50.3408'
-				r='49'
-				transform='rotate(-180 50 50.3408)'
-			></circle>{" "}
-			<circle cx='50' cy='50.3408' r='49'></circle>{" "}
-		</svg>
 	);
 }
 

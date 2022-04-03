@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import $ from "jquery";
 import React, {
 	useContext,
 	useEffect,
@@ -35,7 +34,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 	useLayoutEffect(() => {
 		const desktopTimeline = () => {
-			const lines = $(textWrapper.current).find(".c-line");
+			
 			tl.current
 
 				.set(revealer.current, { transition: "none" })
@@ -68,7 +67,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				desktopTimeline();
 			}
 		}, 400);
-	}, []);
+	}, [mobile.matches]);
 
 	useEffect(() => {
 		//Find query param
@@ -91,7 +90,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 			console.clear();
 
 			// setInfo(data.posts.filter(x => x.id === param));
-			const currentPost = data.posts.filter(x => x.id == param);
+			const currentPost = data.posts.filter(x => x.id === param);
 
 			const nextPostIndex =
 				data.posts.indexOf(data.posts.find(x => x.id === currentPost[0].id)) +
@@ -101,7 +100,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 			setInfo({ ...currentPost, nextPost: nextPost });
 		}
-	}, [data, location, param]);
+	}, [data, location, param,  info]);
 
 
 
@@ -121,7 +120,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 								<Fade bottom delay={500}>
 									<h3
 										className='o-h3 -split -fadeUp'
-										style={{ color: accentColor[0] }}
+										
 									>
 										{info && info[0].title}
 									</h3>
@@ -180,7 +179,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 					</ContainerFluid>
 				</Section>
 				{info && info[0].media.additional && (
-					<Section data-theme='light' classes='o-feature -padding-bottom-lg'>
+					<Section data-theme='light' classes='o-feature'>
 						<ContainerFluid>
 							<div className='o-feature_item'>
 								<Figure

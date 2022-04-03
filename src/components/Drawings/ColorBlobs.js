@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
+import $ from "jquery";
 
 function ColorBlobs({ isAnimationReady }) {
 	gsap.registerPlugin(DrawSVGPlugin);

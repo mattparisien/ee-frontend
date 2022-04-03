@@ -2,8 +2,7 @@ import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import VelocityTracker from "gsap/utils/VelocityTracker";
 import $ from "jquery";
-import React, { useContext, useEffect, useRef } from "react";
-import { CursorContext } from "../../context/Context";
+import React, { useEffect, useRef } from "react";
 import useResize from "../../helpers/hooks/useResize";
 import Figure from "../Figure/Figure";
 import Link from "../Link/Link";
@@ -15,8 +14,7 @@ function Slider({ items }) {
 	const slider = useRef(null);
 	const itemRefs = useRef([]);
 	itemRefs.current = [];
-	console.log('contexnt cursor', CursorContext)
-	const data = useContext(CursorContext);
+
 	const [windowWidth] = useResize();
 
 	useEffect(() => {
@@ -28,12 +26,10 @@ function Slider({ items }) {
 		const sliderWidth = itemWidth * length + gap;
 
 		$(slider.current).css({ width: sliderWidth });
-	}, [windowWidth, slider.current, itemRefs.current]);
+	}, [windowWidth]);
 
 	useEffect(() => {
-		// let pressedTo;
-		const tracker = VelocityTracker.track(slider.current, "x");
-		const direction = draggable.current && draggable.current[0].getDirection();
+
 
 		draggable.current = Draggable.create(slider.current, {
 			edgeResistance: 1,
@@ -95,17 +91,22 @@ function SliderItem({ title, subtitle, src, alt, itemId, addToRefs }) {
 	return (
 		<Link
 			isRouterLink
-			classes='o-slider_item -hover-underline-label'
+			classes='o-slider_item -hover-underline-label -overlay-dark'
 			href={`/projects/${itemId}`}
 			ref={addToRefs}
 		>
 			<div className='o-slider_image'>
-				<Figure src={src} hoverEffect={"frame"}/>
+				<Figure src={src} noFrame />
 			</div>
 			<div className='o-slider_item_info'>
-				<h3 className='o-slider_item_title -underline-label -relative '>
-					<div className='label'>{title}</div>
-				</h3>
+				<div className='inner -relative -stretchX -stretchY'>
+					<h3 className='o-slider_item_subtitle  -relative'>
+						<div className='label'>{subtitle}</div>
+					</h3>
+					<h3 className='o-slider_item_title  -relative -underline-label -hover-underline-label'>
+						<div className='label '>{title}</div>
+					</h3>
+				</div>
 				{/* <p className='o-slider_item_description -text-tiny'>{subtitle}</p> */}
 			</div>
 		</Link>

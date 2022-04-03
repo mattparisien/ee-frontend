@@ -19,8 +19,6 @@ function HomePage({ toggleTransitioning, transitioning }) {
 	const scroll = useLocomotiveScroll();
 
 	const stepsContainer = useRef(null);
-	const noteTimelines = useRef([]);
-	const isFirstRender = useRef(true);
 
 	useEffect(() => {
 		ScrollTrigger.scrollerProxy(".scroll-wrapper", {
@@ -43,28 +41,6 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				: "fixed",
 		});
 
-		// if (scroll && scroll.scroll && stepsContainer.current) {
-		// 	//Create individual timelines for each note
-
-		// 	if (isFirstRender.current) {
-		// 		const items = $("[data-rotate]");
-		// 		console.clear();
-		// 		console.log(items[0]);
-
-		// 		const rotationTween = gsap.to($('[data-rotate]'), {
-		// 			rotation: "30"
-		// 		})
-
-		// 		ScrollTrigger.create({
-		// 			animation: rotationTween,
-		// 			trigger: stepsContainer.current,
-		// 			scroller: ".scroll-wrapper",
-		// 			start: "top top",
-		// 			scrub: true,
-		// 		});
-		// 		isFirstRender.current = false;
-		// 	}
-		// }
 	}, [stepsContainer.current, scroll]);
 
 	return (
@@ -74,19 +50,19 @@ function HomePage({ toggleTransitioning, transitioning }) {
 					<ContainerFluid classes='-stretchX -stretchY'>
 						<div className='o-hero_inner -relative -stretchX -stretchY'>
 							<div
-								className='o-hero_word -split -fadeUpChars'
+								className='o-hero_word -split -fadeUpChars -bold'
 						
 							>
 								Social
 							</div>
 							<div
-								className='o-hero_word -split -fadeUpChars'
+								className='o-hero_word -split -fadeUpChars -bold'
 			
 							>
 								Impact
 							</div>
 							<div
-								className='o-hero_word -split -fadeUpChars'
+								className='o-hero_word -split -fadeUpChars -bold'
 						
 							>
 								Agency

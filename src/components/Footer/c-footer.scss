@@ -13,6 +13,7 @@
 		justify-content: center;
 		position: relative;
 		// flex-direction: column;
+		
 
 	
 
@@ -26,7 +27,7 @@
 				font-size: 2.8vw;
 
 				@include media("<=tablet") {
-					font-size: 4.629vw;
+					font-size: 6.2vw;
 				}
 			}
 		
@@ -38,16 +39,25 @@
 			height: 3rem;
 		}
 
-		> div {
+		> div:not(.c-footer_bottom) {
 			width: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+
+			@include media("<=tablet") {
+				justify-content: center;
+			}
 			
 		}
 
 		.c-drawnLogo {
 			width: 12vw;
+			@include media("<=tablet") {
+				display: none;
+			}
+	
+		
 
 			.faceLine {
 				fill: $light !important;

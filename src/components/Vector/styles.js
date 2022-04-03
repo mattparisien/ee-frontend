@@ -1,4 +1,4 @@
-import styled, { ThemeConsumer } from "styled-components";
+import styled from "styled-components";
 
 export const StyledLoader = styled.div`
 	height: 100%;

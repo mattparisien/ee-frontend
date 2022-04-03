@@ -1,10 +1,7 @@
-import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import ContainerFluid from "../Containers/ContainerFluid";
 import $ from "jquery";
-import { DrawnLogo } from "../Vector/Svg";
-import { split } from "lodash";
+import React, { useEffect, useRef } from "react";
 
 function IntroCard({ toggleDomAnimationReady }) {
 	gsap.registerPlugin(SplitText);
@@ -13,7 +10,7 @@ function IntroCard({ toggleDomAnimationReady }) {
 	const background = useRef(null);
 	const container = useRef(null);
 	const text = useRef(null);
-	const tl = useRef(gsap.timeline());
+	
 
 	useEffect(() => {
 		if (splitText.current) {
@@ -77,7 +74,7 @@ function IntroCard({ toggleDomAnimationReady }) {
 				wordsClass: "c-word",
 			});
 		}
-	}, [splitText.current]);
+	}, []);
 
 	return (
 		<div className='o-introCard' ref={container}>

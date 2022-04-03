@@ -1,7 +1,9 @@
 .o-page_home {
 	.o-hero {
 		.o-container {
-			max-height: calc(100vh - $headerHeight - 2rem);
+			padding-top: 5vw;
+			padding-bottom: 5vw;
+			max-height: calc(100vh - $headerHeight - 5rem);
 			height: 80vw;
 		}
 

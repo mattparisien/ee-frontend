@@ -1,18 +1,17 @@
+import gsap from "gsap";
+import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
+import { useContext } from "react";
+import { DataContext, SiteWideControls } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import ProjectGrid from "./ProjectGrid";
-import { useContext, useEffect, useRef } from "react";
-import { DataContext } from "../../../context/Context";
-import { SiteWideControls } from "../../../context/Context";
-import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import gsap from "gsap";
 import ColorBlobs from "../../Drawings/ColorBlobs";
+import ProjectGrid from "./ProjectGrid";
 
 export default function ProjectPage({ transitioning, toggleTransitioning }) {
 	gsap.registerPlugin(DrawSVGPlugin);
 	const data = useContext(DataContext);
 	const controls = useContext(SiteWideControls);
-	const drawings = useRef(null);
+	
 
 	return (
 		<div className='o-page o-page_project'>
