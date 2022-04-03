@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import { DataContext } from "../../context/Context";
-import List from "./List";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import React, { useContext } from "react";
+import { DataContext } from "../../context/Context";
+import List from "./List";
 
 function SocialList() {
 	const components = {

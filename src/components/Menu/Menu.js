@@ -8,7 +8,7 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import List from "../Lists/List";
 import SocialList from "../Lists/SocialList";
 
-function Menu({ isActive, navItems, toggleMenu, socials }) {
+function Menu({ isActive, navItems, toggleMenu }) {
 	const [reveal, setReveal] = useState(false);
 
 	useEffect(() => {
@@ -44,7 +44,7 @@ function Menu({ isActive, navItems, toggleMenu, socials }) {
 					duration: 1,
 					ease: "power3.out",
 					stagger: 0.1,
-					delay: 0.3
+					delay: 0.3,
 				},
 				0.1
 			);
@@ -60,27 +60,15 @@ function Menu({ isActive, navItems, toggleMenu, socials }) {
 				},
 			});
 		}
-	}, [matches, isActive]);
+	}, [matches, isActive, toggleMenu]);
 
 	return (
-		<div className={classes} ref={card} >
-			<ContainerFluid classes='-stretchY'>
+		<div className={classes} ref={card}>
+			<ContainerFluid classes='-stretchY' reveal={reveal}>
 				<nav className='c-menu_nav'>
-					<List ref={container} items={navItems}>
-						{navItems.map((link, i) => {
-							// return (
-							// 	<li key={i}>
-							// 		<h2 className='o-h2 -uppercase -split'>
-							// 			<Link isRouterLink href={link.path} 	onClick={() => toggleMenu()}>
-							// 				{link.name}
-							// 			</Link>
-							// 		</h2>
-							// 	</li>
-							// );
-						})}
-					</List>
+					<List ref={container} items={navItems}/>
 				</nav>
-				<SocialList/>
+				<SocialList />
 			</ContainerFluid>
 			<div className='c-menu_bg' ref={card}></div>
 		</div>

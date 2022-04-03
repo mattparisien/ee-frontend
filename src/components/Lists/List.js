@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState, forwardRef } from "react";
-import Link from "../Link/Link";
-import Fade from "react-reveal/Fade";
 import classNames from "classnames";
-import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import gsap from "gsap";
+import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
+import Link from "../Link/Link";
 
 function List(
-	{ items, color, toggleTransitioning, classes, variant, hoverEffect },
+	{ items, classes, variant, hoverEffect },
 	ref
 ) {
 	const listClasses = classNames("c-list", {

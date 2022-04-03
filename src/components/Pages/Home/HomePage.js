@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import IntertiaPLugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { DataContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
@@ -12,13 +12,11 @@ import About from "./About";
 import How from "./How";
 import Work from "./Work";
 
-function HomePage({ toggleTransitioning, transitioning }) {
+function HomePage() {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 	const data = useContext(DataContext);
 
 	const scroll = useLocomotiveScroll();
-
-	const stepsContainer = useRef(null);
 
 	useEffect(() => {
 		ScrollTrigger.scrollerProxy(".scroll-wrapper", {
@@ -40,8 +38,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				? "transform"
 				: "fixed",
 		});
-
-	}, [stepsContainer.current, scroll]);
+	}, [scroll]);
 
 	return (
 		<>
@@ -49,27 +46,18 @@ function HomePage({ toggleTransitioning, transitioning }) {
 				<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
 					<ContainerFluid classes='-stretchX -stretchY'>
 						<div className='o-hero_inner -relative -stretchX -stretchY'>
-							<div
-								className='o-hero_word -split -fadeUpChars -bold'
-						
-							>
+							<div className='o-hero_word -split -fadeUpChars -bold'>
 								Social
 							</div>
-							<div
-								className='o-hero_word -split -fadeUpChars -bold'
-			
-							>
+							<div className='o-hero_word -split -fadeUpChars -bold'>
 								Impact
 							</div>
-							<div
-								className='o-hero_word -split -fadeUpChars -bold'
-						
-							>
+							<div className='o-hero_word -split -fadeUpChars -bold'>
 								Agency
 							</div>
 							<div className='o-hero_logo'>
 								<div className='inner -relative'>
-									<DrawnLogo color="dark"/>
+									<DrawnLogo color='dark' />
 									<div className='revealer'></div>
 								</div>
 							</div>

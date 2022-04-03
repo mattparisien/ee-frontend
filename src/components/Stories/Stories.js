@@ -4,13 +4,12 @@ import $ from "jquery";
 import React, { useEffect, useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Fade from "react-reveal/Fade";
-import { shuffleColors } from "../../helpers/shuffleColors";
 import ArrowButton from "../Button/ArrowButton";
 
-function Stories({ slides, withFrame }) {
+function Stories({ slides }) {
 	const [active, setActive] = useState(1);
 	const [prev, setPrev] = useState(slides && slides.length);
-	const [fill, setFill] = useState(null);
+
 	const stories = useRef([]);
 	stories.current = [];
 
@@ -21,28 +20,10 @@ function Stories({ slides, withFrame }) {
 	};
 
 	useEffect(() => {
-		const getColor = () => {
-			const color = shuffleColors();
-
-			if (color[0] === fill) {
-				return getColor();
-			} else {
-				return color;
-			}
-		};
-
-		setFill(getColor());
-
 		if (stories.current && slides) {
-			const quotation = $(".c-quotation").find("path");
+			
 			const currentSlide = $(`[data-story-id=${active}]`);
 			const prevSlide = $(`[data-story-id=${prev}]`);
-
-			gsap.to(quotation, {
-				fill: fill && fill[0],
-				duration: 0.5,
-				delay: 1,
-			});
 
 			gsap.fromTo(
 				currentSlide,
@@ -71,7 +52,7 @@ function Stories({ slides, withFrame }) {
 				}
 			);
 		}
-	}, [stories, active, fill, prev, slides]);
+	}, [stories, active, prev, slides]);
 
 	const handlePrevClick = () => {
 		setPrev(active);

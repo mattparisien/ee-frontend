@@ -14,7 +14,7 @@ function Link(props, ref) {
 		useContext(SiteWideControls);
 
 	const navigate = useNavigate();
-	// const { playTransition } = useContext(LoadingContext);
+
 
 	const handleNavigate = e => {
 		scroll.isReady && scroll.scroll.scrollTo(0, 0);
@@ -42,7 +42,7 @@ function Link(props, ref) {
 			// onMouseEnter={handleMouseEnter}
 			// onMouseLeave={handleMouseLeave}
 			className={classes}
-			href={!props.isRouterLink ? props.href : "#"}
+			href={!props.isRouterLink ? props.href : "https://google.com"}
 			target={props.target}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			ref={ref}

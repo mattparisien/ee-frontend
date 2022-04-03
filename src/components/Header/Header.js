@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { TextLogo } from "../Vector/Svg";
-import ContainerFluid from "../Containers/ContainerFluid";
-import List from "../Lists/List";
-import Link from "../Link/Link";
 import classNames from "classnames";
+import React, { useEffect, useState } from "react";
 import ArrowButton from "../Button/ArrowButton";
-import Fade from "react-reveal/Fade";
+import ContainerFluid from "../Containers/ContainerFluid";
+import Link from "../Link/Link";
+import List from "../Lists/List";
+import { TextLogo } from "../Vector/Svg";
 
 function Header({
 	toggleMenu,

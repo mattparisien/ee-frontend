@@ -2,7 +2,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
@@ -42,9 +42,9 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 
-	const toggleDomAnimationReady = () => {
+	const toggleDomAnimationReady = useCallback(() => {
 		setDomAnimatedReady(!domAnimatedReady);
-	};
+	}, [domAnimatedReady]);
 
 	useEffect(() => {
 		const elements = [];
@@ -66,7 +66,7 @@ function App() {
 			setSplit(true);
 			toggleDomAnimationReady();
 		}, 300);
-	}, [location]);
+	}, [location, toggleDomAnimationReady]);
 
 	useEffect(() => {
 		split.current && split.current.revert().split();
@@ -124,7 +124,7 @@ function App() {
 				}
 			);
 		}
-	}, [split.current, isSplit, location, domAnimatedReady, windowWidth]);
+	}, [isSplit, location, domAnimatedReady, windowWidth]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
@@ -162,7 +162,7 @@ function App() {
 
 	useEffect(() => {
 		setTransitioning(false);
-	}, [location]);
+	}, [location, setTransitioning]);
 
 	const classes = classNames("App", {
 		"is-new-page": !transitioning,

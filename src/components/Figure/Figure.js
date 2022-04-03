@@ -1,9 +1,7 @@
-import { maxWidth } from "@mui/system";
-import React from "react";
-import ImageRevealer from "../ImageRevealer/ImageRevealer";
 import classNames from "classnames";
-import Frame from "../Vector/Frame";
+import React from "react";
 import Reveal from "react-reveal/Reveal";
+import Frame from "../Vector/Frame";
 
 function Figure({
 	src,

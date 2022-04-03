@@ -74,7 +74,7 @@ function IntroCard({ toggleDomAnimationReady }) {
 				wordsClass: "c-word",
 			});
 		}
-	}, []);
+	}, [toggleDomAnimationReady]);
 
 	return (
 		<div className='o-introCard' ref={container}>
