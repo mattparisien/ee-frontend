@@ -52,6 +52,10 @@
 // 	src: url("../assets//fonts/SoehneBody.woff2")
 // }
 
+body {
+	overflow-y: hidden;
+}
+
 a,
 .c-link,
 h4,

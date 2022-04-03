@@ -27,6 +27,14 @@ $itemWidth: 30vw;
 		height: 40vw;
 		overflow: hidden;
 
+		img {
+			transition: $transition-zoom;
+		}
+
+		&:hover img {
+			transform: scale(1.2);
+		}
+
 		@include media("<=tablet") {
 			width: 40vw;
 			height: 50vw;

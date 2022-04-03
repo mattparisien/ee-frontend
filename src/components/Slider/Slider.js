@@ -105,7 +105,7 @@ function SliderItem({ title, subtitle, src, alt, itemId, addToRefs }) {
 					<h3 className='o-slider_item_subtitle  -relative'>
 						<div className='label'>{subtitle}</div>
 					</h3>
-					<h3 className='o-slider_item_title  -relative -underline-label -hover-underline-label'>
+					<h3 className='o-slider_item_title  -relative '>
 						<div className='label '>{title}</div>
 					</h3>
 				</div>
