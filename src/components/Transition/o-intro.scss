@@ -6,11 +6,21 @@
 	height: 100vh;
 	z-index: 99999;
 
+
+	&_inner {
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+	}
+
+
 	&_text {
 		z-index: 1;
-		opacity: 0;
+		padding: 2vw 5vw;
 		overflow: hidden;
 		color: $dark;
+		font-size: 15vw;
+		color: $light;
 		
 
 		.c-line {
@@ -24,12 +34,12 @@
 
 		.c-char {
 			transform: translateY(100%);
-			opacity: 0;
+			
 		}
 	}
 
 	&_bg {
 		z-index: 0;
-		background-color: $light;
+		background-color: $dark;
 	}
 }

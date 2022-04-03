@@ -1,87 +1,83 @@
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function IntroCard({ toggleDomAnimationReady }) {
 	gsap.registerPlugin(SplitText);
-	const splitText = useRef(null);
 
+	const [percentage, setPercentage] = useState(0);
+	const [ease, setEase] = useState(200);
 	const background = useRef(null);
 	const container = useRef(null);
 	const text = useRef(null);
-	
+	const timeline = useRef(gsap.timeline());
+
+	const useInterval = (callback, delay) => {
+		const savedCallback = useRef(null);
+
+		useEffect(() => {
+			savedCallback.current = callback;
+		}, [callback]);
+
+		useEffect(() => {
+			let id = setInterval(() => {
+				savedCallback.current();
+			}, delay);
+			return () => clearInterval(id);
+		}, [delay]);
+	};
+
+	useInterval(() => {
+		percentage < 100 && setPercentage(prev => prev + 1);
+	}, ease);
 
 	useEffect(() => {
-		if (splitText.current) {
-			// tl.current
-			// 	.set(text.current, { opacity: 1 })
-			// 	.to($(text.current).find(".c-char"), {
-			// 		y: 0,
-			// 		opacity: 1,
-			// 		stagger: 0.05,
-			// 		duration: 1,
-			// 		ease: "power3.out",
-			// 	});
+		percentage < 80 ? setEase(prev => prev - 2) : setEase(prev => prev + 1);
+	}, [percentage]);
 
-			// splitText.current = splitText.current.revert().split();
+	useEffect(() => {
+		const chars = $(".o-hero_word .c-char");
+		const logo = $(".o-hero .c-drawnLogo");
+		gsap.set(background.current, { transformOrigin: "top" });
+		gsap.set(chars, { y: "100%", opacity: 0 });
 
-			gsap.set(background.current, { transformOrigin: "top" });
-			gsap.set(text.current, { opacity: 1 }).then(() => {
-				let delay = 0;
-
-				const lines = $(text.current).find(".c-line");
-
-				for (let i = 0; i < lines.length; i++) {
-					gsap.to(
-						$(lines[i]).find(".c-char"),
-						{
-							y: 0,
-							opacity: 1,
-							duration: 1,
-							ease: "power3.out",
-							stagger: 0.03,
-						},
-						delay
-					);
-
-					setTimeout(() => {
-						gsap
-							.to(background.current, {
-								scaleY: 0,
-								duration: 1,
-								ease: "circ.inOut",
-							})
-							.then(() => {
-								gsap.set(container.current, { display: "none" });
-							});
-						gsap.to(text.current, {
-							opacity: 0,
-							onComplete: () => toggleDomAnimationReady()
-						});
-					}, 2200);
-
-					delay += 0.5;
-				}
-			});
+		if (percentage === 100) {
+			timeline.current
+				.to(text.current, {
+					opacity: 0,
+					duration: 1,
+				})
+				.to(
+					background.current,
+					{
+						scaleY: 0,
+						duration: 2.5,
+						ease: "expo.inOut",
+						onComplete: () => gsap.set(container.current, { display: "none" }),
+					},
+					0.6
+				)
+				.to(
+					chars,
+					{
+						y: 0,
+						opacity: 1,
+						stagger: 0.05,
+						ease: "expo.inOut",
+						duration: 2,
+					},
+					1
+				)
+				.to(logo, { opacity: 1, x: 0 }, 1.3);
 		}
-
-		if (!splitText.current) {
-			splitText.current = new SplitText(text.current, {
-				type: "chars",
-				charsClass: "c-char",
-
-				wordsClass: "c-word",
-			});
-		}
-	}, [toggleDomAnimationReady]);
+	}, [percentage]);
 
 	return (
 		<div className='o-introCard' ref={container}>
 			<div className='o-introCard_inner -relative -flex -align-center -justify-center -stretchX -stretchY'>
 				<div className='o-introCard_text -text-center' ref={text}>
-					<div className='c-line'>Creating social & environmental change</div>{" "}
-					<div className='c-line'>by harnessing the power of music</div>
+					{percentage}
 				</div>
 				<div
 					className='o-introCard_bg -stretchX -stretchY  -absolute -top -left'

@@ -13,6 +13,7 @@ import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
+import IntroCard from "./components/Transition/IntroCard";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -196,7 +197,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					<Canvas />
 
 					{/* <DragCursor cursor={cursor} /> */}
-					{/* <IntroCard toggleDomAnimationReady={toggleDomAnimationReady} /> */}
+					<IntroCard  />
 					<Header
 						toggleMenu={() => setMenuActive(!menuActive)}
 						menuActive={menuActive}
