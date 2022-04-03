@@ -6,7 +6,7 @@ $itemWidth: 30vw;
 	height: 40vw;
 
 	@include media("<=tablet") {
-		height: 50vw;
+		height: 90vw;
 	}
 	
 
@@ -17,6 +17,7 @@ $itemWidth: 30vw;
 		position: absolute;
 		left: 0;
 		top: 0;
+		height: 100%;
 		
 		padding: 0 $space-lg;
 	}
@@ -24,8 +25,13 @@ $itemWidth: 30vw;
 	&_item {
 		position: relative;
 		width: 30vw;
-		height: 40vw;
+		height: 100%;
 		overflow: hidden;
+
+		@include media("<=tablet") {
+			overflow: visible;
+		}
+	
 
 		img {
 			transition: $transition-zoom;
@@ -36,8 +42,8 @@ $itemWidth: 30vw;
 		}
 
 		@include media("<=tablet") {
-			width: 40vw;
-			height: 50vw;
+			width: 60vw;
+			height: 100%;
 			
 		}
 
@@ -96,6 +102,27 @@ $itemWidth: 30vw;
 			height: 100%;
 			left: 0;
 			padding: $space-sm;
+
+			@include media("<=tablet") {
+				height: auto;
+				padding: $space-sm 0;
+				bottom: 0;
+				position: static;
+
+				.inner {
+					height: auto;
+				}
+
+				.o-slider_item_subtitle, .o-slider_item_title {
+					position: static;
+					&, & * {
+						color: $dark;
+						font-size: 2rem;
+						line-height: 2rem;
+					}
+					
+				}
+			}
 		}
 
 		&_info * {
@@ -109,6 +136,11 @@ $itemWidth: 30vw;
 		width: 100%;
 		height: 100%;
 		position: relative;
+
+		@include media("<=tablet") {
+			
+			height: 90%;
+		}
 
 		.c-figure {
 			height: 100%;

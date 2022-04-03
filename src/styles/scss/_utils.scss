@@ -37,6 +37,11 @@
 		width: 100%;
 		height: 100%;
 		opacity: 0;
+
+		@include media("<=tablet") {
+			display: none;
+		}
+		
 	}
 	&:hover::after{
 		opacity: 0.4;

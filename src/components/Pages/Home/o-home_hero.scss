@@ -21,6 +21,10 @@
 				overflow: hidden;
 				width: 25vw;
 				height: 28vw;
+
+				@include media("<=tablet") {
+					transform: translate(-160%, -50%);
+				}
         
 
 				.revealer {
