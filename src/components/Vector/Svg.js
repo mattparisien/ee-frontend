@@ -800,6 +800,11 @@ export function DrawingBlue() {
 }
 
 export function DrawnLogo(props) {
+	const classes = classNames("c-drawnLogo", {
+		"is-light": props.color === "light",
+		"is-dark": props.color === "dark",
+	});
+
 	const vibrationOuter = useRef(null);
 	const vibrationCenter = useRef(null);
 	const vibrationInner = useRef(null);
@@ -940,11 +945,10 @@ export function DrawnLogo(props) {
 		<StyledDrawnLogo
 			animateSoundWaves={props.animateSoundWaves}
 			color={props.color}
-			className='drawnLogo'
+			className={classes}
 		>
 			<svg
-				id='drawn-logo'
-				data-name='Layer 1'
+				
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 606.79 834.91'
 			>

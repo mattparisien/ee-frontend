@@ -45,7 +45,7 @@ export default function Footer(props) {
 						</div>
 						<div className='c-footer_content_logo'>
 							<Fade right>
-								<DrawnLogo />
+								<DrawnLogo color="light"/>
 							</Fade>
 						</div>
 					</div>

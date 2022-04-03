@@ -1,10 +1,8 @@
 import classNames from "classnames";
-import React, { forwardRef } from "react";
-import { useNavigate } from "react-router-dom";
-import variables from "../../styles/scss/_vars.module.scss";
-import { useContext } from "react";
-import { SiteWideControls } from "../../App";
+import React, { forwardRef, useContext } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { useNavigate } from "react-router-dom";
+import { SiteWideControls } from "../../context/Context";
 
 function Link(props, ref) {
 	const scroll = useLocomotiveScroll();

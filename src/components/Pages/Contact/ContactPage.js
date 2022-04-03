@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DataContext } from "../../../App";
+import { DataContext } from "../../../context/Context";
 import Section from "../../Containers/Section";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Figure from "../../Figure/Figure";

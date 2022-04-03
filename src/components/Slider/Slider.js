@@ -1,14 +1,12 @@
-import React, { useEffect, useRef, useContext } from "react";
-import Figure from "../Figure/Figure";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import VelocityTracker from "gsap/utils/VelocityTracker";
-import { CursorContext } from "../../App";
-import Link from "../Link/Link";
-import { useMemo } from "react";
 import $ from "jquery";
+import React, { useContext, useEffect, useRef } from "react";
+import { CursorContext } from "../../context/Context";
 import useResize from "../../helpers/hooks/useResize";
-import Fade from "react-reveal/Fade";
+import Figure from "../Figure/Figure";
+import Link from "../Link/Link";
 
 function Slider({ items }) {
 	gsap.registerPlugin(Draggable, VelocityTracker);
@@ -17,7 +15,8 @@ function Slider({ items }) {
 	const slider = useRef(null);
 	const itemRefs = useRef([]);
 	itemRefs.current = [];
-	const { changeCursor } = useContext(CursorContext);
+	console.log('contexnt cursor', CursorContext)
+	const data = useContext(CursorContext);
 	const [windowWidth] = useResize();
 
 	useEffect(() => {
@@ -55,12 +54,12 @@ function Slider({ items }) {
 		});
 	}, []);
 
-	const handleMouseEnter = () => {
-		changeCursor("drag");
-	};
-	const handleMouseLeave = () => {
-		changeCursor("normal");
-	};
+	// const handleMouseEnter = () => {
+	// 	data.changeCursor("drag");
+	// };
+	// const handleMouseLeave = () => {
+	// 	data.changeCursor("normal");
+	// };
 
 	const addToRefs = el => {
 		if (el && !itemRefs.current.includes(el)) {
@@ -73,8 +72,8 @@ function Slider({ items }) {
 			<div
 				className='o-slider_inner -fadeUpChildren'
 				ref={slider}
-				onMouseEnter={handleMouseEnter}
-				onMouseLeave={handleMouseLeave}
+				// onMouseEnter={handleMouseEnter}
+				// onMouseLeave={handleMouseLeave}
 			>
 				{items &&
 					items.map((item, i) => (

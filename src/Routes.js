@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import NotFound from "./components/404/NotFound";
 
 import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
@@ -53,7 +52,7 @@ function SiteRoutes(props) {
 					element={<ProjectItem addToRefs={addToRefs} />}
 					key={location.pathname}
 				/> */}
-				<Route path='/*' element={<NotFound />} key={location.pathname} />
+				{/* <Route path='/*' element={<NotFound />} key={location.pathname} /> */}
 			</Routes>
 		</>
 	);

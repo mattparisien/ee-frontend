@@ -2,9 +2,8 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ProjectGrid from "./ProjectGrid";
 import { useContext, useEffect, useRef } from "react";
-import { DataContext } from "../../../App";
-import { SiteWideControls } from "../../../App";
-import Fade from "react-reveal/Fade";
+import { DataContext } from "../../../context/Context";
+import { SiteWideControls } from "../../../context/Context";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import gsap from "gsap";
 import ColorBlobs from "../../Drawings/ColorBlobs";
@@ -20,7 +19,13 @@ export default function ProjectPage({ transitioning, toggleTransitioning }) {
 			<ContainerFluid classes='-bg-light'>
 				<Section classes='-padding-lg o-hero -relative'>
 					<div className='o-hero_content -flex -flex-column -align-center -justify-center'>
-						<h2 className='o-h1 -split -fadeUpChars' data-scroll data-scroll-speed={2}>Projects</h2>
+						<h2
+							className='o-h1 -split -fadeUpChars'
+							data-scroll
+							data-scroll-speed={2}
+						>
+							Projects
+						</h2>
 
 						<p className='o-h3 -split -fadeUpLines'>
 							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut

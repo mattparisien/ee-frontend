@@ -3,15 +3,14 @@ import IntertiaPLugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useContext, useEffect, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import { DataContext } from "../../../App";
+import { DataContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Stories from "../../Stories/Stories";
-import ProjectGrid from "../Projects/ProjectGrid";
+import { DrawnLogo } from "../../Vector/Svg";
 import About from "./About";
 import How from "./How";
 import Work from "./Work";
-import { DrawnLogo } from "../../Vector/Svg";
 
 function HomePage({ toggleTransitioning, transitioning }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -94,7 +93,7 @@ function HomePage({ toggleTransitioning, transitioning }) {
 							</div>
 							<div className='o-hero_logo'>
 								<div className='inner -relative'>
-									<DrawnLogo />
+									<DrawnLogo color="dark"/>
 									<div className='revealer'></div>
 								</div>
 							</div>

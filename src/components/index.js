@@ -1,14 +1,11 @@
 import Section from "./Containers/Section";
 import Header from "./Header/Header";
-import Line from "./Line";
 import ListBlogPosts from "./ListBlogPosts";
-
 import SlidingText from "./Marquee";
 // import Heading from "./Text/Heading";
 // import Paragraph from "./Text/Paragraph";
 import {
 	Amperstand,
-	
 	Arrow,
 	DrawnLogo,
 	Ear,
@@ -19,8 +16,6 @@ import {
 } from "./Vector/Svg";
 
 export {
-	// Paragraph,
-	// Heading,
 	Section,
 	Header,
 	// Grid,
@@ -34,6 +29,5 @@ export {
 	TextLogo,
 	DrawnLogo,
 	SlidingText,
-	Line,
 	ListBlogPosts,
 };

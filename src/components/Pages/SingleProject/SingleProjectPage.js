@@ -6,19 +6,18 @@ import React, {
 	useLayoutEffect,
 	useMemo,
 	useRef,
-	useState,
+	useState
 } from "react";
 import { Helmet } from "react-helmet-async";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Fade from "react-reveal/Fade";
-import Zoom from "react-reveal/Zoom";
-import { DataContext } from "../../../App";
+import { DataContext } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Figure from "../../Figure/Figure";
-import Next from "./Next";
 import ProjectGrid from "../Projects/ProjectGrid";
+import Next from "./Next";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);

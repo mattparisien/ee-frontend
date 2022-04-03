@@ -22,8 +22,7 @@ export const StyledDrawnLogo = styled.div`
 		overflow: visible;
 
 		.faceLine {
-			fill: ${({ theme, color }) =>
-				color === "light" ? theme.colors.light : theme.colors.dark};
+			fill: white;
 		}
 
 		.nose,
@@ -33,9 +32,7 @@ export const StyledDrawnLogo = styled.div`
 
 		.vibration,
 		.eye {
-			fill: ${({ theme }) => theme.colors.yellow};
+			fill: yellow;
 		}
-
-		
 	}
 `;

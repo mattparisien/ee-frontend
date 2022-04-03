@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { DataContext } from "../../App";
+import { DataContext } from "../../context/Context";
 import List from "./List";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";

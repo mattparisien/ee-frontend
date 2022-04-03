@@ -1,38 +1,19 @@
 import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import { splitInnerHTML } from "gsap/utils/strings";
 import $ from "jquery";
-import React, {
-	createContext,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { useLocation } from "react-router-dom";
-import { ParallaxProvider } from "react-scroll-parallax";
-import { ThemeProvider } from "styled-components";
-import Cookies from "universal-cookie";
 import { Header } from "./components";
-import ArrowButton from "./components/Button/ArrowButton";
 import Canvas from "./components/Canvas/Canvas";
 import Footer from "./components/Footer/Footer";
-import LoadingScreen from "./components/Loading/LoadingScreen";
 import Menu from "./components/Menu/Menu";
 import IntroCard from "./components/Transition/IntroCard";
+import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
-// import useCurrentLocation from "./helpers/hooks/useCurrentLocation";
-
-export const DataContext = createContext();
-export const SiteWideControls = createContext();
-export const LoadingContext = createContext();
-export const ColorContext = createContext();
-export const CursorContext = createContext();
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -58,7 +39,7 @@ function App() {
 	} = useAppData();
 
 	const [headerColor, setHeaderColor] = useState("light");
-	const [currentLocation, setCurrentLocation] = useState(location);
+
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
 
 	const [isSplit, setSplit] = useState(false);
@@ -185,22 +166,6 @@ function App() {
 	const [menuActive, setMenuActive] = useState(false);
 
 	useEffect(() => {
-		console.log("Built by Matthew Parisien 🛠");
-
-		const cookies = new Cookies();
-		const user = cookies.get("user");
-
-		if (user) {
-			setState(prev => ({
-				...prev,
-				user: {
-					isVisitor: false,
-				},
-			}));
-		}
-	}, [setState]);
-
-	useEffect(() => {
 		setTransitioning(false);
 	}, [location]);
 
@@ -211,32 +176,9 @@ function App() {
 		"cursor-hidden": cursor === "drag",
 	});
 
-	const scrollToTop = () => {
-		if (scroll) {
-			scroll.scroll.scrollTo(0, 0);
-		} else {
-			window.scrollTo(0, 0);
-		}
-	};
-
-	// useEffect(() => {
-	// 	const baseGraphUrl = "https://graph.instagram.com";
-	// 	const baseTokenUrl = axios
-	// 		.get(
-	// 			`https://api.instagram.com/oauth/authorize
-	// 		?client_id=${process.env.REACT_APP_INSTA_ID}
-	// 		&redirect_uri=${process.env.REACT_APP_INSTA_REDIRECT}
-	// 		&scope=user_profile,user_media
-	// 		&response_type=code`
-	// 		)
-
-	// 		.then(data => console.log("data", data))
-	// 		.catch(err => console.log(err));
-	// }, []);
-
 	return (
-		<HelmetProvider>
-			<div className={classes}>
+		<div className={classes}>
+			<HelmetProvider>
 				<Helmet>
 					<html lang='en' />
 					<title>The Eyes & Ears Agency</title>
@@ -248,68 +190,50 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 '
 					/>
 				</Helmet>
-				<ThemeProvider theme={themes}>
-					{/* <GlobalStyles /> */}
-					<ParallaxProvider>
-						<LocomotiveScrollProvider
-							onLocationChange={scroll => scroll.scrollTo(0, 0)}
-							watch={[location.pathname]}
-							lerp={1}
-							options={{
-								initPosition: {
-									x: 0,
-									y: 0,
-								},
 
-								smooth: true,
-								getDirection: true,
-								getSpeed: true,
-							}}
-							containerRef={scrollWrapper}
-						>
-							{/* <TransitionCard transitioning={transitioning} /> */}
-							<SiteWideControls.Provider value={siteControls}>
-								<DataContext.Provider value={state.data}>
-									<ColorContext.Provider>
-										<CursorContext.Provider value={{ cursor, changeCursor }}>
-											<LoadingContext.Provider>
-												<Canvas />
-												<LoadingScreen isActive={pending} />
-												{/* <DragCursor cursor={cursor} /> */}
-												<IntroCard
-													toggleDomAnimationReady={toggleDomAnimationReady}
-												/>
-												<Header
-													toggleMenu={() => setMenuActive(!menuActive)}
-													menuActive={menuActive}
-													color={menuActive ? "dark" : headerColor}
-													navItems={navItems}
-													location={location}
-												/>
+				<Context
+					stateData={state.data}
+					siteControls={siteControls}
+					cursor={cursor}
+					changeCursor={changeCursor}
+					scrollRef={scrollWrapper}
+					location={location}
+				>
+					<Canvas />
 
-												<Menu
-													isActive={menuActive}
-													navItems={navItems}
-													toggleMenu={() => setMenuActive(!menuActive)}
-												/>
+					{/* <DragCursor cursor={cursor} /> */}
+					<IntroCard toggleDomAnimationReady={toggleDomAnimationReady} />
+					<Header
+						toggleMenu={() => setMenuActive(!menuActive)}
+						menuActive={menuActive}
+						color={menuActive ? "dark" : headerColor}
+						navItems={navItems}
+						location={location}
+					/>
 
-												<div
-													className='scroll-wrapper'
-													ref={scrollWrapper}
-													data-scroll-container
-												>
-													{/* <ArrowButton
+					<Menu
+						isActive={menuActive}
+						navItems={navItems}
+						toggleMenu={() => setMenuActive(!menuActive)}
+					/>
+
+					<div
+						className='scroll-wrapper'
+						ref={scrollWrapper}
+						data-scroll-container
+					>
+						{/* <ArrowButton
 														classes='scroll-to-top'
 														color='light'
 														rotation={90}
 														handleClick={scrollToTop}
 													/> */}
 
-													{/* <ModalWrapper hoverState={hoverState} /> */}
+						{/* <ModalWrapper hoverState={hoverState} /> */}
 
-													{/* <CursorFollower /> */}
+						{/* <CursorFollower /> */}
 
-													{/* <SideMenu
+						{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
 									hasShown={state.sidebar.hasShown}
 									appRefs={appRefs}
@@ -318,34 +242,24 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									toggleMenu={toggleMenu}
 								/> */}
 
-													<main>
-														<SiteRoutes
-															addToRdefs={addToRefs}
-															location={location}
-															siteControls={siteControls}
-														/>
-													</main>
+						<main>
+							<SiteRoutes
+								addToRdefs={addToRefs}
+								location={location}
+								siteControls={siteControls}
+							/>
+						</main>
 
-													<Footer
-														info={state.data.footer}
-														addToRefs={addToRefs}
-														location={location.pathname}
-														navItems={navItems}
-													/>
-
-													{/* <CookieBar /> */}
-												</div>
-												{/* <DragCursor /> */}
-											</LoadingContext.Provider>
-										</CursorContext.Provider>
-									</ColorContext.Provider>
-								</DataContext.Provider>
-							</SiteWideControls.Provider>
-						</LocomotiveScrollProvider>
-					</ParallaxProvider>
-				</ThemeProvider>
-			</div>
-		</HelmetProvider>
+						<Footer
+							info={state.data.footer}
+							addToRefs={addToRefs}
+							location={location.pathname}
+							navItems={navItems}
+						/>
+					</div>
+				</Context>
+			</HelmetProvider>
+		</div>
 	);
 }
 
