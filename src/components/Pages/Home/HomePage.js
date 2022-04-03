@@ -46,13 +46,13 @@ function HomePage() {
 				<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
 					<ContainerFluid classes='-stretchX -stretchY'>
 						<div className='o-hero_inner -relative -stretchX -stretchY'>
-							<div className='o-hero_word -split -fadeUpChars -bold'>
+							<div className='o-h1 o-hero_word -split -fadeUpChars -bold'>
 								Social
 							</div>
-							<div className='o-hero_word -split -fadeUpChars -bold'>
+							<div className='o-h1 o-hero_word -split -fadeUpChars -bold'>
 								Impact
 							</div>
-							<div className='o-hero_word -split -fadeUpChars -bold'>
+							<div className='o-h1 o-hero_word -split -fadeUpChars -bold'>
 								Agency
 							</div>
 							<div className='o-hero_logo'>

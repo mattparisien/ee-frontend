@@ -13,15 +13,10 @@
 		justify-content: center;
 		position: relative;
 		// flex-direction: column;
-		
-
-	
 
 		&_contact {
 			display: flex;
 			flex-direction: column;
-
-			
 
 			.email {
 				font-size: 2.8vw;
@@ -30,7 +25,6 @@
 					font-size: 6.2vw;
 				}
 			}
-		
 		}
 
 		.c-arrow-button {
@@ -46,18 +40,20 @@
 			justify-content: space-between;
 
 			@include media("<=tablet") {
-				justify-content: center;
+				justify-content: flex-start;
 			}
-			
 		}
 
 		.c-drawnLogo {
 			width: 12vw;
+
+			svg {
+				overflow: visible;
+			}
+
 			@include media("<=tablet") {
 				display: none;
 			}
-	
-		
 
 			.faceLine {
 				fill: $light !important;

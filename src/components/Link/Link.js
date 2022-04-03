@@ -3,6 +3,7 @@ import React, { forwardRef, useContext } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { useNavigate } from "react-router-dom";
 import { SiteWideControls } from "../../context/Context";
+import { Link as RouterLink } from "react-router-dom";
 
 function Link(props, ref) {
 	const scroll = useLocomotiveScroll();
@@ -15,7 +16,6 @@ function Link(props, ref) {
 
 	const navigate = useNavigate();
 
-
 	const handleNavigate = e => {
 		scroll.isReady && scroll.scroll.scrollTo(0, 0);
 
@@ -27,7 +27,6 @@ function Link(props, ref) {
 
 		toggleDomAnimationReady();
 		setTransitioning(true);
-		
 
 		props.onClick && props.onClick(e);
 		e.preventDefault();
@@ -37,7 +36,9 @@ function Link(props, ref) {
 		}, 2000);
 	};
 
-	return (
+	return props.isRouterLink ? (
+		<RouterLink to={props.href} className={classes} ref={ref}>{props.children}</RouterLink>
+	) : (
 		<a
 			// onMouseEnter={handleMouseEnter}
 			// onMouseLeave={handleMouseLeave}

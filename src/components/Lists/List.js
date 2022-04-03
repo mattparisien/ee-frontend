@@ -103,7 +103,7 @@ function Highlight({ hoveredId, hovered }) {
 						fill: "none",
 
 						strokeMiterlimit: 10,
-						strokeWidth: 3,
+						
 					}}
 				/>
 			</svg>

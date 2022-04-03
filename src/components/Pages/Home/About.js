@@ -3,7 +3,8 @@ import ReactMarkdown from "react-markdown";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Megaphone from "../../Vector/Megaphone";
-import { DrawnLogo } from "../../Vector/Svg";
+
+import Vibrations from "../../Vector/Vibrations";
 
 function About({ aboutText }) {
 	return (
@@ -14,7 +15,7 @@ function About({ aboutText }) {
 						<ContainerFluid classes='-sretchX -stretchY'>
 							<div className='inner -relative -stretchY'>
 								<Megaphone />
-								<DrawnLogo color="light"/>
+								<Vibrations/>
 							</div>
 						</ContainerFluid>
 					</div>

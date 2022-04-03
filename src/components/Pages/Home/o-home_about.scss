@@ -15,6 +15,8 @@
 	&_content {
 		display: flex;
 		flex-direction: row-reverse;
+		width: 100%;
+
 
 		.inner {
 			display: flex;
@@ -29,8 +31,64 @@
 
 	.c-megaphone {
 		width: 50vw;
+		position: absolute;
+		right: -10vw;
 		stroke: none;
-		transform: rotate(-20deg);
+		transform: rotate(28deg)scaleX(-100%);
+		
+	}
+
+	.c-vibrations {
+
+		height: 20vw;
+		width: 20vw;
+		position: absolute;
+		top: -18vw;
+		left: -15vw;
+		transform: scaleX(-100%)rotate(-20deg);
+
+		svg {
+			height: 100%;
+			position: absolute;
+			overflow: visible;
+
+			&:nth-child(1) {
+				top: -2vw;
+				left: 5vw;
+				transform: scale(0.8);
+				
+				path {
+					fill: $green;
+					stroke: none;
+				}
+			}
+
+			&:nth-child(2) {
+				left: 0;
+				top: -1vw;
+				transform: scale(0.6);
+				path {
+					fill: $blue;
+					stroke: none;
+				}
+			}
+
+			&:nth-child(3) {
+				left: -7vw;
+				transform: scale(0.4);
+				path {
+					fill: $red;
+					stroke: none;
+				}
+			}
+
+		}
+
+
+
+		svg path {
+			fill: $light;
+		}
 	}
 
 	&_content {

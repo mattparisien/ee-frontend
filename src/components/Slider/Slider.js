@@ -12,6 +12,7 @@ function Slider({ items }) {
 	const draggable = useRef(null);
 	const container = useRef(null);
 	const slider = useRef(null);
+
 	const itemRefs = useRef([]);
 	itemRefs.current = [];
 
@@ -19,18 +20,19 @@ function Slider({ items }) {
 
 	useEffect(() => {
 		//Set up slider proxy
-		const items = itemRefs.current;
-		const length = items.length;
-		const itemWidth = $(items[0]).width();
-		const gap = (itemWidth / 4) * length;
-		const sliderWidth = itemWidth * length + gap;
 
-		$(slider.current).css({ width: sliderWidth });
+		setTimeout(() => {
+			const items = $(".o-slider .o-slider_item");
+			const length = items.length;
+			const itemWidth = $(items[0]).width();
+			const gap = (itemWidth / 4) * length;
+			const sliderWidth = itemWidth * length + gap;
+
+			$(slider.current).css({ width: sliderWidth });
+		}, 200);
 	}, [windowWidth]);
 
 	useEffect(() => {
-
-
 		draggable.current = Draggable.create(slider.current, {
 			edgeResistance: 1,
 			dragResistance: 0.6,

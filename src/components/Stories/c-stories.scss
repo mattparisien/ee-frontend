@@ -5,18 +5,7 @@
 	// 	@include frameReveal(100ms, forwards);
 	// }
 
-.c-quotation {
-	width: 80vw;
-	height: 80vw;
-	transform: translate(-50%, -10%);
-	display: flex;
-	align-items: center;
-	justify-content: center;
 
-	svg {
-		height: 100%;
-	}
-}
 
 
 .c-stories {
@@ -34,16 +23,16 @@
 		.c-frame_svg_quote {
 			fill: $dark;
 			position: absolute;
-			width: 10vw;
+			width: 8vw;
 
 			&-top {
-				top: -3vw;
-				right: 7.2vw;	
+				top: -2vw;
+				right: 8.2vw;	
 			}
 
 			&-bottom {
 				bottom: -2vw;
-				left: 7vw;
+				left: 8vw;
 				transform: rotate(180deg);
 			}
 		}
@@ -78,9 +67,6 @@
 		transform: translate(-50%, -50%) scaleX(2) scaleY(1.2);
 		display: none;
 
-		@include media("<=phoneL") {
-			display: block;
-		}
 	}
 
 	&_content {
