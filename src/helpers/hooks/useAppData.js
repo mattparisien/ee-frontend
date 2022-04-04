@@ -10,7 +10,7 @@ import {
 export default function useAppData(scrollRef) {
 	const navItems = [
 		{
-			name: "About",
+			name: "Home",
 			path: "/",
 		},
 		{
@@ -18,7 +18,7 @@ export default function useAppData(scrollRef) {
 			path: "/projects",
 		},
 		{
-			name: "Connect",
+			name: "About",
 			path: "/contact",
 		},
 	];

@@ -1,17 +1,55 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../../context/Context";
-import Section from "../../Containers/Section";
 import ContainerFluid from "../../Containers/ContainerFluid";
+import Section from "../../Containers/Section";
+import ColorBlobs from "../../Drawings/ColorBlobs";
 import Figure from "../../Figure/Figure";
-import Fade from "react-reveal/Fade";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 function ContactPage() {
 	const { bio } = useContext(DataContext);
 
+	console.log(bio);
+
 	return (
 		<div className='o-page o-page_contact'>
-			<Section classes='o-bio -padding-lg' data-theme='light'>
+			<Section classes='o-hero'>
+				<h1 className='o-h1 -split -fadeUpChars'>Meet Sammy</h1>
+				<ColorBlobs />
+			</Section>
+			<Section classes='o-intro -padding-lg'>
+				<ContainerFluid classes='-flex -stretchX -align-center -justify-center -row-reverse'>
+					<div className='o-intro_right'>
+						<div className='o-intro_image'>
+							<Figure src={bio && bio.image.src} alt='' />
+						</div>
+					</div>
+					<div className='o-intro_left'>
+						<p className='o-text'>
+							I believe music is a language of connection and a powerful tool to
+							spread waves of change.
+						</p>
+						<p className='o-text'>
+							I founded The Eyes & Ears Agency in January 2020 during my senior
+							year at Syracuse University, where I studied the music business in
+							the Bandier Program. Here, I discovered the opportunity to marry
+							my passion for music with my love of social impact work.
+						</p>
+						<p className='o-text'>
+							Dedicated to increasing visibility and accessibility to social
+							impact resources in the music and entertainment industries, I
+							believe the cultural and philanthropic impact that can be achieved
+							from harnessing the power of music is not being sufficiently
+							leveraged.
+						</p>
+						<p className='o-text'>
+							I am humbled to play a role in the new generation of
+							artist-activists who are directly engaged in the change they want
+							to see in the world.
+						</p>
+					</div>
+				</ContainerFluid>
+			</Section>
+			{/* <Section classes='o-bio -padding-lg' data-theme='light'>
 				<ContainerFluid classes='-stretchY '>
 					<div className='o-container_inner'>
 						<h1 className='o-h1 -text-center -padding-bottom-lg -split -fadeUpChars'>
@@ -37,7 +75,7 @@ function ContactPage() {
 					
 					</div>
 				</ContainerFluid>
-			</Section>
+			</Section> */}
 		</div>
 	);
 }

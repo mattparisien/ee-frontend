@@ -4,10 +4,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	
 
 	.o-h1 {
-		
+			
 		width: 40vw;
+
+		&, .c-line {
+			text-align: left !important;
+		}
 	}
 
 	.react-reveal {
@@ -520,14 +525,18 @@
 		}
 
 		p {
-			font-size: 3.4vw;
-			line-height: 4.4vw;
+			font-size: 3vw;
+			line-height: 4vw;
 		}
 
 		.title {
-			font-size: 8.3vw;
-			line-height: 8vw;
+		
 			margin: 0;
+
+			p {
+				font-size: 8vw;
+				line-height: 8vw;
+			}
 		}
 
 		&_item {

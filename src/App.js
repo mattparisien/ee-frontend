@@ -2,19 +2,18 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
 import Canvas from "./components/Canvas/Canvas";
 import Footer from "./components/Footer/Footer";
 import Menu from "./components/Menu/Menu";
+import IntroCard from "./components/Transition/IntroCard";
 import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
-import IntroCard from "./components/Transition/IntroCard";
-import { useScrollTop } from "./helpers/hooks/useScrollTop";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -22,8 +21,6 @@ function App() {
 	const [windowWidth] = useResize();
 
 	const location = useLocation();
-
-	const scrollToTop = useScrollTop(location);
 
 	gsap.registerPlugin(SplitText);
 
@@ -68,9 +65,12 @@ function App() {
 			});
 
 			setSplit(true);
-			toggleDomAnimationReady();
 		}, 300);
 	}, [location]);
+
+	useEffect(() => {
+		split && toggleDomAnimationReady()
+	}, [split])
 
 	useEffect(() => {
 		split.current && split.current.revert().split();
@@ -103,7 +103,7 @@ function App() {
 					duration: 1,
 					ease: "power3.out",
 				});
-				
+
 			isFirstRender.current = false;
 
 			const handleIntersection = entries => {

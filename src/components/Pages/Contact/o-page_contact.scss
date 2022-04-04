@@ -1,65 +1,117 @@
 .o-page_contact {
-	
-	.o-bio {
+	.o-hero {
+		height: 50vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		position: relative;
 
-		min-height: 90vh;
-
-
-
-		&_heading {
-			width: 30vw;
-			top: 0;
-			left: 0;
-			
-		}
-
-		.o-container {
-			&_inner {
-				position: relative;
-
-				height: 100%;
-			}
-
-			h1 {
-				margin-bottom: 5vw;
-			}
-
-			.o-bio_content {
-				width: 40vw;
-
-		
-			}
-
-			@include media("<=tablet") {
-				flex-direction: column;
-				justify-content: flex-start;
-
-				h1 {
-					margin-bottom: 4vw;
-				}
-
-				* {
-					width: 100%;
-				}
-			}
-		}
-		&_main {
-			@include media("<=tablet") {
-				flex-direction: column;
-				align-items: center;
-
-				.react-reveal, .o-bio_content {
-					width: 100% !important;
-				}
-
-				figure.react-reveal.c-figure {
-					height: 90vw !important;
-					margin-bottom: $space-lg;
-				}
-			}
-
-			
+		.o-colorBlobs {
+			height: 50vw;
 		}
 	}
+
+	.o-intro {
+		.o-container {
+			height: 100%;
+		}
+
+		.o-container > div {
+			width: 50%;
+			height: 100%;
+
+			&:first-child {
+				margin-left: $space-xl;
+			}
+		}
+
+		@include media("<=tablet") {
+			.o-container > div {
+				&:first-child {
+					margin: 0;
+				}
+
+				&:nth-child(2) {
+					margin-top: $space-xl;
+				}
+			}
+			.o-container {
+				flex-direction: column !important;
+
+				> * {
+					width: 100% !important;
+				}
+			}
+		}
+
+		&_image {
+			width: 100%;
+			height: 100%;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+
+	// .o-bio {
+	// 	position: relative;
+
+	// 	min-height: 90vh;
+
+	// 	&_heading {
+	// 		width: 30vw;
+	// 		top: 0;
+	// 		left: 0;
+
+	// 	}
+
+	// 	.o-container {
+	// 		&_inner {
+	// 			position: relative;
+
+	// 			height: 100%;
+	// 		}
+
+	// 		h1 {
+	// 			margin-bottom: 5vw;
+	// 		}
+
+	// 		.o-bio_content {
+	// 			width: 40vw;
+
+	// 		}
+
+	// 		@include media("<=tablet") {
+	// 			flex-direction: column;
+	// 			justify-content: flex-start;
+
+	// 			h1 {
+	// 				margin-bottom: 4vw;
+	// 			}
+
+	// 			* {
+	// 				width: 100%;
+	// 			}
+	// 		}
+	// 	}
+	// 	&_main {
+	// 		@include media("<=tablet") {
+	// 			flex-direction: column;
+	// 			align-items: center;
+
+	// 			.react-reveal, .o-bio_content {
+	// 				width: 100% !important;
+	// 			}
+
+	// 			figure.react-reveal.c-figure {
+	// 				height: 90vw !important;
+	// 				margin-bottom: $space-lg;
+	// 			}
+	// 		}
+
+	// 	}
+	// }
 }

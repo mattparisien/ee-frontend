@@ -13,6 +13,10 @@
 	}
 }
 
+.label {
+	text-align: left;
+}
+
 .o-work {
 
 	.o-heading-wrapper {
@@ -20,8 +24,22 @@
 		width: 70%;
 		margin: 0 auto;
 
+	
+
 		.c-line {
 			bottom: -1vw;	
+		}
+
+		@include media("<=tablet") {
+
+			.o-h1 {
+				width: 100%;
+			}
+
+			.c-line {
+				bottom: -5vw !important;
+			}
+			
 		}
 
 	}
