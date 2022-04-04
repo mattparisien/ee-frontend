@@ -5,7 +5,24 @@
 			fill: $yellow;
 		}
 	}
+
 }
+
+
+@include media("<=tablet") {
+	.c-megaphone, .c-vibrations {
+		display: none;
+	}
+	.o-about_left {
+		margin-top: 0 !important;
+	}
+
+	.o-about_right {
+		display: none;
+	}
+}
+
+
 
 .c-quotation {
 	width: 80vw;

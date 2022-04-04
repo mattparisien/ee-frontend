@@ -10,8 +10,6 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import { HalfNote, QuarterNote } from "../../Vector/Notes";
-import { InstrumentPlayer } from "../../Vector/Svg";
-import Reveal from "react-reveal";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -79,17 +77,12 @@ function How({ steps }) {
 
 	return (
 		<>
-			<Section classes='o-howHeading  -relative'>
-				<h1 className='o-h1 -text-center -padding-top-huge -split -fadeUpChars'>
-					Finding Your Rhythm
-				</h1>
-				<Reveal>
-					<InstrumentPlayer />
-				</Reveal>
-			</Section>
 			<Section classes='o-how' data-theme='light' ref={container}>
 				<ContainerFluid>
-					<div className='steps-container -relative -margin-top-huge'>
+					<h1 className='o-h1 -text-center -padding-huge -split -fadeUpChars'>
+						Finding Your Rhythm
+					</h1>
+					<div className='steps-container -relative'>
 						<div className='c-steps'>
 							<div className='c-steps_background'></div>
 							{steps &&
