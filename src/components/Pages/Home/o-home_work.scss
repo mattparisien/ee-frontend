@@ -9,10 +9,28 @@
 
 	.o-h1 {
 		margin: $space-xl 0;
+		
 	}
 }
 
 .o-work {
+
+	.o-heading-wrapper {
+		
+		width: 70%;
+		margin: 0 auto;
+
+		.c-line {
+			bottom: -1vw;	
+		}
+
+	}
+
+
+	.o-slider {
+		margin-top: $space-xxxl;
+	}
+
 	.c-grid_title {
 		&::after {
 			background-color: $light !important;
@@ -25,10 +43,7 @@
 		}
 	}
 
-	.o-h1 {
-		width: 60%;
-		margin: 0 auto;
-	}
+
 
 	.o-h2 {
 		z-index: 99;

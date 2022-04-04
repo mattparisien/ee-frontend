@@ -7,6 +7,12 @@
 	}
 
 	.o-hero {
+
+		&_artistName {
+			font-size: 2rem;
+			line-height: 2rem;
+		}
+
 		.c-figure.-figure-zoom img {
 			animation-delay: 2s;
 		}
@@ -44,6 +50,10 @@
 						margin: 0;
 						
 						width: 100%;
+
+						.o-hero_artistName {
+							font-size: 4vw;
+						}
 
 						.o-h3, .o-h2 {
 							color: $dark;

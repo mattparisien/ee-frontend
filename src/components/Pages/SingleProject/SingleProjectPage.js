@@ -117,9 +117,9 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						<div className='o-container_inner'>
 							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
 								<Fade bottom delay={500}>
-									<h3 className='o-h3 -split -fadeUp'>
+									<div className='o-hero_artistName'>
 										{info && info[0].title}
-									</h3>
+									</div>
 								</Fade>
 								<Fade bottom delay={500}>
 									<h2 className='o-h2 -bold -split -fadeUpChars'>

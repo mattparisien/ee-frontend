@@ -1,0 +1,10 @@
+button.c-link {
+  border: none;
+  background: transparent;
+  font-size: 1.4rem !important;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -37,7 +37,7 @@ export default function Footer(props) {
 							</h2>
 							<Fade bottom>
 								<a href={`mailto:${props.info && props.info.Email}`}>
-									<div className='email -underline -hover-underline -relative'>
+									<div className='email -underline -hover-underline -relative -inline'>
 										{props.info && props.info.Email}
 									</div>
 								</a>

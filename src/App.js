@@ -2,7 +2,7 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
@@ -40,14 +40,14 @@ function App() {
 
 	const [headerColor, setHeaderColor] = useState("light");
 
-	// const [domAnimatedReady, setDomAnimatedReady] = useState(false);
+	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
 
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 
-	// const toggleDomAnimationReady = useCallback(() => {
-	// 	setDomAnimatedReady(!domAnimatedReady);
-	// }, []);
+	const toggleDomAnimationReady = useCallback(() => {
+		setDomAnimatedReady(!domAnimatedReady);
+	}, [domAnimatedReady]);
 
 	useEffect(() => {
 		const elements = [];
@@ -67,7 +67,7 @@ function App() {
 			});
 
 			setSplit(true);
-			// toggleDomAnimationReady();
+			toggleDomAnimationReady();
 		}, 300);
 	}, [location]);
 
@@ -92,7 +92,7 @@ function App() {
 			});
 		};
 
-		if (isSplit) {
+		if (isSplit && domAnimatedReady) {
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
 					if (
@@ -127,7 +127,7 @@ function App() {
 				}
 			);
 		}
-	}, [isSplit, location, windowWidth]);
+	}, [isSplit, location, windowWidth, domAnimatedReady]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll
@@ -157,8 +157,7 @@ function App() {
 		toggleScrollLock,
 		transitioning,
 		setTransitioning,
-
-		// toggleDomAnimationReady,
+		toggleDomAnimationReady,
 	};
 
 	const [menuActive, setMenuActive] = useState(false);
@@ -170,7 +169,7 @@ function App() {
 	const classes = classNames("App", {
 		"is-new-page": !transitioning,
 		"is-old-page": transitioning,
-
+		"is-dom-animated-ready": domAnimatedReady,
 		"cursor-hidden": cursor === "drag",
 	});
 

@@ -9,7 +9,7 @@ import ContactPage from "./components/Pages/Contact/ContactPage";
 function SiteRoutes(props) {
 	const { addToRefs, location } = props;
 
-console.log(location)
+
 
 	return (
 		<>
