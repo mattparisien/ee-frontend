@@ -5,7 +5,7 @@ import React, {
 	useLayoutEffect,
 	useMemo,
 	useRef,
-	useState,
+	useState
 } from "react";
 import { Helmet } from "react-helmet-async";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";

@@ -44,6 +44,7 @@ function App() {
 
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
+	const isFirstRender = useRef(true);
 
 	const toggleDomAnimationReady = useCallback(() => {
 		setDomAnimatedReady(!domAnimatedReady);
@@ -93,6 +94,18 @@ function App() {
 		};
 
 		if (isSplit && domAnimatedReady) {
+			const logo = $(".o-page_home .c-drawnLogo");
+
+			!isFirstRender.current &&
+				gsap.to(logo, {
+					x: 0,
+					opacity: 1,
+					duration: 1,
+					ease: "power3.out",
+				});
+				
+			isFirstRender.current = false;
+
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
 					if (
@@ -199,7 +212,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					<Canvas />
 
 					{/* <DragCursor cursor={cursor} /> */}
-					{/* <IntroCard  /> */}
+					<IntroCard />
 					<Header
 						toggleMenu={() => setMenuActive(!menuActive)}
 						menuActive={menuActive}

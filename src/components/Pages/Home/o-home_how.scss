@@ -1,3 +1,33 @@
+.o-howHeading {
+	height: 60vw;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+	.o-h1 {
+		
+		width: 40vw;
+	}
+
+	.react-reveal {
+		height: 100%;
+		width: auto;
+		position: absolute;
+		left: 0;
+		top: 0;
+		overflow: visible;
+		transform: rotate(-30deg) translateX(-40%);
+		opacity: 0;
+		
+
+		svg {
+			overflow: visible;
+		}
+	}
+}
+
+
 .c-megaphone {
 	width: 30vw;
 }
@@ -6,12 +36,19 @@
 	width: 50vw;
 	path {
 		fill: none !important;
-		stroke: $yellow;
+		stroke: $yellow; 
 	}
 }
 
 .o-page_home {
 	.o-how {
+
+		.instrument-player-svg {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
 		.o-colorBlobs {
 			z-index: 0;
 			display: none;
@@ -157,6 +194,7 @@
 			position: static;
 			margin: 0 auto;
 			text-align: center;
+			
 
 			z-index: 999;
 		}

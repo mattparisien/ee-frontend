@@ -10,6 +10,8 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import { HalfNote, QuarterNote } from "../../Vector/Notes";
+import { InstrumentPlayer } from "../../Vector/Svg";
+import Reveal from "react-reveal";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -75,67 +77,71 @@ function How({ steps }) {
 				);
 	}, []);
 
-	
-
 	return (
-		<Section classes='o-how' data-theme='light' ref={container}>
-			<ContainerFluid>
+		<>
+			<Section classes='o-howHeading  -relative'>
 				<h1 className='o-h1 -text-center -padding-top-huge -split -fadeUpChars'>
 					Finding Your Rhythm
 				</h1>
+				<Reveal>
+					<InstrumentPlayer />
+				</Reveal>
+			</Section>
+			<Section classes='o-how' data-theme='light' ref={container}>
+				<ContainerFluid>
+					<div className='steps-container -relative -margin-top-huge'>
+						<div className='c-steps'>
+							<div className='c-steps_background'></div>
+							{steps &&
+								steps.map((step, i) => {
+									return (
+										<div className='c-steps_item' key={i}>
+											<Fade bottom>
+												<ReactMarkdown
+													components={{
+														root: React.createElement("p", { className: "hi" }),
+													}}
+													className='title'
+													children={step.title}
+												/>
+											</Fade>
 
-				<div className='steps-container -relative -margin-top-huge'>
-					<div className='c-steps'>
-						<div className='c-steps_background'></div>
-						{steps &&
-							steps.map((step, i) => {
-								return (
-									<div className='c-steps_item' key={i}>
-										<Fade bottom>
-											<ReactMarkdown
-												components={{
-													root: React.createElement("p", { className: "hi" }),
-												}}
-												className='title'
-												children={step.title}
-											/>
-										</Fade>
+											<Fade bottom>
+												<p className='body'>{step.body}</p>
+											</Fade>
+										</div>
+									);
+								})}
 
-										<Fade bottom>
-											<p className='body'>{step.body}</p>
-										</Fade>
-									</div>
-								);
-							})}
-
-						<div className='c-steps_sheet'>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
-							<div className='c-steps_sheet_line' data-scroll></div>
+							<div className='c-steps_sheet'>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+								<div className='c-steps_sheet_line' data-scroll></div>
+							</div>
 						</div>
+
+						<QuarterNote id={1} />
+						<QuarterNote id={2} />
+
+						<QuarterNote id={4} />
+						<HalfNote id={3} />
+						<ColorBlobs />
 					</div>
-
-					<QuarterNote id={1} />
-					<QuarterNote id={2} />
-
-					<QuarterNote id={4} />
-					<HalfNote id={3} />
-					<ColorBlobs />
-				</div>
-			</ContainerFluid>
-		</Section>
+				</ContainerFluid>
+			</Section>
+		</>
 	);
 }
 

@@ -12,6 +12,8 @@ import About from "./About";
 import How from "./How";
 import Work from "./Work";
 
+
+
 function HomePage() {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 	const data = useContext(DataContext);

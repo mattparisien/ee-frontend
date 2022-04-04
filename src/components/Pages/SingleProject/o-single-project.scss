@@ -11,6 +11,7 @@
 		&_artistName {
 			font-size: 2rem;
 			line-height: 2rem;
+			margin-bottom: $space-sm;
 		}
 
 		.c-figure.-figure-zoom img {
@@ -184,10 +185,24 @@
 	}
 
 	.o-additionalMedia {
+
+
+		.c-grid_media {
+			> div:nth-child(1), > div:nth-child(2) {
+				display: none;
+			}
+		}
+
 		@include media("<=tablet") {
 			.c-grid_media {
-				grid-row-gap: 4vw !important;
+				
+				> div {
+					margin-bottom: 2rem;
+				}
 
+				> div:nth-child(2) {
+					display: block;
+				}
 
 			.c-grid_img-wrapper {
 				height: 100%;
@@ -202,10 +217,14 @@
 
 		&_left {
 			width: 50%;
+			height: 100%;
+
+	
 
 			
 			.o-details_left_image {
 				overflow: hidden;
+				height: 100%;
 
 				img {
 					width: 100%;
@@ -218,6 +237,18 @@
 
 		&_right {
 			margin-left: $space-xl;
+		}
+
+		@include media("<=tablet") {
+
+			&_left {
+				display: none;
+			}
+			&_right {
+				width: 100%;
+				margin: 0;
+			}
+			
 		}
 
 		.o-container {
