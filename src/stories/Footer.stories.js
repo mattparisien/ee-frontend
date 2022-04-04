@@ -9,15 +9,15 @@ export const Desktop = () => {
 	const navItems = [
 		{
 			name: "About",
-			path: "/",
+			href: "/",
 		},
 		{
 			name: "Projects",
-			path: "/projects",
+			href: "/projects",
 		},
 		{
 			name: "Connect",
-			path: "/contact",
+			href: "/contact",
 		},
 	];
 	return <Footer navItems={navItems} />;

@@ -12,7 +12,6 @@
 
 .o-page_home {
 	.o-how {
-
 		.o-colorBlobs {
 			z-index: 0;
 			display: none;
@@ -38,7 +37,6 @@
 				left: -10vw;
 				width: 50vw;
 				bottom: -8vw;
-				
 
 				path {
 					fill: $yellow !important;
@@ -159,7 +157,7 @@
 			position: static;
 			margin: 0 auto;
 			text-align: center;
-			
+
 			z-index: 999;
 		}
 	}
@@ -170,6 +168,10 @@
 	height: 4vw;
 	transform: scale(0.01);
 	z-index: 999;
+
+	@include media("<=phoneL") {
+		display: none;
+	}
 
 	&_1 {
 		top: 0;

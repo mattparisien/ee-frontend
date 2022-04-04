@@ -188,6 +188,28 @@
 	}
 
 	.o-details {
+
+
+		&_left {
+			width: 50%;
+
+			
+			.o-details_left_image {
+				overflow: hidden;
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center;
+				}
+			}
+		}
+
+		&_right {
+			margin-left: $space-xl;
+		}
+
 		.o-container {
 			display: flex;
 			align-items: flex-start;

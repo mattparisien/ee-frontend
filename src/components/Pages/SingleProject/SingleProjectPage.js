@@ -5,7 +5,7 @@ import React, {
 	useLayoutEffect,
 	useMemo,
 	useRef,
-	useState
+	useState,
 } from "react";
 import { Helmet } from "react-helmet-async";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -27,14 +27,16 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const heroImage = useRef(null);
 	const revealer = useRef(null);
 	const tl = useRef(gsap.timeline());
-	// const scroll = useLocomotiveScroll();
 	const mobile = window.matchMedia("(max-width: 820px)");
 
 	const accentColor = useMemo(() => shuffleColors(), []);
 
+	useEffect(() => {
+		console.log(info);
+	}, [info]);
+
 	useLayoutEffect(() => {
 		const desktopTimeline = () => {
-			
 			tl.current
 
 				.set(revealer.current, { transition: "none" })
@@ -87,10 +89,9 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 		}
 
 		if (data && data.posts && param && !info) {
-			console.clear();
-
 			// setInfo(data.posts.filter(x => x.id === param));
-			const currentPost = data.posts.filter(x => x.id === param);
+			const currentPost = data.posts.filter(x => x.id === parseInt(param));
+			console.log("currentp[ost", currentPost);
 
 			const nextPostIndex =
 				data.posts.indexOf(data.posts.find(x => x.id === currentPost[0].id)) +
@@ -100,9 +101,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 			setInfo({ ...currentPost, nextPost: nextPost });
 		}
-	}, [data, location, param,  info]);
-
-
+	}, [data, location, param, info]);
 
 	return (
 		<>
@@ -118,18 +117,12 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						<div className='o-container_inner'>
 							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
 								<Fade bottom delay={500}>
-									<h3
-										className='o-h3 -split -fadeUp'
-										
-									>
+									<h3 className='o-h3 -split -fadeUp'>
 										{info && info[0].title}
 									</h3>
 								</Fade>
 								<Fade bottom delay={500}>
-									<h2
-										className='o-h2 -bold -split -fadeUpChars'
-										style={{ color: accentColor[0] }}
-									>
+									<h2 className='o-h2 -bold -split -fadeUpChars'>
 										{info && info[0].subtitle}
 									</h2>
 								</Fade>
@@ -184,7 +177,6 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							<div className='o-feature_item'>
 								<Figure
 									noFrame
-									
 									src={
 										info &&
 										info[0].media.additional &&
@@ -195,19 +187,26 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						</ContainerFluid>
 					</Section>
 				)}
-				<Section classes='o-details -padding-lg' data-theme='light'>
+				<Section classes='o-details -padding-top-lg' data-theme='light'>
 					<ContainerFluid>
 						<div className='o-details_left'>
-							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
-							in?
+							<Fade bottom>
+								<div className='o-details_left_image'>
+									{info && info[0].media.additional ? (
+										<img
+											src={info[0].media.additional[1].attributes.url}
+											alt=''
+										/>
+									) : (
+										""
+									)}
+								</div>
+							</Fade>
 						</div>
 						<div className='o-details_right'>
 							<div className='about'>
 								<Fade bottom>
-									<ReactMarkdown
-										className='o-h3'
-										children={"About the Company"}
-									/>
+									<h3 className='o-h3'>About the Artist</h3>
 								</Fade>
 								<Fade bottom>
 									<p className='o-text -body'>
@@ -224,7 +223,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							<div className='work'>
 								{/* <Fade bottom cascade> */}
 								<Fade bottom>
-									<ReactMarkdown className='o-h3' children={"Our Work"} />
+									<h3 className='o-h3'>About the organization</h3>
 								</Fade>
 								<Fade bottom>
 									<p className='o-text -body'>

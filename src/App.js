@@ -14,6 +14,7 @@ import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
 import IntroCard from "./components/Transition/IntroCard";
+import { useScrollTop } from "./helpers/hooks/useScrollTop";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -21,6 +22,8 @@ function App() {
 	const [windowWidth] = useResize();
 
 	const location = useLocation();
+
+	const scrollToTop = useScrollTop(location);
 
 	gsap.registerPlugin(SplitText);
 
@@ -154,7 +157,7 @@ function App() {
 		toggleScrollLock,
 		transitioning,
 		setTransitioning,
-		
+
 		// toggleDomAnimationReady,
 	};
 
@@ -167,7 +170,7 @@ function App() {
 	const classes = classNames("App", {
 		"is-new-page": !transitioning,
 		"is-old-page": transitioning,
-		
+
 		"cursor-hidden": cursor === "drag",
 	});
 
@@ -197,7 +200,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					<Canvas />
 
 					{/* <DragCursor cursor={cursor} /> */}
-					<IntroCard  />
+					{/* <IntroCard  /> */}
 					<Header
 						toggleMenu={() => setMenuActive(!menuActive)}
 						menuActive={menuActive}

@@ -17,7 +17,7 @@ function Next({ color, nextPost }) {
 					<Link
 						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 						isRouterLink
-						href={nextPost && `/projects/${nextPost.id}`}
+						href={nextPost ? `/projects/${nextPost.id}` : ''}
 					>
 						<div className='c-link_inner'>
 							<ContainerFluid classes='-relative -flex -align-center -justify-between'>

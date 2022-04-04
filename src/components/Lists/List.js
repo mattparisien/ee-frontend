@@ -43,6 +43,7 @@ function TextItems({
 	return (
 		items &&
 		items.map((item, i) => {
+			
 			return (
 				<li
 				onClick={onClick}

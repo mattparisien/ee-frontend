@@ -51,6 +51,7 @@
     "sass-loader": "^12.6.0",
     "styled-components": "^5.3.3",
     "svg-loaders-react": "^2.2.1",
+    "swiper": "^6.8.4",
     "three": "^0.117.0",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.2"

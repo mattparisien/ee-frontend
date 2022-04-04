@@ -124,7 +124,7 @@
 
 		@include media("<=tablet") {
 			width: 100%;
-			height: 120vw !important;
+			height: $mobileItemHeight !important;
 
 			&:not(:last-child) {
 				margin-bottom: 4rem;

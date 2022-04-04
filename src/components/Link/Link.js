@@ -34,7 +34,9 @@ function Link(props, ref) {
 		setTimeout(() => {
 			navigate(props.href);
 		}, 2000);
-	};
+	}; 
+
+	console.log('href', props.href)
 
 	return props.isRouterLink ? (
 		<RouterLink to={props.href} className={classes} ref={ref}>{props.children}</RouterLink>
