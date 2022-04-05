@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, forwardRef } from "react";
 import classNames from "classnames";
 import Link from "../Link/Link";
 
@@ -9,14 +9,14 @@ function ArrowButton({
 	color,
 	isRouterLink,
 	href,
-}) {
+}, ref) {
 	const buttonClasses = classNames("c-arrow-button", {
 		[classes]: classes,
 		[`is-${color}`]: color,
 	});
 
 	return !isRouterLink ? (
-		<button className={buttonClasses} onClick={handleClick}>
+		<button className={buttonClasses} onClick={handleClick} ref={ref}>
 			<Arrow rotation={rotation} color={color} />
 		</button>
 	) : (
@@ -67,4 +67,4 @@ function Arrow({ rotation, color }) {
 	);
 }
 
-export default ArrowButton;
+export default forwardRef(ArrowButton);
