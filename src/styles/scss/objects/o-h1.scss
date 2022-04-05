@@ -1,18 +1,1 @@
-.o-h1 {
-	font-size: 9vw;
-	letter-spacing: -0.2vw;
-	line-height: 9vw;
-	
-	// color: $dark;
 
-	&, & * {
-		font-family: 'Kobe Bold';
-	}
-
-	margin: 0;
-
-	@include media("<=tablet") {
-		font-size: 11vw;
-		line-height: 11vw;
-	}
-}

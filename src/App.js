@@ -48,31 +48,31 @@ function App() {
 		setDomAnimatedReady(!domAnimatedReady);
 	}, [domAnimatedReady]);
 
-	useEffect(() => {
-		const elements = [];
+	// useEffect(() => {
+	// 	const elements = [];
 
-		setTimeout(() => {
-			$(".-split").each((i, el) => {
-				if ($(el).children().length > 0) {
-					elements.push(...$(el).children());
-				} else {
-					elements.push(el);
-				}
-			});
-			split.current = new SplitText(elements, {
-				type: "lines, words, chars",
-				linesClass: "c-line",
-				charsClass: "c-char",
-			});
+	// 	setTimeout(() => {
+	// 		$(".-split").each((i, el) => {
+	// 			if ($(el).children().length > 0) {
+	// 				elements.push(...$(el).children());
+	// 			} else {
+	// 				elements.push(el);
+	// 			}
+	// 		});
+	// 		split.current = new SplitText(elements, {
+	// 			type: "lines, words, chars",
+	// 			linesClass: "c-line",
+	// 			charsClass: "c-char",
+	// 		});
 
-			setSplit(true);
-			toggleDomAnimationReady();
-		}, 300);
-	}, [location]);
+	// 		setSplit(true);
+	// 		toggleDomAnimationReady();
+	// 	}, 300);
+	// }, [location]);
 
-	useEffect(() => {
-		split.current && split.current.revert().split();
-	}, [windowWidth]);
+	// useEffect(() => {
+	// 	split.current && split.current.revert().split();
+	// }, [windowWidth]);
 
 	useEffect(() => {
 		const show = element => {

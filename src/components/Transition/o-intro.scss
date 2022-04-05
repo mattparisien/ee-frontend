@@ -7,37 +7,7 @@
 	z-index: 99999;
 
 
-	&_inner {
-		display: flex;
-		align-items:center;
-		justify-content: center;
-	}
-
-
-	&_text {
-		z-index: 1;
-		padding: 2vw 5vw;
-		overflow: hidden;
-		color: $dark;
-		font-size: 15vw;
-		color: $light;
-		
-
-		.c-line {
-			font-size: 4.9vw;
-			line-height: 4.7vw;
-		}
-
-		.c-word {
-			overflow: hidden;
-		}
-
-		.c-char {
-			transform: translateY(100%);
-			
-		}
-	}
-
+	
 	&_bg {
 		z-index: 0;
 		background-color: $dark;

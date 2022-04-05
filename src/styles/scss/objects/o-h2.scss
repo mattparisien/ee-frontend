@@ -6,22 +6,6 @@
 // 	}
 // }
 
-.o-h2 {
-	font-size: 6vw;
-	margin: 0;
-	line-height: 6vw;
-
-	&, & * {
-		font-family: 'Kobe Bold';
-		
-	}
-
-
-	@include media("<=tablet") {
-		font-size: 11vw;
-		line-height: 11vw;
-	}
-}
 
 .c-stories p {
 	font-size: 2.3vw;

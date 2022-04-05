@@ -21,26 +21,26 @@ function Next({ color, nextPost }) {
 						<div className='c-link_inner'>
 							<ContainerFluid classes='-relative -flex -align-center -justify-between'>
 								<Fade bottom>
-									<h2 className='o-h1 -padding-bottom-huge -split -fadeUpChars'>
+									<h1 className='-padding-bottom-huge -split -fadeUpChars'>
 										Next
-									</h2>
+									</h1>
 								</Fade>
 								<Arrow color='dark' />
 							</ContainerFluid>
 							<Fade bottom>
 								<Marquee gradient={false} direction={"right"}>
-									<div className='o-h1 marquee-item'>
+									<h1 className=' marquee-item'>
 										{nextPost && nextPost.title}
-									</div>
-									<div className='o-h1 marquee-item'>
+									</h1>
+									<h1 className=' marquee-item'>
 										{nextPost && nextPost.subtitle}
-									</div>
-									<div className='o-h1 marquee-item'>
+									</h1>
+									<h1 className=' marquee-item'>
 										{nextPost && nextPost.title}
-									</div>
-									<div className='o-h1 marquee-item'>
+									</h1>
+									<h1 className=' marquee-item'>
 										{nextPost && nextPost.subtitle}
-									</div>
+									</h1>
 								</Marquee>
 							</Fade>
 						</div>

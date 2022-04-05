@@ -1,0 +1,36 @@
+$goldenRatio: 1.618;
+$baseFontSize: 18px;
+
+html {
+	font-size: $goldenRatio;
+}
+
+p {
+	font-size: $baseFontSize;
+	line-height: $goldenRatio;
+}
+
+h4 {
+	font-size: $baseFontSize * 2;
+	line-height: $goldenRatio;
+}
+
+h3 {
+	font-size: $baseFontSize * 3;
+	line-height: $goldenRatio;
+}
+
+h3 {
+	font-size: $baseFontSize * 3;
+	line-height: $goldenRatio;
+}
+
+h2 {
+	font-size: $baseFontSize * 4;
+	line-height: $goldenRatio;
+}
+
+h1 {
+	font-size: $baseFontSize * 5;
+	line-height: $goldenRatio;
+}
