@@ -65,7 +65,7 @@ export const formatImageList = array => {
 	});
 };
 
-export const formatStories = array => {
+export const formatTestimonials = array => {
 	return array.map(story => {
 		return {
 			id: story.id,

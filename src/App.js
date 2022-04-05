@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
-import Canvas from "./components/Canvas/Canvas";
+
 import Footer from "./components/Footer/Footer";
 import Menu from "./components/Menu/Menu";
 import Context from "./context/Context";
@@ -14,7 +14,6 @@ import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
 import IntroCard from "./components/Transition/IntroCard";
-
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -34,6 +33,7 @@ function App() {
 		setTransitioning,
 		cursor,
 		changeCursor,
+		pending,
 	} = useAppData();
 
 	const [headerColor, setHeaderColor] = useState("light");
@@ -207,10 +207,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					scrollRef={scrollWrapper}
 					location={location}
 				>
-					<Canvas />
-
 					{/* <DragCursor cursor={cursor} /> */}
-					<IntroCard />
+					<IntroCard pending={pending} />
 					<Header
 						toggleMenu={() => setMenuActive(!menuActive)}
 						menuActive={menuActive}

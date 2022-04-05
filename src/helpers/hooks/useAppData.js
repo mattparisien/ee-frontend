@@ -4,7 +4,7 @@ import {
 	formatAbout,
 	formatPosts,
 	formatSteps,
-	formatStories
+	formatTestimonials,
 } from "../formatData";
 
 export default function useAppData(scrollRef) {
@@ -39,10 +39,15 @@ export default function useAppData(scrollRef) {
 		cursor: "normal",
 		isScrollLock: false,
 		data: {},
+		pending: true,
 	});
 
 	const changeCursor = value => {
 		setState(prev => ({ ...prev, cursor: value }));
+	};
+
+	const togglePending = () => {
+		setState(prev => ({ ...prev, pending: !prev.pending }));
 	};
 
 	//Fetch essential data
@@ -55,7 +60,7 @@ export default function useAppData(scrollRef) {
 			`${basePath}/projects?populate=*`,
 			`${basePath}/steps`,
 			`${basePath}/about`,
-			`${basePath}/stories`,
+			// `${basePath}/testimonials`,
 			`${basePath}/footer`,
 			`${basePath}/bio?populate=*`,
 			`${basePath}/socials`,
@@ -65,13 +70,14 @@ export default function useAppData(scrollRef) {
 
 		Promise.all(promiseArray)
 			.then(data => {
+				console.log(data)
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
-				const formattedStories = formatStories(data[3].data.data);
-				const formattedFooter = data[4].data.data.attributes;
-				const formattedBio = data[5].data.data.attributes;
-				const formattedSocials = data[6].data.data.map(account => ({
+				// const formattedTestimonials = formatTestimonials(data[3].data.data);
+				const formattedFooter = data[3].data.data.attributes;
+				const formattedBio = data[4].data.data.attributes;
+				const formattedSocials = data[5].data.data.map(account => ({
 					id: account.id,
 					name: account.attributes.Name,
 					url: account.attributes.Url,
@@ -84,7 +90,7 @@ export default function useAppData(scrollRef) {
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
-						stories: formattedStories,
+						// testimonials: formattedTestimonials,
 						footer: { ...formattedFooter },
 						bio: {
 							body: formattedBio.Body,
@@ -98,7 +104,7 @@ export default function useAppData(scrollRef) {
 				}));
 			})
 			.catch(err => console.log(err))
-			.finally(() => setTransitioning(false));
+			.finally(() => togglePending());
 	}, []);
 
 	return {
@@ -109,5 +115,6 @@ export default function useAppData(scrollRef) {
 		setTransitioning,
 		cursor: state.cursor,
 		changeCursor,
+		pending: state.pending,
 	};
 }
