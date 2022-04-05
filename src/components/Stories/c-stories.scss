@@ -101,6 +101,8 @@
 			left: 0;
 			opacity: 0;
 		}
+
+
 	}
 
 	&_main {
@@ -205,6 +207,11 @@
 		height: 100%;
 		top: 0;
 		left: 50%;
+
+		&:not([data-story-id='1']) {
+			opacity: 0;
+		}
+
 		// transform: translateX(-50%);
 
 		// &:not(:first-of-type) {
