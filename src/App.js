@@ -210,7 +210,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					<Canvas />
 
 					{/* <DragCursor cursor={cursor} /> */}
-					{/* <IntroCard /> */}
+					<IntroCard />
 					<Header
 						toggleMenu={() => setMenuActive(!menuActive)}
 						menuActive={menuActive}
