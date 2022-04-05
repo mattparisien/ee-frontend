@@ -18,7 +18,7 @@
 		background-color: $light;
 	}
 
-	.c-link {
+	nav .c-link {
 		display: block;
 	}
 
@@ -47,6 +47,11 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		transition: $transition;
+
+		.c-link {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	&_nav.desktop .c-list {
@@ -57,52 +62,56 @@
 
 	&_nav-btn.mobile {
 		border: 0px;
-		height: 15%;
-		width: 25px;
+		height: 100%;
+		width: 5rem;
 		transition: 600ms ease;
 		background-color: transparent;
 
-		&.is-active {
-			&::after {
-				top: 50%;
-				transform: rotate(-45deg);
-			}
-
-			&::before {
-				top: 50%;
-				transform: rotate(45deg);
-				height: 2px;
-			}
+		.MuiSvgIcon-root {
+			font-size: 30px;
 		}
+
+		// &.is-active {
+		// 	&::after {
+		// 		top: 50%;
+		// 		transform: rotate(-45deg);
+		// 	}
+
+		// 	&::before {
+		// 		top: 50%;
+		// 		transform: rotate(45deg);
+		// 		height: 2px;
+		// 	}
+		// }
 
 		position: relative;
-		&:hover {
-			transform: rotate(180deg);
-		}
+		// &:hover {
+		// 	transform: rotate(180deg);
+		// }
 
-		&::before {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			content: "";
-			height: 2px;
+		// &::before {
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	content: "";
+		// 	height: 2px;
 
-			transform-origin: center;
-			transition: 200ms ease;
-		}
+		// 	transform-origin: center;
+		// 	transition: 200ms ease;
+		// }
 
-		&::after {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			content: "";
-			height: 2px;
+		// &::after {
+		// 	position: absolute;
+		// 	bottom: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	content: "";
+		// 	height: 2px;
 
-			transform-origin: center;
-			transition: 200ms ease;
-		}
+		// 	transform-origin: center;
+		// 	transition: 200ms ease;
+		// }
 
 		@include media(">=tablet") {
 			display: none;

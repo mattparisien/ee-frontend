@@ -218,8 +218,18 @@ ul {
 [data-theme="dark"] {
 	background-color: $dark;
 	color: $light !important;
-	fill: $light;
-	stroke: $light;
+	
+
+	.c-header_logo svg path {
+		fill: $light;
+	}
+
+	.MuiSvgIcon-root {
+		path {
+			fill: $light;
+			
+		}
+	}
 
 	*::after,
 	*::before {
