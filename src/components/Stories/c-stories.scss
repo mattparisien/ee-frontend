@@ -1,28 +1,34 @@
-	
+// .-frame-reveal .c-frame {
 
-	// .-frame-reveal .c-frame {
-		
-	// 	@include frameReveal(100ms, forwards);
-	// }
+// 	@include frameReveal(100ms, forwards);
+// }
 
-
-
+.o-stories {
+	.o-container {
+		width: 100%;
+	}
+}
 
 .c-stories {
 	margin: 0 auto;
 	position: relative;
+	height: 40vw;
+	width: 80%;
 
-
-
+	.o-h2 {
+		text-align: left;
+		margin: 0;
+	}
 
 	&_frame {
-		
 		@include media("<=phoneL") {
 			display: none;
 		}
 
-		transform: scale(1.3) rotate(-1deg);
+		transform: rotate(-1deg) scale(1.3);
 		position: absolute;
+		top: 1vw !important;
+		height: 150%;
 
 		.c-frame_svg_quote {
 			fill: $dark;
@@ -31,7 +37,7 @@
 
 			&-top {
 				top: -2vw;
-				right: 8.2vw;	
+				right: 8.2vw;
 			}
 
 			&-bottom {
@@ -55,9 +61,9 @@
 
 	// 	// svg path {
 	// 	// 	fill: $yellow !important;
-			
+
 	// 	// }
-		
+
 	// }
 
 	&_mobile-bg {
@@ -70,7 +76,6 @@
 		border-radius: 50%;
 		transform: translate(-50%, -50%) scaleX(2) scaleY(1.2);
 		display: none;
-
 	}
 
 	&_content {
@@ -106,6 +111,7 @@
 		position: relative;
 		margin: 0 auto;
 		overflow: hidden;
+		height: 100%;
 	}
 
 	&_controls {
@@ -185,42 +191,53 @@
 				color: $grey;
 			}
 		}
+	}
+}
 
-		&_story {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: flex-start;
-			overflow: hidden;
-			width: 60%;
-			height: 100%;
-			top: 0;
-			left: 50%;
-			// transform: translateX(-50%);
+.c-stories {
+	&_story {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		overflow: hidden;
+		width: 60%;
+		height: 100%;
+		top: 0;
+		left: 50%;
+		// transform: translateX(-50%);
 
-			// &:not(:first-of-type) {
-			// 	// opacity: 0;
-			// 	// display: none;
-			// }
+		// &:not(:first-of-type) {
+		// 	// opacity: 0;
+		// 	// display: none;
+		// }
 
-			h2,
-			h4 {
-				width: 100%;
-				text-align: center;
-			}
+		h2,
+		h4 {
+			width: 100%;
+			text-align: center;
+		}
+	}
 
-			h2 {
-				margin: 10vw 0;
-				font-size: 10vw !important;
-			}
+	@include media("<=phoneL") {
+		height: 120vw;
 
-			p {
-				font-size: 6vw !important;
-				line-height: 6.8vw !important;
-				text-align: center;
-				margin-top: 0;
-				margin-bottom: 4vw;
-			}
+		h2 p {
+			text-align: center;
+		}
+
+		h2 {
+			margin: $space-md 0 !important;
+			font-size: 10vw !important;
+			text-align: center !important;
+		}
+
+		p {
+			font-size: 6vw !important;
+			line-height: 6.8vw !important;
+			text-align: center;
+			margin-top: 0;
+			margin-bottom: 4vw;
 		}
 	}
 }

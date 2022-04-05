@@ -72,7 +72,7 @@ function HomePage() {
 				<Work projects={data.posts && data.posts.slice(0, 6)} />
 
 				<Section
-					classes='-padding-lg  -fullHeight -flex -align-center -justify-center'
+					classes='o-stories -padding-lg  -fullHeight -flex -align-center -justify-center'
 					data-theme='light'
 				>
 					<ContainerFluid>

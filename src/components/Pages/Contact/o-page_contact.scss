@@ -1,4 +1,16 @@
 .o-page_contact {
+
+	.o-textOne {
+		.o-text {
+			margin-right: 50%;
+		}
+	}
+
+	.o-text {
+		font-size: 1.8rem;
+		line-height: 2.5rem;
+	}
+
 	.o-hero {
 		height: 50vw;
 		display: flex;
@@ -11,7 +23,27 @@
 		}
 	}
 
+	.o-intro2 {
+		margin-left: 50%;
+		
+	}
+
 	.o-intro {
+
+
+		&_left {
+
+			.o-text  {
+				font-size: 1.2rem;
+				line-height: 1.5rem;
+			}
+			
+
+			.o-text:first-child {
+				margin-top: 0;
+			}
+		}
+
 		.o-container {
 			height: 100%;
 		}
@@ -47,6 +79,7 @@
 		&_image {
 			width: 100%;
 			height: 100%;
+			max-width: 600px;
 
 			img {
 				width: 100%;
