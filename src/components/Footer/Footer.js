@@ -6,16 +6,9 @@ import { DrawnLogo } from "../Vector/Svg";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import Fade from "react-reveal/Fade";
 import SocialList from "../Lists/SocialList";
+import { Typography } from "@mui/material";
 
 export default function Footer(props) {
-	// const footerRef = useRef(null);
-	// const { location } = props;
-
-	// const navLinks = navigation.map(listItem => (
-	// 	<li key={listItem.id}>
-	// 		<Link to={listItem.path}>{listItem.title}</Link>
-	// 	</li>
-	// ));
 	const scroll = useLocomotiveScroll();
 
 	const scrollToTop = () => {
@@ -32,20 +25,24 @@ export default function Footer(props) {
 				<div className='c-footer_content'>
 					<div className='-flex -align-center -justify-center'>
 						<div className='c-footer_content_contact'>
-							<h2 className='o-h1 -split -fadeUpChars'>
+							<Typography variant='h1'>
 								{props.info && props.info.Heading}
-							</h2>
+							</Typography>
 							<Fade bottom>
-								<a href={`mailto:${props.info && props.info.Email}`}>
+								<Typography
+									component='a'
+									variant="h4"
+									href={`mailto:${props.info && props.info.Email}`}
+								>
 									<div className='email -underline -hover-underline -relative -inline'>
 										{props.info && props.info.Email}
 									</div>
-								</a>
+								</Typography>
 							</Fade>
 						</div>
 						<div className='c-footer_content_logo'>
 							<Fade right>
-								<DrawnLogo color="light"/>
+								<DrawnLogo color='light' />
 							</Fade>
 						</div>
 					</div>
@@ -53,7 +50,7 @@ export default function Footer(props) {
 					<div className='c-footer_bottom'>
 						<Fade bottom>
 							<div className='-flex -align-center -justify-center'>
-								<h4 className='o-h4 c-footer_brand'>The Eyes & Ears Agency</h4>
+								<p>The Eyes & Ears Agency</p>
 								<SocialList />
 							</div>
 

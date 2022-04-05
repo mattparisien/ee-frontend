@@ -4,6 +4,7 @@ import React from "react";
 import Section from "../../Containers/Section";
 import Slider from "../../Slider/Slider";
 import Line from "../../Vector/Line";
+import { Typography } from "@mui/material";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
@@ -12,9 +13,9 @@ function Work({ projects }) {
 		<Section classes='o-work -padding-huge' data-theme='light'>
 			<div className='o-heading-wrapper -relative'>
 				
-				<h1 className='o-h1 -text-center -padding-bottom-lg -split -fadeUpChars'>
+				<Typography variant="h1">
 					Featured Work
-				</h1>
+				</Typography>
 				<Line />
 			</div>
 			<Slider items={projects} />

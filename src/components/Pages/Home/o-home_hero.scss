@@ -25,7 +25,6 @@
 				@include media("<=tablet") {
 					transform: translate(-160%, -50%);
 				}
-        
 
 				.revealer {
 					position: absolute;
@@ -57,7 +56,8 @@
 				svg {
 					overflow: visible;
 
-					.ear, .nose {
+					.ear,
+					.nose {
 						fill: none;
 					}
 				}
@@ -65,10 +65,20 @@
 		}
 
 		&_word {
-	
-
 			&:nth-child(2) {
 				align-self: flex-end;
+			}
+		}
+
+		@include media("<=phoneL") {
+			align-items: center;
+			justify-content: space-around;
+			& {
+				text-align: center;
+			}
+
+			&_word:nth-child(2) {
+				align-self: center;
 			}
 		}
 	}

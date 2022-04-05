@@ -91,15 +91,9 @@
 		}
 	}
 
-	&_content {
-		.o-about_left,
-		.o-about_right {
-			flex: 50%;
-			width: 50%;
-		}
-	}
+
 	&_left {
-		width: 50%;
+		width: 60%;
 
 		.o-text p:nth-of-type(1) {
 			margin-bottom: $space-md;
@@ -107,6 +101,7 @@
 	}
 
 	&_right {
+			width: 40%;
 		
 			transform: translateX(50%) rotate(60deg);
 			opacity: 0;

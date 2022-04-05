@@ -21,7 +21,7 @@ export default function useMouseMove() {
 		return () => {
 			window.removeEventListener("mousemove", handleMouseMove);
 		};
-	}, [scroll]);
+	}, []);
 
 	return location;
 }

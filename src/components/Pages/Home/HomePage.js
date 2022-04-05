@@ -11,6 +11,8 @@ import { DrawnLogo } from "../../Vector/Svg";
 import About from "./About";
 import How from "./How";
 import Work from "./Work";
+import Hero from "./Hero";
+
 
 
 
@@ -45,27 +47,7 @@ function HomePage() {
 	return (
 		<>
 			<div className='o-page o-page_home'>
-				<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
-					<ContainerFluid classes='-stretchX -stretchY'>
-						<div className='o-hero_inner -relative -stretchX -stretchY'>
-							<div className='o-h1 o-hero_word -split -fadeUpChars -bold'>
-								Social
-							</div>
-							<div className='o-h1 o-hero_word -split -fadeUpChars -bold'>
-								Impact
-							</div>
-							<div className='o-h1 o-hero_word -split -fadeUpChars -bold'>
-								Agency
-							</div>
-							<div className='o-hero_logo'>
-								<div className='inner -relative'>
-									<DrawnLogo color='dark' />
-									<div className='revealer'></div>
-								</div>
-							</div>
-						</div>
-					</ContainerFluid>
-				</Section>
+				<Hero/>
 				<About aboutText={data.about && data.about.body1} />
 				<How steps={data && data.steps} />
 

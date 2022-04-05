@@ -2,61 +2,13 @@
 	-webkit-font-smoothing: antialiased;
 	font-weight: lighter;
 	box-sizing: border-box;
-	font-family: "Canela";
 }
 
-// @font-face {
-// 	font-family: "Kobe";
-// 	src: url("../assets//fonts/Kobe.woff")
-// }
 
-// @font-face {
-// 	font-family: "Kobe Bold";
-// 	src: url("../assets//fonts/KobeBold.woff")
-// }
-
-@font-face {
-	font-family: "Canela";
-	src: url("../assets/fonts/Kobe1.1-Regular.woff");
-}
-
-@font-face {
-	font-family: "Dahlia";
-	src: url("../assets/fonts/Dahlia-Regular.woff");
-}
-
-@font-face {
-	font-family: "Canela";
-	src: url("../assets/fonts/Canela-Medium-Trial.otf");
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: "Canela";
-	font-style: italic;
-	src: url("../assets/fonts/Canela-ThinItalic-Trial.otf");
-}
-
-@font-face {
-	font-family: "Riposte";
-	src: url("../assets/fonts/GTFRiposteTRIAL-Regular.otf");
-}
-
-@font-face {
-	font-family: "Kobe Bold";
-	src: url("../assets/fonts/Kobe1.1-Bold.woff");
-}
-
-// @font-face {
-// 	font-family: "Soehne Body";
-// 	src: url("../assets//fonts/SoehneBody.woff2")
-// }
 
 body {
 	overflow-x: hidden;
 }
-
-
 
 .scroll-to-top {
 	position: fixed !important;
@@ -147,7 +99,8 @@ ul {
 	background-color: $green;
 	color: $light;
 
-	&, & * {
+	&,
+	& * {
 		color: $light;
 	}
 
@@ -165,10 +118,10 @@ ul {
 	background-color: $red;
 	color: $light;
 
-	&, & * {
+	&,
+	& * {
 		color: $light;
 	}
-
 
 	svg path {
 		fill: $light;
@@ -187,12 +140,11 @@ ul {
 
 [data-theme="yellow"] {
 	background-color: $yellow;
-	
 
-	&, & * {
+	&,
+	& * {
 		color: $dark;
 	}
-
 
 	svg path {
 		fill: $dark;
@@ -208,10 +160,10 @@ ul {
 	background-color: $blue;
 	color: $light;
 
-	&, & * {
+	&,
+	& * {
 		color: $light;
 	}
-
 
 	svg path {
 		fill: $light;
@@ -237,7 +189,6 @@ ul {
 [data-theme="dark"] {
 	background-color: $dark;
 	color: $light !important;
-	
 
 	.c-header_logo svg path {
 		fill: $light;
@@ -246,7 +197,6 @@ ul {
 	.MuiSvgIcon-root {
 		path {
 			fill: $light;
-			
 		}
 	}
 

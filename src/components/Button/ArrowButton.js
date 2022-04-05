@@ -1,23 +1,27 @@
-import React, { useRef, forwardRef } from "react";
+import React, { useRef, forwardRef, useEffect } from "react";
 import classNames from "classnames";
 import Link from "../Link/Link";
+import useMouseMove from "../../helpers/hooks/useMouseMove";
+import $ from "jquery";
 
-function ArrowButton({
-	handleClick,
-	rotation,
-	classes,
-	color,
-	isRouterLink,
-	href,
-}, ref) {
+function ArrowButton(
+	{ handleClick, rotation, classes, color, isRouterLink, href },
+	ref
+) {
 	const buttonClasses = classNames("c-arrow-button", {
 		[classes]: classes,
 		[`is-${color}`]: color,
 	});
 
+	const circle = useRef(null);
+
+	const location = useMouseMove();
+
+
 	return !isRouterLink ? (
 		<button className={buttonClasses} onClick={handleClick} ref={ref}>
-			<Arrow rotation={rotation} color={color} />
+			<Arrow rotation={rotation} color={color} location={location} r />
+			<div className='circle' ref={circle}></div>
 		</button>
 	) : (
 		<Link
@@ -31,7 +35,7 @@ function ArrowButton({
 	);
 }
 
-function Arrow({ rotation, color }) {
+function Arrow({ rotation, color, location }) {
 	const svg = useRef(null);
 
 	return (
@@ -56,13 +60,11 @@ function Arrow({ rotation, color }) {
 				className='c-arrow-svg_arrow'
 			></path>{" "}
 			<circle
-				
 				cx='50'
 				cy='50.3408'
 				r='49'
 				transform='rotate(-180 50 50.3408)'
 			></circle>{" "}
-			<circle cx='50' cy='50.3408' r='49'></circle>{" "}
 		</svg>
 	);
 }

@@ -1,0 +1,33 @@
+@font-face {
+	font-family: "Riposte";
+	src: url("../assets/fonts/GTFRiposteTRIAL-Regular.otf");
+}
+
+@font-face {
+	font-family: "Kobe Bold";
+	src: url("../assets/fonts/Kobe1.1-Bold.woff");
+}
+
+@font-face {
+	font-family: "Kobe";
+	src: url("../assets/fonts/Kobe1.1-Regular.woff");
+}
+
+@font-face {
+	font-family: "Neue Mtl";
+	src: url("../assets/fonts/NeueMontreal-Regular.otf");
+}
+
+p, a, ul li, caption {
+  font-family: 'Neue Mtl';
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Kobe';
+}
+
+em {
+	font-style: normal;
+	position: relative;
+}
+

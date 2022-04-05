@@ -10,6 +10,7 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import { HalfNote, QuarterNote } from "../../Vector/Notes";
+import { Typography } from "@mui/material";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -79,9 +80,9 @@ function How({ steps }) {
 		<>
 			<Section classes='o-how' data-theme='light' ref={container}>
 				<ContainerFluid>
-					<h1 className='o-h1 -text-center -padding-huge -split -fadeUpChars'>
+					<Typography variant='h1' textAlign='center' p={10}>
 						Finding Your Rhythm
-					</h1>
+					</Typography>
 					<div className='steps-container -relative'>
 						<div className='c-steps'>
 							<div className='c-steps_background'></div>
@@ -90,13 +91,14 @@ function How({ steps }) {
 									return (
 										<div className='c-steps_item' key={i}>
 											<Fade bottom>
-												<ReactMarkdown
-													components={{
-														root: React.createElement("p", { className: "hi" }),
-													}}
-													className='title'
-													children={step.title}
-												/>
+												<h2>
+													<ReactMarkdown
+														disallowedElements={["p"]}
+														unwrapDisallowed
+														className='title'
+														children={step.title}
+													/>
+												</h2>
 											</Fade>
 
 											<Fade bottom>

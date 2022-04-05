@@ -5,7 +5,7 @@ import React, {
 	useLayoutEffect,
 	useMemo,
 	useRef,
-	useState
+	useState,
 } from "react";
 import { Helmet } from "react-helmet-async";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -17,6 +17,7 @@ import Section from "../../Containers/Section";
 import Figure from "../../Figure/Figure";
 import ProjectGrid from "../Projects/ProjectGrid";
 import Next from "./Next";
+import { Typography } from "@mui/material";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -115,16 +116,14 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				<Section data-theme='light' classes='o-hero'>
 					<ContainerFluid>
 						<div className='o-container_inner'>
-							<div className='o-hero_text u-desktop-js-anim' ref={textWrapper}>
+							<div className=' u-desktop-js-anim' ref={textWrapper}>
 								<Fade bottom delay={500}>
-									<div className='o-hero_artistName'>
-										{info && info[0].title}
-									</div>
+									<Typography variant='h5'>{info && info[0].title}</Typography>
 								</Fade>
 								<Fade bottom delay={500}>
-									<h2 className='o-h2 -bold -split -fadeUpChars'>
+									<Typography variant='h2'>
 										{info && info[0].subtitle}
-									</h2>
+									</Typography>
 								</Fade>
 								{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
 								{/* </Fade> */}
@@ -153,20 +152,16 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				<Section classes='o-overview -padding-lg' data-theme='light'>
 					<ContainerFluid>
 						<Fade bottom>
-							<div className='o-overview_left'>
-								<ReactMarkdown
-									className='o-h3'
-									children={info && info[0].goal}
-								/>
-							</div>
+							<Typography variant='h3' component='h4'>
+								{info && info[0].goal}
+							</Typography>
 						</Fade>
 
 						<div className='o-overview_right'>
 							<Fade bottom>
-								<ReactMarkdown
-									className='o-text -body'
-									children={info && info[0].about1}
-								/>
+								<Typography variant='p' component='p'>
+									{info && info[0].about1}
+								</Typography>
 							</Fade>
 						</div>
 					</ContainerFluid>
@@ -206,7 +201,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						<div className='o-details_right'>
 							<div className='about'>
 								<Fade bottom>
-									<h3 className='o-h3'>About the Artist</h3>
+								<Typography variant="h3">About the Artist</Typography>
 								</Fade>
 								<Fade bottom>
 									<p className='o-text -body'>
@@ -223,7 +218,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							<div className='work'>
 								{/* <Fade bottom cascade> */}
 								<Fade bottom>
-									<h3 className='o-h3'>About the organization</h3>
+									<Typography variant="h3">About the organization</Typography>
 								</Fade>
 								<Fade bottom>
 									<p className='o-text -body'>

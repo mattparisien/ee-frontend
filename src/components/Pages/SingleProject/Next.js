@@ -21,7 +21,7 @@ function Next({ color, nextPost }) {
 						<div className='c-link_inner'>
 							<ContainerFluid classes='-relative -flex -align-center -justify-between'>
 								<Fade bottom>
-									<h1 className='-padding-bottom-huge -split -fadeUpChars'>
+									<h1 className=' -split -fadeUpChars'>
 										Next
 									</h1>
 								</Fade>

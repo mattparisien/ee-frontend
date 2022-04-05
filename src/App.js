@@ -14,6 +14,8 @@ import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
 import IntroCard from "./components/Transition/IntroCard";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./styles/mui/theming";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -185,61 +187,62 @@ function App() {
 	});
 
 	return (
-		<div className={classes}>
-			<HelmetProvider>
-				<Helmet>
-					<html lang='en' />
-					<title>The Eyes & Ears Agency</title>
-					<meta
-						name='description'
-						content='
+		<ThemeProvider theme={theme}>
+			<div className={classes}>
+				<HelmetProvider>
+					<Helmet>
+						<html lang='en' />
+						<title>The Eyes & Ears Agency</title>
+						<meta
+							name='description'
+							content='
 The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
 
 '
-					/>
-				</Helmet>
+						/>
+					</Helmet>
 
-				<Context
-					stateData={state.data}
-					siteControls={siteControls}
-					cursor={cursor}
-					changeCursor={changeCursor}
-					scrollRef={scrollWrapper}
-					location={location}
-				>
-					{/* <DragCursor cursor={cursor} /> */}
-					<IntroCard pending={pending} />
-					<Header
-						toggleMenu={() => setMenuActive(!menuActive)}
-						menuActive={menuActive}
-						color={menuActive ? "dark" : headerColor}
-						navItems={navItems}
+					<Context
+						stateData={state.data}
+						siteControls={siteControls}
+						cursor={cursor}
+						changeCursor={changeCursor}
+						scrollRef={scrollWrapper}
 						location={location}
-					/>
-
-					<Menu
-						isActive={menuActive}
-						navItems={navItems}
-						toggleMenu={() => setMenuActive(!menuActive)}
-					/>
-
-					<div
-						className='scroll-wrapper'
-						ref={scrollWrapper}
-						data-scroll-container
 					>
-						{/* <ArrowButton
+						{/* <DragCursor cursor={cursor} /> */}
+						<IntroCard pending={pending} />
+						<Header
+							toggleMenu={() => setMenuActive(!menuActive)}
+							menuActive={menuActive}
+							color={menuActive ? "dark" : headerColor}
+							navItems={navItems}
+							location={location}
+						/>
+
+						<Menu
+							isActive={menuActive}
+							navItems={navItems}
+							toggleMenu={() => setMenuActive(!menuActive)}
+						/>
+
+						<div
+							className='scroll-wrapper'
+							ref={scrollWrapper}
+							data-scroll-container
+						>
+							{/* <ArrowButton
 														classes='scroll-to-top'
 														color='light'
 														rotation={90}
 														handleClick={scrollToTop}
 													/> */}
 
-						{/* <ModalWrapper hoverState={hoverState} /> */}
+							{/* <ModalWrapper hoverState={hoverState} /> */}
 
-						{/* <CursorFollower /> */}
+							{/* <CursorFollower /> */}
 
-						{/* <SideMenu
+							{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
 									hasShown={state.sidebar.hasShown}
 									appRefs={appRefs}
@@ -248,24 +251,25 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									toggleMenu={toggleMenu}
 								/> */}
 
-						<main>
-							<SiteRoutes
-								addToRdefs={addToRefs}
-								location={location}
-								siteControls={siteControls}
-							/>
-						</main>
+							<main>
+								<SiteRoutes
+									addToRdefs={addToRefs}
+									location={location}
+									siteControls={siteControls}
+								/>
+							</main>
 
-						<Footer
-							info={state.data.footer}
-							addToRefs={addToRefs}
-							location={location.pathname}
-							navItems={navItems}
-						/>
-					</div>
-				</Context>
-			</HelmetProvider>
-		</div>
+							<Footer
+								info={state.data.footer}
+								addToRefs={addToRefs}
+								location={location.pathname}
+								navItems={navItems}
+							/>
+						</div>
+					</Context>
+				</HelmetProvider>
+			</div>
+		</ThemeProvider>
 	);
 }
 

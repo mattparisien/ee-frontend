@@ -23,13 +23,13 @@ function About({ aboutText }) {
 					</Reveal>
 					<div className='o-about_left -padding-lg'>
 						<ContainerFluid>
-							<ReactMarkdown
-								components={{
-									root: React.fragment,
-								}}
-								className='o-text -text-big -split -fadeUpLines'
-								children={aboutText}
-							/>
+							<h4>
+								<ReactMarkdown
+									disallowedElements={["p"]}
+									unwrapDisallowed
+									children={aboutText}
+								/>
+							</h4>
 						</ContainerFluid>
 					</div>
 				</div>
