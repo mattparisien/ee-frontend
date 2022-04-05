@@ -53,10 +53,7 @@ function ContactPage() {
 						impact resources in the music and entertainment industries, I
 						believe the cultural and philanthropic impact that can be achieved
 						from harnessing the power of music is not being sufficiently
-						leveraged.
-					</p>
-					<p className='o-text'>
-						I am humbled to play a role in the new generation of
+						leveraged. I am humbled to play a role in the new generation of
 						artist-activists who are directly engaged in the change they want to
 						see in the world.
 					</p>

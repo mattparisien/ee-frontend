@@ -1,8 +1,15 @@
 .o-page_contact {
-
 	.o-textOne {
 		.o-text {
 			margin-right: 50%;
+		}
+
+		@include media("<=tablet") {
+			.o-text {
+				margin: 0;
+				
+			
+			}
 		}
 	}
 
@@ -17,7 +24,6 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		
 
 		.o-colorBlobs {
 			height: 50vw;
@@ -25,28 +31,34 @@
 	}
 
 	.o-intro2 {
-		padding-left: 0 !important;
 		margin-left: 52%;
 		margin-top: 5rem;
 
-	
-		.o-text  {
+		@include media("<=tablet") {
+			margin: 0 !important;
+			
+		}
+
+		@include media(">=tablet") {
+			padding-left: 0;
+		}
+
+		.o-text {
 			font-size: 1.2rem;
 			line-height: 1.8rem;
 		}
-		
 	}
 
 	.o-intro {
 
 
-		&_left {
+	
 
-			.o-text  {
+		&_left {
+			.o-text {
 				font-size: 1.2rem;
 				line-height: 1.8rem;
 			}
-			
 
 			.o-text:first-child {
 				margin-top: 0;
@@ -67,6 +79,9 @@
 		}
 
 		@include media("<=tablet") {
+
+		
+
 			.o-container > div {
 				&:first-child {
 					margin: 0;
@@ -96,64 +111,14 @@
 				object-fit: cover;
 			}
 		}
+
 	}
 
-	// .o-bio {
-	// 	position: relative;
 
-	// 	min-height: 90vh;
-
-	// 	&_heading {
-	// 		width: 30vw;
-	// 		top: 0;
-	// 		left: 0;
-
-	// 	}
-
-	// 	.o-container {
-	// 		&_inner {
-	// 			position: relative;
-
-	// 			height: 100%;
-	// 		}
-
-	// 		h1 {
-	// 			margin-bottom: 5vw;
-	// 		}
-
-	// 		.o-bio_content {
-	// 			width: 40vw;
-
-	// 		}
-
-	// 		@include media("<=tablet") {
-	// 			flex-direction: column;
-	// 			justify-content: flex-start;
-
-	// 			h1 {
-	// 				margin-bottom: 4vw;
-	// 			}
-
-	// 			* {
-	// 				width: 100%;
-	// 			}
-	// 		}
-	// 	}
-	// 	&_main {
-	// 		@include media("<=tablet") {
-	// 			flex-direction: column;
-	// 			align-items: center;
-
-	// 			.react-reveal, .o-bio_content {
-	// 				width: 100% !important;
-	// 			}
-
-	// 			figure.react-reveal.c-figure {
-	// 				height: 90vw !important;
-	// 				margin-bottom: $space-lg;
-	// 			}
-	// 		}
-
-	// 	}
-	// }
+	@include media("<=tablet") {
+		.o-text {
+			font-size: 1.8rem !important;
+			line-height: 3rem !important;
+		}
+	}
 }
