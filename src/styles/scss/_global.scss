@@ -147,6 +147,10 @@ ul {
 	background-color: $green;
 	color: $light;
 
+	&, & * {
+		color: $light;
+	}
+
 	svg path {
 		fill: $light;
 		stroke: $light;
@@ -160,6 +164,11 @@ ul {
 [data-theme="red"] {
 	background-color: $red;
 	color: $light;
+
+	&, & * {
+		color: $light;
+	}
+
 
 	svg path {
 		fill: $light;
@@ -178,7 +187,12 @@ ul {
 
 [data-theme="yellow"] {
 	background-color: $yellow;
-	color: $dark;
+	
+
+	&, & * {
+		color: $dark;
+	}
+
 
 	svg path {
 		fill: $dark;
@@ -193,6 +207,11 @@ ul {
 [data-theme="blue"] {
 	background-color: $blue;
 	color: $light;
+
+	&, & * {
+		color: $light;
+	}
+
 
 	svg path {
 		fill: $light;
