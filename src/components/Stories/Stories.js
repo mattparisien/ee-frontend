@@ -21,7 +21,6 @@ function Stories({ slides }) {
 
 	useEffect(() => {
 		if (stories.current && slides) {
-			
 			const currentSlide = $(`[data-story-id=${active}]`);
 			const prevSlide = $(`[data-story-id=${prev}]`);
 

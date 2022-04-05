@@ -17,6 +17,7 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
+		
 
 		.o-colorBlobs {
 			height: 50vw;
@@ -24,7 +25,15 @@
 	}
 
 	.o-intro2 {
-		margin-left: 50%;
+		padding-left: 0 !important;
+		margin-left: 52%;
+		margin-top: 5rem;
+
+	
+		.o-text  {
+			font-size: 1.2rem;
+			line-height: 1.8rem;
+		}
 		
 	}
 
@@ -35,7 +44,7 @@
 
 			.o-text  {
 				font-size: 1.2rem;
-				line-height: 1.5rem;
+				line-height: 1.8rem;
 			}
 			
 
