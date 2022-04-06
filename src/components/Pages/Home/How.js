@@ -15,6 +15,9 @@ import { Typography } from "@mui/material";
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
+
+	console.log(steps)
+
 	const noteTl = useRef(null);
 	const container = useRef(null);
 	const scroll = useLocomotiveScroll();
@@ -89,7 +92,7 @@ function How({ steps }) {
 							{steps &&
 								steps.map((step, i) => {
 									return (
-										<div className='c-steps_item' key={i}>
+										<div className={`c-steps_item c-steps_item_${step.id}`} key={i}>
 											<Fade bottom>
 												<h2>
 													<ReactMarkdown

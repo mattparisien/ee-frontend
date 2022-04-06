@@ -33,6 +33,12 @@ export const formatPosts = arr => {
 };
 
 export const formatSteps = arr => {
+
+	console.log(arr)
+
+	arr.sort((a, b) => a.id - b.id);
+	
+
 	const formattedSteps = arr.map(step => {
 		return {
 			id: step.id,

@@ -1,7 +1,6 @@
 .o-about {
 	position: relative;
 	font-weight: bolder;
-	min-height: 80vw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -29,14 +28,7 @@
 		@include frameRevealDefaultStyles();
 	}
 
-	.c-megaphone {
-		width: 50vw;
-		position: absolute;
-		right: -10vw;
-		stroke: none;
-		transform: rotate(28deg) scaleX(-100%);
-		
-	}
+
 
 	.c-vibrations {
 

@@ -1,9 +1,11 @@
 .c-megaphone {
-	svg {
 
-		path {
-			fill: $light;
-		}
+	transform: scaleX(-100%) rotate(-30deg);
+
+	svg {
+		
+
+
 
 		path:first-child,
 		path:nth-child(2) {

@@ -66,9 +66,7 @@
 		// 	transition: 400ms ease;
 		// }
 
-		&:hover path {
-			fill: $light;
-		}
+	
 
 		path {
 			fill: $grey;
@@ -81,18 +79,18 @@
 			}
 		}
 
-		circle {
+		circle:not(.hoverCircle) {
 			stroke: $grey;
 			transition: 300ms ease;
 			stroke-width: 2px;
+		}
 
+		.hoverCircle {
+			stroke: $dark;
+			stroke-width: 2px;
 		}
 	}
-	&:hover {
-		circle, ellipse {
-			stroke: none !important;
-		}
-	}
+
 
 	&.is-light {
 		&:hover path {

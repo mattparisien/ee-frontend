@@ -3,6 +3,8 @@ import classNames from "classnames";
 import Link from "../Link/Link";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
 import $ from "jquery";
+import gsap from "gsap";
+import DrawSVGPlugin from "gsap/src/DrawSVGPlugin";
 
 function ArrowButton(
 	{ handleClick, rotation, classes, color, isRouterLink, href },
@@ -13,15 +15,24 @@ function ArrowButton(
 		[`is-${color}`]: color,
 	});
 
+	gsap.registerPlugin(DrawSVGPlugin);
+
 	const circle = useRef(null);
 
 	const location = useMouseMove();
+	const tl = useRef(gsap.timeline());
+
 
 
 	return !isRouterLink ? (
-		<button className={buttonClasses} onClick={handleClick} ref={ref}>
+		<button
+			className={buttonClasses}
+			onClick={handleClick}
+			ref={ref}
+		
+		>
 			<Arrow rotation={rotation} color={color} location={location} r />
-			<div className='circle' ref={circle}></div>
+			<div className='circle'></div>
 		</button>
 	) : (
 		<Link
@@ -37,6 +48,13 @@ function ArrowButton(
 
 function Arrow({ rotation, color, location }) {
 	const svg = useRef(null);
+	const circle = useRef(null);
+	gsap.registerPlugin(DrawSVGPlugin);
+	useEffect(() => {
+		gsap.set(circle.current, {
+			drawSVG: 0,
+		});
+	}, []);
 
 	return (
 		<svg
@@ -54,17 +72,28 @@ function Arrow({ rotation, color, location }) {
 			}}
 		>
 			{" "}
-			<path d='M42.84 45.3408C42.0133 47.0475 41.24 48.3275 40.52 49.1808L63.84 49.1808V50.8608L40.52 50.8608C41.24 51.7142 42.0133 52.9942 42.84 54.7008H41.44C39.76 52.7542 38 51.3142 36.16 50.3808L36.16 49.6608C38 48.7542 39.76 47.3142 41.44 45.3408L42.84 45.3408Z'></path>{" "}
 			<path
 				d='M42.84 45.3408C42.0133 47.0475 41.24 48.3275 40.52 49.1808L63.84 49.1808V50.8608L40.52 50.8608C41.24 51.7142 42.0133 52.9942 42.84 54.7008H41.44C39.76 52.7542 38 51.3142 36.16 50.3808L36.16 49.6608C38 48.7542 39.76 47.3142 41.44 45.3408L42.84 45.3408Z'
-				className='c-arrow-svg_arrow'
+				className='arrow1'
+			></path>{" "}
+			<path
+				d='M42.84 45.3408C42.0133 47.0475 41.24 48.3275 40.52 49.1808L63.84 49.1808V50.8608L40.52 50.8608C41.24 51.7142 42.0133 52.9942 42.84 54.7008H41.44C39.76 52.7542 38 51.3142 36.16 50.3808L36.16 49.6608C38 48.7542 39.76 47.3142 41.44 45.3408L42.84 45.3408Z'
+				className='arrow2'
 			></path>{" "}
 			<circle
 				cx='50'
 				cy='50.3408'
 				r='49'
 				transform='rotate(-180 50 50.3408)'
-			></circle>{" "}
+			></circle>
+			<circle
+				cx='50'
+				cy='50.3408'
+				r='49'
+				transform='rotate(-180 50 50.3408)'
+				ref={circle}
+				className='hoverCircle'
+			></circle>
 		</svg>
 	);
 }

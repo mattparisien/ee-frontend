@@ -5,37 +5,34 @@ import Section from "../../Containers/Section";
 import Megaphone from "../../Vector/Megaphone";
 import Reveal from "react-reveal";
 import Vibrations from "../../Vector/Vibrations";
+import SplitLayout from "../../Layouts/SplitLayout";
+import { Container, Typography } from "@mui/material";
 
 function About({ aboutText }) {
 	return (
 		<>
 			<Section data-theme='dark' classes='o-about -padding-lg'>
-				<div className='o-about_content'>
-					<Reveal>
-						<div className='o-about_right -relative -padding-lg'>
-							<ContainerFluid classes='-sretchX -stretchY'>
-								<div className='inner -relative -stretchY'>
-									<Megaphone />
-									<Vibrations />
-								</div>
-							</ContainerFluid>
-						</div>
-					</Reveal>
-					<div className='o-about_left -padding-lg'>
-						<ContainerFluid>
-							<h4>
-								<ReactMarkdown
-									disallowedElements={["p"]}
-									unwrapDisallowed
-									children={aboutText}
-								/>
-							</h4>
-						</ContainerFluid>
+				<ContainerFluid>
+					<div className='o-about_content'>
+						<SplitLayout
+							leftComponent={<SectionLeft text={aboutText} />}
+							rightComponent={<SectionRight />}
+							gap={5}
+							wrap="nowrap"
+						/>
 					</div>
-				</div>
+				</ContainerFluid>
 			</Section>
 		</>
 	);
+}
+
+function SectionLeft({ text }) {
+	return <Typography variant='h4'>{text}</Typography>;
+}
+
+function SectionRight({ text }) {
+	return <Megaphone/>;
 }
 
 export default About;
