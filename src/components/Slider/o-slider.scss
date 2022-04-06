@@ -1,4 +1,17 @@
 .o-slider {
+
+
+	@include media("<=tablet") {
+		.c-arrow-button {
+			width: 5rem;
+			height: 5rem;
+
+			&:nth-child(1) {
+				margin-right: 1rem;
+			}
+		}
+	}
+
 	nav {
 		width: 100%;
 		display: flex;
@@ -6,6 +19,7 @@
 		justify-content: space-between;
 		padding: 3rem 0;
 	}
+	
 
 	&_item {
 		height: 25vw;

@@ -9,27 +9,29 @@ import Link from "../Link/Link";
 import ContainerFluid from "../Containers/ContainerFluid";
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 function Slider({ items }) {
+	const mobile = useMediaQuery("(max-width: 600px)");
 	SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
 
-	console.log("items", items);
-
 	return (
 		<div className='o-slider'>
 			<ContainerFluid>
-				<nav className='o-slider_nav'>
-					<ArrowButton ref={navigationPrevRef} />
-					<ArrowButton ref={navigationNextRef} rotation={"180"} />
-				</nav>
+				{!mobile && (
+					<nav className='o-slider_nav'>
+						<ArrowButton ref={navigationPrevRef} />
+						<ArrowButton ref={navigationNextRef} rotation={"180"} />
+					</nav>
+				)}
 				<Swiper
 					height={"100%"}
 					breakpoints={{
-						300: {
-							slidesPerView: 2,
+						400: {
+							slidesPerView: 1,
 							spaceBetween: 40,
 						},
 						700: {
@@ -61,6 +63,18 @@ function Slider({ items }) {
 							</SwiperSlide>
 						))}
 				</Swiper>
+				{mobile && (
+					<Box
+						sx={{ width: "100%" }}
+						display='flex'
+						alignItems={"center"}
+						justifyContent='center'
+						mt={4}
+					>
+						<ArrowButton ref={navigationPrevRef} />
+						<ArrowButton ref={navigationNextRef} rotation={"180"} />
+					</Box>
+				)}
 			</ContainerFluid>
 		</div>
 	);
