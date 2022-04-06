@@ -25,7 +25,7 @@
 		transform: translateY(0);
 
 		.c-list_social {
-			opacity:  1 
+			opacity: 1;
 		}
 	}
 
@@ -37,11 +37,9 @@
 		padding-bottom: 1rem;
 
 		a svg {
-		font-size: 2rem;
-		fill: $light;
+			font-size: 2rem;
+			fill: $light;
 		}
-
-		
 	}
 
 	&_nav {
@@ -57,19 +55,15 @@
 			justify-content: center;
 			height: 100%;
 			text-align: center;
-			
-			
+
 			li {
-				
 				margin-right: 0 !important;
 				text-transform: uppercase;
 				overflow: hidden;
 
-
 				.c-highlight {
 					height: 100%;
 				}
-
 
 				.c-link {
 					transform: translateY(-150%);
@@ -77,36 +71,22 @@
 					display: block;
 					transition: none;
 				}
-				
 
 				&:not(:last-child) {
 					margin-bottom: 3rem;
 				}
-
 			}
-
-		
 
 			li:hover .c-link {
 				color: lighten($yellow, 10%);
 			}
 
-		
-
-			
-
 			.c-link {
 				color: $light;
-				font-size: 9rem !important;
-				line-height: 9rem !important;
+				font-size: 6rem;
+				line-height: 6rem;
+				font-family: 'Kobe';
 				text-transform: uppercase;
-			
-
-				@include media("<=tablet") {
-					font-size: 18vw !important;
-					line-height: 18vw !important;
-					text-transform: uppercase;
-				}
 			}
 		}
 	}

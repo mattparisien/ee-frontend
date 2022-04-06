@@ -13,7 +13,7 @@ function Work({ projects }) {
 
 
 	return (
-		<Section classes='o-work -padding-huge' data-theme='light'>
+		<Section classes='o-work ' data-theme='light'>
 			<div className='o-heading-wrapper -relative'>
 				<Typography variant='h1' textAlign={"center"} mb={!mobile ? 0 : 4}>
 					Featured Work

@@ -54,6 +54,7 @@ function Slider({ items }) {
 						items.map(item => (
 							<SwiperSlide key={item.id}>
 								<Item
+									mobile={mobile}
 									projectId={item.id}
 									artistName={item.title}
 									projectTitle={item.subtitle}
@@ -80,7 +81,7 @@ function Slider({ items }) {
 	);
 }
 
-function Item({ src, alt, projectId, projectTitle, artistName }) {
+function Item({ src, alt, projectId, projectTitle, artistName, mobile }) {
 	const desktopInfoStyles = {
 		width: "100%",
 		height: "100%",
@@ -97,8 +98,8 @@ function Item({ src, alt, projectId, projectTitle, artistName }) {
 
 	return (
 		<Link classes='o-slider_item' isRouterLink href={`/projects/${projectId}`}>
-			<img src={src} alt={alt}></img>
-			<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
+			<Box style={{height: mobile ? "80%" : "100%"}}component="img" src={src} alt={alt}></Box>
+		{!mobile && 	<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
 				<Typography
 					className='info_desktop--artist'
 					variant='h5'
@@ -121,11 +122,13 @@ function Item({ src, alt, projectId, projectTitle, artistName }) {
 				>
 					{projectTitle}
 				</Typography>
-			</Box>
-			<div className='info_mobile'>
-				<div className='info_mobile--title'>{projectTitle}</div>
-				<div className='info_mobile--artist'>{artistName}</div>
-			</div>
+			</Box>}
+			{mobile && (
+				<Box className='info_mobile'>
+					<Typography variant="h5" component="p" className='info_mobile--title'>{projectTitle}</Typography>
+					<Typography variant="h5" component="p" className='info_mobile--artist'>{artistName}</Typography>
+				</Box>
+			)}
 		</Link>
 	);
 }

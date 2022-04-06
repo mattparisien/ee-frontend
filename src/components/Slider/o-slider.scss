@@ -1,6 +1,4 @@
 .o-slider {
-
-
 	@include media("<=tablet") {
 		.c-arrow-button {
 			width: 5rem;
@@ -19,7 +17,6 @@
 		justify-content: space-between;
 		padding: 3rem 0;
 	}
-	
 
 	&_item {
 		height: 25vw;
@@ -37,13 +34,19 @@
 
 		&:hover img {
 			transform: scale(1.1);
+
+			@media screen and (max-width: 600px) {
+				transform: none;
+			}
 		}
 
-		.info_desktop--artist, .info_desktop--title {
+		.info_desktop--artist,
+		.info_desktop--title {
 			transition: $transition;
 		}
 
-		&:hover .info_desktop--artist, &:hover .info_desktop--title {
+		&:hover .info_desktop--artist,
+		&:hover .info_desktop--title {
 			transform: none;
 			opacity: 1;
 		}
@@ -62,6 +65,10 @@
 			opacity: 0;
 			content: "";
 			transition: $transition;
+
+			@media screen and (max-width: 800px) {
+				display: none;
+			}
 		}
 
 		.info_mobile {
@@ -84,7 +91,7 @@
 
 		img {
 			width: 100%;
-			height: 100%;
+
 			object-fit: cover;
 			object-position: center;
 			filter: grayscale(1);
