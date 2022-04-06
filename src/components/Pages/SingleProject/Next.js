@@ -1,13 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import Marquee from "react-fast-marquee";
 import Fade from "react-reveal/Fade";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Link from "../../Link/Link";
 import Arrow from "../../Vector/Arrow";
+import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 function Next({ color, nextPost }) {
 	const container = useRef(null);
+
+	const marqueeWords = useMemo(() => {
+		if (nextPost) {
+			const array = [];
+			for (let i = 0; i < 10; i++) {
+				array.push(i % 2 == 0 ? nextPost.subtitle : nextPost.title);
+			}
+			return array;
+		}
+	}, [nextPost]);
 
 	return (
 		<>
@@ -20,27 +32,24 @@ function Next({ color, nextPost }) {
 					>
 						<div className='c-link_inner'>
 							<ContainerFluid classes='-relative -flex -align-center -justify-between'>
-								<Fade bottom>
-									<h1 className=' -split -fadeUpChars'>
-										Next
-									</h1>
-								</Fade>
-								<Arrow color='dark' />
+								<Box
+									display='flex'
+									justifyContent='space-between'
+									alignItems='center'
+									flexDirection="row-reverse"
+								>
+									<Fade bottom>
+										<Typography variant='h2' className=' -split -fadeUpChars'>
+											Next
+										</Typography>
+									</Fade>
+									<Arrow color='dark' />
+								</Box>
 							</ContainerFluid>
 							<Fade bottom>
 								<Marquee gradient={false} direction={"right"}>
-									<h1 className=' marquee-item'>
-										{nextPost && nextPost.title}
-									</h1>
-									<h1 className=' marquee-item'>
-										{nextPost && nextPost.subtitle}
-									</h1>
-									<h1 className=' marquee-item'>
-										{nextPost && nextPost.title}
-									</h1>
-									<h1 className=' marquee-item'>
-										{nextPost && nextPost.subtitle}
-									</h1>
+									{marqueeWords &&
+										marqueeWords.map(word => <MarqueeItem text={word} />)}
 								</Marquee>
 							</Fade>
 						</div>
@@ -48,6 +57,14 @@ function Next({ color, nextPost }) {
 				</Section>
 			</Fade>
 		</>
+	);
+}
+
+function MarqueeItem({ text }) {
+	return (
+		<Typography variant='h2' className=' marquee-item'>
+			{text}
+		</Typography>
 	);
 }
 

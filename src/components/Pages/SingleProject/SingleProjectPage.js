@@ -18,6 +18,8 @@ import Figure from "../../Figure/Figure";
 import ProjectGrid from "../Projects/ProjectGrid";
 import Next from "./Next";
 import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -32,45 +34,45 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 	const accentColor = useMemo(() => shuffleColors(), []);
 
-	useEffect(() => {
-		console.log(info);
-	}, [info]);
+	// useEffect(() => {
+	// 	console.log(info);
+	// }, [info]);
 
-	useLayoutEffect(() => {
-		const desktopTimeline = () => {
-			tl.current
+	// useLayoutEffect(() => {
+	// 	const desktopTimeline = () => {
+	// 		tl.current
 
-				.set(revealer.current, { transition: "none" })
-				.set(textWrapper.current, { opacity: 1 })
+	// 			.set(revealer.current, { transition: "none" })
+	// 			.set(textWrapper.current, { opacity: 1 })
 
-				// .to(lines, {
-				// 	y: 0,
-				// 	opacity: 1,
-				// 	ease: "power3.out",
-				// 	duration: 1,
-				// 	stagger: 0.1,
-				// })
-				.to(
-					textWrapper.current,
-					{
-						bottom: 0,
-						top: "50%",
-						y: "-50%",
-						duration: 3,
-						ease: "expo.inOut",
-					},
-					0.4
-				);
+	// 			// .to(lines, {
+	// 			// 	y: 0,
+	// 			// 	opacity: 1,
+	// 			// 	ease: "power3.out",
+	// 			// 	duration: 1,
+	// 			// 	stagger: 0.1,
+	// 			// })
+	// 			.to(
+	// 				textWrapper.current,
+	// 				{
+	// 					bottom: 0,
+	// 					top: "50%",
+	// 					y: "-50%",
+	// 					duration: 3,
+	// 					ease: "expo.inOut",
+	// 				},
+	// 				0.4
+	// 			);
 
-			return tl.current;
-		};
+	// 		return tl.current;
+	// 	};
 
-		setTimeout(() => {
-			if (!mobile.matches) {
-				desktopTimeline();
-			}
-		}, 400);
-	}, [mobile.matches]);
+	// 	setTimeout(() => {
+	// 		if (!mobile.matches) {
+	// 			desktopTimeline();
+	// 		}
+	// 	}, 400);
+	// }, [mobile.matches]);
 
 	useEffect(() => {
 		//Find query param
@@ -115,28 +117,42 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 			<div className='o-page o-single-project'>
 				<Section data-theme='light' classes='o-hero'>
 					<ContainerFluid>
-						<div className='o-container_inner'>
-							<div className=' u-desktop-js-anim' ref={textWrapper}>
-								<Fade bottom delay={500}>
-									<Typography variant='h5'>{info && info[0].title}</Typography>
-								</Fade>
-								<Fade bottom delay={500}>
-									<Typography variant='h2'>
-										{info && info[0].subtitle}
-									</Typography>
-								</Fade>
+						<Grid container spacing={5} mt={10}>
+							<Grid
+								item
+								className=' u-desktop-js-anim'
+								ref={textWrapper}
+								xs={12}
+								md={6}
+								lg={6}
+								display='flex'
+								flexDirection={"column"}
+								alignItems={"flex-start"}
+								justifyContent={"center"}
+							>
+								<Typography variant='h5'>{info && info[0].title}</Typography>
+
+								<Typography variant='h2'>{info && info[0].subtitle}</Typography>
+
 								{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
 								{/* </Fade> */}
-							</div>
+							</Grid>
 
-							<div className='o-hero_image' ref={heroImage}>
+							<Grid
+								item
+								className='o-hero_image'
+								ref={heroImage}
+								xs={12}
+								s={6}
+								md={6}
+							>
 								<Figure
 									noReveal
 									effectDelay={5000}
 									src={info && info[0].media.featureImage.url}
 									alt={info && info[0].media.featureImage.altText}
 								/>
-							</div>
+							</Grid>
 
 							{/* 				
 					<div className='o-hero_image-wrapper-2'>
@@ -145,25 +161,25 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							alt={info && info[0].media.featureImage.altText}
 						/>
 					</div> */}
-						</div>
+						</Grid>
 					</ContainerFluid>
 				</Section>
 
 				<Section classes='o-overview -padding-lg' data-theme='light'>
 					<ContainerFluid>
-						<Fade bottom>
-							<Typography variant='h3' component='h4'>
-								{info && info[0].goal}
-							</Typography>
-						</Fade>
+						<Grid container spacing={5}>
+							<Grid item xs={12} md={6} lg={6}>
+								<Typography variant='h4' component='h4'>
+									{info && info[0].goal}
+								</Typography>
+							</Grid>
 
-						<div className='o-overview_right'>
-							<Fade bottom>
+							<Grid item xs={12} md={6} lg={6}>
 								<Typography variant='p' component='p'>
 									{info && info[0].about1}
 								</Typography>
-							</Fade>
-						</div>
+							</Grid>
+						</Grid>
 					</ContainerFluid>
 				</Section>
 				{info && info[0].media.additional && (
@@ -184,24 +200,10 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				)}
 				<Section classes='o-details -padding-top-lg' data-theme='light'>
 					<ContainerFluid>
-						<div className='o-details_left'>
-							<Fade bottom>
-								<div className='o-details_left_image'>
-									{info && info[0].media.additional ? (
-										<img
-											src={info[0].media.additional[1].attributes.url}
-											alt=''
-										/>
-									) : (
-										""
-									)}
-								</div>
-							</Fade>
-						</div>
-						<div className='o-details_right'>
-							<div className='about'>
+						<Grid container spacing={5}>
+							<Grid item xs={12} md={6} lg={6} className='aboutArtist'>
 								<Fade bottom>
-								<Typography variant="h3">About the Artist</Typography>
+									<Typography variant='h3'>About the Artist</Typography>
 								</Fade>
 								<Fade bottom>
 									<p className='o-text -body'>
@@ -214,11 +216,11 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 										nostrum tempora deserunt?
 									</p>
 								</Fade>
-							</div>
-							<div className='work'>
+							</Grid>
+							<Grid className='aboutOrg' item xs={12} md={6} lg={6}>
 								{/* <Fade bottom cascade> */}
 								<Fade bottom>
-									<Typography variant="h3">About the organization</Typography>
+									<Typography variant='h3'>About the organization</Typography>
 								</Fade>
 								<Fade bottom>
 									<p className='o-text -body'>
@@ -232,8 +234,8 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 									</p>
 								</Fade>
 								{/* </Fade> */}
-							</div>
-						</div>
+							</Grid>
+						</Grid>
 					</ContainerFluid>
 				</Section>
 
