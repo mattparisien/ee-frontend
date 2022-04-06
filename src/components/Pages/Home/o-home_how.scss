@@ -500,29 +500,12 @@
 			margin-bottom: 8vw;
 		}
 
-		.title,
-		.title p {
-			font-size: 19vw;
-			line-height: 19vw;
-		}
-
 		&_sheet {
 			display: none;
 		}
 
-		p {
-			font-size: 3vw;
-			line-height: 4vw;
-		}
 
-		.title {
-			margin: 0;
-
-			p {
-				font-size: 9vw;
-				line-height: 9vw;
-			}
-		}
+		
 
 		&_item {
 			grid-column: 1/13 !important;

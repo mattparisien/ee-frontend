@@ -6,6 +6,7 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import ProjectGrid from "./ProjectGrid";
+import SearchBar from "../../Search/SearchBar";
 
 export default function ProjectPage() {
 	gsap.registerPlugin(DrawSVGPlugin);
@@ -28,6 +29,7 @@ export default function ProjectPage() {
 			</Section>
 			<Section classes='-padding-lg'>
 				<ContainerFluid classes='-bg-light'>
+					<SearchBar/>
 					<ProjectGrid
 						variant='projects'
 						items={data.posts}

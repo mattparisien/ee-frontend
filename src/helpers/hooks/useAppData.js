@@ -30,6 +30,9 @@ export default function useAppData(scrollRef) {
 		user: {
 			isVisitor: true,
 		},
+		search: {
+			currentResults: {},
+		},
 		scroller: null,
 		headerColor: "dark",
 		sidebar: {
@@ -41,6 +44,26 @@ export default function useAppData(scrollRef) {
 		data: {},
 		pending: true,
 	});
+
+	const getSearchResults = searchTerm => {
+		const projects = state.data.projects;
+
+		return projects.filter(project => project.Title.includes(searchTerm));
+	};
+
+	const setSearch = searchTerm => {
+		setState(prev => ({
+			...prev,
+			search: { ...prev.search, currentResults: getSearchResults(searchTerm) },
+		}));
+	};
+
+	const setSearchTerm = searchTerm => {
+		setState(pev => ({
+			...prev,
+			search: { ...prev.search, currentTerm: searchTerm },
+		}));
+	};
 
 	const changeCursor = value => {
 		setState(prev => ({ ...prev, cursor: value }));
@@ -70,7 +93,7 @@ export default function useAppData(scrollRef) {
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data)
+				console.log(data);
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
@@ -116,5 +139,6 @@ export default function useAppData(scrollRef) {
 		cursor: state.cursor,
 		changeCursor,
 		pending: state.pending,
+		cursorState,
 	};
 }
