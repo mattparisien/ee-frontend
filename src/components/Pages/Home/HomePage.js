@@ -12,10 +12,11 @@ import Hero from "./Hero";
 import How from "./How";
 import Work from "./Work";
 
-function HomePage() {
+function HomePage({ pageHeading }) {
+	
+
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 	const data = useContext(DataContext);
-
 	const scroll = useLocomotiveScroll();
 
 	useEffect(() => {
@@ -43,14 +44,15 @@ function HomePage() {
 	return (
 		<>
 			<div className='o-page o-page_home'>
-				<Hero />
+				<Hero pageHeading={pageHeading}
+				/>
 				<About aboutText={data.about && data.about.body1} />
 				<How steps={data && data.steps} />
 
 				<Work projects={data.posts && data.posts.slice(0, 6)} />
 
 				<Section
-					classes='o-stories -fullHeight -flex -align-center -justify-center'
+					classes='o-stories -flex -align-center -justify-center'
 					data-theme='light'
 				>
 					<ContainerFluid>

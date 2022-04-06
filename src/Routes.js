@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import HomePage from "./components/Pages/Home/HomePage";
@@ -7,54 +7,57 @@ import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPag
 import ContactPage from "./components/Pages/Contact/ContactPage";
 
 function SiteRoutes(props) {
-	const { addToRefs, location } = props;
+	const { addToRefs, location, pages } = props;
 
+	const [pageHeadings, setPageHeadings] = useState(null);
 
+	const pageSchema = {
+		about: {
+			path: "/about",
+			component: ContactPage,
+			title: "about",
+		},
+		home: {
+			path: "/",
+			component: HomePage,
+			title: "home",
+		},
+		projects: {
+			path: "/projects",
+			component: ProjectPage,
+			title: "projects",
+		},
+		singleProject: {
+			path: "/projects/:id",
+			component: SingleProjectPage,
+			title: "singleproject",
+		},
+	};
+
+	useEffect(() => {
+		if (pages) {
+			const newObj = {};
+
+			pages.forEach(page => (newObj[page.name.toLowerCase()] = page.heading));
+
+			setPageHeadings(newObj);
+		}
+	}, [pages]);
 
 	return (
 		<>
 			<Routes location={location} key={location.pathname}>
-				<Route
-					path='/'
-					element={
-						<HomePage
-							addToRefs={addToRefs}
-							toggleTransitioning={props.siteControls.setTransitioning}
-							transitioning={props.siteControls.transitioning}
-						/>
-					}
-				/>
-				<Route
-					path='/contact'
-					element={
-						<ContactPage
-							addToRefs={addToRefs}
-							key={location.pathname}
-							// toggleTransitioning={props.siteControls.setTransitioning}
-							// transitioning={props.siteControls.transitioning}
-						/>
-					}
-				/>
-				<Route
-					path='/projects'
-					element={<ProjectPage addToRefs={addToRefs} />}
-					key={location.pathname}
-					toggleTransitioning={props.siteControls.setTransitioning}
-					transitioning={props.siteControls.transitioning}
-				/>
-				<Route
-					path='/projects/:id'
-					element={<SingleProjectPage location={location} />}
-					key={location.pathname}
-					toggleTransitioning={props.siteControls.setTransitioning}
-					transitioning={props.siteControls.transitioning}
-				/>
-				{/* <Route
-					path='/projects/:id'
-					element={<ProjectItem addToRefs={addToRefs} />}
-					key={location.pathname}
-				/> */}
-				{/* <Route path='/*' element={<NotFound />} key={location.pathname} /> */}
+				{Object.entries(pageSchema).map(page => (
+					<Route
+						path={page[1].path}
+						element={React.createElement(page[1].component, {
+							key: location.pathname,
+							pageHeading:
+								pageHeadings && pageHeadings[page[1].title.toLowerCase()],
+						})}
+						key={location.pathname}
+					/>
+				))}
 			</Routes>
 		</>
 	);

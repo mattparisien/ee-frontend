@@ -17,7 +17,6 @@ import IntroCard from "./components/Transition/IntroCard";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./styles/mui/theming";
 
-
 function App() {
 	const scrollWrapper = useRef(null);
 
@@ -37,8 +36,8 @@ function App() {
 		cursor,
 		changeCursor,
 		pending,
-		search, 
-		setSearch
+		search,
+		setSearch,
 	} = useAppData();
 
 	const [headerColor, setHeaderColor] = useState("light");
@@ -261,6 +260,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									addToRdefs={addToRefs}
 									location={location}
 									siteControls={siteControls}
+									pages={state.data.pages}
 								/>
 							</main>
 

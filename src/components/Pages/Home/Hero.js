@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Section from "../../Containers/Section";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import { Typography } from "@mui/material";
 import { DrawnLogo } from "../../Vector/Svg";
 
-function Hero() {
+function Hero({ pageHeading }) {
+	const words = useMemo(() => {
+		return pageHeading && pageHeading.split(" ");
+	}, [pageHeading]);
+
 	return (
 		<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
 			<ContainerFluid classes='-stretchX -stretchY'>
 				<div className='o-hero_inner -relative -stretchX -stretchY'>
 					<Typography variant='h1' className='o-hero_word'>
-						Social
+						{words && words[0]}
 					</Typography>
 					<Typography
 						variant='h1'
 						className='o-hero_word'
 						sx={{ textAlign: "right" }}
 					>
-						Impact
+						{words && words[1]}
 					</Typography>
 					<Typography variant='h1' className='o-hero_word'>
-						Agency
+					{words && words[2]}
 					</Typography>
 					<div className='o-hero_logo'>
 						<div className='inner -relative'>

@@ -8,7 +8,7 @@ import ColorBlobs from "../../Drawings/ColorBlobs";
 import ProjectGrid from "./ProjectGrid";
 import SearchBar from "../../Search/SearchBar";
 
-export default function ProjectPage() {
+export default function ProjectPage({ pageHeading }) {
 	gsap.registerPlugin(DrawSVGPlugin);
 	const data = useContext(DataContext);
 	const { search } = useContext(SearchContext);
@@ -22,7 +22,7 @@ export default function ProjectPage() {
 						data-scroll
 						data-scroll-speed={2}
 					>
-						Projects
+						{pageHeading && pageHeading}
 					</h2>
 				</div>
 

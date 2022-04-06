@@ -19,7 +19,7 @@ export default function useAppData(scrollRef) {
 		},
 		{
 			name: "About",
-			path: "/contact",
+			path: "/about",
 		},
 	];
 
@@ -84,6 +84,7 @@ export default function useAppData(scrollRef) {
 			`${basePath}/footer`,
 			`${basePath}/bio?populate=*`,
 			`${basePath}/socials`,
+			`${basePath}/pages`,
 		];
 
 		const promiseArray = [...urls].map(fetchURL);
@@ -102,13 +103,17 @@ export default function useAppData(scrollRef) {
 					name: account.attributes.Name,
 					url: account.attributes.Url,
 				}));
-
-				console.log('testimonials', formattedTestimonials)
+				const formattedPages = data[7].data.data.map(page => ({
+					id: page.id,
+					name: page.attributes.Title,
+					heading: page.attributes.Heading,
+				}));
 
 				setState(prev => ({
 					...prev,
 					data: {
 						...prev.data,
+						pages: formattedPages,
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
@@ -141,5 +146,6 @@ export default function useAppData(scrollRef) {
 
 		search: state.search,
 		setSearch,
+		
 	};
 }

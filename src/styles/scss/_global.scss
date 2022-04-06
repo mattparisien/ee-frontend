@@ -65,9 +65,6 @@ ul {
 	padding: 0;
 }
 
-p strong {
-	font-family: 'Kobe Bold';
-}
 
 .line-wrapper {
 	overflow: hidden;
@@ -79,6 +76,9 @@ p strong {
 	}
 }
 
+h1 {
+	font-family: 'Kobe Bold';
+}
 
 
 @media (min-width: 700px) and (max-width: 1024px) {

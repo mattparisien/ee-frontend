@@ -4,8 +4,9 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import Figure from "../../Figure/Figure";
+import { Typography, Box } from "@mui/material";
 
-function ContactPage() {
+function ContactPage({pageHeading}) {
 	const { bio } = useContext(DataContext);
 
 	console.log(bio);
@@ -13,7 +14,7 @@ function ContactPage() {
 	return (
 		<div className='o-page o-page_contact'>
 			<Section classes='o-hero'>
-				<h1 className='o-h1 -split -fadeUpChars'>Meet Sammy</h1>
+				<h1 className='o-h1 -split -fadeUpChars'>{pageHeading && pageHeading}</h1>
 				<ColorBlobs />
 			</Section>
 			<Section classes='o-textOne'>
