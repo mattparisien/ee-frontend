@@ -12,6 +12,7 @@
 .c-stories {
 	margin: 0 auto;
 	position: relative;
+	position: relative;
 
 	.o-h2 {
 		text-align: left;
@@ -19,7 +20,7 @@
 	}
 
 	&_frame {
-		display: none;
+		
 		@include media("<=phoneL") {
 			display: none;
 		}

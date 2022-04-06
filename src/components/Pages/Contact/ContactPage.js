@@ -24,19 +24,21 @@ function ContactPage({ pageHeading }) {
 				<ColorBlobs />
 			</Section>
 			<Section className='o-bio'>
-				<ContainerFluid>
-					<SplitLayout
-						gap={5}
-						wrap={mobile ? "wrap" : "nowrap"}
-						leftComponent={<Bio text={bio && bio.body} />}
-						rightComponent={
-							<Portrait
-								image={bio && bio.image.src}
-								imageAlt={bio && bio.image.imageAlt}
-							/>
-						}
-					/>
-				</ContainerFluid>
+				<Box mt={10} mb={10}>
+					<ContainerFluid>
+						<SplitLayout
+							gap={5}
+							wrap={mobile ? "wrap" : "nowrap"}
+							leftComponent={<Bio text={bio && bio.body} />}
+							rightComponent={
+								<Portrait
+									image={bio && bio.image.src}
+									imageAlt={bio && bio.image.imageAlt}
+								/>
+							}
+						/>
+					</ContainerFluid>
+				</Box>
 			</Section>
 		</div>
 	);
@@ -44,9 +46,13 @@ function ContactPage({ pageHeading }) {
 
 function Portrait({ image }) {
 	return (
-		<Card width='100%' sx={{position: "relative", overflow: "visible"}} className="-frame-reveal">
+		<Card
+			width='100%'
+			sx={{ position: "relative", overflow: "visible" }}
+			className='-frame-reveal'
+		>
 			<CardMedia component='img' image={image} />
-			<Frame/>
+			<Frame />
 		</Card>
 	);
 }

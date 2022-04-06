@@ -11,6 +11,7 @@ import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import { HalfNote, QuarterNote } from "../../Vector/Notes";
 import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);

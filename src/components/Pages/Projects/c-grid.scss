@@ -4,6 +4,14 @@
 }
 
 .c-grid {
+	&_item {
+		transform: scale(0.7);
+
+		@include media("<=tablet") {
+			transform: scale(1);
+		}
+	}
+
 	@include media(">=tablet") {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
@@ -31,7 +39,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		
+
 		position: relative;
 
 		&.c-link {
@@ -59,8 +67,6 @@
 			width: 100%;
 			height: 100%;
 			opacity: 0;
-
-		
 		}
 
 		&_loader {
@@ -261,7 +267,7 @@
 	&_description {
 		transition-delay: 100ms;
 		margin: 0;
-		
+
 		font-size: 1.8rem;
 		text-transform: none;
 		align-self: flex-end;
@@ -273,8 +279,6 @@
 	}
 
 	&.c-grid_media {
-
-
 		.c-grid_item {
 			overflow: hidden;
 			height: 100%;

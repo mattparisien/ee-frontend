@@ -9,6 +9,7 @@ import SplitLayout from "../../Layouts/SplitLayout";
 import { Container, Typography } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import Markdown from "../../Markdown/Markdown";
+import { Box } from "@mui/material";
 
 function About({ aboutText }) {
 	const matches = useMediaQuery("(max-width: 1000px)");

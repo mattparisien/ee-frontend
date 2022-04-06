@@ -6,6 +6,7 @@ import Slider from "../../Slider/Slider";
 import Line from "../../Vector/Line";
 import { Typography } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
@@ -18,7 +19,7 @@ function Work({ projects }) {
 	return (
 		<Section classes='o-work ' data-theme='light'>
 			<div className='o-heading-wrapper -relative'>
-				<Typography variant='h1' textAlign={"center"} mb={!mobile ? 0 : 4}>
+				<Typography variant='h1' textAlign={"center"} mb={!mobile ? 0 : 4} pb={10}>
 					Featured Work
 				</Typography>
 				{/* <Line /> */}

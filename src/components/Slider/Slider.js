@@ -21,12 +21,6 @@ function Slider({ items }) {
 	return (
 		<div className='o-slider'>
 			<ContainerFluid>
-				{!mobile && (
-					<nav className='o-slider_nav'>
-						<ArrowButton ref={navigationPrevRef} />
-						<ArrowButton ref={navigationNextRef} rotation={"180"} />
-					</nav>
-				)}
 				<Swiper
 					height={"100%"}
 					breakpoints={{
@@ -76,6 +70,12 @@ function Slider({ items }) {
 						<ArrowButton ref={navigationNextRef} rotation={"180"} />
 					</Box>
 				)}
+				{!mobile && (
+					<nav className='o-slider_nav'>
+						<ArrowButton ref={navigationPrevRef} />
+						<ArrowButton ref={navigationNextRef} rotation={"180"} />
+					</nav>
+				)}
 			</ContainerFluid>
 		</div>
 	);
@@ -98,35 +98,50 @@ function Item({ src, alt, projectId, projectTitle, artistName, mobile }) {
 
 	return (
 		<Link classes='o-slider_item' isRouterLink href={`/projects/${projectId}`}>
-			<Box style={{height: mobile ? "80%" : "100%"}}component="img" src={src} alt={alt}></Box>
-		{!mobile && 	<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
-				<Typography
-					className='info_desktop--artist'
-					variant='h5'
-					sx={{
-						alignSelf: "flex-start",
-						transform: "translateY(120%)",
-						opacity: 0,
-					}}
-				>
-					{artistName}
-				</Typography>
-				<Typography
-					className='info_desktop--title'
-					variant='h5'
-					sx={{
-						alignSelf: "flex-end",
-						transform: "translateY(120%)",
-						opacity: 0,
-					}}
-				>
-					{projectTitle}
-				</Typography>
-			</Box>}
+			<Box
+				style={{ height: mobile ? "80%" : "100%" }}
+				component='img'
+				src={src}
+				alt={alt}
+			></Box>
+			{!mobile && (
+				<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
+					<Typography
+						className='info_desktop--artist'
+						variant='h5'
+						sx={{
+							alignSelf: "flex-start",
+							transform: "translateY(120%)",
+							opacity: 0,
+						}}
+					>
+						{artistName}
+					</Typography>
+					<Typography
+						className='info_desktop--title'
+						variant='h5'
+						sx={{
+							alignSelf: "flex-end",
+							transform: "translateY(120%)",
+							opacity: 0,
+						}}
+					>
+						{projectTitle}
+					</Typography>
+				</Box>
+			)}
 			{mobile && (
 				<Box className='info_mobile'>
-					<Typography variant="h5" component="p" className='info_mobile--title'>{projectTitle}</Typography>
-					<Typography variant="h5" component="p" className='info_mobile--artist'>{artistName}</Typography>
+					<Typography variant='h5' component='p' className='info_mobile--title'>
+						{projectTitle}
+					</Typography>
+					<Typography
+						variant='h5'
+						component='p'
+						className='info_mobile--artist'
+					>
+						{artistName}
+					</Typography>
 				</Box>
 			)}
 		</Link>

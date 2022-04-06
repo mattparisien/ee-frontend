@@ -73,7 +73,6 @@ function Stories({ slides }) {
 				className='c-stories -relative'
 				sx={{ width: matches ? "100%" : "85%" }}
 			>
-				<StoryFrame />
 				<div className='c-stories_mobile-bg'></div>
 
 				<Box
@@ -84,7 +83,7 @@ function Stories({ slides }) {
 					justifyContent='center'
 				>
 					{!mobile && <ArrowButton handleClick={handlePrevClick} />}
-
+					<StoryFrame />
 					<Box
 						className='c-stories_content'
 						sx={{ height: "100%", margin: "0 auto" }}
@@ -95,6 +94,7 @@ function Stories({ slides }) {
 						width='70%'
 						textAlign={mobile ? "center" : "left"}
 					>
+						
 						<Box>
 							<Typography variant='h4' component='p' mb={4}>
 								<span>Testimonial ·</span> <span>{active}</span> <span>/</span>
@@ -102,20 +102,26 @@ function Stories({ slides }) {
 							</Typography>
 						</Box>
 						{slides &&
-							slides.map(slide => (
-								<Story
-									addToRefs={addToRefs}
-									heading={slide.heading}
-									quote={slide.quote}
-									author={slide.author}
-									key={slide.id}
-									id={slide.id}
-									active={active}
-									setActive={setActive}
-									mobile={mobile}
-								/>
-							))}
-						<Box mt={5} className="mobile-controls" display={mobile ? "block" : "none"}>
+							slides
+								.slice(0, 1)
+								.map(slide => (
+									<Story
+										addToRefs={addToRefs}
+										heading={slide.heading}
+										quote={slide.quote}
+										author={slide.author}
+										key={slide.id}
+										id={slide.id}
+										active={active}
+										setActive={setActive}
+										mobile={mobile}
+									/>
+								))}
+						<Box
+							mt={5}
+							className='mobile-controls'
+							display={mobile ? "block" : "none"}
+						>
 							{" "}
 							<ArrowButton handleClick={handlePrevClick} />
 							<ArrowButton
@@ -161,7 +167,12 @@ function Story({ heading, author, quote, id, addToRefs, mobile }) {
 					{quote}
 				</Typography>
 
-				<Typography variant='h4' component='p' mt={4}>
+				<Typography
+					variant='h4'
+					component='p'
+					mt={4}
+					sx={{ fontFamily: "Kobe Bold" }}
+				>
 					<strong>{author}</strong>
 					{/* <Highlight noDraw /> */}
 				</Typography>

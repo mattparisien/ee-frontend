@@ -71,7 +71,7 @@ function ArrowButton(
 			className={buttonClasses}
 			onClick={handleClick}
 			ref={ref}
-			onMouseEnter={handleMouseEnter}
+			
 		>
 			<Arrow rotation={rotation} color={color} location={location} r />
 			<div className='circle'></div>
