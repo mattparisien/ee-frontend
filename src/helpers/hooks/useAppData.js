@@ -58,13 +58,6 @@ export default function useAppData(scrollRef) {
 		}));
 	};
 
-	const setSearchTerm = searchTerm => {
-		setState(pev => ({
-			...prev,
-			search: { ...prev.search, currentTerm: searchTerm },
-		}));
-	};
-
 	const changeCursor = value => {
 		setState(prev => ({ ...prev, cursor: value }));
 	};
@@ -140,5 +133,7 @@ export default function useAppData(scrollRef) {
 		changeCursor,
 		pending: state.pending,
 		cursorState,
+		search: state.search,
+		setSearch
 	};
 }

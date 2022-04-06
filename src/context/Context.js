@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 
 export const DataContext = createContext();
+export const SearchContext = createContext();
 export const SiteWideControls = createContext();
 export const LoadingContext = createContext();
 export const ColorContext = createContext();
@@ -14,7 +15,9 @@ function Context({
 	cursor,
 	changeCursor,
 	scrollRef,
-  location
+	location,
+	search,
+	setSearch,
 }) {
 	return (
 		<LocomotiveScrollProvider
@@ -35,11 +38,13 @@ function Context({
 		>
 			<SiteWideControls.Provider value={siteControls}>
 				<DataContext.Provider value={stateData}>
-					<ColorContext.Provider>
-						<CursorContext.Provider valu={{ cursor, changeCursor }}>
-							{children}
-						</CursorContext.Provider>
-					</ColorContext.Provider>
+					<SearchContext value={{ search, setSearch }}>
+						<ColorContext.Provider>
+							<CursorContext.Provider valu={{ cursor, changeCursor }}>
+								{children}
+							</CursorContext.Provider>
+						</ColorContext.Provider>
+					</SearchContext>
 				</DataContext.Provider>
 			</SiteWideControls.Provider>
 		</LocomotiveScrollProvider>
