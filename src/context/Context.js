@@ -38,13 +38,13 @@ function Context({
 		>
 			<SiteWideControls.Provider value={siteControls}>
 				<DataContext.Provider value={stateData}>
-					<SearchContext value={{ search, setSearch }}>
+					<SearchContext.Provider value={{ search, setSearch }}>
 						<ColorContext.Provider>
 							<CursorContext.Provider valu={{ cursor, changeCursor }}>
 								{children}
 							</CursorContext.Provider>
 						</ColorContext.Provider>
-					</SearchContext>
+					</SearchContext.Provider>
 				</DataContext.Provider>
 			</SiteWideControls.Provider>
 		</LocomotiveScrollProvider>

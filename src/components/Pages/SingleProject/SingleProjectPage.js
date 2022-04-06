@@ -1,25 +1,15 @@
+import { Grid, Typography } from "@mui/material";
 import gsap from "gsap";
-import React, {
-	useContext,
-	useEffect,
-	useLayoutEffect,
-	useMemo,
-	useRef,
-	useState,
-} from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Fade from "react-reveal/Fade";
-import { DataContext } from "../../../context/Context";
+import { DataContext, SearchContext } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Figure from "../../Figure/Figure";
 import ProjectGrid from "../Projects/ProjectGrid";
 import Next from "./Next";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/material";
-import { Grid } from "@mui/material";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);

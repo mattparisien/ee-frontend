@@ -4,10 +4,7 @@ import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import Link from "../Link/Link";
 
-function List(
-	{ items, classes, variant, hoverEffect, onClick },
-	ref
-) {
+function List({ items, classes, variant, hoverEffect, onClick }, ref) {
 	const listClasses = classNames("c-list", {
 		[classes]: classes,
 	});
@@ -35,18 +32,16 @@ function TextItems({
 	isRouterLink,
 	underline,
 	draw,
-	onClick
+	onClick,
 }) {
 	const [hovered, setHovered] = useState(null);
-
 
 	return (
 		items &&
 		items.map((item, i) => {
-			
 			return (
 				<li
-				onClick={onClick}
+					onClick={onClick}
 					className={`c-list_item ${
 						underline ? `-relative -underline -hover-underline` : ""
 					}`}
@@ -69,27 +64,27 @@ function TextItems({
 	);
 }
 
-function Highlight({ hoveredId, hovered }) {
-	
-
+export function Highlight({ hoveredId, hovered, noDraw }) {
 	gsap.registerPlugin(DrawSVGPlugin);
 	const highlight = useRef(null);
 
 	useEffect(() => {
-		hovered === null && gsap.set(highlight.current, { drawSVG: 0 });
+		if (!noDraw) {
+			hovered === null && gsap.set(highlight.current, { drawSVG: 0 });
 
-		if (hovered && hoveredId === hovered) {
-			gsap.to(highlight.current, {
-				drawSVG: "100%",
-				duration: 1,
-				ease: "power3.out",
-			});
-		} else {
-			gsap.to(highlight.current, {
-				drawSVG: "0",
-				duration: 1,
-				ease: "power3.out",
-			});
+			if (hovered && hoveredId === hovered) {
+				gsap.to(highlight.current, {
+					drawSVG: "100%",
+					duration: 1,
+					ease: "power3.out",
+				});
+			} else {
+				gsap.to(highlight.current, {
+					drawSVG: "0",
+					duration: 1,
+					ease: "power3.out",
+				});
+			}
 		}
 	}, [hovered, hoveredId]);
 
@@ -107,7 +102,6 @@ function Highlight({ hoveredId, hovered }) {
 						fill: "none",
 
 						strokeMiterlimit: 10,
-						
 					}}
 				/>
 			</svg>

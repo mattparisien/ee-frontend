@@ -27,14 +27,14 @@
 		grid-row-gap: $space-sm;
 	}
 
-	.react-reveal {
+	.c-grid_item {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		opacity: 0;
+		
 		position: relative;
 
-		.c-link {
+		&.c-link {
 			width: 100%;
 			height: 100%;
 			display: block;

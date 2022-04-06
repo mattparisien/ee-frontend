@@ -7,14 +7,10 @@ import { DataContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Stories from "../../Stories/Stories";
-import { DrawnLogo } from "../../Vector/Svg";
 import About from "./About";
+import Hero from "./Hero";
 import How from "./How";
 import Work from "./Work";
-import Hero from "./Hero";
-
-
-
 
 function HomePage() {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -47,7 +43,7 @@ function HomePage() {
 	return (
 		<>
 			<div className='o-page o-page_home'>
-				<Hero/>
+				<Hero />
 				<About aboutText={data.about && data.about.body1} />
 				<How steps={data && data.steps} />
 
@@ -58,7 +54,7 @@ function HomePage() {
 					data-theme='light'
 				>
 					<ContainerFluid>
-						<Stories slides={data && data.stories} withFrame />
+						<Stories slides={data && data.testimonials} withFrame />
 					</ContainerFluid>
 				</Section>
 			</div>

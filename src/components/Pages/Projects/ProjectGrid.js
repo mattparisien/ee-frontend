@@ -5,6 +5,8 @@ import React, { useRef, useState } from "react";
 import Fade from "react-reveal/Fade";
 import Link from "../../Link/Link";
 import Frame from "../../Vector/Frame";
+import { Typography } from "@mui/material";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 function ProjectGrid({ items, variant, hoverEffect }) {
 	const gridItems = useRef([]);
@@ -16,13 +18,15 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 		}
 	};
 
+	console.log('items', items)
 	const scrollSpeeds = [8, 1, 6, 3];
 
-	return (
+	return items && items.length >= 1 ? (
 		<div className={`c-grid c-grid_${variant}`}>
-			<Fade bottom>
+			
 				{items &&
 					items.map((item, i) => {
+						console.log('item', item)
 						return variant !== "media" ? (
 							<ProjectItem
 								addToRefs={addToRefs}
@@ -41,8 +45,12 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 							<MediaItem src={item.attributes.url} />
 						);
 					})}
-			</Fade>
+			
 		</div>
+	) : (
+		<Typography variant='h4' component='p' pt={10} pb={10}>
+			No projects were found
+		</Typography>
 	);
 }
 

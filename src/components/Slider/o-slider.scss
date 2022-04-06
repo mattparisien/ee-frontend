@@ -14,7 +14,7 @@
 		overflow: hidden;
 
 		@include media("<=phoneL") {
-			height: 125vw;
+			height: 60vw;
 		}
 
 		&:hover::after {

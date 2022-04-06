@@ -15,7 +15,7 @@ function Work({ projects }) {
 				<Typography variant='h1' textAlign={"center"}>
 					Featured Work
 				</Typography>
-				<Line />
+				{/* <Line /> */}
 			</div>
 			<Slider items={projects} />
 		</Section>

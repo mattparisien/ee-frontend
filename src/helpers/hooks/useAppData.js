@@ -31,7 +31,7 @@ export default function useAppData(scrollRef) {
 			isVisitor: true,
 		},
 		search: {
-			currentResults: {},
+			currentResults: null,
 		},
 		scroller: null,
 		headerColor: "dark",
@@ -46,9 +46,13 @@ export default function useAppData(scrollRef) {
 	});
 
 	const getSearchResults = searchTerm => {
-		const projects = state.data.projects;
+		const projects = state.data.posts;
 
-		return projects.filter(project => project.Title.includes(searchTerm));
+		return projects.filter(
+			project =>
+				project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				project.subtitle.toLowerCase().includes(searchTerm.toLowerCase())
+		);
 	};
 
 	const setSearch = searchTerm => {
@@ -76,7 +80,7 @@ export default function useAppData(scrollRef) {
 			`${basePath}/projects?populate=*`,
 			`${basePath}/steps`,
 			`${basePath}/about`,
-			// `${basePath}/testimonials`,
+			`${basePath}/testimonials`,
 			`${basePath}/footer`,
 			`${basePath}/bio?populate=*`,
 			`${basePath}/socials`,
@@ -90,14 +94,16 @@ export default function useAppData(scrollRef) {
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
-				// const formattedTestimonials = formatTestimonials(data[3].data.data);
-				const formattedFooter = data[3].data.data.attributes;
-				const formattedBio = data[4].data.data.attributes;
-				const formattedSocials = data[5].data.data.map(account => ({
+				const formattedTestimonials = formatTestimonials(data[3].data.data);
+				const formattedFooter = data[4].data.data.attributes;
+				const formattedBio = data[5].data.data.attributes;
+				const formattedSocials = data[6].data.data.map(account => ({
 					id: account.id,
 					name: account.attributes.Name,
 					url: account.attributes.Url,
 				}));
+
+				console.log('testimonials', formattedTestimonials)
 
 				setState(prev => ({
 					...prev,
@@ -106,7 +112,7 @@ export default function useAppData(scrollRef) {
 						about: formattedAbout,
 						posts: formattedPosts,
 						steps: formattedSteps,
-						// testimonials: formattedTestimonials,
+						testimonials: formattedTestimonials,
 						footer: { ...formattedFooter },
 						bio: {
 							body: formattedBio.Body,
@@ -132,8 +138,8 @@ export default function useAppData(scrollRef) {
 		cursor: state.cursor,
 		changeCursor,
 		pending: state.pending,
-		cursorState,
+
 		search: state.search,
-		setSearch
+		setSearch,
 	};
 }

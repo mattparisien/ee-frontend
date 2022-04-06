@@ -33,11 +33,9 @@ export const formatPosts = arr => {
 };
 
 export const formatSteps = arr => {
-
-	console.log(arr)
+	console.log(arr);
 
 	arr.sort((a, b) => a.id - b.id);
-	
 
 	const formattedSteps = arr.map(step => {
 		return {
@@ -75,7 +73,6 @@ export const formatTestimonials = array => {
 	return array.map(story => {
 		return {
 			id: story.id,
-			heading: story.attributes.Heading,
 			author: story.attributes.Author,
 			quote: story.attributes.Quote,
 		};

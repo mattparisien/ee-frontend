@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import { useContext } from "react";
-import { DataContext } from "../../../context/Context";
+import { useContext, useEffect } from "react";
+import { DataContext, SearchContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
@@ -11,6 +11,7 @@ import SearchBar from "../../Search/SearchBar";
 export default function ProjectPage() {
 	gsap.registerPlugin(DrawSVGPlugin);
 	const data = useContext(DataContext);
+	const { search } = useContext(SearchContext);
 
 	return (
 		<div className='o-page o-page_project'>
@@ -29,10 +30,10 @@ export default function ProjectPage() {
 			</Section>
 			<Section classes='-padding-lg'>
 				<ContainerFluid classes='-bg-light'>
-					<SearchBar/>
+					<SearchBar />
 					<ProjectGrid
 						variant='projects'
-						items={data.posts}
+						items={!search.currentResults ? data.posts : search.currentResults}
 						hoverEffect={"frame"}
 					/>
 				</ContainerFluid>

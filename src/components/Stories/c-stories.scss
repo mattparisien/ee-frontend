@@ -12,8 +12,6 @@
 .c-stories {
 	margin: 0 auto;
 	position: relative;
-	height: 40vw;
-	width: 80%;
 
 	.o-h2 {
 		text-align: left;
@@ -21,6 +19,7 @@
 	}
 
 	&_frame {
+		display: none;
 		@include media("<=phoneL") {
 			display: none;
 		}
@@ -79,30 +78,9 @@
 	}
 
 	&_content {
-		width: 70%;
-		margin: 0 auto;
 		height: 100%;
 		position: relative;
 		overflow: hidden;
-
-		h2,
-		p {
-			margin: 4vw 0;
-		}
-
-		> div {
-			height: 100%;
-			width: 100%;
-		}
-
-		> div:not(:nth-of-type(1)) {
-			position: absolute;
-			top: 0;
-			left: 0;
-			opacity: 0;
-		}
-
-
 	}
 
 	&_main {
@@ -122,6 +100,7 @@
 		align-items: center;
 		width: 100%;
 		justify-content: space-between;
+		top: 50%;
 	}
 
 	&_indicator {
@@ -145,6 +124,18 @@
 		&_content {
 			width: 100%;
 			overflow: hidden;
+		}
+
+		.mobile-controls {
+
+			> * {
+				width: 5rem;
+				height: 5rem;
+			}
+
+			button:first-child {
+				margin-right: 1rem;
+			}
 		}
 
 		&_controls {
@@ -175,9 +166,8 @@
 		h4 {
 			margin-left: 0;
 			width: 100%;
-			font-size: 4vw;
+
 			text-align: center;
-			margin-bottom: 2vw;
 
 			z-index: 99;
 
@@ -198,17 +188,12 @@
 
 .c-stories {
 	&_story {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		overflow: hidden;
-		width: 60%;
-		height: 100%;
+
+
 		top: 0;
 		left: 50%;
 
-		&:not([data-story-id='1']) {
+		&:not([data-story-id="1"]) {
 			opacity: 0;
 		}
 
@@ -231,20 +216,6 @@
 
 		h2 p {
 			text-align: center;
-		}
-
-		h2 {
-			margin: $space-md 0 !important;
-			font-size: 10vw !important;
-			text-align: center !important;
-		}
-
-		p {
-			font-size: 6vw !important;
-			line-height: 6.8vw !important;
-			text-align: center;
-			margin-top: 0;
-			margin-bottom: 4vw;
 		}
 	}
 }
