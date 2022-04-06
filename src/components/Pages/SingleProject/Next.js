@@ -36,7 +36,7 @@ function Next({ color, nextPost }) {
 									display='flex'
 									justifyContent='space-between'
 									alignItems='center'
-									flexDirection="row-reverse"
+									flexDirection='row-reverse'
 								>
 									<Fade bottom>
 										<Typography variant='h2' className=' -split -fadeUpChars'>
