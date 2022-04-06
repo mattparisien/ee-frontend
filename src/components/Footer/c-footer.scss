@@ -1,6 +1,6 @@
 .c-footer {
-	height: $footerHeight;
-	max-height: 900px;
+	
+	
 	position: relative;
 	bottom: 0;
 	left: 0;
@@ -11,7 +11,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		position: relative;
+		
 		// flex-direction: column;
 
 		&_contact {
@@ -64,7 +64,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 2rem 0;
+		
 
 		.c-list_social {
 			margin-left: 1rem;

@@ -7,6 +7,8 @@ import "swiper/swiper.min.css";
 import ArrowButton from "../Button/ArrowButton";
 import Link from "../Link/Link";
 import ContainerFluid from "../Containers/ContainerFluid";
+import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 
 function Slider({ items }) {
 	SwiperCore.use([Autoplay, Navigation, Pagination]);
@@ -27,10 +29,10 @@ function Slider({ items }) {
 					height={"100%"}
 					breakpoints={{
 						300: {
-							slidesPerView: 1,
+							slidesPerView: 2,
 							spaceBetween: 40,
 						},
-						768: {
+						700: {
 							slidesPerView: 2,
 							spaceBetween: 40,
 						},
@@ -51,8 +53,8 @@ function Slider({ items }) {
 							<SwiperSlide key={item.id}>
 								<Item
 									projectId={item.id}
-									projectTitle={item.title}
-									artistName={item.subtitle}
+									artistName={item.title}
+									projectTitle={item.subtitle}
 									src={item.media.featureImage.url}
 									alt={item.media.featureImage.altText}
 								/>
@@ -65,12 +67,50 @@ function Slider({ items }) {
 }
 
 function Item({ src, alt, projectId, projectTitle, artistName }) {
+	const desktopInfoStyles = {
+		width: "100%",
+		height: "100%",
+		position: "absolute",
+		top: 0,
+		left: 0,
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "space-between",
+		color: "white",
+		zIndex: 99,
+	};
+
 	return (
 		<Link classes='o-slider_item' isRouterLink href={`/projects/${projectId}`}>
 			<img src={src} alt={alt}></img>
-			<div className='info'>
-				<div className='info_title'>{projectTitle}</div>
-				<div className='info_artist'>{artistName}</div>
+			<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
+				<Typography
+					className='info_desktop--artist'
+					variant='h5'
+					sx={{
+						alignSelf: "flex-start",
+						transform: "translateY(120%)",
+						opacity: 0,
+					}}
+				>
+					{artistName}
+				</Typography>
+				<Typography
+					className='info_desktop--title'
+					variant='h5'
+					sx={{
+						alignSelf: "flex-end",
+						transform: "translateY(120%)",
+						opacity: 0,
+					}}
+				>
+					{projectTitle}
+				</Typography>
+			</Box>
+			<div className='info_mobile'>
+				<div className='info_mobile--title'>{projectTitle}</div>
+				<div className='info_mobile--artist'>{artistName}</div>
 			</div>
 		</Link>
 	);

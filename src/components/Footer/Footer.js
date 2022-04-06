@@ -7,6 +7,7 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 import Fade from "react-reveal/Fade";
 import SocialList from "../Lists/SocialList";
 import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 export default function Footer(props) {
 	const scroll = useLocomotiveScroll();
@@ -20,7 +21,7 @@ export default function Footer(props) {
 	};
 
 	return (
-		<footer className='c-footer -bg-dark'>
+		<Box className='c-footer -bg-dark' component="footer" pt={20} pb={20}>
 			<ContainerFluid classes='-stretchY'>
 				<div className='c-footer_content'>
 					<div className='-flex -align-center -justify-center'>
@@ -47,7 +48,7 @@ export default function Footer(props) {
 						</div>
 					</div>
 
-					<div className='c-footer_bottom'>
+					<Box className='c-footer_bottom' p={4}>
 						<Fade bottom>
 							<div className='-flex -align-center -justify-center'>
 								<p>The Eyes & Ears Agency</p>
@@ -63,7 +64,7 @@ export default function Footer(props) {
 								handleClick={scrollToTop}
 							/>
 						</Fade>
-					</div>
+					</Box>
 				</div>
 				{/* {layout === "contact" && <Contact />} */}
 				{/* {layout === "project" && (
@@ -72,6 +73,6 @@ export default function Footer(props) {
 
 				{/* <NavList links={navLinks} /> */}
 			</ContainerFluid>
-		</footer>
+		</Box>
 	);
 }

@@ -4,11 +4,26 @@
 	box-sizing: border-box;
 }
 
+// body::-webkit-scrollbar {
+// 	width: 10px; /* width of the entire scrollbar */
+// }
 
+// body::-webkit-scrollbar-track {
+// 	background: none;
+// }
+
+// body::-webkit-scrollbar-thumb {
+// 	  background: transparent;
+
+// 	border-radius: 20px; /* roundness of the scroll thumb */
+// }
 
 body {
 	overflow-x: hidden;
+	width: 100vw;
 }
+
+
 
 .scroll-to-top {
 	position: fixed !important;

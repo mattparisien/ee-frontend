@@ -7,8 +7,13 @@ import Reveal from "react-reveal";
 import Vibrations from "../../Vector/Vibrations";
 import SplitLayout from "../../Layouts/SplitLayout";
 import { Container, Typography } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 function About({ aboutText }) {
+
+
+	const matches = useMediaQuery('(max-width: 1000px)')
+
 	return (
 		<>
 			<Section data-theme='dark' classes='o-about -padding-lg'>
@@ -18,7 +23,7 @@ function About({ aboutText }) {
 							leftComponent={<SectionLeft text={aboutText} />}
 							rightComponent={<SectionRight />}
 							gap={5}
-							wrap="nowrap"
+							wrap={matches ? "wrap" : "nowrap"}
 						/>
 					</div>
 				</ContainerFluid>

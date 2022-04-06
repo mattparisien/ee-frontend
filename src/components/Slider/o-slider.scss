@@ -8,22 +8,56 @@
 	}
 
 	&_item {
-		height: 45vw;
+		height: 25vw;
 		width: 100%;
-
+		position: relative;
+		overflow: hidden;
 
 		@include media("<=phoneL") {
-			height: 145vw;
+			height: 125vw;
 		}
 
-		.info {
+		&:hover::after {
+			opacity: 0.6;
+		}
+
+		&:hover img {
+			transform: scale(1.1);
+		}
+
+		.info_desktop--artist, .info_desktop--title {
+			transition: $transition;
+		}
+
+		&:hover .info_desktop--artist, &:hover .info_desktop--title {
+			transform: none;
+			opacity: 1;
+		}
+
+		&:hover .info_desktop--title {
+			transition-delay: 100ms;
+		}
+
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			opacity: 0;
+			content: "";
+			transition: $transition;
+		}
+
+		.info_mobile {
 			height: 20%;
 			font-size: 2rem;
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
 			padding: 0.8rem 0;
-			
+
 			@include media(">=phoneL") {
 				display: none;
 			}
@@ -36,10 +70,11 @@
 
 		img {
 			width: 100%;
-			height: 80%;
+			height: 100%;
 			object-fit: cover;
 			object-position: center;
 			filter: grayscale(1);
+			transition: $transition-zoom;
 		}
 	}
 }
