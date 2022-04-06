@@ -8,11 +8,10 @@ import Vibrations from "../../Vector/Vibrations";
 import SplitLayout from "../../Layouts/SplitLayout";
 import { Container, Typography } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
+import Markdown from "../../Markdown/Markdown";
 
 function About({ aboutText }) {
-
-
-	const matches = useMediaQuery('(max-width: 1000px)')
+	const matches = useMediaQuery("(max-width: 1000px)");
 
 	return (
 		<>
@@ -33,11 +32,15 @@ function About({ aboutText }) {
 }
 
 function SectionLeft({ text }) {
-	return <Typography variant='h4'>{text}</Typography>;
+	return (
+		<Typography variant='h4'>
+			<Markdown children={text} />
+		</Typography>
+	);
 }
 
 function SectionRight({ text }) {
-	return <Megaphone/>;
+	return <Megaphone />;
 }
 
 export default About;

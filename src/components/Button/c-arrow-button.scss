@@ -1,9 +1,8 @@
 .c-arrow-button {
-
 	&:focus {
 		outline: none;
 	}
-	
+
 	background: none;
 	width: 5rem;
 	height: 5rem;
@@ -12,9 +11,6 @@
 	border-radius: 50%;
 	overflow: hidden;
 	position: relative;
-	transition: $transition;
-	
-	
 
 	@include media("<=tablet") {
 		width: 3rem;
@@ -38,9 +34,8 @@
 		background-color: $dark;
 		top: 0;
 		left: 0;
-
+		display: none;
 	}
-
 
 	.c-arrow-svg {
 		overflow: hidden;
@@ -48,13 +43,11 @@
 		display: block;
 		z-index: 999;
 
-		
-
 		// circle:nth-of-type(2) {
 		// 	transition: 400ms ease;
 		// 	position: fixed;
 		// 	transform: scale(0.4);
-			
+
 		// 	display: block;
 		// 	transform-origin: center;
 		// 	fill: $dark;
@@ -66,13 +59,11 @@
 		// 	transition: 400ms ease;
 		// }
 
-	
-
 		path {
 			fill: $grey;
 
 			position: static;
-			transition: 400ms ease;
+			
 
 			&:first-child {
 				transform: translateX(100%);
@@ -81,7 +72,7 @@
 
 		circle:not(.hoverCircle) {
 			stroke: $grey;
-			transition: 300ms ease;
+			
 			stroke-width: 2px;
 		}
 
@@ -90,7 +81,6 @@
 			stroke-width: 2px;
 		}
 	}
-
 
 	&.is-light {
 		&:hover path {
