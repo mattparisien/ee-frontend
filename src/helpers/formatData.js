@@ -7,6 +7,7 @@ export const formatPosts = arr => {
 	// sortedPosts = sortedPosts.reverse();
 
 	const formattedPosts = arr.map(post => {
+		console.log(post);
 		return {
 			id: post.id,
 			title: post.attributes.Title,
@@ -14,6 +15,7 @@ export const formatPosts = arr => {
 			goal: post.attributes.Goal,
 			about1: post.attributes.About1,
 			about2: post.attributes.About2,
+			featured: post.attributes.FeaturedPost,
 			media: {
 				featureImage: {
 					url: post.attributes.FeatureImage.data

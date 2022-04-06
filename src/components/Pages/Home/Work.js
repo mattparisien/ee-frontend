@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import React from "react";
+import React, { useMemo } from "react";
 import Section from "../../Containers/Section";
 import Slider from "../../Slider/Slider";
 import Line from "../../Vector/Line";
@@ -9,8 +9,11 @@ import { useMediaQuery } from "@mui/material";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
-	const mobile = useMediaQuery('(max-width: 600px)');
+	const mobile = useMediaQuery("(max-width: 600px)");
 
+	const featuredProjects = useMemo(() => {
+		return projects && projects.filter(project => project.featured);
+	}, [projects]);
 
 	return (
 		<Section classes='o-work ' data-theme='light'>
@@ -20,7 +23,7 @@ function Work({ projects }) {
 				</Typography>
 				{/* <Line /> */}
 			</div>
-			<Slider items={projects} />
+			<Slider items={featuredProjects} />
 		</Section>
 	);
 }
