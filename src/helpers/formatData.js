@@ -22,6 +22,9 @@ export const formatPosts = arr => {
 					altText: post.attributes.FeatureImage.data
 						? post.attributes.FeatureImage.data.attributes.alternativeText
 						: null,
+					caption: post.attributes.FeatureImage.data
+						? post.attributes.FeatureImage.data.attributes.caption
+						: null,
 				},
 				additional: post.attributes.AdditionalMedia.data && [
 					...post.attributes.AdditionalMedia.data,

@@ -52,6 +52,7 @@ function SiteRoutes(props) {
 						path={page[1].path}
 						element={React.createElement(page[1].component, {
 							key: location.pathname,
+							location: location,
 							pageHeading:
 								pageHeadings && pageHeadings[page[1].title.toLowerCase()],
 						})}

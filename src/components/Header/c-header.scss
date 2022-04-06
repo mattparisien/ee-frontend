@@ -1,11 +1,12 @@
 .c-header {
+	background-color: $light;
 	position: fixed;
 	width: 100vw;
 	top: 0;
 	left: 0;
 	height: $headerHeight;
 	z-index: 9999999;
-	background: none;
+	
 
 	.c-header_left_spacer {
 		width: 3rem;

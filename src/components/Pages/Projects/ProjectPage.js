@@ -7,6 +7,7 @@ import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import ProjectGrid from "./ProjectGrid";
 import SearchBar from "../../Search/SearchBar";
+import { Typography } from "@mui/material";
 
 export default function ProjectPage({ pageHeading }) {
 	gsap.registerPlugin(DrawSVGPlugin);
@@ -17,13 +18,9 @@ export default function ProjectPage({ pageHeading }) {
 		<div className='o-page o-page_project'>
 			<Section classes='-padding-lg o-hero -relative'>
 				<div className='o-hero_content -flex -flex-column -align-center -justify-center'>
-					<h2
-						className='o-h1 -split -fadeUpChars'
-						data-scroll
-						data-scroll-speed={2}
-					>
+					<Typography variant="h1" component="h1">
 						{pageHeading && pageHeading}
-					</h2>
+						</Typography>
 				</div>
 
 				<ColorBlobs />

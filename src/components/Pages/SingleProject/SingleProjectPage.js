@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import gsap from "gsap";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -10,17 +10,21 @@ import Section from "../../Containers/Section";
 import Figure from "../../Figure/Figure";
 import ProjectGrid from "../Projects/ProjectGrid";
 import Next from "./Next";
+import { Card, CardMedia } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
+import Frame from "../../Vector/Frame";
+import Reveal from "react-reveal";
+import Markdown from "../../Markdown/Markdown";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
-
 	const [param, setParam] = useState(null);
 	const [info, setInfo] = useState(null);
 	const textWrapper = useRef(null);
 	const heroImage = useRef(null);
 	const revealer = useRef(null);
 	const tl = useRef(gsap.timeline());
-	const mobile = window.matchMedia("(max-width: 820px)");
+	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const accentColor = useMemo(() => shuffleColors(), []);
 
@@ -107,7 +111,12 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 			<div className='o-page o-single-project'>
 				<Section data-theme='light' classes='o-hero'>
 					<ContainerFluid>
-						<Grid container spacing={5} mt={10}>
+						<Grid
+							container
+							spacing={5}
+							mt={10}
+							wrap={mobile ? "wrap" : "nowrap"}
+						>
 							<Grid
 								item
 								className=' u-desktop-js-anim'
@@ -130,18 +139,46 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 							<Grid
 								item
-								className='o-hero_image'
+								className='o-hero_image -frame-reveal'
 								ref={heroImage}
 								xs={12}
 								s={6}
 								md={6}
+								sx={{ position: "relative" }}
 							>
-								<Figure
+								<Card
+									sx={{
+										width: "100%",
+										position: "relative",
+										overflow: "visible",
+									}}
+								>
+									<CardMedia
+										component='img'
+										height={mobile ? 600 : 300}
+										image={info && info[0].media.featureImage.url}
+										alt={info && info[0].media.featureImage.altText}
+									/>
+
+									<Frame />
+								</Card>
+								<Typography
+									variant='body2'
+									component='p'
+									mt={2}
+									textAlign='right'
+								>
+									{info &&
+										info[0].media.featureImage.caption &&
+										info[0].media.featureImage.caption}
+								</Typography>
+
+								{/* <Figure
 									noReveal
 									effectDelay={5000}
 									src={info && info[0].media.featureImage.url}
 									alt={info && info[0].media.featureImage.altText}
-								/>
+								/> */}
 							</Grid>
 
 							{/* 				
@@ -160,13 +197,13 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						<Grid container spacing={5}>
 							<Grid item xs={12} md={6} lg={6}>
 								<Typography variant='h4' component='h4'>
-									{info && info[0].goal}
+									<Markdown children={info && info[0].goal} />
 								</Typography>
 							</Grid>
 
 							<Grid item xs={12} md={6} lg={6}>
-								<Typography variant='p' component='p'>
-									{info && info[0].about1}
+								<Typography variant='body1' component='p'>
+									<Markdown children={info && info[0].about1} />
 								</Typography>
 							</Grid>
 						</Grid>
@@ -193,10 +230,12 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						<Grid container spacing={5}>
 							<Grid item xs={12} md={6} lg={6} className='aboutArtist'>
 								<Fade bottom>
-									<Typography variant='h3'>About the Artist</Typography>
+									<Typography variant='h3' mb={2}>
+										About the Artist
+									</Typography>
 								</Fade>
 								<Fade bottom>
-									<p className='o-text -body'>
+									<Typography component='p' variant='body1'>
 										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 										Molestiae perspiciatis sint quidem. Suscipit commodi,
 										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
@@ -204,16 +243,18 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 										Quibusdam quaerat et itaque! Soluta nobis asperiores,
 										blanditiis ducimus adipisci ex exercitationem vero tenetur
 										nostrum tempora deserunt?
-									</p>
+									</Typography>
 								</Fade>
 							</Grid>
 							<Grid className='aboutOrg' item xs={12} md={6} lg={6}>
 								{/* <Fade bottom cascade> */}
 								<Fade bottom>
-									<Typography variant='h3'>About the organization</Typography>
+									<Typography variant='h3' mb={2}>
+										About the organization
+									</Typography>
 								</Fade>
 								<Fade bottom>
-									<p className='o-text -body'>
+									<Typography component='p' variant='body1'>
 										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 										Molestiae perspiciatis sint quidem. Suscipit commodi,
 										quaerat enim dolorem fugiat quo at blanditiis neque incidunt
@@ -221,7 +262,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 										Quibusdam quaerat et itaque! Soluta nobis asperiores,
 										blanditiis ducimus adipisci ex exercitationem vero tenetur
 										nostrum tempora deserunt?
-									</p>
+									</Typography>
 								</Fade>
 								{/* </Fade> */}
 							</Grid>

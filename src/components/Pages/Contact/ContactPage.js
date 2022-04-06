@@ -6,15 +6,13 @@ import ColorBlobs from "../../Drawings/ColorBlobs";
 import Figure from "../../Figure/Figure";
 import { Typography, Box } from "@mui/material";
 
-function ContactPage({pageHeading}) {
+function ContactPage({ pageHeading }) {
 	const { bio } = useContext(DataContext);
-
-	console.log(bio);
 
 	return (
 		<div className='o-page o-page_contact'>
 			<Section classes='o-hero'>
-				<h1 className='o-h1 -split -fadeUpChars'>{pageHeading && pageHeading}</h1>
+				<Typography variant="h1" component="h1">{pageHeading && pageHeading}</Typography>
 				<ColorBlobs />
 			</Section>
 			<Section classes='o-textOne'>

@@ -36,7 +36,7 @@ function Header({
 	}, [menuActive]);
 
 	return (
-		<header className='c-header' data-theme={color}>
+		<header className='c-header' >
 			<ContainerFluid>
 				<div
 					className='c-header_left_spacer'
