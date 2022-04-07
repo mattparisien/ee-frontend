@@ -17,9 +17,12 @@ export const theme = createTheme({
 	},
 	typography: {
 		fontSize: 17,
-		fontFamily: ["Kobe"],
+		fontFamily: ["Times"],
+		
 		h1: {
 			fontFamily: "Kobe Bold",
+			
+			
 		},
 		p: {
 			fontFamily: "Neue Mtl",

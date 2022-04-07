@@ -25,7 +25,7 @@ export default function ProjectPage({ pageHeading }) {
 
 				<ColorBlobs />
 			</Section>
-			<Section classes='-padding-lg'>
+			{/* <Section classes='-padding-lg'>
 				<ContainerFluid classes='-bg-light'>
 					<SearchBar />
 					<ProjectGrid
@@ -34,7 +34,7 @@ export default function ProjectPage({ pageHeading }) {
 						hoverEffect={"frame"}
 					/>
 				</ContainerFluid>
-			</Section>
+			</Section> */}
 		</div>
 	);
 }

@@ -87,7 +87,7 @@ function Stories({ slides }) {
 					justifyContent='center'
 				>
 						{!mobile && <ArrowButton handleClick={handlePrevClick} />}
-						<StoryFrame/>
+						{/* <StoryFrame/> */}
 					<Box
 						className='c-stories_content'
 						sx={{ height: "100%", margin: "0 auto" }}

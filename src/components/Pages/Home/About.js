@@ -12,11 +12,11 @@ import Markdown from "../../Markdown/Markdown";
 import { Box } from "@mui/material";
 
 function About({ aboutText }) {
-	const matches = useMediaQuery("(max-width: 1000px)");
+	const matches = useMediaQuery("(max-width: 900px)");
 
 	return (
 		<>
-			<Section data-theme='dark' classes='o-about -padding-lg'>
+			<Section data-theme='dark' classes='o-about -padding-lg' noGutterTop>
 				<ContainerFluid>
 					<Box className='o-about_content' pt={5} pb={5}>
 						<SplitLayout

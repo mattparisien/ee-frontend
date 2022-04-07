@@ -1,8 +1,3 @@
-// .-frame-reveal .c-frame {
-
-// 	@include frameReveal(100ms, forwards);
-// }
-
 .o-stories {
 	.o-container {
 		width: 100%;
@@ -67,20 +62,6 @@
 		// 	stroke: $yellow;
 		// }
 	}
-
-	// .c-frame {
-
-	// 	height: 40vw;
-	// 	top:-2.2vw;
-	// 	width: 70vw;
-	// 	// transform: scale(1.2);
-
-	// 	// svg path {
-	// 	// 	fill: $yellow !important;
-
-	// 	// }
-
-	// }
 
 	&_mobile-bg {
 		position: absolute;
@@ -204,7 +185,6 @@
 
 .c-stories {
 	&_story {
-		
 		top: 0;
 		left: 50%;
 
@@ -223,7 +203,7 @@
 		h4 {
 			width: 100%;
 			text-align: center;
-			font-family: 'Kobe' !important;
+			font-family: "Kobe" !important;
 		}
 	}
 

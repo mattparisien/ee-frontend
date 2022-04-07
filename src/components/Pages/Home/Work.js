@@ -19,7 +19,12 @@ function Work({ projects }) {
 	return (
 		<Section classes='o-work ' data-theme='light'>
 			<div className='o-heading-wrapper -relative'>
-				<Typography variant='h1' textAlign={"center"} mb={!mobile ? 0 : 4} pb={10}>
+				<Typography
+					variant='h1'
+					textAlign={"center"}
+					mb={!mobile ? 0 : 2}
+					pb={!mobile ? 5 : 5}
+				>
 					Our Work
 				</Typography>
 				{/* <Line /> */}

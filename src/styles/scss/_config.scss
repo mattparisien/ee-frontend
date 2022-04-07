@@ -5,8 +5,24 @@
 
 @font-face {
 	font-family: "Kobe Bold";
-	src: url("../assets/fonts/Kobe1.1-Bold.woff");
+	src: url("../assets/fonts/Ginto.woff");
 }
+
+@font-face {
+	font-family: "Ginto";
+	src: url("../assets/fonts/Ginto.woff");
+}
+
+@font-face {
+	font-family: "Kobe";
+	src: url("../assets/fonts/Ginto.woff");
+}
+
+@font-face {
+	font-family: "OggItalic";
+	src: url("../assets/fonts/OggItalic.ttf");
+}
+
 
 @font-face {
 	font-family: "Kobe";
@@ -17,6 +33,11 @@
 @font-face {
 	font-family: "Times";
 	src: url("../assets/fonts/times.otf");
+}
+
+@font-face {
+	font-family: "Orpheus";
+	src: url("../assets/fonts/Orpheus.ttf");
 }
 
 @font-face {
@@ -33,7 +54,8 @@ h1, h2, h3, h4 {
 }
 
 em {
-	font-style: normal;
+	
 	position: relative;
 }
+
 

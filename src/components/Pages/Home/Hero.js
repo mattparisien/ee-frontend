@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Section from "../../Containers/Section";
 import ContainerFluid from "../../Containers/ContainerFluid";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { DrawnLogo } from "../../Vector/Svg";
 
 function Hero({ pageHeading }) {
@@ -10,9 +10,9 @@ function Hero({ pageHeading }) {
 	}, [pageHeading]);
 
 	return (
-		<Section data-theme='light' classes='o-hero -padding-bottom-lg' noGutter>
+		<Section data-theme='light' classes='o-hero ' noGutter>
 			<ContainerFluid classes='-stretchX -stretchY'>
-				<div className='o-hero_inner -relative -stretchX -stretchY'>
+				<Box className='o-hero_inner -relative -stretchX -stretchY'>
 					<Typography variant='h1' className='o-hero_word'>
 						{words && words[0]}
 					</Typography>
@@ -32,7 +32,7 @@ function Hero({ pageHeading }) {
 							<div className='revealer'></div>
 						</div>
 					</div>
-				</div>
+				</Box>
 			</ContainerFluid>
 		</Section>
 	);

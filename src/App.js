@@ -52,31 +52,31 @@ function App() {
 		setDomAnimatedReady(!domAnimatedReady);
 	}, [domAnimatedReady]);
 
-	// useEffect(() => {
-	// 	const elements = [];
+	useEffect(() => {
+		const elements = [];
 
-	// 	setTimeout(() => {
-	// 		$(".-split").each((i, el) => {
-	// 			if ($(el).children().length > 0) {
-	// 				elements.push(...$(el).children());
-	// 			} else {
-	// 				elements.push(el);
-	// 			}
-	// 		});
-	// 		split.current = new SplitText(elements, {
-	// 			type: "lines, words, chars",
-	// 			linesClass: "c-line",
-	// 			charsClass: "c-char",
-	// 		});
+		setTimeout(() => {
+			$(".-split, .MuiTypography-h1").each((i, el) => {
+				if ($(el).children().length > 0) {
+					elements.push(...$(el).children());
+				} else {
+					elements.push(el);
+				}
+			});
+			split.current = new SplitText(elements, {
+				type: "lines, words, chars",
+				linesClass: "c-line",
+				charsClass: "c-char",
+			});
 
-	// 		setSplit(true);
-	// 		toggleDomAnimationReady();
-	// 	}, 300);
-	// }, [location]);
+			setSplit(true);
+			toggleDomAnimationReady();
+		}, 300);
+	}, [location]);
 
-	// useEffect(() => {
-	// 	split.current && split.current.revert().split();
-	// }, [windowWidth]);
+	useEffect(() => {
+		split.current && split.current.revert().split();
+	}, [windowWidth]);
 
 	useEffect(() => {
 		const show = element => {
@@ -87,7 +87,7 @@ function App() {
 
 		const fadeUp = elements => {
 			gsap.to(elements, {
-				stagger: 0.05,
+				stagger: 0.03,
 				duration: 1,
 				ease: "power3.out",
 				y: 0,
@@ -98,36 +98,13 @@ function App() {
 		if (isSplit && domAnimatedReady) {
 			const logo = $(".o-page_home .c-drawnLogo");
 
-			!isFirstRender.current &&
-				gsap.to(logo, {
-					x: 0,
-					opacity: 1,
-					duration: 1,
-					ease: "power3.out",
-				});
-
 			isFirstRender.current = false;
 
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
-					if (
-						entry.isIntersecting &&
-						entry.target.classList.contains("-fadeUpLines")
-					) {
-						show(entry.target);
-						fadeUp($(entry.target).find(".c-line"));
-					} else if (
-						entry.isIntersecting &&
-						entry.target.classList.contains("-fadeUpChars")
-					) {
+					if (entry.isIntersecting) {
 						show(entry.target);
 						fadeUp($(entry.target).find(".c-char"));
-					} else if (
-						entry.isIntersecting &&
-						entry.target.classList.contains("-fadeUpChildren")
-					) {
-						show(entry.target);
-						fadeUp($(entry.target).children());
 					}
 				});
 			};
@@ -136,11 +113,11 @@ function App() {
 				threshold: 0.2,
 			});
 
-			$(".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren").each(
-				(i, el) => {
-					observer.observe(el);
-				}
-			);
+			$(
+				".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren, .MuiTypography-h1"
+			).each((i, el) => {
+				observer.observe(el);
+			});
 		}
 	}, [isSplit, location, windowWidth, domAnimatedReady]);
 

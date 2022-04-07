@@ -12,9 +12,12 @@ import ColorBlobs from "../../Drawings/ColorBlobs";
 import { HalfNote, QuarterNote } from "../../Vector/Notes";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+
+	const mobile = useMediaQuery('(max-width: 600px)')
 
 	const noteTl = useRef(null);
 	const container = useRef(null);
@@ -81,7 +84,7 @@ function How({ steps }) {
 		<>
 			<Section classes='o-how' data-theme='light' ref={container}>
 				<ContainerFluid>
-					<Typography variant='h1' textAlign='center' p={10}>
+					<Typography variant='h1' textAlign='center' pb={5} pt={5}>
 						Finding Your Rhythm
 					</Typography>
 					<div className='steps-container -relative'>
@@ -95,18 +98,25 @@ function How({ steps }) {
 											key={i}
 										>
 											<Fade bottom>
-												<h2>
+												<Typography variant='h2' sx={{fontSize: !mobile && '3rem'}} mb={2}>
 													<ReactMarkdown
 														disallowedElements={["p"]}
 														unwrapDisallowed
 														className='title'
 														children={step.title}
 													/>
-												</h2>
+												</Typography>
 											</Fade>
 
 											<Fade bottom>
-												<p className='body'>{step.body}</p>
+												<Typography
+													className='body'
+													variant='body1'
+													component={"p"}
+													
+												>
+													{step.body}
+												</Typography>
 											</Fade>
 										</div>
 									);

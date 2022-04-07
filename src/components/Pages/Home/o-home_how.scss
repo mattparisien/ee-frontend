@@ -308,20 +308,18 @@
 	width: 17vw;
 }
 
-.title,
-.title p {
-	font-size: 4.167vw;
-	line-height: 4.167vw;
-	
-	p {
-		margin: 0;
-	}
-}
+// .title,
+// .title p {
+// 	font-size: 4.167vw;
+// 	line-height: 4.167vw;
+
+// 	p {
+// 		margin: 0;
+// 	}
+// }
 
 .body {
 	font-family: "Riposte";
-	font-size: 1.2vw;
-	line-height: 1.5vw;
 
 	p {
 		margin: 0;
@@ -503,9 +501,6 @@
 		&_sheet {
 			display: none;
 		}
-
-
-		
 
 		&_item {
 			grid-column: 1/13 !important;

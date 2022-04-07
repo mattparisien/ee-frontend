@@ -5,6 +5,16 @@
 			padding-bottom: 5vw;
 			max-height: calc(100vh - $headerHeight - 5rem);
 			height: 90vw;
+			margin-bottom: 5rem;
+			
+		}
+
+		h1 {
+
+			@include media("<=phoneL") {
+				font-size: 25vw;
+				letter-spacing: -4px;
+			}
 		}
 
 		&_inner {
@@ -12,6 +22,7 @@
 			flex-direction: column;
 			justify-content: space-between;
 			position: relative;
+			
 
 			.o-hero_logo {
 				position: absolute;

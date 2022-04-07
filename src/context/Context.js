@@ -20,22 +20,22 @@ function Context({
 	setSearch,
 }) {
 	return (
-		// <LocomotiveScrollProvider
-		// 	onLocationChange={scroll => scroll.scrollTo(0, 0)}
-		// 	watch={[location.pathname]}
-		// 	lerp={1}
-		// 	options={{
-		// 		initPosition: {
-		// 			x: 0,
-		// 			y: 0,
-		// 		},
+		<LocomotiveScrollProvider
+			onLocationChange={scroll => scroll.scrollTo(0, 0)}
+			watch={[location.pathname]}
+			lerp={1}
+			options={{
+				initPosition: {
+					x: 0,
+					y: 0,
+				},
 
-		// 		smooth: true,
-		// 		getDirection: true,
-		// 		getSpeed: true,
-		// 	}}
-		// 	containerRef={scrollRef}
-		// >
+				smooth: true,
+				getDirection: true,
+				getSpeed: true,
+			}}
+			containerRef={scrollRef}
+		>
 			<SiteWideControls.Provider value={siteControls}>
 				<DataContext.Provider value={stateData}>
 					<SearchContext.Provider value={{ search, setSearch }}>
@@ -47,7 +47,7 @@ function Context({
 					</SearchContext.Provider>
 				</DataContext.Provider>
 			</SiteWideControls.Provider>
-		// </LocomotiveScrollProvider>
+		</LocomotiveScrollProvider>
 	);
 }
 
