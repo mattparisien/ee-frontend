@@ -108,7 +108,7 @@ function Item({ src, alt, projectId, projectTitle, artistName, mobile }) {
 				<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
 					<Typography
 						className='info_desktop--artist'
-						variant='h5'
+						variant='h6'
 						sx={{
 							alignSelf: "flex-start",
 							transform: "translateY(120%)",
@@ -119,7 +119,7 @@ function Item({ src, alt, projectId, projectTitle, artistName, mobile }) {
 					</Typography>
 					<Typography
 						className='info_desktop--title'
-						variant='h5'
+						variant='h6'
 						sx={{
 							alignSelf: "flex-end",
 							transform: "translateY(120%)",

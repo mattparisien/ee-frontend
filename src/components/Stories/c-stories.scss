@@ -20,7 +20,7 @@
 	}
 
 	&_frame {
-		width: 65% !important;
+		width: 79% !important;
 		left: 50% !important;
 		transform: translateX(-50%) rotate(-1deg) scale(1.4) !important;
 
@@ -39,12 +39,12 @@
 
 			&-top {
 				top: -2vw;
-				right: 6vw;
+				right: 8vw;
 			}
 
 			&-bottom {
 				bottom: -2vw;
-				left: 6vw;
+				left: 8vw;
 				transform: rotate(180deg);
 			}
 
@@ -204,6 +204,7 @@
 
 .c-stories {
 	&_story {
+		
 		top: 0;
 		left: 50%;
 
@@ -222,6 +223,7 @@
 		h4 {
 			width: 100%;
 			text-align: center;
+			font-family: 'Kobe' !important;
 		}
 	}
 

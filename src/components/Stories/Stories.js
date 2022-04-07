@@ -134,13 +134,13 @@ function Stories({ slides }) {
 							/>
 						</Box>
 					</Box>
-					{/* {!mobile && (
+					{!mobile && (
 						<ArrowButton
 							flip={true}
 							rotation={180}
 							handleClick={handleNextClick}
 						/>
-					)} */}
+					)}
 				</Box>
 			</Box>
 		</Fade>
@@ -166,7 +166,7 @@ function Story({ heading, author, quote, id, addToRefs, mobile }) {
 			sx={storyStyles}
 		>
 			<Fade bottom>
-				<Typography variant='h4' component='p'>
+				<Typography variant='h4' component='p' sx={{fontFamily: 'Kobe !important'}}>
 					{quote}
 				</Typography>
 
@@ -174,7 +174,7 @@ function Story({ heading, author, quote, id, addToRefs, mobile }) {
 					variant='h4'
 					component='p'
 					mt={4}
-					sx={{ fontFamily: "Kobe Bold" }}
+					sx={{ fontFamily: "Kobe Bold !important" }}
 				>
 					<strong>{author}</strong>
 					{/* <Highlight noDraw /> */}
