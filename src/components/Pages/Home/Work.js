@@ -20,7 +20,7 @@ function Work({ projects }) {
 		<Section classes='o-work ' data-theme='light'>
 			<div className='o-heading-wrapper -relative'>
 				<Typography variant='h1' textAlign={"center"} mb={!mobile ? 0 : 4} pb={10}>
-					Featured Work
+					Our Work
 				</Typography>
 				{/* <Line /> */}
 			</div>
