@@ -33,7 +33,6 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 	const accentColor = useMemo(() => shuffleColors(), []);
 
-	console.log(Object.entries(info[0].metrics));
 	// useEffect(() => {
 	// 	console.log(info);
 	// }, [info]);
