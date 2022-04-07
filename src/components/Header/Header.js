@@ -23,6 +23,11 @@ function Header({
 		"is-active": active,
 	});
 
+	const headerClasses = classNames("c-header", {
+		"is-dark": menuActive,
+		"is-light": !menuActive,
+	});
+
 	const handleClick = () => {
 		toggleMenu();
 	};
@@ -36,7 +41,7 @@ function Header({
 	}, [menuActive]);
 
 	return (
-		<header className='c-header' >
+		<header className={headerClasses}>
 			<ContainerFluid>
 				<div
 					className='c-header_left_spacer'

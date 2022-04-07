@@ -16,6 +16,7 @@ export const theme = createTheme({
 		}
 	},
 	typography: {
+		fontSize: 17,
 		fontFamily: ["Kobe"],
 		h1: {
 			fontFamily: "Kobe Bold",
@@ -26,7 +27,7 @@ export const theme = createTheme({
 	},
 	palette: {
 		primary: {
-			main: variables["colors-yellow"],
+			main: '#000000',
 		},
 	},
 });

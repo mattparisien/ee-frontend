@@ -6,6 +6,14 @@
 	left: 0;
 	height: $headerHeight;
 	z-index: 9999999;
+
+	&.is-dark {
+		background-color: transparent;
+		
+		svg path {
+			fill: $light;
+		}
+	}
 	
 
 	.c-header_left_spacer {

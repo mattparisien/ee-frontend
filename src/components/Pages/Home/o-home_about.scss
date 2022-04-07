@@ -5,6 +5,18 @@
 	align-items: center;
 	justify-content: center;
 
+	.c-megaphone {
+		height: 100%;
+
+		svg {
+			height: 100% !important;
+		}
+
+		@media screen and (max-width: 1000px) {
+			height: 40vw;
+		}
+	}
+
 	.face {
 		path {
 			stroke: $light !important;
@@ -15,7 +27,6 @@
 		display: flex;
 		flex-direction: row-reverse;
 		width: 100%;
-
 
 		.inner {
 			display: flex;
@@ -28,10 +39,7 @@
 		@include frameRevealDefaultStyles();
 	}
 
-
-
 	.c-vibrations {
-
 		height: 20vw;
 		width: 20vw;
 		position: absolute;
@@ -48,7 +56,7 @@
 				top: -2vw;
 				left: 5vw;
 				transform: scale(0.8);
-				
+
 				path {
 					fill: $green;
 					stroke: none;
@@ -73,16 +81,12 @@
 					stroke: none;
 				}
 			}
-
 		}
-
-
 
 		svg path {
 			fill: $light;
 		}
 	}
-
 
 	&_left {
 		width: 60%;
@@ -93,11 +97,11 @@
 	}
 
 	&_right {
-			width: 40%;
-		
-			transform: translateX(50%) rotate(60deg);
-			opacity: 0;
-		
+		width: 40%;
+
+		transform: translateX(50%) rotate(60deg);
+		opacity: 0;
+
 		.c-drawnLogo {
 			width: 40vw;
 			height: 40vw;
@@ -108,12 +112,9 @@
 			right: -20vw;
 			transform: rotate(240deg);
 
-
 			svg {
 				overflow: visible;
 			}
-
-			
 
 			.vibration {
 				stroke: none;
@@ -130,24 +131,19 @@
 	}
 
 	&_content {
-
-		
-
 		@include media("<=tablet") {
 			flex-direction: column;
 			justify-content: center;
 
 			.c-vibrations {
 				top: -12vw;
-				left: -9vw
+				left: -9vw;
 			}
 
 			.o-about_left,
 			.o-about_right {
 				padding: 0;
 			}
-
-			
 
 			.o-about_left {
 				width: 100%;

@@ -28,6 +28,21 @@ function SearchBar() {
 		width: "300px",
 	};
 
+	const styles = {
+		container: {
+			display: "flex",
+			flexWrap: "wrap",
+		},
+		textField: {
+			width: 300,
+			margin: 100,
+		},
+		//style for font size
+		resize: {
+			fontSize: 50,
+		},
+	};
+
 	return (
 		<Box mb={5}>
 			<TextField
@@ -36,7 +51,13 @@ function SearchBar() {
 				onChange={handleChange}
 				value={value}
 				autoFocus={true}
-				variant="standard"
+				variant='standard'
+				label={"Search our collection"}
+				InputProps={{
+					classes: {
+						input: styles.resize,
+					},
+				}}
 			/>
 		</Box>
 	);

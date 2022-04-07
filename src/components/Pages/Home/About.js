@@ -18,14 +18,14 @@ function About({ aboutText }) {
 		<>
 			<Section data-theme='dark' classes='o-about -padding-lg'>
 				<ContainerFluid>
-					<div className='o-about_content'>
+					<Box className='o-about_content' pt={5} pb={5}>
 						<SplitLayout
 							leftComponent={<SectionLeft text={aboutText} />}
 							rightComponent={<SectionRight />}
 							gap={5}
 							wrap={matches ? "wrap" : "nowrap"}
 						/>
-					</div>
+					</Box>
 				</ContainerFluid>
 			</Section>
 		</>
@@ -41,7 +41,11 @@ function SectionLeft({ text }) {
 }
 
 function SectionRight({ text }) {
-	return <Megaphone />;
+	return (
+		<Box display="flex" alignItems={"center"} justifyContent="center" height="100%">
+			<Megaphone />
+		</Box>
+	);
 }
 
 export default About;

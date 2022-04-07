@@ -10,7 +10,7 @@ function Hero({ pageHeading }) {
 	}, [pageHeading]);
 
 	return (
-		<Section data-theme='light' classes='o-hero -padding-bottom-lg'>
+		<Section data-theme='light' classes='o-hero -padding-bottom-lg' noGutter>
 			<ContainerFluid classes='-stretchX -stretchY'>
 				<div className='o-hero_inner -relative -stretchX -stretchY'>
 					<Typography variant='h1' className='o-hero_word'>
@@ -24,7 +24,7 @@ function Hero({ pageHeading }) {
 						{words && words[1]}
 					</Typography>
 					<Typography variant='h1' className='o-hero_word'>
-					{words && words[2]}
+						{words && words[2]}
 					</Typography>
 					<div className='o-hero_logo'>
 						<div className='inner -relative'>

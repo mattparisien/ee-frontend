@@ -99,8 +99,8 @@ function ProjectItem({
 			</div>
 
 			<div className='c-grid_info'>
-				<h3 className='c-grid_title -underline'>{title}</h3>
-				<p className='c-grid_description -text-tiny'>{previewText}</p>
+				<Typography component="p" variant="h4" className='c-grid_title -underline'>{title}</Typography>
+				<Typography component="p" variant="h4" className='c-grid_description -text-tiny'>{previewText}</Typography>
 			</div>
 
 			<Frame />

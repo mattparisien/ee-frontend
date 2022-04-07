@@ -24,7 +24,7 @@ function Next({ color, nextPost }) {
 	return (
 		<>
 			<Fade>
-				<Section classes='o-next' data-theme={color} ref={container}>
+				<Section classes='o-next' data-theme={color} ref={container} noGutter>
 					<Link
 						classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 						isRouterLink

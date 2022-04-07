@@ -7,15 +7,27 @@ export const formatPosts = arr => {
 	// sortedPosts = sortedPosts.reverse();
 
 	const formattedPosts = arr.map(post => {
-		console.log(post);
+		console.log('post', post);
+
 		return {
 			id: post.id,
 			title: post.attributes.Title,
 			subtitle: post.attributes.Subtitle,
 			goal: post.attributes.Goal,
-			about1: post.attributes.About1,
-			about2: post.attributes.About2,
+			about: {
+				artist: post.attributes.AboutArtist,
+				organization: post.attributes.AboutOrganization,
+				partnership: post.attributes.AboutPartnership,
+			},
+
 			featured: post.attributes.FeaturedPost,
+			metrics: post.attributes.Metrics
+				? {
+						reach: post.attributes.Metrics.Reach,
+						impact: post.attributes.Metrics.Impact,
+						funds: post.attributes.Metrics.Funds,
+				  }
+				: null,
 			media: {
 				featureImage: {
 					url: post.attributes.FeatureImage.data

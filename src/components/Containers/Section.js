@@ -16,8 +16,8 @@ function Section(props, ref) {
 				className={classes}
 				data-theme={props["data-theme"]}
 				ref={ref}
-				mb={20}
-				mt={20}
+				mb={props.noGutter ? 0 : 20}
+				mt={props.noGutter ? 0 : 20}
 			>
 				{props.children}
 			</Box>

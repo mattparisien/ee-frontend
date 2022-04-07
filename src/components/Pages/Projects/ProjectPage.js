@@ -16,7 +16,7 @@ export default function ProjectPage({ pageHeading }) {
 
 	return (
 		<div className='o-page o-page_project'>
-			<Section classes='-padding-lg o-hero -relative'>
+			<Section classes='-padding-lg o-hero -relative' noGutter>
 				<div className='o-hero_content -flex -flex-column -align-center -justify-center'>
 					<Typography variant="h1" component="h1">
 						{pageHeading && pageHeading}

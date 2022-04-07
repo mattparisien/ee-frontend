@@ -67,6 +67,10 @@ function Stories({ slides }) {
 		setActive(prev => (prev + 1 === slides.length + 1 ? 1 : prev + 1));
 	};
 
+	const frameStyle = {
+		width: '60%'
+	}
+
 	return (
 		<Fade effect={"-frame-reveal"}>
 			<Box
@@ -82,8 +86,8 @@ function Stories({ slides }) {
 					flexDirection={mobile ? "column" : "row"}
 					justifyContent='center'
 				>
-					{!mobile && <ArrowButton handleClick={handlePrevClick} />}
-					<StoryFrame />
+						{!mobile && <ArrowButton handleClick={handlePrevClick} />}
+						<StoryFrame/>
 					<Box
 						className='c-stories_content'
 						sx={{ height: "100%", margin: "0 auto" }}
@@ -94,9 +98,8 @@ function Stories({ slides }) {
 						width='70%'
 						textAlign={mobile ? "center" : "left"}
 					>
-						
 						<Box>
-							<Typography variant='h4' component='p' mb={4}>
+							<Typography variant='h5' component='p' mb={4}>
 								<span>Testimonial ·</span> <span>{active}</span> <span>/</span>
 								<span>{slides && slides.length}</span>
 							</Typography>
@@ -131,13 +134,13 @@ function Stories({ slides }) {
 							/>
 						</Box>
 					</Box>
-					{!mobile && (
+					{/* {!mobile && (
 						<ArrowButton
 							flip={true}
 							rotation={180}
 							handleClick={handleNextClick}
 						/>
-					)}
+					)} */}
 				</Box>
 			</Box>
 		</Fade>
