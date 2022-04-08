@@ -94,7 +94,6 @@ function Item({
 	mobile,
 	credit,
 }) {
-
 	const desktopInfoStyles = {
 		width: "100%",
 		height: "100%",
@@ -112,9 +111,9 @@ function Item({
 		height: "100%",
 		opacity: 0,
 		transition: "600ms ease",
-		"h6": {
-			transition: "600ms ease"
-		}
+		h6: {
+			transition: "600ms ease",
+		},
 	};
 
 	const credits = {
@@ -139,14 +138,11 @@ function Item({
 		},
 		"&:hover .info_desktop h6": {
 			opacity: 1,
-			transform: `translateY(0)`
-			
+			transform: `translateY(0)`,
 		},
 		"&:hover .info_desktop": {
 			opacity: 1,
-			
-			
-		}
+		},
 	});
 
 	const imgWrapper = {
@@ -157,6 +153,7 @@ function Item({
 			width: "100%",
 			height: "100%",
 			objectFit: "cover",
+			filter: "grayscale(1)"
 		},
 		".c-frame": {
 			transform: "scale(1.03)",
@@ -195,19 +192,17 @@ function Item({
 					<Frame />
 				</Box>
 				<Box className='temp-credits' sx={credits}>
-					<Typography variant='body2' component='p' mt={2}>
+					<Typography variant='body2' component='p'>
 						{credit}
 					</Typography>
 				</Box>
-
-
 
 				{mobile && (
 					<Box className='info_mobile'>
 						<Typography
 							variant='h5'
 							component='p'
-							textAlign="left"
+							textAlign='left'
 							className='info_mobile--title'
 						>
 							{projectTitle}
@@ -215,7 +210,7 @@ function Item({
 						<Typography
 							variant='h5'
 							component='p'
-							textAlign="left"
+							textAlign='left'
 							className='info_mobile--artist'
 						>
 							{artistName}

@@ -21,6 +21,11 @@ function Hero({ pageHeading }) {
 		[theme.breakpoints.up("md")]: {
 			fontSize: "11vw",
 			lineHeight: "11vw",
+			
+		},
+		[theme.breakpoints.down("md")]: {
+			display: "none"
+			
 		},
 	});
 
@@ -36,6 +41,11 @@ function Hero({ pageHeading }) {
 		[theme.breakpoints.up("md")]: {
 			fontSize: "11vw",
 			lineHeight: "11vw",
+			display: "none !important"
+		},
+		[theme.breakpoints.down("md")]: {
+			display: "none"
+			
 		},
 	});
 
