@@ -52,74 +52,74 @@ function App() {
 		setDomAnimatedReady(!domAnimatedReady);
 	}, [domAnimatedReady]);
 
-	useEffect(() => {
-		const elements = [];
+	// useEffect(() => {
+	// 	const elements = [];
 
-		setTimeout(() => {
-			$(".-split, .MuiTypography-h1").each((i, el) => {
-				if ($(el).children().length > 0) {
-					elements.push(...$(el).children());
-				} else {
-					elements.push(el);
-				}
-			});
-			split.current = new SplitText(elements, {
-				type: "lines, words, chars",
-				linesClass: "c-line",
-				charsClass: "c-char",
-			});
+	// 	setTimeout(() => {
+	// 		$(".-split, .MuiTypography-h1").each((i, el) => {
+	// 			if ($(el).children().length > 0) {
+	// 				elements.push(...$(el).children());
+	// 			} else {
+	// 				elements.push(el);
+	// 			}
+	// 		});
+	// 		split.current = new SplitText(elements, {
+	// 			type: "lines, words, chars",
+	// 			linesClass: "c-line",
+	// 			charsClass: "c-char",
+	// 		});
 
-			setSplit(true);
-			toggleDomAnimationReady();
-		}, 300);
-	}, [location]);
+	// 		setSplit(true);
+	// 		toggleDomAnimationReady();
+	// 	}, 300);
+	// }, [location]);
 
-	useEffect(() => {
-		split.current && split.current.revert().split();
-	}, [windowWidth]);
+	// useEffect(() => {
+	// 	split.current && split.current.revert().split();
+	// }, [windowWidth]);
 
-	useEffect(() => {
-		const show = element => {
-			$(element).css({
-				opacity: 1,
-			});
-		};
+	// useEffect(() => {
+	// 	const show = element => {
+	// 		$(element).css({
+	// 			opacity: 1,
+	// 		});
+	// 	};
 
-		const fadeUp = elements => {
-			gsap.to(elements, {
-				stagger: 0.03,
-				duration: 1,
-				ease: "power3.out",
-				y: 0,
-				opacity: 1,
-			});
-		};
+	// 	const fadeUp = elements => {
+	// 		gsap.to(elements, {
+	// 			stagger: 0.03,
+	// 			duration: 1,
+	// 			ease: "power3.out",
+	// 			y: 0,
+	// 			opacity: 1,
+	// 		});
+	// 	};
 
-		if (isSplit && domAnimatedReady) {
-			const logo = $(".o-page_home .c-drawnLogo");
+	// 	if (isSplit && domAnimatedReady) {
+	// 		const logo = $(".o-page_home .c-drawnLogo");
 
-			isFirstRender.current = false;
+	// 		isFirstRender.current = false;
 
-			const handleIntersection = entries => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						show(entry.target);
-						fadeUp($(entry.target).find(".c-char"));
-					}
-				});
-			};
+	// 		const handleIntersection = entries => {
+	// 			entries.forEach(entry => {
+	// 				if (entry.isIntersecting) {
+	// 					show(entry.target);
+	// 					fadeUp($(entry.target).find(".c-char"));
+	// 				}
+	// 			});
+	// 		};
 
-			const observer = new IntersectionObserver(handleIntersection, {
-				threshold: 0.2,
-			});
+	// 		const observer = new IntersectionObserver(handleIntersection, {
+	// 			threshold: 0.2,
+	// 		});
 
-			$(
-				".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren, .MuiTypography-h1"
-			).each((i, el) => {
-				observer.observe(el);
-			});
-		}
-	}, [isSplit, location, windowWidth, domAnimatedReady]);
+	// 		$(
+	// 			".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren, .MuiTypography-h1"
+	// 		).each((i, el) => {
+	// 			observer.observe(el);
+	// 		});
+	// 	}
+	// }, [isSplit, location, windowWidth, domAnimatedReady]);
 
 	useEffect(() => {
 		//Handle lines fading up on scroll

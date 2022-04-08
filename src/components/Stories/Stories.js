@@ -7,6 +7,11 @@ import Fade from "react-reveal/Fade";
 import ArrowButton from "../Button/ArrowButton";
 import { Box, Typography } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
+import "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+import "swiper/modules/pagination/pagination.min.css";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
+import "swiper/swiper.min.css";
 
 function Stories({ slides }) {
 	const [active, setActive] = useState(1);
@@ -68,82 +73,113 @@ function Stories({ slides }) {
 	};
 
 	const frameStyle = {
-		width: '60%'
-	}
+		width: "60%",
+	};
 
 	return (
-		<Fade effect={"-frame-reveal"}>
-			<Box
-				className='c-stories -relative'
-				sx={{ width: matches ? "100%" : "85%" }}
-			>
-				<div className='c-stories_mobile-bg'></div>
+		// <Fade effect={"-frame-reveal"}>
+		// 	<Box
+		// 		className='c-stories -relative'
+		// 		sx={{ width: matches ? "100%" : "85%" }}
+		// 	>
+		// 		<div className='c-stories_mobile-bg'></div>
 
-				<Box
-					sx={{ height: "100%" }}
-					display='flex'
-					alignItems='center'
-					flexDirection={mobile ? "column" : "row"}
-					justifyContent='center'
-				>
-						{!mobile && <ArrowButton handleClick={handlePrevClick} />}
-						{/* <StoryFrame/> */}
-					<Box
-						className='c-stories_content'
-						sx={{ height: "100%", margin: "0 auto" }}
-						display='flex'
-						flexDirection={"column"}
-						alignItems={mobile ? "center" : "flex-start"}
-						justifyContent='center'
-						width='70%'
-						textAlign={mobile ? "center" : "left"}
-					>
-						<Box>
-							<Typography variant='h5' component='p' mb={4}>
-								<span>Testimonial ·</span> <span>{active}</span> <span>/</span>
-								<span>{slides && slides.length}</span>
-							</Typography>
-						</Box>
-						{slides &&
-							slides
-								.slice(0, 1)
-								.map(slide => (
-									<Story
-										addToRefs={addToRefs}
-										heading={slide.heading}
-										quote={slide.quote}
-										author={slide.author}
-										key={slide.id}
-										id={slide.id}
-										active={active}
-										setActive={setActive}
-										mobile={mobile}
-									/>
-								))}
-						<Box
-							mt={5}
-							className='mobile-controls'
-							display={mobile ? "block" : "none"}
-						>
-							{" "}
-							<ArrowButton handleClick={handlePrevClick} />
-							<ArrowButton
-								flip={true}
-								rotation={180}
-								handleClick={handleNextClick}
-							/>
-						</Box>
-					</Box>
-					{!mobile && (
-						<ArrowButton
-							flip={true}
-							rotation={180}
-							handleClick={handleNextClick}
-						/>
-					)}
-				</Box>
-			</Box>
-		</Fade>
+		// 		<Box
+		// 			sx={{ height: "100%" }}
+		// 			display='flex'
+		// 			alignItems='center'
+		// 			flexDirection={mobile ? "column" : "row"}
+		// 			justifyContent='center'
+		// 		>
+		// 				{!mobile && <ArrowButton handleClick={handlePrevClick} />}
+		// 				{/* <StoryFrame/> */}
+		// 			<Box
+		// 				className='c-stories_content'
+		// 				sx={{ height: "100%", margin: "0 auto" }}
+		// 				display='flex'
+		// 				flexDirection={"column"}
+		// 				alignItems={mobile ? "center" : "flex-start"}
+		// 				justifyContent='center'
+		// 				width='70%'
+		// 				textAlign={mobile ? "center" : "left"}
+		// 			>
+		// 				<Box>
+		// 					<Typography variant='h5' component='p' mb={4}>
+		// 						<span>Testimonial ·</span> <span>{active}</span> <span>/</span>
+		// 						<span>{slides && slides.length}</span>
+		// 					</Typography>
+		// 				</Box>
+		// 				{slides &&
+		// 					slides
+		// 						.slice(0, 1)
+		// 						.map(slide => (
+		// 							<Story
+		// 								addToRefs={addToRefs}
+		// 								heading={slide.heading}
+		// 								quote={slide.quote}
+		// 								author={slide.author}
+		// 								key={slide.id}
+		// 								id={slide.id}
+		// 								active={active}
+		// 								setActive={setActive}
+		// 								mobile={mobile}
+		// 							/>
+		// 						))}
+		// 				<Box
+		// 					mt={5}
+		// 					className='mobile-controls'
+		// 					display={mobile ? "block" : "none"}
+		// 				>
+		// 					{" "}
+		// 					<ArrowButton handleClick={handlePrevClick} />
+		// 					<ArrowButton
+		// 						flip={true}
+		// 						rotation={180}
+		// 						handleClick={handleNextClick}
+		// 					/>
+		// 				</Box>
+		// 			</Box>
+		// 			{!mobile && (
+		// 				<ArrowButton
+		// 					flip={true}
+		// 					rotation={180}
+		// 					handleClick={handleNextClick}
+		// 				/>
+		// 			)}
+		// 		</Box>
+		// 	</Box>
+		// </Fade>
+		<Swiper
+			loop={true}
+
+			// navigation={{
+			// 	prevEl: navigationPrevRef.current,
+			// 	nextEl: navigationNextRef.current,
+			// }}
+		>
+			{slides &&
+				slides.map(slide => (
+					<SwiperSlide key={slide.id}>
+						<Typography variant='h5' component='p'>
+							{slide.quote}
+						</Typography>
+						<Typography variant='h3' component='h3'>
+							{slide.author}
+						</Typography>
+					</SwiperSlide>
+					// <Story
+					// 	addToRefs={addToRefs}
+					// 	heading={slide.heading}
+					// 	quote={slide.quote}
+					// 	author={slide.author}
+					// 	key={slide.id}
+					// 	id={slide.id}
+					// 	active={active}
+					// 	setActive={setActive}
+					// 	mobile={mobile}
+					// />
+				))}
+		</Swiper>
 	);
 }
 
@@ -166,7 +202,11 @@ function Story({ heading, author, quote, id, addToRefs, mobile }) {
 			sx={storyStyles}
 		>
 			<Fade bottom>
-				<Typography variant='h4' component='p' sx={{fontFamily: 'Kobe !important'}}>
+				<Typography
+					variant='h4'
+					component='p'
+					sx={{ fontFamily: "Kobe !important" }}
+				>
 					{quote}
 				</Typography>
 

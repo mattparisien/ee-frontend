@@ -375,16 +375,16 @@
 	};
 }
 
-.-fadeUpChars, .MuiTypography-h1  {
-	opacity: 0;
-}
+// .-fadeUpChars, .MuiTypography-h1  {
+// 	opacity: 0;
+// }
 
-.-fadeUpChars, .MuiTypography-h1 {
-	.c-char {
-		transform: translateY(100%);
-		opacity: 0;
-	}
-}
+// .-fadeUpChars, .MuiTypography-h1 {
+// 	.c-char {
+// 		transform: translateY(100%);
+// 		opacity: 0;
+// 	}
+// }
 
 // p.-fadeUp {
 // 	animation-delay: 20s;

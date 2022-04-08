@@ -17,7 +17,7 @@ import { useMediaQuery } from "@mui/material";
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
-	const mobile = useMediaQuery('(max-width: 600px)')
+	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const noteTl = useRef(null);
 	const container = useRef(null);
@@ -80,25 +80,114 @@ function How({ steps }) {
 				);
 	}, []);
 
+	const stepHeading = theme => ({
+		fontSize: "5vw",
+		lineHeight: "5vw",
+		[theme.breakpoints.down("md")]: {
+			fontSize: "3rem",
+		},
+	});
+
+	const stepParagraph = theme => ({
+		fontSize: "1.3vw",
+	});
+
+	const containerStyles = theme => ({
+		height: "150vw",
+		[theme.breakpoints.down("md")]: {
+			height: "auto",
+		},
+		[theme.breakpoints.down("md")]: {
+			".c-steps_item_1": {
+				"grid-row": "1/2 !important",
+				"grid-column": "1/7 !important",
+			},
+			".c-steps_item_2": {
+				"grid-row": " 2/3",
+				"grid-column": "7/13 !important",
+			},
+			".c-steps_item_3": {
+				"grid-row": " 3/4",
+				"grid-column": "1/7 !important",
+			},
+			".c-steps_item_4": {
+				"grid-row": " 4/5",
+				"grid-column": "7/13 !important",
+			},
+			".c-steps_item_5": {
+				"grid-row": " 5/6",
+				"grid-column": "1/7 !important",
+			},
+		},
+		[theme.breakpoints.down("sm")]: {
+			".c-steps_item_1": {
+				"grid-row": "1/2 !important",
+				"grid-column": "1/13 !important",
+			},
+			".c-steps_item_2": {
+				"grid-row": " 2/3",
+				"grid-column": "1/13 !important",
+			},
+			".c-steps_item_3": {
+				"grid-row": " 3/4",
+				"grid-column": "1/13 !important",
+			},
+			".c-steps_item_4": {
+				"grid-row": " 4/5",
+				"grid-column": "1/13 !important",
+			},
+			".c-steps_item_5": {
+				"grid-row": " 5/6",
+				"grid-column": "1/13 !important",
+			},
+		},
+
+		".c-steps_item_1": {
+			"grid-row": "1/2",
+			"grid-column": "1/5",
+		},
+		".c-steps_item_2": {
+			"grid-row": " 2/3",
+			"grid-column": "5/9",
+		},
+		".c-steps_item_3": {
+			"grid-row": " 3/4",
+			"grid-column": "9/13",
+		},
+		".c-steps_item_4": {
+			"grid-row": " 4/5",
+			"grid-column": "5/9",
+		},
+		".c-steps_item_5": {
+			"grid-row": " 5/6",
+			"grid-column": "1/5",
+		},
+	});
+
 	return (
 		<>
 			<Section classes='o-how' data-theme='light' ref={container}>
 				<ContainerFluid>
-					<Typography variant='h1' textAlign='center' pb={5} pt={5}>
+					<Typography variant='h1' textAlign='center' pb={5} pt={5} mb={5}>
 						Finding Your Rhythm
 					</Typography>
-					<div className='steps-container -relative'>
-						<div className='c-steps'>
+					<Box
+						className='steps-container -relative'
+						ml={10}
+						mr={10}
+						sx={containerStyles}
+					>
+						<Box className='c-steps' sx={{ height: "100%" }}>
 							<div className='c-steps_background'></div>
 							{steps &&
 								steps.map((step, i) => {
 									return (
-										<div
+										<Box
 											className={`c-steps_item c-steps_item_${step.id}`}
 											key={i}
 										>
 											<Fade bottom>
-												<Typography variant='h2' sx={{fontSize: !mobile && '3rem'}} mb={2}>
+												<Typography variant='h2' sx={stepHeading} mb={2}>
 													<ReactMarkdown
 														disallowedElements={["p"]}
 														unwrapDisallowed
@@ -110,15 +199,15 @@ function How({ steps }) {
 
 											<Fade bottom>
 												<Typography
+													sx={stepParagraph}
 													className='body'
 													variant='body1'
 													component={"p"}
-													
 												>
 													{step.body}
 												</Typography>
 											</Fade>
-										</div>
+										</Box>
 									);
 								})}
 
@@ -139,7 +228,7 @@ function How({ steps }) {
 								<div className='c-steps_sheet_line' data-scroll></div>
 								<div className='c-steps_sheet_line' data-scroll></div>
 							</div>
-						</div>
+						</Box>
 
 						<QuarterNote id={1} />
 						<QuarterNote id={2} />
@@ -147,7 +236,7 @@ function How({ steps }) {
 						<QuarterNote id={4} />
 						<HalfNote id={3} />
 						<ColorBlobs />
-					</div>
+					</Box>
 				</ContainerFluid>
 			</Section>
 		</>

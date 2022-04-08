@@ -1,5 +1,12 @@
 .c-footer {
 	
+	.c-drawnLogo {
+		width: 100%;
+
+		svg {
+			overflow: visible;
+		}
+	}
 	
 	position: relative;
 	bottom: 0;
