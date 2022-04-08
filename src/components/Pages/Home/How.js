@@ -231,7 +231,7 @@ function How({ steps }) {
 	});
 
 	const playerSvg = theme => ({
-		width: "40%",
+		width: "30%",
 		
 		
 		

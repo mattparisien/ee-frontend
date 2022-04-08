@@ -6,11 +6,9 @@
 			max-height: calc(100vh - $headerHeight - 5rem);
 			height: 90vw;
 			margin-bottom: 5rem;
-			
 		}
 
 		h1 {
-
 			@include media("<=phoneL") {
 				font-size: 25vw;
 				letter-spacing: -4px;
@@ -22,20 +20,13 @@
 			flex-direction: column;
 			justify-content: space-between;
 			position: relative;
-			
 
 			.o-hero_logo {
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform: translate(-70%, -50%);
+				transform: translate(-50%, -50%);
 				overflow: hidden;
-				width: 25vw;
-				height: 28vw;
-
-				@include media("<=tablet") {
-					transform: translate(-160%, -50%);
-				}
 
 				.revealer {
 					position: absolute;
@@ -53,7 +44,7 @@
 			}
 
 			.c-drawnLogo {
-				width: 20vw;
+				
 				position: absolute;
 				top: 0;
 				right: 0;
@@ -76,8 +67,7 @@
 		}
 
 		&_word {
-
-			font-family: 'Kobe Bold';
+			font-family: "Kobe Bold";
 
 			&:nth-child(2) {
 				align-self: flex-end;
