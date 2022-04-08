@@ -18,7 +18,7 @@ function ContactPage({ pageHeading }) {
 	return (
 		<div className='o-page o-page_contact'>
 			<Section classes='o-hero'>
-				<Box>
+				<Box className="o-hero_content" sx={{zIndex: 99}}>
 					<Typography variant='h1' component='h1' textAlign={"center"}>
 						{pageHeading && pageHeading}
 					</Typography>
