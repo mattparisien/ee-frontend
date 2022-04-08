@@ -19,8 +19,8 @@ function Hero({ pageHeading }) {
 			lineHeight: "9rem",
 		},
 		[theme.breakpoints.up("md")]: {
-			fontSize: "13vw",
-			lineHeight: "13vw",
+			fontSize: "11vw",
+			lineHeight: "11vw",
 		},
 	});
 
@@ -34,8 +34,8 @@ function Hero({ pageHeading }) {
 			lineHeight: "9rem",
 		},
 		[theme.breakpoints.up("md")]: {
-			fontSize: "13vw",
-			lineHeight: "13vw",
+			fontSize: "11vw",
+			lineHeight: "11vw",
 		},
 	});
 

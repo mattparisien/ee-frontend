@@ -94,6 +94,7 @@ function Item({
 	mobile,
 	credit,
 }) {
+
 	const desktopInfoStyles = {
 		width: "100%",
 		height: "100%",
@@ -206,6 +207,7 @@ function Item({
 						<Typography
 							variant='h5'
 							component='p'
+							textAlign="left"
 							className='info_mobile--title'
 						>
 							{projectTitle}
@@ -213,6 +215,7 @@ function Item({
 						<Typography
 							variant='h5'
 							component='p'
+							textAlign="left"
 							className='info_mobile--artist'
 						>
 							{artistName}
