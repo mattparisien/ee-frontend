@@ -14,6 +14,7 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import SectionHeading from "../../Headings/SectionHeading";
+import { InstrumentPlayer } from "../../Vector/Svg";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -119,7 +120,7 @@ function How({ steps }) {
 			},
 			".c-steps_item_2": {
 				"grid-row": " 2/3",
-				"grid-column": "7/13 !important",
+				"grid-column": "8/14 !important",
 			},
 			".c-steps_item_3": {
 				"grid-row": " 3/4",
@@ -127,7 +128,7 @@ function How({ steps }) {
 			},
 			".c-steps_item_4": {
 				"grid-row": " 4/5",
-				"grid-column": "7/13 !important",
+				"grid-column": "8/14 !important",
 			},
 			".c-steps_item_5": {
 				"grid-row": " 5/6",
@@ -140,59 +141,76 @@ function How({ steps }) {
 			marginRight: 2,
 			".c-steps_item_1": {
 				"grid-row": "1/2 !important",
-				"grid-column": "1/13 !important",
+				"grid-column": "1/14 !important",
 			},
 			".c-steps_item_2": {
 				"grid-row": " 2/3",
-				"grid-column": "1/13 !important",
+				"grid-column": "1/14 !important",
 			},
 			".c-steps_item_3": {
 				"grid-row": " 3/4",
-				"grid-column": "1/13 !important",
+				"grid-column": "1/14 !important",
 			},
 			".c-steps_item_4": {
 				"grid-row": " 4/5",
-				"grid-column": "1/13 !important",
+				"grid-column": "1/14 !important",
 			},
 			".c-steps_item_5": {
 				"grid-row": " 5/6",
-				"grid-column": "1/13 !important",
+				"grid-column": "1/14 !important",
 			},
 		},
 
 		".c-steps_item_1": {
 			"grid-row": "1/2",
-			"grid-column": "1/5",
+			"grid-column": "1/6",
 		},
 		".c-steps_item_2": {
 			"grid-row": " 2/3",
-			"grid-column": "5/9",
+			"grid-column": "5/11",
 		},
 		".c-steps_item_3": {
 			"grid-row": " 3/4",
-			"grid-column": "9/13",
+			"grid-column": "8/14",
 		},
 		".c-steps_item_4": {
 			"grid-row": " 4/5",
-			"grid-column": "5/9",
+			"grid-column": "5/11",
 		},
 		".c-steps_item_5": {
 			"grid-row": " 5/6",
-			"grid-column": "1/5",
+			"grid-column": "1/6",
 		},
 	});
+
+	const playerSvg = theme => ({
+		width: "300px",
+		svg: {
+			overflow: "visible",
+		},
+	});
+
+	const headingLayout = {
+		display: "flex"
+	}
 
 	return (
 		<>
 			<Section classes='o-how' data-theme='light' ref={container}>
 				<ContainerFluid>
-					<SectionHeading
-						textAlign='center'
-						pb={5}
-						pt={5}
-						mb={5}
-						text={"Finding Your Rhythm"}
-					/>
+					<Box className="heading-layout" sx={headingLayout}>
+						<SectionHeading
+							textAlign='center'
+							pb={5}
+							pt={5}
+							mb={5}
+							text={"Finding Your Rhythm"}
+						/>
+
+						<Box sx={playerSvg}>
+							<InstrumentPlayer />
+						</Box>
+					</Box>
 
 					<Box className='steps-container -relative' sx={containerStyles}>
 						<Box className='c-steps' sx={{ height: "100%" }}>
@@ -229,23 +247,7 @@ function How({ steps }) {
 									);
 								})}
 
-							<div className='c-steps_sheet'>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-								<div className='c-steps_sheet_line' data-scroll></div>
-							</div>
+							<SheetMusic />
 						</Box>
 
 						<QuarterNote id={1} />
@@ -260,5 +262,27 @@ function How({ steps }) {
 		</>
 	);
 }
+
+const SheetMusic = () => {
+	return (
+		<div className='c-steps_sheet'>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+			<div className='c-steps_sheet_line' data-scroll></div>
+		</div>
+	);
+};
 
 export default How;

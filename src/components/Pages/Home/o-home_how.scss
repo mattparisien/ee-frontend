@@ -40,11 +40,7 @@
 
 .o-page_home {
 	.o-how {
-		.instrument-player-svg {
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
+
 
 		.o-colorBlobs {
 			z-index: 0;
@@ -410,7 +406,7 @@
 	}
 
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
+	grid-template-columns: repeat(13, 1fr);
 	grid-column-gap: 5vw;
 
 	p {

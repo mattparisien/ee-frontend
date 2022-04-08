@@ -184,12 +184,18 @@
 }
 
 .c-stories {
+
+	height: 40vw;
+
 	&_story {
 		top: 0;
 		left: 50%;
 
 		&:not([data-story-id="1"]) {
 			opacity: 0;
+			position: absolute;
+			width: 100%;
+			left: 0;
 		}
 
 		// transform: translateX(-50%);

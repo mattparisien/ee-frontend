@@ -37,7 +37,7 @@ theme = createTheme(theme, {
 			},
 		},
 		p: {
-			fontFamily: "Kobe",
+			fontFamily: "Orpheus",
 		},
 	},
 	palette: {

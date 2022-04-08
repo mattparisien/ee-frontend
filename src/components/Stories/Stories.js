@@ -12,6 +12,8 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/modules/pagination/pagination.min.css";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
+import Carousel from "react-material-ui-carousel";
+import { Paper, Button } from "@mui/material";
 
 function Stories({ slides }) {
 	const [active, setActive] = useState(1);
@@ -76,110 +78,77 @@ function Stories({ slides }) {
 		width: "60%",
 	};
 
+	const carouselStyles = {
+		paddingLeft: 20,
+		paddingRight: 20,
+		".MuiButtonBase-root": {
+			backgroundColor: "transparent"
+		}
+	};
+
+
+	const navButtonProps = {
+		style: {
+			backgroundColor: "#ffff"
+		}
+	}
+
 	return (
-		// <Fade effect={"-frame-reveal"}>
-		// 	<Box
-		// 		className='c-stories -relative'
-		// 		sx={{ width: matches ? "100%" : "85%" }}
-		// 	>
-		// 		<div className='c-stories_mobile-bg'></div>
+		
+			<Carousel
+				NextIcon={<NextButton />}
+				PrevIcon={<PrevButton />}
+				navButtonProps={{
+					style: {
+						backgroundColor: "blue"
+					}
+				}}
+				p={4}
+				sx={carouselStyles}
+				autoPlay={false}
+				navButtonsAlwaysVisible
+			>
+				{slides &&
+					slides.map(slide => (
+						<Item author={slide.author} quote={slide.quote} />
+					))}
+			</Carousel>
+	
+	);
+}
 
-		// 		<Box
-		// 			sx={{ height: "100%" }}
-		// 			display='flex'
-		// 			alignItems='center'
-		// 			flexDirection={mobile ? "column" : "row"}
-		// 			justifyContent='center'
-		// 		>
-		// 				{!mobile && <ArrowButton handleClick={handlePrevClick} />}
-		// 				{/* <StoryFrame/> */}
-		// 			<Box
-		// 				className='c-stories_content'
-		// 				sx={{ height: "100%", margin: "0 auto" }}
-		// 				display='flex'
-		// 				flexDirection={"column"}
-		// 				alignItems={mobile ? "center" : "flex-start"}
-		// 				justifyContent='center'
-		// 				width='70%'
-		// 				textAlign={mobile ? "center" : "left"}
-		// 			>
-		// 				<Box>
-		// 					<Typography variant='h5' component='p' mb={4}>
-		// 						<span>Testimonial ·</span> <span>{active}</span> <span>/</span>
-		// 						<span>{slides && slides.length}</span>
-		// 					</Typography>
-		// 				</Box>
-		// 				{slides &&
-		// 					slides
-		// 						.slice(0, 1)
-		// 						.map(slide => (
-		// 							<Story
-		// 								addToRefs={addToRefs}
-		// 								heading={slide.heading}
-		// 								quote={slide.quote}
-		// 								author={slide.author}
-		// 								key={slide.id}
-		// 								id={slide.id}
-		// 								active={active}
-		// 								setActive={setActive}
-		// 								mobile={mobile}
-		// 							/>
-		// 						))}
-		// 				<Box
-		// 					mt={5}
-		// 					className='mobile-controls'
-		// 					display={mobile ? "block" : "none"}
-		// 				>
-		// 					{" "}
-		// 					<ArrowButton handleClick={handlePrevClick} />
-		// 					<ArrowButton
-		// 						flip={true}
-		// 						rotation={180}
-		// 						handleClick={handleNextClick}
-		// 					/>
-		// 				</Box>
-		// 			</Box>
-		// 			{!mobile && (
-		// 				<ArrowButton
-		// 					flip={true}
-		// 					rotation={180}
-		// 					handleClick={handleNextClick}
-		// 				/>
-		// 			)}
-		// 		</Box>
-		// 	</Box>
-		// </Fade>
-		<Swiper
-			loop={true}
+const PrevButton = () => {
+	return <ArrowButton />;
+};
 
-			// navigation={{
-			// 	prevEl: navigationPrevRef.current,
-			// 	nextEl: navigationNextRef.current,
-			// }}
-		>
-			{slides &&
-				slides.map(slide => (
-					<SwiperSlide key={slide.id}>
-						<Typography variant='h5' component='p'>
-							{slide.quote}
-						</Typography>
-						<Typography variant='h3' component='h3'>
-							{slide.author}
-						</Typography>
-					</SwiperSlide>
-					// <Story
-					// 	addToRefs={addToRefs}
-					// 	heading={slide.heading}
-					// 	quote={slide.quote}
-					// 	author={slide.author}
-					// 	key={slide.id}
-					// 	id={slide.id}
-					// 	active={active}
-					// 	setActive={setActive}
-					// 	mobile={mobile}
-					// />
-				))}
-		</Swiper>
+const NextButton = () => {
+	return <ArrowButton flip={true} rotation={180} />;
+};
+
+function Item({ author, quote }) {
+	return (
+		<>
+			<Typography
+				variant='h4'
+				component='p'
+				textAlign='center'
+				sx={{ fontFamily: "Kobe !important" }}
+			>
+				{quote}
+			</Typography>
+
+			<Typography
+				variant='h5'
+				textAlign="center"
+				component='p'
+				mb={4}
+				mt={4}
+				sx={{ fontFamily: "Kobe Bold !important" }}
+			>
+				<strong>{author}</strong>
+				{/* <Highlight noDraw /> */}
+			</Typography>
+		</>
 	);
 }
 
@@ -203,7 +172,7 @@ function Story({ heading, author, quote, id, addToRefs, mobile }) {
 		>
 			<Fade bottom>
 				<Typography
-					variant='h4'
+					variant='h6'
 					component='p'
 					sx={{ fontFamily: "Kobe !important" }}
 				>
@@ -211,7 +180,7 @@ function Story({ heading, author, quote, id, addToRefs, mobile }) {
 				</Typography>
 
 				<Typography
-					variant='h4'
+					variant='h5'
 					component='p'
 					mt={4}
 					sx={{ fontFamily: "Kobe Bold !important" }}
