@@ -1,13 +1,10 @@
+import { Box, Card, CardMedia, Typography, useMediaQuery } from "@mui/material";
 import React, { useContext } from "react";
 import { DataContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
-import Figure from "../../Figure/Figure";
-import { Typography, Box } from "@mui/material";
 import SplitLayout from "../../Layouts/SplitLayout";
-import { Card, CardMedia } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
 import Markdown from "../../Markdown/Markdown";
 import Frame from "../../Vector/Frame";
 

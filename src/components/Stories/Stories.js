@@ -151,7 +151,7 @@ function Item({ author, quote }) {
 			</Typography>
 
 			<Typography
-				variant='h5'
+				variant='h4'
 				textAlign='center'
 				component='p'
 				mb={4}
