@@ -19,6 +19,14 @@ header .c-header_logo {
 	box-shadow: 3px 4px 30px -12px rgba(0, 0, 0, 0.2);
 }
 
+.c-header_nav-btn  {
+	opacity: 0;
+}
+
+.is-not-first-visit .c-header_nav-btn  {
+	opacity: 1;
+}
+
 .is-not-first-visit header .c-header_logo {
 	opacity: 1;
 }

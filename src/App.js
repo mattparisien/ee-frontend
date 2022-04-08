@@ -58,6 +58,7 @@ function App() {
 		const subtitle2 = $(headerLogo).find(".agency");
 		const subtitles = [...subtitle, ...subtitle2];
 		const header = document.querySelector("header");
+		const burger = document.querySelector(".c-header_nav-btn");
 		const drawnLogo = document.querySelector(
 			".o-page_home .o-hero .c-drawnLogo"
 		);
@@ -114,6 +115,14 @@ function App() {
 
 						ease: "power3.out",
 						duration: 1,
+					},
+					4
+				)
+				.to(
+					burger,
+					{
+						opacity: 1,
+						duration: 1
 					},
 					4
 				)

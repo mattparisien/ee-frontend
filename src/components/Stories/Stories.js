@@ -87,7 +87,11 @@ function Stories({ slides }) {
 		flexDirection: "column",
 		[theme.breakpoints.down("md")]: {
 			paddingLeft: 10,
-			paddingRight: 10
+			paddingRight: 10,
+		},
+		[theme.breakpoints.down("sm")]: {
+			paddingLeft: 0,
+			paddingRight: 0,
 		},
 
 		".MuiButtonBase-root": {
@@ -117,10 +121,15 @@ function Stories({ slides }) {
 				NextIcon={<NextButton />}
 				PrevIcon={<PrevButton />}
 				fullHeightHover={false}
-		
 				navButtonProps={{
 					style: {
 						backgroundColor: "blue",
+					},
+				}}
+				navButtonsWrapperProps={{
+					style: {
+						bottom: mobile && "0",
+						top: mobile && "unset",
 					},
 				}}
 				p={4}
@@ -165,47 +174,6 @@ function Item({ author, quote }) {
 				{/* <Highlight noDraw /> */}
 			</Typography>
 		</>
-	);
-}
-
-function Story({ heading, author, quote, id, addToRefs, mobile }) {
-	const classes = classNames(`c-stories_story c-stories_story_${id}`);
-
-	const storyStyles = {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: mobile ? "center" : "flex-start",
-		overflow: "hidden",
-	};
-
-	return (
-		<Box
-			className={classes}
-			ref={addToRefs}
-			data-story-id={id}
-			sx={storyStyles}
-		>
-			<Fade bottom>
-				<Typography
-					variant='h6'
-					component='p'
-					sx={{ fontFamily: "Kobe !important" }}
-				>
-					{quote}
-				</Typography>
-
-				<Typography
-					variant='h5'
-					component='p'
-					mt={4}
-					sx={{ fontFamily: "Kobe Bold !important" }}
-				>
-					<strong>{author}</strong>
-					{/* <Highlight noDraw /> */}
-				</Typography>
-			</Fade>
-		</Box>
 	);
 }
 

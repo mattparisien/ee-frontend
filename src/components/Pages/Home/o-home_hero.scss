@@ -6,16 +6,9 @@
 			max-height: calc(100vh - $headerHeight - 5rem);
 			height: 90vw;
 			margin-bottom: 5rem;
-			
-	
 		}
 
-		h1 {
-			@include media("<=phoneL") {
-				font-size: 25vw;
-				letter-spacing: -4px;
-			}
-		}
+
 
 		&_inner {
 			display: flex;
@@ -45,16 +38,16 @@
 				}
 			}
 
+			@media screen and (max-width: 600px) {
+				.o-hero_logo {
+					height: 60vw;
+				}
+			}
+
 			.c-drawnLogo {
 				position: absolute;
 				top: 0;
 				right: 0;
-
-				@include media("<=phoneL") {
-					display: none;
-				}
-		
-				
 
 				overflow: visible;
 
@@ -66,6 +59,25 @@
 						fill: none;
 					}
 				}
+			}
+		}
+
+		@include media("<=phoneL") {
+			h1 {
+				font-size: 9.6vw;
+				line-height: 9.6vw;
+				margin-top: 93vw;
+				padding: 2vw;
+				
+				
+
+			
+			}
+
+			&_inner {
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
 			}
 		}
 

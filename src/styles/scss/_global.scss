@@ -20,25 +20,15 @@
 
 body {
 	overflow-x: hidden;
-	
 }
 
-
 .marquee h2 {
-	font-family: 'Kobe Bold' !important;
+	font-family: "Kobe Bold" !important;
 }
 
 :root {
 	width: 100vw;
-	
 }
-
-.App {
-	min-height: 100%;
-}
-
-
-
 
 .scroll-to-top {
 	position: fixed !important;
@@ -49,8 +39,8 @@ body {
 .App {
 	background-color: $light;
 	transition-delay: 300ms;
-
-
+	min-height: 100%;
+	overflow-x: hidden;
 
 	&.is-new-page main {
 		opacity: 1;
@@ -60,7 +50,6 @@ body {
 		opacity: 0;
 	}
 }
-
 
 main {
 	transition: $transition;
@@ -79,7 +68,6 @@ ul {
 	padding: 0;
 }
 
-
 .line-wrapper {
 	overflow: hidden;
 }
@@ -91,13 +79,19 @@ ul {
 }
 
 h1 {
-	font-family: 'Kobe Bold';
+	font-family: "Kobe Bold";
 }
 
-footer .email, footer p, .o-stories p, .swiper p, .c-steps p, .o-about h4, .o-page_contact h3, .o-page_contact p {
-	font-family: 'Kobe';
+footer .email,
+footer p,
+.o-stories p,
+.swiper p,
+.c-steps p,
+.o-about h4,
+.o-page_contact h3,
+.o-page_contact p {
+	font-family: "Kobe";
 }
-
 
 @media (min-width: 700px) and (max-width: 1024px) {
 	html {
