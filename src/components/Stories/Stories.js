@@ -81,39 +81,46 @@ function Stories({ slides }) {
 	const carouselStyles = {
 		paddingLeft: 20,
 		paddingRight: 20,
+		
 		".MuiButtonBase-root": {
-			backgroundColor: "transparent"
-		}
+			backgroundColor: "transparent",
+			"button:hover": {
+				backgroundColor: "black",
+				filter: "brightness(120%)",
+				opacity: "1"
+			},
+		},
+		".MuiTouchRipple-root": {
+			display: "none",
+			opacity: 1
+		},
 	};
-
 
 	const navButtonProps = {
 		style: {
-			backgroundColor: "#ffff"
-		}
-	}
+			backgroundColor: "#ffff",
+		},
+	};
 
 	return (
-		
-			<Carousel
-				NextIcon={<NextButton />}
-				PrevIcon={<PrevButton />}
-				navButtonProps={{
-					style: {
-						backgroundColor: "blue"
-					}
-				}}
-				p={4}
-				sx={carouselStyles}
-				autoPlay={false}
-				navButtonsAlwaysVisible
-			>
-				{slides &&
-					slides.map(slide => (
-						<Item author={slide.author} quote={slide.quote} />
-					))}
-			</Carousel>
-	
+		<Carousel
+			NextIcon={<NextButton />}
+			PrevIcon={<PrevButton />}
+			fullHeightHover={false}
+			navButtonProps={{
+				style: {
+					backgroundColor: "blue",
+				},
+			}}
+			p={4}
+			sx={carouselStyles}
+			animation={"fade"}
+			autoPlay={false}
+			navButtonsAlwaysVisible
+		>
+			{slides &&
+				slides.map(slide => <Item author={slide.author} quote={slide.quote} />)}
+		</Carousel>
 	);
 }
 
@@ -132,14 +139,14 @@ function Item({ author, quote }) {
 				variant='h4'
 				component='p'
 				textAlign='center'
-				sx={{ fontFamily: "Kobe !important" }}
+				sx={{ fontFamily: "Orpheus !important" }}
 			>
 				{quote}
 			</Typography>
 
 			<Typography
 				variant='h5'
-				textAlign="center"
+				textAlign='center'
 				component='p'
 				mb={4}
 				mt={4}

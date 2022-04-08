@@ -58,7 +58,7 @@ function Slider({ items }) {
 							</SwiperSlide>
 						))}
 				</Swiper>
-				{mobile && (
+				{/* {mobile && (
 					<Box
 						sx={{ width: "100%" }}
 						display='flex'
@@ -69,13 +69,13 @@ function Slider({ items }) {
 						<ArrowButton ref={navigationPrevRef} />
 						<ArrowButton ref={navigationNextRef} rotation={"180"} />
 					</Box>
-				)}
-				{!mobile && (
+				)} */}
+				{/* {!mobile && (
 					<nav className='o-slider_nav'>
 						<ArrowButton ref={navigationPrevRef} />
 						<ArrowButton ref={navigationNextRef} rotation={"180"} />
 					</nav>
-				)}
+				)} */}
 			</ContainerFluid>
 		</div>
 	);
