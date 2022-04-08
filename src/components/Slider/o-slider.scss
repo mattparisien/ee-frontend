@@ -1,3 +1,9 @@
+
+.swiper, .swiper-slide {
+	overflow: visible;
+}
+
+
 .o-slider {
 	@include media("<=tablet") {
 		.c-arrow-button {
@@ -18,84 +24,86 @@
 		padding: 3rem 0;
 	}
 
-	&_item {
-		height: 25vw;
-		width: 100%;
-		position: relative;
-		overflow: hidden;
+	// &_item {
+	// 	height: 25vw;
+	// 	width: 100%;
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	position: relative;
+	// 	overflow: hidden;
 
-		@include media("<=phoneL") {
-			height: 60vw;
-		}
+	// 	@include media("<=phoneL") {
+	// 		height: 80vw;
+	// 	}
 
-		&:hover::after {
-			opacity: 0.6;
-		}
+	// 	&:hover::after {
+	// 		opacity: 0.6;
+	// 	}
 
-		&:hover img {
-			transform: scale(1.1);
+	// 	&:hover img {
+	// 		transform: scale(1.1);
 
-			@media screen and (max-width: 600px) {
-				transform: none;
-			}
-		}
+	// 		@media screen and (max-width: 600px) {
+	// 			transform: none;
+	// 		}
+	// 	}
 
-		.info_desktop--artist,
-		.info_desktop--title {
-			transition: $transition;
-		}
+	// 	.info_desktop--artist,
+	// 	.info_desktop--title {
+	// 		transition: $transition;
+	// 	}
 
-		&:hover .info_desktop--artist,
-		&:hover .info_desktop--title {
-			transform: none;
-			opacity: 1;
-		}
+	// 	&:hover .info_desktop--artist,
+	// 	&:hover .info_desktop--title {
+	// 		transform: none;
+	// 		opacity: 1;
+	// 	}
 
-		&:hover .info_desktop--title {
-			transition-delay: 100ms;
-		}
+	// 	&:hover .info_desktop--title {
+	// 		transition-delay: 100ms;
+	// 	}
 
-		&::after {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: black;
-			opacity: 0;
-			content: "";
-			transition: $transition;
+	// 	// &::after {
+	// 	// 	position: absolute;
+	// 	// 	top: 0;
+	// 	// 	left: 0;
+	// 	// 	width: 100%;
+	// 	// 	height: 80%;
+	// 	// 	background-color: black;
+	// 	// 	opacity: 0;
+	// 	// 	content: "";
+	// 	// 	transition: $transition;
 
-			@media screen and (max-width: 800px) {
-				display: none;
-			}
-		}
+	// 	// 	@media screen and (max-width: 800px) {
+	// 	// 		display: none;
+	// 	// 	}
+	// 	// }
 
-		.info_mobile {
-			height: 20%;
-			font-size: 2rem;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			padding: 0.8rem 0;
+	// 	.info_mobile {
+	// 		height: 20%;
+	// 		font-size: 2rem;
+	// 		display: flex;
+	// 		flex-direction: column;
+	// 		align-items: flex-start;
+	// 		padding: 0.8rem 0;
 
-			@include media(">=phoneL") {
-				display: none;
-			}
+	// 		@include media(">=phoneL") {
+	// 			display: none;
+	// 		}
 
-			* {
-				color: $dark;
-				text-align: left;
-			}
-		}
+	// 		* {
+	// 			color: $dark;
+	// 			text-align: left;
+	// 		}
+	// 	}
 
-		img {
-			width: 100%;
+	// 	img {
+	// 		width: 100%;
 
-			object-fit: cover;
-			object-position: center;
-			filter: grayscale(1);
-			transition: $transition-zoom;
-		}
-	}
+	// 		object-fit: cover;
+	// 		object-position: center;
+	// 		filter: grayscale(1);
+	// 		transition: $transition-zoom;
+	// 	}
+	// }
 }

@@ -1,0 +1,29 @@
+header nav {
+	li {
+		opacity: 0;
+	}
+	
+}
+
+.c-header_logo {
+	
+	overflow: hidden;
+	svg {
+		overflow: hidden;
+	}
+}
+
+// header .c-header_logo {
+// 	.chars path {
+// 		transform: translateY(100%);
+// 		opacity: 0;
+// 	}
+// }
+
+.o-page_home {
+	.o-hero {
+		h1 {
+			opacity: 0;
+		}
+	}
+}

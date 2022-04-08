@@ -6,6 +6,7 @@
 	left: 0;
 	height: $headerHeight;
 	z-index: 9999999;
+	box-shadow: 3px 4px 30px -12px rgba(0,0,0,0.2);
 
 	&.is-dark {
 		background-color: transparent;
@@ -14,11 +15,21 @@
 			fill: $light;
 		}
 	}
+
+	@include media("<=tablet") {
+		.c-header_nav.desktop {
+			display: none;
+		}
+	}
 	
 
 	.c-header_left_spacer {
-		width: 3rem;
+		width: 20rem;
 		height: 3rem;
+
+		@include media("<=tablet") {
+			width: 5rem;
+		}
 	}
 
 	.c-arrow-button {
@@ -36,6 +47,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		
+	}
+
+	.c-list {
+		justify-content: space-between;
 	}
 
 	.c-list li {
@@ -50,17 +66,22 @@
 	}
 
 	&_logo {
-		width: 100px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		transition: $transition;
+		width: 60vw;
+
+		@include media(">=tablet") {
+			width: 400px;
+		}
+
+
 
 		.c-link {
 			width: 100%;
 			height: 100%;
 		}
+	}
+
+	&_nav.desktop {
+		width: 20rem;
 	}
 
 	&_nav.desktop .c-list {

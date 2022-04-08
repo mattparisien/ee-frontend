@@ -36,6 +36,11 @@
 }
 
 .c-drawnLogo {
+	
+		&:not(footer .c-drawnLogo) {
+			opacity: 0;
+		}
+
 	.eye,
 	.vibration {
 		fill: $yellow;

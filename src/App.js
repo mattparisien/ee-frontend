@@ -13,7 +13,7 @@ import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
-import IntroCard from "./components/Transition/IntroCard";
+
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./styles/mui/theming";
 
@@ -25,6 +25,8 @@ function App() {
 	const location = useLocation();
 
 	gsap.registerPlugin(SplitText);
+
+	const [isFirstVisit, setFirstVisit] = useState(true);
 
 	const {
 		addToRefs,
@@ -44,6 +46,104 @@ function App() {
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
 
+	const introTl = useRef(gsap.timeline());
+
+	useEffect(() => {
+		//Intro animation
+
+		const headerLogo = document.querySelector(".c-header_logo");
+		const characters = $(headerLogo).find(".chars path");
+		const listItems = $(".c-header li");
+		const subtitle = $(headerLogo).find(".the");
+		const subtitle2 = $(headerLogo).find(".agency");
+		const subtitles = [...subtitle, ...subtitle2];
+		const drawnLogo = document.querySelector(
+			".o-page_home .o-hero .c-drawnLogo"
+		);
+		const heroWords = document.querySelectorAll(".o-page_home .o-hero h1");
+		const heroChars = $(".o-page_home .o-hero").find(".c-char");
+		const page = document.querySelector(".o-page_home");
+
+		const windowHeight = window.innerHeight;
+		const heroHeight = document.querySelector(
+			".o-page_home .o-hero"
+		).offsetHeight;
+		const centeredLocation = heroHeight / 2;
+
+		gsap.set(headerLogo, {
+			y: windowHeight / 2,
+		});
+		gsap.set(subtitles, {
+			opacity: 0,
+		});
+
+		setTimeout(() => {
+			introTl.current
+				.from(characters, {
+					y: "-100px",
+					stagger: 0.08,
+					ease: "expo.inOut",
+					duration: 2.6,
+				})
+				.to(
+					headerLogo,
+					{
+						y: "0%",
+						width: "140px",
+						duration: 2,
+						ease: "expo.inOut",
+					},
+					2.4
+				)
+				.to(page, { opacity: 1, duration: 1 }, 4)
+				.to(
+					subtitles,
+					{
+						opacity: 1,
+						duration: 1,
+					},
+					2
+				)
+				.to(
+					drawnLogo,
+					{
+						opacity: 1,
+
+						ease: "power3.out",
+						duration: 1,
+					},
+					4
+				)
+				.to(
+					listItems,
+					{
+						opacity: 1,
+						duration: 1,
+						stagger: 0.1,
+					},
+					4
+				)
+				.to(
+					heroWords,
+					{
+						opacity: 1,
+						duration: 1,
+						stagger: 0.1,
+						onComplete: () => {
+							setFirstVisit(false);
+						},
+					},
+					4
+				)
+				.to($(".o-page_home .o-hero").find(".c-char"), {
+					y: 0,
+					opacity: 1,
+					stagger: 0.03,
+					ease: "power3.out",
+				});
+		}, 200);
+	}, []);
+
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 	const isFirstRender = useRef(true);
@@ -56,22 +156,25 @@ function App() {
 	// 	const elements = [];
 
 	// 	setTimeout(() => {
-	// 		$(".-split, .MuiTypography-h1").each((i, el) => {
+	// 		$(".-split").each((i, el) => {
 	// 			if ($(el).children().length > 0) {
 	// 				elements.push(...$(el).children());
 	// 			} else {
 	// 				elements.push(el);
 	// 			}
 	// 		});
+
 	// 		split.current = new SplitText(elements, {
 	// 			type: "lines, words, chars",
 	// 			linesClass: "c-line",
 	// 			charsClass: "c-char",
 	// 		});
 
+	// 		console.log(split.current);
+
 	// 		setSplit(true);
 	// 		toggleDomAnimationReady();
-	// 	}, 300);
+	// 	}, 2000);
 	// }, [location]);
 
 	// useEffect(() => {
@@ -113,11 +216,11 @@ function App() {
 	// 			threshold: 0.2,
 	// 		});
 
-	// 		$(
-	// 			".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren, .MuiTypography-h1"
-	// 		).each((i, el) => {
-	// 			observer.observe(el);
-	// 		});
+	// 		$(".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren").each(
+	// 			(i, el) => {
+	// 				observer.observe(el);
+	// 			}
+	// 		);
 	// 	}
 	// }, [isSplit, location, windowWidth, domAnimatedReady]);
 
@@ -163,6 +266,7 @@ function App() {
 		"is-old-page": transitioning,
 		"is-dom-animated-ready": domAnimatedReady,
 		"cursor-hidden": cursor === "drag",
+		"is-not-first-visit": !isFirstVisit,
 	});
 
 	return (
@@ -192,7 +296,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						setSearch={setSearch}
 					>
 						{/* <DragCursor cursor={cursor} /> */}
-						<IntroCard pending={pending} />
+						{/* <IntroCard pending={pending} /> */}
 						<Header
 							toggleMenu={() => setMenuActive(!menuActive)}
 							menuActive={menuActive}

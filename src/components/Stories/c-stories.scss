@@ -1,4 +1,7 @@
 .o-stories {
+
+	position: relative;
+
 	.o-container {
 		width: 100%;
 	}
@@ -15,9 +18,9 @@
 	}
 
 	&_frame {
-		width: 79% !important;
+		width: 100% !important;
 		left: 50% !important;
-		transform: translateX(-50%) rotate(-1deg) scale(1.4) !important;
+		transform: translateX(-50%);
 
 		@include media("<=phoneL") {
 			display: none;

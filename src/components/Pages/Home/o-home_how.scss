@@ -40,8 +40,6 @@
 
 .o-page_home {
 	.o-how {
-
-
 		.o-colorBlobs {
 			z-index: 0;
 			display: none;
@@ -79,7 +77,6 @@
 		}
 
 		position: relative;
-		overflow: hidden;
 
 		// .c-drawing {
 		// 	position: absolute;
@@ -202,8 +199,6 @@
 	@include media("<=phoneL") {
 		display: none;
 	}
-
-
 
 	&_clef,
 	&_whole {
@@ -437,7 +432,6 @@
 		.o-text:last-child {
 			max-width: 25vw;
 		}
-
 
 		// &_2 {
 		// 	grid-row: 2/3;

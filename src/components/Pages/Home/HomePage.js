@@ -11,10 +11,9 @@ import About from "./About";
 import Hero from "./Hero";
 import How from "./How";
 import Work from "./Work";
+import { Box } from "@mui/material";
 
 function HomePage({ pageHeading }) {
-	
-
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 	const data = useContext(DataContext);
 	const scroll = useLocomotiveScroll();
@@ -44,8 +43,7 @@ function HomePage({ pageHeading }) {
 	return (
 		<>
 			<div className='o-page o-page_home'>
-				<Hero pageHeading={pageHeading}
-				/>
+				<Hero pageHeading={pageHeading} />
 				<About aboutText={data.about && data.about.body1} />
 				<How steps={data && data.steps} />
 
@@ -56,7 +54,9 @@ function HomePage({ pageHeading }) {
 					data-theme='light'
 				>
 					<ContainerFluid>
-						<Stories slides={data && data.testimonials} withFrame />
+						<Box pt={10} pb={10}>
+							<Stories slides={data && data.testimonials} withFrame />
+						</Box>
 					</ContainerFluid>
 				</Section>
 			</div>

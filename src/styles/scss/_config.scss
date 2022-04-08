@@ -29,27 +29,14 @@
 }
 
 @font-face {
-	font-family: "Orpheus";
-	src: url("../assets/fonts/Orpheus.ttf");
-}
-
-@font-face {
 	font-family: "Neue Mtl";
 	src: url("../assets/fonts/NeueMontreal-Regular.otf");
 }
 
-p,
-a,
-ul li,
-caption {
-	font-family: "Neue Mtl";
-}
 
 em {
-	
 	position: relative;
+	font-style: normal;
 }
 
-p, h4 {
-	font-family: 'Orpheus' !important;
-}
+

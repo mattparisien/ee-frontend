@@ -18,9 +18,14 @@ function ContactPage({ pageHeading }) {
 	return (
 		<div className='o-page o-page_contact'>
 			<Section classes='o-hero'>
-				<Typography variant='h1' component='h1' textAlign={"center"}>
-					{pageHeading && pageHeading}
-				</Typography>
+				<Box>
+					<Typography variant='h1' component='h1' textAlign={"center"}>
+						{pageHeading && pageHeading}
+					</Typography>
+					<Typography variant='h3' textAlign='center'>
+						Sammy Steiner
+					</Typography>
+				</Box>
 				<ColorBlobs />
 			</Section>
 			<Section className='o-bio'>

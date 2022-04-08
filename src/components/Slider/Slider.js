@@ -10,6 +10,7 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
+import Frame from "../Vector/Frame";
 
 function Slider({ items }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
@@ -17,6 +18,8 @@ function Slider({ items }) {
 
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
+
+	console.log("items,", items);
 
 	return (
 		<div className='o-slider'>
@@ -52,6 +55,7 @@ function Slider({ items }) {
 									projectId={item.id}
 									artistName={item.title}
 									projectTitle={item.subtitle}
+									credit={item.media.featureImage.caption}
 									src={item.media.featureImage.url}
 									alt={item.media.featureImage.altText}
 								/>
@@ -81,11 +85,20 @@ function Slider({ items }) {
 	);
 }
 
-function Item({ src, alt, projectId, projectTitle, artistName, mobile }) {
+function Item({
+	src,
+	alt,
+	projectId,
+	projectTitle,
+	artistName,
+	mobile,
+	credit,
+}) {
 	const desktopInfoStyles = {
 		width: "100%",
 		height: "100%",
 		position: "absolute",
+		zIndex: 999,
 		top: 0,
 		left: 0,
 		display: "flex",
@@ -94,57 +107,120 @@ function Item({ src, alt, projectId, projectTitle, artistName, mobile }) {
 		justifyContent: "space-between",
 		color: "white",
 		zIndex: 99,
+		backgroundColor: "rgba(7, 7, 7, 0.49)",
+		height: "100%",
+		opacity: 0,
+		transition: "600ms ease",
+		"h6": {
+			transition: "600ms ease"
+		}
+	};
+
+	const credits = {
+		color: "black",
+		height: "10%",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "flex-start",
+	};
+
+	const itemStyles = theme => ({
+		height: "40vw",
+		".c-frame": {
+			transform: "rotate(-10deg) scale(0.8)",
+		},
+		".c-link": {
+			height: "100%",
+			width: "100%",
+		},
+		[theme.breakpoints.down("sm")]: {
+			height: "80vw !important",
+		},
+		"&:hover .info_desktop h6": {
+			opacity: 1,
+			transform: `translateY(0)`
+			
+		},
+		"&:hover .info_desktop": {
+			opacity: 1,
+			
+			
+		}
+	});
+
+	const imgWrapper = {
+		position: "relative",
+		height: "90%",
+		width: "100%",
+		img: {
+			width: "100%",
+			height: "100%",
+			objectFit: "cover",
+		},
+		".c-frame": {
+			transform: "scale(1.03)",
+		},
 	};
 
 	return (
-		<Link classes='o-slider_item' isRouterLink href={`/projects`}>
-			<Box
-				style={{ height: mobile ? "80%" : "100%" }}
-				component='img'
-				src={src}
-				alt={alt}
-			></Box>
-			{!mobile && (
-				<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
-					<Typography
-						className='info_desktop--artist'
-						variant='h6'
-						sx={{
-							alignSelf: "flex-start",
-							transform: "translateY(120%)",
-							opacity: 0,
-						}}
-					>
-						{artistName}
-					</Typography>
-					<Typography
-						className='info_desktop--title'
-						variant='h6'
-						sx={{
-							alignSelf: "flex-end",
-							transform: "translateY(120%)",
-							opacity: 0,
-						}}
-					>
-						{projectTitle}
+		<Box sx={itemStyles} className=' -hover-frame'>
+			<Link classes='o-slider_item' isRouterLink href={`/projects`}>
+				<Box className='image-wrapper' sx={imgWrapper}>
+					<Box component='img' src={src} alt={alt}></Box>
+					<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
+						<Typography
+							className='info_desktop--artist'
+							variant='h6'
+							sx={{
+								alignSelf: "flex-start",
+								transform: "translateY(120%)",
+								opacity: 0,
+							}}
+						>
+							{artistName}
+						</Typography>
+						<Typography
+							className='info_desktop--title'
+							variant='h6'
+							sx={{
+								alignSelf: "flex-end",
+								transform: "translateY(120%)",
+								opacity: 0,
+							}}
+						>
+							{projectTitle}
+						</Typography>
+					</Box>
+					<Frame />
+				</Box>
+				<Box className='temp-credits' sx={credits}>
+					<Typography variant='body2' component='p' mt={2}>
+						{credit}
 					</Typography>
 				</Box>
-			)}
-			{mobile && (
-				<Box className='info_mobile'>
-					<Typography variant='h5' component='p' className='info_mobile--title'>
-						{projectTitle}
-					</Typography>
-					<Typography
-						variant='h5'
-						component='p'
-						className='info_mobile--artist'
-					>
-						{artistName}
-					</Typography>
-				</Box>
-			)}
-		</Link>
+
+
+
+				{mobile && (
+					<Box className='info_mobile'>
+						<Typography
+							variant='h5'
+							component='p'
+							className='info_mobile--title'
+						>
+							{projectTitle}
+						</Typography>
+						<Typography
+							variant='h5'
+							component='p'
+							className='info_mobile--artist'
+						>
+							{artistName}
+						</Typography>
+					</Box>
+				)}
+			</Link>
+		</Box>
 	);
 }
 

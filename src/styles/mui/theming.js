@@ -6,6 +6,7 @@ let theme = createTheme();
 theme = createTheme(theme, {
 	overrides: {
 		MuiTypography: {
+			fontFamily: 'Kobe',
 			[theme.breakpoints.up("md")]: {
 				fontSize: "11rem",
 				background: "red",
@@ -28,6 +29,9 @@ theme = createTheme(theme, {
 	typography: {
 		fontSize: 17,
 		fontFamily: ["Kobe"],
+		'.MuiTypography-root': {
+			fontFamily: 'Kobe'
+		},
 
 		h1: {
 			fontFamily: "Kobe Bold",
@@ -37,7 +41,7 @@ theme = createTheme(theme, {
 			},
 		},
 		p: {
-			fontFamily: "Orpheus",
+			fontFamily: "Kobe",
 		},
 	},
 	palette: {

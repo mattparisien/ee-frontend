@@ -10,6 +10,10 @@ function Hero({ pageHeading }) {
 	}, [pageHeading]);
 
 	const word = theme => ({
+		".c-char": {
+			transform: 'translateY(100%)',
+			opacity: 0
+		},
 		[theme.breakpoints.up("lg")]: {
 			fontSize: "9rem",
 			lineHeight: "9rem",
@@ -21,6 +25,10 @@ function Hero({ pageHeading }) {
 	});
 
 	const word2 = theme => ({
+		".c-char": {
+			transform: 'translateY(100%)',
+			opacity: 0
+		},
 		[theme.breakpoints.up("lg")]: {
 			fontSize: "9rem",
 			lineHeight: "9rem",
@@ -41,8 +49,8 @@ function Hero({ pageHeading }) {
 			transform: "translate(-60%, -50%) !important",
 		},
 		[theme.breakpoints.up("md")]: {
-			height: "30vw",
-			width: "30vw",
+			height: "20vw",
+			width: "20vw",
 			transform: "translate(-70%, -50%) !important",
 		},
 		".c-drawnLogo": {
@@ -60,9 +68,15 @@ function Hero({ pageHeading }) {
 		},
 	});
 
+	const containerStyles = theme => ({
+		[theme.breakpoints.down("sm")]: {
+			marginTop: "5rem"
+		}
+	});
+
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
-			<ContainerFluid classes='-stretchX -stretchY'>
+			<ContainerFluid classes='-stretchX -stretchY' sx={containerStyles}>
 				<Box className='o-hero_inner -relative -stretchX -stretchY'>
 					<Typography variant='h1' className='o-hero_word' sx={word}>
 						{words && words[0]}

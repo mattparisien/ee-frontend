@@ -81,18 +81,23 @@ function Stories({ slides }) {
 	const carouselStyles = {
 		paddingLeft: 20,
 		paddingRight: 20,
-		
+
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		flexDirection: "column",
+
 		".MuiButtonBase-root": {
 			backgroundColor: "transparent",
 			"button:hover": {
 				backgroundColor: "black",
 				filter: "brightness(120%)",
-				opacity: "1"
+				opacity: "1",
 			},
 		},
 		".MuiTouchRipple-root": {
 			display: "none",
-			opacity: 1
+			opacity: 1,
 		},
 	};
 
@@ -103,24 +108,30 @@ function Stories({ slides }) {
 	};
 
 	return (
-		<Carousel
-			NextIcon={<NextButton />}
-			PrevIcon={<PrevButton />}
-			fullHeightHover={false}
-			navButtonProps={{
-				style: {
-					backgroundColor: "blue",
-				},
-			}}
-			p={4}
-			sx={carouselStyles}
-			animation={"fade"}
-			autoPlay={false}
-			navButtonsAlwaysVisible
-		>
-			{slides &&
-				slides.map(slide => <Item author={slide.author} quote={slide.quote} />)}
-		</Carousel>
+		<>
+			{/* <StoryFrame /> */}
+			<Carousel
+				NextIcon={<NextButton />}
+				PrevIcon={<PrevButton />}
+				fullHeightHover={false}
+		
+				navButtonProps={{
+					style: {
+						backgroundColor: "blue",
+					},
+				}}
+				p={4}
+				sx={carouselStyles}
+				animation={"fade"}
+				autoPlay={false}
+				navButtonsAlwaysVisible
+			>
+				{slides &&
+					slides.map(slide => (
+						<Item author={slide.author} quote={slide.quote} />
+					))}
+			</Carousel>
+		</>
 	);
 }
 
@@ -135,12 +146,7 @@ const NextButton = () => {
 function Item({ author, quote }) {
 	return (
 		<>
-			<Typography
-				variant='h4'
-				component='p'
-				textAlign='center'
-				sx={{ fontFamily: "Orpheus !important" }}
-			>
+			<Typography variant='h6' component='p' textAlign='center'>
 				{quote}
 			</Typography>
 

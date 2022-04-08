@@ -129,7 +129,7 @@ function How({ steps }) {
 		[theme.breakpoints.down("md")]: {
 			"&_1": {
 				left: "60vw",
-				top: "10vw"
+				top: "10vw",
 			},
 			"&_2": {
 				top: "40vw",
@@ -149,7 +149,7 @@ function How({ steps }) {
 
 	const containerStyles = theme => ({
 		".MuiContainer-root": {
-			overflow: "visible"
+			overflow: "visible",
 		},
 		height: "150vw",
 		marginLeft: 10,
@@ -231,26 +231,35 @@ function How({ steps }) {
 	});
 
 	const playerSvg = theme => ({
-		width: "30%",
-		
-		
-		
+		width: "36%",
+		transform: "translateY(-15vw)",
+		[theme.breakpoints.down("sm")]: {
+			display: "none",
+		},
+
 		svg: {
 			overflow: "visible",
 		},
 	});
 
-	const headingLayout = {
-		
+	const headingLayout = theme => ({
 		display: "flex",
 		flexDirection: "row-reverse",
 		alignItems: "center",
-		justifyContent: "center"
-	};
+		justifyContent: "center",
+		[theme.breakpoints.down("sm")]: {
+			marginBottom: 0,
+		},
+	});
 
 	const heading = theme => ({
 		fontSize: "10vw",
+		lineHeight: "10vw",
 		textAlign: "center",
+		[theme.breakpoints.down("sm")]: {
+			fontSize: "5.2rem",
+			lineHeight: "5.6rem",
+		},
 	});
 
 	return (
@@ -268,7 +277,9 @@ function How({ steps }) {
 						/>
 
 						{/* <Rhythm /> */}
-						<Box sx={playerSvg}><InstrumentPlayer /></Box>
+						<Box sx={playerSvg}>
+							<InstrumentPlayer />
+						</Box>
 					</Box>
 
 					<Box className='steps-container -relative' sx={containerStyles}>
