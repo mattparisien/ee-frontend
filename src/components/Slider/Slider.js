@@ -97,7 +97,7 @@ function Item({ src, alt, projectId, projectTitle, artistName, mobile }) {
 	};
 
 	return (
-		<Link classes='o-slider_item' isRouterLink href={`/projects/${projectId}`}>
+		<Link classes='o-slider_item' isRouterLink href={`/projects`}>
 			<Box
 				style={{ height: mobile ? "80%" : "100%" }}
 				component='img'

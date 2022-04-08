@@ -16,9 +16,9 @@ function About({ aboutText }) {
 
 	return (
 		<>
-			<Section data-theme='dark' classes='o-about -padding-lg' noGutterTop>
+			<Section data-theme='dark' classes='o-about' noGutterTop>
 				<ContainerFluid>
-					<Box className='o-about_content' pt={5} pb={5}>
+					<Box className='o-about_content' pt={matches ? 5 : 20} pb={matches ? 5 : 20}>
 						<SplitLayout
 							leftComponent={<SectionLeft text={aboutText} />}
 							rightComponent={<SectionRight />}
@@ -40,9 +40,29 @@ function SectionLeft({ text }) {
 	);
 }
 
-function SectionRight({ text }) {
+function SectionRight({ matches }) {
+	const megaphoneWrapper = theme => ({
+		".c-megaphone": {
+			width: "100%",
+			transform: "scaleX(-100%) rotate(-30deg)",
+			[theme.breakpoints.down('md')]: {
+				transform: "scaleX(-100%)scale(0.8)",
+				height: "100%",
+				"svg": {
+					height: "100%"
+				}
+			}
+		},
+	});
+
 	return (
-		<Box display="flex" alignItems={"center"} justifyContent="center" height="100%">
+		<Box
+			display='flex'
+			alignItems={"center"}
+			justifyContent='center'
+			height={matches ? "20vw" : "auto"}
+			sx={megaphoneWrapper}
+		>
 			<Megaphone />
 		</Box>
 	);

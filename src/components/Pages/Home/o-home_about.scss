@@ -5,18 +5,6 @@
 	align-items: center;
 	justify-content: center;
 
-	.c-megaphone {
-		height: 100%;
-
-		svg {
-			height: 100% !important;
-		}
-
-		@media screen and (max-width: 1000px) {
-			height: 40vw;
-		}
-	}
-
 	.face {
 		path {
 			stroke: $light !important;

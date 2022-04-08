@@ -13,6 +13,7 @@ import { HalfNote, QuarterNote } from "../../Vector/Notes";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
+import SectionHeading from "../../Headings/SectionHeading";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -108,7 +109,6 @@ function How({ steps }) {
 		marginRight: 10,
 		[theme.breakpoints.down("md")]: {
 			height: "auto",
-			
 		},
 		[theme.breakpoints.down("md")]: {
 			marginLeft: 5,
@@ -186,9 +186,14 @@ function How({ steps }) {
 		<>
 			<Section classes='o-how' data-theme='light' ref={container}>
 				<ContainerFluid>
-					<Typography variant='h1' textAlign='center' pb={5} pt={5} mb={5}>
-						Finding Your Rhythm
-					</Typography>
+					<SectionHeading
+						textAlign='center'
+						pb={5}
+						pt={5}
+						mb={5}
+						text={"Finding Your Rhythm"}
+					/>
+
 					<Box className='steps-container -relative' sx={containerStyles}>
 						<Box className='c-steps' sx={{ height: "100%" }}>
 							<div className='c-steps_background'></div>

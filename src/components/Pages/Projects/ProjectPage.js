@@ -19,7 +19,7 @@ export default function ProjectPage({ pageHeading }) {
 			<Section classes='-padding-lg o-hero -relative' noGutter>
 				<div className='o-hero_content -flex -flex-column -align-center -justify-center'>
 					<Typography variant="h1" component="h1">
-						{pageHeading && pageHeading}
+						Coming Soon
 						</Typography>
 				</div>
 
