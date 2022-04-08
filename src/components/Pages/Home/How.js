@@ -84,18 +84,31 @@ function How({ steps }) {
 		fontSize: "5vw",
 		lineHeight: "5vw",
 		[theme.breakpoints.down("md")]: {
-			fontSize: "3rem",
+			fontSize: "6vw",
+		},
+		[theme.breakpoints.down("sm")]: {
+			fontSize: "8.5vw",
+			lineHeight: "8.5vw",
 		},
 	});
 
 	const stepParagraph = theme => ({
 		fontSize: "1.3vw",
+		[theme.breakpoints.down("md")]: {
+			fontSize: "2vw",
+		},
+		[theme.breakpoints.down("sm")]: {
+			fontSize: "3vw",
+		},
 	});
 
 	const containerStyles = theme => ({
 		height: "150vw",
+		marginLeft: 10,
+		marginRight: 10,
 		[theme.breakpoints.down("md")]: {
 			height: "auto",
+			
 		},
 		[theme.breakpoints.down("md")]: {
 			".c-steps_item_1": {
@@ -120,6 +133,9 @@ function How({ steps }) {
 			},
 		},
 		[theme.breakpoints.down("sm")]: {
+			height: "auto",
+			marginLeft: 2,
+			marginRight: 2,
 			".c-steps_item_1": {
 				"grid-row": "1/2 !important",
 				"grid-column": "1/13 !important",
@@ -171,12 +187,7 @@ function How({ steps }) {
 					<Typography variant='h1' textAlign='center' pb={5} pt={5} mb={5}>
 						Finding Your Rhythm
 					</Typography>
-					<Box
-						className='steps-container -relative'
-						ml={10}
-						mr={10}
-						sx={containerStyles}
-					>
+					<Box className='steps-container -relative' sx={containerStyles}>
 						<Box className='c-steps' sx={{ height: "100%" }}>
 							<div className='c-steps_background'></div>
 							{steps &&
