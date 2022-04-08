@@ -11,28 +11,28 @@ function Hero({ pageHeading }) {
 
 	const word = theme => ({
 		".c-char": {
-			transform: 'translateY(100%)',
-			opacity: 0
+			transform: "translateY(100%)",
+			opacity: 0,
 		},
 		[theme.breakpoints.up("lg")]: {
 			fontSize: "9rem",
 			lineHeight: "9rem",
+			
 		},
 		[theme.breakpoints.up("md")]: {
 			fontSize: "11vw",
 			lineHeight: "11vw",
-			
 		},
 		[theme.breakpoints.down("md")]: {
-			display: "none"
-			
+			fontSize: "23vw",
+			lineHeight: "23vw",
 		},
 	});
 
 	const word2 = theme => ({
 		".c-char": {
-			transform: 'translateY(100%)',
-			opacity: 0
+			transform: "translateY(100%)",
+			opacity: 0,
 		},
 		[theme.breakpoints.up("lg")]: {
 			fontSize: "9rem",
@@ -41,11 +41,12 @@ function Hero({ pageHeading }) {
 		[theme.breakpoints.up("md")]: {
 			fontSize: "11vw",
 			lineHeight: "11vw",
-			display: "none !important"
 		},
 		[theme.breakpoints.down("md")]: {
-			display: "none"
-			
+			alignItems: "center",
+			fontSize: "23vw",
+			lineHeight: "23vw",
+			alignSelf: "center !important"
 		},
 	});
 
@@ -63,6 +64,9 @@ function Hero({ pageHeading }) {
 			width: "20vw",
 			transform: "translate(-70%, -50%) !important",
 		},
+		[theme.breakpoints.down("md")]: {
+			display: "none",
+		},
 		".c-drawnLogo": {
 			height: "100%",
 			width: "100%",
@@ -78,16 +82,23 @@ function Hero({ pageHeading }) {
 		},
 	});
 
+	const inner = theme => ({
+		[theme.breakpoints.down("md")]: {
+			alignItems: "center",
+			textAlign: "center",
+		},
+	});
+
 	const containerStyles = theme => ({
 		[theme.breakpoints.down("sm")]: {
-			marginTop: "5rem"
-		}
+			marginTop: "5rem",
+		},
 	});
 
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<ContainerFluid classes='-stretchX -stretchY' sx={containerStyles}>
-				<Box className='o-hero_inner -relative -stretchX -stretchY'>
+				<Box className='o-hero_inner -relative -stretchX -stretchY' sx={inner}>
 					<Typography variant='h1' className='o-hero_word' sx={word}>
 						{words && words[0]}
 					</Typography>

@@ -8,8 +8,6 @@
 			margin-bottom: 5rem;
 		}
 
-
-
 		&_inner {
 			display: flex;
 			flex-direction: column;
@@ -59,25 +57,6 @@
 						fill: none;
 					}
 				}
-			}
-		}
-
-		@include media("<=phoneL") {
-			h1 {
-				font-size: 9.6vw;
-				line-height: 9.6vw;
-				margin-top: 93vw;
-				padding: 2vw;
-				
-				
-
-			
-			}
-
-			&_inner {
-				flex-direction: row;
-				align-items: center;
-				justify-content: center;
 			}
 		}
 
