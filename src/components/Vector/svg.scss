@@ -1,22 +1,11 @@
 .c-megaphone {
-
-	
-
 	svg {
-		
-
-
-
 		path:first-child,
 		path:nth-child(2) {
 			fill: $yellow;
 		}
 	}
-
 }
-
-
-
 
 .c-quotation {
 	width: 80vw;
@@ -37,10 +26,6 @@
 
 .c-drawnLogo {
 	
-		&:not(footer .c-drawnLogo) {
-			opacity: 0;
-		}
-
 	.eye,
 	.vibration {
 		fill: $yellow;
@@ -62,21 +47,19 @@
 .c-lineDrawing {
 	position: absolute;
 	bottom: 2vw;
-	transform: scaleX(0.0) ;
+	transform: scaleX(0);
 	transform-origin: left;
 	width: 90%;
 	left: 5%;
-	
 
 	&.draw {
 		animation: draw 1s cubic-bezier(1, 0, 0, 1) forwards;
-		
 	}
 }
 
 @keyframes draw {
 	to {
 		transform-origin: left;
-		transform: scaleX(1) ;
+		transform: scaleX(1);
 	}
 }

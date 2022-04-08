@@ -57,6 +57,7 @@ function App() {
 		const subtitle = $(headerLogo).find(".the");
 		const subtitle2 = $(headerLogo).find(".agency");
 		const subtitles = [...subtitle, ...subtitle2];
+		const header = document.querySelector("header");
 		const drawnLogo = document.querySelector(
 			".o-page_home .o-hero .c-drawnLogo"
 		);
@@ -85,6 +86,7 @@ function App() {
 					ease: "expo.inOut",
 					duration: 2.6,
 				})
+				.to(headerLogo, { opacity: 1 }, 0.1)
 				.to(
 					headerLogo,
 					{
@@ -95,6 +97,7 @@ function App() {
 					},
 					2.4
 				)
+				.to(header, { boxShadow: "3px 4px 30px -12px rgba(0, 0, 0, 0.2)" }, 4)
 				.to(page, { opacity: 1, duration: 1 }, 4)
 				.to(
 					subtitles,
