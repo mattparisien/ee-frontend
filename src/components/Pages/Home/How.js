@@ -111,6 +111,8 @@ function How({ steps }) {
 			
 		},
 		[theme.breakpoints.down("md")]: {
+			marginLeft: 5,
+			marginRight: 5,
 			".c-steps_item_1": {
 				"grid-row": "1/2 !important",
 				"grid-column": "1/7 !important",
