@@ -97,7 +97,7 @@ export default function Footer(props) {
 							<Fade bottom>
 								<Typography
 									component='a'
-									variant='h4'
+									variant='h5'
 									href={`mailto:${props.info && props.info.Email}`}
 								>
 									<div className='email -underline -hover-underline -relative -inline -splitChars'>
