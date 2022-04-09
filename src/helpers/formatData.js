@@ -7,8 +7,6 @@ export const formatPosts = arr => {
 	// sortedPosts = sortedPosts.reverse();
 
 	const formattedPosts = arr.map(post => {
-		console.log('post', post);
-
 		return {
 			id: post.id,
 			title: post.attributes.Title,
@@ -50,8 +48,6 @@ export const formatPosts = arr => {
 };
 
 export const formatSteps = arr => {
-	console.log(arr);
-
 	arr.sort((a, b) => a.id - b.id);
 
 	const formattedSteps = arr.map(step => {

@@ -4,7 +4,7 @@ import {
 	CardMedia,
 	Grid,
 	Typography,
-	useMediaQuery
+	useMediaQuery,
 } from "@mui/material";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -33,7 +33,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const accentColor = useMemo(() => shuffleColors(), []);
 
 	// useEffect(() => {
-	// 	console.log(info);
+	// 	{console.log(}info);
 	// }, [info]);
 
 	// useLayoutEffect(() => {
@@ -92,7 +92,6 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 		if (data && data.posts && param && !info) {
 			// setInfo(data.posts.filter(x => x.id === param));
 			const currentPost = data.posts.filter(x => x.id === parseInt(param));
-			console.log("currentp[ost", currentPost);
 
 			const nextPostIndex =
 				data.posts.indexOf(data.posts.find(x => x.id === currentPost[0].id)) +

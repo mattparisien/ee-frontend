@@ -1,3 +1,9 @@
+
+.css-1g04gm2-MuiButtonBase-root-MuiIconButton-root:hover {
+	opacity: 1 !important;
+	background-color: transparent !important;
+}
+
 .c-arrow-button {
 	&:focus {
 		outline: none;
@@ -28,14 +34,16 @@
 	// }
 
 	&:hover .circle {
-		transform: scale(1);
+		transform: scale(1) ;
 	}
+
+
 
 	.circle {
 		width: 100%;
 		height: 100%;
 		position: absolute;
-		background-color: $dark;
+		background-color: $light;
 		top: 0;
 		left: 0;
 		border-radius: 50%;
@@ -69,7 +77,6 @@
 			fill: $grey;
 
 			position: static;
-			
 
 			&:first-child {
 				transform: translateX(100%);
@@ -78,7 +85,7 @@
 
 		circle:not(.hoverCircle) {
 			stroke: $grey;
-			
+
 			stroke-width: 2px;
 		}
 
@@ -89,6 +96,16 @@
 	}
 
 	&.is-light {
+
+
+		&:hover path {
+			fill: $dark !important;
+		}
+
+		.circle {
+			background-color: $light;
+		}
+
 		&:hover path {
 			fill: $dark;
 		}

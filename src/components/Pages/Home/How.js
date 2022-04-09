@@ -17,8 +17,6 @@ import { InstrumentPlayer } from "../../Vector/Svg";
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
-	
-
 	const noteTl = useRef(null);
 	const container = useRef(null);
 	const scroll = useLocomotiveScroll();
@@ -159,24 +157,24 @@ function How({ steps }) {
 			marginLeft: 5,
 			marginRight: 5,
 			".c-steps_item_1": {
-				"grid-row": "1/2 !important",
-				"grid-column": "1/7 !important",
+				gridRow: "1/2 !important",
+				gridColumn: "1/7 !important",
 			},
 			".c-steps_item_2": {
-				"grid-row": " 2/3",
-				"grid-column": "8/14 !important",
+				gridRow: " 2/3",
+				gridColumn: "8/14 !important",
 			},
 			".c-steps_item_3": {
-				"grid-row": " 3/4",
-				"grid-column": "1/7 !important",
+				gridRow: " 3/4",
+				gridColumn: "1/7 !important",
 			},
 			".c-steps_item_4": {
-				"grid-row": " 4/5",
-				"grid-column": "8/14 !important",
+				gridRow: " 4/5",
+				gridColumn: "8/14 !important",
 			},
 			".c-steps_item_5": {
-				"grid-row": " 5/6",
-				"grid-column": "1/7 !important",
+				gridRow: " 5/6",
+				gridColumn: "1/7 !important",
 			},
 		},
 		[theme.breakpoints.down("sm")]: {
@@ -184,46 +182,46 @@ function How({ steps }) {
 			marginLeft: 2,
 			marginRight: 2,
 			".c-steps_item_1": {
-				"grid-row": "1/2 !important",
-				"grid-column": "1/14 !important",
+				gridRow: "1/2 !important",
+				gridColumn: "1/14 !important",
 			},
 			".c-steps_item_2": {
-				"grid-row": " 2/3",
-				"grid-column": "1/14 !important",
+				gridRow: " 2/3",
+				gridColumn: "1/14 !important",
 			},
 			".c-steps_item_3": {
-				"grid-row": " 3/4",
-				"grid-column": "1/14 !important",
+				gridRow: " 3/4",
+				gridColumn: "1/14 !important",
 			},
 			".c-steps_item_4": {
-				"grid-row": " 4/5",
-				"grid-column": "1/14 !important",
+				gridRow: " 4/5",
+				gridColumn: "1/14 !important",
 			},
 			".c-steps_item_5": {
-				"grid-row": " 5/6",
-				"grid-column": "1/14 !important",
+				gridRow: " 5/6",
+				gridColumn: "1/14 !important",
 			},
 		},
 
 		".c-steps_item_1": {
-			"grid-row": "1/2",
-			"grid-column": "1/6",
+			gridRow: "1/2",
+			gridColumn: "1/6",
 		},
 		".c-steps_item_2": {
-			"grid-row": " 2/3",
-			"grid-column": "5/11",
+			gridRow: " 2/3",
+			gridColumn: "5/11",
 		},
 		".c-steps_item_3": {
-			"grid-row": " 3/4",
-			"grid-column": "8/14",
+			gridRow: " 3/4",
+			gridColumn: "8/14",
 		},
 		".c-steps_item_4": {
-			"grid-row": " 4/5",
-			"grid-column": "5/11",
+			gridRow: " 4/5",
+			gridColumn: "5/11",
 		},
 		".c-steps_item_5": {
-			"grid-row": " 5/6",
-			"grid-column": "1/6",
+			gridRow: " 5/6",
+			gridColumn: "1/6",
 		},
 		".c-note": noteStyle,
 	});

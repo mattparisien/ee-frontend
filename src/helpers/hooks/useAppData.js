@@ -91,7 +91,6 @@ export default function useAppData(scrollRef) {
 
 		Promise.all(promiseArray)
 			.then(data => {
-				console.log(data);
 				const formattedPosts = formatPosts([...data[0].data.data]);
 				const formattedSteps = formatSteps([...data[1].data.data]);
 				const formattedAbout = formatAbout(data[2].data.data);
@@ -146,6 +145,5 @@ export default function useAppData(scrollRef) {
 
 		search: state.search,
 		setSearch,
-		
 	};
 }

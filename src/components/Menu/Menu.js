@@ -64,7 +64,7 @@ function Menu({ isActive, navItems, toggleMenu }) {
 
 	return (
 		<div className={classes} ref={card}>
-			<ContainerFluid classes='-stretchY' reveal={reveal}>
+			<ContainerFluid classes={'-stretchY'} reveal={reveal}>
 				<nav className='c-menu_nav'>
 					<List
 						ref={container}

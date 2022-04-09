@@ -8,10 +8,10 @@ export const useScrollTop = location => {
 		console.clear();
 		setTimeout(() => {
 			if (scroll && scroll.isReady) {
-				console.log("made it in loco");
+				
 				scroll.scroll.scrollTo(0, 0);
 			} else {
-				console.log("made it in window");
+				
 				window.scrollTo(0, 0);
 			}
 		}, 200);

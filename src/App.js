@@ -60,7 +60,6 @@ function App() {
 
 		const windowHeight = window.innerHeight;
 
-
 		gsap.set(headerLogo, {
 			y: windowHeight / 2,
 		});
@@ -160,18 +159,19 @@ function App() {
 			const splitChars = document.querySelectorAll(".-splitChars");
 			const splitLines = document.querySelectorAll(".-splitLines");
 
+
+			//Chars
 			new SplitText(splitChars, {
 				type: "words, chars",
 				wordsClass: "c-word",
 				charsClass: "c-char",
 			});
 
-			const lines = new SplitText(splitLines, {
+			//Lines
+			new SplitText(splitLines, {
 				type: "lines",
 				linesClass: "c-line",
 			});
-
-			console.log(lines.lines);
 
 			observedElements.current.push(splitChars);
 		}, 500);
@@ -221,8 +221,6 @@ function App() {
 
 			const handleIntersection = entries => {
 				entries.forEach(entry => {
-					console.log(entry.target);
-
 					if (
 						entry.isIntersecting &&
 						entry.target.classList.contains("-splitChars")
