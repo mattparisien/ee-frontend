@@ -15,7 +15,7 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 		}
 	};
 
-	console.log('items', items)
+	
 	const scrollSpeeds = [8, 1, 6, 3];
 
 	return items && items.length >= 1 ? (
@@ -23,7 +23,7 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 			
 				{items &&
 					items.map((item, i) => {
-						console.log('item', item)
+						
 						return variant !== "media" ? (
 							<ProjectItem
 								addToRefs={addToRefs}
