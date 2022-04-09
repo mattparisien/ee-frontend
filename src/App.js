@@ -312,6 +312,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 
 '
 						/>
+						<meta content='The Eyes & Ears Agency' property='og:title' />
+						<meta property='og:type' content='website' />
 					</Helmet>
 
 					<Context
