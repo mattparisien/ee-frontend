@@ -4,6 +4,7 @@ import ContactPage from "./components/Pages/Contact/ContactPage";
 import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
+import NotFoundPage from "./components/Pages/NotFound/NotFoundPage";
 
 
 function SiteRoutes(props) {
@@ -27,11 +28,16 @@ function SiteRoutes(props) {
 			component: ProjectPage,
 			title: "projects",
 		},
-		singleProject: {
-			path: "/projects/:id",
-			component: SingleProjectPage,
-			title: "singleproject",
-		},
+		notFound: {
+			path: "/*",
+			component: NotFoundPage,
+			title: "notFound"
+		}
+		// singleProject: {
+		// 	path: "/projects/:id",
+		// 	component: SingleProjectPage,
+		// 	title: "singleproject",
+		// },
 	};
 
 	useEffect(() => {
