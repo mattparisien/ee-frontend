@@ -159,7 +159,6 @@ function App() {
 			const splitChars = document.querySelectorAll(".-splitChars");
 			const splitLines = document.querySelectorAll(".-splitLines");
 
-
 			//Chars
 			new SplitText(splitChars, {
 				type: "words, chars",
@@ -177,102 +176,101 @@ function App() {
 		}, 500);
 	}, []);
 
-	// useEffect(() => {
-	// 	//Observers,
+	useEffect(() => {
+		//Observers,
 
-	// 	const fadeUpChars = elements => {
-	// 		gsap.to(elements, {
-	// 			stagger: 0.05,
-	// 			ease: "power3.out",
-	// 			y: 0,
-	// 			opacity: 1,
-	// 			duration: 1,
-	// 			delay: 0.2,
-	// 		});
-	// 	};
+		const fadeUpChars = elements => {
+			gsap.to(elements, {
+				stagger: 0.05,
+				ease: "power3.out",
+				y: 0,
+				opacity: 1,
+				duration: 1,
+				delay: 0.2,
+			});
+		};
 
-	// 	const fadeUpLines = elements => {
-	// 		gsap.to(elements, {
-	// 			stagger: 0.06,
-	// 			ease: "power3.out",
-	// 			y: 0,
-	// 			opacity: 1,
-	// 			duration: 1,
-	// 			delay: 0.2,
-	// 		});
-	// 	};
+		const fadeUpLines = elements => {
+			gsap.to(elements, {
+				stagger: 0.06,
+				ease: "power3.out",
+				y: 0,
+				opacity: 1,
+				duration: 1,
+				delay: 0.2,
+			});
+		};
 
-	// 	const fadeSide = elements => {
-	// 		gsap.to(elements, {
-	// 			stagger: 0.06,
-	// 			ease: "power3.out",
-	// 			x: 0,
-	// 			rotation: 0,
-	// 			opacity: 1,
-	// 			duration: 1,
-	// 			delay: 0.2,
-	// 		});
-	// 	};
+		const fadeSide = elements => {
+			gsap.to(elements, {
+				stagger: 0.06,
+				ease: "power3.out",
+				x: 0,
+				rotation: 0,
+				opacity: 1,
+				duration: 1,
+				delay: 0.2,
+			});
+		};
 
-	// 	setTimeout(() => {
-	// 		const items = document.querySelectorAll(
-	// 			".-splitChars, .-splitLines, .-fadeUp, .-fadeSideRight, .-fadeSideLeft"
-	// 		);
+		setTimeout(() => {
+			const items = document.querySelectorAll(
+				".-splitChars, .-splitLines, .-fadeUp, .-fadeSideRight, .-fadeSideLeft"
+			);
 
-	// 		const handleIntersection = entries => {
-	// 			entries.forEach(entry => {
-	// 				if (
-	// 					entry.isIntersecting &&
-	// 					entry.target.classList.contains("-splitChars")
-	// 				) {
-	// 					const chars = entry.target.querySelectorAll(".c-char");
+			const handleIntersection = entries => {
+				entries.forEach(entry => {
+					if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-splitChars")
+					) {
+						const chars = entry.target.querySelectorAll(".c-char");
 
-	// 					fadeUpChars(chars);
-	// 				} else if (
-	// 					entry.isIntersecting &&
-	// 					entry.target.classList.contains("-splitLines")
-	// 				) {
-	// 					const lines = entry.target.querySelectorAll(".c-line");
-	// 					fadeUpLines(lines);
-	// 				} else if (
-	// 					entry.isIntersecting &&
-	// 					entry.target.classList.contains("-fadeUp")
-	// 				) {
-	// 					fadeUpLines(entry.target);
-	// 				} else if (
-	// 					(entry.isIntersecting &&
-	// 						entry.target.classList.contains("-fadeSideRight")) ||
-	// 					entry.target.classList.contains("-fadeSideLeft")
-	// 				) {
-	// 					fadeSide(entry.target);
-	// 				}
-	// 			});
-	// 		};
+						fadeUpChars(chars);
+					} else if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-splitLines")
+					) {
+						const lines = entry.target.querySelectorAll(".c-line");
+						fadeUpLines(lines);
+					} else if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-fadeUp")
+					) {
+						fadeUpLines(entry.target);
+					} else if (
+						(entry.isIntersecting &&
+							entry.target.classList.contains("-fadeSideRight")) ||
+						entry.target.classList.contains("-fadeSideLeft")
+					) {
+						fadeSide(entry.target);
+					}
+				});
+			};
 
-	// 		const observer = new IntersectionObserver(handleIntersection);
+			const observer = new IntersectionObserver(handleIntersection);
 
-	// 		items.forEach(element => observer.observe(element));
-	// 	}, 800);
-	// }, [location.pathname]);
+			items.forEach(element => observer.observe(element));
+		}, 800);
+	}, [location.pathname]);
 
-	// useEffect(() => {
-	// 	//Handle lines fading up on scroll
+	useEffect(() => {
+		//Handle lines fading up on scroll
 
-	// 	//Handle header observer
-	// 	const handleSectionIntersection = entries => {
-	// 		entries.forEach(entry => {
-	// 			if (entry.isIntersecting) {
-	// 				$(entry.target).attr("data-theme");
-	// 				const color = $(entry.target).attr("data-theme");
-	// 				setHeaderColor(color);
-	// 			}
-	// 		});
-	// 	};
-	// 	const headerObserver = new IntersectionObserver(handleSectionIntersection, {
-	// 		threshold: 0.3,
-	// 	});
-	// 	$("[data-theme]").each((i, el) => headerObserver.observe(el));
-	// }, [location]);
+		//Handle header observer
+		const handleSectionIntersection = entries => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					$(entry.target).attr("data-theme");
+					const color = $(entry.target).attr("data-theme");
+				}
+			});
+		};
+		const headerObserver = new IntersectionObserver(handleSectionIntersection, {
+			threshold: 0.3,
+		});
+		$("[data-theme]").each((i, el) => headerObserver.observe(el));
+	}, [location]);
 
 	const toggleScrollLock = () => {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
