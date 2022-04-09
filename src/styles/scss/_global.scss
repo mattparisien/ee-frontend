@@ -40,7 +40,6 @@ body {
 	background-color: $light;
 	transition-delay: 300ms;
 	min-height: 100%;
-	overflow-x: hidden;
 
 	&.is-new-page main {
 		opacity: 1;
