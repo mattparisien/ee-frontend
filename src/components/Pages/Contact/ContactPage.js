@@ -15,7 +15,7 @@ function ContactPage({ pageHeading }) {
 	return (
 		<div className='o-page o-page_contact'>
 			<Section classes='o-hero'>
-				<Box className="o-hero_content" sx={{zIndex: 99}}>
+				<Box className='o-hero_content' sx={{ zIndex: 99 }}>
 					<Typography variant='h1' component='h1' textAlign={"center"}>
 						{pageHeading && pageHeading}
 					</Typography>
@@ -47,12 +47,17 @@ function ContactPage({ pageHeading }) {
 }
 
 function Portrait({ image }) {
+	const card = theme => ({
+		position: "relative",
+		overflow: "visible",
+		[theme.breakpoints.down("sm")]: {
+			transform: "scale(0.99)",
+			
+		},
+	});
+
 	return (
-		<Card
-			width='100%'
-			sx={{ position: "relative", overflow: "visible" }}
-			className='-frame-reveal'
-		>
+		<Card width='100%' sx={card} className='-frame-reveal'>
 			<CardMedia component='img' image={image} />
 			<Frame />
 		</Card>
