@@ -153,7 +153,7 @@ function Item({
 			width: "100%",
 			height: "100%",
 			objectFit: "cover",
-			filter: "grayscale(1)"
+			filter: "grayscale(1)",
 		},
 		".c-frame": {
 			transform: "scale(1.03)",
@@ -161,7 +161,7 @@ function Item({
 	};
 
 	return (
-		<Box sx={itemStyles} className=' -hover-frame'>
+		<Box sx={itemStyles} className=' -hover-frame -fadeUp'>
 			<Link classes='o-slider_item' isRouterLink href={`/projects`}>
 				<Box className='image-wrapper' sx={imgWrapper}>
 					<Box component='img' src={src} alt={alt}></Box>

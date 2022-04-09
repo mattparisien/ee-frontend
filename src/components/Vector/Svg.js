@@ -117,7 +117,7 @@ export function InstrumentPlayer() {
 			viewBox='0 0 505 1211'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
-			className='instrument-player-svg'
+			className='instrument-player-svg -fadeSideLeft'
 		>
 			<g clipPath='url(#clip0_554_236)'>
 				<path

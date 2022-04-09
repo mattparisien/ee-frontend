@@ -2,7 +2,13 @@ import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, {
+	useEffect,
+	useRef,
+	useState,
+	useCallback,
+	useLayoutEffect,
+} from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
@@ -122,7 +128,7 @@ function App() {
 					burger,
 					{
 						opacity: 1,
-						duration: 1
+						duration: 1,
 					},
 					4
 				)
@@ -159,101 +165,135 @@ function App() {
 	const [isSplit, setSplit] = useState(false);
 	const split = useRef(null);
 	const isFirstRender = useRef(true);
+	const observedElements = useRef([]);
+	observedElements.current = [];
 
 	const toggleDomAnimationReady = useCallback(() => {
 		setDomAnimatedReady(!domAnimatedReady);
 	}, [domAnimatedReady]);
 
-	// useEffect(() => {
-	// 	const elements = [];
+	useEffect(() => {
+		setTimeout(() => {
+			const splitChars = document.querySelectorAll(".-splitChars");
+			const splitLines = document.querySelectorAll(".-splitLines");
 
-	// 	setTimeout(() => {
-	// 		$(".-split").each((i, el) => {
-	// 			if ($(el).children().length > 0) {
-	// 				elements.push(...$(el).children());
-	// 			} else {
-	// 				elements.push(el);
-	// 			}
-	// 		});
+			console.log("lines", splitLines);
 
-	// 		split.current = new SplitText(elements, {
-	// 			type: "lines, words, chars",
-	// 			linesClass: "c-line",
-	// 			charsClass: "c-char",
-	// 		});
+			const chars = new SplitText(splitChars, {
+				type: "words, chars",
+				wordsClass: "c-word",
+				charsClass: "c-char",
+			});
 
-	// 		console.log(split.current);
+			const lines = new SplitText(splitLines, {
+				type: "lines",
+				linesClass: "c-line",
+			});
 
-	// 		setSplit(true);
-	// 		toggleDomAnimationReady();
-	// 	}, 2000);
-	// }, [location]);
+			console.log(lines.lines);
 
-	// useEffect(() => {
-	// 	split.current && split.current.revert().split();
-	// }, [windowWidth]);
-
-	// useEffect(() => {
-	// 	const show = element => {
-	// 		$(element).css({
-	// 			opacity: 1,
-	// 		});
-	// 	};
-
-	// 	const fadeUp = elements => {
-	// 		gsap.to(elements, {
-	// 			stagger: 0.03,
-	// 			duration: 1,
-	// 			ease: "power3.out",
-	// 			y: 0,
-	// 			opacity: 1,
-	// 		});
-	// 	};
-
-	// 	if (isSplit && domAnimatedReady) {
-	// 		const logo = $(".o-page_home .c-drawnLogo");
-
-	// 		isFirstRender.current = false;
-
-	// 		const handleIntersection = entries => {
-	// 			entries.forEach(entry => {
-	// 				if (entry.isIntersecting) {
-	// 					show(entry.target);
-	// 					fadeUp($(entry.target).find(".c-char"));
-	// 				}
-	// 			});
-	// 		};
-
-	// 		const observer = new IntersectionObserver(handleIntersection, {
-	// 			threshold: 0.2,
-	// 		});
-
-	// 		$(".-fadeUp, .-fadeUpChars, .-fadeUpLines, .-fadeUpChildren").each(
-	// 			(i, el) => {
-	// 				observer.observe(el);
-	// 			}
-	// 		);
-	// 	}
-	// }, [isSplit, location, windowWidth, domAnimatedReady]);
+			observedElements.current.push(splitChars);
+		}, 500);
+	}, []);
 
 	useEffect(() => {
-		//Handle lines fading up on scroll
+		//Observers,
 
-		//Handle header observer
-		const handleSectionIntersection = entries => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					$(entry.target).attr("data-theme");
-					const color = $(entry.target).attr("data-theme");
-					setHeaderColor(color);
-				}
+		const fadeUpChars = elements => {
+			gsap.to(elements, {
+				stagger: 0.05,
+				ease: "power3.out",
+				y: 0,
+				opacity: 1,
+				duration: 1,
+				delay: 0.2,
 			});
 		};
-		const headerObserver = new IntersectionObserver(handleSectionIntersection, {
-			threshold: 0.3,
-		});
-		$("[data-theme]").each((i, el) => headerObserver.observe(el));
-	}, [location]);
+
+		const fadeUpLines = elements => {
+			gsap.to(elements, {
+				stagger: 0.06,
+				ease: "power3.out",
+				y: 0,
+				opacity: 1,
+				duration: 1,
+				delay: 0.2,
+			});
+		};
+
+		const fadeSide = elements => {
+			gsap.to(elements, {
+				stagger: 0.06,
+				ease: "power3.out",
+				x: 0,
+				rotation: 0,
+				opacity: 1,
+				duration: 1,
+				delay: 0.2,
+			});
+		};
+
+		setTimeout(() => {
+			const items = document.querySelectorAll(
+				".-splitChars, .-splitLines, .-fadeUp, .-fadeSideRight, .-fadeSideLeft"
+			);
+
+			const handleIntersection = entries => {
+				entries.forEach(entry => {
+					console.log(entry.target);
+
+					if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-splitChars")
+					) {
+						const chars = entry.target.querySelectorAll(".c-char");
+
+						fadeUpChars(chars);
+					} else if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-splitLines")
+					) {
+						const lines = entry.target.querySelectorAll(".c-line");
+						fadeUpLines(lines);
+					} else if (
+						entry.isIntersecting &&
+						entry.target.classList.contains("-fadeUp")
+					) {
+						fadeUpLines(entry.target);
+					} else if (
+						(entry.isIntersecting &&
+							entry.target.classList.contains("-fadeSideRight")) ||
+						entry.target.classList.contains("-fadeSideLeft")
+					) {
+						fadeSide(entry.target);
+					}
+				});
+			};
+
+			const observer = new IntersectionObserver(handleIntersection);
+
+			items.forEach(element => observer.observe(element));
+		}, 800);
+	}, [location.pathname]);
+
+	// useEffect(() => {
+	// 	//Handle lines fading up on scroll
+
+	// 	//Handle header observer
+	// 	const handleSectionIntersection = entries => {
+	// 		entries.forEach(entry => {
+	// 			if (entry.isIntersecting) {
+	// 				$(entry.target).attr("data-theme");
+	// 				const color = $(entry.target).attr("data-theme");
+	// 				setHeaderColor(color);
+	// 			}
+	// 		});
+	// 	};
+	// 	const headerObserver = new IntersectionObserver(handleSectionIntersection, {
+	// 		threshold: 0.3,
+	// 	});
+	// 	$("[data-theme]").each((i, el) => headerObserver.observe(el));
+	// }, [location]);
 
 	const toggleScrollLock = () => {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));

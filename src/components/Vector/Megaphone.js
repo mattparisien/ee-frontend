@@ -6,7 +6,7 @@ const Megaphone = props => (
 			
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 621.57 420.43'
-			className="c-megaphone_svg"
+			className="c-megaphone_svg  -fadeSideRight"
 			preserveAspectRatio="none"
 		>
 			<defs>

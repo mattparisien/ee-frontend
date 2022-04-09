@@ -34,7 +34,7 @@ function About({ aboutText }) {
 
 function SectionLeft({ text }) {
 	return (
-		<Typography variant='h4'>
+		<Typography variant='h4' className="-splitLines">
 			<Markdown children={text} />
 		</Typography>
 	);

@@ -34,7 +34,6 @@
 }
 
 .-overlay-dark {
-
 	&::after {
 		transition: 400ms ease;
 		position: absolute;
@@ -49,12 +48,10 @@
 		@include media("<=tablet") {
 			display: none;
 		}
-		
 	}
-	&:hover::after{
+	&:hover::after {
 		opacity: 0.4;
 	}
-
 }
 
 .-padding-bottom-lg {
@@ -370,27 +367,49 @@
 }
 
 .-bold {
-	&, & * {
-		font-family: 'Kobe Bold'
-	};
+	&,
+	& * {
+		font-family: "Kobe Bold";
+	}
 }
 
 // .-fadeUpChars, .MuiTypography-h1  {
 // 	opacity: 0;
 // }
 
-// .-fadeUpChars, .MuiTypography-h1 {
-// 	.c-char {
-// 		transform: translateY(100%);
-// 		opacity: 0;
-// 	}
-// }
+.c-char,
+.c-line {
+	transform: translateY(100%);
+	opacity: 0;
+}
 
-// p.-fadeUp {
-// 	animation-delay: 20s;
-// 	transform: translateY(100%);
-// 	opacity: 0;
-// }
+.c-word {
+	overflow: hidden;
+}
+
+.-fadeUp {
+	transform: translateY(100%);
+	opacity: 0;
+}
+
+.-fadeUpChildren {
+	> * {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+}
+
+.-fadeSideRight {
+	transform: translateX(-100%);
+	opacity: 0;
+	transform-origin: center;
+}
+
+.-fadeSideLeft {
+	transform: translateX(-100%);
+	opacity: 0;
+	transform-origin: center;
+}
 
 .-imageZoom {
 	animation: imageZoom 5s ease forwards;

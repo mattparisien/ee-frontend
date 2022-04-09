@@ -50,12 +50,12 @@ export default function Footer(props) {
 	});
 
 	const spacer = {
-		height: "7rem"
-	}
+		height: "7rem",
+	};
 
 	const bottom = theme => ({
 		width: "100%",
-		height: '7rem',
+		height: "7rem",
 		display: "flex",
 		justifyContent: "space-between",
 		alignItems: "center",
@@ -63,17 +63,17 @@ export default function Footer(props) {
 
 	const footer = theme => ({
 		height: "500px",
-		[theme.breakpoints.up('md')]: {
-			height: '600px'
-		}
+		[theme.breakpoints.up("md")]: {
+			height: "600px",
+		},
 	});
 
-	const wrap  = {
+	const wrap = {
 		height: "100%",
 		display: "flex",
 		flexDirection: "column",
-		justifyContent: "space-between"
-	}
+		justifyContent: "space-between",
+	};
 
 	return (
 		<Box
@@ -85,7 +85,7 @@ export default function Footer(props) {
 		>
 			<ContainerFluid classes='-stretchY'>
 				<Box sx={wrap}>
-					<Box className="spacer" sx={spacer}></Box>
+					<Box className='spacer' sx={spacer}></Box>
 					<Box className='footer-center-content' sx={containerStyles}>
 						<Box
 							sx={boxStyles}
@@ -94,7 +94,7 @@ export default function Footer(props) {
 							alignItems={mobile ? "center" : "flex-start"}
 							justifyContent='center'
 						>
-							<Typography variant='h1'>
+							<Typography variant='h1' className='-splitChars'>
 								{props.info && props.info.Heading}
 							</Typography>
 							<Fade bottom>
@@ -103,7 +103,7 @@ export default function Footer(props) {
 									variant='h4'
 									href={`mailto:${props.info && props.info.Email}`}
 								>
-									<div className='email -underline -hover-underline -relative -inline'>
+									<div className='email -underline -hover-underline -relative -inline -splitChars'>
 										{props.info && props.info.Email}
 									</div>
 								</Typography>
@@ -117,15 +117,19 @@ export default function Footer(props) {
 					</Box>
 
 					<Box pt={4} pb={4} sx={bottom}>
-						<div className='-flex -align-center -justify-center'>
+						<div className='-flex -align-center -justify-center -splitChars'>
 							<p>The Eyes & Ears Agency</p>
-							<SocialList />
+							<Box className="-fadeUp">
+								<SocialList />
+							</Box>
 						</div>
+						<Box className="-fadeUp">
 						<ArrowButton
 							color='light'
 							rotation={90}
 							handleClick={scrollToTop}
 						/>
+						</Box>
 
 						{/* <nav className='c-footer_nav'>
 							<List items={props.navItems} color='light' />
