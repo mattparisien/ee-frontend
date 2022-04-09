@@ -1,32 +1,21 @@
+import { ThemeProvider } from "@mui/material";
 import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import $ from "jquery";
-import React, {
-	useEffect,
-	useRef,
-	useState,
-	useCallback,
-	useLayoutEffect,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { Header } from "./components";
-
 import Footer from "./components/Footer/Footer";
 import Menu from "./components/Menu/Menu";
 import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
-import useResize from "./helpers/hooks/useResize";
 import SiteRoutes from "./Routes";
-
-import { ThemeProvider } from "@mui/material";
 import { theme } from "./styles/mui/theming";
 
 function App() {
 	const scrollWrapper = useRef(null);
-
-	const [windowWidth] = useResize();
 
 	const location = useLocation();
 
@@ -43,12 +32,10 @@ function App() {
 		setTransitioning,
 		cursor,
 		changeCursor,
-		pending,
+
 		search,
 		setSearch,
 	} = useAppData();
-
-	const [headerColor, setHeaderColor] = useState("light");
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
 
@@ -69,14 +56,10 @@ function App() {
 			".o-page_home .o-hero .c-drawnLogo"
 		);
 		const heroWords = document.querySelectorAll(".o-page_home .o-hero h1");
-		const heroChars = $(".o-page_home .o-hero").find(".c-char");
 		const page = document.querySelector(".o-page_home");
 
 		const windowHeight = window.innerHeight;
-		const heroHeight = document.querySelector(
-			".o-page_home .o-hero"
-		).offsetHeight;
-		const centeredLocation = heroHeight / 2;
+
 
 		gsap.set(headerLogo, {
 			y: windowHeight / 2,
@@ -162,9 +145,9 @@ function App() {
 		}, 200);
 	}, []);
 
-	const [isSplit, setSplit] = useState(false);
-	const split = useRef(null);
-	const isFirstRender = useRef(true);
+	// const [isSplit, setSplit] = useState(false);
+
+	// const isFirstRender = useRef(true);
 	const observedElements = useRef([]);
 	observedElements.current = [];
 
@@ -177,9 +160,7 @@ function App() {
 			const splitChars = document.querySelectorAll(".-splitChars");
 			const splitLines = document.querySelectorAll(".-splitLines");
 
-			console.log("lines", splitLines);
-
-			const chars = new SplitText(splitChars, {
+			new SplitText(splitChars, {
 				type: "words, chars",
 				wordsClass: "c-word",
 				charsClass: "c-char",
@@ -352,7 +333,6 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						<Header
 							toggleMenu={() => setMenuActive(!menuActive)}
 							menuActive={menuActive}
-							color={menuActive ? "dark" : headerColor}
 							navItems={navItems}
 							location={location}
 						/>

@@ -1,8 +1,7 @@
+import { Box, Card, CardMedia, Typography } from "@mui/material";
 import React from "react";
-import Section from "../../Containers/Section";
 import Container from "../../Containers/ContainerFluid";
-import { Box, Card, CardMedia } from "@mui/material";
-import { Typography } from "@mui/material";
+import Section from "../../Containers/Section";
 
 function Sticky({
 	additionalMedia,
@@ -13,7 +12,6 @@ function Sticky({
 	metric,
 	metricTitle,
 }) {
-
 	const containerStyle = {
 		display: "flex",
 		flexDirection: reverse ? "row-reverse" : "row",
@@ -64,7 +62,7 @@ function ImageSection({ additionalMedia, reverse }) {
 	);
 }
 
-function TextSection({metric, metricTitle}) {
+function TextSection({ metric, metricTitle }) {
 	const stickyStyle = {
 		position: "sticky",
 		top: "100px",
@@ -75,22 +73,24 @@ function TextSection({metric, metricTitle}) {
 	const title = {
 		color: "grey",
 		fontFamily: "Kobe Bold",
-		textTransform: "capitalize"
-	};
-
-	const item = {
-		marginBottom: "2rem",
+		textTransform: "capitalize",
 	};
 
 	const metricStyle = {
-		fontFamily: 'Kobe'
-	}
+		fontFamily: "Kobe",
+	};
 
 	return (
 		<Box sx={stickyStyle}>
 			<Box>
-				<Typography variant='h3' component='h2' className="metric-title" sx={title} mb={2}>
-					{metricTitle === 'funds' ? metricTitle + " raised" : metricTitle}
+				<Typography
+					variant='h3'
+					component='h2'
+					className='metric-title'
+					sx={title}
+					mb={2}
+				>
+					{metricTitle === "funds" ? metricTitle + " raised" : metricTitle}
 				</Typography>
 				<Typography variant='h5' component='h5' sx={metricStyle}>
 					{metric}

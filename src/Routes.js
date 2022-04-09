@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-
+import ContactPage from "./components/Pages/Contact/ContactPage";
 import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
-import ContactPage from "./components/Pages/Contact/ContactPage";
+
 
 function SiteRoutes(props) {
-	const { addToRefs, location, pages } = props;
+	const { location, pages } = props;
 
 	const [pageHeadings, setPageHeadings] = useState(null);
 

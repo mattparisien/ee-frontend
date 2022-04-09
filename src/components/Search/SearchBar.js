@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
 import { TextField } from "@mui/material";
-import { SearchContext, DataContext } from "../../context/Context";
 import { Box } from "@mui/system";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { DataContext, SearchContext } from "../../context/Context";
 
 function SearchBar() {
 	const { search, setSearch } = useContext(SearchContext);
-	const data = useContext(DataContext);
+	// const data = useContext(DataContext);
 	const [value, setValue] = useState("");
 	const hasSearched = useRef(false);
 
@@ -19,7 +19,7 @@ function SearchBar() {
 
 	useEffect(() => {
 		value !== "" && setSearch(value);
-	}, [value]);
+	}, [value, setSearch]);
 
 	const searchBarStyles = {
 		"*:focus": {
@@ -46,6 +46,7 @@ function SearchBar() {
 	return (
 		<Box mb={5}>
 			<TextField
+				search={search}
 				sx={searchBarStyles}
 				placeholder={"Search projects"}
 				onChange={handleChange}

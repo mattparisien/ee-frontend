@@ -1,14 +1,11 @@
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import Fade from "react-reveal/Fade";
 import ArrowButton from "../Button/ArrowButton";
 // import { StyledFooter } from "./styles";
 import ContainerFluid from "../Containers/ContainerFluid";
-import List from "../Lists/List";
-import { DrawnLogo } from "../Vector/Svg";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
-import Fade from "react-reveal/Fade";
 import SocialList from "../Lists/SocialList";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
+import { DrawnLogo } from "../Vector/Svg";
 
 export default function Footer(props) {
 	const scroll = useLocomotiveScroll();

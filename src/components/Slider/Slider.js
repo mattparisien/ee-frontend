@@ -1,15 +1,12 @@
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React, { useRef } from "react";
 import "swiper";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/modules/pagination/pagination.min.css";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
-import ArrowButton from "../Button/ArrowButton";
-import Link from "../Link/Link";
 import ContainerFluid from "../Containers/ContainerFluid";
-import { Box } from "@mui/material";
-import { Typography } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
+import Link from "../Link/Link";
 import Frame from "../Vector/Frame";
 
 function Slider({ items }) {
@@ -18,8 +15,6 @@ function Slider({ items }) {
 
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
-
-	console.log("items,", items);
 
 	return (
 		<div className='o-slider'>
@@ -98,7 +93,6 @@ function Item({
 		width: "100%",
 		height: "100%",
 		position: "absolute",
-		zIndex: 999,
 		top: 0,
 		left: 0,
 		display: "flex",
@@ -108,7 +102,6 @@ function Item({
 		color: "white",
 		zIndex: 99,
 		backgroundColor: "rgba(7, 7, 7, 0.49)",
-		height: "100%",
 		opacity: 0,
 		transition: "600ms ease",
 		h6: {

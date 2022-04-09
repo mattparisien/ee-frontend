@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import variables from "../scss/_vars.module.scss";
 
 let theme = createTheme();
 

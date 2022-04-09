@@ -1,15 +1,10 @@
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import Megaphone from "../../Vector/Megaphone";
-import Reveal from "react-reveal";
-import Vibrations from "../../Vector/Vibrations";
 import SplitLayout from "../../Layouts/SplitLayout";
-import { Container, Typography } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
 import Markdown from "../../Markdown/Markdown";
-import { Box } from "@mui/material";
+import Megaphone from "../../Vector/Megaphone";
 
 function About({ aboutText }) {
 	const matches = useMediaQuery("(max-width: 900px)");

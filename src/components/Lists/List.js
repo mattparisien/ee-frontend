@@ -86,7 +86,7 @@ export function Highlight({ hoveredId, hovered, noDraw }) {
 				});
 			}
 		}
-	}, [hovered, hoveredId]);
+	}, [hovered, hoveredId, noDraw]);
 
 	return (
 		<div className='c-highlight'>

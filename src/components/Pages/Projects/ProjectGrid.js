@@ -1,12 +1,9 @@
 // import { ColorContext, CursorContext } from "../../App/App";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import classNames from "classnames";
 import React, { useRef, useState } from "react";
-import Fade from "react-reveal/Fade";
 import Link from "../../Link/Link";
 import Frame from "../../Vector/Frame";
-import { Typography } from "@mui/material";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 function ProjectGrid({ items, variant, hoverEffect }) {
 	const gridItems = useRef([]);

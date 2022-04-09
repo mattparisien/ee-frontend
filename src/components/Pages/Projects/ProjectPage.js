@@ -1,18 +1,13 @@
+import { Typography } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import { useContext, useEffect } from "react";
-import { DataContext, SearchContext } from "../../../context/Context";
-import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
-import ProjectGrid from "./ProjectGrid";
-import SearchBar from "../../Search/SearchBar";
-import { Typography } from "@mui/material";
 
 export default function ProjectPage({ pageHeading }) {
 	gsap.registerPlugin(DrawSVGPlugin);
-	const data = useContext(DataContext);
-	const { search } = useContext(SearchContext);
+	// const data = useContext(DataContext);
+	// const { search } = useContext(SearchContext);
 
 	return (
 		<div className='o-page o-page_project'>

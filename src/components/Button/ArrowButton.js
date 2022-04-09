@@ -1,10 +1,9 @@
-import React, { useRef, forwardRef, useEffect } from "react";
 import classNames from "classnames";
-import Link from "../Link/Link";
-import useMouseMove from "../../helpers/hooks/useMouseMove";
-import $ from "jquery";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/src/DrawSVGPlugin";
+import React, { forwardRef, useEffect, useRef } from "react";
+import useMouseMove from "../../helpers/hooks/useMouseMove";
+import Link from "../Link/Link";
 
 function ArrowButton(
 	{ handleClick, rotation, classes, color, isRouterLink, href },
@@ -17,62 +16,10 @@ function ArrowButton(
 
 	gsap.registerPlugin(DrawSVGPlugin);
 
-	const circle = useRef(null);
-
 	const location = useMouseMove();
-	const tl = useRef(gsap.timeline());
-
-	const handleMouseEnter = e => {
-		const circle = $(e.target).find(".hoverCircle");
-		const arrow2 = $(e.target).find(".arrow2");
-
-		tl.current
-			.to(circle, 1, {
-				drawSVG: "100%",
-				duration: 1,
-				ease: "expo.inOut",
-			})
-			.to(
-				arrow2,
-				{
-					x: "-20px",
-					duration: 1,
-					ease: "power3.out",
-					fill: "black",
-				},
-				0
-			);
-	};
-
-	const handleMouseLeave = e => {
-		
-		const arrow2 = $(e.target).find(".arrow2");
-
-		tl.current
-			.to(circle, 1, {
-				drawSVG: "0%",
-				duration: 1,
-				ease: "expo.inOut",
-			})
-			.to(
-				arrow2,
-				{
-					x: "0px",
-					duration: 1,
-					ease: "power3.out",
-					fill: "grey",
-				},
-				0
-			);
-	};
 
 	return !isRouterLink ? (
-		<button
-			className={buttonClasses}
-			onClick={handleClick}
-			ref={ref}
-			
-		>
+		<button className={buttonClasses} onClick={handleClick} ref={ref}>
 			<Arrow rotation={rotation} color={color} location={location} r />
 			<div className='circle'></div>
 		</button>

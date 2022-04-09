@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
@@ -9,17 +10,14 @@ import Fade from "react-reveal/Fade";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
-import { HalfNote, QuarterNote } from "../../Vector/Notes";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
 import SectionHeading from "../../Headings/SectionHeading";
+import { HalfNote, QuarterNote } from "../../Vector/Notes";
 import { InstrumentPlayer } from "../../Vector/Svg";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
-	const mobile = useMediaQuery("(max-width: 600px)");
+	
 
 	const noteTl = useRef(null);
 	const container = useRef(null);

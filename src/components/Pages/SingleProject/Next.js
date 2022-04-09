@@ -1,12 +1,11 @@
-import React, { useRef, useMemo } from "react";
+import { Box, Typography } from "@mui/material";
+import React, { useMemo, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import Fade from "react-reveal/Fade";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Link from "../../Link/Link";
 import Arrow from "../../Vector/Arrow";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/material";
 
 function Next({ color, nextPost }) {
 	const container = useRef(null);
@@ -15,7 +14,7 @@ function Next({ color, nextPost }) {
 		if (nextPost) {
 			const array = [];
 			for (let i = 0; i < 10; i++) {
-				array.push(i % 2 == 0 ? nextPost.subtitle : nextPost.title);
+				array.push(i % 2 === 0 ? nextPost.subtitle : nextPost.title);
 			}
 			return array;
 		}

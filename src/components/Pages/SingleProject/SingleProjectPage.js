@@ -4,9 +4,8 @@ import {
 	CardMedia,
 	Grid,
 	Typography,
-	useMediaQuery,
+	useMediaQuery
 } from "@mui/material";
-import gsap from "gsap";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Fade from "react-reveal/Fade";
@@ -27,8 +26,8 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const [info, setInfo] = useState(null);
 	const textWrapper = useRef(null);
 	const heroImage = useRef(null);
-	const revealer = useRef(null);
-	const tl = useRef(gsap.timeline());
+	// const revealer = useRef(null);
+	// const tl = useRef(gsap.timeline());
 	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const accentColor = useMemo(() => shuffleColors(), []);

@@ -1,13 +1,10 @@
+import { useMediaQuery } from "@mui/material";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useMemo } from "react";
 import Section from "../../Containers/Section";
-import Slider from "../../Slider/Slider";
-import Line from "../../Vector/Line";
-import { Typography } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
-import { Box } from "@mui/material";
 import SectionHeading from "../../Headings/SectionHeading";
+import Slider from "../../Slider/Slider";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
