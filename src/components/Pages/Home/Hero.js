@@ -17,7 +17,6 @@ function Hero({ pageHeading }) {
 		[theme.breakpoints.up("lg")]: {
 			fontSize: "9rem",
 			lineHeight: "9rem",
-			
 		},
 		[theme.breakpoints.up("md")]: {
 			fontSize: "11vw",
@@ -46,7 +45,7 @@ function Hero({ pageHeading }) {
 			alignItems: "center",
 			fontSize: "23vw",
 			lineHeight: "23vw",
-			alignSelf: "center !important"
+			alignSelf: "center !important",
 		},
 	});
 
@@ -99,13 +98,32 @@ function Hero({ pageHeading }) {
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<ContainerFluid classes='-stretchX -stretchY' sx={containerStyles}>
 				<Box className='o-hero_inner -relative -stretchX -stretchY' sx={inner}>
-					<Typography variant='h1' className='o-hero_word' sx={word}>
+					<Typography
+						variant='h1'
+						className='o-hero_word'
+						sx={word}
+						data-scroll
+						data-scroll-speed={2}
+					>
 						{words && words[0]}
 					</Typography>
-					<Typography sx={word2} variant='h1' className='o-hero_word'>
+					<Typography
+						sx={word2}
+						variant='h1'
+						className='o-hero_word'
+						data-scroll
+						data-scroll-speed={2}
+					>
 						{words && words[1]}
 					</Typography>
-					<Typography variant='h1' className='o-hero_word' sx={word}>
+					<Typography
+						variant='h1'
+						className='o-hero_word'
+						sx={word}
+						m
+						data-scroll
+						data-scroll-speed={2}
+					>
 						{words && words[2]}
 					</Typography>
 					<Box className='o-hero_logo' sx={logo}>

@@ -125,7 +125,7 @@ const ArrowIcon = ({ flip }) => {
 function Item({ author, quote }) {
 	return (
 		<>
-			<Typography variant='h6' component='p' textAlign='center'>
+			<Typography variant='h6' component='p' textAlign='center' className="-splitLines">
 				{quote}
 			</Typography>
 
@@ -133,6 +133,7 @@ function Item({ author, quote }) {
 				variant='h4'
 				textAlign='center'
 				component='p'
+				className="-splitLines"
 				mb={4}
 				mt={4}
 				sx={{ fontFamily: "Kobe Bold !important" }}

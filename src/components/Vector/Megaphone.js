@@ -3,11 +3,10 @@ import * as React from "react";
 const Megaphone = props => (
 	<div className='c-megaphone'>
 		<svg
-			
 			xmlns='http://www.w3.org/2000/svg'
 			viewBox='0 0 621.57 420.43'
-			className="c-megaphone_svg  -fadeSideRight"
-			preserveAspectRatio="none"
+			className='c-megaphone_svg  -fadeSideRight'
+			preserveAspectRatio='none'
 		>
 			<defs>
 				<style>{".e,.f{fill:#f0d548;fill-rule:evenodd}.f{fill:#fff}"}</style>

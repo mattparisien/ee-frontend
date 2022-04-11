@@ -58,7 +58,7 @@ function How({ steps }) {
 				},
 			});
 		}
-	}, [scroll.isReady, scroll]);
+	}, [scroll]);
 
 	useEffect(() => {
 		noteTl.current &&
@@ -76,7 +76,7 @@ function How({ steps }) {
 					},
 					0
 				);
-	}, []);
+	}, [scroll]);
 
 	const stepHeading = theme => ({
 		fontSize: "5vw",
@@ -287,9 +287,16 @@ function How({ steps }) {
 										<Box
 											className={`c-steps_item c-steps_item_${step.id}`}
 											key={i}
+											data-scroll
+											data-scroll-speed={i % 2 === 0 ? 2 : 0}
 										>
 											<Fade bottom>
-												<Typography variant='h2' sx={stepHeading} mb={2}>
+												<Typography
+													variant='h2'
+													sx={stepHeading}
+													mb={2}
+													className='-splitChars'
+												>
 													<ReactMarkdown
 														disallowedElements={["p"]}
 														unwrapDisallowed

@@ -36,6 +36,10 @@ body {
 	right: 0;
 }
 
+.c-scrollbar {
+	z-index: 99999999;
+}
+
 .App {
 	background-color: $light;
 	transition-delay: 300ms;
