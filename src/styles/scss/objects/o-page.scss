@@ -1,14 +1,3 @@
 .o-page {
 	padding-top: $headerHeight;
-
-	&_home {
-		opacity: 0;
-	}
-
-}
-
-.is-not-first-visit .o-page {
-	&_home {
-		opacity: 1;
-	}
 }

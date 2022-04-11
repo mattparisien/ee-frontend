@@ -41,7 +41,9 @@ export default function useAppData(scrollRef) {
 		},
 		cursor: "normal",
 		isScrollLock: false,
-		data: {},
+		data: {
+			isLoaded: false,
+		},
 		pending: true,
 	});
 
@@ -66,9 +68,9 @@ export default function useAppData(scrollRef) {
 		setState(prev => ({ ...prev, cursor: value }));
 	};
 
-	const togglePending = () => {
-		setState(prev => ({ ...prev, pending: !prev.pending }));
-	};
+	const setDataLoaded = () => {
+		setState(prev => ({...prev, data: {...prev.data, isLoaded: true}}))
+	}
 
 	//Fetch essential data
 	useEffect(() => {
@@ -130,7 +132,7 @@ export default function useAppData(scrollRef) {
 				}));
 			})
 			.catch(err => console.log(err))
-			.finally(() => togglePending());
+			.finally(() => setDataLoaded());
 	}, []);
 
 	return {
@@ -142,7 +144,6 @@ export default function useAppData(scrollRef) {
 		cursor: state.cursor,
 		changeCursor,
 		pending: state.pending,
-
 		search: state.search,
 		setSearch,
 	};

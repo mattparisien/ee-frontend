@@ -120,7 +120,6 @@ function Hero({ pageHeading }) {
 						variant='h1'
 						className='o-hero_word'
 						sx={word}
-						m
 						data-scroll
 						data-scroll-speed={2}
 					>
