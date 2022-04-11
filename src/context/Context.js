@@ -23,13 +23,13 @@ function Context({
 		<LocomotiveScrollProvider
 			onLocationChange={scroll => scroll.scrollTo(0, 0)}
 			watch={[location.pathname]}
-			lerp={1}
+			lerp={2}
 			options={{
 				initPosition: {
 					x: 0,
 					y: 0,
 				},
-
+				
 				smooth: true,
 				getDirection: true,
 				getSpeed: true,

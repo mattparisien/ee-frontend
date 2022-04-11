@@ -22,6 +22,10 @@ body {
 	overflow-x: hidden;
 }
 
+.c-scrollbar {
+	z-index: 9999999;
+}
+
 .marquee h2 {
 	font-family: "Kobe Bold" !important;
 }
@@ -34,10 +38,6 @@ body {
 	position: fixed !important;
 	bottom: 0;
 	right: 0;
-}
-
-.c-scrollbar {
-	z-index: 99999999;
 }
 
 .App {
