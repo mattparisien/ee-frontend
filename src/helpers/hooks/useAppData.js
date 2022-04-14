@@ -6,6 +6,7 @@ import {
 	formatSteps,
 	formatTestimonials,
 } from "../formatData";
+import getData from "../getData";
 
 export default function useAppData(scrollRef) {
 	const navItems = [
@@ -69,70 +70,27 @@ export default function useAppData(scrollRef) {
 	};
 
 	const setDataLoaded = () => {
-		setState(prev => ({...prev, data: {...prev.data, isLoaded: true}}))
-	}
+		setState(prev => ({ ...prev, data: { ...prev.data, isLoaded: true } }));
+	};
 
 	//Fetch essential data
 	useEffect(() => {
-		const basePath = process.env.REACT_APP_API_URL;
-
-		const fetchURL = url => axios.get(url);
-
-		const urls = [
-			`${basePath}/projects?populate=*`,
-			`${basePath}/steps`,
-			`${basePath}/about`,
-			`${basePath}/testimonials`,
-			`${basePath}/footer`,
-			`${basePath}/bio?populate=*`,
-			`${basePath}/socials`,
-			`${basePath}/pages`,
+		const endpoints = [
+			`/projects?populate=*`,
+			`/steps`,
+			`/about`,
+			`/testimonials`,
+			`/footer`,
+			`/bio?populate=*`,
+			`/socials`,
+			`/pages`,
 		];
 
-		const promiseArray = [...urls].map(fetchURL);
-
-		Promise.all(promiseArray)
-			.then(data => {
-				const formattedPosts = formatPosts([...data[0].data.data]);
-				const formattedSteps = formatSteps([...data[1].data.data]);
-				const formattedAbout = formatAbout(data[2].data.data);
-				const formattedTestimonials = formatTestimonials(data[3].data.data);
-				const formattedFooter = data[4].data.data.attributes;
-				const formattedBio = data[5].data.data.attributes;
-				const formattedSocials = data[6].data.data.map(account => ({
-					id: account.id,
-					name: account.attributes.Name,
-					url: account.attributes.Url,
-				}));
-				const formattedPages = data[7].data.data.map(page => ({
-					id: page.id,
-					name: page.attributes.Title,
-					heading: page.attributes.Heading,
-				}));
-
-				setState(prev => ({
-					...prev,
-					data: {
-						...prev.data,
-						pages: formattedPages,
-						about: formattedAbout,
-						posts: formattedPosts,
-						steps: formattedSteps,
-						testimonials: formattedTestimonials,
-						footer: { ...formattedFooter },
-						bio: {
-							body: formattedBio.Body,
-							image: {
-								src: formattedBio.SelfImage.data.attributes.url,
-								alt: formattedBio.SelfImage.data.attributes.alternativeText,
-							},
-						},
-						socials: formattedSocials,
-					},
-				}));
+		getData(endpoints)
+			.then(final => {
+				setState(prev => ({ ...prev, data: { ...prev.data, ...final } }));
 			})
-			.catch(err => console.log(err))
-			.finally(() => setDataLoaded());
+			.finally(() => setDataLoaded(true));
 	}, []);
 
 	return {

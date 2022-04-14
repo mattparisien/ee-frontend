@@ -21,10 +21,10 @@ function SocialList() {
 		data.socials &&
 		data.socials.map(account => ({
 			...account,
-			component: components[account.name.toLowerCase()],
+			component: components[account.Name.toLowerCase()],
 		}));
 
-	return <List items={socialData} classes="c-list_social" variant='icon' />;
+	return <List items={socialData} classes='c-list_social' variant='icon' />;
 }
 
 export default SocialList;
