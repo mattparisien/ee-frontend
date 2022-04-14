@@ -156,7 +156,7 @@ function Item({
 	};
 
 	return (
-		<Box sx={itemStyles} className=' -hover-frame -fadeUp'>
+		<Box sx={itemStyles} className=' -hover-frame'>
 			<Link classes='o-slider_item' isRouterLink href={`/projects`}>
 				<Box className='image-wrapper' sx={imgWrapper}>
 					<Box component='img' src={src} alt={alt}></Box>

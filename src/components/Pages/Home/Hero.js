@@ -85,12 +85,14 @@ function Hero({ pageHeading }) {
 		[theme.breakpoints.down("md")]: {
 			alignItems: "center",
 			textAlign: "center",
+			justifyContent: "center !important"
 		},
 	});
 
 	const containerStyles = theme => ({
 		[theme.breakpoints.down("sm")]: {
 			marginTop: "5rem",
+			height: "80vw !important"
 		},
 	});
 
