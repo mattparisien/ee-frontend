@@ -11,7 +11,7 @@ function Work({ projects }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const featuredProjects = useMemo(() => {
-		return projects && projects.filter(project => project.featured);
+		return projects && projects.filter(project => project.FeaturedPost);
 	}, [projects]);
 
 	return (

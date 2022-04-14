@@ -2,62 +2,48 @@
 	overflow: hidden;
 	.o-hero {
 		overflow: hidden;
-		.o-container {
-			padding-top: 5vw;
-			padding-bottom: 5vw;
-			max-height: calc(100vh - $headerHeight - 5rem);
-			height: 90vw;
-			margin-bottom: 5rem;
-		}
 
-		&_inner {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			position: relative;
-			overflow: visible;
 
-			.o-hero_logo {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
+		.o-hero_logo {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 
-				.revealer {
-					position: absolute;
-					top: 0;
-					left: -3vw;
-					width: 120%;
-					height: 100%;
-					background-color: $light;
-					overflow: hidden;
-					transform-origin: right;
-
-					transition-delay: 0.3s;
-					display: none;
-				}
-			}
-
-			@media screen and (max-width: 600px) {
-				.o-hero_logo {
-					height: 60vw;
-				}
-			}
-
-			.c-drawnLogo {
+			.revealer {
 				position: absolute;
 				top: 0;
-				right: 0;
+				left: -3vw;
+				width: 120%;
+				height: 100%;
+				background-color: $light;
+				overflow: hidden;
+				transform-origin: right;
 
+				transition-delay: 0.3s;
+				display: none;
+			}
+		}
+
+		@media screen and (max-width: 600px) {
+			.o-hero_logo {
+				height: 60vw;
+			}
+		}
+
+		.c-drawnLogo {
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			overflow: visible;
+
+			svg {
 				overflow: visible;
 
-				svg {
-					overflow: visible;
-
-					.ear,
-					.nose {
-						fill: none;
-					}
+				.ear,
+				.nose {
+					fill: none;
 				}
 			}
 		}

@@ -44,7 +44,7 @@ function SiteRoutes(props) {
 		if (pages) {
 			const newObj = {};
 
-			pages.forEach(page => (newObj[page.name.toLowerCase()] = page.heading));
+			pages.forEach(page => (newObj[page.Title.toLowerCase()] = page.Heading));
 
 			setPageHeadings(newObj);
 		}

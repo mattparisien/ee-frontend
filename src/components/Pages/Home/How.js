@@ -301,7 +301,7 @@ function How({ steps }) {
 														disallowedElements={["p"]}
 														unwrapDisallowed
 														className='title'
-														children={step.title}
+														children={step.Title}
 													/>
 												</Typography>
 											</Fade>
@@ -313,7 +313,7 @@ function How({ steps }) {
 													variant='body1'
 													component={"p"}
 												>
-													{step.body}
+													{step.Body}
 												</Typography>
 											</Fade>
 										</Box>

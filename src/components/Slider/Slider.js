@@ -16,6 +16,8 @@ function Slider({ items }) {
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
 
+	console.log('items', items)
+
 	return (
 		<div className='o-slider'>
 			<ContainerFluid>
@@ -48,11 +50,11 @@ function Slider({ items }) {
 								<Item
 									mobile={mobile}
 									projectId={item.id}
-									artistName={item.title}
-									projectTitle={item.subtitle}
-									credit={item.media.featureImage.caption}
-									src={item.media.featureImage.url}
-									alt={item.media.featureImage.altText}
+									artistName={item.Title}
+									projectTitle={item.Subtitle}
+									credit={item.FeatureImage.data.attributes.caption}
+									src={item.FeatureImage.data.attributes.url}
+									alt={item.FeatureImage.data.attributes.alternativeText}
 								/>
 							</SwiperSlide>
 						))}
@@ -154,7 +156,7 @@ function Item({
 	};
 
 	return (
-		<Box sx={itemStyles} className=' -hover-frame -fadeUp'>
+		<Box sx={itemStyles} className=' -hover-frame'>
 			<Link classes='o-slider_item' isRouterLink href={`/projects`}>
 				<Box className='image-wrapper' sx={imgWrapper}>
 					<Box component='img' src={src} alt={alt}></Box>

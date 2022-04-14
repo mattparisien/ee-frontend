@@ -11,6 +11,8 @@ function Stories({ slides }) {
 	const stories = useRef([]);
 	stories.current = [];
 
+	console.log(slides)
+
 	const carouselStyles = theme => ({
 		paddingLeft: 20,
 		paddingRight: 20,
@@ -64,7 +66,7 @@ function Stories({ slides }) {
 			>
 				{slides &&
 					slides.map(slide => (
-						<Item author={slide.author} quote={slide.quote} key={slide.id} />
+						<Item author={slide.Author} quote={slide.Quote} key={slide.id} />
 					))}
 			</Carousel>
 		</>
