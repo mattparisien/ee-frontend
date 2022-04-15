@@ -9,80 +9,18 @@ import ContainerFluid from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
 import SectionHeading from "../../../Headings/SectionHeading";
 import { InstrumentPlayer } from "../../../Vector/Svg";
+import animateNotes from "./animations";
 import Notes from "./Notes";
 import Sheet from "./Sheet";
-
 import StepItem from "./StepItem";
-import animateNotes from "./animations";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
-	const noteTl = useRef(null);
 	const container = useRef(null);
 	const scroll = useLocomotiveScroll();
-	const drawing = useRef(null);
 
 	const stepsContainer = useRef(null);
-
-	// useEffect(() => {
-	// 	const drawings = $(container.current).find("path");
-	// 	gsap.set(drawings, { drawSVG: "0%" });
-
-	// 	if (container.current && scroll && scroll.scroll) {
-	// 		ScrollTrigger.scrollerProxy(".scroll-wrapper", {
-	// 			scrollTop(value) {
-	// 				return arguments.length
-	// 					? scroll.scroll.scrollTo(value, 0)
-	// 					: scroll.scroll.scroll.instance.scroll.y;
-	// 			},
-	// 			getBoundingClientRect() {
-	// 				return {
-	// 					top: 0,
-	// 					left: 0,
-	// 					width: window.innerWidth,
-	// 					height: window.innerHeight,
-	// 				};
-	// 			},
-	// 			pinType: document.querySelector(".scroll-wrapper")
-	// 				.getElementsByClassName.transform
-	// 				? "transform"
-	// 				: "fixed",
-	// 		});
-
-	// 		noteTl.current = gsap.timeline({
-	// 			scrollTrigger: {
-	// 				scroller: ".scroll-wrapper",
-	// 				trigger: $(".o-how"),
-	// 				pin: false,
-	// 				start: "top top",
-	// 				end: "+=2000",
-	// 				scrub: 1,
-	// 			},
-	// 		});
-	// 	}
-	// }, [scroll]);
-
-	// useEffect(() => {
-	// 	noteTl.current &&
-	// 		noteTl.current
-	// 			.to($(".steps-container .c-note"), {
-	// 				duration: 4,
-	// 				scale: "1.6",
-	// 				rotate: "+=180deg",
-	// 			})
-	// 			.to(
-	// 				$(drawing.current).find("path"),
-	// 				{
-	// 					drawSVG: "100%",
-
-	// 					duration: 2,
-	// 				},
-	// 				0
-	// 			);
-	// }, [scroll]);
-
-
 
 	useEffect(() => {
 		const elements = {
@@ -91,9 +29,9 @@ function How({ steps }) {
 		};
 
 		if (scroll.isReady) {
-			animateNotes(scroll, elements)
+			animateNotes(scroll, elements);
 		}
-	}, [scroll.isReady]);
+	}, [scroll]);
 
 	const noteStyle = theme => ({
 		"&_1": {

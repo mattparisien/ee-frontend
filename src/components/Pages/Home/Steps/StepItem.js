@@ -3,7 +3,6 @@ import { Box, Typography } from "@mui/material";
 import Fade from "react-reveal";
 import ReactMarkdown from "react-markdown";
 
-
 function StepItem({ step }) {
 	const stepHeading = theme => ({
 		fontSize: "5vw",
@@ -30,11 +29,7 @@ function StepItem({ step }) {
 		},
 	});
 	return (
-		<Box
-			className={`c-steps_item c-steps_item_${step.id}`}
-			data-scroll
-			data-scroll-speed={step.id % 2 === 0 ? 2 : 0}
-		>
+		<Box className={`c-steps_item c-steps_item_${step.id}`}>
 			<Fade bottom>
 				<Typography
 					variant='h2'

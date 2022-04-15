@@ -95,9 +95,7 @@
 
 	z-index: 999;
 
-	@include media("<=phoneL") {
-		display: none;
-	}
+
 
 	> div {
 		height: 100%;

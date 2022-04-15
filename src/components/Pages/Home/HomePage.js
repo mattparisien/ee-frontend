@@ -12,6 +12,7 @@ import Hero from "./Hero";
 import How from "./Steps/How";
 import Work from "./Work";
 import { Box } from "@mui/material";
+import InstaPost from "../../InstaPost/InstaPost";
 
 function HomePage({ pageHeading }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -57,6 +58,7 @@ function HomePage({ pageHeading }) {
 						<Box pt={10} pb={10}>
 							<Stories slides={data && data.testimonials} withFrame />
 						</Box>
+						<InstaPost/>
 					</ContainerFluid>
 				</Section>
 			</div>
