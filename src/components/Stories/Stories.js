@@ -11,8 +11,6 @@ function Stories({ slides }) {
 	const stories = useRef([]);
 	stories.current = [];
 
-	console.log(slides)
-
 	const carouselStyles = theme => ({
 		paddingLeft: 20,
 		paddingRight: 20,
@@ -127,7 +125,12 @@ const ArrowIcon = ({ flip }) => {
 function Item({ author, quote }) {
 	return (
 		<>
-			<Typography variant='h6' component='p' textAlign='center' className="-splitLines">
+			<Typography
+				variant='h6'
+				component='p'
+				textAlign='center'
+				className='-splitLines'
+			>
 				{quote}
 			</Typography>
 
@@ -135,7 +138,7 @@ function Item({ author, quote }) {
 				variant='h4'
 				textAlign='center'
 				component='p'
-				className="-splitLines"
+				className='-splitLines'
 				mb={4}
 				mt={4}
 				sx={{ fontFamily: "Kobe Bold !important" }}

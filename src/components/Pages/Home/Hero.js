@@ -75,8 +75,8 @@ function Hero({ pageHeading }) {
 			height: "80vw",
 			".word": {
 				textAlign: "center",
-				fontSize: "16vw",
-				lineHeight: "16vw",
+				fontSize: "22vw",
+				lineHeight: "22vw",
 			},
 		},
 	});
