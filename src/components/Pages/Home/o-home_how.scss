@@ -78,107 +78,6 @@
 
 		position: relative;
 
-		// .c-drawing {
-		// 	position: absolute;
-		// 	z-index: 99999;
-
-		// 	&_lips {
-		// 		width: 15vw;
-		// 		top: 40vw;
-		// 		left: -1vw;
-		// 		display: block;
-		// 	}
-
-		// 	&_eye {
-		// 		width: 18vw;
-		// 		top: 5vw;
-		// 		right: -5vw;
-		// 		display: block;
-		// 	}
-
-		// 	&_ball {
-		// 		width: 5vw;
-		// 		top: 40vw;
-		// 		left: -1vw;
-		// 		display: block;
-		// 	}
-
-		// 	&_figure {
-		// 		width: 14vw;
-		// 		bottom: 10vw;
-		// 		right: 0;
-		// 		display: block;
-		// 	}
-
-		// 	&_brow {
-		// 		width: 18vw;
-		// 		top: -2vw;
-		// 		right: -5vw;
-		// 		display: block;
-		// 	}
-
-		// 	.c-drawing_assortment {
-		// 		width: 100vw;
-		// 		height: 100%;
-		// 		// display: none;
-		// 	}
-
-		// 	.proxy {
-		// 		fill: none;
-		// 		stroke: $light;
-		// 		stroke-width: 3vw;
-		// 	}
-
-		// 	path {
-		// 		stroke-linecap: round;
-		// 	}
-
-		// 	&_blue {
-		// 		top: -5vw;
-		// 		left: -14vw;
-		// 		width: 37vw;
-		// 	}
-
-		// 	&_green {
-		// 		right: -15vw;
-		// 		top: -5vw;
-		// 		width: 30vw;
-		// 	}
-
-		// 	&_red {
-		// 		top: 50vw;
-		// 		right: -8vw;
-		// 		width: 30vw;
-		// 	}
-
-		// 	&_yellow {
-		// 		bottom: -12vw;
-		// 		left: -8vw;
-		// 		width: 50vw;
-		// 	}
-
-		// 	&_small_yellow {
-		// 		top: 10vw;
-		// 		right: 30vw !important;
-		// 		width: 10vw !important;
-		// 		display: none;
-		// 	}
-
-		// 	&_small_pink {
-		// 		top: 8vw;
-		// 		right: 20vw;
-		// 		width: 8vw !important;
-		// 		display: none;
-		// 	}
-
-		// 	&_lightBlue {
-		// 		top: 0;
-		// 		left: 0;
-		// 		width: 100vw;
-		// 		display: none;
-		// 	}
-		// }
-
 		.o-h1 {
 			z-index: 99;
 			position: static;
@@ -200,11 +99,6 @@
 		display: none;
 	}
 
-	&_clef,
-	&_whole {
-		display: none;
-	}
-
 	> div {
 		height: 100%;
 		width: 100%;
@@ -221,19 +115,6 @@
 		transform: rotate(40deg);
 		height: 7vw;
 	}
-
-	// &_half {
-	// 	right: 20vw;
-	// 	top: 15vw;
-	// 	height: 5vw;
-	// 	transform: rotate(30deg);
-	// }
-
-	// &_quarter {
-	// 	left: 20vw;
-	// 	top: 40vw;
-	// 	height: 5vw;
-	// }
 
 	&_whole {
 		right: 15vw;

@@ -11,7 +11,7 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import SectionHeading from "../../Headings/SectionHeading";
-import { HalfNote, QuarterNote } from "../../Vector/Notes";
+import { HalfNote, QuarterNote, DoubleNote } from "../../Vector/Notes";
 import { InstrumentPlayer } from "../../Vector/Svg";
 
 function How({ steps }) {
@@ -109,8 +109,8 @@ function How({ steps }) {
 			left: 0,
 		},
 		"&_2": {
-			top: "20vw",
-			right: "10vw",
+			top: "35vw",
+			left: "2vw",
 			transform: "rotate(90deg)",
 		},
 		"&_3": {
@@ -121,6 +121,13 @@ function How({ steps }) {
 			right: "10vw",
 			bottom: "15vw",
 			transform: "rotate(-80deg)",
+		},
+		"&_5": {
+			top: "20vw",
+			right: "10vw",
+			transform: "rotate(90deg)",
+			width: "2vw",
+			height: "2vw",
 		},
 		[theme.breakpoints.down("md")]: {
 			"&_1": {
@@ -328,6 +335,7 @@ function How({ steps }) {
 
 						<QuarterNote id={4} />
 						<HalfNote id={3} />
+						<DoubleNote id={5} />
 						<ColorBlobs />
 					</Box>
 				</ContainerFluid>

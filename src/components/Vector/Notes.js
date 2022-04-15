@@ -1,10 +1,7 @@
 import * as React from "react";
 
 export const QuarterNote = props => (
-	<div
-		className={`c-note c-note_${props.id} c-note_quarter`}
-
-	>
+	<div className={`c-note c-note_${props.id} c-note_quarter`}>
 		<div className='rotation-wrapper'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -18,10 +15,7 @@ export const QuarterNote = props => (
 );
 
 export const HalfNote = props => (
-	<div
-		className={`c-note c-note_${props.id}  c-note_half`}
-
-	>
+	<div className={`c-note c-note_${props.id}  c-note_half`}>
 		<div className='rotation-wrapper'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -35,10 +29,7 @@ export const HalfNote = props => (
 );
 
 export const BassClef = props => (
-	<div
-		className='c-note c-note_clef'
-
-	>
+	<div className='c-note c-note_clef'>
 		<div className='rotation-wrapper'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -52,10 +43,7 @@ export const BassClef = props => (
 );
 
 export const WholeNote = props => (
-	<div
-		className='c-note c-note_whole'
-	
-	>
+	<div className='c-note c-note_whole'>
 		<div className='rotation-wrapper'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -67,3 +55,17 @@ export const WholeNote = props => (
 		</div>
 	</div>
 );
+
+export const DoubleNote = props => {
+	return (
+		<div className={`c-note c-note_${props.id} c-note_double`}>
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				viewBox='0 0 36.16 40.31'
+				{...props}
+			>
+				<path d='M34.37 27.86V7.29c-2.07.27-4.03.53-5.99.79-4.51.62-9.02 1.27-13.54 1.83-.9.11-1.1.43-1.09 1.27.04 7.48-.1 14.96.11 22.43.13 4.85-3.74 6.97-7.22 6.68-1.48-.12-3.09-.67-4.32-1.5-3.06-2.05-3.03-6.07-.14-8.36 2.36-1.87 6.09-2.1 8.7-.53l1.12.68V2.98L36.04 0c.02.53.06.92.06 1.31.02 9.88.05 19.75.07 29.63 0 4.62-3.28 7.41-7.91 6.73-3.12-.46-5.55-2.65-5.8-5.23-.23-2.37 1.1-4.56 3.51-5.6 2.91-1.26 5.69-.9 8.41 1.03Zm-.14-23.88c-.27 0-.47-.02-.66 0-6.29.81-12.58 1.65-18.87 2.43-1.28.16-1.04.86-.85 1.67.19.01.31.04.42.02 6.4-.87 12.81-1.75 19.21-2.6 1.02-.14.99-.69.76-1.53Z' />
+			</svg>
+		</div>
+	);
+};
