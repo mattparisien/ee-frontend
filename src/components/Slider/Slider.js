@@ -16,8 +16,6 @@ function Slider({ items }) {
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
 
-	console.log('items', items)
-
 	return (
 		<div className='o-slider'>
 			<ContainerFluid>

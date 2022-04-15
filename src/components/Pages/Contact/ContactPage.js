@@ -12,8 +12,6 @@ function ContactPage({ pageHeading }) {
 	const { bio } = useContext(DataContext);
 	const mobile = useMediaQuery("(max-width: 600px)");
 
-	console.log(bio)
-
 	return (
 		<div className='o-page o-page_contact'>
 			<Section classes='o-hero'>
@@ -37,7 +35,9 @@ function ContactPage({ pageHeading }) {
 							rightComponent={
 								<Portrait
 									image={bio && bio.SelfImage.data.attributes.url}
-									imageAlt={bio && bio.SelfImage.data.attributes.alternativeText}
+									imageAlt={
+										bio && bio.SelfImage.data.attributes.alternativeText
+									}
 								/>
 							}
 						/>
@@ -54,7 +54,6 @@ function Portrait({ image }) {
 		overflow: "visible",
 		[theme.breakpoints.down("sm")]: {
 			transform: "scale(0.99)",
-			
 		},
 	});
 
