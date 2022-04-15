@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export const QuarterNote = props => (
-	<div className={`c-note c-note_${props.id} c-note_quarter`}>
+	<div className={`c-note c-note_${props.id} c-note_quarter`}  {...props}>
 		<div className='rotation-wrapper'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -15,7 +15,7 @@ export const QuarterNote = props => (
 );
 
 export const HalfNote = props => (
-	<div className={`c-note c-note_${props.id}  c-note_half`}>
+	<div className={`c-note c-note_${props.id}  c-note_half`} {...props}>
 		<div className='rotation-wrapper'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -43,7 +43,7 @@ export const BassClef = props => (
 );
 
 export const WholeNote = props => (
-	<div className='c-note c-note_whole'>
+	<div className='c-note c-note_whole' {...props}>
 		<div className='rotation-wrapper'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -58,7 +58,7 @@ export const WholeNote = props => (
 
 export const DoubleNote = props => {
 	return (
-		<div className={`c-note c-note_${props.id} c-note_double`}>
+		<div className={`c-note c-note_${props.id} c-note_double`} {...props}>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				viewBox='0 0 36.16 40.31'

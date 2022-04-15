@@ -92,7 +92,7 @@
 .steps-container .c-note {
 	position: absolute;
 	height: 4vw;
-	transform: scale(0.01);
+
 	z-index: 999;
 
 	@include media("<=phoneL") {

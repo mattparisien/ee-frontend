@@ -63,24 +63,26 @@ function How({ steps }) {
 	// 	}
 	// }, [scroll]);
 
-	useEffect(() => {
-		noteTl.current &&
-			noteTl.current
-				.to($(".steps-container .c-note"), {
-					duration: 4,
-					scale: "1.6",
-					rotate: "+=180deg",
-				})
-				.to(
-					$(drawing.current).find("path"),
-					{
-						drawSVG: "100%",
-						
-						duration: 2,
-					},
-					0
-				);
-	}, [scroll]);
+	// useEffect(() => {
+	// 	noteTl.current &&
+	// 		noteTl.current
+	// 			.to($(".steps-container .c-note"), {
+	// 				duration: 4,
+	// 				scale: "1.6",
+	// 				rotate: "+=180deg",
+	// 			})
+	// 			.to(
+	// 				$(drawing.current).find("path"),
+	// 				{
+	// 					drawSVG: "100%",
+
+	// 					duration: 2,
+	// 				},
+	// 				0
+	// 			);
+	// }, [scroll]);
+
+
 
 	useEffect(() => {
 		const elements = {
@@ -88,8 +90,10 @@ function How({ steps }) {
 			notes: $(stepsContainer.current).find(".c-note"),
 		};
 
-		animateNotes(scroll, elements);
-	}, [scroll]);
+		if (scroll.isReady) {
+			animateNotes(scroll, elements)
+		}
+	}, [scroll.isReady]);
 
 	const noteStyle = theme => ({
 		"&_1": {
@@ -99,7 +103,6 @@ function How({ steps }) {
 		"&_2": {
 			top: "35vw",
 			left: "2vw",
-			transform: "rotate(90deg)",
 		},
 		"&_3": {
 			bottom: "70vw",
@@ -108,12 +111,11 @@ function How({ steps }) {
 		"&_4": {
 			right: "10vw",
 			bottom: "15vw",
-			transform: "rotate(-80deg)",
 		},
 		"&_5": {
 			top: "20vw",
 			right: "10vw",
-			transform: "rotate(90deg)",
+
 			width: "2vw",
 			height: "2vw",
 		},
@@ -133,7 +135,6 @@ function How({ steps }) {
 			"&_4": {
 				right: "70vw",
 				bottom: "55vw",
-				transform: "rotate(-80deg)",
 			},
 		},
 	});
@@ -272,7 +273,11 @@ function How({ steps }) {
 						</Box>
 					</Box>
 
-					<Box className='steps-container -relative' sx={containerStyles} ref={stepsContainer}>
+					<Box
+						className='steps-container -relative'
+						sx={containerStyles}
+						ref={stepsContainer}
+					>
 						<Box className='c-steps' sx={{ height: "100%" }}>
 							<div className='c-steps_background'></div>
 							{steps &&
