@@ -1,27 +1,68 @@
-import React, { useEffect } from "react";
-import InstagramEmbed from "react-instagram-embed";
-import $ from "jquery";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import getInstaPost from "./helpers/getInstaPost";
+import { Box, Typography } from "@mui/material";
 
 function InstaPost() {
-	useEffect(() => {
-		const baseURL =
-			process.env.REACT_APP_INSTA_ROOT +
-			`/${process.env.REACT_APP_INSTA_MEDIAID}`;
-		const config = {
-			params: {
-				access_token: REACT_APP_INSTA_TOKEN,
-				fields: "media_url,media_type",
-			},
-		};
+	const [postData, setPostData] = useState({
+		image: {
+			src: null,
+			alt: null,
+		},
+		comments: null,
+		permalink: null,
+		caption: null,
+		likes: null,
+	});
 
-		axios
-			.get(baseURL, config)
-			.then(res => console.log(res))
-			.catch(err => console.log(err));
+	const wrapper = {};
+
+	const imageWrapper = {
+		width: "300px",
+		height: "300px",
+		img: {
+			width: "100%",
+			height: "100%",
+			objectFit: "cover",
+			objectPosition: "center",
+		},
+	};
+
+	const linkWrap = {
+		width: "100%",
+		height: "100%",
+	};
+
+	useEffect(() => {
+		const data = getInstaPost().then(data =>
+			setPostData(prev => ({
+				...prev,
+				image: { ...prev.image, src: data.data.media_url },
+				permalink: data.data.permalink,
+				caption: data.data.caption,
+			}))
+		);
 	}, []);
 
-	return <div className='hi'>hi</div>;
+	return (
+		<Box className='instaPost-wrapper' sx={wrapper}>
+			<Box
+				sx={linkWrap}
+				component='a'
+				href={postData.permalink && postData.permalink}
+				rel='noreferrer'
+				target='_blank'
+			>
+				<Box className='image-wrapper' sx={imageWrapper}>
+					<Box
+						component='img'
+						className='image'
+						src={postData.image.src && postData.image.src}
+					></Box>
+				</Box>
+				<Typography>{postData.caption && postData.caption}</Typography>
+			</Box>
+		</Box>
+	);
 }
 
 export default InstaPost;
