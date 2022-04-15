@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getInstaPost from "./helpers/getInstaPost";
 import { Box, Typography } from "@mui/material";
+import variables from "../../styles/scss/_vars.module.scss";
 
 function InstaPost() {
 	const [postData, setPostData] = useState({
@@ -17,6 +18,8 @@ function InstaPost() {
 	const wrapper = {};
 
 	const imageWrapper = {
+		borderRadius: "10px",
+		overflow: "hidden",
 		width: "300px",
 		height: "300px",
 		img: {
@@ -30,6 +33,25 @@ function InstaPost() {
 	const linkWrap = {
 		width: "100%",
 		height: "100%",
+	};
+
+	const caption = {
+		width: "300px",
+	};
+
+	const text = {
+		height: "5rem",
+		position: "relative",
+		overflow: "hidden",
+		"&::after": {
+			content: "''",
+			position: "absolute",
+			top: 0,
+			left: 0,
+			width: "100%",
+			height: "100%",
+			background: `linear-gradient(transparent, ${variables['colors-light']})`,
+		},
 	};
 
 	useEffect(() => {
@@ -59,7 +81,11 @@ function InstaPost() {
 						src={postData.image.src && postData.image.src}
 					></Box>
 				</Box>
-				<Typography>{postData.caption && postData.caption}</Typography>
+				<Box className='post-text' sx={text} pt={2}>
+					<Typography sx={caption} className='caption'>
+						{postData.caption && postData.caption}
+					</Typography>
+				</Box>
 			</Box>
 		</Box>
 	);
