@@ -9,7 +9,7 @@ import Section from "../../Containers/Section";
 import Stories from "../../Stories/Stories";
 import About from "./About";
 import Hero from "./Hero";
-import How from "./How";
+import How from "./Steps/How";
 import Work from "./Work";
 import { Box } from "@mui/material";
 
