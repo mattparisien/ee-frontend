@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import getInstaPost from "./helpers/getInstaPost";
+
 import { Box, Typography, Paper } from "@mui/material";
 import variables from "../../styles/scss/_vars.module.scss";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
@@ -18,8 +19,8 @@ function InstaPost({ postInfo }) {
 	const wrapper = {
 		display: "inline-block",
 		width: itemWidth,
-		borderRadius: "10px",
-		overflow: "hidden"
+
+		overflow: "hidden",
 	};
 
 	const caption = {
@@ -81,8 +82,35 @@ function InstaPost({ postInfo }) {
 		height: "30rem",
 	};
 
+	const usernameStyles = {
+		fontFamily: "Kobe",
+		opacity: 0.4,
+		display: "inline-block",
+		transition: "500ms ease",
+		"&:hover": {
+			opacity: 1,
+		},
+	};
+
+	console.log(postData)
+
 	return (
 		<Box className='instaPost-wrapper' sx={wrapper}>
+			{postData.data && (postData.data.username || postData.data[0].username) && (
+				<Typography
+					variant='h4'
+					className='instaPost-username'
+					sx={usernameStyles}
+					pb={1}
+				>
+					<Box
+						component='a'
+						href={`https://instagram.com/${postData.data.username}`}
+						target='_blank'
+						rel='noreferrer'
+					>{`@${postData.data.username || postData.data[0].username}`}</Box>
+				</Typography>
+			)}
 			<ConditionalWrapper
 				condition={postInfo && postInfo.Linkable}
 				wrapper={children => (

@@ -17,6 +17,7 @@ const getInstaPost = (url, options) => {
 				//is carousel media
 				return {
 					media_type: "CAROUSEL_ALBUM",
+
 					items: item,
 				};
 			}
@@ -43,6 +44,7 @@ const getPostList = (url, options) => {
 	return axios
 		.get(baseURL, requestConfig)
 		.then(res => {
+			console.log(res);
 			return {
 				data: res.data.data,
 				next: res.data.paging.next,
@@ -62,7 +64,7 @@ const getPostByPermalink = (posts, permalink, next) => {
 };
 
 const determineFields = options => {
-	let baseString = "id,media_type,media_url,permalink";
+	let baseString = "id,media_type,media_url,permalink,username";
 
 	if (options.Caption) {
 		baseString += ",caption";
@@ -77,7 +79,7 @@ const getCarouselMedia = (mediaId, options) => {
 	const requestConfig = {
 		params: {
 			access_token: process.env.REACT_APP_INSTA_APPTOKEN,
-			fields: "id,media_type,media_url,permalink",
+			fields: "id,media_type,media_url,permalink,username",
 		},
 	};
 

@@ -32,7 +32,17 @@ function InstaCarousel({ items, image, video }) {
 		transform: "translateY(-50%)",
 	};
 
-	const buttonStyle = { padding: 0, height: "2rem", width: "2rem", margin: 2 };
+	const buttonStyle = {
+		padding: 0,
+		height: "2.5rem",
+		width: "2.5rem",
+		margin: 2,
+		opacity: 0.5,
+		transition: "500ms ease",
+		"&:hover": {
+			opacity: 1,
+		},
+	};
 
 	const iconStyle = {
 		width: "100%",
