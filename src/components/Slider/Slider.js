@@ -130,7 +130,7 @@ function Item({
 			height: "460px"
 		},
 		[theme.breakpoints.down("md")]: {
-			height: "350px",
+			height: "3px",
 		},
 		[theme.breakpoints.down("sm")]: {
 			height: "60vw !important",

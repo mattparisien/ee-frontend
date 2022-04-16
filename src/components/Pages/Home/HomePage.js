@@ -58,7 +58,7 @@ function HomePage({ pageHeading }) {
 						<Box pt={10} pb={10}>
 							<Stories slides={data && data.testimonials} withFrame />
 						</Box>
-						<InstaPost postInfo={data.projects && data.projects.slice(1, 2)[0].InstagramPost}/>
+						
 					</ContainerFluid>
 				</Section>
 			</div>

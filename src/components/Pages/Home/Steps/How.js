@@ -90,25 +90,34 @@ function How({ steps }) {
 		[theme.breakpoints.down("md")]: {
 			marginLeft: 5,
 			marginRight: 5,
+			".c-steps_sheet_line": {
+				"&:nth-of-type(even)": {
+					display: "none"
+				}
+			},
+
+			".c-steps_item": {
+				justifyContent: "center"
+			},
 			".c-steps_item_1": {
 				gridRow: "1/2 !important",
-				gridColumn: "1/7 !important",
+				gridColumn: "1/8 !important",
 			},
 			".c-steps_item_2": {
 				gridRow: " 2/3",
-				gridColumn: "8/14 !important",
+				gridColumn: "7/14 !important",
 			},
 			".c-steps_item_3": {
 				gridRow: " 3/4",
-				gridColumn: "1/7 !important",
+				gridColumn: "1/8 !important",
 			},
 			".c-steps_item_4": {
 				gridRow: " 4/5",
-				gridColumn: "8/14 !important",
+				gridColumn: "7/14 !important",
 			},
 			".c-steps_item_5": {
 				gridRow: " 5/6",
-				gridColumn: "1/7 !important",
+				gridColumn: "1/8 !important",
 			},
 		},
 		[theme.breakpoints.down("sm")]: {

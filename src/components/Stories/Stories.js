@@ -1,9 +1,7 @@
 import { Typography, useMediaQuery, Box } from "@mui/material";
 import React, { useRef } from "react";
-import Carousel from "react-material-ui-carousel";
-import "swiper";
-import "swiper/modules/pagination/pagination.min.css";
-import "swiper/swiper.min.css";
+
+import { Carousel } from "react-responsive-carousel";
 
 function Stories({ slides }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
@@ -43,29 +41,10 @@ function Stories({ slides }) {
 
 	return (
 		<>
-			<Carousel
-				NextIcon={<ArrowIcon flip />}
-				PrevIcon={<ArrowIcon />}
-				fullHeightHover={false}
-				navButtonProps={{
-					backgroundColor: "blue",
-				}}
-				navButtonsWrapperProps={{
-					style: {
-						bottom: mobile && "0",
-						top: mobile && "unset",
-					},
-				}}
-				p={4}
-				sx={carouselStyles}
-				animation={"fade"}
-				autoPlay={false}
-				navButtonsAlwaysVisible
-			>
-				{slides &&
-					slides.map(slide => (
-						<Item author={slide.Author} quote={slide.Quote} key={slide.id} />
-					))}
+			<Carousel showArrows={true}>
+				<div>
+					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero et odio aspernatur nesciunt explicabo animi accusantium perferendis optio consectetur? Doloribus enim in autem ducimus? Incidunt doloribus perspiciatis omnis veritatis earum dolores harum praesentium quasi blanditiis facere, dolore sint ducimus obcaecati.</p>
+				</div>
 			</Carousel>
 		</>
 	);
@@ -125,27 +104,29 @@ const ArrowIcon = ({ flip }) => {
 function Item({ author, quote }) {
 	return (
 		<>
-			<Typography
-				variant='h6'
-				component='p'
-				textAlign='center'
-				className='-splitLines'
-			>
-				{quote}
-			</Typography>
+			<div>
+				<Typography
+					variant='h6'
+					component='p'
+					textAlign='center'
+					className='-splitLines'
+				>
+					{quote}
+				</Typography>
 
-			<Typography
-				variant='h4'
-				textAlign='center'
-				component='p'
-				className='-splitLines'
-				mb={4}
-				mt={4}
-				sx={{ fontFamily: "Kobe Bold !important" }}
-			>
-				<strong>{author}</strong>
-				{/* <Highlight noDraw /> */}
-			</Typography>
+				<Typography
+					variant='h4'
+					textAlign='center'
+					component='p'
+					className='-splitLines'
+					mb={4}
+					mt={4}
+					sx={{ fontFamily: "Kobe Bold !important" }}
+				>
+					<strong>{author}</strong>
+					{/* <Highlight noDraw /> */}
+				</Typography>
+			</div>
 		</>
 	);
 }
