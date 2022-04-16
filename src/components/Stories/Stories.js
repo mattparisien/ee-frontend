@@ -17,12 +17,12 @@ function Stories({ slides }) {
 
 	const swiperStyle = {
 		height: "100%",
-		width: "80%",
+		width: "100%",
 		overflow: "hidden",
 		position: "relative",
 	};
 
-	const buttons = {
+	const buttons = theme => ({
 		position: "absolute",
 		top: "50%",
 		transform: "translateY(-50%)",
@@ -31,35 +31,61 @@ function Stories({ slides }) {
 		alignItems: "center",
 		justifyContent: "space-between",
 		width: "100%",
-	};
+		[theme.breakpoints.down("md")]: {
+			top: "100%",
+			justifyContent: "center",
+			marginTop: "2rem",
+			"> button": { 
+				width: "6rem",
+				height: "6rem",
+			},
+			".button-next": {
+				marginLeft: "1rem"
+			},
+			".button-prev": {
+				marginRight: "1rem"
+			}
+		},
+	});
+
+	const contentContainer = theme => ({
+		width: "80%",
+		height: "100%",
+		margin: "0 auto",
+		[theme.breakpoints.down("md")]: {
+			width: "100%",
+		},
+	});
 
 	return (
 		<Container>
 			<Box sx={{ height: "100%", height: "100%", position: "relative" }}>
-				<Swiper
-					slidesPerView={1}
-					spaceBetween={30}
-					style={swiperStyle}
-					autoplay={{ delay: 3000 }}
-					navigation={{
-						nextEl: ".button-next",
-						prevEl: ".button-prev",
-					}}
-				>
-					{slides &&
-						slides.map(slide => (
-							<SwiperSlide>
-								<Item
-									key={slide.id}
-									author={slide.Author}
-									quote={slide.Quote}
-								/>
-							</SwiperSlide>
-						))}
-				</Swiper>
+				<Box className='content-container' sx={contentContainer}>
+					<Swiper
+						slidesPerView={1}
+						spaceBetween={30}
+						style={swiperStyle}
+						autoplay={{ delay: 3000 }}
+						navigation={{
+							nextEl: ".button-next",
+							prevEl: ".button-prev",
+						}}
+					>
+						{slides &&
+							slides.map(slide => (
+								<SwiperSlide>
+									<Item
+										key={slide.id}
+										author={slide.Author}
+										quote={slide.Quote}
+									/>
+								</SwiperSlide>
+							))}
+					</Swiper>
+				</Box>
 				<Box className='swiper-controls' sx={buttons}>
-					<ArrowButton classes='button-prev' />
-					<ArrowButton classes='button-next' rotation={"180"} />
+					<ArrowButton classes='button-prev' color="dark" />
+					<ArrowButton classes='button-next' rotation={"180"} color="dark" />
 				</Box>
 			</Box>
 		</Container>

@@ -22,8 +22,6 @@ export default function Footer(props) {
 	const containerStyles = theme => ({
 		display: "flex",
 		justifyContent: "space-between",
-		// Match [md, ∞)
-		//       [900px, ∞)
 		[theme.breakpoints.down("sm")]: {
 			flexDirection: "column",
 			alignItems: "center",
@@ -77,8 +75,6 @@ export default function Footer(props) {
 			className='c-footer -bg-dark'
 			component='footer'
 			sx={footer}
-			// pt={mobile ? 10 : 20}
-			// pb={mobile ? 10 : 20}
 		>
 			<ContainerFluid classes='-stretchY'>
 				<Box sx={wrap}>
@@ -97,7 +93,7 @@ export default function Footer(props) {
 							<Fade bottom>
 								<Typography
 									component='a'
-									variant='h5'
+									variant='h4'
 									href={`mailto:${props.info && props.info.Email}`}
 								>
 									<div className='email -underline -hover-underline -relative -inline -splitChars'>
@@ -116,16 +112,16 @@ export default function Footer(props) {
 					<Box pt={4} pb={4} sx={bottom}>
 						<div className='-flex -align-center -justify-center -splitChars'>
 							<p>The Eyes & Ears Agency</p>
-							<Box className="-fadeUp">
+							<Box className='-fadeUp'>
 								<SocialList />
 							</Box>
 						</div>
-						<Box className="-fadeUp">
-						<ArrowButton
-							color='light'
-							rotation={90}
-							handleClick={scrollToTop}
-						/>
+						<Box className='-fadeUp'>
+							<ArrowButton
+								color='light'
+								rotation={90}
+								handleClick={scrollToTop}
+							/>
 						</Box>
 
 						{/* <nav className='c-footer_nav'>
