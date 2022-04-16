@@ -5,6 +5,8 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/modules/pagination/pagination.min.css";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
+import ArrowButton from "../Button/ArrowButton";
+import Container from "../Containers/ContainerFluid";
 
 function Stories({ slides }) {
 	SwiperCore.use([Autoplay, Navigation, Pagination]);
@@ -13,59 +15,54 @@ function Stories({ slides }) {
 	const stories = useRef([]);
 	stories.current = [];
 
-	// const carouselStyles = theme => ({
-	// 	paddingLeft: 20,
-	// 	paddingRight: 20,
-	// 	display: "flex",
-	// 	alignItems: "center",
-	// 	justifyContent: "center",
-	// 	flexDirection: "column",
-	// 	[theme.breakpoints.down("md")]: {
-	// 		paddingLeft: 10,
-	// 		paddingRight: 10,
-	// 	},
-	// 	[theme.breakpoints.down("sm")]: {
-	// 		paddingLeft: 0,
-	// 		paddingRight: 0,
-	// 	},
-
-	// 	".MuiButtonBase-root": {
-	// 		backgroundColor: "transparent",
-	// 		"button:hover": {
-	// 			backgroundColor: "black",
-	// 			filter: "brightness(120%)",
-	// 			opacity: "1",
-	// 		},
-	// 	},
-	// 	".MuiTouchRipple-root": {
-	// 		display: "none",
-	// 		opacity: 1,
-	// 	},
-	// });
-
 	const swiperStyle = {
 		height: "100%",
+		width: "80%",
+		overflow: "hidden",
+		position: "relative",
+	};
+
+	const buttons = {
+		position: "absolute",
+		top: "50%",
+		transform: "translateY(-50%)",
+		left: 0,
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-between",
+		width: "100%",
 	};
 
 	return (
-		<>
-			<Swiper
-				slidesPerView={1}
-				spaceBetween={30}
-				style={swiperStyle}
-				autoplay={{ delay: 3000 }}
-				pagination={{
-					clickable: true,
-				}}
-			>
-				{slides &&
-					slides.map(slide => (
-						<SwiperSlide>
-							<Item key={slide.id} author={slide.Author} quote={slide.Quote} />
-						</SwiperSlide>
-					))}
-			</Swiper>
-		</>
+		<Container>
+			<Box sx={{ height: "100%", height: "100%", position: "relative" }}>
+				<Swiper
+					slidesPerView={1}
+					spaceBetween={30}
+					style={swiperStyle}
+					autoplay={{ delay: 3000 }}
+					navigation={{
+						nextEl: ".button-next",
+						prevEl: ".button-prev",
+					}}
+				>
+					{slides &&
+						slides.map(slide => (
+							<SwiperSlide>
+								<Item
+									key={slide.id}
+									author={slide.Author}
+									quote={slide.Quote}
+								/>
+							</SwiperSlide>
+						))}
+				</Swiper>
+				<Box className='swiper-controls' sx={buttons}>
+					<ArrowButton classes='button-prev' />
+					<ArrowButton classes='button-next' rotation={"180"} />
+				</Box>
+			</Box>
+		</Container>
 	);
 }
 
@@ -123,12 +120,7 @@ const ArrowIcon = ({ flip }) => {
 function Item({ author, quote }) {
 	return (
 		<>
-			<Typography
-				variant='h6'
-				component='p'
-				textAlign='center'
-				className='-splitLines'
-			>
+			<Typography variant='h6' component='p' textAlign='center'>
 				{quote}
 			</Typography>
 
@@ -136,7 +128,6 @@ function Item({ author, quote }) {
 				variant='h4'
 				textAlign='center'
 				component='p'
-				className='-splitLines'
 				mb={4}
 				mt={4}
 				sx={{ fontFamily: "Kobe Bold !important" }}
