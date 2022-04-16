@@ -22,6 +22,10 @@ export default function useAppData(scrollRef) {
 			name: "About",
 			path: "/about",
 		},
+		{
+			name: "Demo",
+			path: "/temp",
+		},
 	];
 
 	//App state

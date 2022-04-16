@@ -5,6 +5,7 @@ import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
 import NotFoundPage from "./components/Pages/NotFound/NotFoundPage";
+import DemoPage from "./components/Pages/Demo/DemoPage";
 
 
 function SiteRoutes(props) {
@@ -27,6 +28,11 @@ function SiteRoutes(props) {
 			path: "/projects",
 			component: ProjectPage,
 			title: "projects",
+		},
+		demo: {
+			path: "/temp",
+			component: DemoPage,
+			title: "demo",
 		},
 		notFound: {
 			path: "/*",

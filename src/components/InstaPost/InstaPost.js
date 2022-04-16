@@ -3,18 +3,12 @@ import getInstaPost from "./helpers/getInstaPost";
 import { Box, Typography, Paper } from "@mui/material";
 import variables from "../../styles/scss/_vars.module.scss";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
+import InstaCarousel from "./InstaCarousel";
 
 function InstaPost({ postInfo }) {
 	const [postData, setPostData] = useState({
-		media: {
-			type: null,
-			src: null,
-			alt: null,
-		},
-		comments: null,
-		permalink: null,
-		caption: null,
-		likes: null,
+		type: "",
+		data: null,
 	});
 
 	const [mediaComponent, setMediaComponent] = useState(null);
@@ -54,28 +48,32 @@ function InstaPost({ postInfo }) {
 			getInstaPost(postInfo.URL, options).then(post =>
 				setPostData(prev => ({
 					...prev,
-					media: {
-						type: post.media_type,
-						src: post.media_url,
-					},
-					permalink: post.permalink,
-					caption: post.caption,
+					type: post.media_type,
+					data: post.item || post.items,
 				}))
 			);
 		}
 	}, [postInfo]);
 
 	useEffect(() => {
-		if (postData.media.type) {
+		if (postData.type) {
 			setMediaComponent(
-				postData.media.type !== "VIDEO" ? (
-					<Image src={postData.media.src} />
-				) : (
-					<Video src={postData.media.src} />
-				)
+				(postData.type === "IMAGE" && (
+					<Image src={postData.data.media_url} />
+				)) ||
+					(postData.type === "VIDEO" && (
+						<Video src={postData.data.media_url} />
+					)) ||
+					(postData.type === "CAROUSEL_ALBUM" && (
+						<InstaCarousel items={postData.data} image={Image} video={Video} />
+					))
 			);
 		}
 	}, [postData]);
+
+	const mediaWrapper = {
+		height: "30rem",
+	};
 
 	return (
 		<Box className='instaPost-wrapper' sx={wrapper}>
@@ -85,7 +83,9 @@ function InstaPost({ postInfo }) {
 					<LinkWrapper children={children} permalink={postData.permalink} />
 				)}
 			>
-				{mediaComponent && mediaComponent}
+				<Box className='media-wrapper' sx={mediaWrapper}>
+					{mediaComponent && mediaComponent}
+				</Box>
 				{postData.caption && (
 					<Box className='post-text' sx={text} pt={2}>
 						<Typography sx={caption} className='caption'>
@@ -139,7 +139,8 @@ const Video = ({ src }) => {
 const Image = ({ src, alt }) => {
 	const imageWrapper = {
 		borderRadius: "10px",
-		height: "30rem",
+		height: "100%",
+		height: "100%",
 		overflow: "hidden",
 		img: {
 			width: "100%",
