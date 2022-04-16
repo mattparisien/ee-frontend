@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import getInstaPost from "./helpers/getInstaPost";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Paper } from "@mui/material";
 import variables from "../../styles/scss/_vars.module.scss";
+import ConditionalWrapper from "../Containers/ConditionalWrapper";
 
-function InstaPost() {
+function InstaPost({ postInfo }) {
 	const [postData, setPostData] = useState({
 		media: {
 			type: null,
@@ -19,11 +20,6 @@ function InstaPost() {
 	const [mediaComponent, setMediaComponent] = useState(null);
 
 	const wrapper = {};
-
-	const linkWrap = {
-		width: "100%",
-		height: "100%",
-	};
 
 	const caption = {
 		width: "300px",
@@ -45,18 +41,24 @@ function InstaPost() {
 	};
 
 	useEffect(() => {
-		getInstaPost().then(data =>
-			setPostData(prev => ({
-				...prev,
-				media: {
-					type: data.data.media_type,
-					src: data.data.media_url,
-				},
-				permalink: data.data.permalink,
-				caption: data.data.caption,
-			}))
-		);
-	}, []);
+		if (postInfo && postInfo.URL) {
+			const options = {
+				...postInfo,
+			};
+
+			getInstaPost(postInfo.URL, options).then(post =>
+				setPostData(prev => ({
+					...prev,
+					media: {
+						type: post.media_type,
+						src: post.media_url,
+					},
+					permalink: post.permalink,
+					caption: post.caption,
+				}))
+			);
+		}
+	}, [postInfo]);
 
 	useEffect(() => {
 		if (postData.media.type) {
@@ -70,29 +72,47 @@ function InstaPost() {
 		}
 	}, [postData]);
 
-	useEffect(() => {
-		console.log(mediaComponent);
-	}, [mediaComponent]);
-
 	return (
-		<Box className='instaPost-wrapper' sx={wrapper}>
-			<Box
-				sx={linkWrap}
-				component='a'
-				href={postData.permalink && postData.permalink}
-				rel='noreferrer'
-				target='_blank'
-			>
-				{mediaComponent && mediaComponent}
-				<Box className='post-text' sx={text} pt={2}>
-					<Typography sx={caption} className='caption'>
-						{postData.caption && postData.caption}
-					</Typography>
-				</Box>
+		<Paper>
+			<Box className='instaPost-wrapper' sx={wrapper}>
+				<ConditionalWrapper
+					condition={postInfo && postInfo.Linkable}
+					wrapper={children => (
+						<LinkWrapper children={children} permalink={postData.permalink} />
+					)}
+				>
+					{mediaComponent && mediaComponent}
+					{postData.caption && (
+						<Box className='post-text' sx={text} pt={2}>
+							<Typography sx={caption} className='caption'>
+								{postData.caption && postData.caption}
+							</Typography>
+						</Box>
+					)}
+				</ConditionalWrapper>
 			</Box>
-		</Box>
+		</Paper>
 	);
 }
+
+const LinkWrapper = ({ children, permalink }) => {
+	const linkWrap = {
+		width: "100%",
+		height: "100%",
+	};
+
+	return (
+		<Box
+			sx={linkWrap}
+			component='a'
+			href={permalink}
+			rel='noreferrer'
+			target='_blank'
+		>
+			{children}
+		</Box>
+	);
+};
 
 const Video = ({ src }) => {
 	const videoWrapper = {
