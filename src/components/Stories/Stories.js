@@ -1,51 +1,70 @@
 import { Typography, useMediaQuery, Box } from "@mui/material";
 import React, { useRef } from "react";
-
-import { Carousel } from "react-responsive-carousel";
+import "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+import "swiper/modules/pagination/pagination.min.css";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
+import "swiper/swiper.min.css";
 
 function Stories({ slides }) {
+	SwiperCore.use([Autoplay, Navigation, Pagination]);
 	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const stories = useRef([]);
 	stories.current = [];
 
-	const carouselStyles = theme => ({
-		paddingLeft: 20,
-		paddingRight: 20,
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		flexDirection: "column",
-		[theme.breakpoints.down("md")]: {
-			paddingLeft: 10,
-			paddingRight: 10,
-		},
-		[theme.breakpoints.down("sm")]: {
-			paddingLeft: 0,
-			paddingRight: 0,
-		},
+	// const carouselStyles = theme => ({
+	// 	paddingLeft: 20,
+	// 	paddingRight: 20,
+	// 	display: "flex",
+	// 	alignItems: "center",
+	// 	justifyContent: "center",
+	// 	flexDirection: "column",
+	// 	[theme.breakpoints.down("md")]: {
+	// 		paddingLeft: 10,
+	// 		paddingRight: 10,
+	// 	},
+	// 	[theme.breakpoints.down("sm")]: {
+	// 		paddingLeft: 0,
+	// 		paddingRight: 0,
+	// 	},
 
-		".MuiButtonBase-root": {
-			backgroundColor: "transparent",
-			"button:hover": {
-				backgroundColor: "black",
-				filter: "brightness(120%)",
-				opacity: "1",
-			},
-		},
-		".MuiTouchRipple-root": {
-			display: "none",
-			opacity: 1,
-		},
-	});
+	// 	".MuiButtonBase-root": {
+	// 		backgroundColor: "transparent",
+	// 		"button:hover": {
+	// 			backgroundColor: "black",
+	// 			filter: "brightness(120%)",
+	// 			opacity: "1",
+	// 		},
+	// 	},
+	// 	".MuiTouchRipple-root": {
+	// 		display: "none",
+	// 		opacity: 1,
+	// 	},
+	// });
+
+	const swiperStyle = {
+		height: "100%",
+	};
 
 	return (
 		<>
-			<Carousel showArrows={true}>
-				<div>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero et odio aspernatur nesciunt explicabo animi accusantium perferendis optio consectetur? Doloribus enim in autem ducimus? Incidunt doloribus perspiciatis omnis veritatis earum dolores harum praesentium quasi blanditiis facere, dolore sint ducimus obcaecati.</p>
-				</div>
-			</Carousel>
+			<Swiper
+				slidesPerView={1}
+				spaceBetween={30}
+				style={swiperStyle}
+				autoplay={{ delay: 3000 }}
+				pagination={{
+					clickable: true,
+				}}
+			>
+				{slides &&
+					slides.map(slide => (
+						<SwiperSlide>
+							<Item key={slide.id} author={slide.Author} quote={slide.Quote} />
+						</SwiperSlide>
+					))}
+			</Swiper>
 		</>
 	);
 }
@@ -104,29 +123,27 @@ const ArrowIcon = ({ flip }) => {
 function Item({ author, quote }) {
 	return (
 		<>
-			<div>
-				<Typography
-					variant='h6'
-					component='p'
-					textAlign='center'
-					className='-splitLines'
-				>
-					{quote}
-				</Typography>
+			<Typography
+				variant='h6'
+				component='p'
+				textAlign='center'
+				className='-splitLines'
+			>
+				{quote}
+			</Typography>
 
-				<Typography
-					variant='h4'
-					textAlign='center'
-					component='p'
-					className='-splitLines'
-					mb={4}
-					mt={4}
-					sx={{ fontFamily: "Kobe Bold !important" }}
-				>
-					<strong>{author}</strong>
-					{/* <Highlight noDraw /> */}
-				</Typography>
-			</div>
+			<Typography
+				variant='h4'
+				textAlign='center'
+				component='p'
+				className='-splitLines'
+				mb={4}
+				mt={4}
+				sx={{ fontFamily: "Kobe Bold !important" }}
+			>
+				<strong>{author}</strong>
+				{/* <Highlight noDraw /> */}
+			</Typography>
 		</>
 	);
 }

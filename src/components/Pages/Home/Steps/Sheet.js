@@ -13,7 +13,9 @@ function Sheet() {
 			<div className='c-steps_sheet_line' data-scroll></div>
 			<div className='c-steps_sheet_line' data-scroll></div>
 			<div className='c-steps_sheet_line' data-scroll></div>
+			
 			<div className='c-steps_sheet_line' data-scroll></div>
+			
 
 		</div>
 	);
