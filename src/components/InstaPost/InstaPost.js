@@ -18,6 +18,8 @@ function InstaPost({ postInfo }) {
 	const wrapper = {
 		display: "inline-block",
 		width: itemWidth,
+		borderRadius: "10px",
+		overflow: "hidden"
 	};
 
 	const caption = {
@@ -65,7 +67,11 @@ function InstaPost({ postInfo }) {
 						<Video src={postData.data.media_url} />
 					)) ||
 					(postData.type === "CAROUSEL_ALBUM" && (
-						<InstaCarousel items={postData.data} image={Image} video={Video} />
+						<InstaCarousel
+							items={postData.data}
+							image={url => <Image src={url} />}
+							video={url => <Video src={url} />}
+						/>
 					))
 			);
 		}
@@ -119,7 +125,6 @@ const LinkWrapper = ({ children, permalink }) => {
 
 const Video = ({ src }) => {
 	const videoWrapper = {
-		borderRadius: "10px",
 		overflow: "hidden",
 		video: {
 			width: "100%",
@@ -138,7 +143,6 @@ const Video = ({ src }) => {
 
 const Image = ({ src, alt }) => {
 	const imageWrapper = {
-		borderRadius: "10px",
 		height: "100%",
 		height: "100%",
 		overflow: "hidden",
