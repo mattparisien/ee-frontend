@@ -2,8 +2,13 @@ import axios from "axios";
 
 const getInstaPost = (url, options) => {
 	return getPostList(url, options)
-		.then(list => getPostByPermalink(list, url))
-		.then(post => post);
+		.then(data => {
+			return getPostByPermalink(data.data, url, data.next);
+		})
+		.then(response => {
+			//Post object was returned
+			return response;
+		});
 };
 
 const getPostList = (url, options) => {
@@ -20,17 +25,24 @@ const getPostList = (url, options) => {
 
 	return axios
 		.get(baseURL, requestConfig)
-		.then(res => res.data.data)
+		.then(res => {
+			return {
+				data: res.data.data,
+				next: res.data.paging.next,
+			};
+		})
 		.catch(err => console.log(err));
 };
 
-const getPostByPermalink = (posts, permalink) => {
+const getPostByPermalink = (posts, permalink, next) => {
 	for (let post of posts) {
 		if (post.permalink === permalink) {
+			console.log("heellooo");
 			return post;
 		}
 	}
-	return null;
+
+	return next;
 };
 
 const determineFields = options => {

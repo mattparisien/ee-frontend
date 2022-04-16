@@ -81,7 +81,7 @@ function How({ steps }) {
 		".MuiContainer-root": {
 			overflow: "visible",
 		},
-		height: "150vw",
+		height: "140vw",
 		marginLeft: 10,
 		marginRight: 10,
 		[theme.breakpoints.down("md")]: {
@@ -142,7 +142,7 @@ function How({ steps }) {
 			gridColumn: "1/7",
 		},
 		".c-steps_item_2": {
-			gridRow: " 2/3",
+			
 			gridColumn: "5/11",
 		},
 		".c-steps_item_3": {
@@ -195,7 +195,7 @@ function How({ steps }) {
 	return (
 		<>
 			<Section classes='o-how' data-theme='light' ref={container} noGutter>
-				<ContainerFluid>
+				<ContainerFluid sx={{maxWidth: "100% !important"}}>
 					<Box className='heading-layout' sx={headingLayout} mb={20}>
 						<SectionHeading
 							textAlign='center'

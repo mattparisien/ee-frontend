@@ -118,7 +118,7 @@ function Item({
 	};
 
 	const itemStyles = theme => ({
-		height: "40vw",
+		height: "500px",
 		".c-frame": {
 			transform: "rotate(-10deg) scale(0.8)",
 		},
@@ -126,8 +126,14 @@ function Item({
 			height: "100%",
 			width: "100%",
 		},
+		"@media screen and (max-width: 1168px)": {
+			height: "460px"
+		},
+		[theme.breakpoints.down("md")]: {
+			height: "350px",
+		},
 		[theme.breakpoints.down("sm")]: {
-			height: "80vw !important",
+			height: "60vw !important",
 		},
 		"&:hover .info_desktop h6": {
 			opacity: 1,

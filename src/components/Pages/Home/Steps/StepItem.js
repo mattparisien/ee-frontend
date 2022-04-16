@@ -30,32 +30,34 @@ function StepItem({ step }) {
 	});
 	return (
 		<Box className={`c-steps_item c-steps_item_${step.id}`}>
-			<Fade bottom>
-				<Typography
-					variant='h2'
-					sx={stepHeading}
-					mb={2}
-					className='-splitChars'
-				>
-					<ReactMarkdown
-						disallowedElements={["p"]}
-						unwrapDisallowed
-						className='title'
-						children={step.Title}
-					/>
-				</Typography>
-			</Fade>
+			<Box className='item-content'>
+				<Fade bottom>
+					<Typography
+						variant='h2'
+						sx={stepHeading}
+						mb={2}
+						className='-splitChars'
+					>
+						<ReactMarkdown
+							disallowedElements={["p"]}
+							unwrapDisallowed
+							className='title'
+							children={step.Title}
+						/>
+					</Typography>
+				</Fade>
 
-			<Fade bottom>
-				<Typography
-					sx={stepParagraph}
-					className='body'
-					variant='body1'
-					component={"p"}
-				>
-					{step.Body}
-				</Typography>
-			</Fade>
+				<Fade bottom>
+					<Typography
+						sx={stepParagraph}
+						className='body'
+						variant='body1'
+						component={"p"}
+					>
+						{step.Body}
+					</Typography>
+				</Fade>
+			</Box>
 		</Box>
 	);
 }

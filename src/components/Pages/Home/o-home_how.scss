@@ -1,3 +1,8 @@
+$gridHeight: 140vw;
+$itemHeight: calc($gridHeight / 5);
+$contentHeight: calc($itemHeight / 2);
+
+
 .o-howHeading {
 	height: 60vw;
 	width: 100%;
@@ -94,8 +99,6 @@
 	height: 4vw;
 
 	z-index: 999;
-
-
 
 	> div {
 		height: 100%;
@@ -304,9 +307,22 @@
 	}
 
 	&_item {
+		height: $itemHeight;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
 		z-index: 99;
 		grid-column: span 3;
 		z-index: 99;
+
+		.item-content {
+			height: $contentHeight;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
 
 		.o-text:last-child {
 			max-width: 25vw;
