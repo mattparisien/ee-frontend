@@ -19,7 +19,12 @@ function InstaPost({ postInfo }) {
 
 	const [mediaComponent, setMediaComponent] = useState(null);
 
-	const wrapper = {};
+	const itemWidth = "30rem";
+
+	const wrapper = {
+		display: "inline-block",
+		width: itemWidth,
+	};
 
 	const caption = {
 		width: "300px",
@@ -73,25 +78,23 @@ function InstaPost({ postInfo }) {
 	}, [postData]);
 
 	return (
-		<Paper>
-			<Box className='instaPost-wrapper' sx={wrapper}>
-				<ConditionalWrapper
-					condition={postInfo && postInfo.Linkable}
-					wrapper={children => (
-						<LinkWrapper children={children} permalink={postData.permalink} />
-					)}
-				>
-					{mediaComponent && mediaComponent}
-					{postData.caption && (
-						<Box className='post-text' sx={text} pt={2}>
-							<Typography sx={caption} className='caption'>
-								{postData.caption && postData.caption}
-							</Typography>
-						</Box>
-					)}
-				</ConditionalWrapper>
-			</Box>
-		</Paper>
+		<Box className='instaPost-wrapper' sx={wrapper}>
+			<ConditionalWrapper
+				condition={postInfo && postInfo.Linkable}
+				wrapper={children => (
+					<LinkWrapper children={children} permalink={postData.permalink} />
+				)}
+			>
+				{mediaComponent && mediaComponent}
+				{postData.caption && (
+					<Box className='post-text' sx={text} pt={2}>
+						<Typography sx={caption} className='caption'>
+							{postData.caption && postData.caption}
+						</Typography>
+					</Box>
+				)}
+			</ConditionalWrapper>
+		</Box>
 	);
 }
 
@@ -118,8 +121,6 @@ const Video = ({ src }) => {
 	const videoWrapper = {
 		borderRadius: "10px",
 		overflow: "hidden",
-		width: "300px",
-		height: "300px",
 		video: {
 			width: "100%",
 			height: "100%",
@@ -138,9 +139,8 @@ const Video = ({ src }) => {
 const Image = ({ src, alt }) => {
 	const imageWrapper = {
 		borderRadius: "10px",
+		height: "30rem",
 		overflow: "hidden",
-		width: "300px",
-		height: "300px",
 		img: {
 			width: "100%",
 			height: "100%",
