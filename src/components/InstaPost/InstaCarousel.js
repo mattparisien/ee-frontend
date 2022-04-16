@@ -6,6 +6,11 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/modules/pagination/pagination.min.css";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import IconButton from "@mui/material/IconButton";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 function InstaCarousel({ items, image, video }) {
 	SwiperCore.use([Autoplay, Navigation, Pagination]);
@@ -16,6 +21,24 @@ function InstaCarousel({ items, image, video }) {
 		overflow: "hidden",
 	};
 
+	const controls = {
+		position: "absolute",
+		top: "50%",
+		left: 0,
+		zIndex: 99,
+		width: "100%",
+		justifyContent: "space-between",
+		display: "flex",
+		transform: "translateY(-50%)",
+	};
+
+	const buttonStyle = { padding: 0, height: "2rem", width: "2rem", margin: 2 };
+
+	const iconStyle = {
+		width: "100%",
+		height: "100%",
+	};
+
 	return (
 		<Swiper
 			className='insta-carousel'
@@ -23,6 +46,10 @@ function InstaCarousel({ items, image, video }) {
 			slidesPerView={1}
 			pagination={{
 				clickable: true,
+			}}
+			navigation={{
+				prevEl: ".button-prev",
+				nextEl: ".button-next",
 			}}
 		>
 			{items.map(item => (
@@ -37,6 +64,14 @@ function InstaCarousel({ items, image, video }) {
 					/>
 				</SwiperSlide>
 			))}
+			<Box className='insta-carousel-controls' sx={controls}>
+				<IconButton className='button-prev' sx={buttonStyle}>
+					<ArrowCircleLeftIcon sx={iconStyle} />
+				</IconButton>
+				<IconButton className='button-next' sx={buttonStyle}>
+					<ArrowCircleRightIcon sx={iconStyle} />
+				</IconButton>
+			</Box>
 		</Swiper>
 	);
 }
