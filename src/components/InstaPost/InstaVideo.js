@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import { CardMedia } from "@mui/material";
 
 const InstaVideo = ({ src }) => {
 	const [played, setPlayed] = useState(false);
@@ -58,7 +59,7 @@ const InstaVideo = ({ src }) => {
 	}, [played]);
 
 	return (
-		<Box className='video-wrapper' sx={videoWrapper}>
+		<CardMedia className='video-wrapper' sx={videoWrapper}>
 			<Box
 				component='video'
 				muted
@@ -72,7 +73,7 @@ const InstaVideo = ({ src }) => {
 					{!played ? <PlayArrowIcon /> : <PauseIcon />}
 				</IconButton>
 			</Box>
-		</Box>
+		</CardMedia>
 	);
 };
 

@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import getInstaPost from "./helpers/getInstaPost";
 
-import { Box, Typography, Paper } from "@mui/material";
+import {
+	Box,
+	Typography,
+	Paper,
+	Card,
+	CardMedia,
+	CardHeader,
+} from "@mui/material";
 import variables from "../../styles/scss/_vars.module.scss";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import InstaCarousel from "./InstaCarousel";
@@ -90,55 +97,57 @@ function InstaPost({ postInfo }) {
 		position: "relative",
 	};
 
-	const username = {
-		position: "absolute",
-		top: 0,
-		left: 0,
-		zIndex: 999,
-		height: "2.5rem",
-		color: variables["colors-light"],
-		marginTop: "2rem",
-		padding: "0.8rem 0.9rem",
+	// const username = {
+	// 	position: "absolute",
+	// 	top: 0,
+	// 	left: 0,
+	// 	zIndex: 999,
+	// 	height: "2.5rem",
+	// 	color: variables["colors-light"],
+	// 	marginTop: "2rem",
+	// 	padding: "0.8rem 0.9rem",
 
-		".pill": {
-			backgroundColor: "black",
-			borderTopRightRadius: "50px",
-			borderBottomRightRadius: "50px",
-		},
-	};
+	// 	".pill": {
+	// 		backgroundColor: "black",
+	// 		borderTopRightRadius: "50px",
+	// 		borderBottomRightRadius: "50px",
+	// 	},
+	// };
 
 	return (
 		!error && (
-			<Paper className='instaPost-wrapper' sx={wrapper} elevation={10}>
-				<Box sx={username}>
-					{postData.data &&
-						(postData.data.username || postData.data[0].username) && (
-							<>
-								<Box className='pill'>
-									<Typography variant='h6' component='p'>{`@${
-										postData.data.username || postData.data[0].username
-									}`}</Typography>
-								</Box>
-							</>
+			<Paper elevation={10}>
+				<Card className='instaPost-wrapper' sx={wrapper}>
+					<CardHeader>
+						{postData.data &&
+							(postData.data.username || postData.data[0].username) && (
+								<>
+									<Box className='pill'>
+										<Typography variant='h6' component='p'>{`@${
+											postData.data.username || postData.data[0].username
+										}`}</Typography>
+									</Box>
+								</>
+							)}
+					</CardHeader>
+					<ConditionalWrapper
+						condition={postInfo && postInfo.Linkable}
+						wrapper={children => (
+							<LinkWrapper children={children} permalink={postData.permalink} />
 						)}
-				</Box>
-				<ConditionalWrapper
-					condition={postInfo && postInfo.Linkable}
-					wrapper={children => (
-						<LinkWrapper children={children} permalink={postData.permalink} />
-					)}
-				>
-					<Box className='media-wrapper' sx={mediaWrapper}>
-						{mediaComponent && mediaComponent}
-					</Box>
-					{postData.caption && (
-						<Box className='post-text' sx={text} pt={2}>
-							<Typography sx={caption} className='caption'>
-								{postData.caption && postData.caption}
-							</Typography>
+					>
+						<Box className='media-wrapper' sx={mediaWrapper}>
+							{mediaComponent && mediaComponent}
 						</Box>
-					)}
-				</ConditionalWrapper>
+						{postData.caption && (
+							<Box className='post-text' sx={text} pt={2}>
+								<Typography sx={caption} className='caption'>
+									{postData.caption && postData.caption}
+								</Typography>
+							</Box>
+						)}
+					</ConditionalWrapper>
+				</Card>
 			</Paper>
 		)
 	);
