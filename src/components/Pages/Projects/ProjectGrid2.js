@@ -137,7 +137,7 @@ function ProjectGrid2({ items, colors }) {
 									/>
 								</Row>
 							))}
-							<ColorBlobs />
+							{/* <ColorBlobs /> */}
 						</Box>
 				  ))
 				: null}

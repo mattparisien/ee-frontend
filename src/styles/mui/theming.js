@@ -27,9 +27,9 @@ theme = createTheme(theme, {
 	},
 	typography: {
 		fontSize: 17,
-		fontFamily: ["Kobe"],
+		fontFamily: ["Inter"],
 		'.MuiTypography-root': {
-			fontFamily: 'Kobe'
+			fontFamily: 'Inter'
 		},
 
 		h1: {
@@ -40,7 +40,7 @@ theme = createTheme(theme, {
 			},
 		},
 		p: {
-			fontFamily: "Kobe",
+			fontFamily: "Inter",
 		},
 	},
 	palette: {

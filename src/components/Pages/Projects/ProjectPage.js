@@ -32,7 +32,7 @@ export default function ProjectPage({ pageHeading }) {
 		<div className='o-page o-page_project'>
 			<Section classes='-padding-top-lg -relative' noGutter>
 				<Container>
-					<Typography variant='h1' component='h1'>
+					<Typography variant='h1' component='h1' textAlign="center">
 						Projects
 					</Typography>
 				</Container>
