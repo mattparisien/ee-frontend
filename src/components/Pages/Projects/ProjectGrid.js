@@ -15,6 +15,8 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 		}
 	};
 
+	console.log('items', items)
+
 	
 	const scrollSpeeds = [8, 1, 6, 3];
 
@@ -30,8 +32,8 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 								key={i}
 								// onMouseEnter={handleMouseEnter}
 								// onMouseLeave={handleMouseLeave}
-								src={item.media.featureImage.url}
-								alt={item.media.featureImage.altText}
+								src={item.FeatureImage.data.attributes.url}
+								alt={item.FeatureImage.data.attributes.alternativeText}
 								previewText={item.subtitle}
 								title={item.title}
 								hoverEffect={hoverEffect}

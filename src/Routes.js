@@ -38,12 +38,12 @@ function SiteRoutes(props) {
 			path: "/*",
 			component: NotFoundPage,
 			title: "notFound"
-		}
-		// singleProject: {
-		// 	path: "/projects/:id",
-		// 	component: SingleProjectPage,
-		// 	title: "singleproject",
-		// },
+		},
+		singleProject: {
+			path: "/projects/:id",
+			component: SingleProjectPage,
+			title: "singleproject",
+		},
 	};
 
 	useEffect(() => {

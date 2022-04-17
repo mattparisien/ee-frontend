@@ -1,13 +1,18 @@
 import { Typography } from "@mui/material";
 import gsap from "gsap";
+import { useContext } from "react";
+import { DataContext, SearchContext } from "../../../context/Context";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
+import Container from "../../Containers/ContainerFluid";
+import ProjectGrid from "./ProjectGrid";
+import SearchBar from "../../Search/SearchBar";
 
 export default function ProjectPage({ pageHeading }) {
 	gsap.registerPlugin(DrawSVGPlugin);
-	// const data = useContext(DataContext);
-	// const { search } = useContext(SearchContext);
+	const data = useContext(DataContext);
+	const { search } = useContext(SearchContext);
 
 	return (
 		<div className='o-page o-page_project'>
@@ -20,16 +25,16 @@ export default function ProjectPage({ pageHeading }) {
 
 				<ColorBlobs />
 			</Section>
-			{/* <Section classes='-padding-lg'>
-				<ContainerFluid classes='-bg-light'>
-					<SearchBar />
+			<Section classes='-padding-lg'>
+				<Container classes='-bg-light'>
+					{/* <SearchBar /> */}
 					<ProjectGrid
 						variant='projects'
-						items={!search.currentResults ? data.posts : search.currentResults}
+						items={!search.currentResults ? data.projects : search.currentResults}
 						hoverEffect={"frame"}
 					/>
-				</ContainerFluid>
-			</Section> */}
+				</Container>
+			</Section>
 		</div>
 	);
 }
