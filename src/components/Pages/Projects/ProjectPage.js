@@ -28,24 +28,23 @@ export default function ProjectPage({ pageHeading }) {
 		return [...colorArray, ...colorArray].slice(0, 6);
 	}, [variables]);
 
-
 	return (
 		<div className='o-page o-page_project'>
-			<Section classes='-padding-lg o-hero -relative' noGutter>
-				<div className='o-hero_content -flex -flex-column -align-center -justify-center'>
-					<Typography variant="h1" component="h1">
-						Coming Soon
-						</Typography>
-				</div>
-
-				<ColorBlobs />
+			<Section classes='-padding-top-lg -relative' noGutter>
+				<Container>
+					<Typography variant='h1' component='h1'>
+						Projects
+					</Typography>
+				</Container>
 			</Section>
-			<Section classes='-padding-lg'>
-				<Container maxWidth="0">
+			<Section classes='-padding-bottom-lg -relative'>
+				<Container maxWidth='0'>
 					{/* <SearchBar /> */}
 					<ProjectGrid2
 						variant='projects'
-						items={!search.currentResults ? data.projects : search.currentResults}
+						items={
+							!search.currentResults ? data.projects : search.currentResults
+						}
 						hoverEffect={"frame"}
 						colors={colors}
 					/>

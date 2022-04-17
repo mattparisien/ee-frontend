@@ -4,6 +4,7 @@ import divideArray from "../../../helpers/divideArray";
 import useScrollEvent from "../../../helpers/hooks/useScrollEvent";
 import $ from "jquery";
 import Image from "../../Image/Image";
+import ColorBlobs from "../../Drawings/ColorBlobs";
 import Reveal from "react-reveal";
 
 function ProjectGrid2({ items, colors }) {
@@ -20,7 +21,19 @@ function ProjectGrid2({ items, colors }) {
 		},
 	});
 
-	const gridContainer = theme => ({});
+	const gridContainer = theme => ({
+		position: "relative",
+    ".o-colorBlobs": {
+      pointerEvents: "none",
+      mixBlendMode: "multiply",
+      "& *": {
+        pointerEvents: "none"
+      },
+      "svg": {
+        transform: "scale(1.2)"
+      }
+    }
+	});
 
 	const gridSchema = [
 		{
@@ -124,6 +137,7 @@ function ProjectGrid2({ items, colors }) {
 									/>
 								</Row>
 							))}
+							<ColorBlobs />
 						</Box>
 				  ))
 				: null}
@@ -136,6 +150,7 @@ function Row({ children, align, gutter }) {
 		width: "100%",
 		height: "24vw",
 		display: "flex",
+		position: "sticky",
 		alignItems: align,
 		marginBottom: gutter,
 		[theme.breakpoints.down("sm")]: {
@@ -222,7 +237,7 @@ function Item({ width, height, margin, color, image, title, artist }) {
 		"&::after": {
 			backgroundColor: "black",
 			bottom: 0,
-      transformOrigin: "left",
+			transformOrigin: "left",
 			transition: "all 1s cubic-bezier(1.000, 0.000, 0.000, 1.000)",
 		},
 		[theme.breakpoints.up("md")]: {
