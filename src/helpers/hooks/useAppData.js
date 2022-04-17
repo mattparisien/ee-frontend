@@ -88,10 +88,12 @@ export default function useAppData(scrollRef) {
 			`/bio?populate=*`,
 			`/socials`,
 			`/pages`,
+			`/seo?populate=*`
 		];
 
 		getData(endpoints)
 			.then(final => {
+				console.log(final)
 				setState(prev => ({ ...prev, data: { ...prev.data, ...final } }));
 			})
 			.finally(() => setDataLoaded(true));

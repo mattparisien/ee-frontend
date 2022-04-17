@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
-import getInstaPost from "./helpers/getInstaPost";
-
 import {
+	Avatar,
 	Box,
-	Typography,
-	Paper,
+	Button,
 	Card,
-	CardMedia,
 	CardHeader,
+	Paper,
+	Typography,
 } from "@mui/material";
+import React, { useEffect, useState, useContext } from "react";
+import { DataContext } from "../../context/Context";
 import variables from "../../styles/scss/_vars.module.scss";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
+import getInstaPost from "./helpers/getInstaPost";
 import InstaCarousel from "./InstaCarousel";
-import InstaVideo from "./InstaVideo";
 import InstaImage from "./InstaImage";
-import { Button } from "@mui/material";
-import { borderRadius } from "@mui/system";
+import InstaVideo from "./InstaVideo";
 
 function InstaPost({ postInfo }) {
 	const [postData, setPostData] = useState({
@@ -74,62 +73,48 @@ function InstaPost({ postInfo }) {
 	}, [postInfo]);
 
 	useEffect(() => {
-		if (postData.type) {
+		if (postData.type && postInfo) {
+			console.log(postInfo);
 			setMediaComponent(
 				(postData.type === "IMAGE" && (
-					<InstaImage src={postData.data.media_url} />
+					<InstaImage
+						src={postData.data.media_url}
+						preserveAspectRatio={postInfo.PreserveAspectRatio}
+					/>
 				)) ||
 					(postData.type === "VIDEO" && (
-						<InstaVideo src={postData.data.media_url} />
+						<InstaVideo
+							src={postData.data.media_url}
+							preserveAspectRatio={postInfo.PreserveAspectRatio}
+						/>
 					)) ||
 					(postData.type === "CAROUSEL_ALBUM" && (
 						<InstaCarousel
 							items={postData.data}
 							image={url => <InstaImage src={url} />}
 							video={url => <InstaVideo src={url} />}
+							preserveAspectRatio={postInfo.PreserveAspectRatio}
 						/>
 					))
 			);
 		}
-	}, [postData]);
+	}, [postData, postInfo]);
 
 	const mediaWrapper = {
 		position: "relative",
 	};
 
-	// const username = {
-	// 	position: "absolute",
-	// 	top: 0,
-	// 	left: 0,
-	// 	zIndex: 999,
-	// 	height: "2.5rem",
-	// 	color: variables["colors-light"],
-	// 	marginTop: "2rem",
-	// 	padding: "0.8rem 0.9rem",
-
-	// 	".pill": {
-	// 		backgroundColor: "black",
-	// 		borderTopRightRadius: "50px",
-	// 		borderBottomRightRadius: "50px",
-	// 	},
-	// };
-
 	return (
 		!error && (
 			<Paper elevation={10}>
 				<Card className='instaPost-wrapper' sx={wrapper}>
-					<CardHeader>
-						{postData.data &&
-							(postData.data.username || postData.data[0].username) && (
-								<>
-									<Box className='pill'>
-										<Typography variant='h6' component='p'>{`@${
-											postData.data.username || postData.data[0].username
-										}`}</Typography>
-									</Box>
-								</>
-							)}
-					</CardHeader>
+					<PostHeader
+						username={
+							postData.data &&
+							(postData.data.username || postData.data[0].username)
+						}
+					/>
+
 					<ConditionalWrapper
 						condition={postInfo && postInfo.Linkable}
 						wrapper={children => (
@@ -169,6 +154,53 @@ const LinkWrapper = ({ children, permalink }) => {
 		>
 			{children}
 		</Box>
+	);
+};
+
+const PostHeader = ({ username, src }) => {
+	const header = {
+		alignItems: "center",
+		".MuiCardHeader-title": {
+			fontFamily: "Kobe Bold",
+			fontSize: "1.4rem",
+		},
+		".css-sgoict-MuiCardHeader-action": {
+			marginTop: 0,
+		},
+	};
+
+	const cta = theme => ({
+		textTransform: "capitalize",
+		transition: "opacity 500ms ease",
+		"&:hover": {
+			backgroundColor: theme.palette.primary.main,
+			opacity: 0.6,
+		},
+	});
+
+	return (
+		<CardHeader
+			avatar={<CardPicture />}
+			title={
+				<a
+					target='_blank'
+					href={`https://instagram.com/${username}`}
+				>{`@${username}`}</a>
+			}
+			sx={header}
+			action={<Button variant='contained' color='primary' sx={cta}></Button>}
+		/>
+	);
+};
+
+const CardPicture = ({ src }) => {
+	const data = useContext(DataContext);
+
+	return (
+		<Avatar
+			alt='The Eyes and Ears Agency'
+			src={data && data.seo && data.seo.ProfileImage.data.attributes.url}
+		/>
 	);
 };
 

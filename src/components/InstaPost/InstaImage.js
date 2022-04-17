@@ -3,12 +3,12 @@ import { Box } from "@mui/material";
 import useAspectRatio from "./helpers/useAspectRatio";
 import { CardMedia } from "@mui/material";
 
-const InstaImage = ({ src, alt }) => {
+const InstaImage = ({ src, alt, preserveAspectRatio }) => {
 	const aspectRatio = useAspectRatio(src);
 
 	const imageWrapper = {
 		width: "100%",
-		aspectRatio: `1 / ${aspectRatio}`,
+		aspectRatio: `1 / ${preserveAspectRatio ? aspectRatio : 1}`,
 		overflow: "hidden",
 		img: {
 			width: "100%",

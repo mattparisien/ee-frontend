@@ -4,13 +4,21 @@ import { IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import { CardMedia } from "@mui/material";
+import useAspectRatio from "./helpers/useAspectRatio";
 
-const InstaVideo = ({ src }) => {
+const InstaVideo = ({ src, preserveAspectRatio }) => {
+
+	
+
+	const aspect = useAspectRatio(src);
+
 	const [played, setPlayed] = useState(false);
 	const videoRef = useRef(null);
 
 	const videoWrapper = {
 		overflow: "hidden",
+		width: "100%",
+		aspectRatio: `1 / ${preserveAspectRatio ? aspect : 1}`,
 		position: "relative",
 		"&:hover button": {
 			opacity: 1,

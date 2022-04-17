@@ -34,7 +34,6 @@ function App() {
 		setTransitioning,
 		cursor,
 		changeCursor,
-
 		search,
 		setSearch,
 	} = useAppData();
