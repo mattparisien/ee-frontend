@@ -7,6 +7,7 @@ import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import InstaCarousel from "./InstaCarousel";
 import InstaVideo from "./InstaVideo";
 import InstaImage from "./InstaImage";
+import Chip from "@mui/material/Chip";
 
 function InstaPost({ postInfo }) {
 	const [postData, setPostData] = useState({
@@ -81,24 +82,22 @@ function InstaPost({ postInfo }) {
 	}, [postData]);
 
 	const mediaWrapper = {
-		
+		position: "relative"
 	};
 
 	const usernameStyles = {
-		fontFamily: "Kobe",
-		opacity: 0.4,
-		display: "inline-block",
-		transition: "500ms ease",
-		"&:hover": {
-			opacity: 1,
-		},
-	};
+		position: "absolute",
+		top: 0,
+		left: 0,
+		zIndex: 999
+		
+	}
 
-	console.log(postData)
+	console.log(postData);
 
 	return (
-		<Box className='instaPost-wrapper' sx={wrapper}>
-			{postData.data && (postData.data.username || postData.data[0].username) && (
+		<Paper className='instaPost-wrapper' sx={wrapper} elevation={10}>
+			{/* {postData.data && (postData.data.username || postData.data[0].username) && (
 				<Typography
 					variant='h4'
 					className='instaPost-username'
@@ -112,7 +111,7 @@ function InstaPost({ postInfo }) {
 						rel='noreferrer'
 					>{`@${postData.data.username || postData.data[0].username}`}</Box>
 				</Typography>
-			)}
+			)} */}
 			<ConditionalWrapper
 				condition={postInfo && postInfo.Linkable}
 				wrapper={children => (
@@ -129,8 +128,15 @@ function InstaPost({ postInfo }) {
 						</Typography>
 					</Box>
 				)}
+				{postData.data &&
+					(postData.data.username || postData.data[0].username) && (
+						<Chip
+							label={postData.data.username || [postData.data[0].username]}
+							sx={usernameStyles}
+						/>
+					)}
 			</ConditionalWrapper>
-		</Box>
+		</Paper>
 	);
 }
 
