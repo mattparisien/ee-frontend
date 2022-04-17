@@ -5,6 +5,8 @@ import { Box, Typography, Paper } from "@mui/material";
 import variables from "../../styles/scss/_vars.module.scss";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import InstaCarousel from "./InstaCarousel";
+import InstaVideo from "./InstaVideo";
+import InstaImage from "./InstaImage";
 
 function InstaPost({ postInfo }) {
 	const [postData, setPostData] = useState({
@@ -62,16 +64,16 @@ function InstaPost({ postInfo }) {
 		if (postData.type) {
 			setMediaComponent(
 				(postData.type === "IMAGE" && (
-					<Image src={postData.data.media_url} />
+					<InstaImage src={postData.data.media_url} />
 				)) ||
 					(postData.type === "VIDEO" && (
-						<Video src={postData.data.media_url} />
+						<InstaVideo src={postData.data.media_url} />
 					)) ||
 					(postData.type === "CAROUSEL_ALBUM" && (
 						<InstaCarousel
 							items={postData.data}
-							image={url => <Image src={url} />}
-							video={url => <Video src={url} />}
+							image={url => <InstaImage src={url} />}
+							video={url => <InstaVideo src={url} />}
 						/>
 					))
 			);

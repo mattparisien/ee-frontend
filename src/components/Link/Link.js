@@ -3,7 +3,7 @@ import React, { forwardRef, useContext } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { useNavigate } from "react-router-dom";
 import { SiteWideControls } from "../../context/Context";
-
+import { Button } from "@mui/material";
 
 function Link(props, ref) {
 	const scroll = useLocomotiveScroll();
@@ -37,11 +37,7 @@ function Link(props, ref) {
 	};
 
 	return props.isRouterLink ? (
-		<button
-			className={classes}
-			ref={ref}
-			onClick={e => handleNavigate(e)}
-		>
+		<button className={classes} ref={ref} onClick={e => handleNavigate(e)}>
 			{props.children}
 		</button>
 	) : (
