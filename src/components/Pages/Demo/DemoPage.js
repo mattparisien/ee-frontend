@@ -42,7 +42,7 @@ function DemoPage() {
 				>
 					<InstaPost
 						postInfo={
-							data.projects && data.projects.slice(0, 1)[0].InstagramPost
+							data.projects && data.projects.slice(2, 3)[0].InstagramPost
 						}
 					/>
 					<InstaPost

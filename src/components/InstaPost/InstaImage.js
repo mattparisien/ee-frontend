@@ -1,10 +1,13 @@
+import { useEffect, useMemo } from "react";
 import { Box } from "@mui/material";
-
+import useAspectRatio from "./helpers/useAspectRatio";
 
 const InstaImage = ({ src, alt }) => {
+	const aspectRatio = useAspectRatio(src);
+
 	const imageWrapper = {
-		height: "100%",
-		height: "100%",
+		width: "100%",
+		aspectRatio: `1 / ${aspectRatio}`,
 		overflow: "hidden",
 		img: {
 			width: "100%",

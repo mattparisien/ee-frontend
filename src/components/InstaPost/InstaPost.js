@@ -81,7 +81,7 @@ function InstaPost({ postInfo }) {
 	}, [postData]);
 
 	const mediaWrapper = {
-		height: "30rem",
+		
 	};
 
 	const usernameStyles = {
