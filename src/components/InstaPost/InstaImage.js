@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { Box } from "@mui/material";
 import useAspectRatio from "./helpers/useAspectRatio";
+import { CardMedia } from "@mui/material";
 
 const InstaImage = ({ src, alt }) => {
 	const aspectRatio = useAspectRatio(src);
