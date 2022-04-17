@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import Link from "../../Link/Link";
 import Frame from "../../Vector/Frame";
 
+
 function ProjectGrid({ items, variant, hoverEffect }) {
 	const gridItems = useRef([]);
 	gridItems.current = [];
@@ -14,8 +15,6 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 			gridItems.current.push(el);
 		}
 	};
-
-	console.log('items', items)
 
 	
 	const scrollSpeeds = [8, 1, 6, 3];
@@ -32,8 +31,8 @@ function ProjectGrid({ items, variant, hoverEffect }) {
 								key={i}
 								// onMouseEnter={handleMouseEnter}
 								// onMouseLeave={handleMouseLeave}
-								src={item.FeatureImage.data.attributes.url}
-								alt={item.FeatureImage.data.attributes.alternativeText}
+								src={item.media.featureImage.url}
+								alt={item.media.featureImage.altText}
 								previewText={item.subtitle}
 								title={item.title}
 								hoverEffect={hoverEffect}
