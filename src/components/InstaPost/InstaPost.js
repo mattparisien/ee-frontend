@@ -22,7 +22,7 @@ function InstaPost({ postInfo }) {
 	const wrapper = {
 		display: "inline-block",
 		width: itemWidth,
-
+		position: "relative",
 		overflow: "hidden",
 	};
 
@@ -51,13 +51,15 @@ function InstaPost({ postInfo }) {
 				...postInfo,
 			};
 
-			getInstaPost(postInfo.URL, options).then(post =>
-				setPostData(prev => ({
-					...prev,
-					type: post.media_type,
-					data: post.item || post.items,
-				}))
-			);
+			getInstaPost(postInfo.URL, options)
+				.then(post =>
+					setPostData(prev => ({
+						...prev,
+						type: post.media_type,
+						data: post.item || post.items,
+					}))
+				)
+				.catch(err => console.log(err));
 		}
 	}, [postInfo]);
 
@@ -82,16 +84,16 @@ function InstaPost({ postInfo }) {
 	}, [postData]);
 
 	const mediaWrapper = {
-		position: "relative"
+		position: "relative",
 	};
 
 	const usernameStyles = {
 		position: "absolute",
 		top: 0,
-		left: 0,
-		zIndex: 999
-		
-	}
+		right: 0,
+		backgroundColor: "black",
+		zIndex: 999,
+	};
 
 	console.log(postData);
 

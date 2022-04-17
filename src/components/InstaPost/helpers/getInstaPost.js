@@ -3,7 +3,8 @@ import axios from "axios";
 const getInstaPost = (url, options) => {
 	return getPostList(url, options)
 		.then(data => {
-			return getPostByPermalink(data.data, url, data.next);
+			
+			return data ? getPostByPermalink(data.data, url, data.next) : null;
 		})
 		.then(post => {
 			//Post object was returned
@@ -26,7 +27,8 @@ const getInstaPost = (url, options) => {
 				media_type: item.media_type,
 				item: { ...item },
 			};
-		});
+		})
+		.catch(err => err);
 };
 
 const getPostList = (url, options) => {
@@ -44,13 +46,15 @@ const getPostList = (url, options) => {
 	return axios
 		.get(baseURL, requestConfig)
 		.then(res => {
-			console.log(res);
 			return {
 				data: res.data.data,
 				next: res.data.paging.next,
 			};
 		})
-		.catch(err => console.log(err));
+		.catch(err => {
+			//Break
+			return;
+		});
 };
 
 const getPostByPermalink = (posts, permalink, next) => {
