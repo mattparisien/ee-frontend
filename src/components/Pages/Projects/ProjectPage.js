@@ -31,10 +31,13 @@ export default function ProjectPage({ pageHeading }) {
 	return (
 		<div className='o-page o-page_project'>
 			<Section classes='-padding-top-lg -relative' noGutter>
-				<Container>
+				<Container sx={{".o-colorBlobs": {
+					height: "500%"
+				}}}>
 					<Typography variant='h1' component='h1' textAlign="center">
 						Projects
 					</Typography>
+					<ColorBlobs height="200%"/>
 				</Container>
 			</Section>
 			<Section classes='-padding-bottom-lg -relative'>
