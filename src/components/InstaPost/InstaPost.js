@@ -7,13 +7,16 @@ import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import InstaCarousel from "./InstaCarousel";
 import InstaVideo from "./InstaVideo";
 import InstaImage from "./InstaImage";
-import Chip from "@mui/material/Chip";
+import { Button } from "@mui/material";
+import { borderRadius } from "@mui/system";
 
 function InstaPost({ postInfo }) {
 	const [postData, setPostData] = useState({
 		type: "",
 		data: null,
 	});
+
+	const [error, setError] = useState(false);
 
 	const [mediaComponent, setMediaComponent] = useState(null);
 
@@ -59,7 +62,7 @@ function InstaPost({ postInfo }) {
 						data: post.item || post.items,
 					}))
 				)
-				.catch(err => console.log(err));
+				.catch(err => setError(true));
 		}
 	}, [postInfo]);
 
@@ -87,58 +90,57 @@ function InstaPost({ postInfo }) {
 		position: "relative",
 	};
 
-	const usernameStyles = {
+	const username = {
 		position: "absolute",
 		top: 0,
-		right: 0,
-		backgroundColor: "black",
+		left: 0,
 		zIndex: 999,
+		height: "2.5rem",
+		color: variables["colors-light"],
+		marginTop: "2rem",
+		padding: "0.8rem 0.9rem",
+
+		".pill": {
+			backgroundColor: "black",
+			borderTopRightRadius: "50px",
+			borderBottomRightRadius: "50px",
+		},
 	};
 
-	console.log(postData);
-
 	return (
-		<Paper className='instaPost-wrapper' sx={wrapper} elevation={10}>
-			{/* {postData.data && (postData.data.username || postData.data[0].username) && (
-				<Typography
-					variant='h4'
-					className='instaPost-username'
-					sx={usernameStyles}
-					pb={1}
-				>
-					<Box
-						component='a'
-						href={`https://instagram.com/${postData.data.username}`}
-						target='_blank'
-						rel='noreferrer'
-					>{`@${postData.data.username || postData.data[0].username}`}</Box>
-				</Typography>
-			)} */}
-			<ConditionalWrapper
-				condition={postInfo && postInfo.Linkable}
-				wrapper={children => (
-					<LinkWrapper children={children} permalink={postData.permalink} />
-				)}
-			>
-				<Box className='media-wrapper' sx={mediaWrapper}>
-					{mediaComponent && mediaComponent}
+		!error && (
+			<Paper className='instaPost-wrapper' sx={wrapper} elevation={10}>
+				<Box sx={username}>
+					{postData.data &&
+						(postData.data.username || postData.data[0].username) && (
+							<>
+								<Box className='pill'>
+									<Typography variant='h6' component='p'>{`@${
+										postData.data.username || postData.data[0].username
+									}`}</Typography>
+								</Box>
+							</>
+						)}
 				</Box>
-				{postData.caption && (
-					<Box className='post-text' sx={text} pt={2}>
-						<Typography sx={caption} className='caption'>
-							{postData.caption && postData.caption}
-						</Typography>
-					</Box>
-				)}
-				{postData.data &&
-					(postData.data.username || postData.data[0].username) && (
-						<Chip
-							label={postData.data.username || [postData.data[0].username]}
-							sx={usernameStyles}
-						/>
+				<ConditionalWrapper
+					condition={postInfo && postInfo.Linkable}
+					wrapper={children => (
+						<LinkWrapper children={children} permalink={postData.permalink} />
 					)}
-			</ConditionalWrapper>
-		</Paper>
+				>
+					<Box className='media-wrapper' sx={mediaWrapper}>
+						{mediaComponent && mediaComponent}
+					</Box>
+					{postData.caption && (
+						<Box className='post-text' sx={text} pt={2}>
+							<Typography sx={caption} className='caption'>
+								{postData.caption && postData.caption}
+							</Typography>
+						</Box>
+					)}
+				</ConditionalWrapper>
+			</Paper>
+		)
 	);
 }
 
@@ -157,44 +159,6 @@ const LinkWrapper = ({ children, permalink }) => {
 			target='_blank'
 		>
 			{children}
-		</Box>
-	);
-};
-
-const Video = ({ src }) => {
-	const videoWrapper = {
-		overflow: "hidden",
-		video: {
-			width: "100%",
-			height: "100%",
-			objectFit: "cover",
-			objectPosition: "center",
-		},
-	};
-
-	return (
-		<Box className='video-wrapper' sx={videoWrapper}>
-			<Box component='video' controls muted playsInLine src={src}></Box>
-		</Box>
-	);
-};
-
-const Image = ({ src, alt }) => {
-	const imageWrapper = {
-		height: "100%",
-		height: "100%",
-		overflow: "hidden",
-		img: {
-			width: "100%",
-			height: "100%",
-			objectFit: "cover",
-			objectPosition: "center",
-		},
-	};
-
-	return (
-		<Box className='image-wrapper' sx={imageWrapper}>
-			<Box component='img' className='image' src={src}></Box>
 		</Box>
 	);
 };

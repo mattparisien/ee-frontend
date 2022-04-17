@@ -35,16 +35,16 @@ function Stories({ slides }) {
 			top: "100%",
 			justifyContent: "center",
 			marginTop: "2rem",
-			"> button": { 
+			"> button": {
 				width: "6rem",
 				height: "6rem",
 			},
 			".button-next": {
-				marginLeft: "1rem"
+				marginLeft: "1rem",
 			},
 			".button-prev": {
-				marginRight: "1rem"
-			}
+				marginRight: "1rem",
+			},
 		},
 	});
 
@@ -65,7 +65,8 @@ function Stories({ slides }) {
 						slidesPerView={1}
 						spaceBetween={30}
 						style={swiperStyle}
-						autoplay={{ delay: 3000 }}
+						autoplay={{ delay: 9000 }}
+						centeredSlides={true}
 						navigation={{
 							nextEl: ".button-next",
 							prevEl: ".button-prev",
@@ -84,8 +85,8 @@ function Stories({ slides }) {
 					</Swiper>
 				</Box>
 				<Box className='swiper-controls' sx={buttons}>
-					<ArrowButton classes='button-prev' color="dark" />
-					<ArrowButton classes='button-next' rotation={"180"} color="dark" />
+					<ArrowButton classes='button-prev' color='dark' />
+					<ArrowButton classes='button-next' rotation={"180"} color='dark' />
 				</Box>
 			</Box>
 		</Container>
