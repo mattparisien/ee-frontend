@@ -1,11 +1,7 @@
-import { Box, Typography } from "@mui/material";
-import React, { useEffect, useMemo, useRef } from "react";
-import divideArray from "../../../helpers/divideArray";
-import useScrollEvent from "../../../helpers/hooks/useScrollEvent";
-import $ from "jquery";
-import Image from "../../Image/Image";
-import ColorBlobs from "../../Drawings/ColorBlobs";
-import Reveal from "react-reveal";
+import { Box } from "@mui/material";
+import React, { useMemo } from "react";
+import divideArray from "../../../../helpers/divideArray";
+import ProjectGridItem from "./ProjectGridItem";
 
 function ProjectGrid2({ items, colors }) {
 	const gutter = "5vw";
@@ -23,16 +19,16 @@ function ProjectGrid2({ items, colors }) {
 
 	const gridContainer = theme => ({
 		position: "relative",
-    ".o-colorBlobs": {
-      pointerEvents: "none",
-      mixBlendMode: "multiply",
-      "& *": {
-        pointerEvents: "none"
-      },
-      "svg": {
-        transform: "scale(1.2)"
-      }
-    }
+		".o-colorBlobs": {
+			pointerEvents: "none",
+			mixBlendMode: "multiply",
+			"& *": {
+				pointerEvents: "none",
+			},
+			svg: {
+				transform: "scale(1.2)",
+			},
+		},
 	});
 
 	const gridSchema = [
@@ -123,7 +119,7 @@ function ProjectGrid2({ items, colors }) {
 									align={gridSchema[idx].row.align}
 									gutter={gridSchema[idx].row.gutter}
 								>
-									<Item
+									<ProjectGridItem
 										height={gridSchema[idx].item.height}
 										width={gridSchema[idx].item.width}
 										margin={gridSchema[idx].item.margin}
@@ -160,115 +156,6 @@ function Row({ children, align, gutter }) {
 	});
 
 	return <Box sx={row}>{children}</Box>;
-}
-
-function Item({ width, height, margin, color, image, title, artist }) {
-	const ref = useRef(null);
-	const overlayRef = useRef(null);
-	const windowHeight = useRef(window.innerHeight);
-
-	const animateFrame = (item, scrollTop, top) => {};
-
-	const animateOverlayOpacity = (overlay, top) => {
-		const offset = windowHeight.current - top;
-		const opacityValue = 1 - offset / (windowHeight.current / 2);
-		overlay.style.opacity = opacityValue;
-	};
-
-	const handleScroll = () => {
-		const itemTop = ref.current.getBoundingClientRect().top;
-
-		if (itemTop < windowHeight.current && itemTop > windowHeight.current / 2) {
-			animateFrame(ref.current, itemTop, $(window).scrollTop());
-		}
-
-		if (itemTop + 100 < windowHeight.current) {
-			animateOverlayOpacity(overlayRef.current, itemTop);
-		}
-	};
-
-	const hello = useScrollEvent(handleScroll);
-
-	const item = theme => ({
-		margin: margin,
-		width: width,
-		height: height,
-
-		position: "relative",
-		"&:hover .highlight": {
-			transform: "scale(1) rotate(30deg)",
-		},
-		[theme.breakpoints.down("sm")]: {
-			width: "100%",
-			height: "100%",
-			marginTop: 0,
-		},
-	});
-
-	const overlay = {
-		width: "100%",
-		height: "100%",
-		position: "absolute",
-		top: 0,
-		left: 0,
-		backgroundColor: color,
-	};
-
-	const itemInfo = {
-		top: 0,
-		left: 0,
-
-		width: "100%",
-		display: "flex",
-		textTransform: "uppercase",
-		justifyContent: "space-between",
-		"*": {
-			fontFamily: "Kobe",
-		},
-	};
-
-	const infoTitle = theme => ({
-		display: "flex",
-		alignItems: "center",
-		fontFamily: "Kobe",
-		fontSize: "1rem",
-		lineHeight: "1rem",
-		position: "relative",
-		"&::after": {
-			backgroundColor: "black",
-			bottom: 0,
-			transformOrigin: "left",
-			transition: "all 1s cubic-bezier(1.000, 0.000, 0.000, 1.000)",
-		},
-		[theme.breakpoints.up("md")]: {
-			fontSize: "1.2rem",
-			lineHeight: "1.2rem",
-		},
-		[theme.breakpoints.up("sm")]: {
-			fontSize: "0.8rem",
-			lineHeight: "0.8rem",
-		},
-	});
-
-	return (
-		<Box sx={item} ref={ref} className='item -hover-underline'>
-			<Box className='item-inner' sx={{ height: "100%" }}>
-				<Image src={image.url} alt={image.alt} width={"100%"} height={"100%"} />
-				{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
-				<Box className='item-overlay' sx={overlay} ref={overlayRef}></Box>
-				<Box className='item-info' sx={itemInfo} pt={1}>
-					<Typography variant='h6' className='artist -underline' sx={infoTitle}>
-						{artist}
-					</Typography>
-
-					<Typography variant='h6' className='title' sx={infoTitle}>
-						{title}
-					</Typography>
-				</Box>
-			</Box>
-			<Highlight color={color} />
-		</Box>
-	);
 }
 
 function Highlight({ color }) {

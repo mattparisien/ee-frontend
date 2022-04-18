@@ -12,7 +12,7 @@
 @import "objects/o-text.scss";
 @import "objects/o-page.scss";
 @import "../../components/Containers/o-container.scss";
-@import "../../components/Pages/Projects/c-grid.scss";
+@import "../../components/Pages/Projects/ProjectGrid/c-grid.scss";
 @import "../../components/Pages/Projects/o-project-page.scss";
 @import "../../components/Header/c-header.scss";
 @import "../../components/Link/c-link.scss";
@@ -29,12 +29,10 @@
 @import "../../components/Lists/c-list.scss";
 @import "../../components/Transition/c-transition-card.scss";
 @import "../../components/Transition/intro.scss";
-
 @import "../../components/Stories/c-stories.scss";
 @import "../../components/Button/c-arrow-button.scss";
 @import "../../components/ImageRevealer/c-img-revealer.scss";
 @import "../../components/Figure/c-figure.scss";
 @import "../../components/Vector/c-frame.scss";
 @import "../../components/Slider/o-slider.scss";
-
 @import "../../components/Drawings/o-colorBlobs.scss";

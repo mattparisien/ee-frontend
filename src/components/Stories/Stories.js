@@ -147,13 +147,21 @@ const ArrowIcon = ({ flip }) => {
 function Item({ author, quote }) {
 	return (
 		<>
-			<Typography variant='h6' component='p' textAlign='center'>
+			<Typography
+				variant='h4'
+				textTransform='uppercase'
+				component='p'
+				textAlign='left'
+			>
 				{quote}
 			</Typography>
 
 			<Typography
-				variant='h4'
-				textAlign='center'
+				className='accent accent-text accent-left'
+				variant='h5'
+				maxWidth='50%'
+				fontFamily='Helvetica'
+				textAlign='left'
 				component='p'
 				mb={4}
 				mt={4}

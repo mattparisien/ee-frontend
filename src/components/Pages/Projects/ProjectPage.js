@@ -6,7 +6,7 @@ import { DataContext, SearchContext } from "../../../context/Context";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
-import ProjectGrid2 from "./ProjectGrid2";
+import ProjectGrid2 from "./ProjectGrid/ProjectGrid2";
 import variables from "../../../styles/scss/_vars.module.scss";
 
 export default function ProjectPage({ pageHeading }) {
@@ -37,7 +37,7 @@ export default function ProjectPage({ pageHeading }) {
 					<Typography variant='h1' component='h1' textAlign="center">
 						Projects
 					</Typography>
-					<ColorBlobs height="200%"/>
+					{/* <ColorBlobs height="200%"/> */}
 				</Container>
 			</Section>
 			<Section classes='-padding-bottom-lg -relative'>

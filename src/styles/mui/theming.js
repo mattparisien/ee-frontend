@@ -5,7 +5,7 @@ let theme = createTheme();
 theme = createTheme(theme, {
 	overrides: {
 		MuiTypography: {
-			fontFamily: 'Kobe',
+			
 			[theme.breakpoints.up("md")]: {
 				fontSize: "11rem",
 				background: "red",

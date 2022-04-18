@@ -229,9 +229,9 @@ function How({ steps }) {
 							text={"Finding Your Rhythm"}
 						/>
 
-						<Box sx={playerSvg}>
+						{/* <Box sx={playerSvg}>
 							<InstrumentPlayer />
-						</Box>
+						</Box> */}
 					</Box>
 
 					<Box

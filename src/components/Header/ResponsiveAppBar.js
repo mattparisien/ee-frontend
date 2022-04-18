@@ -44,10 +44,7 @@ function ResponsiveAppBar({
 		alignItems: "center",
 		justifyContent: "flex-end",
 		zIndex: 999999999,
-		button: {
-			fontFamily: "Kobe",
-			fontSize: "1.2rem",
-		},
+
 	};
 
 	const navDesktop = theme => ({
