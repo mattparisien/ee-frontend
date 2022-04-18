@@ -1,17 +1,32 @@
 import { Typography } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { DataContext, SearchContext } from "../../../context/Context";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import ProjectGrid2 from "./ProjectGrid/ProjectGrid2";
 import variables from "../../../styles/scss/_vars.module.scss";
+import { useQuery, gql } from "@apollo/client";
+
+const PROJECTS = gql`
+	query GetProjects {
+		projects {
+			data {
+				attributes {
+					Title
+				}
+			}
+		}
+	}
+`;
 
 export default function ProjectPage({ pageHeading }) {
+	const { loading, error, data } = useQuery(PROJECTS);
+
 	gsap.registerPlugin(DrawSVGPlugin);
-	const data = useContext(DataContext);
+	// const data = useContext(DataContext);
 	const { search } = useContext(SearchContext);
 
 	const colors = useMemo(() => {
@@ -29,30 +44,9 @@ export default function ProjectPage({ pageHeading }) {
 	}, [variables]);
 
 	return (
-		<div className='o-page o-page_project'>
-			<Section classes='-padding-top-lg -relative' noGutter>
-				<Container sx={{".o-colorBlobs": {
-					height: "500%"
-				}}}>
-					<Typography variant='h1' component='h1' textAlign="center">
-						Projects
-					</Typography>
-					{/* <ColorBlobs height="200%"/> */}
-				</Container>
-			</Section>
-			<Section classes='-padding-bottom-lg -relative'>
-				<Container maxWidth='0'>
-					{/* <SearchBar /> */}
-					<ProjectGrid2
-						variant='projects'
-						items={
-							!search.currentResults ? data.projects : search.currentResults
-						}
-						hoverEffect={"frame"}
-						colors={colors}
-					/>
-				</Container>
-			</Section>
+		<div className="-fullHeight -flex -align-center -justify-center">
+			{loading && <Typography>Loading...</Typography>}
+			{error && <Typography>There has been an error</Typography>}
 		</div>
 	);
 }
