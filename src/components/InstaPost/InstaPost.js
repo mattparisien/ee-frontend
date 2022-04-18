@@ -188,7 +188,7 @@ const PostHeader = ({ username, src }) => {
 				>{`@${username}`}</a>
 			}
 			sx={header}
-			action={<Button variant='contained' color='primary' sx={cta}></Button>}
+			action={<Button variant='contained' color='primary' sx={cta}>View post</Button>}
 		/>
 	);
 };

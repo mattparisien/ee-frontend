@@ -31,6 +31,7 @@ function ArrowButton(
 			onClick={handleClick}
 		>
 			<Arrow rotation={rotation} color={color} />
+			<div className="circle"></div>
 		</Link>
 	);
 }
@@ -59,13 +60,12 @@ function Arrow({ rotation, color, location }) {
 				visibility: "inherit",
 			}}
 		>
-
 			<path
 				d='M42.84 45.3408C42.0133 47.0475 41.24 48.3275 40.52 49.1808L63.84 49.1808V50.8608L40.52 50.8608C41.24 51.7142 42.0133 52.9942 42.84 54.7008H41.44C39.76 52.7542 38 51.3142 36.16 50.3808L36.16 49.6608C38 48.7542 39.76 47.3142 41.44 45.3408L42.84 45.3408Z'
 				className='arrow1'
 				style={{
 					transform: `rotate(${rotation ? `${rotation}deg` : 0})`,
-					transformOrigin: "center"
+					transformOrigin: "center",
 				}}
 			></path>{" "}
 			<circle
@@ -73,14 +73,6 @@ function Arrow({ rotation, color, location }) {
 				cy='50.3408'
 				r='49'
 				transform='rotate(-180 50 50.3408)'
-			></circle>
-			<circle
-				cx='50'
-				cy='50.3408'
-				r='49'
-				transform='rotate(-180 50 50.3408)'
-				ref={circle}
-				className='hoverCircle'
 			></circle>
 		</svg>
 	);

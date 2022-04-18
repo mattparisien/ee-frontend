@@ -36,32 +36,31 @@ function TextItems({
 }) {
 	const [hovered, setHovered] = useState(null);
 
-	return (
-		items &&
-		items.map((item, i) => {
-			return (
-				<li
-					onClick={onClick}
-					className={`c-list_item ${
-						underline ? `-relative -underline -hover-underline` : ""
-					}`}
-					key={i}
-					onMouseEnter={() => setHovered(i + 1)}
-					onMouseLeave={() => setHovered(false)}
-				>
-					<Link
-						isRouterLink={isRouterLink}
-						href={item.path}
-						onClick={toggleTransitioning}
-						toggleTransitioning={toggleTransitioning}
+	return items
+		? items.map((item, i) => {
+				return (
+					<li
+						onClick={onClick}
+						className={`c-list_item ${
+							underline ? `-relative -underline -hover-underline` : ""
+						}`}
+						key={i}
+						onMouseEnter={() => setHovered(i + 1)}
+						onMouseLeave={() => setHovered(false)}
 					>
-						{item.name}
-					</Link>
-					{draw && <Highlight hoveredId={i + 1} hovered={hovered} />}
-				</li>
-			);
-		})
-	);
+						<Link
+							isRouterLink={isRouterLink}
+							href={item.path}
+							onClick={toggleTransitioning}
+							toggleTransitioning={toggleTransitioning}
+						>
+							{item.name}
+						</Link>
+						{draw && <Highlight hoveredId={i + 1} hovered={hovered} />}
+					</li>
+				);
+		  })
+		: null;
 }
 
 export function Highlight({ hoveredId, hovered, noDraw }) {
