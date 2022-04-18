@@ -120,6 +120,7 @@ function ProjectGrid2({ items, colors }) {
 									gutter={gridSchema[idx].row.gutter}
 								>
 									<ProjectGridItem
+										projectId={item.id}
 										height={gridSchema[idx].item.height}
 										width={gridSchema[idx].item.width}
 										margin={gridSchema[idx].item.margin}

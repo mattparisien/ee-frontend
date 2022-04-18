@@ -19,6 +19,7 @@ import Markdown from "../../Markdown/Markdown";
 import Frame from "../../Vector/Frame";
 import Next from "./Next";
 import Sticky from "./Sticky";
+import HeroBlock from "./blocks/HeroBlock";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	const data = useContext(DataContext);
@@ -32,45 +33,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 	const accentColor = useMemo(() => shuffleColors(), []);
 
-	// useEffect(() => {
-	// 	{console.log(}info);
-	// }, [info]);
-
-	// useLayoutEffect(() => {
-	// 	const desktopTimeline = () => {
-	// 		tl.current
-
-	// 			.set(revealer.current, { transition: "none" })
-	// 			.set(textWrapper.current, { opacity: 1 })
-
-	// 			// .to(lines, {
-	// 			// 	y: 0,
-	// 			// 	opacity: 1,
-	// 			// 	ease: "power3.out",
-	// 			// 	duration: 1,
-	// 			// 	stagger: 0.1,
-	// 			// })
-	// 			.to(
-	// 				textWrapper.current,
-	// 				{
-	// 					bottom: 0,
-	// 					top: "50%",
-	// 					y: "-50%",
-	// 					duration: 3,
-	// 					ease: "expo.inOut",
-	// 				},
-	// 				0.4
-	// 			);
-
-	// 		return tl.current;
-	// 	};
-
-	// 	setTimeout(() => {
-	// 		if (!mobile.matches) {
-	// 			desktopTimeline();
-	// 		}
-	// 	}, 400);
-	// }, [mobile.matches]);
+	console.log(info);
 
 	useEffect(() => {
 		//Find query param
@@ -89,27 +52,30 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 			setParam(param);
 		}
 
-		if (data && data.posts && param && !info) {
+		if (data && data.projects && param && !info) {
 			// setInfo(data.posts.filter(x => x.id === param));
-			const currentPost = data.posts.filter(x => x.id === parseInt(param));
+			const currentPost = data.projects.filter(x => x.id === parseInt(param));
 
 			const nextPostIndex =
-				data.posts.indexOf(data.posts.find(x => x.id === currentPost[0].id)) +
-				1;
+				data.projects.indexOf(
+					data.projects.find(x => x.id === currentPost[0].id)
+				) + 1;
 			const nextPost =
-				data.posts[nextPostIndex === data.posts.length ? 0 : nextPostIndex];
+				data.projects[
+					nextPostIndex === data.projects.length ? 0 : nextPostIndex
+				];
 
 			setInfo({ ...currentPost, nextPost: nextPost });
 		}
 	}, [data, location, param, info]);
 
-	const stickyGrids = useMemo(() => {
-		return (
-			info &&
-			info[0].media.additional &&
-			divideArray(info[0].media.additional.slice(0, 6), 2)
-		);
-	}, [info]);
+	// const stickyGrids = useMemo(() => {
+	// 	return (
+	// 		info &&
+	// 		info[0].media.additional &&
+	// 		divideArray(info[0].media.additional.slice(0, 6), 2)
+	// 	);
+	// }, [info]);
 
 	return (
 		<>
@@ -120,94 +86,16 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				<meta name='description' content='Helmet application' />
 			</Helmet>
 			<div className='o-page o-single-project'>
-				<Section data-theme='light' classes='o-hero' noGutter>
-					<Box mb={10}>
-						<ContainerFluid>
-							<Grid
-								container
-								spacing={5}
-								mt={10}
-								wrap={mobile ? "wrap" : "nowrap"}
-							>
-								<Grid
-									item
-									className=' u-desktop-js-anim'
-									ref={textWrapper}
-									xs={12}
-									md={6}
-									lg={6}
-									display='flex'
-									flexDirection={"column"}
-									alignItems={"flex-start"}
-									justifyContent={"center"}
-								>
-									<Typography variant='h5'>{info && info[0].title}</Typography>
+				<HeroBlock
+					title={info && info[0].Title}
+					subtitle={info && info[0].Subtitle}
+					image={{
+						url: info && info[0].FeatureImage.data.attributes.url,
+						alt: info && info[0].FeatureImage.data.attributes.alternativeText
+					}}
+				/>
 
-									<Typography variant='h2'>
-										{info && info[0].subtitle}
-									</Typography>
-
-									{/* <h3 className='o-h3'>{info && info[0].subtitle}</h3> */}
-									{/* </Fade> */}
-								</Grid>
-
-								<Grid
-									item
-									className='o-hero_image -frame-reveal'
-									ref={heroImage}
-									xs={12}
-									s={6}
-									md={6}
-									sx={{ position: "relative" }}
-								>
-									<Card
-										sx={{
-											width: "100%",
-											position: "relative",
-											overflow: "visible",
-										}}
-									>
-										<CardMedia
-											component='img'
-											height={mobile ? 600 : 300}
-											image={info && info[0].media.featureImage.url}
-											alt={info && info[0].media.featureImage.altText}
-										/>
-
-										<Frame />
-									</Card>
-									<Typography
-										variant='body2'
-										component='p'
-										mt={2}
-										textAlign='right'
-									>
-										{info &&
-											info[0].media.featureImage.caption &&
-											info[0].media.featureImage.caption}
-									</Typography>
-
-									{/* <Figure
-									noReveal
-									effectDelay={5000}
-									src={info && info[0].media.featureImage.url}
-									alt={info && info[0].media.featureImage.altText}
-								/> */}
-								</Grid>
-
-								{/* 				
-					<div className='o-hero_image-wrapper-2'>
-						<img
-							src={info && info[0].media.featureImage.url}
-							alt={info && info[0].media.featureImage.altText}
-						/>
-					</div> */}
-							</Grid>
-						</ContainerFluid>
-					</Box>
-				</Section>
-
-				<Section classes='o-overview -padding-lg' data-theme='light' noGutter>
+				{/* <Section classes='o-overview -padding-lg' data-theme='light' noGutter>
 					<ContainerFluid>
 						<Grid container spacing={5} wrap={mobile ? "wrap" : "nowrap"}>
 							<Grid item xs={12} md={6} lg={6}>
@@ -227,8 +115,8 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							</Grid>
 						</Grid>
 					</ContainerFluid>
-				</Section>
-				{info && info[0].media.additional && (
+				</Section> */}
+				{/* {info && info[0].media.additional && (
 					<Section data-theme='light' classes='o-feature' noGutter>
 						<ContainerFluid>
 							<div className='o-feature_item'>
@@ -243,45 +131,10 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							</div>
 						</ContainerFluid>
 					</Section>
-				)}
-				<Section
-					classes='o-details -padding-top-lg'
-					data-theme='light'
-					noGutter
-				>
-					<ContainerFluid>
-						<Grid container spacing={5} wrap={mobile ? "wrap" : "nowrap"}>
-							<Grid item xs={12} md={6} lg={6} className='aboutArtist'>
-								<Fade bottom>
-									<Typography variant='h3' mb={2}>
-										About the Artist
-									</Typography>
-								</Fade>
-								<Fade bottom>
-									<Typography component='p' variant='body1'>
-										{info && info[0].about && info[0].about.artist}
-									</Typography>
-								</Fade>
-							</Grid>
-							<Grid className='aboutOrg' item xs={12} md={6} lg={6}>
-								{/* <Fade bottom cascade> */}
-								<Fade bottom>
-									<Typography variant='h3' mb={2}>
-										About the organization
-									</Typography>
-								</Fade>
-								<Fade bottom>
-									<Typography component='p' variant='body1'>
-										{info && info[0].about && info[0].about.organization}
-									</Typography>
-								</Fade>
-								{/* </Fade> */}
-							</Grid>
-						</Grid>
-					</ContainerFluid>
-				</Section>
+				)} */}
+				{/* <Section
 
-				<Section>
+				{/* <Section>
 					<AboutSection
 						aboutArtist={info && info[0].about && info[0].about.artist}
 						aboutOrg={info && info[0].about && info[0].about.organization}
@@ -291,9 +144,9 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							info[0].media.additional.slice(0, 4)
 						}
 					/>
-				</Section>
+				</Section> */}
 
-				{stickyGrids &&
+				{/* {stickyGrids &&
 					stickyGrids.map((sticky, i) => (
 						<Sticky
 							additionalMedia={sticky}
@@ -301,7 +154,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 							metric={Object.values(info[0].metrics)[i]}
 							reverse={i % 2 === 0}
 						/>
-					))}
+					))} */}
 
 				{/* 
 				{info && info[0].media.additional && (
@@ -311,7 +164,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						</ContainerFluid>
 					</Section>
 				)} */}
-				<Section>
+				{/* <Section>
 					<ContainerFluid>
 						<Grid
 							container
@@ -336,7 +189,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 								))}
 						</Grid>
 					</ContainerFluid>
-				</Section>
+				</Section> */}
 
 				<Next color={accentColor[1]} nextPost={info && info.nextPost} />
 			</div>

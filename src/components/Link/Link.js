@@ -4,6 +4,7 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { useNavigate } from "react-router-dom";
 import { SiteWideControls } from "../../context/Context";
 import { Button } from "@mui/material";
+import { Box } from "@mui/material";
 
 function Link(props, ref) {
 	const scroll = useLocomotiveScroll();
@@ -17,6 +18,9 @@ function Link(props, ref) {
 	const navigate = useNavigate();
 
 	const handleNavigate = e => {
+
+		console.log('has clicked!')
+
 		scroll.isReady && scroll.scroll.scrollTo(0, 0);
 
 		if (!scroll.isReady) {
@@ -37,9 +41,9 @@ function Link(props, ref) {
 	};
 
 	return props.isRouterLink ? (
-		<button className={classes} ref={ref} onClick={e => handleNavigate(e)}>
+		<Box className={classes} ref={ref} onClick={e => handleNavigate(e)} component="button" {...props}>
 			{props.children}
-		</button>
+		</Box>
 	) : (
 		// <RouterLink to={props.href} className={classes} ref={ref} onClick={() => console.log('has clicked!')}>{props.children}</RouterLink>
 		<a

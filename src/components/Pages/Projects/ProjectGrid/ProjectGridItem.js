@@ -3,9 +3,11 @@ import useScrollEvent from "../../../../helpers/hooks/useScrollEvent";
 import { Typography, Box } from "@mui/material";
 import $ from "jquery";
 import Image from "../../../Image/Image";
+import Link from "../../../Link/Link";
 
 function ProjectGridItem({
 	width,
+	projectId,
 	height,
 	margin,
 	color,
@@ -43,12 +45,12 @@ function ProjectGridItem({
 		margin: margin,
 		width: width,
 		height: height,
-    "&:hover::after": {
-      opacity: 0.5
-    },
+		"&:hover::after": {
+			opacity: 0.5,
+		},
 		"&::after": {
 			position: "absolute",
-      opacity: 0,
+			opacity: 0,
 			top: 0,
 			left: 0,
 			width: "100%",
@@ -112,11 +114,17 @@ function ProjectGridItem({
 	});
 
 	return (
-		<Box sx={item} ref={ref} className='item -hover-underline'>
+		<Link
+			href={`/projects/${projectId}`}
+			isRouterLink
+			classes='item -hover-underline -stretchX -stretchY'
+			sx={item}
+			ref={ref}
+		>
 			<Box className='item-inner' sx={{ height: "100%" }}>
 				<Image src={image.url} alt={image.alt} width={"100%"} height={"100%"} />
 				{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
-				<Box className='item-overlay' sx={overlay} ref={overlayRef}></Box>
+				{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
 				<Box className='item-info' sx={itemInfo} pt={1}>
 					<Typography variant='h6' className='artist -underline' sx={infoTitle}>
 						{artist}
@@ -127,7 +135,7 @@ function ProjectGridItem({
 					</Typography>
 				</Box>
 			</Box>
-		</Box>
+		</Link>
 	);
 }
 export default ProjectGridItem;

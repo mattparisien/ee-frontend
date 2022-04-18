@@ -2,12 +2,18 @@ import React from "react";
 import { Box } from "@mui/material";
 import { height } from "@mui/system";
 import variables from "../../styles/scss/_vars.module.scss";
+import classNames from "classnames";
 
-function Image({ src, alt, frame, height, width }) {
+function Image({ src, alt, frame, height, width, aspectRatio, accent }) {
+	const classes = classNames("image-wrapper", {
+		"accent accent-image accent-left": accent,
+	});
+
 	const wrapper = {
 		height: height,
 		width: width,
 		position: "relative",
+		aspectRatio: `1 / ${aspectRatio}`,
 	};
 
 	const image = {
@@ -18,7 +24,7 @@ function Image({ src, alt, frame, height, width }) {
 	};
 
 	return (
-		<Box sx={wrapper} className='image-wrapper -swipe-transition'>
+		<Box sx={wrapper} className={classes}>
 			<Box
 				component='img'
 				className='image'
