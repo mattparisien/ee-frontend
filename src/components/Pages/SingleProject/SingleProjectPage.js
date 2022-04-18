@@ -44,9 +44,10 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 		<>
 			<Helmet>
 				<title>
-					{`${info && info[0].title} - ${info && info[0].subtitle}`}{" "}
+					{data
+						? `${data.project.data.attributes.Title} - ${data.project.data.attributes.Subtitle}`
+						: "Eyes & Ears Agency"}
 				</title>
-				<meta name='description' content='Helmet application' />
 			</Helmet>
 			<div className='o-page o-single-project'>
 				{data && (
