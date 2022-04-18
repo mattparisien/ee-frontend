@@ -1,7 +1,5 @@
 import React, { createContext } from "react";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "../api/graphql/index";
 
 export const DataContext = createContext();
 export const SearchContext = createContext();
@@ -38,19 +36,17 @@ function Context({
 			}}
 			containerRef={scrollRef}
 		>
-			<ApolloProvider client={client}>
-				<SiteWideControls.Provider value={siteControls}>
-					<DataContext.Provider value={stateData}>
-						<SearchContext.Provider value={{ search, setSearch }}>
-							<ColorContext.Provider>
-								<CursorContext.Provider valu={{ cursor, changeCursor }}>
-									{children}
-								</CursorContext.Provider>
-							</ColorContext.Provider>
-						</SearchContext.Provider>
-					</DataContext.Provider>
-				</SiteWideControls.Provider>
-			</ApolloProvider>
+			<SiteWideControls.Provider value={siteControls}>
+				<DataContext.Provider value={stateData}>
+					<SearchContext.Provider value={{ search, setSearch }}>
+						<ColorContext.Provider>
+							<CursorContext.Provider valu={{ cursor, changeCursor }}>
+								{children}
+							</CursorContext.Provider>
+						</ColorContext.Provider>
+					</SearchContext.Provider>
+				</DataContext.Provider>
+			</SiteWideControls.Provider>
 		</LocomotiveScrollProvider>
 	);
 }

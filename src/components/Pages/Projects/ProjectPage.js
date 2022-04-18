@@ -9,13 +9,25 @@ import ColorBlobs from "../../Drawings/ColorBlobs";
 import ProjectGrid2 from "./ProjectGrid/ProjectGrid2";
 import variables from "../../../styles/scss/_vars.module.scss";
 import { useQuery, gql } from "@apollo/client";
+import { CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 
 const PROJECTS = gql`
 	query GetProjects {
 		projects {
 			data {
+				id
 				attributes {
 					Title
+					Subtitle
+					FeatureImage {
+						data {
+							attributes {
+								url
+								alternativeText
+							}
+						}
+					}
 				}
 			}
 		}
@@ -44,9 +56,40 @@ export default function ProjectPage({ pageHeading }) {
 	}, [variables]);
 
 	return (
-		<div className="-fullHeight -flex -align-center -justify-center">
-			{loading && <Typography>Loading...</Typography>}
-			{error && <Typography>There has been an error</Typography>}
+		<div className='o-page o-page_project'>
+			<Section classes='-padding-top-lg -relative' noGutter>
+				<Container
+					sx={{
+						".o-colorBlobs": {
+							height: "500%",
+						},
+					}}
+				>
+					<Typography variant='h1' component='h1' textAlign='center'>
+						Projects
+					</Typography>
+					{/* <ColorBlobs height="200%"/> */}
+				</Container>
+			</Section>
+			<Section classes='-padding-bottom-lg -relative'>
+				<Container maxWidth='0'>
+					{loading && (
+						<Box
+							sx={{ width: "100%", display: "flex", justifyContent: "center" }}
+						>
+							<CircularProgress />
+						</Box>
+					)}
+					{data && (
+						<ProjectGrid2
+							variant='projects'
+							items={data.projects.data}
+							hoverEffect={"frame"}
+							colors={colors}
+						/>
+					)}
+				</Container>
+			</Section>
 		</div>
 	);
 }

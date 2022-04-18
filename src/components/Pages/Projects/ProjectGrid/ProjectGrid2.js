@@ -125,11 +125,12 @@ function ProjectGrid2({ items, colors }) {
 										width={gridSchema[idx].item.width}
 										margin={gridSchema[idx].item.margin}
 										color={colors[idx]}
-										artist={item.Title}
-										title={item.Subtitle}
+										artist={item.attributes.Title}
+										title={item.attributes.Subtitle}
 										image={{
-											url: item.FeatureImage.data.attributes.url,
-											alt: item.FeatureImage.data.attributes.alternativeText,
+											url: item.attributes.FeatureImage.data.attributes.url,
+											alt: item.attributes.FeatureImage.data.attributes
+												.altenativeText,
 										}}
 									/>
 								</Row>

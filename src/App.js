@@ -15,6 +15,8 @@ import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
 import IntroCard from "./components/Transition/IntroCard";
 import { introAnimation } from "./animations";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./api/graphql/index";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -206,66 +208,67 @@ function App() {
 	});
 
 	return (
-		<ThemeProvider theme={theme}>
-			<div className={classes}>
-				<HelmetProvider>
-					<Helmet>
-						<html lang='en' />
-						<title>The Eyes & Ears Agency</title>
-						<meta
-							name='description'
-							content='
+		<ApolloProvider client={client}>
+			<ThemeProvider theme={theme}>
+				<div className={classes}>
+					<HelmetProvider>
+						<Helmet>
+							<html lang='en' />
+							<title>The Eyes & Ears Agency</title>
+							<meta
+								name='description'
+								content='
 The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
 
 '
-						/>
-						<meta content='The Eyes & Ears Agency' property='og:title' />
-						<meta property='og:type' content='website' />
-					</Helmet>
+							/>
+							<meta content='The Eyes & Ears Agency' property='og:title' />
+							<meta property='og:type' content='website' />
+						</Helmet>
 
-					<Context
-						stateData={state.data}
-						siteControls={siteControls}
-						cursor={cursor}
-						changeCursor={changeCursor}
-						scrollRef={scrollWrapper}
-						location={location}
-						search={search}
-						setSearch={setSearch}
-					>
-						{/* <DragCursor cursor={cursor} /> */}
-						{/* <IntroCard pending={pending} /> */}
-						<Header
-							toggleMenu={() => setMenuActive(!menuActive)}
-							menuActive={menuActive}
-							navItems={navItems}
+						<Context
+							stateData={state.data}
+							siteControls={siteControls}
+							cursor={cursor}
+							changeCursor={changeCursor}
+							scrollRef={scrollWrapper}
 							location={location}
-						/>
-						<IntroCard />
-
-						<Menu
-							isActive={menuActive}
-							navItems={navItems}
-							toggleMenu={() => setMenuActive(!menuActive)}
-						/>
-
-						<div
-							className='scroll-wrapper'
-							ref={scrollWrapper}
-							data-scroll-container
+							search={search}
+							setSearch={setSearch}
 						>
-							{/* <ArrowButton
+							{/* <DragCursor cursor={cursor} /> */}
+							{/* <IntroCard pending={pending} /> */}
+							<Header
+								toggleMenu={() => setMenuActive(!menuActive)}
+								menuActive={menuActive}
+								navItems={navItems}
+								location={location}
+							/>
+							<IntroCard />
+
+							<Menu
+								isActive={menuActive}
+								navItems={navItems}
+								toggleMenu={() => setMenuActive(!menuActive)}
+							/>
+
+							<div
+								className='scroll-wrapper'
+								ref={scrollWrapper}
+								data-scroll-container
+							>
+								{/* <ArrowButton
 														classes='scroll-to-top'
 														color='light'
 														rotation={90}
 														handleClick={scrollToTop}
 													/> */}
 
-							{/* <ModalWrapper hoverState={hoverState} /> */}
+								{/* <ModalWrapper hoverState={hoverState} /> */}
 
-							{/* <CursorFollower /> */}
+								{/* <CursorFollower /> */}
 
-							{/* <SideMenu
+								{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
 									hasShown={state.sidebar.hasShown}
 									appRefs={appRefs}
@@ -274,26 +277,27 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									toggleMenu={toggleMenu}
 								/> */}
 
-							<main>
-								<SiteRoutes
-									addToRdefs={addToRefs}
-									location={location}
-									siteControls={siteControls}
-									pages={state.data.pages}
-								/>
-							</main>
+								<main>
+									<SiteRoutes
+										addToRdefs={addToRefs}
+										location={location}
+										siteControls={siteControls}
+										pages={state.data.pages}
+									/>
+								</main>
 
-							<Footer
-								info={state.data.footer}
-								addToRefs={addToRefs}
-								location={location.pathname}
-								navItems={navItems}
-							/>
-						</div>
-					</Context>
-				</HelmetProvider>
-			</div>
-		</ThemeProvider>
+								<Footer
+									info={state.data.footer}
+									addToRefs={addToRefs}
+									location={location.pathname}
+									navItems={navItems}
+								/>
+							</div>
+						</Context>
+					</HelmetProvider>
+				</div>
+			</ThemeProvider>
+		</ApolloProvider>
 	);
 }
 
