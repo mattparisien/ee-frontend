@@ -8,31 +8,10 @@ import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
 import ProjectGrid2 from "./ProjectGrid/ProjectGrid2";
 import variables from "../../../styles/scss/_vars.module.scss";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/material";
-
-const PROJECTS = gql`
-	query GetProjects {
-		projects {
-			data {
-				id
-				attributes {
-					Title
-					Subtitle
-					FeatureImage {
-						data {
-							attributes {
-								url
-								alternativeText
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-`;
+import PROJECTS from "../../../api/graphql/queries/GetProjects";
 
 export default function ProjectPage({ pageHeading }) {
 	const { loading, error, data } = useQuery(PROJECTS);
@@ -75,7 +54,17 @@ export default function ProjectPage({ pageHeading }) {
 				<Container maxWidth='0'>
 					{loading && (
 						<Box
-							sx={{ width: "100%", display: "flex", justifyContent: "center" }}
+							sx={{
+								width: "100%",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								height: "100vh",
+								position: "fixed",
+								top: 0,
+								left: 0,
+								zIndex: 999,
+							}}
 						>
 							<CircularProgress />
 						</Box>

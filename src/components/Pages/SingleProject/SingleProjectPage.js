@@ -1,30 +1,14 @@
-import {
-	Box,
-	Card,
-	CardMedia,
-	Grid,
-	Typography,
-	useMediaQuery,
-} from "@mui/material";
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { useMediaQuery } from "@mui/material";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import Fade from "react-reveal/Fade";
-import { DataContext } from "../../../context/Context";
-import divideArray from "../../../helpers/divideArray";
+import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { shuffleColors } from "../../../helpers/shuffleColors";
-import ContainerFluid from "../../Containers/ContainerFluid";
-import Section from "../../Containers/Section";
-import Figure from "../../Figure/Figure";
-import Markdown from "../../Markdown/Markdown";
-import Frame from "../../Vector/Frame";
-import Next from "./Next";
-import Sticky from "./Sticky";
-import HeroBlock from "./components/blocks/HeroBlock";
 import Block from "./components/blocks/Block";
-import getBlockName from "./helpers/getBlockName";
+import Next from "./Next";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
-	const data = useContext(DataContext);
+	// const data = useContext(DataContext);
 	const [param, setParam] = useState(null);
 	const [info, setInfo] = useState(null);
 	const textWrapper = useRef(null);
@@ -50,33 +34,11 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 			}
 			setParam(param);
 		}
+	}, [location, param, info]);
 
-		if (data && data.projects && param && !info) {
-			const currentPost = data.projects.filter(x => x.id === parseInt(param));
-
-			const nextPostIndex =
-				data.projects.indexOf(
-					data.projects.find(x => x.id === currentPost[0].id)
-				) + 1;
-			const nextPost =
-				data.projects[
-					nextPostIndex === data.projects.length ? 0 : nextPostIndex
-				];
-
-			setInfo({ ...currentPost, nextPost: nextPost });
-		}
-	}, [data, location, param, info]);
-
-	const dynamicBlocks = useMemo(() => {
-		console.log(info[0].Choose)
-		if (info && info[0].Choose.length >= 1) {
-			return info[0].Choose.map((block, i) => {
-				console.log(block)
-			});
-		}
-	}, [info]);
-
-	console.log("dynamic blocks", dynamicBlocks);
+	const { loading, error, data } = useQuery(SINGLEPROJECT, {
+		variables: { id: param },
+	});
 
 	return (
 		<>
@@ -87,17 +49,21 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 				<meta name='description' content='Helmet application' />
 			</Helmet>
 			<div className='o-page o-single-project'>
-				<Block
-					variant='hero'
-					title={info && info[0].Title}
-					subtitle={info && info[0].Subtitle}
-					image={{
-						url: info && info[0].FeatureImage.data.attributes.url,
-						alt: info && info[0].FeatureImage.data.attributes.alternativeText,
-					}}
-				/>
+				{data && (
+					<Block
+						variant='hero'
+						title={data.project.data.attributes.Title}
+						subtitle={data.project.data.attributes.Subtitle}
+						image={{
+							url: data.project.data.attributes.FeatureImage.data.attributes
+								.url,
+							alt: data.project.data.attributes.FeatureImage.data.attributes
+								.alternativeText,
+						}}
+					/>
+				)}
 
-				<Next color={accentColor[1]} nextPost={info && info.nextPost} />
+				<Next color={accentColor[1]} currentProjectId={param} />
 			</div>
 		</>
 	);

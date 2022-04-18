@@ -18,31 +18,37 @@ function SiteRoutes(props) {
 			path: "/about",
 			component: ContactPage,
 			title: "about",
+			exact: false,
 		},
 		home: {
 			path: "/",
 			component: HomePage,
 			title: "home",
+			exact: true,
 		},
 		projects: {
 			path: "/projects",
 			component: ProjectPage,
 			title: "projects",
+			exact: true,
 		},
 		demo: {
 			path: "/temp",
 			component: DemoPage,
 			title: "demo",
+			exact: false,
 		},
 		notFound: {
 			path: "/*",
 			component: NotFoundPage,
-			title: "notFound"
+			title: "notFound",
+			exact: false,	
 		},
 		singleProject: {
 			path: "/projects/:id",
 			component: SingleProjectPage,
 			title: "singleproject",
+			exact: true,
 		},
 	};
 
@@ -61,6 +67,7 @@ function SiteRoutes(props) {
 			<Routes location={location} key={location.pathname}>
 				{Object.entries(pageSchema).map(page => (
 					<Route
+						exact={page[1].exact}
 						path={page[1].path}
 						element={React.createElement(page[1].component, {
 							key: location.pathname,
