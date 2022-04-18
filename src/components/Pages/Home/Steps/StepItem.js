@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 
 function StepItem({ step }) {
 	const stepHeading = theme => ({
-		fontSize: "5vw",
+		fontSize: "4vw",
 		lineHeight: "5vw",
 		fontFamily: "Kobe",
 		textAlign: "center",
@@ -38,12 +38,8 @@ function StepItem({ step }) {
 						mb={2}
 						className='-splitChars'
 					>
-						<ReactMarkdown
-							disallowedElements={["p"]}
-							unwrapDisallowed
-							className='title'
-							children={step.Title}
-						/>
+						{step.Title}
+					
 					</Typography>
 				</Fade>
 

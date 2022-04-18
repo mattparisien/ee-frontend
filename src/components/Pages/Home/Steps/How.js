@@ -84,20 +84,35 @@ function How({ steps }) {
 		height: "140vw",
 		marginLeft: 10,
 		marginRight: 10,
+		".c-steps_sheet": {
+			height: "90%",
+		},
+		".c-steps_sheet_line": {
+			"&:last-of-type": {
+				display: "none",
+			},
+		},
 		[theme.breakpoints.down("md")]: {
 			height: "auto",
 		},
 		[theme.breakpoints.down("md")]: {
 			marginLeft: 5,
 			marginRight: 5,
+			".c-steps_sheet": {
+				height: "100%",
+			},
+
 			".c-steps_sheet_line": {
+				"&:last-of-type": {
+					display: 'block',
+				},
 				"&:nth-of-type(even)": {
-					display: "none"
-				}
+					display: "none",
+				},
 			},
 
 			".c-steps_item": {
-				justifyContent: "center"
+				justifyContent: "center",
 			},
 			".c-steps_item_1": {
 				gridRow: "1/2 !important",
@@ -151,7 +166,6 @@ function How({ steps }) {
 			gridColumn: "1/7",
 		},
 		".c-steps_item_2": {
-			
 			gridColumn: "5/11",
 		},
 		".c-steps_item_3": {
@@ -204,7 +218,7 @@ function How({ steps }) {
 	return (
 		<>
 			<Section classes='o-how' data-theme='light' ref={container} noGutter>
-				<ContainerFluid sx={{maxWidth: "100% !important"}}>
+				<ContainerFluid sx={{ maxWidth: "100% !important" }}>
 					<Box className='heading-layout' sx={headingLayout} mb={20}>
 						<SectionHeading
 							textAlign='center'
