@@ -5,6 +5,7 @@ import variables from "../../styles/scss/_vars.module.scss";
 function IntroCard() {
 	const card = {
 		position: "fixed",
+		display: "none",
 		top: 0,
 		left: 0,
 		width: "100%",

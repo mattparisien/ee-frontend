@@ -42,12 +42,12 @@ function App() {
 
 	const introTl = useRef(gsap.timeline());
 
-	useEffect(() => {
-		//Intro animation
-		if (state.data.isLoaded) {
-			introAnimation(introTl.current, setFirstVisit);
-		}
-	}, [state]);
+	// useEffect(() => {
+	// 	//Intro animation
+	// 	if (state.data.isLoaded) {
+	// 		introAnimation(introTl.current, setFirstVisit);
+	// 	}
+	// }, [state]);
 
 	// const [isSplit, setSplit] = useState(false);
 

@@ -7,6 +7,7 @@ import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import classNames from "classnames";
+import variables from "../../styles/scss/_vars.module.scss";
 
 function ResponsiveAppBar({
 	toggleTransitioning,
@@ -15,7 +16,7 @@ function ResponsiveAppBar({
 	onBurgerClick,
 }) {
 	const wrapper = {
-		backgroundColor: "white",
+		backgroundColor: variables['colors-light'],
 		boxShadow: "3px 4px 30px -12px rgba(0, 0, 0, 0.2)",
 		
 	};
