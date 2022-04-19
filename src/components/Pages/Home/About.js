@@ -12,7 +12,6 @@ import { ConstructionOutlined } from "@mui/icons-material";
 
 function About({ aboutText }) {
 	const matches = useMediaQuery("(max-width: 900px)");
-	const scroll = useLocomotiveScroll();
 
 	const { inView, ref, entry } = useInView({
 		threshold: 0.3,
@@ -44,8 +43,10 @@ function About({ aboutText }) {
 }
 
 function Circles({ inView }) {
+	const scroll = useLocomotiveScroll();
+
 	useEffect(() => {
-		const circles = document.querySelectorAll(".o-about svg");
+		const circles = document.querySelectorAll(".o-about .circle-wrap");
 		const wrapper = $(".o-about");
 
 		if (inView) {
@@ -54,7 +55,7 @@ function Circles({ inView }) {
 				duration: 3,
 				ease: "power4.out",
 				stagger: 0.2,
-				y: 0,
+				y: '100%',
 			});
 		}
 	}, [inView]);
@@ -63,11 +64,24 @@ function Circles({ inView }) {
 		const circles = document.querySelectorAll(".o-about svg");
 		const wrapper = $(".o-about");
 		const wrapperHeight = wrapper.height();
+		const scrollTop = $(window).scrollTop();
 
-		circles.forEach(circle => {
-			circle.style.transform = `translateY(${wrapperHeight + 300}px)`;
-		});
-	}, []);
+		if (scroll && scroll.scroll) {
+			scroll.scroll.on("scroll", e => {
+				console.log("hello");
+				console.log(e);
+				circles.forEach(circle => {
+					const speed = circle.dataset.scrollSpeed;
+					console.log(speed);
+
+					const circleOffset = circle.getBoundingClientRect().top;
+					circle.style.transform = `translateY(-${
+						(e.scroll.y / wrapperHeight) * `${speed}00`
+					}px)`;
+				});
+			});
+		}
+	}, [scroll]);
 
 	const wrap = {
 		position: "absolute",
@@ -78,7 +92,7 @@ function Circles({ inView }) {
 
 	const svgStyle = {
 		mixBlendMode: "screen",
-		// transform: "translateY(500%)",
+		transform: "translateY(500%)",
 		position: "absolute",
 	};
 
@@ -111,22 +125,27 @@ function Circles({ inView }) {
 		{
 			width: "400px",
 			style: Object.assign({}, svgStyle, largeStyle),
+			scrollSpeed: 2,
 		},
 		{
 			width: "150px",
 			style: Object.assign({}, svgStyle, smallStyle),
+			scrollSpeed: 3,
 		},
 		{
 			width: "250px",
 			style: Object.assign({}, svgStyle, smallStyle),
+			scrollSpeed: 5,
 		},
 		{
 			width: "80px",
 			style: Object.assign({}, svgStyle, tinyStyle),
+			scrollSpeed: 2,
 		},
 		{
 			width: "30px",
 			style: Object.assign({}, svgStyle, tinyStyle, tinyTwoStyle),
+			scrollSpeed: 1,
 		},
 	];
 
@@ -134,7 +153,14 @@ function Circles({ inView }) {
 		<Box sx={wrap}>
 			<Box sx={{ width: "100%", height: "100%", position: "relative" }}>
 				{circles.map((circle, i) => (
-					<CircleSvg key={i} style={circle.style} width={circle.width} />
+					<Box className='circle-wrap' sx={circle.style}>
+						<CircleSvg
+							key={i}
+							style={{ width: "100%", height: "100%" }}
+							width={circle.width}
+							data-scroll-speed={circle.scrollSpeed}
+						/>
+					</Box>
 				))}
 			</Box>
 		</Box>
