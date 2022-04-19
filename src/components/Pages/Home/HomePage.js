@@ -45,7 +45,7 @@ function HomePage({ pageHeading }) {
 		<>
 			<div className='o-page o-page_home'>
 				<Hero pageHeading={pageHeading} />
-				<About aboutText={data.about && data.about.Body1} />
+				<About aboutText={data.about && data.about.Body} />
 				<How steps={data && data.steps} />
 
 				<Work projects={data.projects && data.projects.slice(0, 6)} />
