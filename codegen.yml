@@ -1,0 +1,5 @@
+schema: "https://glacial-river-52194.herokuapp.com/graphql"
+generates:
+  ./fragmentTypes.json:
+    plugins:
+      - "fragment-matcher"

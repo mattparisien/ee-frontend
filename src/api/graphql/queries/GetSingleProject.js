@@ -1,4 +1,5 @@
-import { gql } from "@apollo/client";
+import { gql, fragment } from "@apollo/client";
+import { QUOTEBLOCK } from "./fragments/GetBlocks";
 
 const SINGLEPROJECT = gql`
 	query GetSingleProject($id: ID!) {
@@ -13,6 +14,19 @@ const SINGLEPROJECT = gql`
 							attributes {
 								url
 								alternativeText
+							}
+						}
+					}
+					Choose {
+						... on ComponentBlocksGalleryBlock {
+							id
+							BackgroundColor
+							Images {
+								data {
+									attributes {
+										width
+									}
+								}
 							}
 						}
 					}

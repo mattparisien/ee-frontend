@@ -1,4 +1,5 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
+import { useState, useEffect } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import Fade from "react-reveal/Fade";
 import ArrowButton from "../Button/ArrowButton";
@@ -6,10 +7,32 @@ import ArrowButton from "../Button/ArrowButton";
 import ContainerFluid from "../Containers/ContainerFluid";
 import SocialList from "../Lists/SocialList";
 import { DrawnLogo } from "../Vector/Svg";
+import { useQuery } from "@apollo/client";
+import FOOTER from "../../api/graphql/queries/static/GetFooter";
+import {
+	containerStyles,
+	boxStyles,
+	drawnLogo,
+	spacer,
+	bottom,
+	footer,
+	wrap,
+} from "./styles/styles";
 
 export default function Footer(props) {
+	const [info, setInfo] = useState(null);
+	const { loading, error, data } = useQuery(FOOTER);
 	const scroll = useLocomotiveScroll();
 	const mobile = useMediaQuery("(max-width: 400px)");
+
+	useEffect(() => {
+		if (data && !loading) {
+			setInfo({
+				heading: data.footer.data.attributes.Heading,
+				email: data.footer.data.attributes.Email,
+			});
+		}
+	}, [data, loading]);
 
 	const scrollToTop = () => {
 		if (scroll) {
@@ -19,63 +42,8 @@ export default function Footer(props) {
 		}
 	};
 
-	const containerStyles = theme => ({
-		display: "flex",
-		justifyContent: "space-between",
-		[theme.breakpoints.down("sm")]: {
-			flexDirection: "column",
-			alignItems: "center",
-		},
-	});
-
-	const boxStyles = theme => ({
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "flex-start",
-		[theme.breakpoints.down("sm")]: {
-			alignItems: "center",
-		},
-	});
-
-	const drawnLogo = theme => ({
-		width: "10rem",
-		[theme.breakpoints.down("sm")]: {
-			marginTop: "4rem",
-		},
-	});
-
-	const spacer = {
-		height: "7rem",
-	};
-
-	const bottom = theme => ({
-		width: "100%",
-		height: "7rem",
-		display: "flex",
-		justifyContent: "space-between",
-		alignItems: "center",
-	});
-
-	const footer = theme => ({
-		height: "500px",
-		[theme.breakpoints.up("md")]: {
-			height: "600px",
-		},
-	});
-
-	const wrap = {
-		height: "100%",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "space-between",
-	};
-
 	return (
-		<Box
-			className='c-footer -bg-dark'
-			component='footer'
-			sx={footer}
-		>
+		<Box className='c-footer -bg-dark' component='footer' sx={footer}>
 			<ContainerFluid classes='-stretchY'>
 				<Box sx={wrap}>
 					<Box className='spacer' sx={spacer}></Box>
@@ -87,20 +55,25 @@ export default function Footer(props) {
 							alignItems={mobile ? "center" : "flex-start"}
 							justifyContent='center'
 						>
-							<Typography variant='h1' className='-splitChars'>
-								{props.info && props.info.Heading}
-							</Typography>
-							<Fade bottom>
-								<Typography
-									component='a'
-									variant='h4'
-									href={`mailto:${props.info && props.info.Email}`}
-								>
-									<div className='email -underline -hover-underline -relative -inline -splitChars'>
-										{props.info && props.info.Email}
-									</div>
-								</Typography>
-							</Fade>
+							{info && (
+								<>
+									<Typography variant='h1' className='-splitChars'>
+										{info && info.heading}
+									</Typography>
+
+									<Fade bottom>
+										<Typography
+											component='a'
+											variant='h4'
+											href={`mailto:${info.email}`}
+										>
+											<div className='email -underline -hover-underline -relative -inline -splitChars'>
+												{info.email}
+											</div>
+										</Typography>
+									</Fade>
+								</>
+							)}
 						</Box>
 						<Box className='c-footer_content_logo' sx={drawnLogo}>
 							<Fade right>

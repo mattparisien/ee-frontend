@@ -5,8 +5,9 @@ import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import Block from "./components/blocks/Block";
 import Next from "./Next";
+import Page from "../../Containers/Page";
 
-function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
+function SingleProjectPage({ location }) {
 	const [param, setParam] = useState(null);
 	const [project, setProject] = useState(null);
 
@@ -36,7 +37,6 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 
 	useEffect(() => {
 		if (data && !loading) {
-			console.log(data)
 			setProject(() => ({
 				id: data.project.data.id,
 				title: data.project.data.attributes.Title,
@@ -52,7 +52,7 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 	}, [data, loading]);
 
 	return (
-		<>
+		<Page name='singleProject' location={location}>
 			<Helmet>
 				<title>
 					{project
@@ -60,22 +60,21 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 						: "Eyes & Ears Agency"}
 				</title>
 			</Helmet>
-			<div className='o-page o-single-project'>
-				{project && (
-					<Block
-						variant='hero'
-						title={project.title}
-						subtitle={project.subtitle}
-						image={{
-							url: project.featureImage.url,
-							alt: project.featureImage.alt,
-						}}
-					/>
-				)}
 
-				<Next color={accentColor[1]} currentProjectId={param} />
-			</div>
-		</>
+			{project && (
+				<Block
+					variant='hero'
+					title={project.title}
+					subtitle={project.subtitle}
+					image={{
+						url: project.featureImage.url,
+						alt: project.featureImage.alt,
+					}}
+				/>
+			)}
+
+			<Next color={accentColor[1]} currentProjectId={param} />
+		</Page>
 	);
 }
 

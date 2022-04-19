@@ -9,8 +9,9 @@ import variables from "../../../styles/scss/_vars.module.scss";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ProjectGrid from "./ProjectGrid/ProjectGrid";
+import Page from "../../Containers/Page";
 
-export default function ProjectPage({ pageHeading }) {
+export default function ProjectPage({ pageHeading, location }) {
 	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
 	const { search } = useContext(SearchContext);
@@ -51,21 +52,7 @@ export default function ProjectPage({ pageHeading }) {
 	}, [data, loading]);
 
 	return (
-		<div className='o-page o-page_project'>
-			<Section classes='-padding-top-lg -relative' noGutter>
-				<Container
-					sx={{
-						".o-colorBlobs": {
-							height: "500%",
-						},
-					}}
-				>
-					<Typography variant='h1' component='h1' textAlign='center'>
-						Projects
-					</Typography>
-					{/* <ColorBlobs height="200%"/> */}
-				</Container>
-			</Section>
+		<Page name='projects' location={location}>
 			<Section classes='-padding-bottom-lg -relative'>
 				<Container maxWidth='0'>
 					{loading && (
@@ -95,6 +82,6 @@ export default function ProjectPage({ pageHeading }) {
 					)}
 				</Container>
 			</Section>
-		</div>
+		</Page>
 	);
 }

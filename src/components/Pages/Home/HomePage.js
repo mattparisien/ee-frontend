@@ -15,8 +15,9 @@ import { Box } from "@mui/material";
 import InstaPost from "../../InstaPost/InstaPost";
 import STATICHOME from "../../../api/graphql/queries/static/GetStaticHome";
 import { useQuery } from "@apollo/client";
+import Page from "../../Containers/Page";
 
-function HomePage({ pageHeading }) {
+function HomePage({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 
 	const scroll = useLocomotiveScroll();
@@ -65,7 +66,7 @@ function HomePage({ pageHeading }) {
 	}, [data, loading]);
 
 	return (
-		<div className='o-page o-page_home'>
+		<Page name='home' location={location}>
 			{staticData && (
 				<>
 					<Hero pageHeading={pageHeading} />
@@ -86,7 +87,7 @@ function HomePage({ pageHeading }) {
 					</Section>
 				</>
 			)}
-		</div>
+		</Page>
 	);
 }
 

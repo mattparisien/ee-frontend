@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import ContactPage from "./components/Pages/Contact/ContactPage";
+import AboutPage from "./components/Pages/About/AboutPage";
 import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
@@ -16,7 +16,7 @@ function SiteRoutes(props) {
 	const pageSchema = {
 		about: {
 			path: "/about",
-			component: ContactPage,
+			component: AboutPage,
 			title: "about",
 			exact: false,
 		},
