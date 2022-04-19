@@ -3,9 +3,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { shuffleColors } from "../../../helpers/shuffleColors";
-import Block from "./components/blocks/Block";
-import Next from "./Next";
 import Page from "../../Containers/Page";
+import Block from "./Blocks/Block";
+import formatBlockData from "./helpers/formatBlockData";
+import Next from "./Next";
 
 function SingleProjectPage({ location }) {
 	const [param, setParam] = useState(null);
@@ -47,6 +48,7 @@ function SingleProjectPage({ location }) {
 					alt: data.project.data.attributes.FeatureImage.data.attributes
 						.alternativeText,
 				},
+				blocks: formatBlockData(data.project.data.attributes.Choose),
 			}));
 		}
 	}, [data, loading]);
@@ -63,15 +65,22 @@ function SingleProjectPage({ location }) {
 
 			{project && (
 				<Block
-					variant='hero'
-					title={project.title}
-					subtitle={project.subtitle}
-					image={{
-						url: project.featureImage.url,
-						alt: project.featureImage.alt,
+					name='HeroBlock'
+					data={{
+						title: project.title,
+						subtitle: project.subtitle,
+						image: {
+							url: project.featureImage.url,
+							alt: project.featureImage.alt,
+						},
 					}}
 				/>
 			)}
+
+			{project &&
+				project.blocks.map(block => (
+					<Block name={block.name} id={block.id} key={block.id} data={block} />
+				))}
 
 			<Next color={accentColor[1]} currentProjectId={param} />
 		</Page>

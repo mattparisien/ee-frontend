@@ -18,16 +18,24 @@ const SINGLEPROJECT = gql`
 						}
 					}
 					Choose {
+						__typename
 						... on ComponentBlocksGalleryBlock {
 							id
 							BackgroundColor
 							Images {
 								data {
 									attributes {
-										width
+										url
+										alternativeText
+										caption
 									}
 								}
 							}
+						}
+						... on ComponentBlocksQuoteBlock {
+							id
+							Quote
+							Author
 						}
 					}
 				}
