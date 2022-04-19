@@ -13,8 +13,6 @@ function Slider({ items }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
 	SwiperCore.use([Autoplay, Navigation, Pagination]);
 
-	console.log(items)
-
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
 

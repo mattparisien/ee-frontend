@@ -6,7 +6,6 @@ const getData = endpoints => {
 
 	return Promise.all(finalEndpoints.map(endpoint => axios.get(endpoint))).then(
 		all => {
-			console.log(all)
 			const normalized = normalize(all);
 			const assigned = assign(normalized, endpoints);
 			return assigned;

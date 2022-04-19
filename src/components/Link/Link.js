@@ -18,9 +18,6 @@ function Link(props, ref) {
 	const navigate = useNavigate();
 
 	const handleNavigate = e => {
-
-		console.log('has clicked!')
-
 		scroll.isReady && scroll.scroll.scrollTo(0, 0);
 
 		if (!scroll.isReady) {
@@ -41,7 +38,13 @@ function Link(props, ref) {
 	};
 
 	return props.isRouterLink ? (
-		<Box className={classes} ref={ref} onClick={e => handleNavigate(e)} component="button" {...props}>
+		<Box
+			className={classes}
+			ref={ref}
+			onClick={e => handleNavigate(e)}
+			component='button'
+			{...props}
+		>
 			{props.children}
 		</Box>
 	) : (

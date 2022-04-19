@@ -14,11 +14,10 @@ function ResponsiveAppBar({
 	navItems,
 	menuActive,
 	onBurgerClick,
+	color,
 }) {
 	const wrapper = {
-		backgroundColor: variables['colors-light'],
-		boxShadow: "3px 4px 30px -12px rgba(0, 0, 0, 0.2)",
-		
+		background: variables["colors-light"],
 	};
 
 	const logoWrap = {
@@ -44,7 +43,9 @@ function ResponsiveAppBar({
 		alignItems: "center",
 		justifyContent: "flex-end",
 		zIndex: 999999999,
-
+		button: {
+			color: variables[`colors-${color}`],
+		},
 	};
 
 	const navDesktop = theme => ({

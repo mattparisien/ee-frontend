@@ -74,7 +74,6 @@ function InstaPost({ postInfo }) {
 
 	useEffect(() => {
 		if (postData.type && postInfo) {
-			console.log(postInfo);
 			setMediaComponent(
 				(postData.type === "IMAGE" && (
 					<InstaImage
@@ -188,7 +187,11 @@ const PostHeader = ({ username, src }) => {
 				>{`@${username}`}</a>
 			}
 			sx={header}
-			action={<Button variant='contained' color='primary' sx={cta}>View post</Button>}
+			action={
+				<Button variant='contained' color='primary' sx={cta}>
+					View post
+				</Button>
+			}
 		/>
 	);
 };

@@ -73,6 +73,10 @@ export default function useAppData(scrollRef) {
 		setState(prev => ({ ...prev, cursor: value }));
 	};
 
+	const setHeaderColor = color => {
+		setState(prev => ({ ...prev, headerColor: color }));
+	};
+
 	return {
 		state,
 		setState,
@@ -84,5 +88,7 @@ export default function useAppData(scrollRef) {
 		pending: state.pending,
 		search: state.search,
 		setSearch,
+		headerColor: state.headerColor,
+		setHeaderColor
 	};
 }

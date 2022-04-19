@@ -4,7 +4,7 @@ import useScrollHandler from "../../../../helpers/hooks/useScrollHandler";
 
 const animateNotes = (scroller, elements) => {
 	const windowHeight = window.innerHeight;
-	console.log("this is being called");
+
 	const handleIntersection = entries => {
 		entries.forEach(note => {
 			if (note.isIntersecting) {

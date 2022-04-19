@@ -50,45 +50,8 @@ function Header({
 			toggleTransitioning={toggleTransitioning}
 			menuActive={menuActive}
 			onBurgerClick={handleClick}
+			color={color}
 		/>
-
-		// <header className={headerClasses}>
-		// 	<ContainerFluid>
-		// 		<div
-		// 			className='c-header_left_spacer'
-		// 			style={{
-		// 				opacity: arrowOpacity,
-		// 				transition: "400ms ease",
-		// 				transitionDelay: "100ms",
-		// 			}}
-		// 		>
-		// 			{location.pathname.includes("/projects") &&
-		// 				/\d/.test(location.pathname) && (
-		// 					<ArrowButton
-		// 						isRouterLink={true}
-		// 						href={"/projects"}
-		// 						handleClick={() => setArrowOpacity(0)}
-		// 					/>
-		// 				)}
-		// 		</div>
-		// 		<div className='c-header_logo'>
-		// 			<Link isRouterLink href={"/"}>
-		// 				<TextLogo width='100%' />
-		// 			</Link>
-		// 		</div>
-		// 		<nav className='c-header_nav desktop'>
-		// 			<List
-		// 				items={navItems}
-		// 				hoverEffect={"draw"}
-		// 				color='dark'
-		// 				toggleTransitioning={toggleTransitioning}
-		// 			/>
-		// 		</nav>
-		// 		<button className={mobileNavClasses} onClick={handleClick}>
-		// 			{menuActive ? <CloseIcon /> : <MenuIcon />}
-		// 		</button>
-		// 	</ContainerFluid>
-		// </header>
 	);
 }
 

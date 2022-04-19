@@ -1,15 +1,25 @@
-import React, { forwardRef } from "react";
+import { Box, useMediaQuery } from "@mui/material";
 import classNames from "classnames";
-import { Box } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { SiteWideControls } from "../../context/Context";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
-function Section(props, ref) {
+function Section(props) {
 	const classes = classNames("Section c-section", {
 		[props.classes]: props.classes,
 	});
-	const mobile = useMediaQuery('(max-width: 600px)');
+
+	const scroll = useLocomotiveScroll();
+
+	const { setHeaderColor } = useContext(SiteWideControls);
+
+	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const gutter = mobile ? 8 : 10;
+
+	const [threshold, setThreshold] = useState(null);
+
+	const ref = useRef(null);
 
 	return (
 		<>
@@ -27,4 +37,4 @@ function Section(props, ref) {
 	);
 }
 
-export default forwardRef(Section);
+export default Section;

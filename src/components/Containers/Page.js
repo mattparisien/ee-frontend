@@ -15,7 +15,6 @@ function Page(props) {
 	useEffect(() => {
 		const header = document.querySelector("header");
 		const height = header.offsetHeight;
-		console.log("header height");
 		setHeaderHeight(height);
 	}, [windowWidth]);
 
@@ -26,7 +25,7 @@ function Page(props) {
 
 	return (
 		<Box className={classes} {...props} sx={styles}>
-			{(props.location.pathname !== "/" ||
+			{(props.location.pathname !== "/" &&
 				props.location.pahtname !== "/projects/*") && (
 				<Section>
 					<Container>
