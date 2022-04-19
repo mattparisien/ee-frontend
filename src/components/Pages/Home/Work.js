@@ -24,10 +24,8 @@ function Work({ projects }) {
 					pb={!mobile ? 5 : 5}
 					text={"	Our Work"}
 				/>
-
-				{/* <Line /> */}
 			</div>
-			<Slider items={featuredProjects} />
+			<Slider items={projects} />
 		</Section>
 	);
 }

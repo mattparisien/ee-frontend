@@ -21,7 +21,11 @@ function HomePage({ pageHeading }) {
 
 	const scroll = useLocomotiveScroll();
 
-	const { loading, error, data } = useQuery(STATICHOME);
+	const { loading, error, data } = useQuery(STATICHOME, {
+		variables: {
+			projectLimit: 1,
+		},
+	});
 
 	const [staticData, setStaticData] = useState({
 		about: null,
@@ -43,6 +47,19 @@ function HomePage({ pageHeading }) {
 					quote: testimonial.attributes.Quote,
 					author: testimonial.attributes.Author,
 				})),
+				featuredWork: [...data.projects.data.slice(0, 3)]
+					.sort((a, b) => a.Date - b.Date)
+					.map(project => ({
+						id: project.id,
+						title: project.attributes.Title,
+						subtitle: project.attributes.Subtitle,
+						image: {
+							url: project.attributes.FeatureImage.data.attributes.url,
+							alt: project.attributes.FeatureImage.data.attributes
+								.alternativeText,
+							caption: project.attributes.FeatureImage.data.attributes.caption,
+						},
+					})),
 			}));
 		}
 	}, [data, loading]);
@@ -55,7 +72,7 @@ function HomePage({ pageHeading }) {
 					<About aboutText={staticData.about} />
 					<How steps={staticData.steps} />
 
-					{/* <Work projects={data.projects && data.projects.slice(0, 6)} /> */}
+					<Work projects={staticData.featuredWork} />
 
 					<Section
 						classes='o-stories -flex -align-center -justify-center'

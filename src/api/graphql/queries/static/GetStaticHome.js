@@ -26,6 +26,25 @@ const STATICHOME = gql`
 				}
 			}
 		}
+		projects {
+			data {
+				id
+				attributes {
+					Title
+					Subtitle
+					Date
+					FeatureImage {
+						data {
+							attributes {
+								url
+								alternativeText
+								caption
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 `;
 
