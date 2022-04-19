@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import divideArray from "../../../../helpers/divideArray";
 import ProjectGridItem from "./ProjectGridItem";
 
-function ProjectGrid2({ items, colors }) {
+function ProjectGrid({ items, colors }) {
 	const gutter = "5vw";
 
 	const globalContainer = theme => ({
@@ -125,12 +125,11 @@ function ProjectGrid2({ items, colors }) {
 										width={gridSchema[idx].item.width}
 										margin={gridSchema[idx].item.margin}
 										color={colors[idx]}
-										artist={item.attributes.Title}
-										title={item.attributes.Subtitle}
+										artist={item.title}
+										title={item.subtitle}
 										image={{
-											url: item.attributes.FeatureImage.data.attributes.url,
-											alt: item.attributes.FeatureImage.data.attributes
-												.altenativeText,
+											url: item.image.url,
+											alt: item.image.alt,
 										}}
 									/>
 								</Row>
@@ -189,4 +188,4 @@ function Highlight({ color }) {
 	);
 }
 
-export default ProjectGrid2;
+export default ProjectGrid;

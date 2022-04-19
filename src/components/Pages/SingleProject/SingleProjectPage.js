@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useMediaQuery } from "@mui/material";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { shuffleColors } from "../../../helpers/shuffleColors";
@@ -8,13 +7,8 @@ import Block from "./components/blocks/Block";
 import Next from "./Next";
 
 function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
-	// const data = useContext(DataContext);
 	const [param, setParam] = useState(null);
-	const [info, setInfo] = useState(null);
-	const textWrapper = useRef(null);
-	const heroImage = useRef(null);
-
-	const mobile = useMediaQuery("(max-width: 600px)");
+	const [project, setProject] = useState(null);
 
 	const accentColor = useMemo(() => shuffleColors(), []);
 
@@ -34,32 +28,47 @@ function SingleProjectPage({ location, transitioning, toggleTransitioning }) {
 			}
 			setParam(param);
 		}
-	}, [location, param, info]);
+	}, [location, param]);
 
 	const { loading, error, data } = useQuery(SINGLEPROJECT, {
 		variables: { id: param },
 	});
 
+	useEffect(() => {
+		if (data && !loading) {
+			console.log(data)
+			setProject(() => ({
+				id: data.project.data.id,
+				title: data.project.data.attributes.Title,
+				subtitle: data.project.data.attributes.Subtitle,
+				subtitle: data.project.data.attributes.Subtitle,
+				featureImage: {
+					url: data.project.data.attributes.FeatureImage.data.attributes.url,
+					alt: data.project.data.attributes.FeatureImage.data.attributes
+						.alternativeText,
+				},
+			}));
+		}
+	}, [data, loading]);
+
 	return (
 		<>
 			<Helmet>
 				<title>
-					{data
-						? `${data.project.data.attributes.Title} - ${data.project.data.attributes.Subtitle}`
+					{project
+						? `${project.title} - ${project.subtitle}`
 						: "Eyes & Ears Agency"}
 				</title>
 			</Helmet>
 			<div className='o-page o-single-project'>
-				{data && (
+				{project && (
 					<Block
 						variant='hero'
-						title={data.project.data.attributes.Title}
-						subtitle={data.project.data.attributes.Subtitle}
+						title={project.title}
+						subtitle={project.subtitle}
 						image={{
-							url: data.project.data.attributes.FeatureImage.data.attributes
-								.url,
-							alt: data.project.data.attributes.FeatureImage.data.attributes
-								.alternativeText,
+							url: project.featureImage.url,
+							alt: project.featureImage.alt,
 						}}
 					/>
 				)}

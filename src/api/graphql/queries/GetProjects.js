@@ -7,6 +7,7 @@ const PROJECTS = gql`
 				id
 				attributes {
 					Title
+					Date
 					Subtitle
 					FeatureImage {
 						data {

@@ -55,7 +55,7 @@ function Circles({ inView }) {
 				duration: 3,
 				ease: "power4.out",
 				stagger: 0.2,
-				y: '100%',
+				y: "100%",
 			});
 		}
 	}, [inView]);
@@ -68,11 +68,8 @@ function Circles({ inView }) {
 
 		if (scroll && scroll.scroll) {
 			scroll.scroll.on("scroll", e => {
-				console.log("hello");
-				console.log(e);
 				circles.forEach(circle => {
 					const speed = circle.dataset.scrollSpeed;
-					console.log(speed);
 
 					const circleOffset = circle.getBoundingClientRect().top;
 					circle.style.transform = `translateY(-${

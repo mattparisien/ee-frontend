@@ -1,28 +1,21 @@
-import { Typography } from "@mui/material";
+import { useQuery } from "@apollo/client";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { DataContext, SearchContext } from "../../../context/Context";
+import PROJECTS from "../../../api/graphql/queries/GetProjects";
+import { SearchContext } from "../../../context/Context";
+import variables from "../../../styles/scss/_vars.module.scss";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import ColorBlobs from "../../Drawings/ColorBlobs";
-import ProjectGrid2 from "./ProjectGrid/ProjectGrid2";
-import variables from "../../../styles/scss/_vars.module.scss";
-import { useQuery } from "@apollo/client";
-import { CircularProgress } from "@mui/material";
-import { Box } from "@mui/material";
-import PROJECTS from "../../../api/graphql/queries/GetProjects";
+import ProjectGrid from "./ProjectGrid/ProjectGrid";
 
 export default function ProjectPage({ pageHeading }) {
-
-
 	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
 	const { search } = useContext(SearchContext);
 
 	gsap.registerPlugin(DrawSVGPlugin);
-
-	
 
 	const colors = useMemo(() => {
 		const colorArray = [];
@@ -40,12 +33,22 @@ export default function ProjectPage({ pageHeading }) {
 
 	useEffect(() => {
 		if (data && !loading) {
-			console.log('the data', data)
-			// setProjects(prevProjects => ([...prevProjects, {
-
-			// }]))
+			setProjects(() =>
+				[...data.projects.data]
+					.sort((a, b) => a.attributes.Date - b.attributes.Date)
+					.map(project => ({
+						id: project.id,
+						title: project.attributes.Title,
+						subtitle: project.attributes.Subtitle,
+						image: {
+							url: project.attributes.FeatureImage.data.attributes.url,
+							alt: project.attributes.FeatureImage.data.attributes
+								.alternativeText,
+						},
+					}))
+			);
 		}
-	}, [data, loading])
+	}, [data, loading]);
 
 	return (
 		<div className='o-page o-page_project'>
@@ -82,10 +85,10 @@ export default function ProjectPage({ pageHeading }) {
 							<CircularProgress />
 						</Box>
 					)}
-					{data && (
-						<ProjectGrid2
+					{projects && (
+						<ProjectGrid
 							variant='projects'
-							items={data.projects.data}
+							items={projects}
 							hoverEffect={"frame"}
 							colors={colors}
 						/>

@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import IntertiaPLugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { DataContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
@@ -13,38 +13,40 @@ import How from "./Steps/How";
 import Work from "./Work";
 import { Box } from "@mui/material";
 import InstaPost from "../../InstaPost/InstaPost";
+import STATICHOME from "../../../api/graphql/queries/static/GetStaticHome";
+import { useQuery } from "@apollo/client";
 
 function HomePage({ pageHeading }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
-	const data = useContext(DataContext);
+
 	const scroll = useLocomotiveScroll();
 
+	const { loading, error, data } = useQuery(STATICHOME);
+
+	const [staticData, setStaticData] = useState({
+		about: null,
+		steps: null,
+		stories: null,
+	});
+
 	useEffect(() => {
-		ScrollTrigger.scrollerProxy(".scroll-wrapper", {
-			scrollTop(value) {
-				return arguments.length
-					? scroll.scroll.scrollTo(value, 0)
-					: scroll.scroll.scroll.instance.scroll.y;
-			},
-			getBoundingClientRect() {
-				return {
-					top: 0,
-					left: 0,
-					width: window.innerWidth,
-					height: window.innerHeight,
-				};
-			},
-			pinType: document.querySelector(".scroll-wrapper").getElementsByClassName
-				.transform
-				? "transform"
-				: "fixed",
-		});
-	}, [scroll]);
+		if (!loading && data) {
+			setStaticData(() => ({
+				about: data.about.data.attributes.Body,
+				steps: [...data.steps.data]
+					.sort((a, b) => a.id - b.id)
+					.map(step => ({
+						title: step.attributes.Title,
+						body: step.attributes.Body,
+					})),
+			}));
+		}
+	}, [data, loading]);
 
 	return (
 		<>
 			<div className='o-page o-page_home'>
-				<Hero pageHeading={pageHeading} />
+				{/* <Hero pageHeading={pageHeading} />
 				<About aboutText={data.about && data.about.Body1} />
 				<How steps={data && data.steps} />
 
@@ -58,9 +60,8 @@ function HomePage({ pageHeading }) {
 						<Box pt={10} pb={10}>
 							<Stories slides={data && data.testimonials} withFrame />
 						</Box>
-						
 					</ContainerFluid>
-				</Section>
+				</Section> */}
 			</div>
 		</>
 	);
