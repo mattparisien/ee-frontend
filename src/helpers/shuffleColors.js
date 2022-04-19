@@ -8,7 +8,7 @@ export const shuffleColors = () => {
 	const colors = [];
 
 	for (const item in variables) {
-		if (item.startsWith("color")) {
+		if (item.startsWith("color") && item !== "colors-light") {
 			colors.push(variables[item]);
 		}
 	}
