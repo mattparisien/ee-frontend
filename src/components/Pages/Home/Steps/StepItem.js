@@ -1,7 +1,6 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
+import React from "react";
 import Fade from "react-reveal";
-import ReactMarkdown from "react-markdown";
 
 function StepItem({ step }) {
 	const stepHeading = theme => ({
@@ -38,8 +37,7 @@ function StepItem({ step }) {
 						mb={2}
 						className='-splitChars'
 					>
-						{step.Title}
-					
+						{step.title}
 					</Typography>
 				</Fade>
 
@@ -50,7 +48,7 @@ function StepItem({ step }) {
 						variant='body1'
 						component={"p"}
 					>
-						{step.Body}
+						{step.body}
 					</Typography>
 				</Fade>
 			</Box>

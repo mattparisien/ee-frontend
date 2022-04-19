@@ -1,14 +1,13 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import gsap from "gsap/dist/gsap";
 import $ from "jquery";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 import ReactMarkdown from "react-markdown";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import CircleSvg from "../../Vector/Circle";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 function About({ aboutText }) {
 	const matches = useMediaQuery("(max-width: 900px)");

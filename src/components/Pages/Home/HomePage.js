@@ -39,31 +39,37 @@ function HomePage({ pageHeading }) {
 						title: step.attributes.Title,
 						body: step.attributes.Body,
 					})),
+				testimonials: data.testimonials.data.map(testimonial => ({
+					quote: testimonial.attributes.Quote,
+					author: testimonial.attributes.Author,
+				})),
 			}));
 		}
 	}, [data, loading]);
 
 	return (
-		<>
-			<div className='o-page o-page_home'>
-				{/* <Hero pageHeading={pageHeading} />
-				<About aboutText={data.about && data.about.Body1} />
-				<How steps={data && data.steps} />
+		<div className='o-page o-page_home'>
+			{staticData && (
+				<>
+					<Hero pageHeading={pageHeading} />
+					<About aboutText={staticData.about} />
+					<How steps={staticData.steps} />
 
-				<Work projects={data.projects && data.projects.slice(0, 6)} />
+					{/* <Work projects={data.projects && data.projects.slice(0, 6)} /> */}
 
-				<Section
-					classes='o-stories -flex -align-center -justify-center'
-					data-theme='light'
-				>
-					<ContainerFluid>
-						<Box pt={10} pb={10}>
-							<Stories slides={data && data.testimonials} withFrame />
-						</Box>
-					</ContainerFluid>
-				</Section> */}
-			</div>
-		</>
+					<Section
+						classes='o-stories -flex -align-center -justify-center'
+						data-theme='light'
+					>
+						<ContainerFluid>
+							<Box pt={10} pb={10}>
+								<Stories slides={staticData.testimonials} withFrame />
+							</Box>
+						</ContainerFluid>
+					</Section>
+				</>
+			)}
+		</div>
 	);
 }
 

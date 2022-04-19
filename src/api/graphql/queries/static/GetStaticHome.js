@@ -8,16 +8,24 @@ const STATICHOME = gql`
 					Body
 				}
 			}
-		},
-    steps {
-      data {
+		}
+		steps {
+			data {
 				id
-        attributes {
-          Title
-          Body
-        }
-      }
-    }
+				attributes {
+					Title
+					Body
+				}
+			}
+		}
+		testimonials {
+			data {
+				attributes {
+					Quote
+					Author
+				}
+			}
+		}
 	}
 `;
 

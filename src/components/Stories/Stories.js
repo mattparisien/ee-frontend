@@ -73,13 +73,9 @@ function Stories({ slides }) {
 						}}
 					>
 						{slides &&
-							slides.map(slide => (
+							slides.map((slide, i) => (
 								<SwiperSlide>
-									<Item
-										key={slide.id}
-										author={slide.Author}
-										quote={slide.Quote}
-									/>
+									<Item key={i} author={slide.author} quote={slide.quote} />
 								</SwiperSlide>
 							))}
 					</Swiper>
