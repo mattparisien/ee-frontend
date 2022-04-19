@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { DataContext, SearchContext } from "../../../context/Context";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
@@ -14,11 +14,15 @@ import { Box } from "@mui/material";
 import PROJECTS from "../../../api/graphql/queries/GetProjects";
 
 export default function ProjectPage({ pageHeading }) {
+
+
+	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
+	const { search } = useContext(SearchContext);
 
 	gsap.registerPlugin(DrawSVGPlugin);
-	// const data = useContext(DataContext);
-	const { search } = useContext(SearchContext);
+
+	
 
 	const colors = useMemo(() => {
 		const colorArray = [];
@@ -33,6 +37,15 @@ export default function ProjectPage({ pageHeading }) {
 
 		return [...colorArray, ...colorArray].slice(0, 6);
 	}, [variables]);
+
+	useEffect(() => {
+		if (data && !loading) {
+			console.log('the data', data)
+			// setProjects(prevProjects => ([...prevProjects, {
+
+			// }]))
+		}
+	}, [data, loading])
 
 	return (
 		<div className='o-page o-page_project'>
