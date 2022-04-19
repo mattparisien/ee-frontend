@@ -1,13 +1,16 @@
 import getBlockName from "./getBlockName";
 
 const formatBlockData = array => {
+
+	console.log(array)
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
+		console.log(block)
 
 		return {
 			id: block.id,
 			name: blockName,
-			backgroundColor: block.BackgroundColor,
+			theme: block[`${blockName}Theme`],
 			data:
 				(blockName === "GalleryBlock" && formatGalleryBlockData(block)) ||
 				(blockName === "QuoteBlock" && formatQuoteBlockData(block)),

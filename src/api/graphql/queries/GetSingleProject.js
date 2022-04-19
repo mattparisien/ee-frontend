@@ -21,7 +21,7 @@ const SINGLEPROJECT = gql`
 						__typename
 						... on ComponentBlocksGalleryBlock {
 							id
-							BackgroundColor
+							GalleryBlockTheme: Theme
 							Images {
 								data {
 									attributes {
@@ -36,6 +36,7 @@ const SINGLEPROJECT = gql`
 							id
 							Quote
 							Author
+							QuoteBlockTheme: Theme
 						}
 					}
 				}
