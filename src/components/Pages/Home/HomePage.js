@@ -35,9 +35,11 @@ function HomePage({ pageHeading, location }) {
 	});
 
 	useEffect(() => {
+		console.log(loading, error, data);
 		if (!loading && data) {
+			console.log(data);
 			setStaticData(() => ({
-				about: data.about.data.attributes.Body,
+				about: data.about.data.attributes.Body1,
 				steps: [...data.steps.data]
 					.sort((a, b) => a.id - b.id)
 					.map(step => ({

@@ -19,8 +19,8 @@ function About({ aboutText }) {
 	return (
 		<>
 			<Section
-				data-theme='dark'
-				classes='o-about -fullHeight -relative'
+				sectionTheme="dark"
+				className="about-section"
 				noGutterTop
 				ref={ref}
 			>

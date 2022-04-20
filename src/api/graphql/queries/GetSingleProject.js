@@ -38,6 +38,9 @@ const SINGLEPROJECT = gql`
 							Author
 							QuoteBlockTheme: Theme
 						}
+						... on ComponentBlocksFullBleedMediaBlock {
+							id
+						}
 					}
 				}
 			}

@@ -2,10 +2,10 @@ import getBlockName from "./getBlockName";
 
 const formatBlockData = array => {
 
-	console.log(array)
+	console.log('the array', array)
+
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
-		console.log(block)
 
 		return {
 			id: block.id,
@@ -13,7 +13,9 @@ const formatBlockData = array => {
 			theme: block[`${blockName}Theme`],
 			data:
 				(blockName === "GalleryBlock" && formatGalleryBlockData(block)) ||
-				(blockName === "QuoteBlock" && formatQuoteBlockData(block)),
+				(blockName === "QuoteBlock" && formatQuoteBlockData(block)) ||
+				(blockName === "FullBleedMediaBlock" &&
+					formatFullBleedMediaBlockData(block)),
 		};
 	});
 
@@ -37,5 +39,9 @@ const formatQuoteBlockData = block => {
 		author: block.Author,
 	};
 };
+
+const formatFullBleedMediaBlockData = block => {
+	return null;
+}
 
 export default formatBlockData;

@@ -2,10 +2,20 @@ import { createTheme } from "@mui/material";
 
 let theme = createTheme();
 
+const sitePalette = {
+	primary: {
+		dark: "#181818",
+		light: "#f9f8f4",
+		accent: {
+			main: "#edc835",
+		},
+	},
+};
+
 theme = createTheme(theme, {
 	overrides: {
 		MuiTypography: {
-			
+			fontFamily: "Kobe",
 			[theme.breakpoints.up("md")]: {
 				fontSize: "11rem",
 				background: "red",
@@ -28,8 +38,8 @@ theme = createTheme(theme, {
 	typography: {
 		fontSize: 17,
 		fontFamily: ["Inter"],
-		'.MuiTypography-root': {
-			fontFamily: 'Inter'
+		".MuiTypography-root": {
+			fontFamily: "Inter",
 		},
 
 		h1: {
@@ -43,11 +53,7 @@ theme = createTheme(theme, {
 			fontFamily: "Inter",
 		},
 	},
-	palette: {
-		primary: {
-			main: "#000000",
-		},
-	},
+	palette: sitePalette,
 });
 
 export { theme };

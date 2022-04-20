@@ -6,7 +6,7 @@ const STATICHOME = gql`
 		about {
 			data {
 				attributes {
-					Body
+					Body1
 				}
 			}
 		}

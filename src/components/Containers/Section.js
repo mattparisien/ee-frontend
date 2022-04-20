@@ -5,9 +5,7 @@ import { SiteWideControls } from "../../context/Context";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function Section(props) {
-	const classes = classNames("Section c-section", {
-		[props.classes]: props.classes,
-	});
+	const { noGutter, sectionTheme } = props;
 
 	const scroll = useLocomotiveScroll();
 
@@ -21,13 +19,21 @@ function Section(props) {
 
 	const ref = useRef(null);
 
+	const section = theme => ({
+		backgroundColor:
+			theme.palette.primary[sectionTheme ? sectionTheme : "light"],
+		color:
+			theme.palette.primary[
+				sectionTheme ? (sectionTheme === "dark" ? "light" : "dark") : "dark"
+			],
+	});
+
 	return (
 		<>
 			<Box
 				component='section'
-				className={classes}
-				data-theme={props["data-theme"]}
 				ref={ref}
+				sx={section}
 				mb={props.noGutter ? 0 : gutter}
 				mt={props.noGutter || props.noGutterTop ? 0 : gutter}
 			>
