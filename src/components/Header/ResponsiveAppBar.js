@@ -1,13 +1,11 @@
-import React from "react";
-import { AppBar, Toolbar, Box } from "@mui/material";
-import Container from "../Containers/ContainerFluid";
-import { TextLogo } from "../Vector/Svg";
-import List from "../Lists/List";
-import { IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import classNames from "classnames";
-import variables from "../../styles/scss/_vars.module.scss";
+import React from "react";
+import Container from "../Containers/ContainerFluid";
+import List from "../Lists/List";
+import { TextLogo } from "../Vector/Svg";
 
 function ResponsiveAppBar({
 	toggleTransitioning,
@@ -16,9 +14,9 @@ function ResponsiveAppBar({
 	onBurgerClick,
 	color,
 }) {
-	const wrapper = {
-		background: variables["colors-light"],
-	};
+	const wrapper = theme => ({
+		backgroundColor: theme.palette.primary[color === "dark" ? "light" : "dark"],
+	});
 
 	const logoWrap = {
 		width: "150px",
@@ -32,7 +30,7 @@ function ResponsiveAppBar({
 		pointerEvents: "none",
 	};
 
-	const navToolbar = {
+	const navToolbar = theme => ({
 		position: "absolute",
 		width: "100%",
 		top: 0,
@@ -44,9 +42,9 @@ function ResponsiveAppBar({
 		justifyContent: "flex-end",
 		zIndex: 999999999,
 		button: {
-			color: variables[`colors-${color}`],
+			color: theme.palette.primary[color],
 		},
-	};
+	});
 
 	const navDesktop = theme => ({
 		[theme.breakpoints.down("md")]: {

@@ -2,12 +2,24 @@ import { createTheme } from "@mui/material";
 
 let theme = createTheme();
 
+const yellow = "#16854b";
+
 const sitePalette = {
 	primary: {
 		dark: "#181818",
 		light: "#f9f8f4",
+		red: "#e94034",
+		green: "#16854b",
+		blue: '#0a4d98',
+		yellow: yellow,
 		accent: {
-			main: "#edc835",
+			main: yellow,
+		},
+		colorSet: {
+			red: "#e94034",
+			green: "#16854b",
+			yellow: yellow,
+			blue: '#0a4d98',
 		},
 	},
 };

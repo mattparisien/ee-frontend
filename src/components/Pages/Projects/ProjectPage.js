@@ -10,27 +10,27 @@ import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import ProjectGrid from "./ProjectGrid/ProjectGrid";
 import Page from "../../Containers/Page";
+import { useTheme } from "@mui/material";
 
 export default function ProjectPage({ pageHeading, location }) {
 	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
 	const { search } = useContext(SearchContext);
+	const theme = useTheme();
 
 	gsap.registerPlugin(DrawSVGPlugin);
 
 	const colors = useMemo(() => {
 		const colorArray = [];
 
-		if (variables) {
-			for (let key in variables) {
-				if (key.includes("colors")) {
-					colorArray.push(variables[key]);
-				}
+		if (theme) {
+			for (let key in theme.palette.primary.colorSet) {
+				colorArray.push(theme.palette.primary.colorSet[key]);
 			}
 		}
 
 		return [...colorArray, ...colorArray].slice(0, 6);
-	}, [variables]);
+	}, [theme]);
 
 	useEffect(() => {
 		if (data && !loading) {
@@ -53,7 +53,7 @@ export default function ProjectPage({ pageHeading, location }) {
 
 	return (
 		<Page name='projects' location={location}>
-			<Section classes='-padding-bottom-lg -relative'>
+			<Section >
 				<Container maxWidth='0'>
 					{loading && (
 						<Box

@@ -15,8 +15,6 @@ function Section(props) {
 
 	const gutter = mobile ? 8 : 10;
 
-	const [threshold, setThreshold] = useState(null);
-
 	const ref = useRef(null);
 
 	const section = theme => ({
@@ -24,7 +22,13 @@ function Section(props) {
 			theme.palette.primary[sectionTheme ? sectionTheme : "light"],
 		color:
 			theme.palette.primary[
-				sectionTheme ? (sectionTheme === "dark" ? "light" : "dark") : "dark"
+				sectionTheme
+					? sectionTheme === "dark" ||
+					  sectionTheme === "blue" ||
+					  sectionTheme === "red"
+						? "light"
+						: "dark"
+					: "dark"
 			],
 	});
 
@@ -33,6 +37,7 @@ function Section(props) {
 			<Box
 				component='section'
 				ref={ref}
+				className='section'
 				sx={section}
 				mb={props.noGutter ? 0 : gutter}
 				mt={props.noGutter || props.noGutterTop ? 0 : gutter}

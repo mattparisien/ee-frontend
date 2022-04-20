@@ -44,7 +44,7 @@ function Next({ color, currentProjectId }) {
 		<>
 			<Fade>
 				{result2.data && (
-					<Section classes='o-next' data-theme={color} ref={container} noGutter>
+					<Section sectionTheme={color} ref={container} noGutter>
 						<Link
 							classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 							isRouterLink
@@ -57,6 +57,7 @@ function Next({ color, currentProjectId }) {
 										justifyContent='space-between'
 										alignItems='center'
 										flexDirection='row-reverse'
+										pb={20}
 									>
 										<Fade bottom>
 											<Typography variant='h2' className=' -split -fadeUpChars'>
