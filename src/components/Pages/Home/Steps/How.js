@@ -8,7 +8,6 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 import ContainerFluid from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
 import SectionHeading from "../../../Headings/SectionHeading";
-import { InstrumentPlayer } from "../../../Vector/Svg";
 import animateNotes from "./animations";
 import Notes from "./Notes";
 import Sheet from "./Sheet";
@@ -229,9 +228,9 @@ function How({ steps }) {
 							text={"Finding Your Rhythm"}
 						/>
 
-						<Box sx={playerSvg}>
+						{/* <Box sx={playerSvg}>
 							<InstrumentPlayer />
-						</Box>
+						</Box> */}
 					</Box>
 
 					<Box

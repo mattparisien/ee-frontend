@@ -1,70 +1,164 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
-import React from "react";
+import gsap from "gsap/dist/gsap";
+import $ from "jquery";
+import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import ReactMarkdown from "react-markdown";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-import SplitLayout from "../../Layouts/SplitLayout";
-import Markdown from "../../Markdown/Markdown";
-import Megaphone from "../../Vector/Megaphone";
+import CircleSvg from "../../Vector/Circle";
 
 function About({ aboutText }) {
 	const matches = useMediaQuery("(max-width: 900px)");
 
+	const { inView, ref, entry } = useInView({
+		threshold: 0.3,
+	});
+
 	return (
 		<>
-			<Section data-theme='dark' classes='o-about' noGutterTop>
+			<Section
+				sectionTheme="dark"
+				className="about-section"
+				noGutterTop
+				ref={ref}
+			>
 				<ContainerFluid>
 					<Box
 						className='o-about_content'
 						pt={matches ? 5 : 20}
 						pb={matches ? 5 : 20}
 					>
-						<SplitLayout
-							leftComponent={<SectionLeft text={aboutText} />}
-							rightComponent={<SectionRight />}
-							gap={5}
-							wrap={matches ? "wrap" : "nowrap"}
-						/>
+						<Typography variant='h3'>
+							<ReactMarkdown children={aboutText} />
+						</Typography>
 					</Box>
 				</ContainerFluid>
+				<Circles inView={inView} />
 			</Section>
 		</>
 	);
 }
 
-function SectionLeft({ text }) {
-	return (
-		<Typography variant='h4' className='-splitLines'>
-			<Markdown children={text} />
-		</Typography>
-	);
-}
+function Circles({ inView }) {
+	const scroll = useLocomotiveScroll();
 
-function SectionRight({ matches }) {
-	const megaphoneWrapper = theme => ({
-		".c-megaphone": {
-			width: "100%",
-			// "-webkit-transform": "scaleX(-100%) scale(1.6) rotate(-30deg)",
-			transform: "scaleX(-100%) scale(1.6) rotate(-30deg)",
-			
-			[theme.breakpoints.down("md")]: {
-				transform: "scaleX(-100%)scale(0.8)",
-				height: "100%",
-				svg: {
-					height: "100%",
-				},
-			},
+	useEffect(() => {
+		const circles = document.querySelectorAll(".o-about .circle-wrap");
+		const wrapper = $(".o-about");
+
+		if (inView) {
+			gsap.to(circles, {
+				opacity: 1,
+				duration: 3,
+				ease: "power4.out",
+				stagger: 0.2,
+				y: "100%",
+			});
+		}
+	}, [inView]);
+
+	useEffect(() => {
+		const circles = document.querySelectorAll(".o-about svg");
+		const wrapper = $(".o-about");
+		const wrapperHeight = wrapper.height();
+		const scrollTop = $(window).scrollTop();
+
+		if (scroll && scroll.scroll) {
+			scroll.scroll.on("scroll", e => {
+				circles.forEach(circle => {
+					const speed = circle.dataset.scrollSpeed;
+
+					const circleOffset = circle.getBoundingClientRect().top;
+					circle.style.transform = `translateY(-${
+						(e.scroll.y / wrapperHeight) * `${speed}00`
+					}px)`;
+				});
+			});
+		}
+	}, [scroll]);
+
+	const wrap = {
+		position: "absolute",
+		overflow: "hidden",
+		width: "100%",
+		height: "100%",
+	};
+
+	const svgStyle = {
+		mixBlendMode: "screen",
+		transform: "translateY(500%)",
+		position: "absolute",
+	};
+
+	const smallStyle = {
+		bottom: "50%",
+		right: "20%",
+	};
+
+	const largeStyle = {
+		top: "-9%",
+		left: "-6%",
+	};
+
+	const mediumStyle = {
+		top: "70%",
+		left: "20%",
+	};
+
+	const tinyStyle = {
+		top: "70%",
+		left: "20%",
+	};
+
+	const tinyTwoStyle = {
+		top: "10%",
+		left: "80%",
+	};
+
+	const circles = [
+		{
+			width: "400px",
+			style: Object.assign({}, svgStyle, largeStyle),
+			scrollSpeed: 2,
 		},
-	});
+		{
+			width: "150px",
+			style: Object.assign({}, svgStyle, smallStyle),
+			scrollSpeed: 3,
+		},
+		{
+			width: "250px",
+			style: Object.assign({}, svgStyle, smallStyle),
+			scrollSpeed: 5,
+		},
+		{
+			width: "80px",
+			style: Object.assign({}, svgStyle, tinyStyle),
+			scrollSpeed: 2,
+		},
+		{
+			width: "30px",
+			style: Object.assign({}, svgStyle, tinyStyle, tinyTwoStyle),
+			scrollSpeed: 1,
+		},
+	];
 
 	return (
-		<Box
-			display='flex'
-			alignItems={"center"}
-			justifyContent='center'
-			height={matches ? "20vw" : "auto"}
-			sx={megaphoneWrapper}
-		>
-			<Megaphone />
+		<Box sx={wrap}>
+			<Box sx={{ width: "100%", height: "100%", position: "relative" }}>
+				{circles.map((circle, i) => (
+					<Box className='circle-wrap' sx={circle.style}>
+						<CircleSvg
+							key={i}
+							style={{ width: "100%", height: "100%" }}
+							width={circle.width}
+							data-scroll-speed={circle.scrollSpeed}
+						/>
+					</Box>
+				))}
+			</Box>
 		</Box>
 	);
 }

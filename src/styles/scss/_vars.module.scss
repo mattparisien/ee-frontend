@@ -32,7 +32,7 @@ $navy: #12233f;
 $red: #e94034;
 $green: #16854b;
 $blue: #0a4d98;
-$yellow: #edc835;
+$yellow: #F6E544;
 $pink: #f1b9b8;
 $orange: #e94934;
 $grey: rgb(174, 174, 174);
@@ -94,6 +94,7 @@ $headerShadow: 3px 4px 30px -12px rgba(0, 0, 0, 0.2);
 		blue: $blue;
 		yellow: $yellow;
 		light: $light;
+		dark: $dark;
 	}
 	breakpoints: {
 		tablet: $tablet;

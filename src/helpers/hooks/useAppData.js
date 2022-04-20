@@ -22,10 +22,7 @@ export default function useAppData(scrollRef) {
 			name: "About",
 			path: "/about",
 		},
-		{
-			name: "Demo",
-			path: "/temp",
-		},
+
 	];
 
 	//App state
@@ -73,31 +70,9 @@ export default function useAppData(scrollRef) {
 		setState(prev => ({ ...prev, cursor: value }));
 	};
 
-	const setDataLoaded = () => {
-		setState(prev => ({ ...prev, data: { ...prev.data, isLoaded: true } }));
+	const setHeaderColor = color => {
+		setState(prev => ({ ...prev, headerColor: color }));
 	};
-
-	//Fetch essential data
-	useEffect(() => {
-		const endpoints = [
-			`/projects?populate=*`,
-			`/steps`,
-			`/about`,
-			`/testimonials`,
-			`/footer`,
-			`/bio?populate=*`,
-			`/socials`,
-			`/pages`,
-			`/seo?populate=*`
-		];
-
-		getData(endpoints)
-			.then(final => {
-				console.log(final)
-				setState(prev => ({ ...prev, data: { ...prev.data, ...final } }));
-			})
-			.finally(() => setDataLoaded(true));
-	}, []);
 
 	return {
 		state,
@@ -110,5 +85,7 @@ export default function useAppData(scrollRef) {
 		pending: state.pending,
 		search: state.search,
 		setSearch,
+		headerColor: state.headerColor,
+		setHeaderColor
 	};
 }

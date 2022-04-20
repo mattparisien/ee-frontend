@@ -303,6 +303,39 @@
 	color: $light;
 }
 
+.accent {
+	position: relative;
+
+	&-text {
+		padding-left: 1.3rem;
+	}
+
+	&-image::after {
+		width: 40%;
+		aspect-ratio: 1/1;
+		top: -15%;
+		left: -15%;
+	}
+
+	&-text::after {
+		width: 2.4rem;
+		height: 2.4rem;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 1%;
+		opacity: 0.8;
+		transition: 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+		transform-origin: center;
+	}
+
+	&::after {
+		position: absolute;
+		background-color: $yellow !important;
+		content: "";
+		border-radius: 50%;
+	}
+}
+
 .-stroke-light {
 	stroke: $light !important;
 }

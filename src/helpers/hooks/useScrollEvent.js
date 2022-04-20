@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 //Registers a scroll event handler with the correct scroll object, depending on whether locomotive scroll is active
@@ -10,38 +10,28 @@ function useScrollEvent(handler) {
 	const [scrollContext, setScrollContext] = useState(null);
 
 	const scroll = useLocomotiveScroll();
+	const hasLocoSet = useRef(false);
+	const hasWindowSet = useRef(false);
 
 	useEffect(() => {
-		if (scroll.isReady && !scrollContext) {
-			setScrollContext({
-				name: "locomotive",
-				scroller: scroll.scroll,
-			});
-		} else if (!scroll.isReady && !scrollContext) {
-			setScrollContext({
-				name: "window",
-				scroller: window,
-			});
+		if (scroll.isReady && !hasLocoSet.current) {
+			scroll.scroll.on("scroll", handler);
+			hasLocoSet.current = true;
 		}
-	}, [scroll]);
 
-	useEffect(() => {
-		if (scrollContext && scrollContext.scroller) {
-			scrollContext.name === "locomotive"
-				? scrollContext.scroller.on("scroll", handler)
-				: scrollContext.scroller.addEventListener("scroll", handler);
+		if (!hasWindowSet.current) {
+			window.addEventListener("scroll", handler);
+			hasWindowSet.current = true;
 		}
+
 
 		return () => {
-			if (scrollContext && scrollContext.scroller) {
-				scrollContext.name === "locomotive"
-					? scrollContext.scroller.destroy()
-					: scrollContext.scroller.removeEventListener("scroll", handler);
-			}
-		};
-	}, [scrollContext]);
+			window.removeEventListener("scroll", handler);
+			scroll.scroll.destroy();
+		}
+	}, [scroll.isReady, handler]);
 
-	return scrollContext;
+	return { window, scroll };
 }
 
 export default useScrollEvent;

@@ -1,3 +1,4 @@
+import { CatchingPokemonSharp } from "@mui/icons-material";
 import axios from "axios";
 
 const getData = endpoints => {

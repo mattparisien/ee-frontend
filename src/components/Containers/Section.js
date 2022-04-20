@@ -1,23 +1,51 @@
-import React, { forwardRef } from "react";
+import { Box, useMediaQuery } from "@mui/material";
 import classNames from "classnames";
-import { Box } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { SiteWideControls } from "../../context/Context";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
-function Section(props, ref) {
-	const classes = classNames("Section c-section", {
-		[props.classes]: props.classes,
-	});
-	const mobile = useMediaQuery('(max-width: 600px)');
+function Section(props) {
+	const { noGutter, sectionTheme } = props;
+
+	const scroll = useLocomotiveScroll();
+
+	const { setHeaderColor } = useContext(SiteWideControls);
+
+	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const gutter = mobile ? 8 : 10;
+
+	const ref = useRef(null);
+
+	const section = theme => ({
+		".accent::after": {
+			mixBlendMode: sectionTheme === "light" || !sectionTheme ? "multiply" : "screen",
+		},
+		".foreground-el": {
+			backgroundColor:
+				theme.palette.primary[sectionTheme === "dark" ? "light" : "dark"],
+		},
+		backgroundColor:
+			theme.palette.primary[sectionTheme ? sectionTheme : "light"],
+		color:
+			theme.palette.primary[
+				sectionTheme
+					? sectionTheme === "dark" ||
+					  sectionTheme === "blue" ||
+					  sectionTheme === "red"
+						? "light"
+						: "dark"
+					: "dark"
+			],
+	});
 
 	return (
 		<>
 			<Box
 				component='section'
-				className={classes}
-				data-theme={props["data-theme"]}
 				ref={ref}
+				className='section'
+				sx={section}
 				mb={props.noGutter ? 0 : gutter}
 				mt={props.noGutter || props.noGutterTop ? 0 : gutter}
 			>
@@ -27,4 +55,4 @@ function Section(props, ref) {
 	);
 }
 
-export default forwardRef(Section);
+export default Section;

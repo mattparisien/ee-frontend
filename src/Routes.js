@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import ContactPage from "./components/Pages/Contact/ContactPage";
+import AboutPage from "./components/Pages/About/AboutPage";
 import HomePage from "./components/Pages/Home/HomePage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
@@ -16,33 +16,39 @@ function SiteRoutes(props) {
 	const pageSchema = {
 		about: {
 			path: "/about",
-			component: ContactPage,
+			component: AboutPage,
 			title: "about",
+			exact: false,
 		},
 		home: {
 			path: "/",
 			component: HomePage,
 			title: "home",
+			exact: true,
 		},
 		projects: {
 			path: "/projects",
 			component: ProjectPage,
 			title: "projects",
+			exact: true,
 		},
 		demo: {
 			path: "/temp",
 			component: DemoPage,
 			title: "demo",
+			exact: false,
 		},
 		notFound: {
 			path: "/*",
 			component: NotFoundPage,
-			title: "notFound"
+			title: "notFound",
+			exact: false,	
 		},
 		singleProject: {
 			path: "/projects/:id",
 			component: SingleProjectPage,
 			title: "singleproject",
+			exact: true,
 		},
 	};
 
@@ -61,6 +67,7 @@ function SiteRoutes(props) {
 			<Routes location={location} key={location.pathname}>
 				{Object.entries(pageSchema).map(page => (
 					<Route
+						exact={page[1].exact}
 						path={page[1].path}
 						element={React.createElement(page[1].component, {
 							key: location.pathname,

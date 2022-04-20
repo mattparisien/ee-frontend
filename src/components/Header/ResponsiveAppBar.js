@@ -1,39 +1,35 @@
-import React from "react";
-import { AppBar, Toolbar, Box } from "@mui/material";
-import Container from "../Containers/ContainerFluid";
-import { TextLogo } from "../Vector/Svg";
-import List from "../Lists/List";
-import { IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import classNames from "classnames";
-import variables from "../../styles/scss/_vars.module.scss";
+import React from "react";
+import Container from "../Containers/ContainerFluid";
+import List from "../Lists/List";
+import { TextLogo } from "../Vector/Svg";
 
 function ResponsiveAppBar({
 	toggleTransitioning,
 	navItems,
 	menuActive,
 	onBurgerClick,
+	color,
 }) {
-	const wrapper = {
-		backgroundColor: variables['colors-light'],
-		boxShadow: "3px 4px 30px -12px rgba(0, 0, 0, 0.2)",
-		
-	};
+	const wrapper = theme => ({
+		backgroundColor: theme.palette.primary[color === "dark" ? "light" : "dark"],
+	});
 
 	const logoWrap = {
 		width: "150px",
 		fill: "black",
 	};
 
-	const toolbar = {
-		justifyContent: "center",
-		alignItems: "center",
-		zIndex: 1,
-		pointerEvents: "none",
+	const edgesWidth = "20rem";
+
+	const spacer = {
+		width: edgesWidth,
 	};
 
-	const navToolbar = {
+	const navToolbar = theme => ({
 		position: "absolute",
 		width: "100%",
 		top: 0,
@@ -42,15 +38,18 @@ function ResponsiveAppBar({
 		color: "black",
 		display: "flex",
 		alignItems: "center",
-		justifyContent: "flex-end",
+		justifyContent: "space-between",
 		zIndex: 999999999,
 		button: {
-			fontFamily: "Kobe",
-			fontSize: "1.2rem",
+			color: theme.palette.primary[color],
 		},
-	};
+		".c-list": {
+			justifyContent: "flex-end",
+		},
+	});
 
 	const navDesktop = theme => ({
+		width: edgesWidth,
 		[theme.breakpoints.down("md")]: {
 			display: "none",
 		},
@@ -63,25 +62,22 @@ function ResponsiveAppBar({
 
 	return (
 		<AppBar position='fixed' sx={wrapper} elevation='0' classes={headerClasses}>
-			<Container>
-				<Box className='header-inner -relative'>
-					<Toolbar sx={toolbar}>
-						<Box className='logo-wrap' sx={logoWrap}>
-							<TextLogo />
-						</Box>
-					</Toolbar>
-					<Toolbar sx={navToolbar}>
-						<Box sx={navDesktop} component='nav'>
-							<List
-								items={navItems}
-								hoverEffect='draw'
-								color='dark'
-								toggleTransitioning={toggleTransitioning}
-							/>
-						</Box>
-						<Burger onBurgerClick={onBurgerClick} />
-					</Toolbar>
-				</Box>
+			<Container sx={{ height: "60px" }}>
+				<Toolbar sx={navToolbar}>
+					<Box className='spacer' sx={spacer}></Box>
+					<Box className='logo-wrap' sx={logoWrap}>
+						<TextLogo />
+					</Box>
+					<Box sx={navDesktop} component='nav'>
+						<List
+							items={navItems}
+							hoverEffect='draw'
+							color='dark'
+							toggleTransitioning={toggleTransitioning}
+						/>
+					</Box>
+					<Burger onBurgerClick={onBurgerClick} />
+				</Toolbar>
 			</Container>
 		</AppBar>
 	);

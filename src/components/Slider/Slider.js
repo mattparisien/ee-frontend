@@ -48,11 +48,11 @@ function Slider({ items }) {
 								<Item
 									mobile={mobile}
 									projectId={item.id}
-									artistName={item.Title}
-									projectTitle={item.Subtitle}
-									credit={item.FeatureImage.data.attributes.caption}
-									src={item.FeatureImage.data.attributes.url}
-									alt={item.FeatureImage.data.attributes.alternativeText}
+									artistName={item.title}
+									projectTitle={item.subtitle}
+									credit={item.caption}
+									src={item.image.url}
+									alt={item.image.alt}
 								/>
 							</SwiperSlide>
 						))}
@@ -127,7 +127,7 @@ function Item({
 			width: "100%",
 		},
 		"@media screen and (max-width: 1168px)": {
-			height: "460px"
+			height: "460px",
 		},
 		[theme.breakpoints.down("md")]: {
 			height: "3px",

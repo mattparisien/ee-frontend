@@ -24,7 +24,7 @@ body {
 
 .swiper-pagination-bullet-active {
 	background-color: $light;
-};
+}
 
 .c-scrollbar {
 	z-index: 9999999;
@@ -88,17 +88,6 @@ ul {
 
 h1 {
 	font-family: "Kobe Bold";
-}
-
-footer .email,
-footer p,
-.o-stories p,
-.swiper p,
-.c-steps p,
-.o-about h4,
-.o-page_contact h3,
-.o-page_contact p {
-	font-family: "Kobe";
 }
 
 @media (min-width: 700px) and (max-width: 1024px) {
@@ -229,8 +218,14 @@ footer p,
 }
 
 [data-theme="dark"] {
-	background-color: $dark;
+	& {
+		background-color: $dark;
+	}
 	color: $light !important;
+
+	.line {
+		background-color: $light;
+	}
 
 	.c-header_logo svg path {
 		fill: $light;
@@ -240,10 +235,5 @@ footer p,
 		path {
 			fill: $light;
 		}
-	}
-
-	*::after,
-	*::before {
-		background-color: $light;
 	}
 }
