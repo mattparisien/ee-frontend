@@ -21,10 +21,10 @@ const SINGLEPROJECT = gql`
 						__typename
 						... on ComponentBlocksGalleryBlock {
 							id
-							GalleryBlockTheme: Theme
 							Style
 							Columns
 							RowHeight
+							GalleryBlockTheme: Theme
 							Images {
 								data {
 									attributes {

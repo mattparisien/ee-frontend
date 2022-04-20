@@ -33,11 +33,12 @@ function SingleProjectPage({ location }) {
 	}, [location, param]);
 
 	const { loading, error, data } = useQuery(SINGLEPROJECT, {
-		variables: { id: param },
+		variables: { id: param ? param : 0 },
 	});
 
 	useEffect(() => {
 		if (data && !loading) {
+			console.log(data)
 			setProject(() => ({
 				id: data.project.data.id,
 				title: data.project.data.attributes.Title,
