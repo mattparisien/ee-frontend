@@ -1,6 +1,9 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Typography } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 function Markdown({ children }) {
 	const componentMap = {
@@ -25,6 +28,12 @@ function Markdown({ children }) {
 				gutterBottom={10}
 			/>
 		),
+		ul: ({ node, ...props }) => {
+			<List children={props.children} />;
+		},
+		li: ({ node, props }) => {
+			<ListItem disablePadding children={props.children}/>;
+		},
 	};
 	return <ReactMarkdown components={componentMap} children={children} />;
 }

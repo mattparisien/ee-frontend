@@ -21,9 +21,7 @@ const SINGLEPROJECT = gql`
 						__typename
 						... on ComponentBlocksGalleryBlock {
 							id
-							Style
-							Columns
-							RowHeight
+
 							GalleryBlockTheme: Theme
 							Images {
 								data {
@@ -65,6 +63,12 @@ const SINGLEPROJECT = gql`
 							id
 							Text
 							Theme
+						}
+						... on ComponentBlocksSplitTextBlock {
+							id
+							TextLeft
+							TextRight
+							Flip
 						}
 					}
 				}

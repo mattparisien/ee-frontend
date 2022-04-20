@@ -1,6 +1,5 @@
-import getBlockName from "./getBlockName";
 import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
-import { ConstructionOutlined } from "@mui/icons-material";
+import getBlockName from "./getBlockName";
 
 const formatBlockData = array => {
 	const blocks = array.map(block => {
@@ -15,15 +14,35 @@ const formatBlockData = array => {
 				(blockName === "QuoteBlock" && formatQuoteBlockData(block)) ||
 				(blockName === "FullBleedMediaBlock" &&
 					formatFullBleedMediaBlockData(block)) ||
-				(blockName === "TextBlock" && formatTextBlockData(block)),
+				(blockName === "TextBlock" && formatTextBlockData(block)) ||
+				(blockName.startsWith("Split") && formatSplitBlock(block)),
 		};
 	});
 
 	return blocks;
 };
 
+const formatSplitBlock = block => {
+	return {
+		flip: block.flip,
+		left: {
+			text: block.TextLeft || null,
+			media: block.Media ? block.media : null,
+		},
+		right: {
+			text: block.TextRight || null,
+			media: block.Media ? block.media : null,
+		},
+	};
+};
+
 const formatGalleryBlockData = block => {
 	return {
+		// style: {
+		// 	variant: block.Style,
+		// 	rowHeight: block.RowHeight,
+		// 	columns: block.Columns
+		// },
 		images: block.Images
 			? block.Images.data.map(image => ({
 					url: image.attributes.url,
