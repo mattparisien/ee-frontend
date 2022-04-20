@@ -3,8 +3,6 @@ import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
 import { ConstructionOutlined } from "@mui/icons-material";
 
 const formatBlockData = array => {
-	console.log("the array", array);
-
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
 
@@ -72,7 +70,7 @@ const formatMedia = block => {
 			},
 		});
 
-		return obj;
+		return new Promise((resolve, reject) => resolve(obj));
 	}
 
 	//Is insta post

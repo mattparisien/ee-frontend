@@ -23,11 +23,10 @@ function ResponsiveAppBar({
 		fill: "black",
 	};
 
-	const toolbar = {
-		justifyContent: "center",
-		alignItems: "center",
-		zIndex: 1,
-		pointerEvents: "none",
+	const edgesWidth = "20rem";
+
+	const spacer = {
+		width: edgesWidth,
 	};
 
 	const navToolbar = theme => ({
@@ -39,14 +38,18 @@ function ResponsiveAppBar({
 		color: "black",
 		display: "flex",
 		alignItems: "center",
-		justifyContent: "flex-end",
+		justifyContent: "space-between",
 		zIndex: 999999999,
 		button: {
 			color: theme.palette.primary[color],
 		},
+		".c-list": {
+			justifyContent: "flex-end",
+		},
 	});
 
 	const navDesktop = theme => ({
+		width: edgesWidth,
 		[theme.breakpoints.down("md")]: {
 			display: "none",
 		},
@@ -59,25 +62,22 @@ function ResponsiveAppBar({
 
 	return (
 		<AppBar position='fixed' sx={wrapper} elevation='0' classes={headerClasses}>
-			<Container>
-				<Box className='header-inner -relative'>
-					<Toolbar sx={toolbar}>
-						<Box className='logo-wrap' sx={logoWrap}>
-							<TextLogo />
-						</Box>
-					</Toolbar>
-					<Toolbar sx={navToolbar}>
-						<Box sx={navDesktop} component='nav'>
-							<List
-								items={navItems}
-								hoverEffect='draw'
-								color='dark'
-								toggleTransitioning={toggleTransitioning}
-							/>
-						</Box>
-						<Burger onBurgerClick={onBurgerClick} />
-					</Toolbar>
-				</Box>
+			<Container sx={{ height: "60px" }}>
+				<Toolbar sx={navToolbar}>
+					<Box className='spacer' sx={spacer}></Box>
+					<Box className='logo-wrap' sx={logoWrap}>
+						<TextLogo />
+					</Box>
+					<Box sx={navDesktop} component='nav'>
+						<List
+							items={navItems}
+							hoverEffect='draw'
+							color='dark'
+							toggleTransitioning={toggleTransitioning}
+						/>
+					</Box>
+					<Burger onBurgerClick={onBurgerClick} />
+				</Toolbar>
 			</Container>
 		</AppBar>
 	);

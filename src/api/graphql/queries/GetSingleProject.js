@@ -22,6 +22,9 @@ const SINGLEPROJECT = gql`
 						... on ComponentBlocksGalleryBlock {
 							id
 							GalleryBlockTheme: Theme
+							Style
+							Columns
+							RowHeight
 							Images {
 								data {
 									attributes {

@@ -305,7 +305,10 @@
 
 .accent {
 	position: relative;
-	padding-left: 1.3rem;
+
+	&-text {
+		padding-left: 1.3rem;
+	}
 
 	&-image::after {
 		width: 40%;

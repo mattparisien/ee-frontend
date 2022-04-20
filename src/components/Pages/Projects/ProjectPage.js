@@ -54,7 +54,7 @@ export default function ProjectPage({ pageHeading, location }) {
 	return (
 		<Page name='projects' location={location}>
 			<Section >
-				<Container maxWidth='0'>
+				<Container maxWidth={false}>
 					{loading && (
 						<Box
 							sx={{

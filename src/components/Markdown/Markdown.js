@@ -13,7 +13,7 @@ function Markdown({ children }) {
 				variant='h2'
 				children={props.children}
 				fontWeight={400}
-				gutterBottom
+				gutterBottom={4}
 			/>
 		),
 
@@ -22,7 +22,7 @@ function Markdown({ children }) {
 				component='p'
 				variant='h4'
 				children={props.children}
-				gutterBottom
+				gutterBottom={10}
 			/>
 		),
 	};

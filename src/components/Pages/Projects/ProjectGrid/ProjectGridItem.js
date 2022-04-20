@@ -117,7 +117,7 @@ function ProjectGridItem({
 		<Link
 			href={`/projects/${projectId}`}
 			isRouterLink
-			classes='item -hover-underline -stretchX -stretchY'
+			classes='item -hover-underline -stretchX'
 			sx={item}
 			ref={ref}
 		>

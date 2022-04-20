@@ -3,11 +3,15 @@ import { Box, Typography } from "@mui/material";
 import Media from "../../../Media/Media";
 
 function HeroBlock({ data }) {
-	const splitLayout = {
+	const splitLayout = theme => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-	};
+		[theme.breakpoints.down("sm")]: {
+			flexDirection: "column",
+			alignItems: "flex-start"
+		}
+	});
 
 	return (
 		<Box sx={splitLayout}>

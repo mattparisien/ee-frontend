@@ -10,8 +10,7 @@ function Container(props) {
 			className={classes}
 			{...props}
 			disableGutters={props.fullBleed}
-			maxWidth={props.fullBleed ? false : 'lg'}
-			
+			maxWidth={props.fullBleed || props.maxWidth === false ? false : "lg"}
 		>
 			{props.children}
 		</MuiContainer>
