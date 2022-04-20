@@ -17,20 +17,17 @@ function QuoteBlock({ data }) {
 		alignItems: "center",
 		justifyContent: "space-between",
 		width: "100%",
-    paddingLeft: '1.3em'
+		paddingLeft: "1.3em",
 	};
 	const line = {
 		flex: 1,
 		height: "1px",
-		backgroundColor: "black",
 	};
 
-  const quote = {
-    textIndent: '-0.45em',
-    padding: '0 0.45em'
-    
-    
-  }
+	const quote = {
+		textIndent: "-0.45em",
+		padding: "0 0.45em",
+	};
 
 	return (
 		<Box
@@ -42,7 +39,7 @@ function QuoteBlock({ data }) {
 			<Typography
 				variant='h3'
 				component='blockquote'
-        sx={quote}
+				sx={quote}
 			>{`"${data.data.quote}"`}</Typography>
 			<Box sx={authorWrap} mt={5}>
 				<Typography
@@ -55,7 +52,7 @@ function QuoteBlock({ data }) {
 				>
 					{data.data.author}
 				</Typography>
-				<Box className='line' sx={line}></Box>
+				<Box className='line foreground-el' sx={line}></Box>
 			</Box>
 		</Box>
 	);

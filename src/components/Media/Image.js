@@ -5,11 +5,14 @@ import variables from "../../styles/scss/_vars.module.scss";
 import classNames from "classnames";
 
 function Image({ src, alt, frame, accent }) {
-	const classes = classNames("image-wrapper", {
-		"accent accent-image accent-left": accent,
-	});
+
+	const imageWrapper = {
+		width: "100%",
+		height: "100%"
+	}
+
 	return (
-		<Box className={classes}>
+		<Box className='image-wrapper' sx={imageWrapper}>
 			<Box component='img' className='image' src={src} alt={alt}></Box>
 			{frame && frame}
 		</Box>

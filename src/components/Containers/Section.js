@@ -18,6 +18,13 @@ function Section(props) {
 	const ref = useRef(null);
 
 	const section = theme => ({
+		".accent::after": {
+			mixBlendMode: sectionTheme === "light" || !sectionTheme ? "multiply" : "screen",
+		},
+		".foreground-el": {
+			backgroundColor:
+				theme.palette.primary[sectionTheme === "dark" ? "light" : "dark"],
+		},
 		backgroundColor:
 			theme.palette.primary[sectionTheme ? sectionTheme : "light"],
 		color:

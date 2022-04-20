@@ -6,7 +6,7 @@ import ContainerFluid from "../../Containers/ContainerFluid";
 import Page from "../../Containers/Page";
 import Section from "../../Containers/Section";
 import ColorBlobs from "../../Drawings/ColorBlobs";
-import Image from "../../Image/Image";
+import Media from "../../Media/Media";
 
 
 function AboutPage({ pageHeading, location }) {
@@ -58,7 +58,7 @@ function AboutPage({ pageHeading, location }) {
 										</Typography>
 									</Box>
 									<Box className='image' sx={{ flex: 0.7 }}>
-										<Image src={info.image.url} aspectRatio={1} />
+										<Media src={info.image.url} aspectRatio={1} variant="image"/>
 									</Box>
 								</>
 							)}

@@ -5,11 +5,15 @@ import { Box } from "@mui/material";
 import { BLOCKS } from ".";
 
 function Block(props) {
-	console.log(props);
+	const padding = props.name === "FullBleedMediaBlock" ? 0 : 10;
+
+console.log(props)
+
+
 	return (
-		<Section data-theme={props.data.theme || "light"}>
-			<Container>
-				<Box pt={10} pb={10}>
+		<Section sectionTheme={props.data.theme}>
+			<Container fullBleed={props.name.startsWith("FullBleed")}>
+				<Box pt={padding} pb={padding}>
 					{props.data &&
 						React.createElement(BLOCKS[props.name], {
 							key: props.id,

@@ -40,6 +40,28 @@ const SINGLEPROJECT = gql`
 						}
 						... on ComponentBlocksFullBleedMediaBlock {
 							id
+							UploadedMedia {
+								data {
+									attributes {
+										url
+										alternativeText
+										caption
+										provider_metadata
+									}
+								}
+							}
+							insta_post {
+								data {
+									attributes {
+										PostUrl
+									}
+								}
+							}
+						}
+						... on ComponentBlocksTextBlock {
+							id
+							Text
+							Theme
 						}
 					}
 				}

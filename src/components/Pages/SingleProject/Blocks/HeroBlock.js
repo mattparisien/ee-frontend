@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import Image from "../../../Image/Image";
+import Media from "../../../Media/Media";
 
 function HeroBlock({ data }) {
 	const splitLayout = {
@@ -18,7 +18,8 @@ function HeroBlock({ data }) {
 				<Typography variant='h3'>{data.subtitle}</Typography>
 			</Box>
 			<Box sx={{ flex: 0.5 }}>
-				<Image
+				<Media
+					variant='image'
 					src={data.image.url}
 					alt={data.image.alt}
 					aspectRatio={"1.25"}

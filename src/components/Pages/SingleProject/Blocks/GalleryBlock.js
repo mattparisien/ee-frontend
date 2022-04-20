@@ -5,17 +5,15 @@ import { ImageList, ImageListItem, Box } from "@mui/material";
 
 function GalleryBlock({ data }) {
 	return (
-		<Box pt={10} pb={10}>
-			<ImageList variant='masonry' cols={3} gap={8}>
-				{data.data.images.map((image, i) => {
-					return (
-						<ImageListItem key={i}>
-							<img src={image.url} alt={image.alt} />
-						</ImageListItem>
-					);
-				})}
-			</ImageList>
-		</Box>
+		<ImageList variant='masonry' cols={3} gap={8}>
+			{data.data.images.map((image, i) => {
+				return (
+					<ImageListItem key={i}>
+						<img src={image.url} alt={image.alt} />
+					</ImageListItem>
+				);
+			})}
+		</ImageList>
 	);
 }
 

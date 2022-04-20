@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import useScrollEvent from "../../../../helpers/hooks/useScrollEvent";
 import { Typography, Box } from "@mui/material";
 import $ from "jquery";
-import Image from "../../../Image/Image";
+import Media from "../../../Media/Media";
 import Link from "../../../Link/Link";
 
 function ProjectGridItem({
@@ -122,7 +122,13 @@ function ProjectGridItem({
 			ref={ref}
 		>
 			<Box className='item-inner' sx={{ height: "100%" }}>
-				<Image src={image.url} alt={image.alt} width={"100%"} height={"100%"} />
+				<Media
+					src={image.url}
+					alt={image.alt}
+					width={"100%"}
+					height={"100%"}
+					variant='image'
+				/>
 				{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
 				{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
 				<Box className='item-info' sx={itemInfo} pt={1}>
