@@ -3,9 +3,12 @@ import classNames from "classnames";
 import React from "react";
 import Image from "./Image";
 import Video from "./Video";
+import Carousel from "./Carousel";
 
 function Media(props) {
-	const { aspectRatio, width, height, src, alt, variant, accent } = props;
+	const { aspectRatio, width, height, variant, accent, items } = props;
+
+	console.log("the itmes", items);
 
 	const classes = classNames("media-wrapper", {
 		"accent accent-image accent-left": accent,
@@ -28,8 +31,20 @@ function Media(props) {
 
 	return (
 		<Box className={classes} sx={wrapper}>
-			{variant === "image" && <Image {...props} />}
-			{variant === "video" && <Video {...props} />}
+			{items && items.type === "image" && (
+				<Image src={items && items.data.url} alt={items && items.data.alt} />
+			)}
+			{items && items.type === "video" && (
+				<Video src={items && items.data.url} />
+			)}
+			{items && items.type === "carousel" && (
+				<Carousel
+					items={items && items.data}
+					image={url => <Image src={url} />}
+					video={url => <Video src={url} />}
+				/>
+			)}
+
 			{/* {variant === "insta" && (
 				<InstaPost
 					postInfo={{

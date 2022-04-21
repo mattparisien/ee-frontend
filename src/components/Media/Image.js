@@ -1,8 +1,5 @@
-import React from "react";
 import { Box } from "@mui/material";
-import { height } from "@mui/system";
-import variables from "../../styles/scss/_vars.module.scss";
-import classNames from "classnames";
+import React from "react";
 
 function Image({ src, alt, frame, accent }) {
 

@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
 
@@ -80,6 +81,40 @@ const formatFullBleedMediaBlockData = block => {
 };
 
 const formatMedia = block => {
+	const formatInfo = info => {
+		let finalObject = {
+			type: {
+				value: "",
+			},
+			data: {
+				value: "",
+			},
+		};
+
+		if (!Array.isArray(info)) {
+			//Is a single media item
+			finalObject.type.value = info.media_type.toLowerCase();
+			finalObject.data.value = {
+				url: info.media_url,
+				alt: null,
+			};
+			return finalObject;
+		}
+
+		//Is a carousel
+		finalObject.type.value = "carousel";
+		finalObject.data.value = info.map(item => ({
+			type: item.media_type.toLowerCase(),
+			data: {
+				id: item.id,
+				url: item.media_url,
+				alt: null,
+				permalink: item.permalink,
+			},
+		}));
+		return finalObject;
+	};
+
 	const templateObj = {
 		type: null,
 		data: {
@@ -109,17 +144,7 @@ const formatMedia = block => {
 	if (block.insta_post.data) {
 		return getInstaMedia(block.insta_post.data.attributes.PostUrl, {}).then(
 			postInfo => {
-				const info = {
-					type: {
-						value: postInfo.media_type.toLowerCase(),
-					},
-					data: {
-						value: {
-							url: postInfo.media_url,
-							alt: null,
-						},
-					},
-				};
+				const info = formatInfo(postInfo);
 
 				return Object.create(templateObj, info);
 			}

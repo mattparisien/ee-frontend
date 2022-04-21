@@ -7,15 +7,7 @@ function FullBleedMediaBlock({ data }) {
 	const media = useMedia(data.data.media);
 	const layout = useLayout(data.data.layout);
 
-	return (
-		<Media
-			variant={media && media.type}
-			width='100vw'
-			aspectRatio={"0.5625"}
-			src={media && media.data.url}
-			alt={media && media.data.alt}
-		/>
-	);
+	return <Media items={media} width='100vw' aspectRatio={"0.5625"} />;
 }
 
 export default FullBleedMediaBlock;

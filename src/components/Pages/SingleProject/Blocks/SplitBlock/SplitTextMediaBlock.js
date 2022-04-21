@@ -10,7 +10,7 @@ import Container from "../../../../Containers/ContainerFluid";
 
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.data.right.media);
-	const specs = useLayout(data && data.data.layout);
+	useLayout(data && data.data.layout);
 
 	return (
 		<SplitBlock>
@@ -37,13 +37,8 @@ function SplitTextMediaBlock({ data }) {
 					)}
 				</Container>
 			</Box>
-			<Box className='right'>
-				<Media
-					variant={media && media.type}
-					src={media && media.data.url}
-					alt={media && media.data.alt}
-					aspectRatio={1}
-				/>
+			<Box className='right' sx={{ width: "50%" }}>
+				<Media items={media && media} aspectRatio={1} />
 			</Box>
 		</SplitBlock>
 	);

@@ -9,14 +9,21 @@ const useMedia = promise => {
 			promise.then(info => {
 				return setMedia({
 					type: info.type,
-					data: {
-						url: info.data.url,
-						alt: info.data.alt,
-					},
+					data: !Array.isArray(info.data)
+						? {
+								url: info.data.url,
+								alt: info.data.alt,
+						  }
+						: info.data,
 				});
 			});
 		}
 	}, [promise]);
+
+
+	useEffect(() => {
+		console.log(media)
+	}, [media])
 
 	return media;
 };

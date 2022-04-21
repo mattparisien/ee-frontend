@@ -9,9 +9,11 @@ function HeroBlock({ data }) {
 		justifyContent: "center",
 		[theme.breakpoints.down("sm")]: {
 			flexDirection: "column",
-			alignItems: "flex-start"
-		}
+			alignItems: "flex-start",
+		},
 	});
+
+	console.log(data);
 
 	return (
 		<Box sx={splitLayout}>
@@ -23,9 +25,12 @@ function HeroBlock({ data }) {
 			</Box>
 			<Box sx={{ flex: 0.5 }}>
 				<Media
-					variant='image'
-					src={data.image.url}
-					alt={data.image.alt}
+					items={{
+						type: "image",
+						data: {
+							...data.image,
+						},
+					}}
 					aspectRatio={"1.25"}
 					accent
 				/>

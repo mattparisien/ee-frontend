@@ -93,6 +93,7 @@ const SINGLEPROJECT = gql`
 							id
 							Inset
 							Flip
+							SplitTextMediaBlockTheme: Theme
 							TextLeft: Text
 							${GETINSTAPOST}
 							${GETUPLOADEDMEDIA}
