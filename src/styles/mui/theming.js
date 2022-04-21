@@ -38,11 +38,48 @@ const transitions = {
 };
 
 const typography = {
+	
 	body1: {
-		fontSize: 29,
+		
+		[theme.breakpoints.up("sm")]: {
+			fontSize: 22
+		},
+		[theme.breakpoints.up("md")]: {
+			fontSize: 26.5
+		},
+		[theme.breakpoints.up("lg")]: {
+			fontSize: 29
+		},
+		fontSize: 24
+	
 	},
-	body2: {
-		fontSize: 23,
+	// body2: {
+		
+	// 	[theme.breakpoints.up("sm")]: {
+	// 		fontSize: 13
+	// 	},
+	// 	[theme.breakpoints.up("md")]: {
+	// 		fontSize: 17
+	// 	},
+	// 	[theme.breakpoints.up("lg")]: {
+	// 		fontSize: 18.3
+	// 	},
+	// 	fontSize: 12
+	
+	// },
+	body3: {
+		fontFamily: "Helvetica",
+		[theme.breakpoints.up("sm")]: {
+			fontSize: 13
+		},
+		[theme.breakpoints.up("md")]: {
+			fontSize: 15
+		},
+		[theme.breakpoints.up("lg")]: {
+			fontSize: 17
+		},
+		fontSize: 12
+	
 	},
 	h1: {
 		fontFamily: "Kobe Bold",

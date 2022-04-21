@@ -47,6 +47,7 @@ function Markdown({ children, variantMap }) {
 				variant='h6'
 				children={props.children}
 				fontWeight={600}
+				mb={3}
 			/>
 		),
 
@@ -62,14 +63,14 @@ function Markdown({ children, variantMap }) {
 			<List disablePadding={true}>{props.children}</List>
 		),
 		li: ({ node, ...props }) => (
-			<ListItem disablePadding={true}>
+			<ListItem disablePadding>
 				<ListItemIcon sx={{ minWidth: "auto", marginRight: "0.6rem" }}>
 					<CheckIcon sx={{ height: "0.97rem", opacity: 0.5 }} />
 				</ListItemIcon>
 				<ListItemText
 					children={props.children}
 					primaryTypographyProps={{
-						variant: "h6",
+						variant: "body3",
 						fontWeight: 200,
 					}}
 				/>
