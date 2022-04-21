@@ -7,8 +7,6 @@ function Video({ src }) {
 		width: "100%",
 	};
 
-	console.log(src)
-
 	return (
 		<Box className='video-wrapper' sx={wrapper}>
 			<Box component='video' src={src} controls playsInline muted></Box>

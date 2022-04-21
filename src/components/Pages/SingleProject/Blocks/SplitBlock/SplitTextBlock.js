@@ -1,12 +1,10 @@
+import { Box } from "@mui/material";
 import React from "react";
-import { Box, Link } from "@mui/material";
-import SplitBlock from "./SplitBlock";
-import Markdown from "../../../../Markdown/Markdown";
 import Cta from "../../../../Link/Cta";
+import Markdown from "../../../../Markdown/Markdown";
+import SplitBlock from "./SplitBlock";
 
 function SplitTextBlock({ data }) {
-	console.log(data);
-
 	const right = {
 		"ul li": {
 			textAlign: "left",

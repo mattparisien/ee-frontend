@@ -15,7 +15,6 @@ function Markdown({ children }) {
 				variant='h2'
 				children={props.children}
 				fontWeight={400}
-				gutterBottom={4}
 			/>
 		),
 		h4: ({ node, ...props }) => (
@@ -24,7 +23,6 @@ function Markdown({ children }) {
 				variant='h4'
 				children={props.children}
 				fontWeight={400}
-				gutterBottom={4}
 			/>
 		),
 		h5: ({ node, ...props }) => (
@@ -33,7 +31,6 @@ function Markdown({ children }) {
 				variant='h5'
 				children={props.children}
 				fontWeight={600}
-				gutterBottom={4}
 			/>
 		),
 		h6: ({ node, ...props }) => (
@@ -42,26 +39,21 @@ function Markdown({ children }) {
 				variant='h6'
 				children={props.children}
 				fontWeight={600}
-				gutterBottom={4}
 			/>
 		),
 
 		p: ({ node, ...props }) => (
-			<Typography
-				component='p'
-				variant='h4'
-				children={props.children}
-				gutterBottom={10}
-			/>
+			<Typography component='p' variant='h4' children={props.children} />
 		),
-		ul: ({ node, ...props }) => <List disablePadding>{props.children}</List>,
+		ul: ({ node, ...props }) => (
+			<List disablePadding={true}>{props.children}</List>
+		),
 		li: ({ node, ...props }) => (
-			<ListItem disablePadding>
+			<ListItem disablePadding={true}>
 				<ListItemIcon sx={{ minWidth: "auto", marginRight: "0.6rem" }}>
 					<CheckIcon sx={{ height: "0.97rem", opacity: 0.5 }} />
 				</ListItemIcon>
 				<ListItemText
-					disablePadding
 					children={props.children}
 					primaryTypographyProps={{
 						variant: "h6",

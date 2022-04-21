@@ -1,23 +1,11 @@
-import { Block } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Media from "../../../Media/Media";
+import useLayout from "../helpers/hooks/useLayout";
+import useMedia from "../helpers/hooks/useMedia";
 
 function FullBleedMediaBlock({ data }) {
-	const [media, setMedia] = useState(null);
-
-	useEffect(() => {
-		if (data.data.media) {
-			data.data.media.then(info => {
-				return setMedia({
-					type: info.type,
-					data: {
-						url: info.data.url,
-						alt: info.data.alt,
-					},
-				});
-			});
-		}
-	}, [data]);
+	const media = useMedia(data.data.media);
+	const layout = useLayout(data.data.layout);
 
 	return (
 		<Media

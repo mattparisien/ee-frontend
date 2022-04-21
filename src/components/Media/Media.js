@@ -11,9 +11,6 @@ function Media(props) {
 		"accent accent-image accent-left": accent,
 	});
 
-
-	console.log(src)
-
 	const innerComponent = {
 		width: "100%",
 		height: "100%",

@@ -1,21 +1,24 @@
-import React from "react";
 import { Box } from "@mui/material";
+import { useContext } from "react";
+import { BlockContext } from "../Block";
 
 function SplitBlock(props) {
+	const { flip } = useContext(BlockContext);
+
 	const wrapper = theme => ({
 		display: "flex",
 		"> *": {
 			flex: 1,
 		},
 		"> .left": {
-			flex: props.flex.left,
+			flex: props.flex ? props.flex.left : 1,
 		},
 		"> .right": {
-			flex: props.flex.right,
+			flex: props.flex ? props.flex.right : 1,
 		},
-		flexDirection: props.flip ? "row-reverse" : "row",
+		flexDirection: flip ? "row-reverse" : "row",
 		[theme.breakpoints.down("sm")]: {
-			flexDirection: props.flip ? "column-reverse" : "column",
+			flexDirection: flip ? "column-reverse" : "column",
 		},
 	});
 

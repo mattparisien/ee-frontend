@@ -38,7 +38,6 @@ function SingleProjectPage({ location }) {
 
 	useEffect(() => {
 		if (data && !loading) {
-			console.log(data)
 			setProject(() => ({
 				id: data.project.data.id,
 				title: data.project.data.attributes.Title,
@@ -79,8 +78,8 @@ function SingleProjectPage({ location }) {
 			)}
 
 			{project &&
-				project.blocks.map(block => (
-					<Block name={block.name} id={block.id} key={block.id} data={block} />
+				project.blocks.map((block, i) => (
+					<Block name={block.name} id={block.id} key={i} data={block} />
 				))}
 
 			<Next color={accentColor[1]} currentProjectId={param} />

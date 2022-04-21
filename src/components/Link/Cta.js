@@ -1,10 +1,10 @@
-import React from "react";
-import { Link, Box } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Box, Link } from "@mui/material";
+import React from "react";
 
 function Cta({ children, target, href }) {
 	const styles = {
-		marginTop: "2rem",
+		marginTop: "4rem",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "flex-start",
@@ -40,7 +40,7 @@ function Cta({ children, target, href }) {
 			rel={"noreferrer"}
 			href={href}
 			sx={styles}
-			underline={"never"}
+			underline={"none"}
 			color='inherit'
 			className='accent accent-text accent-left'
 		/>

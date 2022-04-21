@@ -1,6 +1,8 @@
 import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
 
+const blockNames = [];
+
 const formatBlockData = array => {
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
@@ -24,15 +26,22 @@ const formatBlockData = array => {
 
 const formatSplitBlock = block => {
 	return {
-		flip: block.flip,
+		layout: {
+			flip: block.flip,
+			inset: block.Inset,
+		},
+
 		left: {
 			text: block.TextLeft || null,
-			media: block.Media ? block.media : null,
+			media: null,
 			cta: block.CallToAction.length >= 1 ? block.CallToAction[0] : null,
 		},
 		right: {
 			text: block.TextRight || null,
-			media: block.Media ? block.media : null,
+			media:
+				block.UploadedMedia || block.insta_post
+					? formatMedia(block).then(media => media)
+					: null,
 		},
 	};
 };
@@ -63,6 +72,9 @@ const formatQuoteBlockData = block => {
 const formatFullBleedMediaBlockData = block => {
 	return {
 		id: block.id,
+		layout: {
+			fullBleed: true,
+		},
 		media: formatMedia(block).then(media => media),
 	};
 };

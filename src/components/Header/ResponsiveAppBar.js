@@ -61,7 +61,7 @@ function ResponsiveAppBar({
 	});
 
 	return (
-		<AppBar position='fixed' sx={wrapper} elevation='0' classes={headerClasses}>
+		<AppBar position='fixed' sx={wrapper} elevation={0} >
 			<Container sx={{ height: "60px" }}>
 				<Toolbar sx={navToolbar}>
 					<Box className='spacer' sx={spacer}></Box>

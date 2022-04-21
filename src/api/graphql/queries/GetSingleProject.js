@@ -1,5 +1,6 @@
 import { gql, fragment } from "@apollo/client";
 import { QUOTEBLOCK } from "./fragments/GetBlocks";
+import CTA from "./fragments/GetCallToAction";
 
 const SINGLEPROJECT = gql`
 	query GetSingleProject($id: ID!) {
@@ -69,6 +70,33 @@ const SINGLEPROJECT = gql`
 							TextLeft
 							TextRight
 							Flip
+							CallToAction {
+								ButtonText
+								URL
+								OpenNewTab
+							}
+						}
+						... on ComponentBlocksSplitTextMediaBlock {
+							id
+							Inset
+							TextLeft: Text
+							insta_post {
+								data {
+									attributes {
+										PostUrl
+									}
+								}
+							}
+							UploadedMedia {
+								data {
+									attributes {
+										url
+										alternativeText
+										caption
+										provider_metadata
+									}
+								}
+							}
 							CallToAction {
 								ButtonText
 								URL

@@ -1,13 +1,5 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import ArrowButton from "../Button/ArrowButton";
-import ContainerFluid from "../Containers/ContainerFluid";
-import Link from "../Link/Link";
-import List from "../Lists/List";
-import { TextLogo } from "../Vector/Svg";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import { Box } from "@mui/material";
 import ResponsiveAppBar from "./ResponsiveAppBar";
 
 function Header({

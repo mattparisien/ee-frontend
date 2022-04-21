@@ -44,7 +44,7 @@ function Next({ color, currentProjectId }) {
 		<>
 			<Fade>
 				{result2.data && (
-					<Section sectionTheme={color} ref={container} noGutter>
+					<Section sectionTheme={color} noGutter>
 						<Link
 							classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
 							isRouterLink
@@ -70,7 +70,9 @@ function Next({ color, currentProjectId }) {
 								<Fade bottom>
 									<Marquee gradient={false} direction={"right"}>
 										{marqueeWords &&
-											marqueeWords.map(word => <MarqueeItem text={word} />)}
+											marqueeWords.map((word, i) => (
+												<MarqueeItem text={word} key={i} />
+											))}
 									</Marquee>
 								</Fade>
 							</div>
@@ -83,7 +85,11 @@ function Next({ color, currentProjectId }) {
 }
 
 function MarqueeItem({ text }) {
-	return <Typography variant='h2' mr={5}>{text}</Typography>;
+	return (
+		<Typography variant='h2' mr={5}>
+			{text}
+		</Typography>
+	);
 }
 
 export default Next;

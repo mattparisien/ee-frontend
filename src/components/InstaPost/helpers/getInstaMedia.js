@@ -14,7 +14,6 @@ const getInstaMedia = (url, options) => {
 				return getCarouselMedia(post.id, options);
 			}
 
-			console.log(post);
 			return post;
 		});
 };
