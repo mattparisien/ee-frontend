@@ -42,9 +42,9 @@ function QuoteBlock({ data }) {
 				component='blockquote'
 				sx={quote}
 			>{`"${data.data.quote}"`}</Typography>
-			<Box sx={authorWrap} mt={5}>
+			<Box sx={authorWrap} mt={8}>
 				<Typography
-					variant='h5'
+					variant='h6'
 					ml={4}
 					sx={author}
 					flex={3}

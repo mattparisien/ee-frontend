@@ -61,12 +61,7 @@ function Next({ color, currentProjectId }) {
 											pb={30}
 										>
 											<Fade bottom>
-												<Typography
-													variant='h2'
-													className=' -split -fadeUpChars'
-												>
-													Next
-												</Typography>
+												<Typography variant='h2' fontFamily={"Kobe"}>Next</Typography>
 											</Fade>
 											<Arrow color='dark' />
 										</Box>
@@ -91,7 +86,7 @@ function Next({ color, currentProjectId }) {
 
 function MarqueeItem({ text }) {
 	return (
-		<Typography variant='h2' mr={5}>
+		<Typography variant='h1' mr={15}>
 			{text}
 		</Typography>
 	);

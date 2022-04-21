@@ -19,8 +19,8 @@ function ResponsiveAppBar({
 		height: theme.spacing(15),
 		".MuiContainer-root": {
 			width: "100%",
-			height: "100%"
-		}
+			height: "100%",
+		},
 	});
 
 	const logoWrap = {
@@ -35,11 +35,8 @@ function ResponsiveAppBar({
 	};
 
 	const navToolbar = theme => ({
-		position: "absolute",
 		width: "100%",
 		height: "100%",
-		top: 0,
-		left: 0,
 		zIndex: 0,
 		color: "black",
 		display: "flex",
@@ -67,7 +64,7 @@ function ResponsiveAppBar({
 	});
 
 	return (
-		<AppBar position='fixed' sx={wrapper} elevation={0} >
+		<AppBar position='fixed' sx={wrapper} elevation={0}>
 			<Container>
 				<Toolbar sx={navToolbar}>
 					<Box className='spacer' sx={spacer}></Box>
@@ -82,7 +79,20 @@ function ResponsiveAppBar({
 							toggleTransitioning={toggleTransitioning}
 						/>
 					</Box>
-					<Burger onBurgerClick={onBurgerClick} />
+					<Box
+						className='mobile-nav'
+						sx={theme => ({
+							width: edgesWidth,
+							display: "flex",
+							justifyContent: "flex-end",
+							alignItems: "center",
+							[theme.breakpoints.up("md")]: {
+								display: "none",
+							},
+						})}
+					>
+						<Burger onBurgerClick={onBurgerClick} />
+					</Box>
 				</Toolbar>
 			</Container>
 		</AppBar>
