@@ -46,36 +46,41 @@ function Next({ color, currentProjectId }) {
 				{result2.data && (
 					<Section sectionTheme={color} noGutter>
 						<Link
-							classes={`-stretchX -block -stretchY -padding-lg -hover-underline`}
+							classes={`-stretchX -block -stretchY -hover-underline`}
 							isRouterLink
 							href={`/projects/${result2.data.project.data.id}`}
 						>
-							<div className='c-link_inner'>
-								<ContainerFluid classes='-relative -flex -align-center -justify-between'>
-									<Box
-										display='flex'
-										justifyContent='space-between'
-										alignItems='center'
-										flexDirection='row-reverse'
-										pb={20}
-									>
-										<Fade bottom>
-											<Typography variant='h2' className=' -split -fadeUpChars'>
-												Next
-											</Typography>
-										</Fade>
-										<Arrow color='dark' />
-									</Box>
-								</ContainerFluid>
-								<Fade bottom>
-									<Marquee gradient={false} direction={"right"}>
-										{marqueeWords &&
-											marqueeWords.map((word, i) => (
-												<MarqueeItem text={word} key={i} />
-											))}
-									</Marquee>
-								</Fade>
-							</div>
+							<Box py={20}>
+								<div className='c-link_inner'>
+									<ContainerFluid classes='-relative -flex -align-center -justify-between'>
+										<Box
+											display='flex'
+											justifyContent='space-between'
+											alignItems='center'
+											flexDirection='row-reverse'
+											pb={30}
+										>
+											<Fade bottom>
+												<Typography
+													variant='h2'
+													className=' -split -fadeUpChars'
+												>
+													Next
+												</Typography>
+											</Fade>
+											<Arrow color='dark' />
+										</Box>
+									</ContainerFluid>
+									<Fade bottom>
+										<Marquee gradient={false} direction={"right"}>
+											{marqueeWords &&
+												marqueeWords.map((word, i) => (
+													<MarqueeItem text={word} key={i} />
+												))}
+										</Marquee>
+									</Fade>
+								</div>
+							</Box>
 						</Link>
 					</Section>
 				)}
