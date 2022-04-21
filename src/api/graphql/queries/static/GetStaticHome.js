@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-
 const STATICHOME = gql`
 	query GetAbout {
 		about {

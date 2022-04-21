@@ -12,6 +12,8 @@ import animateNotes from "./animations";
 import Notes from "./Notes";
 import Sheet from "./Sheet";
 import StepItem from "./StepItem";
+import AnimationWrapper from "./AnimationWrapper";
+import CircleSvg from "../../../Vector/Circle";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -103,7 +105,7 @@ function How({ steps }) {
 
 			".c-steps_sheet_line": {
 				"&:last-of-type": {
-					display: 'block',
+					display: "block",
 				},
 				"&:nth-of-type(even)": {
 					display: "none",
@@ -216,44 +218,99 @@ function How({ steps }) {
 
 	return (
 		<>
-			<Section classes='o-how' data-theme='light' ref={container} noGutter>
-				<ContainerFluid sx={{ maxWidth: "100% !important" }}>
-					<Box className='heading-layout' sx={headingLayout} mb={20}>
-						<SectionHeading
-							textAlign='center'
-							sx={heading}
-							pb={5}
-							pt={5}
-							mb={5}
-							text={"Finding Your Rhythm"}
-						/>
+			<Section
+				classes='o-how -relative'
+				data-theme='light'
+				ref={container}
+				noGutter
+			>
+				<AnimationWrapper>
+					<ContainerFluid maxWidth={false}>
+						<Box className='heading-layout' sx={headingLayout} mb={20}>
+							<SectionHeading
+								textAlign='center'
+								sx={heading}
+								pb={5}
+								pt={5}
+								mb={5}
+								text={"Finding Your Rhythm"}
+							/>
 
-						{/* <Box sx={playerSvg}>
+							{/* <Box sx={playerSvg}>
 							<InstrumentPlayer />
 						</Box> */}
-					</Box>
-
-					<Box
-						className='steps-container -relative'
-						sx={containerStyles}
-						ref={stepsContainer}
-					>
-						<Box className='c-steps' sx={{ height: "100%" }}>
-							<div className='c-steps_background'></div>
-							{steps &&
-								steps.map(step => {
-									return <StepItem step={step} key={step.id} />;
-								})}
-
-							<Sheet />
 						</Box>
 
-						<Notes />
-					</Box>
-				</ContainerFluid>
+						<Box
+							className='steps-container -relative'
+							sx={containerStyles}
+							ref={stepsContainer}
+						>
+							<Box className='c-steps' sx={{ height: "100%" }}>
+								<div className='c-steps_background'></div>
+								{steps &&
+									steps.map(step => {
+										return <StepItem step={step} key={step.id} />;
+									})}
+
+								<Sheet />
+							</Box>
+
+							<Notes />
+						</Box>
+					</ContainerFluid>
+					<Circles />
+				</AnimationWrapper>
 			</Section>
 		</>
 	);
 }
+
+const Circles = () => {
+	const wrapper = theme => ({
+		width: "100%",
+		height: "100%",
+		position: "absolute",
+		top: 0,
+		left: 0,
+
+		".circle-wrapper": {
+			position: "absolute",
+			bottom: 0,
+			left: 0,
+			mixBlendMode: "multiply",
+			fill: theme.palette.primary.colorSet.yellow,
+			"&:nth-child(1)": {
+				width: "150px",
+				top: "20%",
+				left: "10%"
+			},
+			"&:nth-child(2)": {
+				width: "250px",
+				top: "30%",
+				left: "70%"
+			}
+		},
+	});
+
+	return (
+		<Box className='circles-wrapper' sx={wrapper}>
+			<Box
+				className='circles-inner'
+				position='relative'
+				sx={{ width: "100%", height: "100%" }}
+			>
+				<CircleSvg />
+				<CircleSvg />
+				{/* <CircleSvg />
+				<CircleSvg />
+				<CircleSvg />
+				<CircleSvg />
+				<CircleSvg />
+				<CircleSvg /> */}
+			</Box>
+		</Box>
+	);
+};
 
 export default How;

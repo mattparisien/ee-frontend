@@ -1,28 +1,23 @@
 import React from "react";
+import { Box } from "@mui/material";
 
 function CircleSvg(props) {
 	return (
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			viewBox='0 0 297.7 297.7'
-			{...props}
-		>
-			<g
-				style={{
-					isolation: "isolate",
-				}}
+		<Box className="circle-wrapper">
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				viewBox='0 0 297.7 297.7'
+				{...props}
 			>
-				<circle
-					cx={148.85}
-					cy={148.85}
-					r={148.85}
+				<g
 					style={{
-						fill: "#e5d010",
-						mixBlendMode: "multiply",
+						isolation: "isolate",
 					}}
-				/>
-			</g>
-		</svg>
+				>
+					<circle cx={148.85} cy={148.85} r={148.85} />
+				</g>
+			</svg>
+		</Box>
 	);
 }
 

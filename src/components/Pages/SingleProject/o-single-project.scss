@@ -1,4 +1,4 @@
-.page-singleProject  {
+.page-singleProject {
 	.c-figure {
 		width: 100%;
 		height: 100%;
@@ -7,9 +7,8 @@
 	}
 
 	.o-hero {
-
 		h2 {
-			font-family: 'Kobe Bold';
+			font-family: "Kobe Bold";
 		}
 
 		&_artistName {
@@ -31,8 +30,6 @@
 		}
 
 		.o-container {
-			
-
 			@include media("<=phoneL") {
 				height: auto;
 			}
@@ -53,14 +50,15 @@
 					.o-hero_text {
 						position: static;
 						margin: 0;
-						
+
 						width: 100%;
 
 						.o-hero_artistName {
 							font-size: 4vw;
 						}
 
-						.o-h3, .o-h2 {
+						.o-h3,
+						.o-h2 {
 							color: $dark;
 						}
 					}
@@ -92,12 +90,9 @@
 			align-items: flex-start;
 			justify-content: center;
 
-
-	
 			@include media("<=tablet") {
 				opacity: 1;
 			}
-
 		}
 
 		// &_image {
@@ -123,7 +118,6 @@
 			.o-h3 {
 				margin-bottom: $space-lg;
 			}
-
 		}
 
 		&_left,
@@ -136,8 +130,6 @@
 		&_left {
 			margin-right: $space-lg;
 		}
-
-
 	}
 
 	.o-feature {
@@ -172,17 +164,15 @@
 	}
 
 	.o-additionalMedia {
-
-
 		.c-grid_media {
-			> div:nth-child(1), > div:nth-child(2) {
+			> div:nth-child(1),
+			> div:nth-child(2) {
 				display: none;
 			}
 		}
 
 		@include media("<=tablet") {
 			.c-grid_media {
-				
 				> div {
 					margin-bottom: 2rem;
 				}
@@ -191,26 +181,18 @@
 					display: block;
 				}
 
-			.c-grid_img-wrapper {
-				height: 100%;
+				.c-grid_img-wrapper {
+					height: 100%;
+				}
 			}
-			}
-
 		}
 	}
 
-	
-
 	.o-details {
-
-
 		&_left {
 			width: 50%;
 			height: 100%;
 
-	
-
-			
 			.o-details_left_image {
 				overflow: hidden;
 				height: 100%;
@@ -229,7 +211,6 @@
 		}
 
 		@include media("<=tablet") {
-
 			&_left {
 				display: none;
 			}
@@ -237,7 +218,6 @@
 				width: 100%;
 				margin: 0;
 			}
-			
 		}
 
 		.o-container {
@@ -252,15 +232,11 @@
 				margin-top: 0;
 			}
 
-	
-
 			.work {
 				margin-top: $space-md;
 			}
 		}
 	}
-
-
 
 	.c-arrow {
 		width: 20vw;
@@ -275,6 +251,9 @@
 	}
 
 	.o-next {
+		.marquee {
+			justify-content: space-between;
+		}
 
 		.marquee-container {
 			overflow: hidden;
@@ -291,7 +270,6 @@
 		h2 {
 			padding-bottom: 0;
 		}
-
 
 		.marquee {
 			padding-top: 10vw;

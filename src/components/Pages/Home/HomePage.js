@@ -43,6 +43,7 @@ function HomePage({ pageHeading, location }) {
 					.map(step => ({
 						title: step.attributes.Title,
 						body: step.attributes.Body,
+						id: step.id
 					})),
 				testimonials: data.testimonials.data.map(testimonial => ({
 					quote: testimonial.attributes.Quote,

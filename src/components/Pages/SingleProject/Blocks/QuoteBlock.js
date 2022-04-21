@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 function QuoteBlock({ data }) {
+	
 	const author = {
 		display: "block",
 		textAlign: "left",
@@ -37,7 +38,7 @@ function QuoteBlock({ data }) {
 			flexDirection='column'
 		>
 			<Typography
-				variant='h3'
+				variant='h4'
 				component='blockquote'
 				sx={quote}
 			>{`"${data.data.quote}"`}</Typography>

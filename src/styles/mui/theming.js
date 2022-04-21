@@ -2,7 +2,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material";
 
 let theme = createTheme();
 
-const yellow = "#16854b";
+const yellow = "#F6E544";
 
 const sitePalette = {
 	primary: {
