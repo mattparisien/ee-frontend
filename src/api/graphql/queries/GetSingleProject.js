@@ -43,8 +43,6 @@ data {
 
 `;
 
-
-
 const SINGLEPROJECT = gql`
 	query GetSingleProject($id: ID!) {
 		project(id: $id) {

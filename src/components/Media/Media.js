@@ -4,6 +4,8 @@ import React from "react";
 import Image from "./Image";
 import Video from "./Video";
 import Carousel from "./Carousel";
+import ConditionalWrapper from "../Containers/ConditionalWrapper";
+import { Link } from "@mui/material";
 
 function Media(props) {
 	const { aspectRatio, width, height, variant, accent, items } = props;
@@ -38,20 +40,19 @@ function Media(props) {
 				<Video src={items && items.data.url} />
 			)}
 			{items && items.type === "carousel" && (
-				<Carousel
-					items={items && items.data}
-					image={url => <Image src={url} />}
-					video={url => <Video src={url} />}
-				/>
+				<ConditionalWrapper
+					wrapper={children => (
+						<Link children={children} href={items.permalink} target='_blank' />
+					)}
+					condition={items.LinkableMedia}
+				>
+					<Carousel
+						items={items && items.data}
+						image={url => <Image src={url} />}
+						video={url => <Video src={url} />}
+					/>
+				</ConditionalWrapper>
 			)}
-
-			{/* {variant === "insta" && (
-				<InstaPost
-					postInfo={{
-						URL: src,
-					}}
-				/>
-			)} */}
 		</Box>
 	);
 }
