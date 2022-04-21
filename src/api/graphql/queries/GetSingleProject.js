@@ -1,6 +1,49 @@
-import { gql, fragment } from "@apollo/client";
-import { QUOTEBLOCK } from "./fragments/GetBlocks";
-import CTA from "./fragments/GetCallToAction";
+import { gql } from "@apollo/client";
+
+const GETUPLOADEDMEDIA = `
+UploadedMedia {
+	data {
+		attributes {
+			url
+			alternativeText
+			caption
+			provider_metadata
+		}
+	}
+}
+`;
+
+const GETCTA = `
+CallToAction {
+	ButtonText
+	URL
+	OpenNewTab
+}
+`;
+
+const GETINSTAPOST = `
+insta_post {
+	data {
+		attributes {
+			PostUrl
+		}
+	}
+}
+
+`;
+
+const GETIMAGEDATA = `
+data {
+	attributes {
+		url
+		alternativeText
+		caption
+	}
+}
+
+`;
+
+
 
 const SINGLEPROJECT = gql`
 	query GetSingleProject($id: ID!) {
@@ -11,12 +54,7 @@ const SINGLEPROJECT = gql`
 					Title
 					Subtitle
 					FeatureImage {
-						data {
-							attributes {
-								url
-								alternativeText
-							}
-						}
+						${GETIMAGEDATA}
 					}
 					Choose {
 						__typename
@@ -25,13 +63,7 @@ const SINGLEPROJECT = gql`
 
 							GalleryBlockTheme: Theme
 							Images {
-								data {
-									attributes {
-										url
-										alternativeText
-										caption
-									}
-								}
+								${GETIMAGEDATA}
 							}
 						}
 						... on ComponentBlocksQuoteBlock {
@@ -42,23 +74,8 @@ const SINGLEPROJECT = gql`
 						}
 						... on ComponentBlocksFullBleedMediaBlock {
 							id
-							UploadedMedia {
-								data {
-									attributes {
-										url
-										alternativeText
-										caption
-										provider_metadata
-									}
-								}
-							}
-							insta_post {
-								data {
-									attributes {
-										PostUrl
-									}
-								}
-							}
+							${GETUPLOADEDMEDIA}
+							${GETINSTAPOST}
 						}
 						... on ComponentBlocksTextBlock {
 							id
@@ -70,38 +87,16 @@ const SINGLEPROJECT = gql`
 							TextLeft
 							TextRight
 							Flip
-							CallToAction {
-								ButtonText
-								URL
-								OpenNewTab
-							}
+							${GETCTA}
 						}
 						... on ComponentBlocksSplitTextMediaBlock {
 							id
 							Inset
+							Flip
 							TextLeft: Text
-							insta_post {
-								data {
-									attributes {
-										PostUrl
-									}
-								}
-							}
-							UploadedMedia {
-								data {
-									attributes {
-										url
-										alternativeText
-										caption
-										provider_metadata
-									}
-								}
-							}
-							CallToAction {
-								ButtonText
-								URL
-								OpenNewTab
-							}
+							${GETINSTAPOST}
+							${GETUPLOADEDMEDIA}
+							${GETCTA}
 						}
 					}
 				}

@@ -43,7 +43,7 @@ function Markdown({ children }) {
 		),
 
 		p: ({ node, ...props }) => (
-			<Typography component='p' variant='h4' children={props.children} />
+			<Typography component='p' variant='body1' children={props.children} />
 		),
 		ul: ({ node, ...props }) => (
 			<List disablePadding={true}>{props.children}</List>

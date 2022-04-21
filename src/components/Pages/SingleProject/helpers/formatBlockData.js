@@ -27,7 +27,7 @@ const formatBlockData = array => {
 const formatSplitBlock = block => {
 	return {
 		layout: {
-			flip: block.flip,
+			flip: block.Flip,
 			inset: block.Inset,
 		},
 

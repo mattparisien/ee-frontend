@@ -76,7 +76,7 @@ function Block(props) {
 					disableGutters={state.container.disablePadding}
 					maxWidth={state.container.maxWidth}
 				>
-					<Box pt={padding} pb={padding}>
+					<Box py={theme => theme.spacing(20)}>
 						{props.data &&
 							React.createElement(BLOCKS[props.name], {
 								key: props.id,

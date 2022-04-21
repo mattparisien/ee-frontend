@@ -5,11 +5,27 @@ import { Container as MuiContainer } from "@mui/material";
 function Container(props) {
 	const classes = classNames("container", { [props.classes]: props.classes });
 
+	const containerSpacing = theme => ({
+		[theme.breakpoints.up("xs")]: {
+			paddingLeft: theme.spacing(4),
+			paddingRight: theme.spacing(4)
+		},
+		[theme.breakpoints.up("sm")]: {
+			paddingLeft: theme.spacing(8),
+			paddingRight: theme.spacing(8)
+		},
+		[theme.breakpoints.up("md")]: {
+			paddingLeft: theme.spacing(20),
+			paddingRight: theme.spacing(20)
+		}
+	})
+
 	return (
 		<MuiContainer
 			className={classes}
 			disableGutters={props.disableGutters}
 			maxWidth={props.maxWidth}
+			sx={!props.disableGutters && containerSpacing}
 		>
 			{props.children}
 		</MuiContainer>

@@ -80,51 +80,51 @@ ul {
 	overflow: hidden;
 }
 
-@media (max-width: 699px) {
-	html {
-		font-size: 12px;
-	}
-}
+// @media (max-width: 699px) {
+// 	html {
+// 		font-size: 12px;
+// 	}
+// }
 
 h1 {
 	font-family: "Kobe Bold";
 }
 
-@media (min-width: 700px) and (max-width: 1024px) {
-	html {
-		font-size: 13px;
-	}
-}
-@media (min-width: 1025px) and (max-width: 1199px) {
-	html {
-		font-size: 13px;
-	}
-}
-@media (min-width: 1200px) and (max-width: 1399px) {
-	html {
-		font-size: 15px;
-	}
-}
-@media (min-width: 1400px) and (max-width: 1599px) {
-	html {
-		font-size: 15px;
-	}
-}
-@media (min-width: 1600px) and (max-width: 1999px) {
-	html {
-		font-size: 17px;
-	}
-}
-@media (min-width: 2000px) and (max-width: 2399px) {
-	html {
-		font-size: 19px;
-	}
-}
-@media (min-width: 2400px) {
-	html {
-		font-size: 21px;
-	}
-}
+// @media (min-width: 700px) and (max-width: 1024px) {
+// 	html {
+// 		font-size: 13px;
+// 	}
+// }
+// @media (min-width: 1025px) and (max-width: 1199px) {
+// 	html {
+// 		font-size: 13px;
+// 	}
+// }
+// @media (min-width: 1200px) and (max-width: 1399px) {
+// 	html {
+// 		font-size: 15px;
+// 	}
+// }
+// @media (min-width: 1400px) and (max-width: 1599px) {
+// 	html {
+// 		font-size: 15px;
+// 	}
+// }
+// @media (min-width: 1600px) and (max-width: 1999px) {
+// 	html {
+// 		font-size: 17px;
+// 	}
+// }
+// @media (min-width: 2000px) and (max-width: 2399px) {
+// 	html {
+// 		font-size: 19px;
+// 	}
+// }
+// @media (min-width: 2400px) {
+// 	html {
+// 		font-size: 21px;
+// 	}
+// }
 
 [data-theme="green"] {
 	background-color: $green;

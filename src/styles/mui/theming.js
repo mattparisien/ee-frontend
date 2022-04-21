@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 
 let theme = createTheme();
 
@@ -37,17 +37,33 @@ const transitions = {
 	},
 };
 
-theme = createTheme(theme, {
-	transitions: transitions,
-	overrides: {
-		MuiTypography: {
-			fontFamily: "Kobe",
-			[theme.breakpoints.up("md")]: {
-				fontSize: "11rem",
-				background: "red",
-			},
+const typography = {
+	body1: {
+		fontSize: 29,
+	},
+	h1: {
+		fontFamily: "Kobe Bold",
+		[theme.breakpoints.down("sm")]: {
+			fontSize: "5.2rem", // 20px
+			lineHeight: "5.6rem", //  30px
 		},
 	},
+	p: {
+		fontFamily: "Inter",
+	},
+};
+
+theme = createTheme(theme, {
+	transitions: transitions,
+	// overrides: {
+	// 	MuiTypography: {
+	// 		fontFamily: "Kobe",
+	// 		[theme.breakpoints.up("md")]: {
+	// 			fontSize: "11rem",
+	// 			background: "red",
+	// 		},
+	// 	},
+	// },
 	components: {
 		MuiBox: {
 			variants: [
@@ -61,25 +77,11 @@ theme = createTheme(theme, {
 			],
 		},
 	},
-	typography: {
-		fontSize: 17,
-		fontFamily: ["Inter"],
-		".MuiTypography-root": {
-			fontFamily: "Inter",
-		},
-
-		h1: {
-			fontFamily: "Kobe Bold",
-			[theme.breakpoints.down("sm")]: {
-				fontSize: "5.2rem", // 20px
-				lineHeight: "5.6rem", //  30px
-			},
-		},
-		p: {
-			fontFamily: "Inter",
-		},
-	},
+	typography: typography,
+	spacing: factor => `${0.25 * factor}rem`,
 	palette: sitePalette,
 });
+
+theme = responsiveFontSizes(theme);
 
 export { theme };
