@@ -3,7 +3,7 @@ import React, { forwardRef, useContext } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { useNavigate } from "react-router-dom";
 import { SiteWideControls } from "../../context/Context";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/material";
 
 function Link(props, ref) {
@@ -45,7 +45,7 @@ function Link(props, ref) {
 			component='button'
 			{...props}
 		>
-			{props.children}
+			<Typography variant='body3'>{props.children}</Typography>
 		</Box>
 	) : (
 		// <RouterLink to={props.href} className={classes} ref={ref} onClick={() => console.log('has clicked!')}>{props.children}</RouterLink>
