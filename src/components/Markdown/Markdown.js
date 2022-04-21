@@ -4,10 +4,15 @@ import { Typography } from "@mui/material";
 import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
-function Markdown({ children }) {
+function Markdown({ children, variantMap }) {
 	const componentMap = {
 		h1: ({ node, ...props }) => (
-			<Typography component='h1' variant='h1' children={props.children} />
+			<Typography
+				component='h1'
+				variant='h1'
+				children={props.children}
+				mb={7}
+			/>
 		),
 		h2: ({ node, ...props }) => (
 			<Typography
@@ -15,6 +20,7 @@ function Markdown({ children }) {
 				variant='h2'
 				children={props.children}
 				fontWeight={400}
+				mb={7}
 			/>
 		),
 		h4: ({ node, ...props }) => (
@@ -23,6 +29,7 @@ function Markdown({ children }) {
 				variant='h4'
 				children={props.children}
 				fontWeight={400}
+				mb={7}
 			/>
 		),
 		h5: ({ node, ...props }) => (
@@ -31,6 +38,7 @@ function Markdown({ children }) {
 				variant='h5'
 				children={props.children}
 				fontWeight={600}
+				mb={7}
 			/>
 		),
 		h6: ({ node, ...props }) => (
@@ -43,7 +51,12 @@ function Markdown({ children }) {
 		),
 
 		p: ({ node, ...props }) => (
-			<Typography component='p' variant='body1' children={props.children} />
+			<Typography
+				component='p'
+				variant={variantMap && variantMap.p ? variantMap.p : "body1"}
+				children={props.children}
+				mb={5}
+			/>
 		),
 		ul: ({ node, ...props }) => (
 			<List disablePadding={true}>{props.children}</List>
@@ -64,7 +77,13 @@ function Markdown({ children }) {
 		),
 	};
 	return (
-		<ReactMarkdown components={componentMap} children={children} /> || null
+		(
+			<ReactMarkdown
+				components={componentMap}
+				children={children}
+				variantMap={variantMap}
+			/>
+		) || null
 	);
 }
 

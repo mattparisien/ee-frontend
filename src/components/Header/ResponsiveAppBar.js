@@ -16,6 +16,11 @@ function ResponsiveAppBar({
 }) {
 	const wrapper = theme => ({
 		backgroundColor: theme.palette.primary[color === "dark" ? "light" : "dark"],
+		height: theme.spacing(15),
+		".MuiContainer-root": {
+			width: "100%",
+			height: "100%"
+		}
 	});
 
 	const logoWrap = {
@@ -32,6 +37,7 @@ function ResponsiveAppBar({
 	const navToolbar = theme => ({
 		position: "absolute",
 		width: "100%",
+		height: "100%",
 		top: 0,
 		left: 0,
 		zIndex: 0,
@@ -62,7 +68,7 @@ function ResponsiveAppBar({
 
 	return (
 		<AppBar position='fixed' sx={wrapper} elevation={0} >
-			<Container sx={{ height: "60px" }}>
+			<Container>
 				<Toolbar sx={navToolbar}>
 					<Box className='spacer' sx={spacer}></Box>
 					<Box className='logo-wrap' sx={logoWrap}>

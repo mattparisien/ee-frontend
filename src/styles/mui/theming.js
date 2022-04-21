@@ -41,6 +41,9 @@ const typography = {
 	body1: {
 		fontSize: 29,
 	},
+	body2: {
+		fontSize: 23,
+	},
 	h1: {
 		fontFamily: "Kobe Bold",
 		[theme.breakpoints.down("sm")]: {

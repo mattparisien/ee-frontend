@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import Markdown from "../../../../Markdown/Markdown";
 import Media from "../../../../Media/Media";
@@ -6,6 +6,7 @@ import useLayout from "../../helpers/hooks/useLayout";
 import useMedia from "../../helpers/hooks/useMedia";
 import SplitBlock from "./SplitBlock";
 import Cta from "../../../../Link/Cta";
+import Container from "../../../../Containers/ContainerFluid";
 
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.data.right.media);
@@ -20,7 +21,13 @@ function SplitTextMediaBlock({ data }) {
 				justifyContent='center'
 			>
 				<Container>
-					<Markdown>{data && data.data.left.text}</Markdown>
+					<Markdown
+						variantMap={{
+							p: "body2",
+						}}
+					>
+						{data && data.data.left.text}
+					</Markdown>
 					{data.data.left.cta && (
 						<Cta
 							children={data.data.left.cta.ButtonText}
