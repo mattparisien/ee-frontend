@@ -32,7 +32,9 @@ function HeroBlock({ data }) {
 
 						...data.image,
 					}}
-					aspectRatio={"1.25"}
+					options={{
+						format: "portrait"
+					}}
 					accent
 				/>
 			</Box>

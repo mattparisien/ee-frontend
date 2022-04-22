@@ -21,6 +21,9 @@ function Page(props) {
 	const styles = {
 		minHeight: "100vh",
 		paddingTop: `${headerHeight}px`,
+		"section:last-of-type": {
+			marginBottom: 0
+		}
 	};
 
 	return (

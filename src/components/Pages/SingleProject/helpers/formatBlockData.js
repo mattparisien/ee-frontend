@@ -95,6 +95,8 @@ const formatMedia = block => {
 		if (!Array.isArray(info)) {
 			//Is a single media item
 
+			
+
 			finalObject.data.value = {
 				options: transformKeysToLowerCase(postOptions),
 				permalink: permalink,

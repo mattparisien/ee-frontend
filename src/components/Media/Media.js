@@ -1,11 +1,10 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "./Image";
 import Video from "./Video";
 import Carousel from "./Carousel";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
-
 import Container from "../Containers/ContainerFluid";
 
 function Media(props) {
@@ -23,13 +22,13 @@ function Media(props) {
 		objectPosition: "center",
 	};
 
-	const wrapper = {
+	const wrapper = theme => ({
 		height: height,
 		width: width,
 		position: "relative",
-		aspectRatio: `1 / ${aspectRatio}`,
+		aspectRatio: `1 / ${options && theme.aspectRatio[options.format]}`,
 		"img, video": innerComponent,
-	};
+	});
 
 	return (
 		<Box className={classes} sx={wrapper}>
@@ -60,7 +59,7 @@ function Media(props) {
 						/>
 					)}
 				</ConditionalWrapper>
-				<Box className='media-caption' mt={2}>
+				<Box className='media-caption' m={2}>
 					<Typography variant='body2' textAlign='right' sx={{ opacity: 0.6 }}>
 						Photo by Haha
 					</Typography>

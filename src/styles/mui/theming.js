@@ -24,6 +24,12 @@ const sitePalette = {
 	},
 };
 
+const aspectRatio = {
+	"square": 1,
+	"portrait": 1.25,
+	"landscape": 0.5625
+}
+
 const transitions = {
 	duration: {
 		shortest: 150,
@@ -95,6 +101,7 @@ const typography = {
 
 theme = createTheme(theme, {
 	transitions: transitions,
+	aspectRatio: aspectRatio,
 	// overrides: {
 	// 	MuiTypography: {
 	// 		fontFamily: "Kobe",
