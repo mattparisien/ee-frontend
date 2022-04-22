@@ -13,35 +13,45 @@ function SplitTextMediaBlock({ data }) {
 	useLayout(data && data.data.layout);
 
 	return (
-		<SplitBlock>
-			<Box
-				className='left'
-				display='flex'
-				alignItems='center'
-				justifyContent='center'
-			>
-				<Container>
-					<Markdown
-						variantMap={{
-							p: "body2",
-						}}
-					>
-						{data && data.data.left.text}
-					</Markdown>
-					{data.data.left.cta && (
-						<Cta
-							children={data.data.left.cta.ButtonText}
-							target={data.data.left.cta.OpenNewTab ? "_blank" : "_self"}
-							href={data.data.left.cta.URL}
-						/>
-					)}
-				</Container>
-			</Box>
-			<Box className='right' sx={{ width: "50%" }}>
-				<Media items={media && media} aspectRatio={1} />
-			</Box>
-		</SplitBlock>
+		<SplitBlock
+			leftComponent={<Left data={data} />}
+			rightComponent={<Right media={media} />}
+			width={{
+				left: "50%",
+				right: "50%",
+			}}
+			leftStyles={{
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+			}}
+		/>
 	);
+}
+
+function Left({ data }) {
+	return (
+		<Container>
+			<Markdown
+				variantMap={{
+					p: "body2",
+				}}
+			>
+				{data && data.data.left.text}
+			</Markdown>
+			{data.data.left.cta && (
+				<Cta
+					children={data.data.left.cta.ButtonText}
+					target={data.data.left.cta.OpenNewTab ? "_blank" : "_self"}
+					href={data.data.left.cta.URL}
+				/>
+			)}
+		</Container>
+	);
+}
+
+function Right({ media }) {
+	return <Media items={media && media} aspectRatio={1} />;
 }
 
 export default SplitTextMediaBlock;

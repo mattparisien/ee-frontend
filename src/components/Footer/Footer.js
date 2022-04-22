@@ -9,6 +9,7 @@ import SocialList from "../Lists/SocialList";
 import { DrawnLogo } from "../Vector/Svg";
 import { useQuery } from "@apollo/client";
 import FOOTER from "../../api/graphql/queries/static/GetFooter";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
 	containerStyles,
 	boxStyles,
@@ -24,6 +25,10 @@ export default function Footer(props) {
 	const { loading, error, data } = useQuery(FOOTER);
 	const scroll = useLocomotiveScroll();
 	const mobile = useMediaQuery("(max-width: 400px)");
+
+	const handleScrollTop = e => {
+		e.preventDefault();
+	};
 
 	useEffect(() => {
 		if (data && !loading) {
@@ -84,17 +89,29 @@ export default function Footer(props) {
 
 					<Box pt={4} pb={4} sx={bottom}>
 						<div className='-flex -align-center -justify-center -splitChars'>
-							<p>The Eyes & Ears Agency</p>
+							<Typography variant='body2' component='p'>
+								The Eyes & Ears Agency
+							</Typography>
 							<Box className='-fadeUp'>
 								<SocialList />
 							</Box>
 						</div>
 						<Box className='-fadeUp'>
-							<ArrowButton
-								color='light'
-								rotation={90}
-								handleClick={scrollToTop}
-							/>
+							<a
+								href='#'
+								onClick={handleScrollTop}
+								style={{
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "center",
+								}}
+							>
+								<Typography variant='body2'>Back to top </Typography>
+								<ArrowForwardIosIcon
+									sx={{ transform: `rotate(-90deg)`, width: "1rem", marginLeft: "0.3rem" }}
+								
+								/>
+							</a>
 						</Box>
 
 						{/* <nav className='c-footer_nav'>

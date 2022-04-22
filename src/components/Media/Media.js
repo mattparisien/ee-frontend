@@ -10,7 +10,7 @@ import { Link } from "@mui/material";
 function Media(props) {
 	const { aspectRatio, width, height, variant, accent, items } = props;
 
-	console.log("the itmes", items);
+	console.log('received items', items)
 
 	const classes = classNames("media-wrapper", {
 		"accent accent-image accent-left": accent,
@@ -34,11 +34,9 @@ function Media(props) {
 	return (
 		<Box className={classes} sx={wrapper}>
 			{items && items.type === "image" && (
-				<Image src={items && items.data.url} alt={items && items.data.alt} />
+				<Image src={items && items.url} alt={items && items.alt} />
 			)}
-			{items && items.type === "video" && (
-				<Video src={items && items.data.url} />
-			)}
+			{items && items.type === "video" && <Video src={items && items.url} />}
 			{items && items.type === "carousel" && (
 				<ConditionalWrapper
 					wrapper={children => (
@@ -47,7 +45,7 @@ function Media(props) {
 					condition={items.LinkableMedia}
 				>
 					<Carousel
-						items={items && items.data}
+						items={items && items.items}
 						image={url => <Image src={url} />}
 						video={url => <Video src={url} />}
 					/>

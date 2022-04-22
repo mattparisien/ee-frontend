@@ -34,6 +34,7 @@ function SingleProjectPage({ location }) {
 
 	const { loading, error, data } = useQuery(SINGLEPROJECT, {
 		variables: { id: param ? param : 0 },
+		skip: !param,
 	});
 
 	useEffect(() => {

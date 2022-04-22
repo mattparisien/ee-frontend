@@ -8,22 +8,11 @@ const useMedia = promise => {
 		if (promise) {
 			promise.then(info => {
 				return setMedia({
-					type: info.type,
-					data: !Array.isArray(info.data)
-						? {
-								url: info.data.url,
-								alt: info.data.alt,
-						  }
-						: info.data,
+					...info.data,
 				});
 			});
 		}
 	}, [promise]);
-
-
-	useEffect(() => {
-		console.log(media)
-	}, [media])
 
 	return media;
 };

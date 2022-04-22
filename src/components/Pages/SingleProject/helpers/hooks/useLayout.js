@@ -12,6 +12,7 @@ const useLayout = layoutObject => {
 			!layoutObject.inset && disablePadding();
 			layoutObject.fullBleed && setFullBleed();
 			layoutObject.flip && setFlippedLayout();
+			layoutObject.inset && setInset();
 		}
 	}, [layoutObject]);
 

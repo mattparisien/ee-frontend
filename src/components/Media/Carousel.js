@@ -14,7 +14,7 @@ function Carousel({ items, image, video }) {
 
 	const wrapper = {
 		height: "100%",
-		
+
 		overflow: "hidden",
 	};
 
@@ -63,7 +63,7 @@ function Carousel({ items, image, video }) {
 				<SwiperSlide>
 					<Item
 						key={item.id}
-						type={item.type}
+						type={item.data.type}
 						url={item.data.url}
 						permalink={item.data.permalink}
 						image={image}

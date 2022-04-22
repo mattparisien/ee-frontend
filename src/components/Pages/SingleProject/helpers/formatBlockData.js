@@ -1,6 +1,7 @@
 import { ConstructionOutlined } from "@mui/icons-material";
 import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
+import transformKeysToLowerCase from "../../../../helpers/transformKeysToLowercase";
 
 const blockNames = [];
 
@@ -40,8 +41,8 @@ const formatSplitBlock = block => {
 		right: {
 			text: block.TextRight || null,
 			media:
-				block.UploadedMedia || block.insta_post
-					? formatMedia(block).then(media => media)
+				block.MediaItem && block.MediaItem.length >= 1
+					? formatMedia(block.MediaItem[0]).then(media => media)
 					: null,
 		},
 	};
@@ -76,16 +77,16 @@ const formatFullBleedMediaBlockData = block => {
 		layout: {
 			fullBleed: true,
 		},
-		media: formatMedia(block).then(media => media),
+		media:
+			block.MediaItem.length >= 1
+				? formatMedia(block.MediaItem[0]).then(media => media)
+				: null,
 	};
 };
 
 const formatMedia = block => {
-	const formatInfo = info => {
+	const formatInfo = (info, postOptions) => {
 		let finalObject = {
-			type: {
-				value: "",
-			},
 			data: {
 				value: "",
 			},
@@ -93,8 +94,9 @@ const formatMedia = block => {
 
 		if (!Array.isArray(info)) {
 			//Is a single media item
-			finalObject.type.value = info.media_type.toLowerCase();
+
 			finalObject.data.value = {
+				type: info.media_type.toLowerCase(),
 				url: info.media_url,
 				alt: null,
 			};
@@ -102,37 +104,38 @@ const formatMedia = block => {
 		}
 
 		//Is a carousel
-		finalObject.type.value = "carousel";
-		finalObject.data.value = info.map(item => ({
-			type: item.media_type.toLowerCase(),
-			data: {
-				id: item.id,
-				url: item.media_url,
-				alt: null,
-				permalink: item.permalink,
-			},
-		}));
+
+		finalObject.data.value = {
+			type: "carousel",
+			options: transformKeysToLowerCase(postOptions),
+			items: info.map(item => ({
+				data: {
+					type: item.media_type.toLowerCase(),
+					id: item.id,
+					url: item.media_url,
+					alt: null,
+					permalink: item.permalink,
+				},
+			})),
+		};
 		return finalObject;
 	};
 
 	const templateObj = {
-		type: null,
-		data: {
-			url: null,
-			alt: null,
-		},
+		url: null,
+		alt: null,
 	};
 
-	if (block.UploadedMedia.data) {
+	if (block.Upload.data) {
 		const obj = Object.create(templateObj, {
-			type: {
-				value:
-					block.UploadedMedia.data.attributes.provider_metadata.resource_type,
-			},
 			data: {
 				value: {
-					url: block.UploadedMedia.data.attributes.url,
-					alt: block.UploadedMedia.data.attributes.alternativeText,
+					options: {
+						...transformKeysToLowerCase(block.Options),
+					},
+					type: block.Upload.data.attributes.provider_metadata.resource_type,
+					url: block.Upload.data.attributes.url,
+					alt: block.Upload.data.attributes.alternativeText,
 				},
 			},
 		});
@@ -141,14 +144,11 @@ const formatMedia = block => {
 	}
 
 	//Is insta post
-	if (block.insta_post.data) {
-		return getInstaMedia(block.insta_post.data.attributes.PostUrl, {}).then(
-			postInfo => {
-				const info = formatInfo(postInfo);
-
-				return Object.create(templateObj, info);
-			}
-		);
+	if (block.InstaUrl) {
+		return getInstaMedia(block.InstaUrl, {}).then(postInfo => {
+			const info = formatInfo(postInfo, block.Options);
+			return Object.create(templateObj, info);
+		});
 	}
 };
 

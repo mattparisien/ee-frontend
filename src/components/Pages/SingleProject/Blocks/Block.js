@@ -15,6 +15,7 @@ function Block(props) {
 		blocks: {
 			split: {
 				flip: false,
+				inset: false,
 			},
 		},
 	});
@@ -58,14 +59,33 @@ function Block(props) {
 		}));
 	};
 
+	const setInset = () => {
+		setState(prev => ({
+			...prev,
+			container: {
+				...prev.container,
+				disablePadding: true,
+			},
+			blocks: {
+				...prev.blocks,
+				split: {
+					...prev.blocks.split,
+					inset: true,
+				},
+			},
+		}));
+	};
+
 	const controls = {
 		setFullBleed,
 		disablePadding,
 		setFlippedLayout,
+		setInset,
 	};
 
 	const styles = {
 		flip: state.blocks.split.flip,
+		inset: state.blocks.split.inset,
 	};
 
 	return (

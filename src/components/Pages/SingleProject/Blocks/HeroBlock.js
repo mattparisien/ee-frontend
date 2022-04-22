@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import Media from "../../../Media/Media";
 
 function HeroBlock({ data }) {
+	console.log(data);
 	const splitLayout = theme => ({
 		display: "flex",
 		alignItems: "center",
@@ -10,10 +11,11 @@ function HeroBlock({ data }) {
 		[theme.breakpoints.down("sm")]: {
 			flexDirection: "column",
 			alignItems: "flex-start",
+			"> *:nth-of-type(1)": {
+				marginBottom: theme.spacing(10),
+			},
 		},
 	});
-
-	console.log(data);
 
 	return (
 		<Box sx={splitLayout}>
@@ -27,9 +29,8 @@ function HeroBlock({ data }) {
 				<Media
 					items={{
 						type: "image",
-						data: {
-							...data.image,
-						},
+
+						...data.image,
 					}}
 					aspectRatio={"1.25"}
 					accent

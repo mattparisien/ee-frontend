@@ -1,17 +1,5 @@
 import { gql } from "@apollo/client";
 
-const GETUPLOADEDMEDIA = `
-UploadedMedia {
-	data {
-		attributes {
-			url
-			alternativeText
-			caption
-			provider_metadata
-		}
-	}
-}
-`;
 
 const GETCTA = `
 CallToAction {
@@ -43,6 +31,28 @@ data {
 
 `;
 
+const GETMEDIAITEM = `
+MediaItem {
+	id
+	Upload {
+		data {
+			attributes {
+				url
+				alternativeText
+				caption
+				provider_metadata
+			}
+		}
+	}
+	InstaUrl
+	Options {
+		Inset
+		Linkable
+		Format
+	}
+}
+`;
+
 const SINGLEPROJECT = gql`
 	query GetSingleProject($id: ID!) {
 		project(id: $id) {
@@ -72,8 +82,8 @@ const SINGLEPROJECT = gql`
 						}
 						... on ComponentBlocksFullBleedMediaBlock {
 							id
-							${GETUPLOADEDMEDIA}
-							${GETINSTAPOST}
+							${GETMEDIAITEM}
+							
 						}
 						... on ComponentBlocksTextBlock {
 							id
@@ -89,13 +99,11 @@ const SINGLEPROJECT = gql`
 						}
 						... on ComponentBlocksSplitTextMediaBlock {
 							id
-							Inset
-							Flip
 							SplitTextMediaBlockTheme: Theme
 							TextLeft: Text
-							${GETINSTAPOST}
-							${GETUPLOADEDMEDIA}
+							${GETMEDIAITEM}
 							${GETCTA}
+							
 						}
 					}
 				}
