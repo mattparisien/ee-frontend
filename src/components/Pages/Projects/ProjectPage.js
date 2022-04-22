@@ -15,7 +15,7 @@ import { useTheme } from "@mui/material";
 export default function ProjectPage({ pageHeading, location }) {
 	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
-	const { search } = useContext(SearchContext);
+	// const { search } = useContext(SearchContext);
 	const theme = useTheme();
 
 	gsap.registerPlugin(DrawSVGPlugin);

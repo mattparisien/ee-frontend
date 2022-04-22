@@ -47,8 +47,15 @@ function About({ aboutText }) {
 			position: "absolute",
 			width: "150px",
 			fill: "#FFE633",
-			mixBlendMode: "screen",
-			opacity: 0.6,
+			
+			
+			"&:nth-of-type(odd)": {
+				mixBlendMode: "screen",
+			},
+			"&:nth-of-type(even)": {
+				mixBlendMode: "exclusion",
+				fill: theme.palette.primary.colorSet.green
+			},
 
 			"&:nth-child(3)": {
 				right: "-5%",

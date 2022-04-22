@@ -95,6 +95,7 @@ const SINGLEPROJECT = gql`
 							id
 							TextLeft
 							TextRight
+							SplitTextBlockTheme: Theme
 							Flip
 							${GETCTA}
 						}
