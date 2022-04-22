@@ -85,7 +85,7 @@ const formatFullBleedMediaBlockData = block => {
 };
 
 const formatMedia = block => {
-	const formatInfo = (info, postOptions) => {
+	const formatInfo = (info, postOptions, permalink) => {
 		let finalObject = {
 			data: {
 				value: "",
@@ -96,10 +96,13 @@ const formatMedia = block => {
 			//Is a single media item
 
 			finalObject.data.value = {
+				options: transformKeysToLowerCase(postOptions),
+				permalink: permalink,
 				type: info.media_type.toLowerCase(),
 				url: info.media_url,
 				alt: null,
 			};
+
 			return finalObject;
 		}
 
@@ -107,6 +110,7 @@ const formatMedia = block => {
 
 		finalObject.data.value = {
 			type: "carousel",
+			permalink: permalink,
 			options: transformKeysToLowerCase(postOptions),
 			items: info.map(item => ({
 				data: {
@@ -118,6 +122,7 @@ const formatMedia = block => {
 				},
 			})),
 		};
+
 		return finalObject;
 	};
 
@@ -133,6 +138,7 @@ const formatMedia = block => {
 					options: {
 						...transformKeysToLowerCase(block.Options),
 					},
+					permalink: block.Permalink,
 					type: block.Upload.data.attributes.provider_metadata.resource_type,
 					url: block.Upload.data.attributes.url,
 					alt: block.Upload.data.attributes.alternativeText,
@@ -146,7 +152,7 @@ const formatMedia = block => {
 	//Is insta post
 	if (block.InstaUrl) {
 		return getInstaMedia(block.InstaUrl, {}).then(postInfo => {
-			const info = formatInfo(postInfo, block.Options);
+			const info = formatInfo(postInfo, block.Options, block.Permalink);
 			return Object.create(templateObj, info);
 		});
 	}

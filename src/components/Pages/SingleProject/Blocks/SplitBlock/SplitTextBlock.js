@@ -35,6 +35,8 @@ function SplitTextBlock({ data }) {
 	);
 }
 
+function Left() {}
+function Right() {}
 
 
 export default SplitTextBlock;

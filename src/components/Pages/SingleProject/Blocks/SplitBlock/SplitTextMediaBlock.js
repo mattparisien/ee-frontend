@@ -12,6 +12,8 @@ function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.data.right.media);
 	useLayout(data && data.data.layout);
 
+console.log('the data...', media)
+
 	return (
 		<SplitBlock
 			leftComponent={<Left data={data} />}
@@ -51,7 +53,14 @@ function Left({ data }) {
 }
 
 function Right({ media }) {
-	return <Media items={media && media} aspectRatio={1} />;
+	return (
+		<Media
+			items={media && media}
+			aspectRatio={1}
+			options={media && media.options}
+			permalink={media && media.permalink}
+		/>
+	);
 }
 
 export default SplitTextMediaBlock;

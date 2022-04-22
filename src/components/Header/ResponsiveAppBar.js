@@ -30,9 +30,12 @@ function ResponsiveAppBar({
 
 	const edgesWidth = "20rem";
 
-	const spacer = {
-		width: edgesWidth,
-	};
+	const spacer = theme => ({
+		width: "20rem",
+		[theme.breakpoints.down("md")]: {
+			width: "10rem"
+		}
+	});
 
 	const navToolbar = theme => ({
 		width: "100%",
@@ -52,9 +55,10 @@ function ResponsiveAppBar({
 	});
 
 	const navDesktop = theme => ({
-		width: edgesWidth,
+		width: '20rem',
 		[theme.breakpoints.down("md")]: {
 			display: "none",
+			width: "10rem !important"
 		},
 	});
 
@@ -82,7 +86,7 @@ function ResponsiveAppBar({
 					<Box
 						className='mobile-nav'
 						sx={theme => ({
-							width: edgesWidth,
+							width: "10rem",
 							display: "flex",
 							justifyContent: "flex-end",
 							alignItems: "center",

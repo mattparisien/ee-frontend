@@ -34,6 +34,7 @@ data {
 const GETMEDIAITEM = `
 MediaItem {
 	id
+	Permalink
 	Upload {
 		data {
 			attributes {

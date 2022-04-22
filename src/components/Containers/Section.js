@@ -1,8 +1,7 @@
 import { Box, useMediaQuery } from "@mui/material";
-import classNames from "classnames";
-import React, { useEffect, useRef, useState, useContext } from "react";
-import { SiteWideControls } from "../../context/Context";
+import React, { useContext, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { SiteWideControls } from "../../context/Context";
 
 function Section(props) {
 	const { noGutter, sectionTheme } = props;
