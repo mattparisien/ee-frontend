@@ -1,6 +1,8 @@
 export const containerStyles = theme => ({
 	display: "flex",
+	padding: `${theme.spacing(10)} 0`,
 	justifyContent: "space-between",
+
 	[theme.breakpoints.down("sm")]: {
 		flexDirection: "column",
 		alignItems: "center",
@@ -36,9 +38,9 @@ export const bottom = theme => ({
 });
 
 export const footer = theme => ({
-	height: "500px",
+	height: "600px",
 	[theme.breakpoints.up("md")]: {
-		height: "600px",
+		height: "500px",
 	},
 });
 

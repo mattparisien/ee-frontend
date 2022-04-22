@@ -34,7 +34,6 @@ const GETMEDIAITEM = `
 MediaItem {
 	id
 	Permalink
-	DisplayCaption
 	Upload {
 		data {
 			attributes {
@@ -47,6 +46,7 @@ MediaItem {
 	}
 	InstaUrl
 	Options {
+		
 		Inset
 		Linkable
 		Format
