@@ -1,12 +1,15 @@
 import { Box } from "@mui/material";
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import { BLOCKS } from ".";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
+import { ProjectContext } from "../SingleProjectPage";
 
 export const BlockContext = createContext();
 
 function Block(props) {
+	const { projectColor } = useContext(ProjectContext);
+
 	const [state, setState] = useState({
 		container: {
 			disablePadding: false,
@@ -90,7 +93,13 @@ function Block(props) {
 
 	return (
 		<BlockContext.Provider value={Object.assign({}, controls, styles)}>
-			<Section sectionTheme={props.data.theme}>
+			<Section
+				sectionTheme={
+					props.data.theme === "currentColor"
+						? projectColor
+						: props.data.theme
+				}
+			>
 				<Container
 					fullBleed={props.name.startsWith("FullBleed")}
 					disableGutters={state.container.disablePadding}

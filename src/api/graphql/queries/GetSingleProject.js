@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-
 const GETCTA = `
 CallToAction {
 	ButtonText
@@ -35,6 +34,7 @@ const GETMEDIAITEM = `
 MediaItem {
 	id
 	Permalink
+	
 	Upload {
 		data {
 			attributes {

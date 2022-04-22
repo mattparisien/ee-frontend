@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, createContext } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { shuffleColors } from "../../../helpers/shuffleColors";
@@ -7,6 +7,8 @@ import Page from "../../Containers/Page";
 import Block from "./Blocks/Block";
 import formatBlockData from "./helpers/formatBlockData";
 import Next from "./Next";
+
+export const ProjectContext = createContext();
 
 function SingleProjectPage({ location }) {
 	const [param, setParam] = useState(null);
@@ -40,51 +42,67 @@ function SingleProjectPage({ location }) {
 	useEffect(() => {
 		if (data && !loading) {
 			setProject(() => ({
-				id: data.project.data.id,
-				title: data.project.data.attributes.Title,
-				subtitle: data.project.data.attributes.Subtitle,
-				subtitle: data.project.data.attributes.Subtitle,
-				featureImage: {
-					url: data.project.data.attributes.FeatureImage.data.attributes.url,
-					alt: data.project.data.attributes.FeatureImage.data.attributes
-						.alternativeText,
+				styles: {
+					color: accentColor,
 				},
-				blocks: formatBlockData(data.project.data.attributes.Choose),
+				data: {
+					id: data.project.data.id,
+					title: data.project.data.attributes.Title,
+					subtitle: data.project.data.attributes.Subtitle,
+					subtitle: data.project.data.attributes.Subtitle,
+					featureImage: {
+						url: data.project.data.attributes.FeatureImage.data.attributes.url,
+						alt: data.project.data.attributes.FeatureImage.data.attributes
+							.alternativeText,
+					},
+					blocks: formatBlockData(data.project.data.attributes.Choose),
+				},
 			}));
 		}
-	}, [data, loading]);
+	}, [data, loading, accentColor]);
+
+	
 
 	return (
-		<Page name='singleProject' location={location}>
-			<Helmet>
-				<title>
-					{project
-						? `${project.title} - ${project.subtitle}`
-						: "Eyes & Ears Agency"}
-				</title>
-			</Helmet>
+		<ProjectContext.Provider
+			value={{
+				projectColor: project && project.styles.accentColor,
+			}}
+		>
+			<Page name='singleProject' location={location}>
+				<Helmet>
+					<title>
+						{project && project.data
+							? `${project.data.title} - ${project.data.subtitle}`
+							: "Eyes & Ears Agency"}
+					</title>
+				</Helmet>
 
-			{project && (
-				<Block
-					name='HeroBlock'
-					data={{
-						title: project.title,
-						subtitle: project.subtitle,
-						image: {
-							url: project.featureImage.url,
-							alt: project.featureImage.alt,
-						},
-					}}
+				{project && (
+					<Block
+						name='HeroBlock'
+						data={{
+							title: project.data.title,
+							subtitle: project.data.subtitle,
+							image: {
+								url: project.data.featureImage.url,
+								alt: project.data.featureImage.alt,
+							},
+						}}
+					/>
+				)}
+
+				{project &&
+					project.data.blocks.map((block, i) => (
+						<Block name={block.name} id={block.id} key={i} data={block} />
+					))}
+
+				<Next
+					color={accentColor[1]}
+					currentProjectId={param}
 				/>
-			)}
-
-			{project &&
-				project.blocks.map((block, i) => (
-					<Block name={block.name} id={block.id} key={i} data={block} />
-				))}
-
-			<Next color={accentColor[1]} currentProjectId={param} />
-		</Page>
+			</Page>
+		</ProjectContext.Provider>
 	);
 }
 

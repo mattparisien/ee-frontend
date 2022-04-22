@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
 import React from "react";
 import Image from "./Image";
 import Video from "./Video";
 import Carousel from "./Carousel";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
-import { Link } from "@mui/material";
+
 import Container from "../Containers/ContainerFluid";
 
 function Media(props) {
@@ -60,6 +60,11 @@ function Media(props) {
 						/>
 					)}
 				</ConditionalWrapper>
+				<Box className='media-caption' mt={2}>
+					<Typography variant='body2' textAlign='right' sx={{ opacity: 0.6 }}>
+						Photo by Haha
+					</Typography>
+				</Box>
 			</Container>
 		</Box>
 	);

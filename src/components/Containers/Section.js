@@ -2,6 +2,7 @@ import { Box, useMediaQuery } from "@mui/material";
 import React, { useContext, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { SiteWideControls } from "../../context/Context";
+import combineStyles from "../../helpers/combineStyles";
 
 function Section(props) {
 	const { noGutter, sectionTheme } = props;
@@ -18,7 +19,8 @@ function Section(props) {
 
 	const section = theme => ({
 		".accent::after": {
-			mixBlendMode: sectionTheme === "light" || !sectionTheme ? "multiply" : "screen",
+			mixBlendMode:
+				sectionTheme === "light" || !sectionTheme ? "multiply" : "screen",
 		},
 		".foreground-el": {
 			backgroundColor:
@@ -44,7 +46,7 @@ function Section(props) {
 				component='section'
 				ref={ref}
 				className='section'
-				sx={section}
+				sx={combineStyles(section, props.sx)}
 				mb={props.noGutter ? 0 : gutter}
 				mt={props.noGutter || props.noGutterTop ? 0 : gutter}
 			>

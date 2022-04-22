@@ -5,16 +5,19 @@ import { BlockContext } from "../Block";
 function SplitBlock(props) {
 	const { flip, inset } = useContext(BlockContext);
 
-	
-
 	const wrapper = theme => ({
 		display: "flex",
+		justifyContent: "space-between",
+
 		".is-left": {
-			width: (props.width && props.width.left) || "50%",
+			width: props.width && props.width.left,
+			flex: props.flex && props.flex.left,
 		},
 		".is-right": {
-			width: (props.width && props.width.right) || "50%",
+			width: props.width && props.width.right,
+			flex: props.flex && props.flex.right,
 		},
+
 		flexDirection: flip ? "row-reverse" : "row",
 		[theme.breakpoints.down("sm")]: {
 			flexDirection: flip ? "column-reverse" : "column",

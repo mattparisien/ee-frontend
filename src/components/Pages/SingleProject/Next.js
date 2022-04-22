@@ -44,7 +44,14 @@ function Next({ color, currentProjectId }) {
 		<>
 			<Fade>
 				{result2.data && (
-					<Section sectionTheme={color} noGutter>
+					<Section sectionTheme={color} noGutter sx={theme => ({
+						"button": {
+							color: theme.palette.primary[color === 'yellow' ? "dark" : "light"],
+						},
+						".c-arrow_svg path": {
+							stroke: theme.palette.primary[color === 'yellow' ? "dark" : "light"],
+						}
+					})}>
 						<Link
 							classes={`-stretchX -block -stretchY -hover-underline`}
 							isRouterLink
@@ -61,7 +68,9 @@ function Next({ color, currentProjectId }) {
 											pb={30}
 										>
 											<Fade bottom>
-												<Typography variant='h2' fontFamily={"Kobe"}>Next</Typography>
+												<Typography variant='h2' fontFamily={"Kobe"}>
+													Next
+												</Typography>
 											</Fade>
 											<Arrow color='dark' />
 										</Box>

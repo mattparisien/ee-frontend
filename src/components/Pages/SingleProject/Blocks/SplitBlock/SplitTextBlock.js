@@ -14,29 +14,36 @@ function SplitTextBlock({ data }) {
 	return (
 		<SplitBlock
 			flex={{
-				left: 2.7,
-				right: 1,
+				left: 1.4,
+				right: 0.5,
 			}}
-		>
-			<Box className='left'>
-				<Markdown>{data.data.left.text}</Markdown>
-				{data.data.left.cta && (
-					<Cta
-						children={data.data.left.cta.ButtonText}
-						target={data.data.left.cta.OpenNewTab ? "_blank" : "_self"}
-						href={data.data.left.cta.URL}
-					/>
-				)}
-			</Box>
-			<Box className='right' sx={right} pl={7}>
-				<Markdown>{data.data.right.text}</Markdown>
-			</Box>
-		</SplitBlock>
+			rightStyles={{
+				marginLeft: "4rem",
+			}}
+			leftComponent={
+				<Left text={data.data.left.text} cta={data.data.left.cta} />
+			}
+			rightComponent={<Right text={data.data.right.text} />}
+		/>
 	);
 }
 
-function Left() {}
-function Right() {}
-
+function Left({ text, cta }) {
+	return (
+		<>
+			<Markdown>{text}</Markdown>
+			{cta && (
+				<Cta
+					children={cta.ButtonText}
+					target={cta.OpenNewTab ? "_blank" : "_self"}
+					href={cta.URL}
+				/>
+			)}
+		</>
+	);
+}
+function Right({ text }) {
+	return <Markdown>{text}</Markdown>;
+}
 
 export default SplitTextBlock;
