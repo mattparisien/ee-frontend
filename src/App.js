@@ -17,6 +17,7 @@ import IntroCard from "./components/Transition/IntroCard";
 import { introAnimation } from "./animations";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./api/graphql/index";
+import Cursor from "./components/Cursor/Cursor";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -35,7 +36,7 @@ function App() {
 		transitioning,
 		setTransitioning,
 		cursor,
-		changeCursor,
+		toggleCursorState,
 		search,
 		setSearch,
 		headerColor,
@@ -233,7 +234,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							stateData={state.data}
 							siteControls={siteControls}
 							cursor={cursor}
-							changeCursor={changeCursor}
+							toggleCursorState={toggleCursorState}
 							scrollRef={scrollWrapper}
 							location={location}
 							search={search}
@@ -248,6 +249,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								location={location}
 								color={headerColor}
 							/>
+							<Cursor />
 							<IntroCard />
 
 							<Menu

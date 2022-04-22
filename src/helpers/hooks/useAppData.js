@@ -22,7 +22,6 @@ export default function useAppData(scrollRef) {
 			name: "About",
 			path: "/about",
 		},
-
 	];
 
 	//App state
@@ -41,7 +40,9 @@ export default function useAppData(scrollRef) {
 			showSidebar: false,
 			hasShown: false,
 		},
-		cursor: "normal",
+		cursor: {
+			active: false,
+		},
 		isScrollLock: false,
 		data: {
 			isLoaded: false,
@@ -66,8 +67,11 @@ export default function useAppData(scrollRef) {
 		}));
 	};
 
-	const changeCursor = value => {
-		setState(prev => ({ ...prev, cursor: value }));
+	const toggleCursorState = () => {
+		setState(prev => ({
+			...prev,
+			cursor: { ...prev.cursor, active: !prev.cursor.active },
+		}));
 	};
 
 	const setHeaderColor = color => {
@@ -80,12 +84,12 @@ export default function useAppData(scrollRef) {
 		navItems,
 		transitioning,
 		setTransitioning,
-		cursor: state.cursor,
-		changeCursor,
+		cursor: {...state.cursor},
+		toggleCursorState,
 		pending: state.pending,
 		search: state.search,
 		setSearch,
 		headerColor: state.headerColor,
-		setHeaderColor
+		setHeaderColor,
 	};
 }

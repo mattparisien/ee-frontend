@@ -1,17 +1,18 @@
+import { useQuery } from "@apollo/client";
 import { Box, Typography } from "@mui/material";
-import React, { useMemo, useRef, useEffect } from "react";
+import React, { useContext, useMemo } from "react";
 import Marquee from "react-fast-marquee";
 import Fade from "react-reveal/Fade";
+import NEXTPROJECT from "../../../api/graphql/queries/GetNextProject";
 import PROJECTS from "../../../api/graphql/queries/GetProjects";
+import { CursorContext } from "../../../context/Context";
 import ContainerFluid from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
 import Link from "../../Link/Link";
 import Arrow from "../../Vector/Arrow";
-import { useQuery } from "@apollo/client";
-import NEXTPROJECT from "../../../api/graphql/queries/GetNextProject";
 
 function Next({ color, currentProjectId }) {
-	const container = useRef(null);
+	const { toggleCursorState } = useContext(CursorContext);
 
 	const { data, error, loading } = useQuery(PROJECTS);
 	const result2 = useQuery(NEXTPROJECT, {
@@ -40,52 +41,71 @@ function Next({ color, currentProjectId }) {
 		}
 	}, [result2.data]);
 
+	const handleMouseEnter = () => {
+		toggleCursorState();
+	};
+
+	const handleMouseLeave = () => {
+		toggleCursorState();
+	};
+
 	return (
 		<>
 			<Fade>
 				{result2.data && (
-					<Section sectionTheme={color} noGutter sx={theme => ({
-						"button": {
-							color: theme.palette.primary[color === 'yellow' ? "dark" : "light"],
-						},
-						".c-arrow_svg path": {
-							stroke: theme.palette.primary[color === 'yellow' ? "dark" : "light"],
-						}
-					})}>
-						<Link
-							classes={`-stretchX -block -stretchY -hover-underline`}
-							isRouterLink
-							href={`/projects/${result2.data.project.data.id}`}
+					<Section
+						sectionTheme={color}
+						noGutter
+						sx={theme => ({
+							button: {
+								color:
+									theme.palette.primary[color === "yellow" ? "dark" : "light"],
+							},
+							".c-arrow_svg path": {
+								stroke:
+									theme.palette.primary[color === "yellow" ? "dark" : "light"],
+							},
+						})}
+					>
+						<Box
+							onMouseEnter={handleMouseEnter}
+							onMouseLeave={handleMouseLeave}
 						>
-							<Box py={20}>
-								<div className='c-link_inner'>
-									<ContainerFluid classes='-relative -flex -align-center -justify-between'>
-										<Box
-											display='flex'
-											justifyContent='space-between'
-											alignItems='center'
-											flexDirection='row-reverse'
-											pb={30}
-										>
-											<Fade bottom>
-												<Typography variant='h2' fontFamily={"Kobe"}>
-													Next
-												</Typography>
-											</Fade>
-											<Arrow color='dark' />
-										</Box>
-									</ContainerFluid>
-									<Fade bottom>
-										<Marquee gradient={false} direction={"right"}>
-											{marqueeWords &&
-												marqueeWords.map((word, i) => (
-													<MarqueeItem text={word} key={i} />
-												))}
-										</Marquee>
-									</Fade>
-								</div>
-							</Box>
-						</Link>
+							<Link
+								classes={`-stretchX -block -stretchY -hover-underline`}
+								isRouterLink
+								href={`/projects/${result2.data.project.data.id}`}
+							>
+								<Box py={20}>
+									<div className='c-link_inner'>
+										<ContainerFluid classes='-relative -flex -align-center -justify-between'>
+											<Box
+												display='flex'
+												justifyContent='space-between'
+												alignItems='center'
+												flexDirection='row-reverse'
+												pb={30}
+											>
+												<Fade bottom>
+													<Typography variant='h2' fontFamily={"Kobe"}>
+														Next
+													</Typography>
+												</Fade>
+												<Arrow color='dark' />
+											</Box>
+										</ContainerFluid>
+										<Fade bottom>
+											<Marquee gradient={false} direction={"right"}>
+												{marqueeWords &&
+													marqueeWords.map((word, i) => (
+														<MarqueeItem text={word} key={i} />
+													))}
+											</Marquee>
+										</Fade>
+									</div>
+								</Box>
+							</Link>
+						</Box>
 					</Section>
 				)}
 			</Fade>

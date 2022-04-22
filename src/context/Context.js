@@ -12,12 +12,10 @@ function Context({
 	children,
 	stateData,
 	siteControls,
-	cursor,
-	changeCursor,
+	cursor, 
+	toggleCursorState,
 	scrollRef,
 	location,
-	search,
-	setSearch,
 }) {
 	return (
 		<LocomotiveScrollProvider
@@ -38,9 +36,9 @@ function Context({
 		>
 			<SiteWideControls.Provider value={siteControls}>
 				<DataContext.Provider value={stateData}>
-					<SearchContext.Provider value={{ search, setSearch }}>
+					<SearchContext.Provider >
 						<ColorContext.Provider>
-							<CursorContext.Provider valu={{ cursor, changeCursor }}>
+							<CursorContext.Provider value={{ cursor, toggleCursorState }}>
 								{children}
 							</CursorContext.Provider>
 						</ColorContext.Provider>
