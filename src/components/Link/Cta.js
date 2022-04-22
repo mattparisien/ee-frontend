@@ -3,8 +3,11 @@ import { Box, Link } from "@mui/material";
 import React from "react";
 
 function Cta({ children, target, href }) {
-	const styles = {
-		marginTop: "4rem",
+	const styles = theme => ({
+		marginTop: "2.5rem",
+		[theme.breakpoints.up("sm")]: {
+			marginTop: "4rem",
+		},
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "flex-start",
@@ -15,7 +18,7 @@ function Cta({ children, target, href }) {
 		"&:hover .inner": {
 			transform: "translateX(1rem)",
 		},
-	};
+	});
 
 	return (
 		<Link

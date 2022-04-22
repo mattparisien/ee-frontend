@@ -91,6 +91,17 @@ function Block(props) {
 		inset: state.blocks.split.inset,
 	};
 
+	const verticalPaddingStyles = theme => ({
+		padding: `${theme.spacing(10)} 0`,
+		[theme.breakpoints.up("sm")]: {
+			padding: `${theme.spacing(15)} 0`
+		},
+		[theme.breakpoints.up("md")]: {
+			padding: `${theme.spacing(20)} 0`
+		}
+		
+	})
+
 	return (
 		<BlockContext.Provider value={Object.assign({}, controls, styles)}>
 			<Section
@@ -105,7 +116,7 @@ function Block(props) {
 					disableGutters={state.container.disablePadding}
 					maxWidth={state.container.maxWidth}
 				>
-					<Box py={theme => theme.spacing(20)}>
+					<Box sx={verticalPaddingStyles}>
 						{props.data &&
 							React.createElement(BLOCKS[props.name], {
 								key: props.id,

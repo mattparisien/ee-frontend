@@ -39,8 +39,6 @@ function ProjectGridItem({
 		}
 	};
 
-	const hello = useScrollEvent(handleScroll);
-
 	const item = theme => ({
 		margin: margin,
 		width: width,
@@ -94,22 +92,12 @@ function ProjectGridItem({
 		display: "flex",
 		alignItems: "center",
 
-		fontSize: "1rem",
-		lineHeight: "1rem",
 		position: "relative",
 		"&::after": {
 			backgroundColor: "black",
 			bottom: 0,
 			transformOrigin: "left",
 			transition: "all 1s cubic-bezier(1.000, 0.000, 0.000, 1.000)",
-		},
-		[theme.breakpoints.up("md")]: {
-			fontSize: "1.2rem",
-			lineHeight: "1.2rem",
-		},
-		[theme.breakpoints.up("sm")]: {
-			fontSize: "0.8rem",
-			lineHeight: "0.8rem",
 		},
 	});
 
@@ -123,20 +111,31 @@ function ProjectGridItem({
 		>
 			<Box className='item-inner' sx={{ height: "100%" }}>
 				<Media
-					src={image.url}
-					alt={image.alt}
+					variant='image'
+					items={{
+						type: "image",
+						url: image.url,
+						alt: image.alt,
+					}}
 					width={"100%"}
 					height={"100%"}
-					variant='image'
 				/>
 				{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
 				{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
-				<Box className='item-info' sx={itemInfo} pt={1}>
-					<Typography variant='h6' className='artist -underline' sx={infoTitle}>
+				<Box className='item-info' sx={itemInfo} pt={2}>
+					<Typography
+						variant='body2'
+						className='artist -underline'
+						sx={infoTitle}
+					>
 						{artist}
 					</Typography>
 
-					<Typography variant='h6' className='title -underline' sx={infoTitle}>
+					<Typography
+						variant='body2'
+						className='title -underline'
+						sx={infoTitle}
+					>
 						{title}
 					</Typography>
 				</Box>

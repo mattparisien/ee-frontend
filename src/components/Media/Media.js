@@ -59,11 +59,13 @@ function Media(props) {
 						/>
 					)}
 				</ConditionalWrapper>
-				<Box className='media-caption' m={2}>
-					<Typography variant='body2' textAlign='right' sx={{ opacity: 0.6 }}>
-						Photo by Haha
-					</Typography>
-				</Box>
+				{options && options.displayCaption && (
+					<Box className='media-caption' m={2}>
+						<Typography variant='body2' textAlign='right' sx={{ opacity: 0.6 }}>
+							Photo by Haha
+						</Typography>
+					</Box>
+				)}
 			</Container>
 		</Box>
 	);

@@ -17,9 +17,12 @@ function SplitTextBlock({ data }) {
 				left: 1.4,
 				right: 0.5,
 			}}
-			rightStyles={{
-				marginLeft: "4rem",
-			}}
+			rightStyles={theme => ({
+				[theme.breakpoints.up("sm")]: {
+					marginLeft: "4rem",
+				}
+				
+			})}
 			leftComponent={
 				<Left text={data.data.left.text} cta={data.data.left.cta} />
 			}
