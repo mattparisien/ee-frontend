@@ -4,11 +4,12 @@ const PAGES = gql`
 	query GetPages {
 		pages {
 			data {
+				id
 				attributes {
-          Name
-          SeoUrl
-          Active
-        }
+					Name
+					Slug
+					Active
+				}
 			}
 		}
 	}

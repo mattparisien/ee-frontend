@@ -1,34 +1,37 @@
+import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import PAGES from "./api/graphql/queries/GetPages";
+import View from "./components/Containers/View";
 import AboutPage from "./components/Pages/About/AboutPage";
+import DemoPage from "./components/Pages/Demo/DemoPage";
 import HomePage from "./components/Pages/Home/HomePage";
+import NotFoundPage from "./components/Pages/NotFound/NotFoundPage";
 import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
-import NotFoundPage from "./components/Pages/NotFound/NotFoundPage";
-import DemoPage from "./components/Pages/Demo/DemoPage";
-import { useQuery } from "@apollo/client";
-import PAGES from "./api/graphql/queries/GetPages";
 import keysToCamelCase from "./helpers/keysToCamelCase";
-import View from "./components/Containers/View";
 
 function SiteRoutes(props) {
 	const { location, pages } = props;
 
 	const [views, setViews] = useState(null);
 
-	const { loading, error, data } = useQuery(PAGES);
+	const { loading, error, data } = useQuery(PAGES, {
+		variables: {
+			active: true,
+		},
+	});
 
 	useEffect(() => {
 		if (!loading && data) {
 			setViews(() =>
 				data.pages.data.map(view => ({
+					id: view.id,
 					...keysToCamelCase(view.attributes),
 				}))
 			);
 		}
 	}, [loading, error, data]);
-
-	const [pageHeadings, setPageHeadings] = useState(null);
 
 	const pageSchema = {
 		about: {
@@ -75,8 +78,8 @@ function SiteRoutes(props) {
 				{views &&
 					views.map(view => (
 						<Route
-							path={view.name !== "Home" ? view.slug : "/"}
-							element={<View location={location} pageId={}/>}
+							path={view.name !== "Home" ? `/${view.slug}` : "/"}
+							element={<View location={location} pageId={view.id} />}
 							key={location.pathname}
 						/>
 					))}
