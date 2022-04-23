@@ -69,7 +69,7 @@ export default function Footer(props) {
 									<Fade bottom>
 										<Typography
 											component='a'
-											variant='h4'
+											variant='h5'
 											href={`mailto:${info.email}`}
 										>
 											<div className='email -underline -hover-underline -relative -inline -splitChars'>
@@ -108,8 +108,11 @@ export default function Footer(props) {
 							>
 								<Typography variant='body2'>Back to top </Typography>
 								<ArrowForwardIosIcon
-									sx={{ transform: `rotate(-90deg)`, width: "1rem", marginLeft: "0.3rem" }}
-								
+									sx={{
+										transform: `rotate(-90deg)`,
+										width: "1rem",
+										marginLeft: "0.3rem",
+									}}
 								/>
 							</a>
 						</Box>

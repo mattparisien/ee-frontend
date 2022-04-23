@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Section from "../../Containers/Section";
-import ContainerFluid from "../../Containers/ContainerFluid";
+import Container from "../../Containers/ContainerFluid";
 import { Typography, Box } from "@mui/material";
 import { DrawnLogo } from "../../Vector/Svg";
 
@@ -45,9 +45,10 @@ function Hero({ pageHeading }) {
 		display: "flex",
 		flexDirection: "column",
 		position: "relative",
-		maxWidth: "none !important",
+
 		justifyContent: "space-between",
-		padding: "3rem 0",
+		paddingTop: theme.spacing(10),
+		paddingBottom: theme.spacing(10),
 		height: "calc(100vh - 75px)",
 
 		".word": {
@@ -83,17 +84,11 @@ function Hero({ pageHeading }) {
 
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
-			<ContainerFluid classes='-stretchX -stretchY' sx={containerStyles}>
-				<Typography className='word'>{words && words[0]}</Typography>
-				<Typography className='word'>{words && words[1]}</Typography>
-				<Typography className='word'>{words && words[2]}</Typography>
-				<Box className='o-hero_logo' sx={logo}>
-					<div className='inner -relative -stretchX -stretchY'>
-						<DrawnLogo color='dark' />
-						<div className='revealer'></div>
-					</div>
-				</Box>
-			</ContainerFluid>
+			<Container classes='-stretchX -stretchY' sx={containerStyles}>
+				<Typography className='word'>Social</Typography>
+				<Typography className='word'>Impact</Typography>
+				<Typography className='word'>Agency</Typography>
+			</Container>
 		</Section>
 	);
 }

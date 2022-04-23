@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTheme } from "@mui/material";
 
 export default function useAppData(scrollRef) {
-
 	const theme = useTheme();
 
 	const navItems = [
@@ -22,6 +21,7 @@ export default function useAppData(scrollRef) {
 
 	//App state
 	const [transitioning, setTransitioning] = useState(true);
+	const [loading, setLoading] = useState(true);
 
 	const [state, setState] = useState({
 		user: {
@@ -94,5 +94,7 @@ export default function useAppData(scrollRef) {
 		setHeaderColor,
 		currentColor: state.currentColor,
 		setCurrentColor,
+		loading,
+		setLoading,
 	};
 }

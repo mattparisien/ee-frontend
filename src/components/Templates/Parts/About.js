@@ -107,7 +107,7 @@ function About({ aboutText }) {
 							pt={matches ? 5 : 20}
 							pb={matches ? 5 : 20}
 						>
-							<Typography variant='h3' display="none">
+							<Typography variant='h3' >
 								<Markdown
 									variantMap={{
 										p: "h3",

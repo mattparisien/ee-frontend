@@ -18,6 +18,7 @@ import { introAnimation } from "./animations";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./api/graphql/index";
 import Cursor from "./components/Cursor/Cursor";
+import LoadingScreen from "./components/Loading/LoadingScreen";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -43,6 +44,8 @@ function App() {
 		setHeaderColor,
 		currentColor,
 		setCurrentColor,
+		loading,
+		setLoading,
 	} = useAppData();
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
@@ -244,6 +247,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							setSearch={setSearch}
 							currentColor={currentColor}
 							setCurrentColor={setCurrentColor}
+							setLoading={setLoading}
 						>
 							{/* <DragCursor cursor={cursor} /> */}
 							{/* <IntroCard pending={pending} /> */}
@@ -255,7 +259,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								color={headerColor}
 							/>
 							<Cursor />
-							<IntroCard />
+							{/* <IntroCard /> */}
 
 							<Menu
 								isActive={menuActive}
@@ -268,6 +272,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								ref={scrollWrapper}
 								data-scroll-container
 							>
+								<LoadingScreen isActive={loading} />
 								{/* <ArrowButton
 														classes='scroll-to-top'
 														color='light'

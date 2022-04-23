@@ -29,7 +29,7 @@ function Container(props) {
 				!props.disableGutters ? containerSpacing : {},
 				props.sx,
 				{
-					padding: props.disableGutters && '0 !important'
+					padding: props.disableGutters && "0 !important",
 				}
 			)}
 		>
