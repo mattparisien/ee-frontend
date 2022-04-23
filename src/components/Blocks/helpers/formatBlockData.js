@@ -1,13 +1,12 @@
-import { findKey } from "lodash";
+
 import keysToCamelCase from "../../../helpers/keysToCamelCase";
 import getInstaMedia from "../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
+import findKey from "../../../helpers/findKey";
 
 const blockNames = [];
 
 const formatBlockData = array => {
-	console.log(array, "array");
-
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
 
@@ -15,6 +14,7 @@ const formatBlockData = array => {
 			name: blockName,
 			theme: getTheme(block, blockName),
 			data:
+				(blockName === "TitleBlock" && { ...block }) ||
 				(blockName === "GalleryBlock" && formatGalleryBlockData(block)) ||
 				(blockName === "QuoteBlock" && formatQuoteBlockData(block)) ||
 				(blockName === "FullBleedMediaBlock" &&
@@ -43,6 +43,7 @@ const getTheme = (block, blockName) => {
 };
 
 const formatSplitBlock = block => {
+	console.log(block[findKey(block, "Cta")])
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {
@@ -146,7 +147,7 @@ const formatMedia = block => {
 		const obj = Object.create(templateObj, {
 			data: {
 				value: {
-					options: keysToCamelCase(block.Options),
+					options: block.Options && keysToCamelCase(block.Options),
 					permalink: block.Permalink,
 					type: block.Upload.data.attributes.provider_metadata.resource_type,
 					url: block.Upload.data.attributes.url,

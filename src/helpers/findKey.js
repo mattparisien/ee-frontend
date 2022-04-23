@@ -1,6 +1,7 @@
 const findKey = (object, string) => {
 	for (let key in object) {
-		if (key.includes(string)) {
+		console.log('the key', key)
+		if (key.toLowerCase().includes(string.toLowerCase())) {
 			return key;
 		}
 	}

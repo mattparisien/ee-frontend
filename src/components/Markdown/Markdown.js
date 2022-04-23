@@ -23,6 +23,15 @@ function Markdown({ children, variantMap }) {
 				mb={7}
 			/>
 		),
+		h3: ({ node, ...props }) => (
+			<Typography
+				component='h3'
+				variant='h3'
+				children={props.children}
+				fontWeight={400}
+				mb={7}
+			/>
+		),
 		h4: ({ node, ...props }) => (
 			<Typography
 				component='h4'

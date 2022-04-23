@@ -44,16 +44,13 @@ const getTheme = (block, blockName) => {
 };
 
 const formatSplitBlock = block => {
-	console.log('options', block)
+	console.log("optsssssssions", block);
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {
 			text: block.TextLeft || null,
 			media: null,
-			cta:
-				block[findKey(block, "Cta")].length >= 1
-					? block[findKey(block, "Cta")][0]
-					: null,
+			cta: block[findKey(block, "Cta")] ? block[findKey(block, "Cta")] : null,
 		},
 		right: {
 			text: block.TextRight || null,

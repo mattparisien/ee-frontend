@@ -27,7 +27,10 @@ function Container(props) {
 			maxWidth={props.disableMaxWidth ? false : "lg"}
 			sx={combineStyles(
 				!props.disableGutters ? containerSpacing : {},
-				props.sx
+				props.sx,
+				{
+					padding: props.disableGutters && '0 !important'
+				}
 			)}
 		>
 			{props.children}

@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useTheme } from "@mui/material";
 
 export default function useAppData(scrollRef) {
+
+	const theme = useTheme();
+
 	const navItems = [
 		{
 			name: "Home",
@@ -28,7 +32,7 @@ export default function useAppData(scrollRef) {
 		},
 		scroller: null,
 		headerColor: "dark",
-		currentColor: null,
+		currentColor: [theme.palette.primary.yellow, "yellow"],
 		sidebar: {
 			showSidebar: false,
 			hasShown: false,
@@ -89,6 +93,6 @@ export default function useAppData(scrollRef) {
 		headerColor: state.headerColor,
 		setHeaderColor,
 		currentColor: state.currentColor,
-		setCurrentColor
+		setCurrentColor,
 	};
 }

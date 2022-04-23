@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const TITLEBLOCK = `
-... on ComponentBlocksQuoteBlock {
+... on ComponentBlocksTitleBlock {
 	
 	Title
 }

@@ -1,3 +1,4 @@
+import { TtyRounded } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import React, { createContext, useEffect, useState } from "react";
 import { BLOCKS } from ".";
@@ -13,6 +14,8 @@ function Block(props) {
 		theme: null,
 		marginTop: true,
 		marginBottom: true,
+		paddingX: true,
+		paddingY: true,
 	});
 
 	useEffect(() => {
@@ -20,10 +23,7 @@ function Block(props) {
 
 		if (props.name.startsWith("FullBleed")) {
 			container = false;
-		} else if (props.name.startsWith("SplitTextMedia")) {
-			container = false;
 		}
-
 		setState(() => ({
 			container: container,
 			theme: props.theme,
@@ -33,6 +33,7 @@ function Block(props) {
 			marginBottom: props.data.options
 				? props.data.options.disableGutterBottom
 				: true,
+			paddingX: props.name.startsWith("SplitTextMedia") ? false : true,
 		}));
 	}, []);
 
@@ -48,6 +49,8 @@ function Block(props) {
 		},
 	});
 
+	
+
 	return (
 		<BlockContext.Provider value={{ theme: state.theme }}>
 			<Section
@@ -57,7 +60,14 @@ function Block(props) {
 			>
 				<ConditionalWrapper
 					condition={state.container}
-					wrapper={children => <Container>{children}</Container>}
+					wrapper={children => (
+						<Container
+							disableGutters={!state.paddingX}
+							disablePaddingY={!state.paddingY}
+						>
+							{children}
+						</Container>
+					)}
 				>
 					<Box sx={verticalPaddingStyles}>
 						{props.data &&

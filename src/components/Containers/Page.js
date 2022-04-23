@@ -22,24 +22,12 @@ function Page(props) {
 		minHeight: "100vh",
 		paddingTop: `${headerHeight}px`,
 		"section:last-of-type": {
-			marginBottom: 0
-		}
+			marginBottom: 0,
+		},
 	};
 
 	return (
 		<Box className={classes} {...props} sx={styles}>
-			{props.location.pathname !== "/" &&
-				props.location.pahtname !== "/projects/*" && (
-					<Section>
-						<Container>
-							<Typography variant='h1' component='h1' textAlign='center'>
-								{props.location.pathname === "/projects" && "Projects"}
-								{props.location.pathname === "/about" && "Meet the Founder"}
-								{props.location.pathname === "/about" && "Meet the Founder"}
-							</Typography>
-						</Container>
-					</Section>
-				)}
 			{props.children}
 		</Box>
 	);
