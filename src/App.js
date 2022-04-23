@@ -33,7 +33,7 @@ function App() {
 		addToRefs,
 		state,
 		setState,
-		navItems,
+
 		transitioning,
 		setTransitioning,
 		cursor,
@@ -49,6 +49,7 @@ function App() {
 	} = useAppData();
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
+	const [navItems, setNavItems] = useState([]);
 
 	const introTl = useRef(gsap.timeline());
 
@@ -299,6 +300,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 										location={location}
 										siteControls={siteControls}
 										pages={state.data.pages}
+										setNavItems={setNavItems}
 									/>
 								</main>
 

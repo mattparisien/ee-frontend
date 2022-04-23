@@ -25,9 +25,18 @@ function SiteRoutes(props) {
 	useEffect(() => {
 		if (!loading && data) {
 			setViews(() =>
-				data.pages.data.map(view => ({
-					id: view.id,
-					...keysToCamelCase(view.attributes),
+				data.pages.data
+					.filter(page => page.attributes.Active)
+					.map(view => ({
+						id: view.id,
+						...keysToCamelCase(view.attributes),
+					}))
+			);
+
+			props.setNavItems(() =>
+				data.pages.data.map(item => ({
+					name: item.attributes.Name,
+					path: item.attributes.Slug,
 				}))
 			);
 		}

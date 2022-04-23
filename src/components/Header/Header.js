@@ -1,26 +1,37 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import ResponsiveAppBar from "./ResponsiveAppBar";
+import { useQuery } from "@apollo/client";
+import NAVIGATION from "../../api/graphql/queries/GetNavigation";
 
 function Header({
 	toggleMenu,
-	navItems,
 	toggleTransitioning,
 	color,
 	location,
 	menuActive,
 }) {
+	const [navItems, setNavItems] = useState(null);
 	const [active, setActive] = useState(false);
 	const [arrowOpacity, setArrowOpacity] = useState(1);
 
-	const mobileNavClasses = classNames("c-header_nav-btn mobile", {
-		"is-active": active,
-	});
+	const { loading, error, data } = useQuery(NAVIGATION);
 
-	const headerClasses = classNames("c-header", {
-		"is-dark": menuActive,
-		"is-light": !menuActive,
-	});
+	useEffect(() => {
+		if (!loading && data) {
+			setNavItems(() =>
+				data.navigation.data.attributes.pages.data.map((page, i) => ({
+					id: (i += 1),
+					name: page.attributes.Name,
+					path: `/${page.attributes.Slug}`,
+				}))
+			);
+		}
+	}, [loading, data, error]);
+
+	useEffect(() => {
+		console.log(navItems);
+	}, [navItems]);
 
 	const handleClick = () => {
 		toggleMenu();

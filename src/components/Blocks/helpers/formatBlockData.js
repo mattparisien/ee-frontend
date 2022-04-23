@@ -1,4 +1,3 @@
-
 import keysToCamelCase from "../../../helpers/keysToCamelCase";
 import getInstaMedia from "../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
@@ -43,7 +42,7 @@ const getTheme = (block, blockName) => {
 };
 
 const formatSplitBlock = block => {
-	console.log(block[findKey(block, "Cta")])
+	console.log(block[findKey(block, "Cta")]);
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {
@@ -84,13 +83,16 @@ const formatQuoteBlockData = block => {
 };
 
 const formatFullBleedMediaBlockData = block => {
+
+
+	console.log('the block', block)
+
 	return {
 		id: block.id,
 
-		media:
-			block.MediaItem.length >= 1
-				? formatMedia(block.MediaItem[0]).then(media => media)
-				: null,
+		media: block.MediaItem
+			? formatMedia(block.MediaItem).then(media => media)
+			: null,
 	};
 };
 

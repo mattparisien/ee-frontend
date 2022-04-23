@@ -104,6 +104,7 @@ function About({ aboutText }) {
 					<Container position='relative'>
 						<Box
 							className='o-about_content -fullHeight'
+							sx={{display: "flex", alignItems: "center", justifyContent: "center"}}
 							pt={matches ? 5 : 20}
 							pb={matches ? 5 : 20}
 						>

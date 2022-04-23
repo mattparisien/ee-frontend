@@ -56,8 +56,8 @@ const formatSplitBlock = block => {
 		right: {
 			text: block.TextRight || null,
 			media:
-				block.MediaItem && block.MediaItem.length >= 1
-					? formatMedia(block.MediaItem[0]).then(media => media)
+				block.MediaItem && block.MediaItem
+					? formatMedia(block.MediaItem).then(media => media)
 					: null,
 		},
 	};
@@ -91,8 +91,8 @@ const formatFullBleedMediaBlockData = block => {
 		id: block.id,
 
 		media:
-			block.MediaItem.length >= 1
-				? formatMedia(block.MediaItem[0]).then(media => media)
+			block.MediaItem
+				? formatMedia(block.MediaItem).then(media => media)
 				: null,
 	};
 };
