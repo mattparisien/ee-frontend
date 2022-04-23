@@ -2,6 +2,7 @@ import { ConstructionOutlined } from "@mui/icons-material";
 import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
 import transformKeysToLowerCase from "../../../../helpers/transformKeysToLowercase";
+import findKey from "../../../../helpers/findKey";
 
 const blockNames = [];
 
@@ -28,15 +29,14 @@ const formatBlockData = array => {
 
 const formatSplitBlock = block => {
 	return {
-		layout: {
-			flip: block.Flip,
-			inset: block.Inset,
-		},
-
+		options: { ...block[findKey(block, "Options")] },
 		left: {
 			text: block.TextLeft || null,
 			media: null,
-			cta: block.CallToAction.length >= 1 ? block.CallToAction[0] : null,
+			cta:
+				block[findKey(block, "Cta")].length >= 1
+					? block[findKey(block, "Cta")][0]
+					: null,
 		},
 		right: {
 			text: block.TextRight || null,
@@ -50,11 +50,6 @@ const formatSplitBlock = block => {
 
 const formatGalleryBlockData = block => {
 	return {
-		// style: {
-		// 	variant: block.Style,
-		// 	rowHeight: block.RowHeight,
-		// 	columns: block.Columns
-		// },
 		images: block.Images
 			? block.Images.data.map(image => ({
 					url: image.attributes.url,
@@ -68,15 +63,18 @@ const formatQuoteBlockData = block => {
 		id: block.id,
 		quote: block.Quote,
 		author: block.Author,
+		options: block.QuoteBlockOptions
+			? {
+					...transformKeysToLowerCase(block.QuoteBlockOptions),
+			  }
+			: null,
 	};
 };
 
 const formatFullBleedMediaBlockData = block => {
 	return {
 		id: block.id,
-		layout: {
-			fullBleed: true,
-		},
+
 		media:
 			block.MediaItem.length >= 1
 				? formatMedia(block.MediaItem[0]).then(media => media)
@@ -94,8 +92,6 @@ const formatMedia = block => {
 
 		if (!Array.isArray(info)) {
 			//Is a single media item
-
-			
 
 			finalObject.data.value = {
 				options: transformKeysToLowerCase(postOptions),
@@ -162,6 +158,7 @@ const formatMedia = block => {
 
 const formatTextBlockData = block => {
 	return {
+		options: { ...block.TextBlockOptions },
 		text: block.Text,
 	};
 };

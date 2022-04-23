@@ -4,16 +4,16 @@ import { useEffect, useContext } from "react";
 import { BlockContext } from "../../Blocks/Block";
 
 const useLayout = layoutObject => {
-	const { disablePadding, setFullBleed, setFlippedLayout } =
-		useContext(BlockContext);
+	// const { disableHorizontalPadding, setFullBleed, setFlippedLayout } =
+	// 	useContext(BlockContext);
 
 	useEffect(() => {
-		if (layoutObject) {
-			!layoutObject.inset && disablePadding();
-			layoutObject.fullBleed && setFullBleed();
-			layoutObject.flip && setFlippedLayout();
-			layoutObject.inset && setInset();
-		}
+		// if (layoutObject) {
+		// 	!layoutObject.inset && disableHorizontalPadding();
+		// 	layoutObject.fullBleed && setFullBleed();
+		// 	layoutObject.flip && setFlippedLayout();
+		// 	layoutObject.inset && setInset();
+		// }
 	}, [layoutObject]);
 
 	return null;

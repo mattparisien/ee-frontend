@@ -1,16 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, useTheme } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PROJECTS from "../../../api/graphql/queries/GetProjects";
-import { SearchContext } from "../../../context/Context";
-import variables from "../../../styles/scss/_vars.module.scss";
 import Container from "../../Containers/ContainerFluid";
+import Page from "../../Containers/Page";
 import Section from "../../Containers/Section";
 import ProjectGrid from "./ProjectGrid/ProjectGrid";
-import Page from "../../Containers/Page";
-import { useTheme } from "@mui/material";
 
 export default function ProjectPage({ pageHeading, location }) {
 	const [projects, setProjects] = useState([]);

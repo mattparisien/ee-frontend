@@ -33,10 +33,9 @@ function Media(props) {
 	return (
 		<Box className={classes} sx={wrapper}>
 			<Container
-				disableGutters
 				sx={theme => ({
 					height: "100%",
-					padding: options && options.inset ? theme.spacing(10) : 0,
+					padding: "0 !important",
 				})}
 			>
 				<ConditionalWrapper

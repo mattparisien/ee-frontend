@@ -1,12 +1,14 @@
 import { gql } from "@apollo/client";
 
-const GETCTA = `
-CallToAction {
+const GETCTA = alias => {
+	return `
+${alias}: CallToAction {
 	ButtonText
 	URL
 	OpenNewTab
 }
 `;
+};
 
 const GETINSTAPOST = `
 insta_post {
@@ -46,7 +48,6 @@ MediaItem {
 	}
 	InstaUrl
 	Options {
-		
 		Inset
 		Linkable
 		Format
@@ -79,7 +80,11 @@ const SINGLEPROJECT = gql`
 							id
 							Quote
 							Author
-							QuoteBlockTheme: Theme
+							QuoteBlockOptions: Options {
+								QuoteBlockTheme: Theme
+								DisableGutterTop
+								DisableGutterBottom
+							}
 						}
 						... on ComponentBlocksFullBleedMediaBlock {
 							id
@@ -89,22 +94,29 @@ const SINGLEPROJECT = gql`
 						... on ComponentBlocksTextBlock {
 							id
 							Text
-							Theme
+							TextBlockOptions: Options {
+								SplitTextMediaBlockTheme: Theme
+							}
 						}
 						... on ComponentBlocksSplitTextBlock {
 							id
 							TextLeft
 							TextRight
-							SplitTextBlockTheme: Theme
+							SplitTextBlockOptions: Options {
+								SplitTextBlockTheme: Theme
+							}
 							Flip
-							${GETCTA}
+							${GETCTA("SplitTextBlockCta")}
 						}
 						... on ComponentBlocksSplitTextMediaBlock {
 							id
-							SplitTextMediaBlockTheme: Theme
+							
 							TextLeft: Text
+							SplitTextMediaBlockOptions: Options {
+								SplitTextMediaBlockTheme: Theme
+							}
 							${GETMEDIAITEM}
-							${GETCTA}
+							${GETCTA("SplitTextMediaBlockCta")}
 							
 						}
 					}

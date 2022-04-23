@@ -1,4 +1,7 @@
 const transformKeysToLowerCase = object => {
+
+	console.log('hellooo', object)
+
 	let key,
 		keys = Object.keys(object);
 	let n = keys.length;

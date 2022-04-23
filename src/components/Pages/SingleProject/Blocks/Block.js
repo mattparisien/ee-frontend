@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { BLOCKS } from ".";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
@@ -15,106 +15,150 @@ function Block(props) {
 			disablePadding: false,
 			maxWidth: "lg",
 		},
-		blocks: {
-			split: {
-				flip: false,
-				inset: false,
+		options: {
+			theme: null,
+			maxWidth: "lg",
+			margin: {
+				top: true,
+				bottom: true,
+			},
+			padding: {
+				x: true,
 			},
 		},
 	});
 	const padding = props.name === "FullBleedMediaBlock" ? 0 : 10;
 
-	const setFullBleed = () => {
-		setState(prev => ({
-			...prev,
-			container: {
-				...prev.container,
-				maxWidth: false,
-				disablePadding: true,
-			},
-		}));
-	};
+	useEffect(() => {
+		if (props.data.data && props.data.data.options) {
+			const options = props.data.data.options;
 
-	const disablePadding = () => {
-		setState(prev => ({
-			...prev,
-			container: {
-				...prev.container,
-				disablePadding: true,
-			},
-		}));
-	};
-
-	const setFlippedLayout = () => {
-		setState(prev => ({
-			...prev,
-			container: {
-				...prev.container,
-				disablePadding: true,
-			},
-			blocks: {
-				...prev.blocks,
-				split: {
-					...prev.blocks.split,
-					flip: true,
+			setState(prev => ({
+				...prev,
+				options: {
+					...prev.options,
+					theme: options[`${props.name.toLowerCase()}theme`],
+					maxWidth: !options.fullBleed ? prev.options.maxWidth : false,
+					margin: {
+						top: !options.disableguttertop ? prev.options.margin.top : false,
+						bottom: !options.disablegutterbottom
+							? prev.options.margin.top
+							: false,
+					},
+					padding: {
+						x: true,
+					},
 				},
-			},
-		}));
-	};
-
-	const setInset = () => {
-		setState(prev => ({
-			...prev,
-			container: {
-				...prev.container,
-				disablePadding: true,
-			},
-			blocks: {
-				...prev.blocks,
-				split: {
-					...prev.blocks.split,
-					inset: true,
+			}));
+		} else if (props.name === "FullBleedMediaBlock") {
+			setState(prev => ({
+				...prev,
+				options: {
+					...prev.options,
+					padding: {
+						x: false,
+					},
 				},
-			},
-		}));
-	};
+			}));
+		}
+	}, []);
 
-	const controls = {
-		setFullBleed,
-		disablePadding,
-		setFlippedLayout,
-		setInset,
-	};
+	// const setFullBleed = () => {
+	// 	setState(prev => ({
+	// 		...prev,
+	// 		options: {
+	// 			...prev.options,
+	// 			maxWidth: false,
+	// 			padding: {
+	// 				...prev.options.padding,
+	// 				x: false,
+	// 			},
+	// 		},
+	// 	}));
+	// };
 
-	const styles = {
-		flip: state.blocks.split.flip,
-		inset: state.blocks.split.inset,
-	};
+	// const disableHorizontalPadding = () => {
+	// 	setState(prev => ({
+	// 		...prev,
+	// 		options: {
+	// 			...prev.options,
+	// 			padding: {
+	// 				...prev.options.padding,
+	// 				x: false,
+	// 			},
+	// 		},
+	// 	}));
+	// };
+
+	// const setFlippedLayout = () => {
+	// 	setState(prev => ({
+	// 		...prev,
+	// 		container: {
+	// 			...prev.container,
+	// 			disablePadding: true,
+	// 		},
+	// 		blocks: {
+	// 			...prev.blocks,
+	// 			split: {
+	// 				...prev.blocks.split,
+	// 				flip: true,
+	// 			},
+	// 		},
+	// 	}));
+	// };
+
+	// const setInset = () => {
+	// 	setState(prev => ({
+	// 		...prev,
+	// 		container: {
+	// 			...prev.container,
+	// 			disablePadding: true,
+	// 		},
+	// 		blocks: {
+	// 			...prev.blocks,
+	// 			split: {
+	// 				...prev.blocks.split,
+	// 				inset: true,
+	// 			},
+	// 		},
+	// 	}));
+	// };
+
+	// const controls = {
+	// 	setFullBleed,
+	// 	disableHorizontalPadding,
+	// 	setFlippedLayout,
+	// 	setInset,
+	// };
+
+	const blockStyles = { ...state.options };
 
 	const verticalPaddingStyles = theme => ({
 		padding: `${theme.spacing(10)} 0`,
 		[theme.breakpoints.up("sm")]: {
-			padding: `${theme.spacing(15)} 0`
+			padding: `${theme.spacing(15)} 0`,
 		},
 		[theme.breakpoints.up("md")]: {
-			padding: `${theme.spacing(20)} 0`
-		}
-		
-	})
+			padding: `${theme.spacing(20)} 0`,
+		},
+	});
 
 	return (
-		<BlockContext.Provider value={Object.assign({}, controls, styles)}>
+		<BlockContext.Provider value={blockStyles}>
 			<Section
 				sectionTheme={
-					props.data.theme === "currentColor"
+					state.options.theme === "currentColor"
 						? projectColor
-						: props.data.theme
+						: state.options.theme
 				}
 			>
 				<Container
-					fullBleed={props.name.startsWith("FullBleed")}
 					disableGutters={state.container.disablePadding}
-					maxWidth={state.container.maxWidth}
+					maxWidth={state.options.maxWidth}
+					sx={{
+						padding:
+							state.options && !state.options.padding.x && "0 !important",
+					}}
 				>
 					<Box sx={verticalPaddingStyles}>
 						{props.data &&
