@@ -1,6 +1,4 @@
 import { Box } from "@mui/material";
-import { useContext } from "react";
-import { BlockContext } from "../Block";
 
 function SplitBlock(props) {
 	const wrapper = theme => ({
@@ -17,6 +15,7 @@ function SplitBlock(props) {
 		},
 
 		[theme.breakpoints.down("sm")]: {
+			flexDirection: "column",
 			".is-right, .is-left": {
 				width: "100%",
 			},

@@ -1,17 +1,18 @@
 import { Box } from "@mui/material";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { BLOCKS } from ".";
 import ConditionalWrapper from "../../../Containers/ConditionalWrapper";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
-import { ProjectContext } from "../SingleProjectPage";
 
 export const BlockContext = createContext();
 
 function Block(props) {
-	const { projectColor } = useContext(ProjectContext);
 	const [state, setState] = useState({
 		container: true,
+		theme: null,
+		marginTop: true,
+		marginBottom: true,
 	});
 
 	useEffect(() => {
@@ -26,6 +27,12 @@ function Block(props) {
 		setState(() => ({
 			container: container,
 			theme: props.theme,
+			marginTop: props.data.options
+				? props.data.options.disableGutterTop
+				: true,
+			marginBottom: props.data.options
+				? props.data.options.disableGutterBottom
+				: true,
 		}));
 	}, []);
 
@@ -43,7 +50,11 @@ function Block(props) {
 
 	return (
 		<BlockContext.Provider value={{ theme: state.theme }}>
-			<Section sectionTheme={state.theme}>
+			<Section
+				sectionTheme={state.theme}
+				disableMarginTop={!state.marginTop}
+				disableMarginBottom={!state.marginBottom}
+			>
 				<ConditionalWrapper
 					condition={state.container}
 					wrapper={children => <Container>{children}</Container>}

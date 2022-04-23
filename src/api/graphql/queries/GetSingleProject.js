@@ -10,6 +10,16 @@ ${alias}: CallToAction {
 `;
 };
 
+const GETBLOCKOPTIONS = alias => {
+	return `
+	${alias}Options: Options {
+		${alias}Theme: Theme
+		DisableGutterTop
+		DisableGutterBottom
+	}
+`;
+};
+
 const GETINSTAPOST = `
 insta_post {
 	data {
@@ -103,9 +113,7 @@ const SINGLEPROJECT = gql`
 							id
 							TextLeft
 							TextRight
-							SplitTextBlockOptions: Options {
-								SplitTextBlockTheme: Theme
-							}
+							
 							Flip
 							${GETCTA("SplitTextBlockCta")}
 						}

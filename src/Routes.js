@@ -6,10 +6,27 @@ import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
 import NotFoundPage from "./components/Pages/NotFound/NotFoundPage";
 import DemoPage from "./components/Pages/Demo/DemoPage";
-
+import { useQuery } from "@apollo/client";
+import PAGES from "./api/graphql/queries/GetPages";
+import keysToCamelCase from "./helpers/keysToCamelCase";
+import View from "./components/Containers/View";
 
 function SiteRoutes(props) {
 	const { location, pages } = props;
+
+	const [views, setViews] = useState(null);
+
+	const { loading, error, data } = useQuery(PAGES);
+
+	useEffect(() => {
+		if (!loading && data) {
+			setViews(() =>
+				data.pages.data.map(view => ({
+					...keysToCamelCase(view.attributes),
+				}))
+			);
+		}
+	}, [loading, error, data]);
 
 	const [pageHeadings, setPageHeadings] = useState(null);
 
@@ -42,7 +59,7 @@ function SiteRoutes(props) {
 			path: "/*",
 			component: NotFoundPage,
 			title: "notFound",
-			exact: false,	
+			exact: false,
 		},
 		singleProject: {
 			path: "/projects/:id",
@@ -52,20 +69,18 @@ function SiteRoutes(props) {
 		},
 	};
 
-	useEffect(() => {
-		if (pages) {
-			const newObj = {};
-
-			pages.forEach(page => (newObj[page.Title.toLowerCase()] = page.Heading));
-
-			setPageHeadings(newObj);
-		}
-	}, [pages]);
-
 	return (
 		<>
 			<Routes location={location} key={location.pathname}>
-				{Object.entries(pageSchema).map(page => (
+				{views &&
+					views.map(view => (
+						<Route
+							path={view.name !== "Home" ? view.slug : "/"}
+							element={<View location={location} pageId={}/>}
+							key={location.pathname}
+						/>
+					))}
+				{/* {Object.entries(pageSchema).map(page => (
 					<Route
 						exact={page[1].exact}
 						path={page[1].path}
@@ -77,7 +92,7 @@ function SiteRoutes(props) {
 						})}
 						key={location.pathname}
 					/>
-				))}
+				))} */}
 			</Routes>
 		</>
 	);
