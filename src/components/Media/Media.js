@@ -11,6 +11,8 @@ function Media(props) {
 	const { aspectRatio, width, height, accent, items, options, permalink } =
 		props;
 
+	console.log("the media", items);
+
 	const classes = classNames("media-wrapper", {
 		"accent accent-image accent-left": accent,
 	});
@@ -32,11 +34,13 @@ function Media(props) {
 
 	return (
 		<Box className={classes} sx={wrapper}>
-			<Container
-				sx={theme => ({
-					height: "100%",
-					padding: "0 !important",
-				})}
+			<ConditionalWrapper
+				condition={!props.disableContainer}
+				wrapper={children => (
+					<Container sx={{ height: "100%" }} disableGutters>
+						{children}
+					</Container>
+				)}
 			>
 				<ConditionalWrapper
 					wrapper={children => (
@@ -58,14 +62,14 @@ function Media(props) {
 						/>
 					)}
 				</ConditionalWrapper>
-				{options && options.displayCaption && (
+				{options && options.displayCaption && items.caption && (
 					<Box className='media-caption' m={2}>
 						<Typography variant='body2' textAlign='right' sx={{ opacity: 0.6 }}>
-							Photo by Haha
+							{items.caption}
 						</Typography>
 					</Box>
 				)}
-			</Container>
+			</ConditionalWrapper>
 		</Box>
 	);
 }

@@ -1,15 +1,14 @@
 import { Box, useMediaQuery } from "@mui/material";
-import React, { useContext, useRef } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
-import { SiteWideControls } from "../../context/Context";
+import React, { useContext, useMemo, useRef } from "react";
+import { ColorContext } from "../../context/Context";
 import combineStyles from "../../helpers/combineStyles";
+import getForegroundColor from "../../helpers/getForegroundColor";
 
 function Section(props) {
 	const { noGutter, sectionTheme } = props;
 
-	const scroll = useLocomotiveScroll();
-
-	const { setHeaderColor } = useContext(SiteWideControls);
+	
+	const { currentColor } = useContext(ColorContext);
 
 	const mobile = useMediaQuery("(max-width: 600px)");
 
@@ -17,28 +16,37 @@ function Section(props) {
 
 	const ref = useRef(null);
 
-	const section = theme => ({
+	const foregroundColor = useMemo(() => {
+		return getForegroundColor(
+			sectionTheme !== "currentColor" ? sectionTheme : currentColor[1]
+		);
+	}, [sectionTheme, currentColor]);
+
+	const themeObject = theme => ({
 		".accent::after": {
 			mixBlendMode:
 				sectionTheme === "light" || !sectionTheme ? "multiply" : "screen",
 		},
 		".foreground-el": {
-			backgroundColor:
-				theme.palette.primary[sectionTheme === "dark" ? "light" : "dark"],
+			backgroundColor: theme.palette.primary[foregroundColor],
+		},
+		".MuiSvgIcon-root": {
+			fill: theme.palette.primary[foregroundColor],
 		},
 		backgroundColor:
-			theme.palette.primary[sectionTheme ? sectionTheme : "light"],
-		color:
 			theme.palette.primary[
 				sectionTheme
-					? sectionTheme === "dark" ||
-					  sectionTheme === "blue" ||
-					  sectionTheme === "red"
-						? "light"
-						: "dark"
-					: "dark"
+					? sectionTheme === "currentColor"
+						? currentColor[1]
+						: sectionTheme
+					: "light"
 			],
+		color: theme.palette.primary[foregroundColor],
 	});
+
+	const section = theme => {
+		return themeObject(theme);
+	};
 
 	return (
 		<>

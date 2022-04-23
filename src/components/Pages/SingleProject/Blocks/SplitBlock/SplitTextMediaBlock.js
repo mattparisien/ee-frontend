@@ -1,18 +1,16 @@
-import { Box } from "@mui/material";
 import React from "react";
+import Container from "../../../../Containers/ContainerFluid";
+import Cta from "../../../../Link/Cta";
 import Markdown from "../../../../Markdown/Markdown";
 import Media from "../../../../Media/Media";
 import useLayout from "../../helpers/hooks/useLayout";
 import useMedia from "../../helpers/hooks/useMedia";
 import SplitBlock from "./SplitBlock";
-import Cta from "../../../../Link/Cta";
-import Container from "../../../../Containers/ContainerFluid";
 
 function SplitTextMediaBlock({ data }) {
-	const media = useMedia(data && data.data.right.media);
-	useLayout(data && data.data.layout);
-
-console.log('the data...', media)
+	const media = useMedia(data && data.right.media);
+	useLayout(data && data.layout);
+	
 
 	return (
 		<SplitBlock
@@ -39,13 +37,13 @@ function Left({ data }) {
 					p: "body2",
 				}}
 			>
-				{data && data.data.left.text}
+				{data && data.left.text}
 			</Markdown>
-			{data.data.left.cta && (
+			{data.left.cta && (
 				<Cta
-					children={data.data.left.cta.ButtonText}
-					target={data.data.left.cta.OpenNewTab ? "_blank" : "_self"}
-					href={data.data.left.cta.URL}
+					children={data.left.cta.ButtonText}
+					target={data.left.cta.OpenNewTab ? "_blank" : "_self"}
+					href={data.left.cta.URL}
 				/>
 			)}
 		</Container>
@@ -57,6 +55,7 @@ function Right({ media }) {
 		<Media
 			items={media && media}
 			aspectRatio={1}
+			disableContainer
 			options={media && media.options}
 			permalink={media && media.permalink}
 		/>

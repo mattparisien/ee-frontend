@@ -51,6 +51,7 @@ MediaItem {
 		Inset
 		Linkable
 		Format
+		DisplayCaption
 	}
 }
 `;
@@ -110,7 +111,9 @@ const SINGLEPROJECT = gql`
 						}
 						... on ComponentBlocksSplitTextMediaBlock {
 							id
-							
+							SplitTextMediaBlockOptions: Options {
+								SplitTextMediaBlockTheme: Theme
+							}
 							TextLeft: Text
 							SplitTextMediaBlockOptions: Options {
 								SplitTextMediaBlockTheme: Theme

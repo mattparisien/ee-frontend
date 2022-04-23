@@ -24,9 +24,11 @@ function Container(props) {
 	return (
 		<MuiContainer
 			className={classes}
-			disableGutters={props.fullBleed}
-			maxWidth={!props.fullBleed}
-			sx={combineStyles(containerSpacing, props.sx)}
+			maxWidth={props.disableMaxWidth ? false : "lg"}
+			sx={combineStyles(
+				!props.disableGutters ? containerSpacing : {},
+				props.sx
+			)}
 		>
 			{props.children}
 		</MuiContainer>

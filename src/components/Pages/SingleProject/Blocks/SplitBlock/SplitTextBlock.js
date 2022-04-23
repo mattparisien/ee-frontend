@@ -20,13 +20,10 @@ function SplitTextBlock({ data }) {
 			rightStyles={theme => ({
 				[theme.breakpoints.up("sm")]: {
 					marginLeft: "4rem",
-				}
-				
+				},
 			})}
-			leftComponent={
-				<Left text={data.data.left.text} cta={data.data.left.cta} />
-			}
-			rightComponent={<Right text={data.data.right.text} />}
+			leftComponent={<Left text={data.left.text} cta={data.left.cta} />}
+			rightComponent={<Right text={data.right.text} />}
 		/>
 	);
 }

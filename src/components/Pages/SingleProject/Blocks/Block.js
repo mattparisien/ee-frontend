@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { BLOCKS } from ".";
+import ConditionalWrapper from "../../../Containers/ConditionalWrapper";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
 import { ProjectContext } from "../SingleProjectPage";
@@ -9,129 +10,26 @@ export const BlockContext = createContext();
 
 function Block(props) {
 	const { projectColor } = useContext(ProjectContext);
-
 	const [state, setState] = useState({
-		container: {
-			disablePadding: false,
-			maxWidth: "lg",
-		},
-		options: {
-			theme: null,
-			maxWidth: "lg",
-			margin: {
-				top: true,
-				bottom: true,
-			},
-			padding: {
-				x: true,
-			},
-		},
+		container: true,
 	});
-	const padding = props.name === "FullBleedMediaBlock" ? 0 : 10;
 
 	useEffect(() => {
-		if (props.data.data && props.data.data.options) {
-			const options = props.data.data.options;
+		let container = true;
 
-			setState(prev => ({
-				...prev,
-				options: {
-					...prev.options,
-					theme: options[`${props.name.toLowerCase()}theme`],
-					maxWidth: !options.fullBleed ? prev.options.maxWidth : false,
-					margin: {
-						top: !options.disableguttertop ? prev.options.margin.top : false,
-						bottom: !options.disablegutterbottom
-							? prev.options.margin.top
-							: false,
-					},
-					padding: {
-						x: true,
-					},
-				},
-			}));
-		} else if (props.name === "FullBleedMediaBlock") {
-			setState(prev => ({
-				...prev,
-				options: {
-					...prev.options,
-					padding: {
-						x: false,
-					},
-				},
-			}));
+		if (props.name.startsWith("FullBleed")) {
+			container = false;
+		} else if (props.name.startsWith("SplitTextMedia")) {
+			container = false;
 		}
+
+		setState(() => ({
+			container: container,
+			theme: props.theme,
+		}));
 	}, []);
 
-	// const setFullBleed = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		options: {
-	// 			...prev.options,
-	// 			maxWidth: false,
-	// 			padding: {
-	// 				...prev.options.padding,
-	// 				x: false,
-	// 			},
-	// 		},
-	// 	}));
-	// };
-
-	// const disableHorizontalPadding = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		options: {
-	// 			...prev.options,
-	// 			padding: {
-	// 				...prev.options.padding,
-	// 				x: false,
-	// 			},
-	// 		},
-	// 	}));
-	// };
-
-	// const setFlippedLayout = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		container: {
-	// 			...prev.container,
-	// 			disablePadding: true,
-	// 		},
-	// 		blocks: {
-	// 			...prev.blocks,
-	// 			split: {
-	// 				...prev.blocks.split,
-	// 				flip: true,
-	// 			},
-	// 		},
-	// 	}));
-	// };
-
-	// const setInset = () => {
-	// 	setState(prev => ({
-	// 		...prev,
-	// 		container: {
-	// 			...prev.container,
-	// 			disablePadding: true,
-	// 		},
-	// 		blocks: {
-	// 			...prev.blocks,
-	// 			split: {
-	// 				...prev.blocks.split,
-	// 				inset: true,
-	// 			},
-	// 		},
-	// 	}));
-	// };
-
-	// const controls = {
-	// 	setFullBleed,
-	// 	disableHorizontalPadding,
-	// 	setFlippedLayout,
-	// 	setInset,
-	// };
-
-	const blockStyles = { ...state.options };
+	const padding = props.name === "FullBleedMediaBlock" ? 0 : 10;
 
 	const verticalPaddingStyles = theme => ({
 		padding: `${theme.spacing(10)} 0`,
@@ -144,21 +42,11 @@ function Block(props) {
 	});
 
 	return (
-		<BlockContext.Provider value={blockStyles}>
-			<Section
-				sectionTheme={
-					state.options.theme === "currentColor"
-						? projectColor
-						: state.options.theme
-				}
-			>
-				<Container
-					disableGutters={state.container.disablePadding}
-					maxWidth={state.options.maxWidth}
-					sx={{
-						padding:
-							state.options && !state.options.padding.x && "0 !important",
-					}}
+		<BlockContext.Provider value={{ theme: state.theme }}>
+			<Section sectionTheme={state.theme}>
+				<ConditionalWrapper
+					condition={state.container}
+					wrapper={children => <Container>{children}</Container>}
 				>
 					<Box sx={verticalPaddingStyles}>
 						{props.data &&
@@ -167,7 +55,7 @@ function Block(props) {
 								data: props.data,
 							})}
 					</Box>
-				</Container>
+				</ConditionalWrapper>
 			</Section>
 		</BlockContext.Provider>
 	);

@@ -3,8 +3,6 @@ import { useContext } from "react";
 import { BlockContext } from "../Block";
 
 function SplitBlock(props) {
-	const { flip, inset } = useContext(BlockContext);
-
 	const wrapper = theme => ({
 		display: "flex",
 		justifyContent: "space-between",
@@ -18,9 +16,7 @@ function SplitBlock(props) {
 			flex: props.flex && props.flex.right,
 		},
 
-		flexDirection: flip ? "row-reverse" : "row",
 		[theme.breakpoints.down("sm")]: {
-			flexDirection: flip ? "column-reverse" : "column",
 			".is-right, .is-left": {
 				width: "100%",
 			},
@@ -39,20 +35,14 @@ function SplitBlock(props) {
 
 	function Left({ component, styles }) {
 		return (
-			<Box
-				className={`split-layout_section ${flip ? "is-right" : "is-left"}`}
-				sx={styles}
-			>
+			<Box className={`split-layout_section is-left`} sx={styles}>
 				{component}
 			</Box>
 		);
 	}
 	function Right({ component, styles }) {
 		return (
-			<Box
-				className={`split-layout_section ${flip ? "is-left" : "is-right"}`}
-				sx={styles}
-			>
+			<Box className={`split-layout_section is-right`} sx={styles}>
 				{component}
 			</Box>
 		);

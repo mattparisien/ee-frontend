@@ -3,7 +3,10 @@ import { Box, Typography } from "@mui/material";
 import Media from "../../../Media/Media";
 
 function HeroBlock({ data }) {
-	console.log(data);
+	
+
+	console.log('the data', data)
+
 	const splitLayout = theme => ({
 		display: "flex",
 		alignItems: "center",
@@ -33,7 +36,8 @@ function HeroBlock({ data }) {
 						...data.image,
 					}}
 					options={{
-						format: "portrait"
+						format: "portrait",
+						displayCaption: true,
 					}}
 					accent
 				/>

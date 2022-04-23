@@ -41,7 +41,7 @@ function QuoteBlock({ data }) {
 				variant='h4'
 				component='blockquote'
 				sx={quote}
-			>{`"${data.data.quote}"`}</Typography>
+			>{`"${data.quote}"`}</Typography>
 			<Box sx={authorWrap} mt={8}>
 				<Typography
 					variant='h6'
@@ -51,7 +51,7 @@ function QuoteBlock({ data }) {
 					className='accent accent-left accent-text'
 					fontWeight={600}
 				>
-					{data.data.author}
+					{data.author}
 				</Typography>
 				<Box className='line foreground-el' sx={line}></Box>
 			</Box>

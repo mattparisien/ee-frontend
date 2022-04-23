@@ -1,8 +1,9 @@
 import { ConstructionOutlined } from "@mui/icons-material";
 import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
-import transformKeysToLowerCase from "../../../../helpers/transformKeysToLowercase";
+import keysToCamelCase from "../../../../helpers/keysToCamelCase";
 import findKey from "../../../../helpers/findKey";
+import { getThemeProps } from "@mui/system";
 
 const blockNames = [];
 
@@ -10,10 +11,10 @@ const formatBlockData = array => {
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
 
-		return {
+		const obj = {
 			id: block.id,
 			name: blockName,
-			theme: block[`${blockName}Theme`],
+			theme: getTheme(block, blockName),
 			data:
 				(blockName === "GalleryBlock" && formatGalleryBlockData(block)) ||
 				(blockName === "QuoteBlock" && formatQuoteBlockData(block)) ||
@@ -22,9 +23,26 @@ const formatBlockData = array => {
 				(blockName === "TextBlock" && formatTextBlockData(block)) ||
 				(blockName.startsWith("Split") && formatSplitBlock(block)),
 		};
+
+		console.log('obj', obj)
+
+		return obj;
 	});
 
 	return blocks;
+};
+
+const getTheme = (block, blockName) => {
+	if (block[`${blockName}Theme`]) {
+		return block[`${blockName}Theme`];
+	}
+
+	if (block[`${blockName}Options`]) {
+		const theme = block[`${blockName}Options`][`${blockName}Theme`];
+		return theme;
+	}
+
+	return null;
 };
 
 const formatSplitBlock = block => {
@@ -65,7 +83,7 @@ const formatQuoteBlockData = block => {
 		author: block.Author,
 		options: block.QuoteBlockOptions
 			? {
-					...transformKeysToLowerCase(block.QuoteBlockOptions),
+					...keysToCamelCase(block.QuoteBlockOptions),
 			  }
 			: null,
 	};
@@ -94,7 +112,7 @@ const formatMedia = block => {
 			//Is a single media item
 
 			finalObject.data.value = {
-				options: transformKeysToLowerCase(postOptions),
+				options: keysToCamelCase(postOptions),
 				permalink: permalink,
 				type: info.media_type.toLowerCase(),
 				url: info.media_url,
@@ -109,7 +127,7 @@ const formatMedia = block => {
 		finalObject.data.value = {
 			type: "carousel",
 			permalink: permalink,
-			options: transformKeysToLowerCase(postOptions),
+			options: keysToCamelCase(postOptions),
 			items: info.map(item => ({
 				data: {
 					type: item.media_type.toLowerCase(),
@@ -130,19 +148,22 @@ const formatMedia = block => {
 	};
 
 	if (block.Upload.data) {
+		//Is an upload
+
 		const obj = Object.create(templateObj, {
 			data: {
 				value: {
-					options: {
-						...transformKeysToLowerCase(block.Options),
-					},
+					options: keysToCamelCase(block.Options),
 					permalink: block.Permalink,
 					type: block.Upload.data.attributes.provider_metadata.resource_type,
 					url: block.Upload.data.attributes.url,
 					alt: block.Upload.data.attributes.alternativeText,
+					caption: block.Upload.data.attributes.caption,
 				},
 			},
 		});
+
+		console.log("the obj", obj);
 
 		return new Promise((resolve, reject) => resolve(obj));
 	}

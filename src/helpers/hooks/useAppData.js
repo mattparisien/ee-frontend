@@ -1,12 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import {
-	formatAbout,
-	formatPosts,
-	formatSteps,
-	formatTestimonials,
-} from "../formatData";
-import getData from "../getData";
+import { useState } from "react";
 
 export default function useAppData(scrollRef) {
 	const navItems = [
@@ -36,6 +28,7 @@ export default function useAppData(scrollRef) {
 		},
 		scroller: null,
 		headerColor: "dark",
+		currentColor: null,
 		sidebar: {
 			showSidebar: false,
 			hasShown: false,
@@ -78,18 +71,24 @@ export default function useAppData(scrollRef) {
 		setState(prev => ({ ...prev, headerColor: color }));
 	};
 
+	const setCurrentColor = color => {
+		setState(prev => ({ ...prev, currentColor: color }));
+	};
+
 	return {
 		state,
 		setState,
 		navItems,
 		transitioning,
 		setTransitioning,
-		cursor: {...state.cursor},
+		cursor: { ...state.cursor },
 		toggleCursorState,
 		pending: state.pending,
 		search: state.search,
 		setSearch,
 		headerColor: state.headerColor,
 		setHeaderColor,
+		currentColor: state.currentColor,
+		setCurrentColor
 	};
 }

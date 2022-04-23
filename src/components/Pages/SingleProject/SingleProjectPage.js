@@ -1,5 +1,11 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect, useMemo, useState, createContext } from "react";
+import React, {
+	useEffect,
+	useMemo,
+	useState,
+	createContext,
+	useContext,
+} from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { shuffleColors } from "../../../helpers/shuffleColors";
@@ -7,6 +13,7 @@ import Page from "../../Containers/Page";
 import Block from "./Blocks/Block";
 import formatBlockData from "./helpers/formatBlockData";
 import Next from "./Next";
+import { ColorContext } from "../../../context/Context";
 
 export const ProjectContext = createContext();
 
@@ -14,7 +21,12 @@ function SingleProjectPage({ location }) {
 	const [param, setParam] = useState(null);
 	const [project, setProject] = useState(null);
 
-	const accentColor = useMemo(() => shuffleColors(), []);
+	const { setCurrentColor } = useContext(ColorContext);
+	const accentColor = useMemo(() => {
+		const color = shuffleColors();
+		setCurrentColor(color);
+		return color;
+	}, []);
 
 	useEffect(() => {
 		//Find query param
@@ -54,14 +66,14 @@ function SingleProjectPage({ location }) {
 						url: data.project.data.attributes.FeatureImage.data.attributes.url,
 						alt: data.project.data.attributes.FeatureImage.data.attributes
 							.alternativeText,
+						caption:
+							data.project.data.attributes.FeatureImage.data.attributes.caption,
 					},
 					blocks: formatBlockData(data.project.data.attributes.Choose),
 				},
 			}));
 		}
 	}, [data, loading, accentColor]);
-
-	
 
 	return (
 		<ProjectContext.Provider
@@ -87,20 +99,16 @@ function SingleProjectPage({ location }) {
 							image: {
 								url: project.data.featureImage.url,
 								alt: project.data.featureImage.alt,
+								caption: project.data.featureImage.caption,
 							},
 						}}
 					/>
 				)}
 
 				{project &&
-					project.data.blocks.map((block, i) => (
-						<Block name={block.name} id={block.id} key={i} data={block} />
-					))}
+					project.data.blocks.map((block, i) => <Block {...block} key={i} />)}
 
-				<Next
-					color={accentColor[1]}
-					currentProjectId={param}
-				/>
+				<Next color={accentColor[1]} currentProjectId={param} />
 			</Page>
 		</ProjectContext.Provider>
 	);

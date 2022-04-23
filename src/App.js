@@ -41,6 +41,8 @@ function App() {
 		setSearch,
 		headerColor,
 		setHeaderColor,
+		currentColor,
+		setCurrentColor,
 	} = useAppData();
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
@@ -194,6 +196,7 @@ function App() {
 		transitioning,
 		setTransitioning,
 		toggleDomAnimationReady,
+		currentColor,
 		setHeaderColor,
 	};
 
@@ -239,6 +242,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 							location={location}
 							search={search}
 							setSearch={setSearch}
+							currentColor={currentColor}
+							setCurrentColor={setCurrentColor}
 						>
 							{/* <DragCursor cursor={cursor} /> */}
 							{/* <IntroCard pending={pending} /> */}
