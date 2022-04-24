@@ -11,6 +11,7 @@ const NAVIGATION = gql`
              attributes {
                Name
                Slug
+               Active
              }
            } 
           }

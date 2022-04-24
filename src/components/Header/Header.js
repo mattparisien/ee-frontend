@@ -20,11 +20,13 @@ function Header({
 	useEffect(() => {
 		if (!loading && data) {
 			setNavItems(() =>
-				data.navigation.data.attributes.pages.data.map((page, i) => ({
-					id: (i += 1),
-					name: page.attributes.Name,
-					path: `/${page.attributes.Slug}`,
-				}))
+				data.navigation.data.attributes.pages.data
+					.filter(item => item.attributes.Active)
+					.map((page, i) => ({
+						id: (i += 1),
+						name: page.attributes.Name,
+						path: `/${page.attributes.Slug}`,
+					}))
 			);
 		}
 	}, [loading, data, error]);

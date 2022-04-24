@@ -1,21 +1,30 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import Image from "./Image";
 import Video from "./Video";
 import Carousel from "./Carousel";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
+import Overlay from "./Overlay";
 
 function Media(props) {
-	const { aspectRatio, width, height, accent, items, options, permalink } =
-		props;
-
-	console.log("the media", items);
+	const {
+		aspectRatio,
+		width,
+		height,
+		accent,
+		items,
+		options,
+		permalink,
+		overlayColor,
+	} = props;
 
 	const classes = classNames("media-wrapper", {
 		"accent accent-image accent-left": accent,
 	});
+
+	const ref = useRef(null);
 
 	const innerComponent = {
 		width: "100%",
@@ -34,6 +43,7 @@ function Media(props) {
 
 	return (
 		<Box className={classes} sx={wrapper}>
+			<Box className='overlay'></Box>
 			<ConditionalWrapper
 				condition={!props.disableContainer}
 				wrapper={children => (
@@ -70,6 +80,7 @@ function Media(props) {
 					</Box>
 				)}
 			</ConditionalWrapper>
+			<Overlay color={overlayColor} />
 		</Box>
 	);
 }

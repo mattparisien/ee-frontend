@@ -25,14 +25,15 @@ function View({ location, pageId }) {
 
 	useEffect(() => {
 		if (data && !loading) {
-			if (data.page.data.attributes.Choose.length >= 1) {
-				setPage(() => ({
-					id: pageId,
-					name: data.page.data.attributes.Name,
-					template: data.page.data.attributes.template,
-					blocks: formatBlockData(data.page.data.attributes.Choose),
-				}));
-			}
+			setPage(() => ({
+				id: pageId,
+				name: data.page.data.attributes.Name,
+				template: data.page.data.attributes.template,
+				blocks:
+					data.page.data.attributes.Choose.length >= 1 &&
+					formatBlockData(data.page.data.attributes.Choose),
+			}));
+
 			setLoading(false);
 		}
 	}, [loading, data, error]);

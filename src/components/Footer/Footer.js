@@ -26,10 +26,6 @@ export default function Footer(props) {
 	const scroll = useLocomotiveScroll();
 	const mobile = useMediaQuery("(max-width: 400px)");
 
-	const handleScrollTop = e => {
-		e.preventDefault();
-	};
-
 	useEffect(() => {
 		if (data && !loading) {
 			setInfo({
@@ -39,7 +35,8 @@ export default function Footer(props) {
 		}
 	}, [data, loading]);
 
-	const scrollToTop = () => {
+	const handleScrollTop = e => {
+		e.preventDefault();
 		if (scroll) {
 			scroll.scroll.scrollTo(0, 0);
 		} else {
@@ -98,7 +95,6 @@ export default function Footer(props) {
 						</div>
 						<Box className='-fadeUp'>
 							<a
-								href='#'
 								onClick={handleScrollTop}
 								style={{
 									display: "flex",

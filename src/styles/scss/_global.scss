@@ -18,13 +18,14 @@
 // 	border-radius: 20px; /* roundness of the scroll thumb */
 // }
 
-.c-stories .swiper-slide-active {
+.content-container .swiper-slide-active {
 	overflow-y: overlay !important;
 }
 
 body {
 	overflow-x: hidden;
 }
+
 
 .swiper-pagination-bullet-active {
 	background-color: $light;

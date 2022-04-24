@@ -1,5 +1,5 @@
 import HomeTemplate from "./HomeTemplate";
-import ProjectsTemplate from "./ProjectsTemplate";
+import ProjectsTemplate from "./Projects/ProjectsTemplate";
 import ProjectTemplate from "./ProjectTemplate";
 
 export const TEMPLATES = {
