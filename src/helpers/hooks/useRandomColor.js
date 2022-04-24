@@ -7,24 +7,27 @@ const useRandomColor = (palette, amount) => {
 	//Palette: the theme palette
 	//Amount: amount of colors to be generated
 
+	if (!palette) {
+		return;
+	}
+
 	if (!amount) {
 		throw new Error("useRandomColor: Must specify a second argument amount");
 	}
 
 	const [colors, setColors] = useState([]);
 
-	const getRandomColor = (array, prevIndex) => {
+	const getRandomColor = (array, prevState) => {
 		let randomIndex = getRandomIndex(array.length);
 
 		if (
-			prevIndex !== -1 &&
-			colors[0] &&
-			colors[prevIndex] === array[randomIndex]
+			prevState[0] &&
+			prevState[prevState.length - 1] === array[randomIndex]
 		) {
-			return getRandomColor(array, prevIndex);
+			return getRandomColor(array, prevState);
 		} else {
-      return array[randomIndex];
-    }
+			return array[randomIndex];
+		}
 	};
 
 	const getRandomIndex = arrayLength => {
@@ -32,20 +35,16 @@ const useRandomColor = (palette, amount) => {
 	};
 
 	useEffect(() => {
-		if (palette) {
+		if (palette && !colors[0]) {
 			const hexCodes = Object.values(palette);
 
 			for (let i = 0; i <= amount; i++) {
-				const randomColor = getRandomColor(hexCodes, i - 1);
-
-				setColors(prev => [...prev, randomColor]);
+				setColors(prev => [...prev, getRandomColor(hexCodes, prev)]);
 			}
 		}
 	}, [palette]);
 
-  useEffect(() => {
-    console.log(colors)
-  }, [colors])
+	return colors;
 };
 
 export default useRandomColor;

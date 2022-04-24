@@ -15,23 +15,18 @@ import useRandomColor from "../../../helpers/hooks/useRandomColor";
 function ProjectsTemplate() {
 	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
-	// const { search } = useContext(SearchContext);
+
 	const theme = useTheme();
-	const hi = useRandomColor(theme && theme.palette.primary.colorSet, 2);
+	const colors = useRandomColor(theme.palette.primary.colorSet, 10);
+
 
 	gsap.registerPlugin(DrawSVGPlugin);
 
-	const colors = useMemo(() => {
-		const colorArray = [];
-
-		if (theme) {
-			for (let key in theme.palette.primary.colorSet) {
-				colorArray.push(theme.palette.primary.colorSet[key]);
-			}
-		}
-
-		return [...colorArray, ...colorArray].slice(0, 6);
-	}, [theme]);
+	// const colors = useMemo(() => {
+	// 	if (theme) {
+	// 		return useRandomColor(theme && theme.palette.primary.colorSet, 10);
+	// 	}
+	// }, [theme]);
 
 	useEffect(() => {
 		if (data && !loading) {

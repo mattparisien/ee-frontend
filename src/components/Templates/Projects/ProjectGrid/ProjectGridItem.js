@@ -76,6 +76,7 @@ function ProjectGridItem({
 				<Media
 					variant='image'
 					overlayColor={color}
+					
 					items={{
 						type: "image",
 						url: image.url,

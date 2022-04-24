@@ -43,7 +43,6 @@ function Media(props) {
 
 	return (
 		<Box className={classes} sx={wrapper}>
-			<Box className='overlay'></Box>
 			<ConditionalWrapper
 				condition={!props.disableContainer}
 				wrapper={children => (

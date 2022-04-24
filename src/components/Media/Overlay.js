@@ -1,9 +1,8 @@
-import React, { useRef, useEffect } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { Box } from "@mui/material";
+import React, { useEffect, useRef } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function Overlay({ color }) {
-	const ref = useRef(null);
 	const overlayRef = useRef(null);
 	const windowHeight = useRef(window.innerHeight);
 	const scroll = useLocomotiveScroll();
@@ -14,34 +13,36 @@ function Overlay({ color }) {
 		overlay.style.opacity = opacityValue;
 	};
 
-	const handleScroll = () => {
-		const bounds = overlayRef.current.getBoundingClientRect();
-		const itemTop = bounds.top;
+	const handleScroll = (e, overlays) => {
+		overlays.forEach(overlay => {
+			const bounds = overlay.getBoundingClientRect();
+			const itemTop = bounds.top;
 
-		if (itemTop - 300 < windowHeight.current) {
-			//If is entering viewport, fade overlay opacity
-			animateOverlayOpacityIn(overlayRef.current, itemTop);
-		}
+			if (itemTop - 300 < windowHeight.current) {
+				//If is entering viewport, fade overlay opacity
+				animateOverlayOpacityIn(overlay, itemTop);
+			}
+		});
 	};
 
 	const hasRegisteredScroll = useRef(false);
 
 	useEffect(() => {
-		if (scroll && scroll.scroll && !hasRegisteredScroll.current)
+		if (scroll && scroll.scroll && !hasRegisteredScroll.current) {
 			hasRegisteredScroll.current = true;
-		{
-			scroll.scroll.on("scroll", handleScroll);
+			const overlays = document.querySelectorAll(".overlay");
+			scroll.scroll.on("scroll", e => handleScroll(e, overlays));
 		}
-	}, [scroll]);
+	}, [scroll, overlayRef]);
 
-	const overlay = {
+	const overlay = theme => ({
 		width: "100%",
 		height: "100%",
 		position: "absolute",
 		top: 0,
 		left: 0,
-		backgroundColor: color,
-	};
+		backgroundColor: color ? color : theme.palette.primary.colorSet.yellow,
+	});
 	return <Box className='overlay' sx={overlay} ref={overlayRef}></Box>;
 }
 

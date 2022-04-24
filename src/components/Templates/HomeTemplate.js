@@ -4,11 +4,10 @@ import gsap from "gsap";
 import IntertiaPLugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useEffect, useState } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 import STATICHOME from "../../api/graphql/queries/static/GetStaticHome";
+import Container from "../Containers/ContainerFluid";
 import Section from "../Containers/Section";
 import Stories from "../Stories/Stories";
-import Container from "../Containers/ContainerFluid";
 import About from "./Parts/About";
 import Hero from "./Parts/Hero";
 import How from "./Parts/Steps/How";
@@ -17,15 +16,11 @@ import Work from "./Parts/Work";
 function HomeTemplate({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 
-	const scroll = useLocomotiveScroll();
-
 	const { loading, error, data } = useQuery(STATICHOME, {
 		variables: {
 			projectLimit: 1,
 		},
 	});
-
-	console.log("in hererwe");
 
 	const [staticData, setStaticData] = useState({
 		about: null,
