@@ -52,6 +52,7 @@
 		"react-transition-group": "^4.4.2",
 		"sass": "^1.49.9",
 		"sass-loader": "^12.6.0",
+		"styled-components": "^5.3.5",
 		"swiper": "^8.1.1",
 		"universal-cookie": "^4.0.4",
 		"web-vitals": "^1.1.2"

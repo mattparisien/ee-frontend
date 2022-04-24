@@ -10,27 +10,6 @@ ${alias}: CallToAction {
 `;
 };
 
-const GETBLOCKOPTIONS = alias => {
-	return `
-	${alias}Options: Options {
-		${alias}Theme: Theme
-		DisableGutterTop
-		DisableGutterBottom
-	}
-`;
-};
-
-const GETINSTAPOST = `
-insta_post {
-	data {
-		attributes {
-			PostUrl
-		}
-	}
-}
-
-`;
-
 const GETIMAGEDATA = `
 data {
 	attributes {

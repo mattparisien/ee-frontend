@@ -54,8 +54,8 @@ function Section(props) {
 				ref={ref}
 				className='section'
 				sx={combineStyles(section, props.sx)}
-				mb={props.disableGutterBottom ? 0 : gutter}
-				mt={props.disableGutterTop ? 0 : gutter}
+				mb={props.disableMarginBottom ? 0 : gutter}
+				mt={props.disableMarginTop ? 0 : gutter}
 			>
 				{props.children}
 			</Box>

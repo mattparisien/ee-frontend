@@ -1,4 +1,3 @@
-import { TtyRounded } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import React, { createContext, useEffect, useState } from "react";
 import { BLOCKS } from ".";
@@ -29,10 +28,10 @@ function Block(props) {
 			container: container,
 			theme: props.theme,
 			marginTop: props.data.options
-				? props.data.options.disableGutterTop
+				? !props.data.options.DisableGutterTop
 				: true,
 			marginBottom: props.data.options
-				? props.data.options.disableGutterBottom
+				? !props.data.options.DisableGutterBottom
 				: true,
 			paddingX: props.name.startsWith("SplitTextMedia") ? false : true,
 		}));
@@ -68,13 +67,18 @@ function Block(props) {
 						</Container>
 					)}
 				>
-					<Box sx={verticalPaddingStyles}>
+					<ConditionalWrapper
+						wrapper={children => (
+							<Box sx={verticalPaddingStyles}>{children}</Box>
+						)}
+						condition={props.name !== "FullBleedMediaBlock"}
+					>
 						{props.data &&
 							React.createElement(BLOCKS[props.name], {
 								key: props.id,
 								data: props.data,
 							})}
-					</Box>
+					</ConditionalWrapper>
 				</ConditionalWrapper>
 			</Section>
 		</BlockContext.Provider>
