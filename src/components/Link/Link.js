@@ -1,12 +1,11 @@
+import { Typography } from "@mui/material";
 import classNames from "classnames";
 import React, { forwardRef, useContext } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { SiteWideControls } from "../../context/Context";
-import { Button, Typography } from "@mui/material";
-import { Box } from "@mui/material";
 
-function Link(props, ref) {
+function Link(props) {
 	const scroll = useLocomotiveScroll();
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
@@ -38,15 +37,14 @@ function Link(props, ref) {
 	};
 
 	return props.isRouterLink ? (
-		<Box
+		<NavLink
 			className={classes}
-			ref={ref}
-			onClick={e => handleNavigate(e)}
-			component='button'
-			{...props}
+			to={props.href === "/" ? "" : props.href}
+			style={props.style}
+			// component='button'
 		>
 			<Typography variant='body3'>{props.children}</Typography>
-		</Box>
+		</NavLink>
 	) : (
 		// <RouterLink to={props.href} className={classes} ref={ref} onClick={() => console.log('has clicked!')}>{props.children}</RouterLink>
 		<a
@@ -58,6 +56,7 @@ function Link(props, ref) {
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			ref={ref}
 			data-rotate={props.rotate}
+			{...props}
 		>
 			{props.children}
 		</a>

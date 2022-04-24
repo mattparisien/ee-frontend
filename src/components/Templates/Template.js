@@ -1,8 +1,10 @@
 import React from "react";
 import { TEMPLATES } from "./index";
 
-function Template({ name }) {
-	return name ? React.createElement(TEMPLATES[name]) : null;
+function Template({ name, location }) {
+	return name
+		? React.createElement(TEMPLATES[name], { location: location })
+		: null;
 }
 
 export default Template;

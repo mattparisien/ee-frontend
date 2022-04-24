@@ -42,7 +42,9 @@ const getTheme = (block, blockName) => {
 };
 
 const formatSplitBlock = block => {
-	console.log(block[findKey(block, "Cta")]);
+
+	console.log('the blocksss', block)
+
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {
@@ -83,10 +85,6 @@ const formatQuoteBlockData = block => {
 };
 
 const formatFullBleedMediaBlockData = block => {
-
-
-	console.log('the block', block)
-
 	return {
 		id: block.id,
 

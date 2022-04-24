@@ -5,9 +5,8 @@ import combineStyles from "../../helpers/combineStyles";
 import getForegroundColor from "../../helpers/getForegroundColor";
 
 function Section(props) {
-	const { noGutter, sectionTheme } = props;
+	const { disableGutterTop, disableGutterBottom, sectionTheme } = props;
 
-	
 	const { currentColor } = useContext(ColorContext);
 
 	const mobile = useMediaQuery("(max-width: 600px)");
@@ -55,8 +54,8 @@ function Section(props) {
 				ref={ref}
 				className='section'
 				sx={combineStyles(section, props.sx)}
-				mb={props.noGutter ? 0 : gutter}
-				mt={props.noGutter || props.noGutterTop ? 0 : gutter}
+				mb={props.disableGutterBottom ? 0 : gutter}
+				mt={props.disableGutterTop ? 0 : gutter}
 			>
 				{props.children}
 			</Box>

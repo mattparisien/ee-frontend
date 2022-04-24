@@ -1,11 +1,21 @@
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
+import {
+	AppBar,
+	Box,
+	IconButton,
+	Toolbar,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemText,
+} from "@mui/material";
 import classNames from "classnames";
 import React from "react";
 import Container from "../Containers/ContainerFluid";
-import List from "../Lists/List";
+// import List from "../Lists/List";
 import { TextLogo } from "../Vector/Svg";
+import Link from "../Link/Link";
 
 function ResponsiveAppBar({
 	toggleTransitioning,
@@ -33,8 +43,8 @@ function ResponsiveAppBar({
 	const spacer = theme => ({
 		width: "20rem",
 		[theme.breakpoints.down("md")]: {
-			width: "10rem"
-		}
+			width: "10rem",
+		},
 	});
 
 	const navToolbar = theme => ({
@@ -55,12 +65,16 @@ function ResponsiveAppBar({
 	});
 
 	const navDesktop = theme => ({
-		width: '20rem',
+		width: "20rem",
 		[theme.breakpoints.down("md")]: {
 			display: "none",
-			width: "10rem !important"
+			width: "10rem !important",
 		},
 	});
+
+	const flexList = {
+		display: "flex",
+	};
 
 	const headerClasses = classNames("c-header", {
 		"is-dark": menuActive,
@@ -76,12 +90,27 @@ function ResponsiveAppBar({
 						<TextLogo />
 					</Box>
 					<Box sx={navDesktop} component='nav'>
-						<List
+						<List style={flexList}>
+							{navItems &&
+								navItems.map((item, i) => (
+									<ListItem key={i}>
+										<Link isRouterLink href={item.path}>
+											<ListItemText
+												primary={item.name}
+												primaryTypographyProps={{
+													variant: "body2",
+												}}
+											/>
+										</Link>
+									</ListItem>
+								))}
+						</List>
+						{/* <List
 							items={navItems}
 							hoverEffect='draw'
 							color='dark'
 							toggleTransitioning={toggleTransitioning}
-						/>
+						/> */}
 					</Box>
 					<Box
 						className='mobile-nav'

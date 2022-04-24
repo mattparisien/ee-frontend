@@ -1,3 +1,4 @@
+import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@mui/material";
 import classNames from "classnames";
 import gsap from "gsap";
@@ -6,19 +7,16 @@ import $ from "jquery";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
+import { client } from "./api/graphql/index";
 import { Header } from "./components";
+import Cursor from "./components/Cursor/Cursor";
 import Footer from "./components/Footer/Footer";
+import LoadingScreen from "./components/Loading/LoadingScreen";
 import Menu from "./components/Menu/Menu";
 import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
-import IntroCard from "./components/Transition/IntroCard";
-import { introAnimation } from "./animations";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "./api/graphql/index";
-import Cursor from "./components/Cursor/Cursor";
-import LoadingScreen from "./components/Loading/LoadingScreen";
 
 function App() {
 	const scrollWrapper = useRef(null);

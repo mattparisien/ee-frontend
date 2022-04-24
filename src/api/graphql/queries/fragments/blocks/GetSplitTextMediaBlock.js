@@ -1,15 +1,14 @@
 import GETCTA from "../GetCta";
 import GETMEDIAITEM from "../GetMediaItem";
+import GETBLOCKOPTIONS from "../GetBlockOptions";
 
 const SPLITTEXTMEDIABLOCK = `
 ... on ComponentBlocksSplitTextMediaBlock {
   id
-  SplitTextMediaBlockOptions: Options {
-    SplitTextMediaBlockTheme: Theme
-  }
   TextLeft: Text
-  SplitTextMediaBlockOptions: Options {
-    SplitTextMediaBlockTheme: Theme
+  Options {
+    DisableGutterTop
+    DisableGutterBottom
   }
   ${GETMEDIAITEM}
   ${GETCTA("SplitTextMediaBlockCta")}

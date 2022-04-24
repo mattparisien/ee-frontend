@@ -7,13 +7,12 @@ import React, { useEffect, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 import ContainerFluid from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
-import SectionHeading from "../../../Headings/SectionHeading";
+import CircleSvg from "../../../Vector/Circle";
 import animateNotes from "./animations";
+import AnimationWrapper from "./AnimationWrapper";
 import Notes from "./Notes";
 import Sheet from "./Sheet";
 import StepItem from "./StepItem";
-import AnimationWrapper from "./AnimationWrapper";
-import CircleSvg from "../../../Vector/Circle";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -223,19 +222,11 @@ function How({ steps }) {
 				data-theme='light'
 				ref={container}
 				noGutter
+				sx={{ overflow: "hidden" }}
 			>
 				<AnimationWrapper>
-					<ContainerFluid maxWidth={false}>
+					<ContainerFluid disableMaxWidth>
 						<Box className='heading-layout' sx={headingLayout} mb={20}>
-							<SectionHeading
-								textAlign='center'
-								sx={heading}
-								pb={5}
-								pt={5}
-								mb={5}
-								text={"Finding Your Rhythm"}
-							/>
-
 							{/* <Box sx={playerSvg}>
 							<InstrumentPlayer />
 						</Box> */}
@@ -278,18 +269,43 @@ const Circles = () => {
 			position: "absolute",
 			bottom: 0,
 			left: 0,
-			mixBlendMode: "multiply",
-			fill: theme.palette.primary.colorSet.yellow,
+			zIndex: 999,
+
 			"&:nth-child(1)": {
-				width: "150px",
-				top: "20%",
-				left: "10%"
+				width: "55vw",
+				top: "8%",
+				left: "-10%",
+				fill: theme.palette.primary.colorSet.yellow,
+				mixBlendMode: "multiply",
 			},
 			"&:nth-child(2)": {
-				width: "250px",
-				top: "30%",
-				left: "70%"
-			}
+				width: "7vw",
+				top: 0,
+				left: "30%",
+				mixBlendMode: "exclusion",
+				fill: theme.palette.primary.colorSet.blue,
+			},
+			"&:nth-child(3)": {
+				width: "30vw",
+				top: 0,
+				left: "70%",
+				fill: "#CCA321",
+				mixBlendMode: "exclusion",
+			},
+			"&:nth-child(4)": {
+				width: "40vw",
+				top: "29%",
+				left: "10%",
+				fill: "hotpink",
+				mixBlendMode: "multiply",
+			},
+			"&:nth-child(5)": {
+				width: "40vw",
+				top: "40%",
+				left: "20%",
+				fill: theme.palette.primary.colorSet.yellow,
+				mixBlendMode: "screen",
+			},
 		},
 	});
 
@@ -300,6 +316,9 @@ const Circles = () => {
 				position='relative'
 				sx={{ width: "100%", height: "100%" }}
 			>
+				<CircleSvg />
+				<CircleSvg />
+				<CircleSvg />
 				<CircleSvg />
 				<CircleSvg />
 				{/* <CircleSvg />

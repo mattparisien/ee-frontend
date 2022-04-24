@@ -6,7 +6,7 @@ function StepItem({ step }) {
 	const stepHeading = theme => ({
 		fontSize: "4vw",
 		lineHeight: "5vw",
-		fontFamily: "Kobe",
+
 		textAlign: "center",
 		[theme.breakpoints.down("md")]: {
 			fontSize: "6vw",
@@ -45,7 +45,7 @@ function StepItem({ step }) {
 					<Typography
 						sx={stepParagraph}
 						className='body'
-						variant='body1'
+						variant='body2'
 						component={"p"}
 					>
 						{step.body}

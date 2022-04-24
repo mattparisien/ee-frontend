@@ -10,14 +10,15 @@ import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import Page from "../../Containers/Page";
-import Block from "./Blocks/Block";
-import formatBlockData from "./helpers/formatBlockData";
-import Next from "./Next";
+import Block from "../../Blocks/Block";
+import formatBlockData from "../../Blocks/helpers/formatBlockData";
+import Next from "./Parts/Next";
 import { ColorContext } from "../../../context/Context";
+import { useLocation } from "react-router";
 
 export const ProjectContext = createContext();
 
-function SingleProjectPage({ location }) {
+function ProjectTemplate({ location }) {
 	const [param, setParam] = useState(null);
 	const [project, setProject] = useState(null);
 
@@ -114,4 +115,4 @@ function SingleProjectPage({ location }) {
 	);
 }
 
-export default SingleProjectPage;
+export default ProjectTemplate;

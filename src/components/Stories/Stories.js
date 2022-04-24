@@ -1,13 +1,13 @@
-import { Typography, useMediaQuery, Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import React, { useRef } from "react";
 import "swiper";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/modules/pagination/pagination.min.css";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
+import QuoteBlock from "../Blocks/QuoteBlock";
 import ArrowButton from "../Button/ArrowButton";
 import Container from "../Containers/ContainerFluid";
-import QuoteBlock from "../Pages/SingleProject/Blocks/QuoteBlock";
 
 function Stories({ slides }) {
 	SwiperCore.use([Autoplay, Navigation, Pagination]);

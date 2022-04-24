@@ -1,11 +1,12 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PAGE from "../../api/graphql/queries/GetPage";
+import { LoadingContext } from "../../context/Context";
 import Block from "../Blocks/Block";
 import formatBlockData from "../Blocks/helpers/formatBlockData";
 import Template from "../Templates/Template";
 import Page from "./Page";
-import { LoadingContext } from "../../context/Context";
+import { motion } from "framer-motion/dist/framer-motion";
 
 function View({ location, pageId }) {
 	const { loading, error, data } = useQuery(PAGE, {
@@ -38,18 +39,40 @@ function View({ location, pageId }) {
 		}
 	}, [loading, data, error]);
 
+	const containerVariants = {
+		hidden: {
+			opacity: 0,
+		},
+		visible: {
+			opacity: 1,
+			transition: { delay: 1.5, dureation: 1.5 },
+		},
+		exit: {
+			opacity: 0,
+			transition: { ease: "easeInOut" },
+		},
+	};
+
 	return (
 		<Page location={location}>
-			<Template
-				name={
-					page.template &&
-					page.template.data &&
-					page.template.data.attributes.Name
-				}
-			/>
-			{page &&
-				page.blocks &&
-				page.blocks.map((block, i) => <Block {...block} key={i} />)}
+			<motion.div
+				variants={containerVariants}
+				initial={"hidden"}
+				animate='visible'
+				exit="exit"
+			>
+				<Template
+					location={location}
+					name={
+						page.template &&
+						page.template.data &&
+						page.template.data.attributes.Name
+					}
+				/>
+				{page &&
+					page.blocks &&
+					page.blocks.map((block, i) => <Block {...block} key={i} />)}
+			</motion.div>
 		</Page>
 	);
 }

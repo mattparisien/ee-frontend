@@ -1,6 +1,4 @@
-import { ConstructionOutlined } from "@mui/icons-material";
 import $ from "jquery";
-import useScrollHandler from "../../../../helpers/hooks/useScrollHandler";
 
 const animateNotes = (scroller, elements) => {
 	const windowHeight = window.innerHeight;

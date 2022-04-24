@@ -24,6 +24,7 @@ function Block(props) {
 		if (props.name.startsWith("FullBleed")) {
 			container = false;
 		}
+
 		setState(() => ({
 			container: container,
 			theme: props.theme,
@@ -48,8 +49,6 @@ function Block(props) {
 			padding: `${theme.spacing(20)} 0`,
 		},
 	});
-
-	
 
 	return (
 		<BlockContext.Provider value={{ theme: state.theme }}>

@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
 import { Box } from "@mui/material";
+import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import $ from "jquery";
 
 function AnimationWrapper({ children }) {
 	const { ref, inView, entry } = useInView();
@@ -36,7 +35,7 @@ function AnimationWrapper({ children }) {
 	}, [inView, scroll]);
 
 	return (
-		<Box ref={ref} position='relative'>
+		<Box ref={ref} position='relative' >
 			{children}
 		</Box>
 	);

@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { QuarterNote, HalfNote, DoubleNote } from "../../../Vector/Notes";
-import useScrollHandler from "../../../../helpers/hooks/useScrollHandler";
-import animateNotes from "./animations";
+import React from "react";
 
 function Notes() {
 	return (

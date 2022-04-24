@@ -1,8 +1,7 @@
-import classNames from "classnames";
-import React, { useEffect, useState } from "react";
-import ResponsiveAppBar from "./ResponsiveAppBar";
 import { useQuery } from "@apollo/client";
+import React, { useEffect, useState } from "react";
 import NAVIGATION from "../../api/graphql/queries/GetNavigation";
+import ResponsiveAppBar from "./ResponsiveAppBar";
 
 function Header({
 	toggleMenu,
@@ -46,8 +45,6 @@ function Header({
 	useEffect(() => {
 		menuActive ? setActive(true) : setActive(false);
 	}, [menuActive]);
-
-	const wrapper = {};
 
 	return (
 		<ResponsiveAppBar

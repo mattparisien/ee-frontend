@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 import QUOTEBLOCK from "./fragments/blocks/GetQuoteBlock";
-import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
 import TEXTBLOCK from "./fragments/blocks/GetTextBlock";
 import TITLEBLOCK from "./fragments/blocks/GetTitleBlock";
 import FULLBLEEDMEDIABLOCK from "./fragments/blocks/GetFullBleedMediaBlock";
+import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
 
 const DYNAMICBLOCKS = `
 	Choose {

@@ -39,6 +39,8 @@ function Overlay({ color }) {
 		width: "100%",
 		height: "100%",
 		position: "absolute",
+		pointerEvents: "none",
+		opacity: 0,
 		top: 0,
 		left: 0,
 		backgroundColor: color ? color : theme.palette.primary.colorSet.yellow,

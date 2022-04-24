@@ -1,12 +1,15 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
-import React, { useMemo, useRef } from "react";
-import Image from "./Image";
-import Video from "./Video";
-import Carousel from "./Carousel";
+import React, { useState, createContext } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
+import Carousel from "./Carousel";
+import Image from "./Image";
 import Overlay from "./Overlay";
+import Video from "./Video";
+import Loader from "./Loader";
+
+export const MediaContext = createContext();
 
 function Media(props) {
 	const {
@@ -24,7 +27,7 @@ function Media(props) {
 		"accent accent-image accent-left": accent,
 	});
 
-	const ref = useRef(null);
+	const [loaded, setLoaded] = useState(false);
 
 	const innerComponent = {
 		width: "100%",
@@ -37,50 +40,58 @@ function Media(props) {
 		height: height,
 		width: width,
 		position: "relative",
+
 		aspectRatio: `1 / ${options && theme.aspectRatio[options.format]}`,
 		"img, video": innerComponent,
 	});
 
 	return (
-		<Box className={classes} sx={wrapper}>
-			<ConditionalWrapper
-				condition={!props.disableContainer}
-				wrapper={children => (
-					<Container sx={{ height: "100%" }} disableGutters>
-						{children}
-					</Container>
-				)}
-			>
+		<MediaContext.Provider value={{ loaded, setLoaded }}>
+			<Box className={classes} sx={wrapper}>
 				<ConditionalWrapper
+					condition={!props.disableContainer}
 					wrapper={children => (
-						<Link children={children} href={permalink} target='_blank' />
+						<Container sx={{ height: "100%" }} disableGutters>
+							{children}
+						</Container>
 					)}
-					condition={options && options.linkable && permalink}
 				>
-					{items && items.type === "image" && (
-						<Image src={items && items.url} alt={items && items.alt} />
-					)}
-					{items && items.type === "video" && (
-						<Video src={items && items.url} />
-					)}
-					{items && items.type === "carousel" && (
-						<Carousel
-							items={items && items.items}
-							image={url => <Image src={url} />}
-							video={url => <Video src={url} />}
-						/>
+					<ConditionalWrapper
+						wrapper={children => (
+							<Link children={children} href={permalink} target='_blank' />
+						)}
+						condition={options && options.linkable && permalink}
+					>
+						{items && items.type === "image" && (
+							<Image src={items && items.url} alt={items && items.alt} />
+						)}
+						{items && items.type === "video" && (
+							<Video src={items && items.url} />
+						)}
+						{items && items.type === "carousel" && (
+							<Carousel
+								items={items && items.items}
+								image={url => <Image src={url} />}
+								video={url => <Video src={url} />}
+							/>
+						)}
+					</ConditionalWrapper>
+					{options && options.displayCaption && items.caption && (
+						<Box className='media-caption' m={2}>
+							<Typography
+								variant='body2'
+								textAlign='right'
+								sx={{ opacity: 0.6 }}
+							>
+								{items.caption}
+							</Typography>
+						</Box>
 					)}
 				</ConditionalWrapper>
-				{options && options.displayCaption && items.caption && (
-					<Box className='media-caption' m={2}>
-						<Typography variant='body2' textAlign='right' sx={{ opacity: 0.6 }}>
-							{items.caption}
-						</Typography>
-					</Box>
-				)}
-			</ConditionalWrapper>
-			<Overlay color={overlayColor} />
-		</Box>
+				{!loaded && <Loader />}
+				<Overlay color={overlayColor} />
+			</Box>
+		</MediaContext.Provider>
 	);
 }
 

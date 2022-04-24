@@ -3,13 +3,13 @@ import { Box, Typography } from "@mui/material";
 import React, { useContext, useMemo } from "react";
 import Marquee from "react-fast-marquee";
 import Fade from "react-reveal/Fade";
-import NEXTPROJECT from "../../../api/graphql/queries/GetNextProject";
-import PROJECTS from "../../../api/graphql/queries/GetProjects";
-import { CursorContext } from "../../../context/Context";
-import ContainerFluid from "../../Containers/ContainerFluid";
-import Section from "../../Containers/Section";
-import Link from "../../Link/Link";
-import Arrow from "../../Vector/Arrow";
+import NEXTPROJECT from "../../../../api/graphql/queries/GetNextProject";
+import PROJECTS from "../../../../api/graphql/queries/GetProjects";
+import { CursorContext } from "../../../../context/Context";
+import Container from "../../../Containers/ContainerFluid";
+import Section from "../../../Containers/Section";
+import Link from "../../../Link/Link";
+import Arrow from "../../../Vector/Arrow";
 
 function Next({ color, currentProjectId }) {
 	const { toggleCursorState } = useContext(CursorContext);
@@ -55,7 +55,7 @@ function Next({ color, currentProjectId }) {
 				{result2.data && (
 					<Section
 						sectionTheme={color}
-						noGutter
+						disableGutterBottom
 						sx={theme => ({
 							button: {
 								color:
@@ -78,7 +78,7 @@ function Next({ color, currentProjectId }) {
 							>
 								<Box py={20}>
 									<div className='c-link_inner'>
-										<ContainerFluid classes='-relative -flex -align-center -justify-between'>
+										<Container classes='-relative -flex -align-center -justify-between'>
 											<Box
 												display='flex'
 												justifyContent='space-between'
@@ -93,7 +93,7 @@ function Next({ color, currentProjectId }) {
 												</Fade>
 												<Arrow color='dark' />
 											</Box>
-										</ContainerFluid>
+										</Container>
 										<Fade bottom>
 											<Marquee gradient={false} direction={"right"}>
 												{marqueeWords &&

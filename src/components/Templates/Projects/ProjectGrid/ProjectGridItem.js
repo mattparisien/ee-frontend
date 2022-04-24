@@ -14,6 +14,9 @@ function ProjectGridItem({
 	artist,
 }) {
 	const item = theme => ({
+		a: {
+			zIndex: 99999,
+		},
 		margin: margin,
 		width: width,
 		height: height,
@@ -43,7 +46,6 @@ function ProjectGridItem({
 		},
 	});
 
-
 	const itemInfo = {
 		top: 0,
 		left: 0,
@@ -69,40 +71,40 @@ function ProjectGridItem({
 		<Link
 			href={`/projects/${projectId}`}
 			isRouterLink
-			classes='item -hover-underline -stretchX'
-			sx={item}
+			classes='-hover-underline -stretchX -stretchY -block'
 		>
-			<Box className='item-inner' sx={{ height: "100%" }}>
-				<Media
-					variant='image'
-					overlayColor={color}
-					
-					items={{
-						type: "image",
-						url: image.url,
-						alt: image.alt,
-					}}
-					width={"100%"}
-					height={"100%"}
-				/>
-				{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
-				{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
-				<Box className='item-info' sx={itemInfo} pt={2}>
-					<Typography
-						variant='body2'
-						className='artist -underline'
-						sx={infoTitle}
-					>
-						{artist}
-					</Typography>
+			<Box sx={item}>
+				<Box className='item-inner' sx={{ height: "100%" }}>
+					<Media
+						variant='image'
+						overlayColor={color}
+						items={{
+							type: "image",
+							url: image.url,
+							alt: image.alt,
+						}}
+						width={"100%"}
+						height={"100%"}
+					/>
+					{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
+					{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
+					<Box className='item-info' sx={itemInfo} pt={2}>
+						<Typography
+							variant='body2'
+							className='artist -underline'
+							sx={infoTitle}
+						>
+							{artist}
+						</Typography>
 
-					<Typography
-						variant='body2'
-						className='title -underline'
-						sx={infoTitle}
-					>
-						{title}
-					</Typography>
+						<Typography
+							variant='body2'
+							className='title -underline'
+							sx={infoTitle}
+						>
+							{title}
+						</Typography>
+					</Box>
 				</Box>
 			</Box>
 		</Link>
