@@ -45,11 +45,11 @@ function View({ location, pageId }) {
 		},
 		visible: {
 			opacity: 1,
-			transition: { delay: 1.5, dureation: 1.5 },
+			transition: { delay: 0.8, duration: 1 },
 		},
 		exit: {
 			opacity: 0,
-			transition: { ease: "easeInOut" },
+			transition: { ease: "easeInOut", duration: 1, delay: 0.1 },
 		},
 	};
 
@@ -59,7 +59,7 @@ function View({ location, pageId }) {
 				variants={containerVariants}
 				initial={"hidden"}
 				animate='visible'
-				exit="exit"
+				exit='exit'
 			>
 				<Template
 					location={location}
