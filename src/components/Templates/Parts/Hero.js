@@ -14,6 +14,9 @@ function Hero({ pageHeading }) {
 		height: "20vw",
 		maxHeight: "300px",
 		overflow: "visible",
+		position: "absolute",
+		top: "50%",
+		left: "50%",
 		transform: "translate(-50%, -50%)",
 		[theme.breakpoints.up("lg")]: {
 			transform: "translate(-60%, -50%) !important",
@@ -37,6 +40,9 @@ function Hero({ pageHeading }) {
 			svg: {
 				height: "100%",
 				overflow: "visible",
+				".nose, .ear ": {
+					display: "none"
+				}
 			},
 		},
 	});
@@ -65,8 +71,8 @@ function Hero({ pageHeading }) {
 		},
 		[theme.breakpoints.up("lg")]: {
 			".word": {
-				fontSize: "10rem",
-				lineHeight: "10rem",
+				fontSize: "9rem",
+				lineHeight: "9rem",
 			},
 		},
 
@@ -88,6 +94,9 @@ function Hero({ pageHeading }) {
 				<Typography className='word'>Social</Typography>
 				<Typography className='word'>Impact</Typography>
 				<Typography className='word'>Agency</Typography>
+				<Box className="logo" sx={logo}>
+					<DrawnLogo />
+				</Box>
 			</Container>
 		</Section>
 	);
