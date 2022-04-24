@@ -39,7 +39,7 @@ function SiteRoutes(props) {
 
 	return (
 		<AnimatePresence exitBeforeEnter>
-			<Routes location={location} key={location.key}>
+			<Routes location={location} key={location.pathname}>
 				{views &&
 					views.map(view => (
 						<Route
