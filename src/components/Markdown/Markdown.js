@@ -3,16 +3,14 @@ import ReactMarkdown from "react-markdown";
 import { Typography } from "@mui/material";
 import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
+import { motion } from "framer-motion/dist/framer-motion";
 
 function Markdown({ children, variantMap }) {
 	const componentMap = {
 		h1: ({ node, ...props }) => (
-			<Typography
-				component='h1'
-				variant='h1'
-				children={props.children}
-				mb={7}
-			/>
+			<Typography component='h1' variant='h1' mb={7}>
+				<motion.div>{props.children}</motion.div>
+			</Typography>
 		),
 		h2: ({ node, ...props }) => (
 			<Typography

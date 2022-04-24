@@ -17,6 +17,7 @@ import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
+import ScrollToTop from "./components/HOC/ScrollToTop";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -250,40 +251,41 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						>
 							{/* <DragCursor cursor={cursor} /> */}
 							{/* <IntroCard pending={pending} /> */}
-							<Header
-								toggleMenu={() => setMenuActive(!menuActive)}
-								menuActive={menuActive}
-								navItems={navItems}
-								location={location}
-								color={headerColor}
-							/>
-							<Cursor />
-							{/* <IntroCard /> */}
+							<ScrollToTop watch={location.pathname}>
+								<Header
+									toggleMenu={() => setMenuActive(!menuActive)}
+									menuActive={menuActive}
+									navItems={navItems}
+									location={location}
+									color={headerColor}
+								/>
+								<Cursor />
+								{/* <IntroCard /> */}
 
-							<Menu
-								isActive={menuActive}
-								navItems={navItems}
-								toggleMenu={() => setMenuActive(!menuActive)}
-							/>
+								<Menu
+									isActive={menuActive}
+									navItems={navItems}
+									toggleMenu={() => setMenuActive(!menuActive)}
+								/>
 
-							<div
-								className='scroll-wrapper'
-								ref={scrollWrapper}
-								data-scroll-container
-							>
-								<LoadingScreen isActive={loading} />
-								{/* <ArrowButton
+								<div
+									className='scroll-wrapper'
+									ref={scrollWrapper}
+									data-scroll-container
+								>
+									<LoadingScreen isActive={loading} />
+									{/* <ArrowButton
 														classes='scroll-to-top'
 														color='light'
 														rotation={90}
 														handleClick={scrollToTop}
 													/> */}
 
-								{/* <ModalWrapper hoverState={hoverState} /> */}
+									{/* <ModalWrapper hoverState={hoverState} /> */}
 
-								{/* <CursorFollower /> */}
+									{/* <CursorFollower /> */}
 
-								{/* <SideMenu
+									{/* <SideMenu
 									isOpen={state.sidebar.showSidebar}
 									hasShown={state.sidebar.hasShown}
 									appRefs={appRefs}
@@ -292,23 +294,24 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									toggleMenu={toggleMenu}
 								/> */}
 
-								<main>
-									<SiteRoutes
-										addToRdefs={addToRefs}
-										location={location}
-										siteControls={siteControls}
-										pages={state.data.pages}
-										setNavItems={setNavItems}
-									/>
-								</main>
+									<main>
+										<SiteRoutes
+											addToRdefs={addToRefs}
+											location={location}
+											siteControls={siteControls}
+											pages={state.data.pages}
+											setNavItems={setNavItems}
+										/>
+									</main>
 
-								<Footer
-									info={state.data.footer}
-									addToRefs={addToRefs}
-									location={location.pathname}
-									navItems={navItems}
-								/>
-							</div>
+									<Footer
+										info={state.data.footer}
+										addToRefs={addToRefs}
+										location={location.pathname}
+										navItems={navItems}
+									/>
+								</div>
+							</ScrollToTop>
 						</Context>
 					</HelmetProvider>
 				</div>

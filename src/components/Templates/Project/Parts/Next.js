@@ -55,7 +55,7 @@ function Next({ color, currentProjectId }) {
 				{result2.data && (
 					<Section
 						sectionTheme={color}
-						disableGutterBottom
+						disableMarginBottom
 						sx={theme => ({
 							button: {
 								color:

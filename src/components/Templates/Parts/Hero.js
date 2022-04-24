@@ -53,9 +53,9 @@ function Hero({ pageHeading }) {
 		position: "relative",
 
 		justifyContent: "space-between",
-		paddingTop: theme.spacing(10),
+		
 		paddingBottom: theme.spacing(10),
-		height: "calc(100vh - 75px)",
+		height: "calc(100vh - 100px)",
 
 		".word": {
 			fontFamily: "Kobe Bold",
