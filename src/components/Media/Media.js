@@ -102,9 +102,11 @@ function Media(props) {
 						<Box className='media-caption' m={2}>
 							<Typography
 								key='title'
-								variant='body2'
+								variant='body3'
+								fontWeight={400}
 								textAlign='right'
-								sx={{ opacity: 0.6 }}
+								
+								sx={{ opacity: 0.6, display: "flex", alignItems: "center", justifyContent:  "flex-end" }}
 							>
 								{items.caption}
 							</Typography>
@@ -113,7 +115,7 @@ function Media(props) {
 				</ConditionalWrapper>
 				{!loaded && <Loader />}
 				<Overlay color={overlayColor} />
-				<MediaTransition />
+				{loaded && <MediaTransition />}
 			</Box>
 		</MediaContext.Provider>
 	);

@@ -1,82 +1,95 @@
-import { useMediaQuery } from "@mui/material";
+import { List, ListItem, Typography, useMediaQuery } from "@mui/material";
 import classNames from "classnames";
 import gsap from "gsap";
-import $ from "jquery";
 import React, { useEffect, useRef, useState } from "react";
 import variables from "../../styles/scss/_vars.module.scss";
 import ContainerFluid from "../Containers/ContainerFluid";
-import List from "../Lists/List";
+import SplitText from "../HOC/SplitText";
+import Link from "../Link/Link";
 import SocialList from "../Lists/SocialList";
+import { motion, useIsPresent } from "framer-motion/dist/framer-motion";
 
-function Menu({ isActive, navItems, toggleMenu }) {
-	const [reveal, setReveal] = useState(false);
-
-	useEffect(() => {
-		if (isActive) {
-			setTimeout(() => {
-				setReveal(true);
-			}, 500);
-		}
-	}, [isActive]);
-
+function Menu({ menuActive, navItems, toggleMenu }) {
 	const matches = useMediaQuery(
 		`(min-width: ${variables["breakpoints-tablet"]}px)`
 	);
 
 	const classes = classNames("c-menu", {
-		"is-active": isActive,
+		"is-active": menuActive,
 	});
-	const card = useRef(null);
 
-	const container = useRef(null);
-	const tl = useRef(gsap.timeline());
+	const [navItemsReady, setNavItemsReady] = useState(false);
+
+	const isPresent = useIsPresent();
 
 	useEffect(() => {
-		matches && toggleMenu();
+		isPresent &&
+			setTimeout(() => {
+				setNavItemsReady(!navItemsReady);
+			}, 300);
 
-		if (isActive) {
-			tl.current.progress(0).play();
-			tl.current.to(
-				$(container.current).find(".c-link"),
-				{
-					y: 0,
-					opacity: 1,
-					duration: 1,
-					ease: "power3.out",
-					stagger: 0.1,
-					delay: 0.3,
-				},
-				0.1
-			);
-		} else {
-			gsap.to($(container.current).find(".c-link"), {
-				opacity: 0,
-				duration: 0.3,
-				onComplete: () => {
-					gsap.set($(container.current).find(".c-link"), {
-						y: "-150%",
-						opacity: 0,
-					});
-				},
-			});
-		}
-	}, [matches, isActive, toggleMenu]);
+		return () => {
+			setNavItemsReady(!navItemsReady);
+		};
+	}, [isPresent]);
+
+	const variants = {
+		hidden: {
+			y: "-100%",
+		},
+		visible: {
+			y: 0,
+			transition: {
+				ease: "anticipate",
+				duration: 1.2,
+			},
+		},
+		exit: {
+			y: "-100%",
+			transition: {
+				ease: "anticipate",
+				duration: 1.3,
+				delay: 0.4,
+				
+			},
+		},
+	};
 
 	return (
-		<div className={classes} ref={card}>
-			<ContainerFluid classes={'-stretchY'} reveal={reveal}>
-				<nav className='c-menu_nav'>
-					<List
-						ref={container}
-						items={navItems}
-						onClick={() => toggleMenu()}
-						isRouterLink
-					/>
-				</nav>
+		<motion.div
+			className={classes}
+			variants={variants}
+			animate='visible'
+			exit='exit'
+			initial='hidden'
+		>
+			<ContainerFluid classes={"-stretchY"}>
+				<List>
+					{navItems &&
+						navItems.map((item, i) => (
+							<ListItem
+								key={i}
+								sx={{
+									justifyContent: "center",
+								}}
+							>
+								<Link isRouterLink href={item.path}>
+									{navItemsReady && (
+										<Typography
+											component='span'
+											variant='h1'
+											sx={theme => ({ color: theme.palette.primary.light })}
+										>
+											<SplitText>{item.name}</SplitText>
+										</Typography>
+									)}
+								</Link>
+							</ListItem>
+						))}
+				</List>
 				<SocialList />
 			</ContainerFluid>
-			<div className='c-menu_bg' ref={card}></div>
-		</div>
+		</motion.div>
 	);
 }
 

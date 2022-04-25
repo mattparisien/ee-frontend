@@ -9,26 +9,10 @@ function Header({
 	color,
 	location,
 	menuActive,
+	navItems,
 }) {
-	const [navItems, setNavItems] = useState(null);
 	const [active, setActive] = useState(false);
 	const [arrowOpacity, setArrowOpacity] = useState(1);
-
-	const { loading, error, data } = useQuery(NAVIGATION);
-
-	useEffect(() => {
-		if (!loading && data) {
-			setNavItems(() =>
-				data.navigation.data.attributes.pages.data
-					.filter(item => item.attributes.Active)
-					.map((page, i) => ({
-						id: (i += 1),
-						name: page.attributes.Name,
-						path: `/${page.attributes.Slug}`,
-					}))
-			);
-		}
-	}, [loading, data, error]);
 
 	const handleClick = () => {
 		toggleMenu();

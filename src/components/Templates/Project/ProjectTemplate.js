@@ -47,33 +47,39 @@ function ProjectTemplate({ location }) {
 	}, [location, param]);
 
 	const { loading, error, data } = useQuery(SINGLEPROJECT, {
-		variables: { id: 1 },
-		// skip: !param,
+		variables: { id: param },
+		skip: !param,
 	});
 
-	// useEffect(() => {
-	// 	if (data && !loading) {
-	// 		setProject(() => ({
-	// 			styles: {
-	// 				color: accentColor,
-	// 			},
-	// 			data: {
-	// 				id: data.project.data.id,
-	// 				title: data.project.data.attributes.Title,
-	// 				subtitle: data.project.data.attributes.Subtitle,
-	// 				subtitle: data.project.data.attributes.Subtitle,
-	// 				featureImage: {
-	// 					url: data.project.data.attributes.FeatureImage.data.attributes.url,
-	// 					alt: data.project.data.attributes.FeatureImage.data.attributes
-	// 						.alternativeText,
-	// 					caption:
-	// 						data.project.data.attributes.FeatureImage.data.attributes.caption,
-	// 				},
-	// 				blocks: formatBlockData(data.project.data.attributes.Choose),
-	// 			},
-	// 		}));
-	// 	}
-	// }, [data, loading, accentColor]);
+	useEffect(() => {
+		if (data) {
+			console.log(data);
+		}
+	}, [data, error, loading]);
+
+	useEffect(() => {
+		if (data && !loading) {
+			setProject(() => ({
+				styles: {
+					color: accentColor,
+				},
+				data: {
+					id: data.project.data.id,
+					title: data.project.data.attributes.Title,
+					subtitle: data.project.data.attributes.Subtitle,
+					subtitle: data.project.data.attributes.Subtitle,
+					featureImage: {
+						url: data.project.data.attributes.FeatureImage.data.attributes.url,
+						alt: data.project.data.attributes.FeatureImage.data.attributes
+							.alternativeText,
+						caption:
+							data.project.data.attributes.FeatureImage.data.attributes.caption,
+					},
+					blocks: formatBlockData(data.project.data.attributes.Choose),
+				},
+			}));
+		}
+	}, [data, loading, accentColor]);
 
 	return (
 		<ProjectContext.Provider

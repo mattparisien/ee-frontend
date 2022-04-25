@@ -8,18 +8,14 @@
 	z-index: 99999;
 	transform: translateY(-100%);
 	transform-origin: top;
-	transition: 600ms ease;
 	padding-top: $headerHeight;
 	background-color: $dark;
-	transition: $transition-menu;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	.c-list_social {
-		transition: 300ms ease;
-		opacity: 0;
-	}
+
 
 	&.is-active {
 		transform: translateY(0);
@@ -85,8 +81,7 @@
 				color: $light;
 				font-size: 17vw;
 				line-height: 17vw;
-				
-				
+
 				text-transform: uppercase;
 			}
 		}

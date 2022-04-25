@@ -1,7 +1,7 @@
 import GETCTA from "../GetCta";
 
 const SPLITTEXTBLOCK = `
-... on ComponentBlocksSplitTextMediaBlock {
+... on ComponentBlocksSplitTextBlock {
   id
   TextLeft
   TextRight

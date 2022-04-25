@@ -25,7 +25,11 @@ function ResponsiveAppBar({
 	color,
 }) {
 	const wrapper = theme => ({
-		backgroundColor: theme.palette.primary[color === "dark" ? "light" : "dark"],
+		zIndex: 99999999,
+		transition: "background 200ms ease",
+		backgroundColor: menuActive
+			? "transparent"
+			: theme.palette.primary[color === "dark" ? "light" : "dark"],
 		height: theme.spacing(15),
 		".MuiContainer-root": {
 			width: "100%",
@@ -33,10 +37,11 @@ function ResponsiveAppBar({
 		},
 	});
 
-	const logoWrap = {
+	const logoWrap = theme => ({
 		width: "150px",
-		fill: "black",
-	};
+		transition: "fill 200ms ease",
+		fill: theme.palette.primary[menuActive ? "light" : "dark"],
+	});
 
 	const edgesWidth = "20rem";
 
@@ -76,11 +81,6 @@ function ResponsiveAppBar({
 		display: "flex",
 	};
 
-	const headerClasses = classNames("c-header", {
-		"is-dark": menuActive,
-		"is-light": !menuActive,
-	});
-
 	return (
 		<AppBar position='fixed' sx={wrapper} elevation={0}>
 			<Container>
@@ -93,7 +93,13 @@ function ResponsiveAppBar({
 						<List style={flexList}>
 							{navItems &&
 								navItems.map((item, i) => (
-									<ListItem key={i}>
+									<ListItem
+										key={i}
+										sx={{
+											justifyContent: "center",
+											paddingRight: i === 2 && 0,
+										}}
+									>
 										<Link isRouterLink href={item.path}>
 											<ListItemText
 												primary={item.name}
@@ -105,12 +111,6 @@ function ResponsiveAppBar({
 									</ListItem>
 								))}
 						</List>
-						{/* <List
-							items={navItems}
-							hoverEffect='draw'
-							color='dark'
-							toggleTransitioning={toggleTransitioning}
-						/> */}
 					</Box>
 					<Box
 						className='mobile-nav'
@@ -124,7 +124,7 @@ function ResponsiveAppBar({
 							},
 						})}
 					>
-						<Burger onBurgerClick={onBurgerClick} />
+						<Burger onBurgerClick={onBurgerClick} menuActive={menuActive} />
 					</Box>
 				</Toolbar>
 			</Container>
@@ -136,7 +136,10 @@ function Burger({ menuActive, onBurgerClick }) {
 	const burgerBtn = theme => ({
 		display: "none",
 		width: "4rem !important",
-
+		"svg": {
+			fill: theme.palette.primary[menuActive ? "light" : "dark"],
+			transition: "fill 200ms ease",
+		},
 		[theme.breakpoints.down("md")]: {
 			display: "block",
 		},

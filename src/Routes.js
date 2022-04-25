@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
+import { AnimatePresence } from "framer-motion/dist/framer-motion";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import PAGES from "./api/graphql/queries/GetPages";
 import View from "./components/Containers/View";
 import keysToCamelCase from "./helpers/keysToCamelCase";
-import { AnimatePresence } from "framer-motion/dist/framer-motion";
+import Menu from "./components/Menu/Menu";
 
 function SiteRoutes(props) {
 	const { location } = props;
@@ -27,18 +28,12 @@ function SiteRoutes(props) {
 						...keysToCamelCase(view.attributes),
 					}))
 			);
-
-			props.setNavItems(() =>
-				data.pages.data.map(item => ({
-					name: item.attributes.Name,
-					path: item.attributes.Slug,
-				}))
-			);
 		}
 	}, [loading, error, data]);
 
 	return (
 		<AnimatePresence exitBeforeEnter>
+			{props.menuActive && <Menu {...props} />}
 			<Routes location={location} key={location.pathname}>
 				{views &&
 					views.map(view => (

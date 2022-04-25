@@ -44,9 +44,7 @@ const transitions = {
 };
 
 const typography = {
-	fontFamily: "America",
 	body1: {
-		fontFamily: "America",
 		[theme.breakpoints.up("sm")]: {
 			fontSize: 22,
 		},
@@ -59,15 +57,29 @@ const typography = {
 		fontSize: 24,
 	},
 	body2: {
-		fontFamily: "America",
 		[theme.breakpoints.up("sm")]: {
-			fontSize: 13,
+			fontSize: 17,
 		},
 		[theme.breakpoints.up("md")]: {
-			fontSize: 15,
+			fontSize: 17,
 		},
 		[theme.breakpoints.up("lg")]: {
+			fontSize: 20,
+		},
+		fontSize: 12,
+	},
+
+	body3: {
+		fontFamily: ["Helvetica"],
+		fontWeight: 400,
+		[theme.breakpoints.up("sm")]: {
 			fontSize: 17,
+		},
+		[theme.breakpoints.up("md")]: {
+			fontSize: 13,
+		},
+		[theme.breakpoints.up("lg")]: {
+			fontSize: 15,
 		},
 		fontSize: 12,
 	},
@@ -80,18 +92,6 @@ const typography = {
 	},
 	h2: {
 		fontFamily: "Kobe Bold",
-	},
-	h4: {
-		fontFamily: "America",
-	},
-	h5: {
-		fontFamily: "America",
-	},
-	h6: {
-		fontFamily: "America",
-	},
-	p: {
-		fontFamily: "Inter",
 	},
 };
 

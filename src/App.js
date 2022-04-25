@@ -18,6 +18,10 @@ import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
 import ScrollToTop from "./components/HOC/ScrollToTop";
+import BackToTop from "./components/Link/BackToTop";
+import { useQuery } from "@apollo/client";
+import NAVIGATION from "./api/graphql/queries/GetNavigation";
+import Navigation from "./components/Nav/Navigation";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -48,7 +52,7 @@ function App() {
 	} = useAppData();
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
-	const [navItems, setNavItems] = useState([]);
+	// const [navItems, setNavItems] = useState([]);
 
 	const introTl = useRef(gsap.timeline());
 
@@ -209,6 +213,8 @@ function App() {
 		setTransitioning(false);
 	}, [location, setTransitioning]);
 
+	const [navItems, setNavItems] = useState([]);
+
 	const classes = classNames("App", {
 		"is-new-page": !transitioning,
 		"is-old-page": transitioning,
@@ -251,22 +257,18 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						>
 							{/* <DragCursor cursor={cursor} /> */}
 							{/* <IntroCard pending={pending} /> */}
+							<BackToTop />
 							<ScrollToTop watch={location.pathname}>
-								<Header
+								<Navigation
 									toggleMenu={() => setMenuActive(!menuActive)}
 									menuActive={menuActive}
-									navItems={navItems}
 									location={location}
 									color={headerColor}
+									navItems={navItems}
+									setNavItems={setNavItems}
 								/>
 								<Cursor />
 								{/* <IntroCard /> */}
-
-								<Menu
-									isActive={menuActive}
-									navItems={navItems}
-									toggleMenu={() => setMenuActive(!menuActive)}
-								/>
 
 								<div
 									className='scroll-wrapper'
@@ -300,6 +302,10 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 											location={location}
 											siteControls={siteControls}
 											pages={state.data.pages}
+											toggleMenu={() => setMenuActive(!menuActive)}
+											menuActive={menuActive}
+											color={headerColor}
+											navItems={navItems}
 											setNavItems={setNavItems}
 										/>
 									</main>

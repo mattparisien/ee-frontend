@@ -1,22 +1,19 @@
+import { useQuery } from "@apollo/client";
 import { Box, Typography, useMediaQuery } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import Fade from "react-reveal/Fade";
-import ArrowButton from "../Button/ArrowButton";
+import FOOTER from "../../api/graphql/queries/static/GetFooter";
 // import { StyledFooter } from "./styles";
 import ContainerFluid from "../Containers/ContainerFluid";
 import SocialList from "../Lists/SocialList";
 import { DrawnLogo } from "../Vector/Svg";
-import { useQuery } from "@apollo/client";
-import FOOTER from "../../api/graphql/queries/static/GetFooter";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
-	containerStyles,
-	boxStyles,
-	drawnLogo,
-	spacer,
 	bottom,
+	boxStyles,
+	containerStyles,
+	drawnLogo,
 	footer,
+	spacer,
 	wrap,
 } from "./styles/styles";
 
@@ -63,55 +60,32 @@ export default function Footer(props) {
 										{info && info.heading}
 									</Typography>
 
-									<Fade bottom>
-										<Typography
-											component='a'
-											variant='h5'
-											href={`mailto:${info.email}`}
-										>
-											<div className='email -underline -hover-underline -relative -inline -splitChars'>
-												{info.email}
-											</div>
-										</Typography>
-									</Fade>
+									<Typography
+										component='a'
+										variant='h5'
+										href={`mailto:${info.email}`}
+									>
+										<div className='email -underline -hover-underline -relative -inline -splitChars'>
+											{info.email}
+										</div>
+									</Typography>
 								</>
 							)}
 						</Box>
 						<Box className='c-footer_content_logo' sx={drawnLogo}>
-							<Fade right>
-								<DrawnLogo color='light' />
-							</Fade>
+							<DrawnLogo color='light' />
 						</Box>
 					</Box>
 
 					<Box pt={4} pb={4} sx={bottom}>
 						<div className='-flex -align-center -justify-center -splitChars'>
-							<Typography variant='body2' component='p'>
+							<Typography variant='body3' component='p' fontWeight={400}>
 								The Eyes & Ears Agency
 							</Typography>
 							<Box className='-fadeUp'>
 								<SocialList />
 							</Box>
 						</div>
-						<Box className='-fadeUp'>
-							<a
-								onClick={handleScrollTop}
-								style={{
-									display: "flex",
-									alignItems: "center",
-									justifyContent: "center",
-								}}
-							>
-								<Typography variant='body2'>Back to top </Typography>
-								<ArrowForwardIosIcon
-									sx={{
-										transform: `rotate(-90deg)`,
-										width: "1rem",
-										marginLeft: "0.3rem",
-									}}
-								/>
-							</a>
-						</Box>
 
 						{/* <nav className='c-footer_nav'>
 							<List items={props.navItems} color='light' />

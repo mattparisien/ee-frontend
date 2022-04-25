@@ -3,17 +3,7 @@ import FULLBLEEDMEDIABLOCK from "./fragments/blocks/GetFullBleedMediaBlock";
 import TEXTBLOCK from "./fragments/blocks/GetTextBlock";
 import QUOTEBLOCK from "./fragments/blocks/GetQuoteBlock";
 import SPLITTEXTBLOCK from "./fragments/blocks/GetSplitTextBlock";
-import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
-
-const GETCTA = alias => {
-	return `
-${alias}: CallToAction {
-	ButtonText
-	URL
-	OpenNewTab
-}
-`;
-};
+// import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
 
 const GETIMAGEDATA = `
 data {
@@ -26,32 +16,8 @@ data {
 
 `;
 
-const GETMEDIAITEM = `
-MediaItem {
-	id
-	Permalink
-	Upload {
-		data {
-			attributes {
-				url
-				alternativeText
-				caption
-				provider_metadata
-			}
-		}
-	}
-	InstaUrl
-	Options {
-		Inset
-		Linkable
-		Format
-		DisplayCaption
-	}
-}
-`;
-
 const SINGLEPROJECT = gql`
-	query GetSingleProject($id: ID!) {
+	query GetSingleProject($id: ID) {
 		project(id: $id) {
 			data {
 				id
@@ -75,7 +41,8 @@ const SINGLEPROJECT = gql`
 						${FULLBLEEDMEDIABLOCK}
 						${TEXTBLOCK}
 						${SPLITTEXTBLOCK}
-						${SPLITTEXTMEDIABLOCK}
+						
+						
 					}
 				}
 			}
