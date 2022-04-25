@@ -18,20 +18,6 @@ function SiteRoutes(props) {
 		},
 	});
 
-	// useEffect(() => {
-	// 	if (!loading && data) {
-	// 		setViews(() =>
-	// 			data.pages.data
-	// 				.filter(page => page.attributes.Active)
-
-	// 				.map(view => ({
-	// 					id: view.id,
-	// 					...keysToCamelCase(view.attributes),
-	// 				}))
-	// 		);
-	// 	}
-	// }, [loading, error, data]);
-
 	useEffect(() => {
 		if (!loading && data) {
 			const views = data.pages.data
@@ -54,7 +40,6 @@ function SiteRoutes(props) {
 					id: view.id,
 					...keysToCamelCase(view.attributes),
 				}));
-			console.log(views);
 
 			setViews(views);
 		}
