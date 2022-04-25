@@ -3,6 +3,7 @@ import Section from "../../Containers/Section";
 import Container from "../../Containers/ContainerFluid";
 import { Typography, Box } from "@mui/material";
 import { DrawnLogo } from "../../Vector/Svg";
+import SplitText from "../../HOC/SplitText";
 
 function Hero({ pageHeading }) {
 	const words = useMemo(() => {
@@ -41,8 +42,8 @@ function Hero({ pageHeading }) {
 				height: "100%",
 				overflow: "visible",
 				".nose, .ear ": {
-					display: "none"
-				}
+					display: "none",
+				},
 			},
 		},
 	});
@@ -53,7 +54,7 @@ function Hero({ pageHeading }) {
 		position: "relative",
 
 		justifyContent: "space-between",
-		
+
 		paddingBottom: theme.spacing(10),
 		height: "calc(100vh - 100px)",
 
@@ -88,13 +89,18 @@ function Hero({ pageHeading }) {
 		},
 	});
 
+	const wordMap = ["Social", "Impact", "Agency"];
+
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<Container classes='-stretchX -stretchY' sx={containerStyles}>
-				<Typography className='word'>Social</Typography>
-				<Typography className='word'>Impact</Typography>
-				<Typography className='word'>Agency</Typography>
-				<Box className="logo" sx={logo}>
+				{wordMap.map((word, i) => (
+					<Typography key={i} className="word">
+						<SplitText>{word}</SplitText>
+					</Typography>
+				))}
+
+				<Box className='logo' sx={logo}>
 					<DrawnLogo />
 				</Box>
 			</Container>

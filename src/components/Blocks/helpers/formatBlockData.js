@@ -6,6 +6,7 @@ import findKey from "../../../helpers/findKey";
 const blockNames = [];
 
 const formatBlockData = array => {
+	console.log("the array", array);
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
 
@@ -69,22 +70,21 @@ const formatGalleryBlockData = block => {
 	};
 };
 const formatQuoteBlockData = block => {
-	return {
+	const obj = {
 		id: block.id,
 		quote: block.Quote,
 		author: block.Author,
-		options: block.QuoteBlockOptions
-			? {
-					...keysToCamelCase(block.QuoteBlockOptions),
-			  }
-			: null,
+		options: block.QuoteBlockOptions ? block.QuoteBlockOptions : null,
 	};
+	console.log(obj);
+	return obj;
 };
 
 const formatFullBleedMediaBlockData = block => {
+	console.log(block, '....')
 	return {
 		id: block.id,
-
+		options: block.FullBleedMediaBlockOptions ? block.FullBleedMediaBlockOptions : null,
 		media: block.MediaItem
 			? formatMedia(block.MediaItem).then(media => media)
 			: null,

@@ -21,10 +21,14 @@ function SplitText({ children }) {
 		visible: {
 			opacity: 1,
 			y: 0,
-			transition: { duration: 1.2, ease: [0.190, 1.000, 0.220, 1.000] },
+			transition: { duration: 1.8, ease: [0.19, 1.0, 0.22, 1.0] },
+		},
+		exit: {
+			opacity: 0,
+			y: "-100%",
+			transition: { duration: 1.8, ease: [0.19, 1.0, 0.22, 1.0] },
 		},
 	};
-	// (0.190, 1.000, 0.220, 1.000)
 
 	const splitText = useMemo(() => {
 		if (children) {
@@ -63,6 +67,9 @@ const AnimationWrapper = ({ children }) => {
 
 			transition: { staggerChildren: 0.02, delayChildren: 0.2 },
 		},
+		exit: {
+			transition: { staggerChildren: 0.02, delayChildren: 0.2 },
+		},
 	};
 
 	return (
@@ -70,6 +77,7 @@ const AnimationWrapper = ({ children }) => {
 			className='motion-wrap'
 			variants={containerVariants}
 			initial={"hidden"}
+			exit='exit'
 			animate='visible'
 			style={{ overflow: "hidden" }}
 			// exit={{

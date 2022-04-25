@@ -54,7 +54,6 @@ function Link(props) {
 			href={props.href}
 			target={props.target}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
-			ref={ref}
 			data-rotate={props.rotate}
 			{...props}
 		>

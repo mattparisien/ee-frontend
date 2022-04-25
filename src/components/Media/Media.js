@@ -8,8 +8,7 @@ import Image from "./Image";
 import Overlay from "./Overlay";
 import Video from "./Video";
 import Loader from "./Loader";
-
-import { Reveal } from "react-reveal";
+import MediaTransition from "./MediaTransition";
 
 export const MediaContext = createContext();
 
@@ -114,6 +113,7 @@ function Media(props) {
 				</ConditionalWrapper>
 				{!loaded && <Loader />}
 				<Overlay color={overlayColor} />
+				<MediaTransition />
 			</Box>
 		</MediaContext.Provider>
 	);

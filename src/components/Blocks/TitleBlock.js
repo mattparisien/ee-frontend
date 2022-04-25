@@ -35,12 +35,12 @@ function TitleBlock({ data }) {
 		<>
 			<Typography variant='h1' component='h1' textAlign='center'>
 				<motion.div className='motion-wrap'>
-					{data.Title.split("-")[0]}
+					<SplitText>{data.Title.split("-")[0]}</SplitText>
 				</motion.div>
 			</Typography>
 			<Typography variant='h4' component='h4' textAlign='center'>
 				<motion.div className='motion-wrap'>
-					{data.Title.split("-")[1]}
+					<SplitText>{data.Title.split("-")[1]}</SplitText>
 				</motion.div>
 			</Typography>
 		</>

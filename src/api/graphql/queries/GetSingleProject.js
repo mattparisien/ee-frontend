@@ -1,4 +1,9 @@
 import { gql } from "@apollo/client";
+import FULLBLEEDMEDIABLOCK from "./fragments/blocks/GetFullBleedMediaBlock";
+import TEXTBLOCK from "./fragments/blocks/GetTextBlock";
+import QUOTEBLOCK from "./fragments/blocks/GetQuoteBlock";
+import SPLITTEXTBLOCK from "./fragments/blocks/GetSplitTextBlock";
+import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
 
 const GETCTA = alias => {
 	return `
@@ -66,49 +71,11 @@ const SINGLEPROJECT = gql`
 								${GETIMAGEDATA}
 							}
 						}
-						... on ComponentBlocksQuoteBlock {
-							id
-							Quote
-							Author
-							QuoteBlockOptions: Options {
-								QuoteBlockTheme: Theme
-								DisableGutterTop
-								DisableGutterBottom
-							}
-						}
-						... on ComponentBlocksFullBleedMediaBlock {
-							id
-							${GETMEDIAITEM}
-							
-						}
-						... on ComponentBlocksTextBlock {
-							id
-							Text
-							TextBlockOptions: Options {
-								SplitTextMediaBlockTheme: Theme
-							}
-						}
-						... on ComponentBlocksSplitTextBlock {
-							id
-							TextLeft
-							TextRight
-							
-							Flip
-							${GETCTA("SplitTextBlockCta")}
-						}
-						... on ComponentBlocksSplitTextMediaBlock {
-							id
-							SplitTextMediaBlockOptions: Options {
-								SplitTextMediaBlockTheme: Theme
-							}
-							TextLeft: Text
-							SplitTextMediaBlockOptions: Options {
-								SplitTextMediaBlockTheme: Theme
-							}
-							${GETMEDIAITEM}
-							${GETCTA("SplitTextMediaBlockCta")}
-							
-						}
+						${QUOTEBLOCK}
+						${FULLBLEEDMEDIABLOCK}
+						${TEXTBLOCK}
+						${SPLITTEXTBLOCK}
+						${SPLITTEXTMEDIABLOCK}
 					}
 				}
 			}

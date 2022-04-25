@@ -6,7 +6,9 @@ function ScrollToTop({ children, watch }) {
 
 	useEffect(() => {
 		if (scroll && scroll.scroll) {
-			scroll.scroll.scrollTo(0, 0);
+			setTimeout(() => {
+				scroll.scroll.scrollTo(0, 0);
+			}, 500);
 		}
 	}, [watch]);
 
