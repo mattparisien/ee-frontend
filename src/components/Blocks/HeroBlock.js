@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import Media from "../Media/Media";
+import SplitText from "../HOC/SplitText";
 
 function HeroBlock({ data }) {
 	const splitLayout = theme => ({
@@ -20,9 +21,11 @@ function HeroBlock({ data }) {
 		<Box sx={splitLayout}>
 			<Box sx={{ flex: 1 }}>
 				<Typography variant='h1' component='h1'>
-					{data.title}
+					<SplitText>{data.title}</SplitText>
 				</Typography>
-				<Typography variant='h3'>{data.subtitle}</Typography>
+				<Typography variant='h3'>
+					<SplitText>{data.subtitle}</SplitText>
+				</Typography>
 			</Box>
 			<Box sx={{ flex: 0.5 }}>
 				<Media

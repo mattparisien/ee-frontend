@@ -39,7 +39,6 @@ function Media(props) {
 	};
 
 	const wrapper = theme => ({
-		overflow: "hidden",
 		height: height,
 		width: width,
 		position: "relative",
@@ -84,23 +83,21 @@ function Media(props) {
 						)}
 						condition={options && options.linkable && permalink}
 					>
-						<Reveal>
-							<Box sx={{ height: "100%" }}>
-								{items && items.type === "image" && (
-									<Image src={items && items.url} alt={items && items.alt} />
-								)}
-								{items && items.type === "video" && (
-									<Video src={items && items.url} />
-								)}
-								{items && items.type === "carousel" && (
-									<Carousel
-										items={items && items.items}
-										image={url => <Image src={url} />}
-										video={url => <Video src={url} />}
-									/>
-								)}
-							</Box>
-						</Reveal>
+						<Box sx={{ height: "100%" }}>
+							{items && items.type === "image" && (
+								<Image src={items && items.url} alt={items && items.alt} />
+							)}
+							{items && items.type === "video" && (
+								<Video src={items && items.url} />
+							)}
+							{items && items.type === "carousel" && (
+								<Carousel
+									items={items && items.items}
+									image={url => <Image src={url} />}
+									video={url => <Video src={url} />}
+								/>
+							)}
+						</Box>
 					</ConditionalWrapper>
 					{options && options.displayCaption && items.caption && (
 						<Box className='media-caption' m={2}>

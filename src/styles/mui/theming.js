@@ -25,10 +25,10 @@ const sitePalette = {
 };
 
 const aspectRatio = {
-	"square": 1,
-	"portrait": 1.25,
-	"landscape": 0.5625
-}
+	square: 1,
+	portrait: 1.25,
+	landscape: 0.5625,
+};
 
 const transitions = {
 	duration: {
@@ -44,23 +44,20 @@ const transitions = {
 };
 
 const typography = {
-	
 	body1: {
-		
 		[theme.breakpoints.up("sm")]: {
-			fontSize: 22
+			fontSize: 22,
 		},
 		[theme.breakpoints.up("md")]: {
-			fontSize: 26.5
+			fontSize: 26.5,
 		},
 		[theme.breakpoints.up("lg")]: {
-			fontSize: 29
+			fontSize: 29,
 		},
-		fontSize: 24
-	
+		fontSize: 24,
 	},
 	// body2: {
-		
+
 	// 	[theme.breakpoints.up("sm")]: {
 	// 		fontSize: 13
 	// 	},
@@ -71,21 +68,20 @@ const typography = {
 	// 		fontSize: 18.3
 	// 	},
 	// 	fontSize: 12
-	
+
 	// },
 	body3: {
-		fontFamily: "Helvetica",
+		fontFamily: "America",
 		[theme.breakpoints.up("sm")]: {
-			fontSize: 13
+			fontSize: 13,
 		},
 		[theme.breakpoints.up("md")]: {
-			fontSize: 15
+			fontSize: 15,
 		},
 		[theme.breakpoints.up("lg")]: {
-			fontSize: 17
+			fontSize: 17,
 		},
-		fontSize: 12
-	
+		fontSize: 12,
 	},
 	h1: {
 		fontFamily: "Kobe Bold",

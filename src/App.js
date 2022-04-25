@@ -69,27 +69,27 @@ function App() {
 		setDomAnimatedReady(!domAnimatedReady);
 	}, [domAnimatedReady]);
 
-	useEffect(() => {
-		setTimeout(() => {
-			const splitChars = document.querySelectorAll(".-splitChars");
-			const splitLines = document.querySelectorAll(".-splitLines");
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		const splitChars = document.querySelectorAll(".-splitChars");
+	// 		const splitLines = document.querySelectorAll(".-splitLines");
 
-			//Chars
-			new SplitText(splitChars, {
-				type: "words, chars",
-				wordsClass: "c-word",
-				charsClass: "c-char",
-			});
+	// 		//Chars
+	// 		new SplitText(splitChars, {
+	// 			type: "words, chars",
+	// 			wordsClass: "c-word",
+	// 			charsClass: "c-char",
+	// 		});
 
-			//Lines
-			new SplitText(splitLines, {
-				type: "lines",
-				linesClass: "c-line",
-			});
+	// 		//Lines
+	// 		new SplitText(splitLines, {
+	// 			type: "lines",
+	// 			linesClass: "c-line",
+	// 		});
 
-			observedElements.current.push(splitChars);
-		}, 500);
-	}, []);
+	// 		observedElements.current.push(splitChars);
+	// 	}, 500);
+	// }, []);
 
 	useEffect(() => {
 		//Observers,

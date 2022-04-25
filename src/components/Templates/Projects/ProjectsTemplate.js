@@ -19,7 +19,6 @@ function ProjectsTemplate() {
 	const theme = useTheme();
 	const colors = useRandomColor(theme.palette.primary.colorSet, 10);
 
-
 	gsap.registerPlugin(DrawSVGPlugin);
 
 	// const colors = useMemo(() => {
@@ -48,7 +47,7 @@ function ProjectsTemplate() {
 	}, [data, loading]);
 
 	return (
-		<Page name='projects' location={location}>
+		<>
 			<Block
 				options={null}
 				name='TitleBlock'
@@ -87,7 +86,7 @@ function ProjectsTemplate() {
 					)}
 				</Container>
 			</Section>
-		</Page>
+		</>
 	);
 }
 

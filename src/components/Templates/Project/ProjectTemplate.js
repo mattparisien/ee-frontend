@@ -1,20 +1,18 @@
 import { useQuery } from "@apollo/client";
 import React, {
-	useEffect,
-	useMemo,
-	useState,
 	createContext,
-	useContext,
+	useContext, useEffect,
+	useMemo,
+	useState
 } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
+import { ColorContext } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
-import Page from "../../Containers/Page";
 import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
+import Page from "../../Containers/Page";
 import Next from "./Parts/Next";
-import { ColorContext } from "../../../context/Context";
-import { useLocation } from "react-router";
 
 export const ProjectContext = createContext();
 
