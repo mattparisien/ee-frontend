@@ -111,8 +111,8 @@ function ProjectGrid({ items, colors }) {
 	return (
 		<Box className='projects' sx={globalContainer}>
 			{arrays
-				? arrays.map((array, idx) => (
-						<Box className='grid-container' sx={gridContainer}>
+				? arrays.map((array, i) => (
+						<Box className='grid-container' sx={gridContainer} key={i}>
 							{array.map((item, idx) => (
 								<Row
 									key={idx}

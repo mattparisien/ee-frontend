@@ -1,9 +1,10 @@
 import { useQuery } from "@apollo/client";
 import React, {
 	createContext,
-	useContext, useEffect,
+	useContext,
+	useEffect,
 	useMemo,
-	useState
+	useState,
 } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
@@ -46,33 +47,33 @@ function ProjectTemplate({ location }) {
 	}, [location, param]);
 
 	const { loading, error, data } = useQuery(SINGLEPROJECT, {
-		variables: { id: param ? param : 0 },
-		skip: !param,
+		variables: { id: 1 },
+		// skip: !param,
 	});
 
-	useEffect(() => {
-		if (data && !loading) {
-			setProject(() => ({
-				styles: {
-					color: accentColor,
-				},
-				data: {
-					id: data.project.data.id,
-					title: data.project.data.attributes.Title,
-					subtitle: data.project.data.attributes.Subtitle,
-					subtitle: data.project.data.attributes.Subtitle,
-					featureImage: {
-						url: data.project.data.attributes.FeatureImage.data.attributes.url,
-						alt: data.project.data.attributes.FeatureImage.data.attributes
-							.alternativeText,
-						caption:
-							data.project.data.attributes.FeatureImage.data.attributes.caption,
-					},
-					blocks: formatBlockData(data.project.data.attributes.Choose),
-				},
-			}));
-		}
-	}, [data, loading, accentColor]);
+	// useEffect(() => {
+	// 	if (data && !loading) {
+	// 		setProject(() => ({
+	// 			styles: {
+	// 				color: accentColor,
+	// 			},
+	// 			data: {
+	// 				id: data.project.data.id,
+	// 				title: data.project.data.attributes.Title,
+	// 				subtitle: data.project.data.attributes.Subtitle,
+	// 				subtitle: data.project.data.attributes.Subtitle,
+	// 				featureImage: {
+	// 					url: data.project.data.attributes.FeatureImage.data.attributes.url,
+	// 					alt: data.project.data.attributes.FeatureImage.data.attributes
+	// 						.alternativeText,
+	// 					caption:
+	// 						data.project.data.attributes.FeatureImage.data.attributes.caption,
+	// 				},
+	// 				blocks: formatBlockData(data.project.data.attributes.Choose),
+	// 			},
+	// 		}));
+	// 	}
+	// }, [data, loading, accentColor]);
 
 	return (
 		<ProjectContext.Provider

@@ -35,10 +35,11 @@ function SplitText({ children }) {
 			const words = children.split(" ");
 			const map = words.map(word => word.split(""));
 
-			const final = map.map(arrays => (
-				<Box className='motion-word' sx={wordStyle}>
-					{arrays.map(char => (
+			const final = map.map((arrays, i) => (
+				<Box className='motion-word' sx={wordStyle} key={i}>
+					{arrays.map((char, idx) => (
 						<motion.div
+							key={idx}
 							variants={charVariants}
 							className='motion-char'
 							style={charStyle}

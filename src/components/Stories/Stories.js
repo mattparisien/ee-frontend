@@ -59,8 +59,6 @@ function Stories({ slides }) {
 		},
 	});
 
-	console.log('slide', slides)
-
 	return (
 		<Container disableGutters>
 			<Box sx={{ height: "100%", height: "100%", position: "relative" }}>
@@ -82,7 +80,7 @@ function Stories({ slides }) {
 									<QuoteBlock
 										data={{
 											quote: slide.quote,
-											author: slide.author
+											author: slide.author,
 										}}
 									/>
 								</SwiperSlide>

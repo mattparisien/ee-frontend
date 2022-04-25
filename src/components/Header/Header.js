@@ -30,10 +30,6 @@ function Header({
 		}
 	}, [loading, data, error]);
 
-	useEffect(() => {
-		console.log(navItems);
-	}, [navItems]);
-
 	const handleClick = () => {
 		toggleMenu();
 	};

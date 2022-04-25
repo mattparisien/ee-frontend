@@ -44,7 +44,9 @@ const transitions = {
 };
 
 const typography = {
+	fontFamily: "America",
 	body1: {
+		fontFamily: "America",
 		[theme.breakpoints.up("sm")]: {
 			fontSize: 22,
 		},
@@ -56,21 +58,7 @@ const typography = {
 		},
 		fontSize: 24,
 	},
-	// body2: {
-
-	// 	[theme.breakpoints.up("sm")]: {
-	// 		fontSize: 13
-	// 	},
-	// 	[theme.breakpoints.up("md")]: {
-	// 		fontSize: 17
-	// 	},
-	// 	[theme.breakpoints.up("lg")]: {
-	// 		fontSize: 18.3
-	// 	},
-	// 	fontSize: 12
-
-	// },
-	body3: {
+	body2: {
 		fontFamily: "America",
 		[theme.breakpoints.up("sm")]: {
 			fontSize: 13,
@@ -89,6 +77,18 @@ const typography = {
 			fontSize: "5.2rem", // 20px
 			lineHeight: "5.6rem", //  30px
 		},
+	},
+	h2: {
+		fontFamily: "Kobe Bold",
+	},
+	h4: {
+		fontFamily: "America",
+	},
+	h5: {
+		fontFamily: "America",
+	},
+	h6: {
+		fontFamily: "America",
 	},
 	p: {
 		fontFamily: "Inter",

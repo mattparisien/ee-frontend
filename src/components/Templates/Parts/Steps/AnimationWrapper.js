@@ -10,21 +10,19 @@ function AnimationWrapper({ children }) {
 
 	useEffect(() => {
 		if (inView && !hasPassedViewport.current && scroll.isReady) {
-      console.log('hellot this is being called')
 			//Animate circles
 			const circles = [
 				...document.querySelectorAll(".circles-wrapper .circle-wrapper"),
 			];
-      const windowHeight = window.innerHeight;
-			console.log(circles);
+			const windowHeight = window.innerHeight;
 
 			const handleScroll = e => {
 				const { top } = entry.target.getBoundingClientRect();
 				const scrollTop = e.scroll.y;
-				const translateVal = top - scrollTop / 30
+				const translateVal = top - scrollTop / 30;
 
 				circles.forEach(circle => {
-					circle.style.transform = `translateY(${translateVal}px)`
+					circle.style.transform = `translateY(${translateVal}px)`;
 				});
 			};
 
@@ -35,7 +33,7 @@ function AnimationWrapper({ children }) {
 	}, [inView, scroll]);
 
 	return (
-		<Box ref={ref} position='relative' >
+		<Box ref={ref} position='relative'>
 			{children}
 		</Box>
 	);

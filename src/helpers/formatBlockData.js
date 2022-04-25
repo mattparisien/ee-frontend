@@ -42,7 +42,6 @@ const getTheme = (block, blockName) => {
 };
 
 const formatSplitBlock = block => {
-	console.log('options', block)
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {
@@ -90,10 +89,9 @@ const formatFullBleedMediaBlockData = block => {
 	return {
 		id: block.id,
 
-		media:
-			block.MediaItem
-				? formatMedia(block.MediaItem).then(media => media)
-				: null,
+		media: block.MediaItem
+			? formatMedia(block.MediaItem).then(media => media)
+			: null,
 	};
 };
 
@@ -159,8 +157,6 @@ const formatMedia = block => {
 				},
 			},
 		});
-
-		console.log("the obj", obj);
 
 		return new Promise((resolve, reject) => resolve(obj));
 	}
