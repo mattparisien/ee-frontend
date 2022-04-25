@@ -31,7 +31,6 @@ function Context({
 						x: 0,
 						y: 0,
 					},
-
 					smooth: true,
 					getDirection: true,
 					getSpeed: true,
