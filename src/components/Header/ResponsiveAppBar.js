@@ -4,18 +4,16 @@ import {
 	AppBar,
 	Box,
 	IconButton,
-	Toolbar,
 	List,
 	ListItem,
-	ListItemButton,
 	ListItemText,
+	Toolbar
 } from "@mui/material";
-import classNames from "classnames";
 import React from "react";
 import Container from "../Containers/ContainerFluid";
+import Link from "../Link/Link";
 // import List from "../Lists/List";
 import { TextLogo } from "../Vector/Svg";
-import Link from "../Link/Link";
 
 function ResponsiveAppBar({
 	toggleTransitioning,
@@ -136,7 +134,7 @@ function Burger({ menuActive, onBurgerClick }) {
 	const burgerBtn = theme => ({
 		display: "none",
 		width: "4rem !important",
-		"svg": {
+		svg: {
 			fill: theme.palette.primary[menuActive ? "light" : "dark"],
 			transition: "fill 200ms ease",
 		},
@@ -146,7 +144,7 @@ function Burger({ menuActive, onBurgerClick }) {
 	});
 
 	return (
-		<IconButton sx={burgerBtn} onClick={onBurgerClick}>
+		<IconButton sx={burgerBtn} onClick={onBurgerClick} data-testid={"burger"}>
 			{menuActive ? <CloseIcon /> : <MenuIcon />}
 		</IconButton>
 	);

@@ -18,16 +18,45 @@ function SiteRoutes(props) {
 		},
 	});
 
+	// useEffect(() => {
+	// 	if (!loading && data) {
+	// 		setViews(() =>
+	// 			data.pages.data
+	// 				.filter(page => page.attributes.Active)
+
+	// 				.map(view => ({
+	// 					id: view.id,
+	// 					...keysToCamelCase(view.attributes),
+	// 				}))
+	// 		);
+	// 	}
+	// }, [loading, error, data]);
+
 	useEffect(() => {
 		if (!loading && data) {
-			setViews(() =>
-				data.pages.data
-					.filter(page => page.attributes.Active)
-					.map(view => ({
-						id: view.id,
-						...keysToCamelCase(view.attributes),
-					}))
-			);
+			const views = data.pages.data
+				.filter(page => page.attributes.Active)
+				.flatMap(current =>
+					current.attributes.Name === "Home"
+						? [
+								current,
+								{
+									id: current.id,
+									attributes: {
+										name: "Home",
+										slug: "/",
+									},
+								},
+						  ]
+						: current
+				)
+				.map(view => ({
+					id: view.id,
+					...keysToCamelCase(view.attributes),
+				}));
+			console.log(views);
+
+			setViews(views);
 		}
 	}, [loading, error, data]);
 

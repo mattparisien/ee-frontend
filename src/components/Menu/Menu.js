@@ -6,7 +6,7 @@ import variables from "../../styles/scss/_vars.module.scss";
 import ContainerFluid from "../Containers/ContainerFluid";
 import SplitText from "../HOC/SplitText";
 import Link from "../Link/Link";
-import SocialList from "../Lists/SocialList";
+
 import { motion, useIsPresent } from "framer-motion/dist/framer-motion";
 
 function Menu({ menuActive, navItems, toggleMenu }) {
@@ -50,7 +50,6 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 				ease: "anticipate",
 				duration: 1.3,
 				delay: 0.4,
-				
 			},
 		},
 	};
@@ -64,7 +63,7 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 			initial='hidden'
 		>
 			<ContainerFluid classes={"-stretchY"}>
-				<List>
+				<List data-testid='menu'>
 					{navItems &&
 						navItems.map((item, i) => (
 							<ListItem
@@ -87,7 +86,6 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 							</ListItem>
 						))}
 				</List>
-				<SocialList />
 			</ContainerFluid>
 		</motion.div>
 	);

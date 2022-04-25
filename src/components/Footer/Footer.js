@@ -5,7 +5,6 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 import FOOTER from "../../api/graphql/queries/static/GetFooter";
 // import { StyledFooter } from "./styles";
 import ContainerFluid from "../Containers/ContainerFluid";
-import SocialList from "../Lists/SocialList";
 import { DrawnLogo } from "../Vector/Svg";
 import {
 	bottom,
@@ -14,7 +13,7 @@ import {
 	drawnLogo,
 	footer,
 	spacer,
-	wrap,
+	wrap
 } from "./styles/styles";
 
 export default function Footer(props) {
@@ -82,9 +81,9 @@ export default function Footer(props) {
 							<Typography variant='body3' component='p' fontWeight={400}>
 								The Eyes & Ears Agency
 							</Typography>
-							<Box className='-fadeUp'>
+							{/* <Box className='-fadeUp'>
 								<SocialList />
-							</Box>
+							</Box>	 */}
 						</div>
 
 						{/* <nav className='c-footer_nav'>
