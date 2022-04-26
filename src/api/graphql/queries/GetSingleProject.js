@@ -3,6 +3,7 @@ import FULLBLEEDMEDIABLOCK from "./fragments/blocks/GetFullBleedMediaBlock";
 import TEXTBLOCK from "./fragments/blocks/GetTextBlock";
 import QUOTEBLOCK from "./fragments/blocks/GetQuoteBlock";
 import SPLITTEXTBLOCK from "./fragments/blocks/GetSplitTextBlock";
+import STATSBLOCK from "./fragments/blocks/GetStatsBlock";
 // import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
 
 const GETIMAGEDATA = `
@@ -41,6 +42,7 @@ const SINGLEPROJECT = gql`
 						${FULLBLEEDMEDIABLOCK}
 						${TEXTBLOCK}
 						${SPLITTEXTBLOCK}
+						${STATSBLOCK}
 						
 						
 					}

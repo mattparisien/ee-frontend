@@ -55,6 +55,7 @@ function Block(props) {
 				sectionTheme={state.theme}
 				disableMarginTop={!state.marginTop}
 				disableMarginBottom={!state.marginBottom}
+				blockName={props.name}
 			>
 				<ConditionalWrapper
 					condition={state.container}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material";
 
 export default function useAppData(scrollRef) {

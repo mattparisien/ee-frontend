@@ -14,6 +14,7 @@ import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import Page from "../../Containers/Page";
 import Next from "./Parts/Next";
+import { ViewContext } from "../../Containers/View";
 
 export const ProjectContext = createContext();
 
@@ -22,6 +23,8 @@ function ProjectTemplate({ location }) {
 	const [project, setProject] = useState(null);
 
 	const { setCurrentColor } = useContext(ColorContext);
+	const { setTemplateLoaded } = useContext(ViewContext);
+
 	const accentColor = useMemo(() => {
 		const color = shuffleColors();
 		setCurrentColor(color);
@@ -52,12 +55,6 @@ function ProjectTemplate({ location }) {
 	});
 
 	useEffect(() => {
-		if (data) {
-			console.log(data);
-		}
-	}, [data, error, loading]);
-
-	useEffect(() => {
 		if (data && !loading) {
 			setProject(() => ({
 				styles: {
@@ -78,6 +75,8 @@ function ProjectTemplate({ location }) {
 					blocks: formatBlockData(data.project.data.attributes.Choose),
 				},
 			}));
+
+			setTemplateLoaded();
 		}
 	}, [data, loading, accentColor]);
 
@@ -87,35 +86,33 @@ function ProjectTemplate({ location }) {
 				projectColor: project && project.styles.accentColor,
 			}}
 		>
-			<Page name='singleProject' location={location}>
-				<Helmet>
-					<title>
-						{project && project.data
-							? `${project.data.title} - ${project.data.subtitle}`
-							: "Eyes & Ears Agency"}
-					</title>
-				</Helmet>
+			<Helmet>
+				<title>
+					{project && project.data
+						? `${project.data.title} - ${project.data.subtitle}`
+						: "Eyes & Ears Agency"}
+				</title>
+			</Helmet>
 
-				{project && (
-					<Block
-						name='HeroBlock'
-						data={{
-							title: project.data.title,
-							subtitle: project.data.subtitle,
-							image: {
-								url: project.data.featureImage.url,
-								alt: project.data.featureImage.alt,
-								caption: project.data.featureImage.caption,
-							},
-						}}
-					/>
-				)}
+			{project && (
+				<Block
+					name='HeroBlock'
+					data={{
+						title: project.data.title,
+						subtitle: project.data.subtitle,
+						image: {
+							url: project.data.featureImage.url,
+							alt: project.data.featureImage.alt,
+							caption: project.data.featureImage.caption,
+						},
+					}}
+				/>
+			)}
 
-				{project &&
-					project.data.blocks.map((block, i) => <Block {...block} key={i} />)}
+			{project &&
+				project.data.blocks.map((block, i) => <Block {...block} key={i} />)}
 
-				<Next color={accentColor[1]} currentProjectId={param} />
-			</Page>
+			<Next color={accentColor[1]} currentProjectId={param} />
 		</ProjectContext.Provider>
 	);
 }

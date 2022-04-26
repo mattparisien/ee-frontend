@@ -6,6 +6,7 @@ import HeroBlock from "./HeroBlock";
 import FullBleedMediaBlock from "./FullBleedMediaBlock";
 import SplitTextMediaBlock from "./SplitBlock/SplitTextMediaBlock";
 import TitleBlock from "./TitleBlock";
+import StatsBlock from "./StatsBlock/StatsBlock";
 
 export const BLOCKS = {
 	TitleBlock: TitleBlock,
@@ -16,4 +17,5 @@ export const BLOCKS = {
 	TextBlock: TextBlock,
 	SplitTextBlock: SplitTextBlock,
 	SplitTextMediaBlock: SplitTextMediaBlock,
+	StatsBlock: StatsBlock,
 };

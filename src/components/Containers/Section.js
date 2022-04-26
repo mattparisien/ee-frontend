@@ -3,9 +3,10 @@ import React, { useContext, useMemo, useRef } from "react";
 import { ColorContext } from "../../context/Context";
 import combineStyles from "../../helpers/combineStyles";
 import getForegroundColor from "../../helpers/getForegroundColor";
+import classNames from "classnames";
 
 function Section(props) {
-	const { disableGutterTop, disableGutterBottom, sectionTheme } = props;
+	const { sectionTheme } = props;
 
 	const { currentColor } = useContext(ColorContext);
 
@@ -47,12 +48,14 @@ function Section(props) {
 		return themeObject(theme);
 	};
 
+	const classes = classNames("Section", { [props.blockName]: props.blockName });
+
 	return (
 		<>
 			<Box
 				component='section'
 				ref={ref}
-				className='section'
+				className={classes}
 				sx={combineStyles(section, props.sx)}
 				mb={props.disableMarginBottom ? 0 : gutter}
 				mt={props.disableMarginTop ? 0 : gutter}

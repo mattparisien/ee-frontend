@@ -3,7 +3,8 @@ import { Box } from "@mui/material";
 import gsap from "gsap";
 import IntertiaPLugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { ViewContext } from "../Containers/View";
 import STATICHOME from "../../api/graphql/queries/static/GetStaticHome";
 import Container from "../Containers/ContainerFluid";
 import Section from "../Containers/Section";
@@ -16,6 +17,7 @@ import Work from "./Parts/Work";
 function HomeTemplate({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 
+	const { setTemplateLoaded } = useContext(ViewContext);
 	const { loading, error, data } = useQuery(STATICHOME, {
 		variables: {
 			projectLimit: 1,
@@ -57,6 +59,8 @@ function HomeTemplate({ pageHeading, location }) {
 						},
 					})),
 			}));
+
+			setTemplateLoaded();
 		}
 	}, [data, loading]);
 

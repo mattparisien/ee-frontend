@@ -1,18 +1,28 @@
 import { useQuery } from "@apollo/client";
-import React, { useContext, useEffect, useState, useRef } from "react";
+import { Box } from "@mui/material";
+import { motion } from "framer-motion/dist/framer-motion";
+import React, {
+	createContext,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import PAGE from "../../api/graphql/queries/GetPage";
 import { LoadingContext } from "../../context/Context";
 import Block from "../Blocks/Block";
 import formatBlockData from "../Blocks/helpers/formatBlockData";
 import Template from "../Templates/Template";
 import Page from "./Page";
-import { motion } from "framer-motion/dist/framer-motion";
-import { Box } from "@mui/material";
-import SplitText from "gsap/dist/SplitText";
-import gsap from "gsap";
-import $ from "jquery";
+
+export const ViewContext = createContext();
 
 function View({ location, pageId }) {
+	const [isViewLoaded, setViewLoaded] = useState({
+		blockLoaded: false,
+		templateLoaded: false,
+	});
+
 	const { loading, error, data } = useQuery(PAGE, {
 		variables: {
 			id: pageId,
@@ -22,8 +32,8 @@ function View({ location, pageId }) {
 	const [page, setPage] = useState({
 		id: null,
 		name: null,
-		template: null,
 		blocks: null,
+		template: null,
 	});
 
 	const viewRef = useRef(null);
@@ -41,32 +51,44 @@ function View({ location, pageId }) {
 					formatBlockData(data.page.data.attributes.Choose),
 			}));
 
-			setLoading(false);
+			setViewLoaded(prev => ({
+				...prev,
+				blockLoaded: true,
+			}));
 		}
+
+		return () => {
+			setLoading(true);
+		};
 	}, [loading, data, error]);
 
-	// useEffect(() => {
-	// 	gsap.registerPlugin(SplitText);
+	useEffect(() => {
+		const isAllKeysTruthy = Object.values(isViewLoaded).every(
+			val => val === true
+		);
 
-	// 	const checker = setInterval(() => {
-	// 		if (viewRef.current) {
-	// 			const elements = $(viewRef.current).find("h1 div");
+		if (page.template && page.blocks && page.template.data && isAllKeysTruthy) {
+			//If the page has a template and blocks, and everything is loaded within those
 
-	// 			if (!elements.length <= 0) {
-	// 				console.log(elements);
-	// 				stopFunction();
-	// 			}
-	// 			const split = new SplitText(elements, {
-	// 				type: "chars",
-	// 				charsClass: "char"
-	// 			});
-	// 		}
-	// 	}, 30);
+			setLoading(false);
+		} else if (
+			page.template &&
+			!page.template.data &&
+			page.blocks &&
+			isViewLoaded.blockLoaded
+		) {
+			//If the page has no template but has blocks and blocks are loaded
 
-	// 	const stopFunction = () => {
-	// 		clearInterval(checker);
-	// 	};
-	// }, [location]);
+			setLoading(false);
+		} else if (
+			page.template &&
+			page.template.data &&
+			!page.blocks &&
+			isViewLoaded.templateLoaded
+		) {
+			setLoading(false);
+		}
+	}, [isViewLoaded, page]);
 
 	const containerVariants = {
 		hidden: {
@@ -82,29 +104,39 @@ function View({ location, pageId }) {
 		},
 	};
 
+	const setTemplateLoaded = () => {
+		setViewLoaded(prev => ({ ...prev, templateLoaded: true }));
+	};
+
+	const contextControls = {
+		setTemplateLoaded,
+	};
+
 	return (
-		<Box className='View' ref={viewRef}>
-			<Page location={location}>
-				<motion.div
-					variants={containerVariants}
-					initial={"hidden"}
-					animate='visible'
-					exit='exit'
-				>
-					<Template
-						location={location}
-						name={
-							page.template &&
-							page.template.data &&
-							page.template.data.attributes.Name
-						}
-					/>
-					{page &&
-						page.blocks &&
-						page.blocks.map((block, i) => <Block {...block} key={i} />)}
-				</motion.div>
-			</Page>
-		</Box>
+		<ViewContext.Provider value={contextControls}>
+			<Box className='View' ref={viewRef}>
+				<Page location={location}>
+					<motion.div
+						variants={containerVariants}
+						initial={"hidden"}
+						animate='visible'
+						exit='exit'
+					>
+						<Template
+							location={location}
+							name={
+								page.template &&
+								page.template.data &&
+								page.template.data.attributes.Name
+							}
+						/>
+						{page &&
+							page.blocks &&
+							page.blocks.map((block, i) => <Block {...block} key={i} />)}
+					</motion.div>
+				</Page>
+			</Box>
+		</ViewContext.Provider>
 	);
 }
 

@@ -1,18 +1,18 @@
-import React from "react";
 import { useQuery } from "@apollo/client";
 import { Box, CircularProgress, useTheme } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import View, { ViewContext } from "../../Containers/View";
 import PROJECTS from "../../../api/graphql/queries/GetProjects";
+import useRandomColor from "../../../helpers/hooks/useRandomColor";
+import Block from "../../Blocks/Block";
 import Container from "../../Containers/ContainerFluid";
-import Page from "../../Containers/Page";
 import Section from "../../Containers/Section";
 import ProjectGrid from "./ProjectGrid/ProjectGrid";
-import Block from "../../Blocks/Block";
-import useRandomColor from "../../../helpers/hooks/useRandomColor";
 
 function ProjectsTemplate() {
+	const { setTemplateLoaded } = useContext(ViewContext);
 	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
 
@@ -43,6 +43,8 @@ function ProjectsTemplate() {
 						},
 					}))
 			);
+
+			setTemplateLoaded();
 		}
 	}, [data, loading]);
 

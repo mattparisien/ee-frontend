@@ -4,6 +4,8 @@ import TEXTBLOCK from "./fragments/blocks/GetTextBlock";
 import TITLEBLOCK from "./fragments/blocks/GetTitleBlock";
 import FULLBLEEDMEDIABLOCK from "./fragments/blocks/GetFullBleedMediaBlock";
 import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
+import STATSBLOCK from "./fragments/blocks/GetStatsBlock";
+
 
 const DYNAMICBLOCKS = `
 	Choose {
@@ -13,7 +15,7 @@ const DYNAMICBLOCKS = `
 		${SPLITTEXTMEDIABLOCK}
 		${TITLEBLOCK}
 		${FULLBLEEDMEDIABLOCK}
-		
+		${STATSBLOCK}
 	}
 `;
 

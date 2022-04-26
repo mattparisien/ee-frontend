@@ -19,6 +19,7 @@ const formatBlockData = array => {
 				(blockName === "FullBleedMediaBlock" &&
 					formatFullBleedMediaBlockData(block)) ||
 				(blockName === "TextBlock" && formatTextBlockData(block)) ||
+				(blockName === "StatsBlock" && formatStatsBlockData(block)) ||
 				(blockName.startsWith("Split") && formatSplitBlock(block)),
 		};
 
@@ -39,6 +40,18 @@ const getTheme = (block, blockName) => {
 	}
 
 	return null;
+};
+
+const formatStatsBlockData = block => {
+
+	console.log(block)
+
+	return {
+		heading: block.Heading ? block.Heading : null,
+		options: { ...block[findKey(block, "Options")] },
+		items: [...block.StatsBlockItem],
+		cta: block[findKey(block, "Cta")] ? block[findKey(block, "Cta")] : null,
+	};
 };
 
 const formatSplitBlock = block => {
