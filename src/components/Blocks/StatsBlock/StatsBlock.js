@@ -19,7 +19,7 @@ function StatsBlock({ data }) {
 					</Typography>
 				)}
 				<Stack
-					spacing={10}
+					spacing={20}
 					direction='row'
 					justifyContent={"space-evenly"}
 					alignItems='center'
@@ -58,7 +58,7 @@ function StatsBlock({ data }) {
 function Item({ heading, line }) {
 	return (
 		<Box className='item' textAlign='center'>
-			<Typography variant='h1' component='h3' sx={{ width: "100%" }}>
+			<Typography variant='h2' component='h3' sx={{ width: "100%" }}>
 				{heading}
 			</Typography>
 			<Typography variant='body2' component='p' sx={{ width: "100%" }}>

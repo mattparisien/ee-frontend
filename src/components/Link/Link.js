@@ -42,6 +42,7 @@ function Link(props) {
 			to={props.href === "/" ? "" : props.href}
 			style={props.style}
 			rel={props.rel}
+			onClick={props.onClick}
 			// component='button'
 		>
 			<Typography variant='body3'>{props.children}</Typography>

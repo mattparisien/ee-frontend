@@ -67,9 +67,9 @@ function Cursor() {
 		pointerEvents: "none",
 		transition: "500ms ease",
 		mixBlendMode: "exclusion",
-		[theme.breakpoints.down("sm")]: {
-			display: "none",
-		},
+		// [theme.breakpoints.down("sm")]: {
+		// 	display: "none",
+		// },
 	});
 
 	return (

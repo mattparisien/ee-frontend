@@ -22,12 +22,12 @@ function SplitText({ children }) {
 		visible: {
 			opacity: 1,
 			y: 0,
-			transition: { duration: 1.8, ease: [0.19, 1.0, 0.22, 1.0] },
+			transition: { duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] },
 		},
 		exit: {
 			opacity: 0,
 			y: "-100%",
-			transition: { duration: 1.8, ease: [0.19, 1.0, 0.22, 1.0] },
+			transition: { duration: 1.2, ease: [0.19, 1.0, 0.22, 1.0] },
 		},
 	};
 

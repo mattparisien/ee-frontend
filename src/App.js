@@ -267,6 +267,15 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									navItems={navItems}
 									setNavItems={setNavItems}
 								/>
+
+								{menuActive && (
+									<Menu
+										menuActive={menuActive}
+										navItems={navItems}
+										toggleMenu={() => setMenuActive(!menuActive)}
+									/>
+								)}
+
 								<Cursor />
 								{/* <IntroCard /> */}
 
@@ -276,25 +285,6 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									data-scroll-container
 								>
 									<LoadingScreen isActive={loading} />
-									{/* <ArrowButton
-														classes='scroll-to-top'
-														color='light'
-														rotation={90}
-														handleClick={scrollToTop}
-													/> */}
-
-									{/* <ModalWrapper hoverState={hoverState} /> */}
-
-									{/* <CursorFollower /> */}
-
-									{/* <SideMenu
-									isOpen={state.sidebar.showSidebar}
-									hasShown={state.sidebar.hasShown}
-									appRefs={appRefs}
-									addToRefs={addToRefs}
-									offset={state.menuOffset}
-									toggleMenu={toggleMenu}
-								/> */}
 
 									<main>
 										<SiteRoutes

@@ -44,7 +44,6 @@ const getTheme = (block, blockName) => {
 };
 
 const formatSplitBlock = block => {
-	console.log("optsssssssions", block);
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {
@@ -159,7 +158,7 @@ const formatMedia = block => {
 			},
 		});
 
-		console.log("the obj", obj);
+		
 
 		return new Promise((resolve, reject) => resolve(obj));
 	}

@@ -1,15 +1,17 @@
-import { List, ListItem, Typography, useMediaQuery } from "@mui/material";
+import { Box, List, ListItem, Typography, useMediaQuery } from "@mui/material";
 import classNames from "classnames";
-import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
+import { motion, useIsPresent } from "framer-motion/dist/framer-motion";
+import React, { useEffect, useState, useContext } from "react";
 import variables from "../../styles/scss/_vars.module.scss";
 import ContainerFluid from "../Containers/ContainerFluid";
 import SplitText from "../HOC/SplitText";
 import Link from "../Link/Link";
-
-import { motion, useIsPresent } from "framer-motion/dist/framer-motion";
+import { CursorContext } from "../../context/Context";
+import SocialList from "../Lists/SocialList";
 
 function Menu({ menuActive, navItems, toggleMenu }) {
+	const { toggleCursorState } = useContext(CursorContext);
+
 	const matches = useMediaQuery(
 		`(min-width: ${variables["breakpoints-tablet"]}px)`
 	);
@@ -72,12 +74,21 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 									justifyContent: "center",
 								}}
 							>
-								<Link isRouterLink href={item.path}>
+								<Link isRouterLink href={item.path} onClick={toggleMenu}>
 									{navItemsReady && (
 										<Typography
+											onMouseEnter={() => toggleCursorState()}
+											onMouseLeave={() => toggleCursorState()}
 											component='span'
 											variant='h1'
-											sx={theme => ({ color: theme.palette.primary.light })}
+											sx={theme => ({
+												color: theme.palette.primary.light,
+												fontSize: "18vw !important",
+												transition: "color 400ms ease",
+												"&:hover": {
+													color: theme.palette.primary.yellow,
+												},
+											})}
 										>
 											<SplitText>{item.name}</SplitText>
 										</Typography>
@@ -86,6 +97,9 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 							</ListItem>
 						))}
 				</List>
+				<Box sx={{ position: "absolute", bottom: 0, right: 0, paddingRight: 10, paddingBottom: 3,  }}>
+					<SocialList color='light' />
+				</Box>
 			</ContainerFluid>
 		</motion.div>
 	);

@@ -43,9 +43,6 @@ const getTheme = (block, blockName) => {
 };
 
 const formatStatsBlockData = block => {
-
-	console.log(block)
-
 	return {
 		heading: block.Heading ? block.Heading : null,
 		options: { ...block[findKey(block, "Options")] },

@@ -7,7 +7,7 @@ import {
 	List,
 	ListItem,
 	ListItemText,
-	Toolbar
+	Toolbar,
 } from "@mui/material";
 import React from "react";
 import Container from "../Containers/ContainerFluid";
@@ -96,13 +96,19 @@ function ResponsiveAppBar({
 										sx={{
 											justifyContent: "center",
 											paddingRight: i === 2 && 0,
+											opacity: 0.5,
+											transition: "400ms ease",
+											"&:hover": {
+												opacity: 1
+											}
 										}}
 									>
 										<Link isRouterLink href={item.path}>
 											<ListItemText
 												primary={item.name}
 												primaryTypographyProps={{
-													variant: "body2",
+													variant: "body3",
+													fontWeight: 600,
 												}}
 											/>
 										</Link>
