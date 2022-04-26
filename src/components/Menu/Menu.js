@@ -13,6 +13,7 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 	const { toggleCursorState } = useContext(CursorContext);
 
 	const matches = useMediaQuery(
+		
 		`(min-width: ${variables["breakpoints-tablet"]}px)`
 	);
 
