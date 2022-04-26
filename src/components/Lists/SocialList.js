@@ -41,6 +41,8 @@ function SocialList({ color, direction }) {
 		},
 	});
 
+	console.log('data', data)
+
 	return (
 		!error &&
 		!loading &&
@@ -49,6 +51,12 @@ function SocialList({ color, direction }) {
 				{data.socials.data.map(account => (
 					<ListItem disablePadding>
 						<ListItemButton
+							
+							disableTouchRipple
+							component='a'
+							href={account.attributes.Url}
+							target='_blank'
+							rel='noreferrer'
 							sx={{
 								padding: 0,
 								"&:hover": { opacity: 0.5 },

@@ -74,6 +74,7 @@ function Next({ color, currentProjectId }) {
 							<Link
 								classes={`-stretchX -block -stretchY -hover-underline`}
 								isRouterLink
+								rel={"next"}
 								href={`/projects/${result2.data.project.data.id}`}
 							>
 								<Box py={20}>

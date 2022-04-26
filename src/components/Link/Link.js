@@ -41,18 +41,17 @@ function Link(props) {
 			className={classes}
 			to={props.href === "/" ? "" : props.href}
 			style={props.style}
+			rel={props.rel}
 			// component='button'
 		>
 			<Typography variant='body3'>{props.children}</Typography>
 		</NavLink>
 	) : (
-		// <RouterLink to={props.href} className={classes} ref={ref} onClick={() => console.log('has clicked!')}>{props.children}</RouterLink>
 		<a
-			// onMouseEnter={handleMouseEnter}
-			// onMouseLeave={handleMouseLeave}
 			className={classes}
 			href={props.href}
 			target={props.target}
+			rel={props.rel}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
 			data-rotate={props.rotate}
 			{...props}
