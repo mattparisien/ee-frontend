@@ -23,7 +23,8 @@ function StatsBlock({ data }) {
 					direction='row'
 					justifyContent={"space-evenly"}
 					alignItems='center'
-					flexWrap={"wrap"}
+					
+					
 					sx={theme => ({
 						[theme.breakpoints.down("sm")]: {
 							flexDirection: "column",

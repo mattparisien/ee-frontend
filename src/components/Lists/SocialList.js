@@ -14,6 +14,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import React from "react";
+import Fade from "../HOC/Fade";
 
 const iconMap = {
 	instagram: InstagramIcon,
@@ -45,9 +46,15 @@ function SocialList({ color, direction }) {
 		!error &&
 		!loading &&
 		data && (
-			<List disablePadding sx={listWrapper}>
+			<Fade
+				wrapper={children => (
+					<List disablePadding sx={listWrapper}>
+						{children}
+					</List>
+				)}
+			>
 				{data.socials.data.map(account => (
-					<ListItem disablePadding>
+					<ListItem disablePadding key={account.id}>
 						<ListItemButton
 							disableTouchRipple
 							component='a'
@@ -68,7 +75,7 @@ function SocialList({ color, direction }) {
 						</ListItemButton>
 					</ListItem>
 				))}
-			</List>
+			</Fade>
 		)
 	);
 }

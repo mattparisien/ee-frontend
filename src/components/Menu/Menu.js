@@ -13,7 +13,6 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 	const { toggleCursorState } = useContext(CursorContext);
 
 	const matches = useMediaQuery(
-		
 		`(min-width: ${variables["breakpoints-tablet"]}px)`
 	);
 
@@ -98,7 +97,15 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 							</ListItem>
 						))}
 				</List>
-				<Box sx={{ position: "absolute", bottom: 0, right: 0, paddingRight: 10, paddingBottom: 3,  }}>
+				<Box
+					sx={{
+						position: "absolute",
+						bottom: 0,
+						right: 0,
+						paddingRight: 10,
+						paddingBottom: 7,
+					}}
+				>
 					<SocialList color='light' />
 				</Box>
 			</ContainerFluid>

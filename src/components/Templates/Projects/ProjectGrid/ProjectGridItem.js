@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import Link from "../../../Link/Link";
 import Media from "../../../Media/Media";
+import Fade from "../../../HOC/Fade";
 
 function ProjectGridItem({
 	width,
@@ -88,7 +89,14 @@ function ProjectGridItem({
 					/>
 					{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
 					{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
-					<Box className='item-info' sx={itemInfo} pt={2}>
+
+					<Fade
+						wrapper={children => (
+							<Box className='item-info' sx={itemInfo} pt={2}>
+								{children}
+							</Box>
+						)}
+					>
 						<Typography
 							variant='body2'
 							className='artist -underline'
@@ -104,7 +112,7 @@ function ProjectGridItem({
 						>
 							{title}
 						</Typography>
-					</Box>
+					</Fade>
 				</Box>
 			</Box>
 		</Link>
