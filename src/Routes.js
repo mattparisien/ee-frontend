@@ -40,11 +40,13 @@ function SiteRoutes(props) {
 		// },
 	};
 
+	
+
 	useEffect(() => {
 		if (pages) {
 			const newObj = {};
 
-			pages.forEach(page => (newObj[page.Title.toLowerCase()] = page.Heading));
+			pages.forEach(page => (newObj[page.Name.toLowerCase()] = page.Heading));
 
 			setPageHeadings(newObj);
 		}

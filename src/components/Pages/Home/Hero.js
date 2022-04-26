@@ -84,9 +84,9 @@ function Hero({ pageHeading }) {
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<ContainerFluid classes='-stretchX -stretchY' sx={containerStyles}>
-				<Typography className='word'>{words && words[0]}</Typography>
-				<Typography className='word'>{words && words[1]}</Typography>
-				<Typography className='word'>{words && words[2]}</Typography>
+				<Typography className='word'>Social</Typography>
+				<Typography className='word'>Impact</Typography>
+				<Typography className='word'>Agency</Typography>
 				<Box className='o-hero_logo' sx={logo}>
 					<div className='inner -relative -stretchX -stretchY'>
 						<DrawnLogo color='dark' />
