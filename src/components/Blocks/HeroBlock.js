@@ -27,16 +27,24 @@ function HeroBlock({ data }) {
 					<SplitText>{data.subtitle}</SplitText>
 				</Typography>
 			</Box>
-			<Box sx={{ flex: 0.5 }}>
+			<Box>
 				<Media
 					items={{
 						type: "image",
-
 						...data.image,
 					}}
 					options={{
 						format: "portrait",
 						displayCaption: true,
+						width: {
+							mobile: "calc(100vw - 2rem)",
+
+							desktop: "30vw",
+						},
+						maxWidth: {
+							desktop: "25rem",
+							mobile: "100%",
+						},
 					}}
 					accent
 				/>

@@ -8,7 +8,8 @@ import SplitBlock from "./SplitBlock";
 
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.right.media);
-	
+	console.log(data);
+	console.log("the options", media && media.options);
 
 	return (
 		<SplitBlock
@@ -52,9 +53,20 @@ function Right({ media }) {
 	return (
 		<Media
 			items={media && media}
-			aspectRatio={1}
 			disableContainer
-			options={media && media.options}
+			options={
+				media && {
+					...media.options,
+					width: {
+						desktop: "50vw",
+						mobile: "100vw",
+					},
+					maxWidth: {
+						desktop: "600px",
+						mobile: "100vw",
+					},
+				}
+			}
 			permalink={media && media.permalink}
 		/>
 	);

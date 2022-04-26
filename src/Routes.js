@@ -5,6 +5,7 @@ import PAGES from "./api/graphql/queries/GetPages";
 import View from "./components/Containers/View";
 import keysToCamelCase from "./helpers/keysToCamelCase";
 import Menu from "./components/Menu/Menu";
+import { AnimatePresence } from "framer-motion/dist/framer-motion";
 
 function SiteRoutes(props) {
 	const { location } = props;
@@ -45,16 +46,18 @@ function SiteRoutes(props) {
 	}, [loading, error, data]);
 
 	return (
-		<Routes location={location} key={location.pathname}>
-			{views &&
-				views.map(view => (
-					<Route
-						path={view.slug}
-						element={<View {...props} location={location} pageId={view.id} />}
-						key={location.pathname}
-					/>
-				))}
-		</Routes>
+		<AnimatePresence exitBeforeEnter>
+			<Routes location={location} key={location.pathname}>
+				{views &&
+					views.map(view => (
+						<Route
+							path={view.slug}
+							element={<View {...props} location={location} pageId={view.id} />}
+							key={location.pathname}
+						/>
+					))}
+			</Routes>
+		</AnimatePresence>
 	);
 }
 

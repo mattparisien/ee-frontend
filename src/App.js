@@ -280,19 +280,18 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									<LoadingScreen isActive={loading} />
 
 									<main>
-										<AnimatePresence exitBeforeEnter>
-											<SiteRoutes
-												addToRdefs={addToRefs}
-												location={location}
-												siteControls={siteControls}
-												pages={state.data.pages}
-												toggleMenu={() => setMenuActive(!menuActive)}
-												menuActive={menuActive}
-												color={headerColor}
-												navItems={navItems}
-												setNavItems={setNavItems}
-											/>
-										</AnimatePresence>
+										<SiteRoutes
+											addToRdefs={addToRefs}
+											location={location}
+											siteControls={siteControls}
+											pages={state.data.pages}
+											toggleMenu={() => setMenuActive(!menuActive)}
+											menuActive={menuActive}
+											color={headerColor}
+											navItems={navItems}
+											setNavItems={setNavItems}
+										/>
+										
 									</main>
 
 									<Footer

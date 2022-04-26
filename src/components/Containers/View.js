@@ -115,13 +115,7 @@ function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 
 	return (
 		<ViewContext.Provider value={contextControls}>
-			{menuActive && (
-				<Menu
-					menuActive={menuActive}
-					navItems={navItems}
-					toggleMenu={() => setMenuActive(!menuActive)}
-				/>
-			)}
+
 			<Box className='View' ref={viewRef} sx={{ minHeight: "100vh" }}>
 				<Page location={location}>
 					<motion.div

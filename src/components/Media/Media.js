@@ -15,16 +15,7 @@ import Video from "./Video";
 export const MediaContext = createContext();
 
 function Media(props) {
-	const {
-		aspectRatio,
-		width,
-		height,
-		accent,
-		items,
-		options,
-		permalink,
-		overlayColor,
-	} = props;
+	const { accent, items, options, permalink, overlayColor, format } = props;
 
 	const classes = classNames("media-wrapper");
 
@@ -37,14 +28,35 @@ function Media(props) {
 		objectPosition: "center",
 	};
 
+	const aspects = {
+		portrait: 1.25,
+		square: 1,
+		landscape: 0.5625,
+	};
+
 	const wrapper = theme => ({
-		height: height,
-		width: width,
+		width: options && options.width.desktop,
+		maxWidth: options && options.maxWidth.desktop,
+		height: `calc(${options && options.width.desktop} * ${
+			aspects[options && options.format]
+		})`,
+		maxHeight: `calc(${options && options.maxWidth.desktop} * ${
+			aspects[options && options.format]
+		})`,
 		position: "relative",
 		".react-reveal": {
 			height: "100%",
 		},
-		aspectRatio: `1 / ${options && theme.aspectRatio[options.format]}`,
+
+		[theme.breakpoints.down("sm")]: {
+			maxWidth: options && options.maxWidth.mobile,
+			width: options && options.width.mobile,
+			maxHeight: "100%",
+			height: `calc(${options && options.width.mobile} * ${
+				aspects[options && options.format]
+			})`,
+		},
+
 		"img, video": innerComponent,
 	});
 

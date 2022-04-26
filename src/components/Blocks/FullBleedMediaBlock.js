@@ -12,8 +12,16 @@ function FullBleedMediaBlock({ data }) {
 			disableContainer
 			options={{
 				format: "landscape",
+				width: {
+					desktop: "100vw",
+					mobile: "100vw"
+				},
+				maxWidth: {
+					desktop: "100vw",
+					mobile: "100vw"
+				}
+				
 			}}
-			width='100vw'
 		/>
 	);
 }
