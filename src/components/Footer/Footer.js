@@ -6,6 +6,7 @@ import FOOTER from "../../api/graphql/queries/static/GetFooter";
 // import { StyledFooter } from "./styles";
 import ContainerFluid from "../Containers/ContainerFluid";
 import { DrawnLogo } from "../Vector/Svg";
+import SocialList from "../Lists/SocialList";
 import {
 	bottom,
 	boxStyles,
@@ -13,7 +14,7 @@ import {
 	drawnLogo,
 	footer,
 	spacer,
-	wrap
+	wrap,
 } from "./styles/styles";
 
 export default function Footer(props) {
@@ -77,18 +78,17 @@ export default function Footer(props) {
 					</Box>
 
 					<Box pt={4} pb={4} sx={bottom}>
-						<div className='-flex -align-center -justify-center -splitChars'>
-							<Typography variant='body3' component='p' fontWeight={400}>
-								The Eyes & Ears Agency
-							</Typography>
-							{/* <Box className='-fadeUp'>
-								<SocialList />
-							</Box>	 */}
-						</div>
-
-						{/* <nav className='c-footer_nav'>
-							<List items={props.navItems} color='light' />
-						</nav> */}
+						<Typography
+							variant='body3'
+							component='p'
+							fontWeight={400}
+							sx={theme => ({
+								[theme.breakpoints.down("sm")]: { alignSelf: "flex-end" },
+							})}
+						>
+							The Eyes & Ears Agency
+						</Typography>
+						<SocialList color='light' />
 					</Box>
 				</Box>
 			</ContainerFluid>

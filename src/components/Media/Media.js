@@ -1,14 +1,16 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
-import React, { useState, createContext } from "react";
+import React, { createContext, useState } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
+import CircleSvg from "../Vector/Circle";
+import Accent from "./Accent";
 import Carousel from "./Carousel";
 import Image from "./Image";
-import Overlay from "./Overlay";
-import Video from "./Video";
 import Loader from "./Loader";
 import MediaTransition from "./MediaTransition";
+import Overlay from "./Overlay";
+import Video from "./Video";
 
 export const MediaContext = createContext();
 
@@ -24,9 +26,7 @@ function Media(props) {
 		overlayColor,
 	} = props;
 
-	const classes = classNames("media-wrapper", {
-		"accent accent-image accent-left": accent,
-	});
+	const classes = classNames("media-wrapper");
 
 	const [loaded, setLoaded] = useState(false);
 
@@ -47,23 +47,6 @@ function Media(props) {
 		aspectRatio: `1 / ${options && theme.aspectRatio[options.format]}`,
 		"img, video": innerComponent,
 	});
-
-	const containerVariants = {
-		hidden: {
-			opacity: 0,
-			y: "100%",
-		},
-		visible: {
-			opacity: 1,
-			y: 0,
-			transition: { delay: 1, duration: 2, ease: "circOut" },
-		},
-		exit: {
-			opacity: 0,
-			x: 400,
-			transition: { ease: "easeInOut", duration: 1, delay: 0.1 },
-		},
-	};
 
 	return (
 		<MediaContext.Provider value={{ loaded, setLoaded }}>
@@ -105,8 +88,12 @@ function Media(props) {
 								variant='body3'
 								fontWeight={400}
 								textAlign='right'
-								
-								sx={{ opacity: 0.6, display: "flex", alignItems: "center", justifyContent:  "flex-end" }}
+								sx={{
+									opacity: 0.6,
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "flex-end",
+								}}
 							>
 								{items.caption}
 							</Typography>
@@ -116,6 +103,7 @@ function Media(props) {
 				{!loaded && <Loader />}
 				<Overlay color={overlayColor} />
 				{loaded && <MediaTransition />}
+				{accent && <Accent component={CircleSvg} />}
 			</Box>
 		</MediaContext.Provider>
 	);
