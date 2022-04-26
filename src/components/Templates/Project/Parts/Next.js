@@ -10,6 +10,7 @@ import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
 import Link from "../../../Link/Link";
 import Arrow from "../../../Vector/Arrow";
+import SplitText from "../../../HOC/SplitText";
 
 function Next({ color, currentProjectId }) {
 	const { toggleCursorState } = useContext(CursorContext);
@@ -51,65 +52,58 @@ function Next({ color, currentProjectId }) {
 
 	return (
 		<>
-			<Fade>
-				{result2.data && (
-					<Section
-						sectionTheme={color}
-						disableMarginBottom
-						sx={theme => ({
-							button: {
-								color:
-									theme.palette.primary[color === "yellow" ? "dark" : "light"],
-							},
-							".c-arrow_svg path": {
-								stroke:
-									theme.palette.primary[color === "yellow" ? "dark" : "light"],
-							},
-						})}
-					>
-						<Box
-							onMouseEnter={handleMouseEnter}
-							onMouseLeave={handleMouseLeave}
+			{result2.data && (
+				<Section
+					sectionTheme={color}
+					disableMarginBottom
+					sx={theme => ({
+						button: {
+							color:
+								theme.palette.primary[color === "yellow" ? "dark" : "light"],
+						},
+						".c-arrow_svg path": {
+							stroke:
+								theme.palette.primary[color === "yellow" ? "dark" : "light"],
+						},
+					})}
+				>
+					<Box onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+						<Link
+							classes={`-stretchX -block -stretchY -hover-underline`}
+							isRouterLink
+							rel={"next"}
+							href={`/projects/${result2.data.project.data.id}`}
 						>
-							<Link
-								classes={`-stretchX -block -stretchY -hover-underline`}
-								isRouterLink
-								rel={"next"}
-								href={`/projects/${result2.data.project.data.id}`}
-							>
-								<Box py={20}>
-									<div className='c-link_inner'>
-										<Container classes='-relative -flex -align-center -justify-between'>
-											<Box
-												display='flex'
-												justifyContent='space-between'
-												alignItems='center'
-												flexDirection='row-reverse'
-												pb={30}
-											>
-												<Fade bottom>
-													<Typography variant='h2' fontFamily={"Kobe"}>
-														Next
-													</Typography>
-												</Fade>
-												<Arrow color='dark' />
-											</Box>
-										</Container>
-										<Fade bottom>
-											<Marquee gradient={false} direction={"right"}>
-												{marqueeWords &&
-													marqueeWords.map((word, i) => (
-														<MarqueeItem text={word} key={i} />
-													))}
-											</Marquee>
-										</Fade>
-									</div>
-								</Box>
-							</Link>
-						</Box>
-					</Section>
-				)}
-			</Fade>
+							<Box py={20}>
+								<div className='c-link_inner'>
+									<Container classes='-relative -flex -align-center -justify-between'>
+										<Box
+											display='flex'
+											justifyContent='space-between'
+											alignItems='center'
+											flexDirection='row-reverse'
+											pb={30}
+										>
+											<Typography variant='h2' fontFamily={"Kobe"}>
+												<SplitText>Next</SplitText>
+											</Typography>
+
+											<Arrow color='dark' />
+										</Box>
+									</Container>
+
+									<Marquee gradient={false} direction={"right"}>
+										{marqueeWords &&
+											marqueeWords.map((word, i) => (
+												<MarqueeItem text={word} key={i} />
+											))}
+									</Marquee>
+								</div>
+							</Box>
+						</Link>
+					</Box>
+				</Section>
+			)}
 		</>
 	);
 }
@@ -117,7 +111,7 @@ function Next({ color, currentProjectId }) {
 function MarqueeItem({ text }) {
 	return (
 		<Typography variant='h1' mr={15}>
-			{text}
+			<SplitText>{text}</SplitText>
 		</Typography>
 	);
 }

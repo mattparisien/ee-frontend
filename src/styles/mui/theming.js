@@ -58,7 +58,7 @@ const typography = {
 	},
 	body2: {
 		[theme.breakpoints.up("sm")]: {
-			fontSize: 17,
+			fontSize: 14,
 		},
 		[theme.breakpoints.up("md")]: {
 			fontSize: 17,
@@ -73,7 +73,7 @@ const typography = {
 		fontFamily: ["Helvetica"],
 		fontWeight: 400,
 		[theme.breakpoints.up("sm")]: {
-			fontSize: 17,
+			fontSize: 12,
 		},
 		[theme.breakpoints.up("md")]: {
 			fontSize: 13,

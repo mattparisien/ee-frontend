@@ -66,7 +66,10 @@ function Cursor() {
 		opacity: cursorControls.cursor.active ? 1 : 0,
 		pointerEvents: "none",
 		transition: "500ms ease",
-		mixBlendMode: "exclusion"
+		mixBlendMode: "exclusion",
+		[theme.breakpoints.down("sm")]: {
+			display: "none",
+		},
 	});
 
 	return (

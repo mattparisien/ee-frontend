@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion/dist/framer-motion";
+import { useInView } from "react-intersection-observer";
 
 function SplitText({ children }) {
 	const wordStyle = theme => ({
@@ -73,13 +74,18 @@ const AnimationWrapper = ({ children }) => {
 		},
 	};
 
+	const { ref, inView, entry } = useInView({
+		threshold: 0,
+	});
+
 	return (
 		<motion.div
+			ref={ref}
 			className='motion-wrap'
 			variants={containerVariants}
 			initial={"hidden"}
 			exit='exit'
-			animate='visible'
+			animate={inView && 'visible'}
 			style={{ overflow: "hidden" }}
 			// exit={{
 			// 	y: "-100%",

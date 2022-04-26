@@ -61,31 +61,33 @@ function ProjectsTemplate() {
 			/>
 			<Section>
 				<Container disableMaxWidth>
-					{loading && (
-						<Box
-							sx={{
-								width: "100%",
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								height: "100vh",
-								position: "fixed",
-								top: 0,
-								left: 0,
-								zIndex: 999,
-							}}
-						>
-							<CircularProgress />
-						</Box>
-					)}
-					{projects && (
-						<ProjectGrid
-							variant='projects'
-							items={projects}
-							hoverEffect={"frame"}
-							colors={colors}
-						/>
-					)}
+					<Box mb={40}>
+						{loading && (
+							<Box
+								sx={{
+									width: "100%",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									height: "100vh",
+									position: "fixed",
+									top: 0,
+									left: 0,
+									zIndex: 999,
+								}}
+							>
+								<CircularProgress />
+							</Box>
+						)}
+						{projects && (
+							<ProjectGrid
+								variant='projects'
+								items={projects}
+								hoverEffect={"frame"}
+								colors={colors}
+							/>
+						)}
+					</Box>
 				</Container>
 			</Section>
 		</>

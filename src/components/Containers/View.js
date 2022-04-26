@@ -114,7 +114,7 @@ function View({ location, pageId }) {
 
 	return (
 		<ViewContext.Provider value={contextControls}>
-			<Box className='View' ref={viewRef}>
+			<Box className='View' ref={viewRef} sx={{minHeight: "100vh"}}>
 				<Page location={location}>
 					<motion.div
 						variants={containerVariants}

@@ -16,6 +16,7 @@ import {
 	spacer,
 	wrap,
 } from "./styles/styles";
+import SplitText from "../HOC/SplitText";
 
 export default function Footer(props) {
 	const [info, setInfo] = useState(null);
@@ -57,7 +58,7 @@ export default function Footer(props) {
 							{info && (
 								<>
 									<Typography variant='h1' className='-splitChars'>
-										{info && info.heading}
+										<SplitText>{info && info.heading}</SplitText>
 									</Typography>
 
 									<Typography
@@ -66,7 +67,7 @@ export default function Footer(props) {
 										href={`mailto:${info.email}`}
 									>
 										<div className='email -underline -hover-underline -relative -inline -splitChars'>
-											{info.email}
+											<SplitText>{info.email}</SplitText>
 										</div>
 									</Typography>
 								</>
