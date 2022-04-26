@@ -22,6 +22,7 @@ import BackToTop from "./components/Link/BackToTop";
 import { useQuery } from "@apollo/client";
 import NAVIGATION from "./api/graphql/queries/GetNavigation";
 import Navigation from "./components/Nav/Navigation";
+import { AnimatePresence } from "framer-motion/dist/framer-motion";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -268,14 +269,6 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									setNavItems={setNavItems}
 								/>
 
-								{menuActive && (
-									<Menu
-										menuActive={menuActive}
-										navItems={navItems}
-										toggleMenu={() => setMenuActive(!menuActive)}
-									/>
-								)}
-
 								<Cursor />
 								{/* <IntroCard /> */}
 
@@ -287,17 +280,19 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 									<LoadingScreen isActive={loading} />
 
 									<main>
-										<SiteRoutes
-											addToRdefs={addToRefs}
-											location={location}
-											siteControls={siteControls}
-											pages={state.data.pages}
-											toggleMenu={() => setMenuActive(!menuActive)}
-											menuActive={menuActive}
-											color={headerColor}
-											navItems={navItems}
-											setNavItems={setNavItems}
-										/>
+										<AnimatePresence exitBeforeEnter>
+											<SiteRoutes
+												addToRdefs={addToRefs}
+												location={location}
+												siteControls={siteControls}
+												pages={state.data.pages}
+												toggleMenu={() => setMenuActive(!menuActive)}
+												menuActive={menuActive}
+												color={headerColor}
+												navItems={navItems}
+												setNavItems={setNavItems}
+											/>
+										</AnimatePresence>
 									</main>
 
 									<Footer

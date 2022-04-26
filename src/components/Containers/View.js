@@ -14,10 +14,11 @@ import Block from "../Blocks/Block";
 import formatBlockData from "../Blocks/helpers/formatBlockData";
 import Template from "../Templates/Template";
 import Page from "./Page";
+import Menu from "../Menu/Menu";
 
 export const ViewContext = createContext();
 
-function View({ location, pageId }) {
+function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 	const [isViewLoaded, setViewLoaded] = useState({
 		blockLoaded: false,
 		templateLoaded: false,
@@ -114,7 +115,14 @@ function View({ location, pageId }) {
 
 	return (
 		<ViewContext.Provider value={contextControls}>
-			<Box className='View' ref={viewRef} sx={{minHeight: "100vh"}}>
+			{menuActive && (
+				<Menu
+					menuActive={menuActive}
+					navItems={navItems}
+					toggleMenu={() => setMenuActive(!menuActive)}
+				/>
+			)}
+			<Box className='View' ref={viewRef} sx={{ minHeight: "100vh" }}>
 				<Page location={location}>
 					<motion.div
 						variants={containerVariants}

@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-import { AnimatePresence } from "framer-motion/dist/framer-motion";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import PAGES from "./api/graphql/queries/GetPages";
@@ -46,18 +45,16 @@ function SiteRoutes(props) {
 	}, [loading, error, data]);
 
 	return (
-		<AnimatePresence exitBeforeEnter>
-			<Routes location={location} key={location.pathname}>
-				{views &&
-					views.map(view => (
-						<Route
-							path={view.slug}
-							element={<View location={location} pageId={view.id} />}
-							key={location.pathname}
-						/>
-					))}
-			</Routes>
-		</AnimatePresence>
+		<Routes location={location} key={location.pathname}>
+			{views &&
+				views.map(view => (
+					<Route
+						path={view.slug}
+						element={<View {...props} location={location} pageId={view.id} />}
+						key={location.pathname}
+					/>
+				))}
+		</Routes>
 	);
 }
 

@@ -2,11 +2,10 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	/* mobile safari viewport fix */
+	min-height: -webkit-fill-available;
 	min-height: 100vh;
 
-	/* mobile safari viewport fix */
-	
-	min-height: -webkit-fill-available;
 	width: 100vw;
 	display: block;
 	z-index: 99999;
