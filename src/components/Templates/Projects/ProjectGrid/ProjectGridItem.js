@@ -84,8 +84,6 @@ function ProjectGridItem({
 							url: image.url,
 							alt: image.alt,
 						}}
-						width={"100%"}
-						height={"100%"}
 					/>
 					{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
 					{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}

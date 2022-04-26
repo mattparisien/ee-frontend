@@ -14,13 +14,12 @@ function FullBleedMediaBlock({ data }) {
 				format: "landscape",
 				width: {
 					desktop: "100vw",
-					mobile: "100vw"
+					mobile: "100vw",
 				},
 				maxWidth: {
 					desktop: "100vw",
-					mobile: "100vw"
-				}
-				
+					mobile: "100vw",
+				},
 			}}
 		/>
 	);

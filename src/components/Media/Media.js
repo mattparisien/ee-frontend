@@ -34,7 +34,7 @@ function Media(props) {
 		landscape: 0.5625,
 	};
 
-	const wrapper = theme => ({
+	const aspectRatioConfig = theme => ({
 		width: options && options.width.desktop,
 		maxWidth: options && options.maxWidth.desktop,
 		height: `calc(${options && options.width.desktop} * ${
@@ -62,7 +62,14 @@ function Media(props) {
 
 	return (
 		<MediaContext.Provider value={{ loaded, setLoaded }}>
-			<Box className={classes} sx={wrapper}>
+			<Box
+				className={classes}
+				sx={
+					options && options.width
+						? aspectRatioConfig
+						: { width: "100%", height: "100%", "img, video": innerComponent }
+				}
+			>
 				<ConditionalWrapper
 					condition={!props.disableContainer}
 					wrapper={children => (
