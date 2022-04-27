@@ -22,7 +22,7 @@ function Next({ color, currentProjectId, projects }) {
 				id: nextId,
 				title: title,
 				subtitle: subtitle,
-				slug: title.toLowerCase().split(" ").join("-"),
+				slug: subtitle.toLowerCase().split(" ").join("-"),
 			};
 		}
 	}, [currentProjectId, projects]);
