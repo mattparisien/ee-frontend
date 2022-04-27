@@ -109,11 +109,13 @@ const formatMedia = block => {
 			},
 		};
 
+		console.log(postOptions)
+
 		if (!Array.isArray(info)) {
 			//Is a single media item
 
 			finalObject.data.value = {
-				options: keysToCamelCase(postOptions),
+				options: postOptions && keysToCamelCase(postOptions),
 				permalink: permalink,
 				type: info.media_type.toLowerCase(),
 				url: info.media_url,
@@ -128,7 +130,7 @@ const formatMedia = block => {
 		finalObject.data.value = {
 			type: "carousel",
 			permalink: permalink,
-			options: keysToCamelCase(postOptions),
+			options: postOptions && keysToCamelCase(postOptions),
 			items: info.map(item => ({
 				data: {
 					type: item.media_type.toLowerCase(),

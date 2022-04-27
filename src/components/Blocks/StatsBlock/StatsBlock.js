@@ -23,8 +23,6 @@ function StatsBlock({ data }) {
 					direction='row'
 					justifyContent={"space-evenly"}
 					alignItems='center'
-					
-					
 					sx={theme => ({
 						[theme.breakpoints.down("sm")]: {
 							flexDirection: "column",
@@ -37,7 +35,7 @@ function StatsBlock({ data }) {
 					})}
 				>
 					{data.items.map((item, i) => (
-						<Item heading={item.Heading} line={item.Line} />
+						<Item heading={item.Heading} line={item.Line} key={i} />
 					))}
 				</Stack>
 			</Box>

@@ -59,10 +59,10 @@ function Carousel({ items, image, video }) {
 				nextEl: ".button-next",
 			}}
 		>
-			{items.map(item => (
+			{items.map((item, i) => (
 				<SwiperSlide>
 					<Item
-						key={item.id}
+						key={i}
 						type={item.data.type}
 						url={item.data.url}
 						permalink={item.data.permalink}

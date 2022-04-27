@@ -28,8 +28,11 @@ function Next({ color, currentProjectId }) {
 		},
 	});
 
+	
+
 	const marqueeWords = useMemo(() => {
-		if (result2.data) {
+		if (result2.data && result2.data.project.data) {
+			console.log(result2)
 			const array = [];
 			for (let i = 0; i < 10; i++) {
 				array.push(

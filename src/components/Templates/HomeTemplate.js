@@ -67,7 +67,7 @@ function HomeTemplate({ pageHeading, location }) {
 	return (
 		<>
 			<Hero pageHeading={pageHeading} />
-			<About aboutText={staticData.about} />
+			{/* <About aboutText={staticData.about} />
 			<How steps={staticData.steps} />
 
 			<Work projects={staticData.featuredWork} />
@@ -81,7 +81,7 @@ function HomeTemplate({ pageHeading, location }) {
 						<Stories slides={staticData.testimonials} withFrame />
 					</Box>
 				</Container>
-			</Section>
+			</Section> */}
 		</>
 	);
 }
