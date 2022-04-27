@@ -89,7 +89,7 @@ function Item({ type, url, permalink, image, video }) {
 	return (
 		<Box sx={itemWrapper} className='item-wrapper'>
 			{type === "image" && image(url)}
-			{type === "image" && video(url)}
+			{type === "video" && video(url)}
 		</Box>
 	);
 }

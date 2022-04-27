@@ -19,6 +19,8 @@ function Media(props) {
 
 	const classes = classNames("media-wrapper");
 
+	console.log("the props", props);
+
 	const [loaded, setLoaded] = useState(false);
 
 	const innerComponent = {
@@ -71,58 +73,67 @@ function Media(props) {
 				}
 			>
 				<ConditionalWrapper
-					condition={!props.disableContainer}
+					condition={props.options && props.options.inset}
 					wrapper={children => (
-						<Container sx={{ height: "100%" }} disableGutters>
+						<Container sx={{ height: "100%" }} disableMaxWidth>
 							{children}
 						</Container>
 					)}
 				>
 					<ConditionalWrapper
+						condition={!props.disableContainer}
 						wrapper={children => (
-							<Link children={children} href={permalink} target='_blank' />
+							<Container sx={{ height: "100%" }} disableGutters>
+								{children}
+							</Container>
 						)}
-						condition={options && options.linkable && permalink}
 					>
-						<Box sx={{ height: "100%" }}>
-							{items && items.type === "image" && (
-								<Image src={items && items.url} alt={items && items.alt} />
+						<ConditionalWrapper
+							wrapper={children => (
+								<Link children={children} href={permalink} target='_blank' />
 							)}
-							{items && items.type === "video" && (
-								<Video src={items && items.url} />
-							)}
-							{items && items.type === "carousel" && (
-								<Carousel
-									items={items && items.items}
-									image={url => <Image src={url} />}
-									video={url => <Video src={url} />}
-								/>
-							)}
-						</Box>
+							condition={options && options.linkable && permalink}
+						>
+							<Box sx={{ height: "100%" }}>
+								{items && items.type === "image" && (
+									<Image src={items && items.url} alt={items && items.alt} />
+								)}
+								{items && items.type === "video" && (
+									<Video src={items && items.url} />
+								)}
+								{items && items.type === "carousel" && (
+									<Carousel
+										items={items && items.items}
+										image={url => <Image src={url} />}
+										video={url => <Video src={url} />}
+									/>
+								)}
+							</Box>
+						</ConditionalWrapper>
+						{options && options.displayCaption && items.caption && (
+							<Box className='media-caption' m={2}>
+								<Typography
+									key='title'
+									variant='body3'
+									fontWeight={400}
+									textAlign='right'
+									sx={{
+										opacity: 0.6,
+										display: "flex",
+										alignItems: "center",
+										justifyContent: "flex-end",
+									}}
+								>
+									{items.caption}
+								</Typography>
+							</Box>
+						)}
 					</ConditionalWrapper>
-					{options && options.displayCaption && items.caption && (
-						<Box className='media-caption' m={2}>
-							<Typography
-								key='title'
-								variant='body3'
-								fontWeight={400}
-								textAlign='right'
-								sx={{
-									opacity: 0.6,
-									display: "flex",
-									alignItems: "center",
-									justifyContent: "flex-end",
-								}}
-							>
-								{items.caption}
-							</Typography>
-						</Box>
-					)}
+					{!loaded && <Loader />}
+					<Overlay color={overlayColor} />
+					{loaded && <MediaTransition />}
+					{accent && <Accent component={CircleSvg} />}
 				</ConditionalWrapper>
-				{!loaded && <Loader />}
-				<Overlay color={overlayColor} />
-				{loaded && <MediaTransition />}
-				{accent && <Accent component={CircleSvg} />}
 			</Box>
 		</MediaContext.Provider>
 	);

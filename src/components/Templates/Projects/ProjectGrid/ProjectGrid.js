@@ -102,7 +102,7 @@ function ProjectGrid({ items, colors }) {
 
 	const arrays = useMemo(() => {
 		if (items) {
-			const dividedArrays = divideArray([...items, ...items, ...items], 6);
+			const dividedArrays = divideArray([...items], 6);
 
 			return dividedArrays;
 		}

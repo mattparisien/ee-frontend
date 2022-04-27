@@ -21,10 +21,10 @@ function HeroBlock({ data }) {
 		<Box sx={splitLayout}>
 			<Box sx={{ flex: 1 }}>
 				<Typography variant='h1' component='h1'>
-					<SplitText>{data.title}</SplitText>
+					<SplitText enterDelay={0.7}>{data.title}</SplitText>
 				</Typography>
 				<Typography variant='h3'>
-					<SplitText>{data.subtitle}</SplitText>
+					<SplitText enterDelay={0.8}>{data.subtitle}</SplitText>
 				</Typography>
 			</Box>
 			<Box>

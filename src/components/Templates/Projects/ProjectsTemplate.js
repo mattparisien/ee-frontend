@@ -1,14 +1,12 @@
 import { useQuery } from "@apollo/client";
 import { Box, CircularProgress, useTheme } from "@mui/material";
-import gsap from "gsap";
-import DrawSVGPlugin from "gsap/dist/DrawSVGPlugin";
-import React, { useEffect, useState, useContext } from "react";
-import View, { ViewContext } from "../../Containers/View";
+import React, { useContext, useEffect, useState } from "react";
 import PROJECTS from "../../../api/graphql/queries/GetProjects";
 import useRandomColor from "../../../helpers/hooks/useRandomColor";
 import Block from "../../Blocks/Block";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
+import { ViewContext } from "../../Containers/View";
 import ProjectGrid from "./ProjectGrid/ProjectGrid";
 
 function ProjectsTemplate() {
@@ -19,13 +17,6 @@ function ProjectsTemplate() {
 	const theme = useTheme();
 	const colors = useRandomColor(theme.palette.primary.colorSet, 10);
 
-	gsap.registerPlugin(DrawSVGPlugin);
-
-	// const colors = useMemo(() => {
-	// 	if (theme) {
-	// 		return useRandomColor(theme && theme.palette.primary.colorSet, 10);
-	// 	}
-	// }, [theme]);
 
 	useEffect(() => {
 		if (data && !loading) {

@@ -53,8 +53,8 @@ function SocialList({ color, direction }) {
 					</List>
 				)}
 			>
-				{data.socials.data.map(account => (
-					<ListItem disablePadding key={account.id}>
+				{data.socials.data.map((account, i) => (
+					<ListItem disablePadding key={i}>
 						<ListItemButton
 							disableTouchRipple
 							component='a'

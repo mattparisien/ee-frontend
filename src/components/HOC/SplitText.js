@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { motion } from "framer-motion/dist/framer-motion";
 import { useInView } from "react-intersection-observer";
 
-function SplitText({ children }) {
+function SplitText(props) {
 	const wordStyle = theme => ({
 		display: "inline-block",
 
@@ -32,8 +32,8 @@ function SplitText({ children }) {
 	};
 
 	const splitText = useMemo(() => {
-		if (children) {
-			const words = children.split(" ");
+		if (props.children) {
+			const words = props.children.split(" ");
 			const map = words.map(word => word.split(""));
 
 			const final = map.map((arrays, i) => (
@@ -56,10 +56,10 @@ function SplitText({ children }) {
 		return null;
 	}, []);
 
-	return <AnimationWrapper>{splitText}</AnimationWrapper>;
+	return <AnimationWrapper {...props}>{splitText}</AnimationWrapper>;
 }
 
-const AnimationWrapper = ({ children }) => {
+const AnimationWrapper = ({ children, enterDelay, exitDelay }) => {
 	const containerVariants = {
 		hidden: {
 			opacity: 0,
@@ -67,10 +67,10 @@ const AnimationWrapper = ({ children }) => {
 		visible: {
 			opacity: 1,
 
-			transition: { staggerChildren: 0.02, delayChildren: 0.2 },
+			transition: { staggerChildren: 0.02, delayChildren: enterDelay || 0.2 },
 		},
 		exit: {
-			transition: { staggerChildren: 0.02, delayChildren: 0.2 },
+			transition: { staggerChildren: 0.02, delayChildren: exitDelay || 0.2 },
 		},
 	};
 
@@ -85,7 +85,7 @@ const AnimationWrapper = ({ children }) => {
 			variants={containerVariants}
 			initial={"hidden"}
 			exit='exit'
-			animate={inView && 'visible'}
+			animate={inView && "visible"}
 			style={{ overflow: "hidden" }}
 			// exit={{
 			// 	y: "-100%",

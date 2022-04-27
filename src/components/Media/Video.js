@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box } from "@mui/material";
 import { useContext } from "react";
 import { MediaContext } from "./Media";
@@ -19,7 +19,7 @@ function Video({ src }) {
 				controls
 				playsInline
 				muted
-				onLoad={() => setLoaded(true)}
+				onLoadedData={() => setLoaded(true)}
 			></Box>
 		</Box>
 	);
