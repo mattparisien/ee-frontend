@@ -109,8 +109,6 @@ const formatMedia = block => {
 			},
 		};
 
-		console.log(postOptions)
-
 		if (!Array.isArray(info)) {
 			//Is a single media item
 

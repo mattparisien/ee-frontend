@@ -1,20 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { Box, Typography } from "@mui/material";
-import React, { useContext, useMemo } from "react";
+import React, { useMemo } from "react";
 import Marquee from "react-fast-marquee";
-import Fade from "react-reveal/Fade";
 import NEXTPROJECT from "../../../../api/graphql/queries/GetNextProject";
 import PROJECTS from "../../../../api/graphql/queries/GetProjects";
-import { CursorContext } from "../../../../context/Context";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
+import SplitText from "../../../HOC/SplitText";
 import Link from "../../../Link/Link";
 import Arrow from "../../../Vector/Arrow";
-import SplitText from "../../../HOC/SplitText";
 
 function Next({ color, currentProjectId }) {
-	const { toggleCursorState } = useContext(CursorContext);
-
 	const { data, error, loading } = useQuery(PROJECTS);
 	const result2 = useQuery(NEXTPROJECT, {
 		skip: !data,
@@ -28,11 +24,8 @@ function Next({ color, currentProjectId }) {
 		},
 	});
 
-	
-
 	const marqueeWords = useMemo(() => {
 		if (result2.data && result2.data.project.data) {
-			console.log(result2)
 			const array = [];
 			for (let i = 0; i < 10; i++) {
 				array.push(
@@ -44,14 +37,6 @@ function Next({ color, currentProjectId }) {
 			return array;
 		}
 	}, [result2.data]);
-
-	const handleMouseEnter = () => {
-		toggleCursorState();
-	};
-
-	const handleMouseLeave = () => {
-		toggleCursorState();
-	};
 
 	return (
 		<>
@@ -70,7 +55,17 @@ function Next({ color, currentProjectId }) {
 						},
 					})}
 				>
-					<Box onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+					<Box
+						sx={{
+							".c-arrow": {
+								transition: "300ms ease",
+								transitionDelay: "100ms",
+							},
+							"&:hover .c-arrow": {
+								transform: `translateX(30%)`,
+							},
+						}}
+					>
 						<Link
 							classes={`-stretchX -block -stretchY -hover-underline`}
 							isRouterLink

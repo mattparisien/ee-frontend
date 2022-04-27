@@ -8,8 +8,6 @@ import SplitBlock from "./SplitBlock";
 
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.right.media);
-	console.log(data);
-	console.log("the options", media && media.options);
 
 	return (
 		<SplitBlock

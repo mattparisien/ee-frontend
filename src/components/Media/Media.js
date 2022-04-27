@@ -19,7 +19,7 @@ function Media(props) {
 
 	const classes = classNames("media-wrapper");
 
-	console.log("the props", props);
+	
 
 	const [loaded, setLoaded] = useState(false);
 

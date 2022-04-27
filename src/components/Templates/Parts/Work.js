@@ -18,8 +18,6 @@ function Work({ projects }) {
 		return projects && projects.filter(project => project.FeaturedPost);
 	}, [projects]);
 
-	console.log(featuredProjects, projects);
-
 	return (
 		<Section classes='o-work ' data-theme='light'>
 			<ImageList variant='quilted' cols={3} gap={8} sx={{ width: "100%" }}>
@@ -65,8 +63,12 @@ function Item({ src, alt, title, subtitle }) {
 		<ImageListItem sx={itemStyles}>
 			<img src={src} alt={alt} />
 			<Box className='info' sx={info} p={3}>
-				<Typography variant="body3" pb={4}>{subtitle}</Typography>
-				<Typography variant="h4" fontWeight="600">{title}</Typography>
+				<Typography variant='body3' pb={4}>
+					{subtitle}
+				</Typography>
+				<Typography variant='h4' fontWeight='600'>
+					{title}
+				</Typography>
 			</Box>
 		</ImageListItem>
 	);
