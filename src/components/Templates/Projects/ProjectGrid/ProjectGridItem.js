@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "../../../Link/Link";
 import Media from "../../../Media/Media";
 import Fade from "../../../HOC/Fade";
@@ -68,9 +68,15 @@ function ProjectGridItem({
 		},
 	});
 
+	const slug = useMemo(() => {
+		const slug = title && title.toLowerCase().split(" ").join("-");
+
+		return slug;
+	}, [title]);
+
 	return (
 		<Link
-			href={`/projects/${projectId}`}
+			href={`/projects/${slug}`}
 			isRouterLink
 			classes='-hover-underline -stretchX -stretchY -block'
 		>

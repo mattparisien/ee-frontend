@@ -32,7 +32,6 @@ const SINGLEPROJECT = gql`
 						__typename
 						... on ComponentBlocksGalleryBlock {
 							id
-
 							GalleryBlockTheme: Theme
 							Images {
 								${GETIMAGEDATA}
@@ -51,5 +50,4 @@ const SINGLEPROJECT = gql`
 		}
 	}
 `;
-
 export default SINGLEPROJECT;

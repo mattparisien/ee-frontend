@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { applyNextFetchPolicy, useQuery } from "@apollo/client";
 import { Box, Typography } from "@mui/material";
 import React, { useMemo } from "react";
 import Marquee from "react-fast-marquee";
@@ -9,38 +9,37 @@ import Section from "../../../Containers/Section";
 import SplitText from "../../../HOC/SplitText";
 import Link from "../../../Link/Link";
 import Arrow from "../../../Vector/Arrow";
+import getNextId from "../helpers/getNextId";
 
-function Next({ color, currentProjectId }) {
-	const { data, error, loading } = useQuery(PROJECTS);
-	const result2 = useQuery(NEXTPROJECT, {
-		skip: !data,
-		variables: {
-			id:
-				data &&
-				currentProjectId &&
-				data.projects.data.length === parseInt(currentProjectId)
-					? 1
-					: parseInt(currentProjectId) + 1,
-		},
-	});
+function Next({ color, currentProjectId, projects }) {
+	const next = useMemo(() => {
+		if (projects && currentProjectId) {
+			const nextId = getNextId(projects, currentProjectId);
+			const proj = projects.find(project => project.id === nextId);
+			const { title, subtitle } = proj;
+
+			return {
+				id: nextId,
+				title: title,
+				subtitle: subtitle,
+				slug: title.toLowerCase().split(" ").join("-"),
+			};
+		}
+	}, [currentProjectId, projects]);
 
 	const marqueeWords = useMemo(() => {
-		if (result2.data && result2.data.project.data) {
+		if (next && next.title && next.subtitle) {
 			const array = [];
 			for (let i = 0; i < 10; i++) {
-				array.push(
-					i % 2 === 0
-						? result2.data.project.data.attributes.Subtitle
-						: result2.data.project.data.attributes.Title
-				);
+				array.push(i % 2 === 0 ? next.title : next.subtitle);
 			}
 			return array;
 		}
-	}, [result2.data]);
+	}, [next]);
 
 	return (
 		<>
-			{result2.data && (
+			{next && (
 				<Section
 					sectionTheme={color}
 					disableMarginBottom
@@ -70,7 +69,7 @@ function Next({ color, currentProjectId }) {
 							classes={`-stretchX -block -stretchY -hover-underline`}
 							isRouterLink
 							rel={"next"}
-							href={`/projects/${result2.data.project.data.id}`}
+							href={`/projects/${next.slug}`}
 						>
 							<Box py={20}>
 								<div className='c-link_inner'>

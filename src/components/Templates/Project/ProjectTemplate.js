@@ -8,22 +8,24 @@ import React, {
 } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
-import { ColorContext } from "../../../context/Context";
+import { ColorContext, DataContext } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
-import Page from "../../Containers/Page";
-import Next from "./Parts/Next";
 import { ViewContext } from "../../Containers/View";
+import getParam from "./helpers/getParam";
+import getProjectIdByTitle from "./helpers/getProjectIdByTitle";
+import Next from "./Parts/Next";
 
 export const ProjectContext = createContext();
 
 function ProjectTemplate({ location }) {
-	const [param, setParam] = useState(null);
+	const [id, setId] = useState(null);
 	const [project, setProject] = useState(null);
 
 	const { setCurrentColor } = useContext(ColorContext);
 	const { setTemplateLoaded } = useContext(ViewContext);
+	const { projects } = useContext(DataContext);
 
 	const accentColor = useMemo(() => {
 		const color = shuffleColors();
@@ -33,25 +35,19 @@ function ProjectTemplate({ location }) {
 
 	useEffect(() => {
 		//Find query param
-		if (!param) {
-			let param = "";
-			let counter = 0;
-			for (let i = 0; i < location.pathname.length; i++) {
-				if (location.pathname[i] === "/") {
-					counter += 1;
-
-					if (counter > 1) {
-						param = location.pathname.slice(i + 1, location.pathname.length);
-					}
-				}
-			}
-			setParam(param);
+		if (!id && projects) {
+			const param = getParam(location.pathname);
+			const id = getProjectIdByTitle(param, projects);
+		
+			setId(id);
 		}
-	}, [location, param]);
+	}, [location, id, projects]);
 
 	const { loading, error, data } = useQuery(SINGLEPROJECT, {
-		variables: { id: param },
-		skip: !param,
+		variables: {
+			id: id,
+		},
+		skip: !id,
 	});
 
 	useEffect(() => {
@@ -112,7 +108,7 @@ function ProjectTemplate({ location }) {
 			{project &&
 				project.data.blocks.map((block, i) => <Block {...block} key={i} />)}
 
-			<Next color={accentColor[1]} currentProjectId={param} />
+			<Next color={accentColor[1]} currentProjectId={id} projects={projects} />
 		</ProjectContext.Provider>
 	);
 }

@@ -23,6 +23,7 @@ import { useQuery } from "@apollo/client";
 import NAVIGATION from "./api/graphql/queries/GetNavigation";
 import Navigation from "./components/Nav/Navigation";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
+import PROJECTS from "./api/graphql/queries/GetProjects";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -56,45 +57,36 @@ function App() {
 	// const [navItems, setNavItems] = useState([]);
 
 	const introTl = useRef(gsap.timeline());
+	const [projects, setProjects] = useState([]);
 
-	// useEffect(() => {
-	// 	//Intro animation
-	// 	if (state.data.isLoaded) {
-	// 		introAnimation(introTl.current, setFirstVisit);
-	// 	}
-	// }, [state]);
+	const query = useQuery(PROJECTS);
 
-	// const [isSplit, setSplit] = useState(false);
+	useEffect(() => {
+		console.log(query);
+		if (query && query.data && !query.loading) {
+			setProjects(
+				[...query.data.projects.data]
+					.sort((a, b) => a.attributes.Date - b.attributes.Date)
+					.map(project => ({
+						id: project.id,
+						title: project.attributes.Title,
+						subtitle: project.attributes.Subtitle,
+						image: {
+							url: project.attributes.FeatureImage.data.attributes.url,
+							alt: project.attributes.FeatureImage.data.attributes
+								.alternativeText,
+						},
+					}))
+			);
+		}
+	}, [query.data, query.loading]);
 
-	// const isFirstRender = useRef(true);
 	const observedElements = useRef([]);
 	observedElements.current = [];
 
 	const toggleDomAnimationReady = useCallback(() => {
 		setDomAnimatedReady(!domAnimatedReady);
 	}, [domAnimatedReady]);
-
-	// useEffect(() => {
-	// 	setTimeout(() => {
-	// 		const splitChars = document.querySelectorAll(".-splitChars");
-	// 		const splitLines = document.querySelectorAll(".-splitLines");
-
-	// 		//Chars
-	// 		new SplitText(splitChars, {
-	// 			type: "words, chars",
-	// 			wordsClass: "c-word",
-	// 			charsClass: "c-char",
-	// 		});
-
-	// 		//Lines
-	// 		new SplitText(splitLines, {
-	// 			type: "lines",
-	// 			linesClass: "c-line",
-	// 		});
-
-	// 		observedElements.current.push(splitChars);
-	// 	}, 500);
-	// }, []);
 
 	useEffect(() => {
 		//Observers,
@@ -225,88 +217,85 @@ function App() {
 	});
 
 	return (
-		<ApolloProvider client={client}>
-			<ThemeProvider theme={theme}>
-				<div className={classes}>
-					<HelmetProvider>
-						<Helmet>
-							<html lang='en' />
-							<title>The Eyes & Ears Agency</title>
-							<meta
-								name='description'
-								content='
+		<ThemeProvider theme={theme}>
+			<div className={classes}>
+				<HelmetProvider>
+					<Helmet>
+						<html lang='en' />
+						<title>The Eyes & Ears Agency</title>
+						<meta
+							name='description'
+							content='
 The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
 
 '
+						/>
+						<meta content='The Eyes & Ears Agency' property='og:title' />
+						<meta property='og:type' content='website' />
+					</Helmet>
+
+					<Context
+						stateData={{ ...state.data, projects: [...projects] }}
+						siteControls={siteControls}
+						cursor={cursor}
+						toggleCursorState={toggleCursorState}
+						scrollRef={scrollWrapper}
+						location={location}
+						search={search}
+						setSearch={setSearch}
+						currentColor={currentColor}
+						setCurrentColor={setCurrentColor}
+						setLoading={setLoading}
+					>
+						{/* <DragCursor cursor={cursor} /> */}
+						{/* <IntroCard pending={pending} /> */}
+						<BackToTop />
+						<ScrollToTop watch={location.pathname}>
+							<Navigation
+								toggleMenu={() => setMenuActive(!menuActive)}
+								menuActive={menuActive}
+								location={location}
+								color={headerColor}
+								navItems={navItems}
+								setNavItems={setNavItems}
 							/>
-							<meta content='The Eyes & Ears Agency' property='og:title' />
-							<meta property='og:type' content='website' />
-						</Helmet>
 
-						<Context
-							stateData={state.data}
-							siteControls={siteControls}
-							cursor={cursor}
-							toggleCursorState={toggleCursorState}
-							scrollRef={scrollWrapper}
-							location={location}
-							search={search}
-							setSearch={setSearch}
-							currentColor={currentColor}
-							setCurrentColor={setCurrentColor}
-							setLoading={setLoading}
-						>
-							{/* <DragCursor cursor={cursor} /> */}
-							{/* <IntroCard pending={pending} /> */}
-							<BackToTop />
-							<ScrollToTop watch={location.pathname}>
-								<Navigation
-									toggleMenu={() => setMenuActive(!menuActive)}
-									menuActive={menuActive}
-									location={location}
-									color={headerColor}
-									navItems={navItems}
-									setNavItems={setNavItems}
-								/>
+							<Cursor />
+							{/* <IntroCard /> */}
 
-								<Cursor />
-								{/* <IntroCard /> */}
+							<div
+								className='scroll-wrapper'
+								ref={scrollWrapper}
+								data-scroll-container
+							>
+								<LoadingScreen isActive={loading} />
 
-								<div
-									className='scroll-wrapper'
-									ref={scrollWrapper}
-									data-scroll-container
-								>
-									<LoadingScreen isActive={loading} />
-
-									<main>
-										<SiteRoutes
-											addToRdefs={addToRefs}
-											location={location}
-											siteControls={siteControls}
-											pages={state.data.pages}
-											toggleMenu={() => setMenuActive(!menuActive)}
-											menuActive={menuActive}
-											color={headerColor}
-											navItems={navItems}
-											setNavItems={setNavItems}
-										/>
-										
-									</main>
-
-									<Footer
-										info={state.data.footer}
-										addToRefs={addToRefs}
-										location={location.pathname}
+								<main>
+									<SiteRoutes
+										addToRdefs={addToRefs}
+										location={location}
+										siteControls={siteControls}
+										pages={state.data.pages}
+										toggleMenu={() => setMenuActive(!menuActive)}
+										menuActive={menuActive}
+										color={headerColor}
 										navItems={navItems}
+										setNavItems={setNavItems}
 									/>
-								</div>
-							</ScrollToTop>
-						</Context>
-					</HelmetProvider>
-				</div>
-			</ThemeProvider>
-		</ApolloProvider>
+								</main>
+
+								<Footer
+									info={state.data.footer}
+									addToRefs={addToRefs}
+									location={location.pathname}
+									navItems={navItems}
+								/>
+							</div>
+						</ScrollToTop>
+					</Context>
+				</HelmetProvider>
+			</div>
+		</ThemeProvider>
 	);
 }
 
