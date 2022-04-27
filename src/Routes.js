@@ -6,7 +6,6 @@ import ProjectPage from "./components/Pages/Projects/ProjectPage";
 import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
 import NotFoundPage from "./components/Pages/NotFound/NotFoundPage";
 
-
 function SiteRoutes(props) {
 	const { location, pages } = props;
 
@@ -31,16 +30,14 @@ function SiteRoutes(props) {
 		notFound: {
 			path: "/*",
 			component: NotFoundPage,
-			title: "notFound"
-		}
+			title: "notFound",
+		},
 		// singleProject: {
 		// 	path: "/projects/:id",
 		// 	component: SingleProjectPage,
 		// 	title: "singleproject",
 		// },
 	};
-
-	
 
 	useEffect(() => {
 		if (pages) {
