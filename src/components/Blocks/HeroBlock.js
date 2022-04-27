@@ -29,6 +29,7 @@ function HeroBlock({ data }) {
 			</Box>
 			<Box>
 				<Media
+					zoom
 					items={{
 						type: "image",
 						...data.image,

@@ -11,15 +11,14 @@ import Loader from "./Loader";
 import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
 import Video from "./Video";
+import { motion } from "framer-motion/dist/framer-motion";
 
 export const MediaContext = createContext();
 
 function Media(props) {
-	const { accent, items, options, permalink, overlayColor, format } = props;
+	const { accent, items, options, permalink, overlayColor, zoom } = props;
 
 	const classes = classNames("media-wrapper");
-
-	
 
 	const [loaded, setLoaded] = useState(false);
 
@@ -80,55 +79,81 @@ function Media(props) {
 						</Container>
 					)}
 				>
-					<ConditionalWrapper
-						condition={!props.disableContainer}
-						wrapper={children => (
-							<Container sx={{ height: "100%" }} disableGutters>
-								{children}
-							</Container>
-						)}
-					>
+					<Box sx={{ overflow: "hidden", height: "100%" }}>
 						<ConditionalWrapper
+							condition={!props.disableContainer}
 							wrapper={children => (
-								<Link children={children} href={permalink} target='_blank' />
+								<Container sx={{ height: "100%" }} disableGutters>
+									{children}
+								</Container>
 							)}
-							condition={options && options.linkable && permalink}
 						>
-							<Box sx={{ height: "100%" }}>
-								{items && items.type === "image" && (
-									<Image src={items && items.url} alt={items && items.alt} />
+							<ConditionalWrapper
+								wrapper={children => (
+									<Link children={children} href={permalink} target='_blank' />
 								)}
-								{items && items.type === "video" && (
-									<Video src={items && items.url} />
-								)}
-								{items && items.type === "carousel" && (
-									<Carousel
-										items={items && items.items}
-										image={url => <Image src={url} />}
-										video={url => <Video src={url} />}
-									/>
-								)}
-							</Box>
-						</ConditionalWrapper>
-						{options && options.displayCaption && items.caption && (
-							<Box className='media-caption' m={2}>
-								<Typography
-									key='title'
-									variant='body3'
-									fontWeight={400}
-									textAlign='right'
-									sx={{
-										opacity: 0.6,
-										display: "flex",
-										alignItems: "center",
-										justifyContent: "flex-end",
-									}}
+								condition={options && options.linkable && permalink}
+							>
+								<ConditionalWrapper
+									wrapper={children => (
+										<motion.div
+											style={{ height: "100%" }}
+											initial={{ scale: 1.2 }}
+											animate={{
+												scale: 1,
+												transition: {
+													duration: 2,
+													ease: [0.86, 0, 0.07, 0.995],
+												},
+											}}
+											exit={{
+												scale: 1.2,
+												transition: {
+													duration: 2,
+													ease: [0.86, 0, 0.07, 0.995],
+												},
+											}}
+										>
+											{children}
+										</motion.div>
+									)}
+									condition={zoom}
 								>
-									{items.caption}
-								</Typography>
-							</Box>
-						)}
-					</ConditionalWrapper>
+									{items && items.type === "image" && (
+										<Image src={items && items.url} alt={items && items.alt} />
+									)}
+									{items && items.type === "video" && (
+										<Video src={items && items.url} />
+									)}
+									{items && items.type === "carousel" && (
+										<Carousel
+											items={items && items.items}
+											image={url => <Image src={url} />}
+											video={url => <Video src={url} />}
+										/>
+									)}
+								</ConditionalWrapper>
+							</ConditionalWrapper>
+							{options && options.displayCaption && items.caption && (
+								<Box className='media-caption' m={2}>
+									<Typography
+										key='title'
+										variant='body3'
+										fontWeight={400}
+										textAlign='right'
+										sx={{
+											opacity: 0.6,
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "flex-end",
+										}}
+									>
+										{items.caption}
+									</Typography>
+								</Box>
+							)}
+						</ConditionalWrapper>
+					</Box>
 					{!loaded && <Loader />}
 					<Overlay color={overlayColor} />
 					{loaded && <MediaTransition />}

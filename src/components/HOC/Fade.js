@@ -15,19 +15,22 @@ function Fade({ children, wrapper, childStyle }) {
 		},
 	};
 
+	
+
 	return wrapper(
-		children.map((child, i) => (
-			<motion.div
-				key={i}
-				className='fade-child-wrap'
-				ref={ref}
-				variants={variants}
-				initial={"hidden"}
-				animate={inView && "visible"}
-			>
-				{child}
-			</motion.div>
-		))
+		children &&
+			children.map((child, i) => (
+				<motion.div
+					key={i}
+					className='fade-child-wrap'
+					ref={ref}
+					variants={variants}
+					initial={"hidden"}
+					animate={inView && "visible"}
+				>
+					{child}
+				</motion.div>
+			))
 	);
 }
 

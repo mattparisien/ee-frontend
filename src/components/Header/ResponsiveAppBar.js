@@ -87,7 +87,7 @@ function ResponsiveAppBar({
 					<Box className='logo-wrap' sx={logoWrap}>
 						<TextLogo />
 					</Box>
-					<Box sx={navDesktop} component='nav'>
+					<Box sx={navDesktop} component='nav' data-testid="navDesktop">
 						<List style={flexList}>
 							{navItems &&
 								navItems.map((item, i) => (
@@ -99,8 +99,8 @@ function ResponsiveAppBar({
 											opacity: 0.5,
 											transition: "400ms ease",
 											"&:hover": {
-												opacity: 1
-											}
+												opacity: 1,
+											},
 										}}
 									>
 										<Link isRouterLink href={item.path}>
@@ -150,8 +150,12 @@ function Burger({ menuActive, onBurgerClick }) {
 	});
 
 	return (
-		<IconButton sx={burgerBtn} onClick={onBurgerClick} data-testid={"burger"}>
-			{menuActive ? <CloseIcon /> : <MenuIcon />}
+		<IconButton sx={burgerBtn} onClick={onBurgerClick} data-testid={"menuBtn"}>
+			{menuActive ? (
+				<CloseIcon data-testid="close" />
+			) : (
+				<MenuIcon data-testid='burger' />
+			)}
 		</IconButton>
 	);
 }

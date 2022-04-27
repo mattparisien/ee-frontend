@@ -10,6 +10,7 @@ import SplitText from "../../../HOC/SplitText";
 import Link from "../../../Link/Link";
 import Arrow from "../../../Vector/Arrow";
 import getNextId from "../helpers/getNextId";
+import TextMarquee from "./TextMarquee";
 
 function Next({ color, currentProjectId, projects }) {
 	const next = useMemo(() => {
@@ -89,12 +90,7 @@ function Next({ color, currentProjectId, projects }) {
 										</Box>
 									</Container>
 
-									<Marquee gradient={false} direction={"right"}>
-										{marqueeWords &&
-											marqueeWords.map((word, i) => (
-												<MarqueeItem text={word} key={i} />
-											))}
-									</Marquee>
+									<TextMarquee direction='right' words={marqueeWords} />
 								</div>
 							</Box>
 						</Link>
@@ -102,14 +98,6 @@ function Next({ color, currentProjectId, projects }) {
 				</Section>
 			)}
 		</>
-	);
-}
-
-function MarqueeItem({ text }) {
-	return (
-		<Typography variant='h1' mr={15}>
-			<SplitText>{text}</SplitText>
-		</Typography>
 	);
 }
 

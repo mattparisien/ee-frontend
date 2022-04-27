@@ -5,6 +5,7 @@ import Markdown from "../../Markdown/Markdown";
 import Media from "../../Media/Media";
 import useMedia from "../helpers/hooks/useMedia";
 import SplitBlock from "./SplitBlock";
+import Fade from "../../HOC/Fade";
 
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.right.media);
@@ -36,6 +37,7 @@ function Left({ data }) {
 			>
 				{data && data.left.text}
 			</Markdown>
+
 			{data.left.cta && (
 				<Cta
 					children={data.left.cta.ButtonText}
