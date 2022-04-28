@@ -7,7 +7,7 @@ import {
 	List,
 	ListItem,
 	ListItemText,
-	Toolbar,
+	Toolbar
 } from "@mui/material";
 import React from "react";
 import Container from "../Containers/ContainerFluid";
@@ -22,6 +22,8 @@ function ResponsiveAppBar({
 	onBurgerClick,
 	color,
 }) {
+	
+
 	const wrapper = theme => ({
 		zIndex: 99999999,
 		transition: "background 200ms ease",
@@ -86,7 +88,7 @@ function ResponsiveAppBar({
 	return (
 		<AppBar position='fixed' sx={wrapper} elevation={0}>
 			<Container>
-				<Toolbar sx={navToolbar}>
+				<Toolbar sx={navToolbar} disableGutters>
 					<Box className='spacer' sx={spacer}></Box>
 					<Box className='logo-wrap' sx={logoWrap}>
 						<Link isRouterLink href={"/"}>

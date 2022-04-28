@@ -220,7 +220,6 @@ function How({ steps }) {
 			<Section
 				classes='o-how -relative'
 				data-theme='light'
-				ref={container}
 				noGutter
 				sx={{ overflow: "hidden" }}
 			>

@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import Fade from "react-reveal";
+
 
 function StepItem({ step }) {
 	const stepHeading = theme => ({
@@ -30,27 +30,23 @@ function StepItem({ step }) {
 	return (
 		<Box className={`c-steps_item c-steps_item_${step.id}`}>
 			<Box className='item-content'>
-				<Fade bottom>
-					<Typography
-						variant='h2'
-						sx={stepHeading}
-						mb={2}
-						className='-splitChars'
-					>
-						{step.title}
-					</Typography>
-				</Fade>
+				<Typography
+					variant='h2'
+					sx={stepHeading}
+					mb={2}
+					className='-splitChars'
+				>
+					{step.title}
+				</Typography>
 
-				<Fade bottom>
-					<Typography
-						sx={stepParagraph}
-						className='body'
-						variant='body2'
-						component={"p"}
-					>
-						{step.body}
-					</Typography>
-				</Fade>
+				<Typography
+					sx={stepParagraph}
+					className='body'
+					variant='body2'
+					component={"p"}
+				>
+					{step.body}
+				</Typography>
 			</Box>
 		</Box>
 	);

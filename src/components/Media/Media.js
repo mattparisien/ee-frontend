@@ -1,7 +1,7 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
 import { motion } from "framer-motion/dist/framer-motion";
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
 import CircleSvg from "../Vector/Circle";
@@ -16,8 +16,8 @@ import Video from "./Video";
 export const MediaContext = createContext();
 
 function Media(props) {
-	const { accent, items, options, permalink, overlayColor, zoom } = props;
-	
+	const { accent, items, options, permalink, overlayColor, accentColor, zoom } =
+		props;
 
 	const classes = classNames("media-wrapper");
 
@@ -158,7 +158,7 @@ function Media(props) {
 					{!loaded && <Loader />}
 					<Overlay color={overlayColor} />
 					{loaded && <MediaTransition />}
-					{accent && <Accent component={CircleSvg} />}
+					{accent && <Accent component={CircleSvg} color={accentColor} />}
 				</ConditionalWrapper>
 			</Box>
 		</MediaContext.Provider>

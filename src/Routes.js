@@ -39,7 +39,7 @@ function SiteRoutes(props) {
 					id: view.id,
 					...keysToCamelCase(view.attributes),
 				}));
-
+			console.log(views);
 			setViews(views);
 		}
 	}, [loading, error, data]);
@@ -50,6 +50,7 @@ function SiteRoutes(props) {
 				{views &&
 					views.map(view => (
 						<Route
+							exact
 							path={view.slug}
 							element={<View {...props} location={location} pageId={view.id} />}
 							key={location.pathname}

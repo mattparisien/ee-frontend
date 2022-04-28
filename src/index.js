@@ -10,11 +10,9 @@ import { client } from "./api/graphql/index";
 ReactDOM.render(
 	<>
 		<ApolloProvider client={client}>
-			<React.StrictMode>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</React.StrictMode>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</ApolloProvider>
 	</>,
 	document.getElementById("root")

@@ -17,9 +17,6 @@ function Block(props) {
 		paddingY: true,
 	});
 
-	
-	
-
 	useEffect(() => {
 		let container = true;
 

@@ -208,9 +208,6 @@ function App() {
 	const [navItems, setNavItems] = useState([]);
 
 	const classes = classNames("App", {
-		
-		
-		
 		"cursor-hidden": cursor === "drag",
 		"is-not-first-visit": !isFirstVisit,
 	});
@@ -234,6 +231,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					</Helmet>
 
 					<LoadingScreen isActive={loading} />
+
 					<Context
 						stateData={{ ...state.data, projects: [...projects] }}
 						siteControls={siteControls}
@@ -258,6 +256,9 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								navItems={navItems}
 								setNavItems={setNavItems}
 							/>
+							{menuActive && (
+								<Menu menuActive={menuActive} navItems={navItems} />
+							)}
 
 							<Cursor />
 							{/* <IntroCard /> */}
@@ -268,10 +269,6 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								data-scroll-container
 							>
 								<main>
-									{menuActive && (
-										<Menu menuActive={menuActive} navItems={navItems} />
-									)}
-
 									<SiteRoutes
 										addToRdefs={addToRefs}
 										location={location}

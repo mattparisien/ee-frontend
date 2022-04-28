@@ -1,17 +1,14 @@
 import { Box, List, ListItem, Typography, useMediaQuery } from "@mui/material";
 import classNames from "classnames";
 import { motion, useIsPresent } from "framer-motion/dist/framer-motion";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import variables from "../../styles/scss/_vars.module.scss";
 import ContainerFluid from "../Containers/ContainerFluid";
 import SplitText from "../HOC/SplitText";
 import Link from "../Link/Link";
-import { CursorContext } from "../../context/Context";
 import SocialList from "../Lists/SocialList";
 
 function Menu({ menuActive, navItems, toggleMenu }) {
-	const { toggleCursorState } = useContext(CursorContext);
-
 	const matches = useMediaQuery(
 		`(min-width: ${variables["breakpoints-tablet"]}px)`
 	);
@@ -77,8 +74,6 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 								<Link isRouterLink href={item.path} onClick={toggleMenu}>
 									{navItemsReady && (
 										<Typography
-											onMouseEnter={() => toggleCursorState()}
-											onMouseLeave={() => toggleCursorState()}
 											component='span'
 											variant='h1'
 											sx={theme => ({

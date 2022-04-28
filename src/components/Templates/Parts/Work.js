@@ -24,6 +24,7 @@ function Work({ projects }) {
 				{projects &&
 					projects.map(project => (
 						<Item
+							key={project.id}
 							src={project.image.url}
 							alt={project.image.alt}
 							title={project.title}

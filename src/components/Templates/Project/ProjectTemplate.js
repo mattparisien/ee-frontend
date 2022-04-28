@@ -29,16 +29,20 @@ function ProjectTemplate({ location }) {
 
 	const accentColor = useMemo(() => {
 		const color = shuffleColors();
-		setCurrentColor(color);
+
 		return color;
 	}, []);
+
+	useEffect(() => {
+		accentColor && setCurrentColor(() => color);
+	}, [accentColor]);
 
 	useEffect(() => {
 		//Find query param
 		if (!id && projects) {
 			const param = getParam(location.pathname);
 			const id = getProjectIdByTitle(param, projects);
-		
+
 			setId(id);
 		}
 	}, [location, id, projects]);

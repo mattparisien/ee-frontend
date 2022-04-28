@@ -11,7 +11,7 @@ function Accent({ component, color }) {
 		width: "40%",
 
 		svg: {
-			fill: theme.palette.primary.colorSet.yellow,
+			fill: color || theme.palette.primary.colorSet.yellow,
 		},
 		[theme.breakpoints.down("sm")]: {
 			width: "25%",
