@@ -83,8 +83,10 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 													fontSize: "10rem !important",
 												},
 												transition: "color 400ms ease",
-												"&:hover": {
-													color: theme.palette.primary.yellow,
+												"@media (hover: hover)": {
+													"&:hover": {
+														color: theme.palette.primary.yellow,
+													},
 												},
 											})}
 										>

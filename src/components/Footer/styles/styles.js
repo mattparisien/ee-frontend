@@ -19,7 +19,10 @@ export const boxStyles = theme => ({
 });
 
 export const drawnLogo = theme => ({
-	width: "10rem",
+	width: "7rem",
+	[theme.breakpoints.up("sm")]: {
+		width: "10rem",
+	},
 	svg: {
 		overflow: "visible",
 	},

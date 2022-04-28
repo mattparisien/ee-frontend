@@ -45,7 +45,7 @@ function ProjectGridItem({
 
 		[theme.breakpoints.down("sm")]: {
 			width: "100%",
-			height: "100%",
+			height: `calc(((100vw - 2rem) * 0.5625) + 1rem)`,
 			marginTop: 0,
 		},
 	});

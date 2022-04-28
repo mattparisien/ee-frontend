@@ -8,12 +8,12 @@ function ProjectGrid({ items, colors }) {
 
 	const globalContainer = theme => ({
 		".grid-container": {
-			"&:not(:first-of-type)": {
-				marginTop: "36%",
-				[theme.breakpoints.down("sm")]: {
-					marginTop: 0,
-				},
-			},
+			// "&:not(:first-of-type)": {
+			// 	marginTop: "36%",
+			// 	[theme.breakpoints.down("sm")]: {
+			// 		marginTop: 0,
+			// 	},
+			// },
 		},
 	});
 
@@ -34,6 +34,7 @@ function ProjectGrid({ items, colors }) {
 	const gridSchema = [
 		{
 			row: {
+				height: "22vw",
 				align: null,
 				gutter: null,
 			},
@@ -44,17 +45,19 @@ function ProjectGrid({ items, colors }) {
 		},
 		{
 			row: {
+				height: "28vw",
 				align: "flex-end",
 				gutter: gutter,
 			},
 			item: {
-				height: "140%",
+				height: "100%",
 				width: "27%",
 				margin: "0 0 0 auto",
 			},
 		},
 		{
 			row: {
+				height: "22vw",
 				align: null,
 				gutter: gutter,
 			},
@@ -66,36 +69,39 @@ function ProjectGrid({ items, colors }) {
 		},
 		{
 			row: {
+				height: "50vw",
 				align: null,
 				gutter: null,
 			},
 			item: {
-				height: "220%",
+				height: "100%",
 				width: "47%",
 				margin: "0 0 0 auto",
 			},
 		},
 		{
 			row: {
+				height: "28vw",
 				align: "flex-start",
-				gutter: null,
+				gutter: gutter,
 			},
 			item: {
-				height: "140%",
+				height: "100%",
 				width: "27%",
-				margin: "20% 0 0 0",
+				// margin: "20% 0 0 0",
 			},
 		},
 		{
 			row: {
+				height: "22vw",
 				align: "flex-start",
-				gutter: null,
+				gutter: gutter,
 			},
 			item: {
 				height: "100%",
 				width: "38%",
-				margin: "20% 0 0 0",
-				margin: "30% 0 0 auto",
+				// margin: "20% 0 0 0",
+				margin: "0 0 0 auto",
 			},
 		},
 	];
@@ -112,12 +118,18 @@ function ProjectGrid({ items, colors }) {
 		<Box className='projects' sx={globalContainer}>
 			{arrays
 				? arrays.map((array, i) => (
-						<Box className='grid-container' sx={gridContainer} key={i}>
+						<Box
+							className='ProjectGrid grid-container'
+							sx={gridContainer}
+							key={i}
+						>
 							{array.map((item, idx) => (
 								<Row
 									key={idx}
+									id={idx}
 									align={gridSchema[idx].row.align}
 									gutter={gridSchema[idx].row.gutter}
+									height={gridSchema[idx].row.height}
 								>
 									<ProjectGridItem
 										projectId={item.id}
@@ -142,21 +154,25 @@ function ProjectGrid({ items, colors }) {
 	);
 }
 
-function Row({ children, align, gutter }) {
+function Row({ children, align, gutter, height }) {
 	const row = theme => ({
 		width: "100%",
-		height: "22vw",
+		height: height,
 		display: "flex",
 		position: "sticky",
 		alignItems: align,
 		marginBottom: gutter,
 		[theme.breakpoints.down("sm")]: {
 			height: "65vw",
-			marginBottom: "4rem",
+			marginBottom: "2rem",
 		},
 	});
 
-	return <Box sx={row}>{children}</Box>;
+	return (
+		<Box sx={row} className='Row'>
+			{children}
+		</Box>
+	);
 }
 
 export default ProjectGrid;

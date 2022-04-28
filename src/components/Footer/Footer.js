@@ -17,6 +17,7 @@ import {
 	wrap,
 } from "./styles/styles";
 import SplitText from "../HOC/SplitText";
+import Scale from "../HOC/Scale";
 
 export default function Footer(props) {
 	const [info, setInfo] = useState(null);
@@ -74,7 +75,9 @@ export default function Footer(props) {
 							)}
 						</Box>
 						<Box className='c-footer_content_logo' sx={drawnLogo}>
-							<DrawnLogo color='light' />
+							<Scale>
+								<DrawnLogo color='light' />
+							</Scale>
 						</Box>
 					</Box>
 

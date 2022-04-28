@@ -257,7 +257,11 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								setNavItems={setNavItems}
 							/>
 							{menuActive && (
-								<Menu menuActive={menuActive} navItems={navItems} />
+								<Menu
+									menuActive={menuActive}
+									navItems={navItems}
+									toggleMenu={() => setMenuActive(!menuActive)}
+								/>
 							)}
 
 							<Cursor />
