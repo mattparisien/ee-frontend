@@ -4,6 +4,7 @@ import { Typography } from "@mui/material";
 import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { motion } from "framer-motion/dist/framer-motion";
+import FadeChildren from "../HOC/FadeChildren";
 
 function Markdown({ children, variantMap }) {
 	const componentMap = {
@@ -67,10 +68,17 @@ function Markdown({ children, variantMap }) {
 			/>
 		),
 		ul: ({ node, ...props }) => (
-			<List disablePadding={true}>{props.children}</List>
+			<FadeChildren
+				wrapper={List}
+				childWrapper={ListItem}
+				wrapperProps={{ disablePadding: true }}
+				childWrapperProps={{ disablePadding: true }}
+			>
+				{props.children}
+			</FadeChildren>
 		),
 		li: ({ node, ...props }) => (
-			<ListItem disablePadding>
+			<>
 				<ListItemIcon sx={{ minWidth: "auto", marginRight: "0.6rem" }}>
 					<CheckIcon sx={{ height: "0.97rem", opacity: 0.5 }} />
 				</ListItemIcon>
@@ -81,7 +89,7 @@ function Markdown({ children, variantMap }) {
 						fontWeight: 200,
 					}}
 				/>
-			</ListItem>
+			</>
 		),
 	};
 	return (

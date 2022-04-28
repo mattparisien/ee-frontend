@@ -15,30 +15,30 @@ function Accent({ component, color }) {
 		},
 		[theme.breakpoints.down("sm")]: {
 			width: "25%",
-			left: '-12%',
-			top: "-9.5%"
-		}
+			left: "-12%",
+			top: "-9.5%",
+		},
 	});
 
 	const variants = {
 		hidden: {
-			opacity: 0,
+			scale: 0,
 		},
 
 		visible: {
-			opacity: 1,
+			scale: 1,
 
 			transition: {
-				ease: "easeInOut",
+				ease: [0.86, 0, 0.07, 0.995],
 				duration: 1,
 			},
 		},
 
 		exit: {
-			opacity: 0,
+			scale: 0,
 
 			transition: {
-				ease: "easeInOut",
+				ease: [0.86, 0, 0.07, 0.995],
 				duration: 1,
 			},
 		},

@@ -1,5 +1,6 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
+import { motion } from "framer-motion/dist/framer-motion";
 import React, { createContext, useState } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
@@ -11,12 +12,12 @@ import Loader from "./Loader";
 import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
 import Video from "./Video";
-import { motion } from "framer-motion/dist/framer-motion";
 
 export const MediaContext = createContext();
 
 function Media(props) {
 	const { accent, items, options, permalink, overlayColor, zoom } = props;
+	
 
 	const classes = classNames("media-wrapper");
 

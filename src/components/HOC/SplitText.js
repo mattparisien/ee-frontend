@@ -87,10 +87,6 @@ const AnimationWrapper = ({ children, enterDelay, exitDelay }) => {
 			exit='exit'
 			animate={inView && "visible"}
 			style={{ overflow: "hidden" }}
-			// exit={{
-			// 	y: "-100%",
-			// 	transition: { ease: "easeInOut", duration: 1, staggerChildren: 0.5 },
-			// }}
 		>
 			{children}
 		</motion.div>
