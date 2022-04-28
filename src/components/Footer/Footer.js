@@ -84,7 +84,7 @@ export default function Footer(props) {
 							component='p'
 							fontWeight={400}
 							sx={theme => ({
-								[theme.breakpoints.down("sm")]: { alignSelf: "flex-end" },
+								[theme.breakpoints.down("md")]: { alignSelf: "flex-end" },
 							})}
 						>
 							The Eyes & Ears Agency

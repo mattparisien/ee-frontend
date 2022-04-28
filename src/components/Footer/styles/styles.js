@@ -35,6 +35,9 @@ export const bottom = theme => ({
 	display: "flex",
 	justifyContent: "space-between",
 	alignItems: "center",
+	[theme.breakpoints.down("md")]: {
+		alignItems: "flex-end"
+	}
 });
 
 export const footer = theme => ({

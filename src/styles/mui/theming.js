@@ -86,7 +86,7 @@ const typography = {
 	h1: {
 		fontFamily: "Kobe Bold",
 
-		fontSize: '6.4rem'
+		fontSize: "6.4rem",
 	},
 	h2: {
 		fontFamily: "Kobe Bold",
@@ -96,15 +96,7 @@ const typography = {
 theme = createTheme(theme, {
 	transitions: transitions,
 	aspectRatio: aspectRatio,
-	// overrides: {
-	// 	MuiTypography: {
-	// 		fontFamily: "Kobe",
-	// 		[theme.breakpoints.up("md")]: {
-	// 			fontSize: "11rem",
-	// 			background: "red",
-	// 		},
-	// 	},
-	// },
+
 	components: {
 		MuiBox: {
 			variants: [

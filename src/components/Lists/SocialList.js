@@ -34,11 +34,12 @@ function SocialList({ color, direction }) {
 		svg: {
 			fill: theme.palette.primary[color],
 		},
+
 		[theme.breakpoints.down("sm")]: {
 			flexDirection: "column",
-			"li:not(last-of-type)": {
-				marginBottom: theme.spacing(3),
-			},
+			".fade-child-wrap:not(:last-of-type) li": {
+				marginBottom: theme.spacing(3)
+			}
 		},
 	});
 

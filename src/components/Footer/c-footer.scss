@@ -1,98 +1,98 @@
-.c-footer {
+// .c-footer {
 	
-	.c-drawnLogo {
-		width: 100%;
-		overflow: visible;
+// 	.c-drawnLogo {
+// 		width: 100%;
+// 		overflow: visible;
 
-		svg {
-			overflow: visible;
-		}
-	}
+// 		svg {
+// 			overflow: visible;
+// 		}
+// 	}
 	
-	position: relative;
-	bottom: 0;
-	left: 0;
-	width: 100vw;
+// 	position: relative;
+// 	bottom: 0;
+// 	left: 0;
+// 	width: 100vw;
 
-	&_content {
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+// 	&_content {
+// 		height: 100%;
+// 		display: flex;
+// 		align-items: center;
+// 		justify-content: center;
 		
-		// flex-direction: column;
+// 		// flex-direction: column;
 
-		&_contact {
-			display: flex;
-			flex-direction: column;
+// 		&_contact {
+// 			display: flex;
+// 			flex-direction: column;
 
 	
-		}
+// 		}
 
-		.c-arrow-button {
-			align-self: flex-start;
-			width: 3rem;
-			height: 3rem;
-		}
+// 		.c-arrow-button {
+// 			align-self: flex-start;
+// 			width: 3rem;
+// 			height: 3rem;
+// 		}
 
-		> div:not(.c-footer_bottom) {
-			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
+// 		> div:not(.c-footer_bottom) {
+// 			width: 100%;
+// 			display: flex;
+// 			align-items: center;
+// 			justify-content: space-between;
 
-			@include media("<=tablet") {
-				justify-content: flex-start;
-			}
-		}
+// 			@include media("<=tablet") {
+// 				justify-content: flex-start;
+// 			}
+// 		}
 
-		.c-drawnLogo {
-			width: 12vw;
+// 		.c-drawnLogo {
+// 			width: 12vw;
 
-			svg {
-				overflow: visible;
-			}
+// 			svg {
+// 				overflow: visible;
+// 			}
 
-			@include media("<=tablet") {
-				display: none;
-			}
+// 			@include media("<=tablet") {
+// 				display: none;
+// 			}
 
-			.faceLine {
-				fill: $light !important;
-			}
-		}
-	}
+// 			.faceLine {
+// 				fill: $light !important;
+// 			}
+// 		}
+// 	}
 
-	&_bottom {
-		width: 100%;
-		box-sizing: border-box;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+// 	&_bottom {
+// 		width: 100%;
+// 		box-sizing: border-box;
+// 		position: absolute;
+// 		bottom: 0;
+// 		left: 0;
+// 		display: flex;
+// 		align-items: center;
+// 		justify-content: space-between;
 		
 
-		.c-list_social {
-			margin-left: 1rem;
-		}
+// 		.c-list_social {
+// 			margin-left: 1rem;
+// 		}
 
-		nav {
-			display: none;
+// 		nav {
+// 			display: none;
 
-			height: 100%;
-			ul {
-				display: flex;
-				width: 100%;
-				align-items: center;
-				height: 100%;
-				justify-content: flex-end;
-			}
-		}
+// 			height: 100%;
+// 			ul {
+// 				display: flex;
+// 				width: 100%;
+// 				align-items: center;
+// 				height: 100%;
+// 				justify-content: flex-end;
+// 			}
+// 		}
 
-		ul li a {
-			color: $light;
-		}
-	}
-}
+// 		ul li a {
+// 			color: $light;
+// 		}
+// 	}
+// }

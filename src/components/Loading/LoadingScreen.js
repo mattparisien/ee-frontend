@@ -2,10 +2,6 @@ import React, { useEffect } from "react";
 import { CircularProgress, Box } from "@mui/material";
 
 function LoadingScreen({ isActive }) {
-	useEffect(() => {
-		console.log(isActive);
-	}, [isActive]);
-
 	const wrapper = theme => ({
 		backgroundColor: theme.palette.primary.light,
 		top: 0,

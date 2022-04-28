@@ -1,11 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import Marquee from "react-fast-marquee";
 import { Box, Typography } from "@mui/material";
+import React, { useRef } from "react";
+import Marquee from "react-fast-marquee";
 import SplitText from "../../../HOC/SplitText";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function TextMarquee({ direction, words }) {
-	const scroll = useLocomotiveScroll();
 	const ref = useRef(null);
 
 	return (
@@ -21,7 +19,7 @@ function TextMarquee({ direction, words }) {
 
 function MarqueeItem({ text }) {
 	return (
-		<Typography variant='h1' mr={15}>
+		<Typography variant='h1' mr={12}>
 			<SplitText>{text}</SplitText>
 		</Typography>
 	);

@@ -62,7 +62,6 @@ function App() {
 	const query = useQuery(PROJECTS);
 
 	useEffect(() => {
-		console.log(query);
 		if (query && query.data && !query.loading) {
 			setProjects(
 				[...query.data.projects.data]
@@ -209,9 +208,9 @@ function App() {
 	const [navItems, setNavItems] = useState([]);
 
 	const classes = classNames("App", {
-		"is-new-page": !transitioning,
-		"is-old-page": transitioning,
-		"is-dom-animated-ready": domAnimatedReady,
+		
+		
+		
 		"cursor-hidden": cursor === "drag",
 		"is-not-first-visit": !isFirstVisit,
 	});

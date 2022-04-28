@@ -16,7 +16,6 @@ ReactDOM.render(
 				</BrowserRouter>
 			</React.StrictMode>
 		</ApolloProvider>
-		,
 	</>,
 	document.getElementById("root")
 );
