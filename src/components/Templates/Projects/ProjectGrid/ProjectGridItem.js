@@ -21,25 +21,28 @@ function ProjectGridItem({
 		margin: margin,
 		width: width,
 		height: height,
-		"&:hover::after": {
-			opacity: 0.5,
-		},
-		"&::after": {
-			position: "absolute",
-			opacity: 0,
-			top: 0,
-			left: 0,
-			width: "100%",
-			height: "100%",
-			content: "''",
-			backgroundColor: color,
-			transition: "600ms ease",
+		"@media (hover: hover)": {
+			"&:hover::after": {
+				opacity: 0.5,
+			},
+			"&::after": {
+				position: "absolute",
+				opacity: 0,
+				top: 0,
+				left: 0,
+				width: "100%",
+				height: "100%",
+				content: "''",
+				backgroundColor: color,
+				transition: "600ms ease",
+			},
+			"&:hover .highlight": {
+				transform: "scale(1) rotate(30deg)",
+			},
 		},
 
 		position: "relative",
-		"&:hover .highlight": {
-			transform: "scale(1) rotate(30deg)",
-		},
+
 		[theme.breakpoints.down("sm")]: {
 			width: "100%",
 			height: "100%",

@@ -234,6 +234,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						<meta property='og:type' content='website' />
 					</Helmet>
 
+					<LoadingScreen isActive={loading} />
 					<Context
 						stateData={{ ...state.data, projects: [...projects] }}
 						siteControls={siteControls}
@@ -268,7 +269,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								ref={scrollWrapper}
 								data-scroll-container
 							>
-								<LoadingScreen isActive={loading} />
+								
 
 								<main>
 									<SiteRoutes
