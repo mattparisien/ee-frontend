@@ -18,6 +18,7 @@ import {
 } from "./styles/styles";
 import SplitText from "../HOC/SplitText";
 import Scale from "../HOC/Scale";
+import Fade from "../HOC/Fade";
 
 export default function Footer(props) {
 	const [info, setInfo] = useState(null);
