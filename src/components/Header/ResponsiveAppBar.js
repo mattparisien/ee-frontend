@@ -37,11 +37,11 @@ function ResponsiveAppBar({
 
 	const logoWrap = theme => ({
 		width: "150px",
-		transition: "fill 200ms ease",
-		fill: theme.palette.primary[menuActive ? "light" : "dark"],
+		svg: {
+			transition: "fill 200ms ease",
+			fill: theme.palette.primary[menuActive ? "light" : "dark"],
+		},
 	});
-
-	const edgesWidth = "20rem";
 
 	const spacer = theme => ({
 		width: "20rem",
@@ -79,8 +79,8 @@ function ResponsiveAppBar({
 		display: "flex",
 		justifyContent: "flex-end",
 		".MuiListItem-root:not(first-of-type)": {
-			marginLeft: theme.spacing(12)
-		}
+			marginLeft: theme.spacing(12),
+		},
 	});
 
 	return (

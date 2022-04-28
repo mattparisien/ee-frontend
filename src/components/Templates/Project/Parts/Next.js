@@ -56,15 +56,19 @@ function Next({ color, currentProjectId, projects }) {
 					})}
 				>
 					<Box
-						sx={{
+						sx={theme => ({
 							".c-arrow": {
 								transition: "300ms ease",
 								transitionDelay: "100ms",
+								width: "6rem",
+								[theme.breakpoints.up("sm")]: {
+									width: "8rem",
+								},
 							},
 							"&:hover .c-arrow": {
 								transform: `translateX(30%)`,
 							},
-						}}
+						})}
 					>
 						<Link
 							classes={`-stretchX -block -stretchY -hover-underline`}
@@ -72,7 +76,17 @@ function Next({ color, currentProjectId, projects }) {
 							rel={"next"}
 							href={`/projects/${next.slug}`}
 						>
-							<Box py={20}>
+							<Box
+								sx={theme => ({
+									padding: `${theme.spacing(10)} 0`,
+									[theme.breakpoints.up("sm")]: {
+										padding: `${theme.spacing(15)} 0`,
+									},
+									[theme.breakpoints.up("md")]: {
+										padding: `${theme.spacing(20)} 0`,
+									},
+								})}
+							>
 								<div className='c-link_inner'>
 									<Container classes='-relative -flex -align-center -justify-between'>
 										<Box
