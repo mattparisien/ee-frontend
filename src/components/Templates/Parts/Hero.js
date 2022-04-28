@@ -53,11 +53,15 @@ function Hero({ pageHeading }) {
 		display: "flex",
 		flexDirection: "column",
 		position: "relative",
-
 		justifyContent: "space-between",
 
 		paddingBottom: theme.spacing(10),
-		height: "calc(100vh - 100px)",
+		"@media (orientation: landscape)": {
+			height: "calc(100vh - 100px)",
+		},
+		"@media (orientation: portrait)": {
+			height: "calc(65vw - 100px)",
+		},
 
 		".word": {
 			fontFamily: "Kobe Bold",

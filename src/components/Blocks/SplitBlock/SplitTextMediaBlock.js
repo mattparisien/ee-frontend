@@ -6,6 +6,7 @@ import Media from "../../Media/Media";
 import useMedia from "../helpers/hooks/useMedia";
 import SplitBlock from "./SplitBlock";
 import Fade from "../../HOC/Fade";
+import { Box } from "@mui/material";
 
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.right.media);
