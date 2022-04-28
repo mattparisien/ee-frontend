@@ -39,7 +39,7 @@ function SiteRoutes(props) {
 					id: view.id,
 					...keysToCamelCase(view.attributes),
 				}));
-			console.log(views);
+
 			setViews(views);
 		}
 	}, [loading, error, data]);

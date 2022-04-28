@@ -20,7 +20,7 @@ function TextMarquee({ direction, words }) {
 function MarqueeItem({ text }) {
 	return (
 		<Typography variant='h1' mr={12}>
-			<SplitText>{text}</SplitText>
+			{text}
 		</Typography>
 	);
 }

@@ -105,5 +105,5 @@
 		"uglifyjs-webpack-plugin": "^2.2.0",
 		"webpack-cli": "^4.9.1"
 	},
-	"proxy": "http://localhost:3000"
+	"proxy": "https://glacial-river-52194.herokuapp.com/graphql"
 }

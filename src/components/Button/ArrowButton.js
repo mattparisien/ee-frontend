@@ -1,7 +1,5 @@
 import classNames from "classnames";
-import gsap from "gsap";
-import DrawSVGPlugin from "gsap/src/DrawSVGPlugin";
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import useMouseMove from "../../helpers/hooks/useMouseMove";
 import Link from "../Link/Link";
 
@@ -14,7 +12,7 @@ function ArrowButton(
 		[`is-${color}`]: color,
 	});
 
-	gsap.registerPlugin(DrawSVGPlugin);
+	
 
 	const location = useMouseMove();
 
@@ -39,12 +37,7 @@ function ArrowButton(
 function Arrow({ rotation, color, location }) {
 	const svg = useRef(null);
 	const circle = useRef(null);
-	gsap.registerPlugin(DrawSVGPlugin);
-	useEffect(() => {
-		gsap.set(circle.current, {
-			drawSVG: 0,
-		});
-	}, []);
+
 
 	return (
 		<svg

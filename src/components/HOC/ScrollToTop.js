@@ -8,7 +8,7 @@ function ScrollToTop({ children, watch }) {
 		if (scroll && scroll.scroll) {
 			setTimeout(() => {
 				scroll.scroll.scrollTo(0, 0);
-			}, 500);
+			}, 760);
 		}
 	}, [watch]);
 

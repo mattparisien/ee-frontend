@@ -4,7 +4,7 @@ import useMedia from "./helpers/hooks/useMedia";
 
 function FullBleedMediaBlock({ data }) {
 	const media = useMedia(data.media);
-	// useLayout(data.data.layout);
+	
 
 	const layoutOptions = {
 		format: "landscape",

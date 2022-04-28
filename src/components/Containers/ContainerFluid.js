@@ -25,7 +25,7 @@ function Container(props) {
 		<MuiContainer
 			className={classes}
 			maxWidth={props.disableMaxWidth ? false : "lg"}
-			position="relative"
+			position='relative'
 			sx={combineStyles(
 				!props.disableGutters ? containerSpacing : {},
 				props.sx,
