@@ -65,8 +65,10 @@ function Next({ color, currentProjectId, projects }) {
 									width: "8rem",
 								},
 							},
-							"&:hover .c-arrow": {
-								transform: `translateX(30%)`,
+							"@media (hover: hover)": {
+								"&:hover .c-arrow": {
+									transform: `translateX(30%)`,
+								},
 							},
 						})}
 					>

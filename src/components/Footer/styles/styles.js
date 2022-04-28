@@ -20,6 +20,9 @@ export const boxStyles = theme => ({
 
 export const drawnLogo = theme => ({
 	width: "10rem",
+	svg: {
+		overflow: "visible",
+	},
 	[theme.breakpoints.down("sm")]: {
 		marginTop: "4rem",
 	},
@@ -36,8 +39,8 @@ export const bottom = theme => ({
 	justifyContent: "space-between",
 	alignItems: "center",
 	[theme.breakpoints.down("md")]: {
-		alignItems: "flex-end"
-	}
+		alignItems: "flex-end",
+	},
 });
 
 export const footer = theme => ({
