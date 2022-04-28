@@ -4,6 +4,7 @@ import Container from "../../Containers/ContainerFluid";
 import { Typography, Box } from "@mui/material";
 import { DrawnLogo } from "../../Vector/Svg";
 import SplitText from "../../HOC/SplitText";
+import Scale from "../../HOC/Scale";
 
 function Hero({ pageHeading }) {
 	const words = useMemo(() => {
@@ -95,13 +96,15 @@ function Hero({ pageHeading }) {
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<Container classes='-stretchX -stretchY' sx={containerStyles}>
 				{wordMap.map((word, i) => (
-					<Typography key={i} className="word">
+					<Typography key={i} className='word'>
 						<SplitText>{word}</SplitText>
 					</Typography>
 				))}
 
 				<Box className='logo' sx={logo}>
-					<DrawnLogo />
+					<Scale>
+						<DrawnLogo />
+					</Scale>
 				</Box>
 			</Container>
 		</Section>

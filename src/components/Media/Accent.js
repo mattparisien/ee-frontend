@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion/dist/framer-motion";
+import Scale from "../HOC/Scale";
 
 function Accent({ component, color }) {
 	const styles = theme => ({
@@ -46,15 +47,7 @@ function Accent({ component, color }) {
 
 	return (
 		<Box className='Accent' sx={styles}>
-			<motion.div
-				className='motion-wrap'
-				variants={variants}
-				initial='hidden'
-				animate='visible'
-				exit='exit'
-			>
-				{component()}
-			</motion.div>
+			<Scale>{component()}</Scale>
 		</Box>
 	);
 }
