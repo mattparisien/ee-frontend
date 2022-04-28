@@ -17,6 +17,7 @@ function ProjectsTemplate() {
 	const theme = useTheme();
 	const colors = useRandomColor(theme.palette.primary.colorSet, 10);
 
+
 	useEffect(() => {
 		if (data && !loading) {
 			setProjects(() =>
@@ -51,31 +52,37 @@ function ProjectsTemplate() {
 			/>
 			<Section>
 				<Container disableMaxWidth>
-					{loading && (
-						<Box
-							sx={{
-								width: "100%",
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								height: "100vh",
-								position: "fixed",
-								top: 0,
-								left: 0,
-								zIndex: 999,
-							}}
-						>
-							<CircularProgress />
-						</Box>
-					)}
-					{projects && (
-						<ProjectGrid
-							variant='projects'
-							items={projects}
-							hoverEffect={"frame"}
-							colors={colors}
-						/>
-					)}
+					<Box sx={theme => ({
+						[theme.breakpoints.up("sm")]: {
+							paddingBottom: theme.spacing(3)
+						}
+					})}>
+						{loading && (
+							<Box
+								sx={{
+									width: "100%",
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									height: "100vh",
+									position: "fixed",
+									top: 0,
+									left: 0,
+									zIndex: 999,
+								}}
+							>
+								<CircularProgress />
+							</Box>
+						)}
+						{projects && (
+							<ProjectGrid
+								variant='projects'
+								items={projects}
+								hoverEffect={"frame"}
+								colors={colors}
+							/>
+						)}
+					</Box>
 				</Container>
 			</Section>
 		</>
