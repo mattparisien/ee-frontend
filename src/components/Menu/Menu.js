@@ -78,7 +78,10 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 											variant='h1'
 											sx={theme => ({
 												color: theme.palette.primary.light,
-												fontSize: "18vw !important",
+												fontSize: "19vw !important",
+												[theme.breakpoints.up("md")]: {
+													fontSize: "10rem !important",
+												},
 												transition: "color 400ms ease",
 												"&:hover": {
 													color: theme.palette.primary.yellow,
