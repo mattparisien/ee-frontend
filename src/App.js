@@ -248,7 +248,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						setCurrentColor={setCurrentColor}
 						setLoading={setLoading}
 					>
-						{/* <DragCursor cursor={cursor} /> */}
+						
 						{/* <IntroCard pending={pending} /> */}
 						<BackToTop />
 						<ScrollToTop watch={location.pathname}>
@@ -269,8 +269,6 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 								ref={scrollWrapper}
 								data-scroll-container
 							>
-								
-
 								<main>
 									<SiteRoutes
 										addToRdefs={addToRefs}

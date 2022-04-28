@@ -13,6 +13,11 @@ function Accent({ component, color }) {
 		svg: {
 			fill: theme.palette.primary.colorSet.yellow,
 		},
+		[theme.breakpoints.down("sm")]: {
+			width: "25%",
+			left: '-12%',
+			top: "-9.5%"
+		}
 	});
 
 	const variants = {

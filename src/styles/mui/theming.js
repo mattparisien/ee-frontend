@@ -85,10 +85,8 @@ const typography = {
 	},
 	h1: {
 		fontFamily: "Kobe Bold",
-		[theme.breakpoints.down("sm")]: {
-			fontSize: "5.2rem", // 20px
-			lineHeight: "5.6rem", //  30px
-		},
+
+		fontSize: '6.4rem'
 	},
 	h2: {
 		fontFamily: "Kobe Bold",

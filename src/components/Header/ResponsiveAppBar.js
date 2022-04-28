@@ -87,7 +87,7 @@ function ResponsiveAppBar({
 					<Box className='logo-wrap' sx={logoWrap}>
 						<TextLogo />
 					</Box>
-					<Box sx={navDesktop} component='nav' data-testid="navDesktop">
+					<Box sx={navDesktop} component='nav' data-testid='navDesktop'>
 						<List style={flexList}>
 							{navItems &&
 								navItems.map((item, i) => (
@@ -139,7 +139,7 @@ function ResponsiveAppBar({
 function Burger({ menuActive, onBurgerClick }) {
 	const burgerBtn = theme => ({
 		display: "none",
-		width: "4rem !important",
+		paddingRight: 0,
 		svg: {
 			fill: theme.palette.primary[menuActive ? "light" : "dark"],
 			transition: "fill 200ms ease",
@@ -150,9 +150,14 @@ function Burger({ menuActive, onBurgerClick }) {
 	});
 
 	return (
-		<IconButton sx={burgerBtn} onClick={onBurgerClick} data-testid={"menuBtn"}>
+		<IconButton
+			sx={burgerBtn}
+			onClick={onBurgerClick}
+			data-testid={"menuBtn"}
+			disableRipple
+		>
 			{menuActive ? (
-				<CloseIcon data-testid="close" />
+				<CloseIcon data-testid='close' />
 			) : (
 				<MenuIcon data-testid='burger' />
 			)}

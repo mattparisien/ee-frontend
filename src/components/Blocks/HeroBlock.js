@@ -10,7 +10,7 @@ function HeroBlock({ data }) {
 		justifyContent: "center",
 		[theme.breakpoints.down("sm")]: {
 			flexDirection: "column",
-			alignItems: "flex-start",
+			textAlign: "center",
 			"> *:nth-of-type(1)": {
 				marginBottom: theme.spacing(10),
 			},
@@ -38,8 +38,7 @@ function HeroBlock({ data }) {
 						format: "portrait",
 						displayCaption: true,
 						width: {
-							mobile: "calc(100vw - 2rem)",
-
+							mobile: "calc(60vw - 2rem)",
 							desktop: "30vw",
 						},
 						maxWidth: {
