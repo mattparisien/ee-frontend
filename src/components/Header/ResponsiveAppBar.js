@@ -75,9 +75,13 @@ function ResponsiveAppBar({
 		},
 	});
 
-	const flexList = {
+	const flexList = theme => ({
 		display: "flex",
-	};
+		justifyContent: "flex-end",
+		".MuiListItem-root:not(first-of-type)": {
+			marginLeft: theme.spacing(12)
+		}
+	});
 
 	return (
 		<AppBar position='fixed' sx={wrapper} elevation={0}>
@@ -90,14 +94,15 @@ function ResponsiveAppBar({
 						</Link>
 					</Box>
 					<Box sx={navDesktop} component='nav' data-testid='navDesktop'>
-						<List style={flexList}>
+						<List sx={flexList}>
 							{navItems &&
 								navItems.map((item, i) => (
 									<ListItem
 										key={i}
 										sx={{
-											justifyContent: "center",
-											paddingRight: i === 2 && 0,
+											justifyContent: "flex-end",
+											padding: 0,
+											width: "auto",
 											opacity: 0.5,
 											transition: "400ms ease",
 											"&:hover": {
