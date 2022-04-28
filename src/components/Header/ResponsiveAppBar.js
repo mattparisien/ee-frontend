@@ -85,7 +85,9 @@ function ResponsiveAppBar({
 				<Toolbar sx={navToolbar}>
 					<Box className='spacer' sx={spacer}></Box>
 					<Box className='logo-wrap' sx={logoWrap}>
-						<TextLogo />
+						<Link isRouterLink href={"/"}>
+							<TextLogo />
+						</Link>
 					</Box>
 					<Box sx={navDesktop} component='nav' data-testid='navDesktop'>
 						<List style={flexList}>
