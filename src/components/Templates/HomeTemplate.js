@@ -17,7 +17,7 @@ import Work from "./Parts/Work";
 function HomeTemplate({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 
-	const { setTemplateLoaded } = useContext(ViewContext);
+	const { setTemplateLoaded  } = useContext(ViewContext);
 	const { loading, error, data } = useQuery(STATICHOME, {
 		variables: {
 			projectLimit: 1,

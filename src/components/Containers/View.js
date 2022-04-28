@@ -23,6 +23,7 @@ function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 		blockLoaded: false,
 		templateLoaded: false,
 	});
+	const [viewError, setViewError] = useState(null);
 
 	const { loading, error, data } = useQuery(PAGE, {
 		variables: {
@@ -39,7 +40,7 @@ function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 
 	const viewRef = useRef(null);
 
-	const { setLoading } = useContext(LoadingContext);
+	const { setLoading, setError } = useContext(LoadingContext);
 
 	useEffect(() => {
 		if (data && !loading) {
@@ -58,9 +59,7 @@ function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 			}));
 		}
 
-		return () => {
-			setLoading(true);
-		};
+	
 	}, [loading, data, error]);
 
 	useEffect(() => {
@@ -89,7 +88,7 @@ function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 		) {
 			setLoading(false);
 		}
-	}, [isViewLoaded, page]);
+	}, [isViewLoaded, viewError, page]);
 
 	const containerVariants = {
 		hidden: {
@@ -111,11 +110,11 @@ function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 
 	const contextControls = {
 		setTemplateLoaded,
+		setViewError,
 	};
 
 	return (
 		<ViewContext.Provider value={contextControls}>
-
 			<Box className='View' ref={viewRef} sx={{ minHeight: "100vh" }}>
 				<Page location={location}>
 					<motion.div

@@ -42,6 +42,7 @@ const getTheme = (block, blockName) => {
 };
 
 const formatSplitBlock = block => {
+	console.log(block, '........')
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {

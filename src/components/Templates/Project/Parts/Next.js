@@ -99,7 +99,7 @@ function Next({ color, currentProjectId, projects }) {
 											pb={30}
 										>
 											<Typography variant='h2' fontFamily={"Kobe"}>
-												<SplitText>Next</SplitText>
+												Next
 											</Typography>
 
 											<Arrow color='dark' />

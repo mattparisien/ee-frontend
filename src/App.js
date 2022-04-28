@@ -24,6 +24,7 @@ import NAVIGATION from "./api/graphql/queries/GetNavigation";
 import Navigation from "./components/Nav/Navigation";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
 import PROJECTS from "./api/graphql/queries/GetProjects";
+import Error from "./components/Error/Error";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -51,6 +52,8 @@ function App() {
 		setCurrentColor,
 		loading,
 		setLoading,
+		error,
+		setError,
 	} = useAppData();
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
@@ -78,7 +81,7 @@ function App() {
 					}))
 			);
 		}
-	}, [query.data, query.loading]);
+	}, [query.data, query.loading, query.error]);
 
 	const observedElements = useRef([]);
 	observedElements.current = [];
@@ -231,6 +234,9 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 					</Helmet>
 
 					<LoadingScreen isActive={loading} />
+					{error && (
+						<Error message={error.message} statusCode={error.statusCode} />
+					)}
 
 					<Context
 						stateData={{ ...state.data, projects: [...projects] }}
@@ -244,6 +250,8 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						currentColor={currentColor}
 						setCurrentColor={setCurrentColor}
 						setLoading={setLoading}
+						error={error}
+						setError={setError}
 					>
 						{/* <IntroCard pending={pending} /> */}
 						<BackToTop />

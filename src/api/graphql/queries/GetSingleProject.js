@@ -4,7 +4,7 @@ import TEXTBLOCK from "./fragments/blocks/GetTextBlock";
 import QUOTEBLOCK from "./fragments/blocks/GetQuoteBlock";
 import SPLITTEXTBLOCK from "./fragments/blocks/GetSplitTextBlock";
 import STATSBLOCK from "./fragments/blocks/GetStatsBlock";
-// import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
+import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
 
 const GETIMAGEDATA = `
 data {
@@ -38,10 +38,12 @@ const SINGLEPROJECT = gql`
 							}
 						}
 						${QUOTEBLOCK}
+						${SPLITTEXTMEDIABLOCK}
 						${FULLBLEEDMEDIABLOCK}
 						${TEXTBLOCK}
 						${SPLITTEXTBLOCK}
 						${STATSBLOCK}
+						
 						
 						
 					}

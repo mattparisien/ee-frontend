@@ -52,6 +52,7 @@ const formatStatsBlockData = block => {
 };
 
 const formatSplitBlock = block => {
+	console.log("the block", block);
 	return {
 		options: { ...block[findKey(block, "Options")] },
 		left: {
@@ -61,9 +62,10 @@ const formatSplitBlock = block => {
 		},
 		right: {
 			text: block.TextRight || null,
-			media: block.MediaItem
-				? formatMedia(block.MediaItem).then(media => media)
-				: null,
+			media:
+				block.MediaItem.InstaUrl || block.MediaItem.data
+					? formatMedia(block.MediaItem).then(media => media)
+					: null,
 		},
 	};
 };

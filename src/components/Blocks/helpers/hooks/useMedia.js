@@ -5,8 +5,10 @@ const useMedia = promise => {
 	const [media, setMedia] = useState(null);
 
 	useEffect(() => {
+		console.log('the promise')
 		if (promise) {
 			promise.then(info => {
+				
 				return setMedia({
 					...info.data,
 				});

@@ -19,9 +19,11 @@ function Context({
 	currentColor,
 	setCurrentColor,
 	setLoading,
+	error,
+	setError,
 }) {
 	return (
-		<LoadingContext.Provider value={{ setLoading }}>
+		<LoadingContext.Provider value={{ setLoading, error, setError }}>
 			<LocomotiveScrollProvider
 				onLocationChange={scroll => scroll.scrollTo(0, 0)}
 				watch={[location.pathname]}

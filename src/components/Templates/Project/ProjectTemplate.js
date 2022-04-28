@@ -11,7 +11,7 @@ import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { ColorContext, DataContext } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import Block from "../../Blocks/Block";
-import formatBlockData from "../../Blocks/helpers/formatBlockData";
+import formatBlockData from "./helpers/formatBlockData";
 import { ViewContext } from "../../Containers/View";
 import getParam from "./helpers/getParam";
 import getProjectIdByTitle from "./helpers/getProjectIdByTitle";
@@ -24,7 +24,7 @@ function ProjectTemplate({ location }) {
 	const [project, setProject] = useState(null);
 
 	const { setCurrentColor } = useContext(ColorContext);
-	const { setTemplateLoaded } = useContext(ViewContext);
+	const { setTemplateLoaded, setViewError } = useContext(ViewContext);
 	const { projects } = useContext(DataContext);
 
 	const accentColor = useMemo(() => {
@@ -77,6 +77,13 @@ function ProjectTemplate({ location }) {
 			}));
 
 			setTemplateLoaded();
+		}
+
+		if (error) {
+			setViewError(() => ({
+				statusCode: error.statusCode,
+				message: error.message,
+			}));
 		}
 	}, [data, loading, accentColor]);
 

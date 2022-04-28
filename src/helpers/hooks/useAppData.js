@@ -23,6 +23,7 @@ export default function useAppData(scrollRef) {
 	//App state
 	const [transitioning, setTransitioning] = useState(true);
 	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	const [state, setState] = useState({
 		user: {
@@ -102,5 +103,7 @@ export default function useAppData(scrollRef) {
 		setCurrentColor,
 		loading,
 		setLoading,
+		error,
+		setError
 	};
 }

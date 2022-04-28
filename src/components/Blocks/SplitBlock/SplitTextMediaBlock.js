@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../../Containers/ContainerFluid";
 import Cta from "../../Link/Cta";
 import Markdown from "../../Markdown/Markdown";
 import Media from "../../Media/Media";
 import useMedia from "../helpers/hooks/useMedia";
 import SplitBlock from "./SplitBlock";
-import Fade from "../../HOC/Fade";
-import { Box } from "@mui/material";
 
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.right.media);
 
+	useEffect(() => {
+		console.log("the data", data);
+	}, [media, data]);
+
 	return (
 		<SplitBlock
 			leftComponent={<Left data={data} />}
-			rightComponent={<Right media={media} />}
+			rightComponent={media ? <Right media={media} /> : null}
 			width={{
 				left: "50%",
 				right: "50%",

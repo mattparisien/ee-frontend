@@ -1,13 +1,14 @@
-import { ConstructionOutlined } from "@mui/icons-material";
+import findKey from "../../../../helpers/findKey";
+import keysToCamelCase from "../../../../helpers/keysToCamelCase";
 import getInstaMedia from "../../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
-import keysToCamelCase from "../../../../helpers/keysToCamelCase";
-import findKey from "../../../../helpers/findKey";
-import { getThemeProps } from "@mui/system";
 
 const blockNames = [];
 
 const formatBlockData = array => {
+
+	console.log('ion here!', array)
+
 	const blocks = array.map(block => {
 		const blockName = getBlockName(block.__typename);
 
@@ -157,8 +158,6 @@ const formatMedia = block => {
 				},
 			},
 		});
-
-		
 
 		return new Promise((resolve, reject) => resolve(obj));
 	}
