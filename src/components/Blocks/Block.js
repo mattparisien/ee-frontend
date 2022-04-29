@@ -8,6 +8,8 @@ import Section from "../Containers/Section";
 export const BlockContext = createContext();
 
 function Block(props) {
+	console.log(props);
+
 	const [state, setState] = useState({
 		container: true,
 		theme: null,
@@ -26,7 +28,10 @@ function Block(props) {
 
 		setState(() => ({
 			container: container,
-			theme: props.theme,
+			theme:
+				props.data.options && props.data.options.theme
+					? props.data.options.theme
+					: null,
 			marginTop: props.data.options
 				? !props.data.options.DisableGutterTop
 				: true,

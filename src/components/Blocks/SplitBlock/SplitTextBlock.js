@@ -22,8 +22,8 @@ function SplitTextBlock({ data }) {
 					marginLeft: "4rem",
 				},
 			})}
-			leftComponent={<Left text={data.left.text} cta={data.left.cta} />}
-			rightComponent={<Right text={data.right.text} />}
+			leftComponent={<Left text={data.textLeft} cta={data.cta} />}
+			rightComponent={<Right text={data.textRight} />}
 		/>
 	);
 }

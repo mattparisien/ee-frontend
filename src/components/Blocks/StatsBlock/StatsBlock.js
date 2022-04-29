@@ -34,7 +34,7 @@ function StatsBlock({ data }) {
 						},
 					})}
 				>
-					{data.items.map((item, i) => (
+					{data.statsBlockItem.map((item, i) => (
 						<Item heading={item.Heading} line={item.Line} key={i} />
 					))}
 				</Stack>

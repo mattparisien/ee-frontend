@@ -4,6 +4,8 @@ import useMedia from "./helpers/hooks/useMedia";
 
 function FullBleedMediaBlock({ data }) {
 	const media = useMedia(data.media);
+
+	
 	
 
 	const layoutOptions = {

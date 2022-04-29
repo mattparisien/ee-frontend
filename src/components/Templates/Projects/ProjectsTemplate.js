@@ -17,7 +17,6 @@ function ProjectsTemplate() {
 	const theme = useTheme();
 	const colors = useRandomColor(theme.palette.primary.colorSet, 10);
 
-
 	useEffect(() => {
 		if (data && !loading) {
 			setProjects(() =>
@@ -52,11 +51,13 @@ function ProjectsTemplate() {
 			/>
 			<Section>
 				<Container disableMaxWidth>
-					<Box sx={theme => ({
-						[theme.breakpoints.up("sm")]: {
-							paddingBottom: theme.spacing(3)
-						}
-					})}>
+					<Box
+						sx={theme => ({
+							[theme.breakpoints.up("sm")]: {
+								paddingBottom: theme.spacing(3),
+							},
+						})}
+					>
 						{loading && (
 							<Box
 								sx={{

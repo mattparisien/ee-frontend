@@ -6,7 +6,6 @@ import FULLBLEEDMEDIABLOCK from "./fragments/blocks/GetFullBleedMediaBlock";
 import SPLITTEXTMEDIABLOCK from "./fragments/blocks/GetSplitTextMediaBlock";
 import STATSBLOCK from "./fragments/blocks/GetStatsBlock";
 
-
 const DYNAMICBLOCKS = `
 	Choose {
 		__typename
@@ -33,7 +32,6 @@ const PAGE = gql`
 							}
 						}
 					}
-					${DYNAMICBLOCKS}
 				}
 			}
 		}

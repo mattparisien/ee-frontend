@@ -1,188 +1,26 @@
-import keysToCamelCase from "../../../helpers/keysToCamelCase";
-import getInstaMedia from "../../InstaPost/helpers/getInstaMedia";
 import getBlockName from "./getBlockName";
-import findKey from "../../../helpers/findKey";
-
-const blockNames = [];
+import normalizeData from "./normalizeData";
 
 const formatBlockData = array => {
-	const blocks = array.map(block => {
-		const blockName = getBlockName(block.__typename);
+	const blocks = array
+		.map(async block => {
+			const blockName = getBlockName(block.__typename);
+			const normalizedData = await normalizeData(block, blockName, array);
 
-		const obj = {
-			name: blockName,
-			theme: getTheme(block, blockName),
-			data:
-				(blockName === "TitleBlock" && { ...block }) ||
-				(blockName === "GalleryBlock" && formatGalleryBlockData(block)) ||
-				(blockName === "QuoteBlock" && formatQuoteBlockData(block)) ||
-				(blockName === "FullBleedMediaBlock" &&
-					formatFullBleedMediaBlockData(block)) ||
-				(blockName === "TextBlock" && formatTextBlockData(block)) ||
-				(blockName === "StatsBlock" && formatStatsBlockData(block)) ||
-				(blockName.startsWith("Split") && formatSplitBlock(block)),
-		};
+			if (!normalizedData) {
+				return null;
+			}
 
-		return obj;
-	});
-
-	return blocks;
-};
-
-const getTheme = (block, blockName) => {
-	if (block[`${blockName}Theme`]) {
-		return block[`${blockName}Theme`];
-	}
-
-	if (block[`${blockName}Options`]) {
-		const theme = block[`${blockName}Options`][`${blockName}Theme`];
-		return theme;
-	}
-
-	return null;
-};
-
-const formatStatsBlockData = block => {
-	return {
-		heading: block.Heading ? block.Heading : null,
-		options: { ...block[findKey(block, "Options")] },
-		items: [...block.StatsBlockItem],
-		cta: block[findKey(block, "Cta")] ? block[findKey(block, "Cta")] : null,
-	};
-};
-
-const formatSplitBlock = block => {
-	console.log("the block", block);
-	return {
-		options: { ...block[findKey(block, "Options")] },
-		left: {
-			text: block.TextLeft || null,
-			media: null,
-			cta: block[findKey(block, "Cta")] ? block[findKey(block, "Cta")] : null,
-		},
-		right: {
-			text: block.TextRight || null,
-			media:
-				block.MediaItem.InstaUrl || block.MediaItem.data
-					? formatMedia(block.MediaItem).then(media => media)
-					: null,
-		},
-	};
-};
-
-const formatGalleryBlockData = block => {
-	return {
-		images: block.Images
-			? block.Images.data.map(image => ({
-					url: image.attributes.url,
-					alt: image.attributes.alternativeText,
-			  }))
-			: null,
-	};
-};
-const formatQuoteBlockData = block => {
-	const obj = {
-		id: block.id,
-		quote: block.Quote,
-		author: block.Author,
-		options: block.QuoteBlockOptions ? block.QuoteBlockOptions : null,
-	};
-
-	return obj;
-};
-
-const formatFullBleedMediaBlockData = block => {
-	return {
-		id: block.id,
-		options: block.FullBleedMediaBlockOptions
-			? block.FullBleedMediaBlockOptions
-			: null,
-		media: block.MediaItem
-			? formatMedia(block.MediaItem).then(media => media)
-			: null,
-	};
-};
-
-const formatMedia = block => {
-	const formatInfo = (info, postOptions, permalink) => {
-		let finalObject = {
-			data: {
-				value: "",
-			},
-		};
-
-		if (!Array.isArray(info)) {
-			//Is a single media item
-
-			finalObject.data.value = {
-				options: postOptions && keysToCamelCase(postOptions),
-				permalink: permalink,
-				type: info.media_type.toLowerCase(),
-				url: info.media_url,
-				alt: null,
+			const blockObj = {
+				name: blockName,
+				data: normalizedData,
 			};
 
-			return finalObject;
-		}
+			return blockObj;
+		})
+		.filter(block => block);
 
-		//Is a carousel
-
-		finalObject.data.value = {
-			type: "carousel",
-			permalink: permalink,
-			options: postOptions && keysToCamelCase(postOptions),
-			items: info.map(item => ({
-				data: {
-					type: item.media_type.toLowerCase(),
-					id: item.id,
-					url: item.media_url,
-					alt: null,
-					permalink: item.permalink,
-				},
-			})),
-		};
-
-		return finalObject;
-	};
-
-	const templateObj = {
-		url: null,
-		alt: null,
-	};
-
-	if (block.Upload.data) {
-		//Is an upload
-
-		const obj = Object.create(templateObj, {
-			data: {
-				value: {
-					options: block.Options && keysToCamelCase(block.Options),
-					permalink: block.Permalink,
-					type: block.Upload.data.attributes.provider_metadata.resource_type,
-					url: block.Upload.data.attributes.url,
-					alt: block.Upload.data.attributes.alternativeText,
-					caption: block.Upload.data.attributes.caption,
-				},
-			},
-		});
-
-		return new Promise((resolve, reject) => resolve(obj));
-	}
-
-	//Is insta post
-	if (block.InstaUrl) {
-		return getInstaMedia(block.InstaUrl, {}).then(postInfo => {
-			const info = formatInfo(postInfo, block.Options, block.Permalink);
-			return Object.create(templateObj, info);
-		});
-	}
-};
-
-const formatTextBlockData = block => {
-	return {
-		options: { ...block.TextBlockOptions },
-		text: block.Text,
-	};
+	return blocks;
 };
 
 export default formatBlockData;

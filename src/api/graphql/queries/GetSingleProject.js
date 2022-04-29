@@ -38,7 +38,7 @@ const SINGLEPROJECT = gql`
 							}
 						}
 						${QUOTEBLOCK}
-						${SPLITTEXTMEDIABLOCK}
+						
 						${FULLBLEEDMEDIABLOCK}
 						${TEXTBLOCK}
 						${SPLITTEXTBLOCK}

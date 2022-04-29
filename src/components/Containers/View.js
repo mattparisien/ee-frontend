@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client";
 import { Box } from "@mui/material";
+import axios from "axios";
 import { motion } from "framer-motion/dist/framer-motion";
 import React, {
 	createContext,
@@ -8,87 +8,138 @@ import React, {
 	useRef,
 	useState,
 } from "react";
-import PAGE from "../../api/graphql/queries/GetPage";
-import { LoadingContext } from "../../context/Context";
+import { DataContext } from "../../context/Context";
 import Block from "../Blocks/Block";
 import formatBlockData from "../Blocks/helpers/formatBlockData";
-import Template from "../Templates/Template";
+import getParam from "../Templates/Project/helpers/getParam";
+import getProjectIdByTitle from "../Templates/Project/helpers/getProjectIdByTitle";
+
 import Page from "./Page";
-import Menu from "../Menu/Menu";
+import VIEWS from "../Views/index";
 
 export const ViewContext = createContext();
 
-function View({ location, pageId, menuActive, setMenuActive, navItems }) {
-	const [isViewLoaded, setViewLoaded] = useState({
-		blockLoaded: false,
-		templateLoaded: false,
-	});
-	const [viewError, setViewError] = useState(null);
+function View({ location, pageId, menuActive, setMenuActive, navItems, name }) {
+	// const [isViewLoaded, setViewLoaded] = useState({
+	// 	blockLoaded: false,
+	// 	templateLoaded: false,
+	// });
+	// const [viewError, setViewError] = useState(null);
+	// const { projects } = useContext(DataContext);
 
-	const { loading, error, data } = useQuery(PAGE, {
-		variables: {
-			id: pageId,
-		},
-	});
+	// const [loading, setLoading] = useState(true);
+	// const [error, setError] = useState(false);
 
-	const [page, setPage] = useState({
-		id: null,
-		name: null,
-		blocks: null,
-		template: null,
-	});
+	// const [page, setPage] = useState({
+	// 	id: null,
+	// 	name: null,
+	// 	project: null,
+	// 	template: null,
+	// });
 
-	const viewRef = useRef(null);
+	// const viewRef = useRef(null);
 
-	const { setLoading, setError } = useContext(LoadingContext);
+	// useEffect(() => {
+	// 	const getTemplateData = async () => {
+	// 		const param = getParam(location.pathname);
+	// 		console.log(param);
+	// 		const projectId = getProjectIdByTitle(param, projects);
 
-	useEffect(() => {
-		if (data && !loading) {
-			setPage(() => ({
-				id: pageId,
-				name: data.page.data.attributes.Name,
-				template: data.page.data.attributes.template,
-				blocks:
-					data.page.data.attributes.Choose.length >= 1 &&
-					formatBlockData(data.page.data.attributes.Choose),
-			}));
+	// 		const url =
+	// 			process.env.REACT_APP_API_URL +
+	// 			"/projects/" +
+	// 			projectId +
+	// 			"?populate=deep,10";
 
-			setViewLoaded(prev => ({
-				...prev,
-				blockLoaded: true,
-			}));
-		}
+	// 		try {
+	// 			const resp = await axios.get(url);
+	// 			return resp.data.data;
+	// 		} catch (err) {
+	// 			setError(err);
+	// 		}
+	// 	};
 
-	
-	}, [loading, data, error]);
+	// 	//Get page data
 
-	useEffect(() => {
-		const isAllKeysTruthy = Object.values(isViewLoaded).every(
-			val => val === true
-		);
+	// 	if (!location.pathname === "projects") {
+	// 		const getPageData = async () => {
+	// 			try {
+	// 				const url =
+	// 					process.env.REACT_APP_API_URL + "/pages/" + pageId + "?populate=*";
+	// 				const resp = await axios.get(url);
 
-		if (page.template && page.blocks && page.template.data && isAllKeysTruthy) {
-			//If the page has a template and blocks, and everything is loaded within those
+	// 				if (resp.data.data.attributes.template) {
+	// 					const templateData = await getTemplateData();
 
-			setLoading(false);
-		} else if (
-			page.template &&
-			!page.template.data &&
-			page.blocks &&
-			isViewLoaded.blockLoaded
-		) {
-			//If the page has no template but has blocks and blocks are loaded
+	// 					const blocks = await formatBlockData(
+	// 						templateData.attributes.Choose
+	// 					);
 
-			setLoading(false);
-		} else if (
-			page.template &&
-			page.template.data &&
-			!page.blocks &&
-			isViewLoaded.templateLoaded
-		) {
-			setLoading(false);
-		}
-	}, [isViewLoaded, viewError, page]);
+	// 					blocks.forEach(block => {
+	// 						block.then(info => {
+	// 							setPage(prev => ({
+	// 								...prev,
+	// 								template: "project",
+
+	// 								project: {
+	// 									title: templateData.attributes.Title,
+	// 									subtitle: templateData.attributes.Subtitle,
+	// 									featureImage: {
+	// 										url: templateData.attributes.FeatureImage.data.attributes
+	// 											.url,
+	// 										alt: templateData.attributes.FeatureImage.data.attributes
+	// 											.alternativeText,
+	// 										caption:
+	// 											templateData.attributes.FeatureImage.data.attributes
+	// 												.caption,
+	// 									},
+	// 									blocks:
+	// 										prev.project && prev.project.blocks
+	// 											? [...prev.project.blocks, { ...info }]
+	// 											: [{ ...info }],
+	// 								},
+	// 							}));
+	// 						});
+	// 					});
+	// 				}
+	// 			} catch (err) {
+	// 				setError(err);
+	// 			}
+	// 		};
+
+	// 		if (pageId && projects[0] && !page.project) {
+	// 			getPageData();
+	// 		}
+	// 	}
+	// }, [pageId, projects]);
+
+	// useEffect(() => {
+	// 	const isAllKeysTruthy = Object.values(isViewLoaded).every(
+	// 		val => val === true
+	// 	);
+
+	// 	if (page.template && page.blocks && page.template.data && isAllKeysTruthy) {
+	// 		//If the page has a template and blocks, and everything is loaded within those
+
+	// 		setLoading(false);
+	// 	} else if (
+	// 		page.template &&
+	// 		!page.template.data &&
+	// 		page.blocks &&
+	// 		isViewLoaded.blockLoaded
+	// 	) {
+	// 		//If the page has no template but has blocks and blocks are loaded
+
+	// 		setLoading(false);
+	// 	} else if (
+	// 		page.template &&
+	// 		page.template.data &&
+	// 		!page.blocks &&
+	// 		isViewLoaded.templateLoaded
+	// 	) {
+	// 		setLoading(false);
+	// 	}
+	// }, [isViewLoaded, viewError, page]);
 
 	const containerVariants = {
 		hidden: {
@@ -104,39 +155,27 @@ function View({ location, pageId, menuActive, setMenuActive, navItems }) {
 		},
 	};
 
-	const setTemplateLoaded = () => {
-		setViewLoaded(prev => ({ ...prev, templateLoaded: true }));
-	};
+	// const setTemplateLoaded = () => {
+	// 	setViewLoaded(prev => ({ ...prev, templateLoaded: true }));
+	// };
 
-	const contextControls = {
-		setTemplateLoaded,
-		setViewError,
-	};
+	// const contextControls = {
+	// 	setTemplateLoaded,
+	// 	setViewError,
+	// };
 
 	return (
-		<ViewContext.Provider value={contextControls}>
-			<Box className='View' ref={viewRef} sx={{ minHeight: "100vh" }}>
-				<Page location={location}>
-					<motion.div
-						variants={containerVariants}
-						initial={"hidden"}
-						animate='visible'
-						exit='exit'
-					>
-						<Template
-							location={location}
-							name={
-								page.template &&
-								page.template.data &&
-								page.template.data.attributes.Name
-							}
-						/>
-						{page &&
-							page.blocks &&
-							page.blocks.map((block, i) => <Block {...block} key={i} />)}
-					</motion.div>
-				</Page>
-			</Box>
+		<ViewContext.Provider>
+			<Page location={location}>
+				<motion.div
+					variants={containerVariants}
+					initial={"hidden"}
+					animate='visible'
+					exit='exit'
+				>
+					{React.createElement(VIEWS[name], { location: location })}
+				</motion.div>
+			</Page>
 		</ViewContext.Provider>
 	);
 }
