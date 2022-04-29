@@ -4,7 +4,7 @@ import Container from "../../../Containers/ContainerFluid";
 import { Typography, Box } from "@mui/material";
 import SplitText from "../../../HOC/SplitText";
 import Scale from "../../../HOC/Scale";
-import {DrawnLogo} from "../../../Vector/Svg";
+import { DrawnLogo } from "../../../Vector/Svg";
 
 function Hero({ pageHeading }) {
 	const words = useMemo(() => {

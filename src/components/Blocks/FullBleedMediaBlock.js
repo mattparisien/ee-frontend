@@ -3,10 +3,10 @@ import Media from "../Media/Media";
 import useMedia from "./helpers/hooks/useMedia";
 
 function FullBleedMediaBlock({ data }) {
-	const media = useMedia(data.media);
+	// const media = useMedia(data.media);
 
 	
-	
+
 
 	const layoutOptions = {
 		format: "landscape",
@@ -22,9 +22,9 @@ function FullBleedMediaBlock({ data }) {
 
 	return (
 		<Media
-			items={media}
+			items={data && data.mediaItem.data}
 			disableContainer
-			options={{ ...(media && media.options), ...layoutOptions }}
+			// options={{ ...(media && media.options), ...layoutOptions }}
 		/>
 	);
 }

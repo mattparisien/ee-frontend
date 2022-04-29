@@ -10,12 +10,10 @@ import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { ColorContext, DataContext } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
-import formatBlockData from "../../Blocks/helpers/formatBlockData";
-import { ViewContext } from "../../Containers/View";
-import Next from "./Parts/Next";
 import Block from "../../Blocks/Block";
+import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import getParam from "../../Templates/Project/helpers/getParam";
-import { ConstructionOutlined } from "@mui/icons-material";
+import Next from "./Parts/Next";
 
 export const ProjectContext = createContext();
 
@@ -29,7 +27,7 @@ function SingleProject({ location }) {
 	const { projects } = useContext(DataContext);
 
 	const projectId = useMemo(() => {
-		if (location && projects) {
+		if (location && projects[0]) {
 			const param = getParam(location.pathname);
 			const projectId = projects.filter(
 				project => project.subtitle.toLowerCase() === param
@@ -56,43 +54,36 @@ function SingleProject({ location }) {
 	});
 
 	useEffect(() => {
-		console.log(data);
 		if (data && !loading && !project.blocks[0]) {
-			console.log(data, "the data");
 			const blocks = formatBlockData(data.project.data.attributes.Choose);
 
 			blocks.forEach(block => {
 				block.then(blockInfo => {
-					setProject(prev => ({
-						styles: {
-							color: accentColor,
-						},
-						title: data.project.data.attributes.Title,
-						subtitle: data.project.data.attributes.Subtitle,
-						featureImage: {
-							url: data.project.data.attributes.FeatureImage.data.attributes
-								.url,
-							alt: data.project.data.attributes.FeatureImage.data.attributes
-								.alternativeText,
-							caption:
-								data.project.data.attributes.FeatureImage.data.attributes
-									.caption,
-						},
-						blocks: [
-							...prev.blocks,
-							{ name: blockInfo.name, data: { ...blockInfo.data } },
-						],
-					}));
+					if (blockInfo) {
+						setProject(prev => ({
+							styles: {
+								color: accentColor,
+							},
+							title: data.project.data.attributes.Title,
+							subtitle: data.project.data.attributes.Subtitle,
+							featureImage: {
+								url: data.project.data.attributes.FeatureImage.data.attributes
+									.url,
+								alt: data.project.data.attributes.FeatureImage.data.attributes
+									.alternativeText,
+								caption:
+									data.project.data.attributes.FeatureImage.data.attributes
+										.caption,
+							},
+							blocks: [
+								...prev.blocks,
+								{ name: blockInfo.name, data: { ...blockInfo.data } },
+							],
+						}));
+					}
 				});
 			});
 		}
-
-		// if (error) {
-		// 	setViewError(() => ({
-		// 		statusCode: error.statusCode,
-		// 		message: error.message,
-		// 	}));
-		// }
 	}, [data, loading]);
 
 	return (
@@ -123,7 +114,11 @@ function SingleProject({ location }) {
 			{project &&
 				project.blocks.map((block, i) => <Block {...block} key={i} />)}
 
-			<Next color={accentColor[1]} currentProjectId={projectId} projects={projects} />
+			<Next
+				color={accentColor[1]}
+				currentProjectId={projectId}
+				projects={projects}
+			/>
 		</ProjectContext.Provider>
 	);
 }

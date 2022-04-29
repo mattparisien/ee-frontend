@@ -1,6 +1,10 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import getInstaData from "./getInstaData";
 
 const handleMedia = async object => {
+	const clone = Object.assign({}, object);
+	console.log(clone, "clone");
+
 	const getMediaType = object => {
 		if (!object["instaUrl"] && (!object["upload"] || !object["upload"].data)) {
 			return null;
@@ -13,40 +17,44 @@ const handleMedia = async object => {
 		return "upload";
 	};
 
-	for (let key in object) {
+	for (let key in clone) {
 		if (key === "mediaItem") {
-			const type = getMediaType(object[key]);
+			const type = getMediaType(clone[key]);
 
 			if (!type) {
 				//If there's no type, there's no media
-				object[key] = null;
+				clone[key] = null;
 			} else if (type === "instaPost") {
-				object[key]["type"] = type;
-				object[key]["data"] = {
-					url: object[key]["instaUrl"],
+				clone[key]["type"] = type;
+				clone[key]["data"] = {
+					url: clone[key]["instaUrl"],
 				};
-				delete object[key].instaUrl;
-				delete object[key].upload;
+				delete clone[key].instaUrl;
+				delete clone[key].upload;
 			} else if (type === "upload") {
-				object[key]["type"] = type;
-				object[key]["data"] = {
-					url: object[key].upload.data.attributes.url,
-					alt: object[key].upload.data.attributes.url,
-					caption: object[key].upload.data.attributes.caption,
+				clone[key]["type"] = type;
+
+				clone[key]["data"] = {
+					url: clone[key].upload.data.attributes.url,
+					alt: clone[key].upload.data.attributes.url,
+					caption: clone[key].upload.data.attributes.caption,
 				};
-				delete object[key].instaUrl;
-				delete object[key].upload;
+
+				delete clone[key].instaUrl;
+				delete clone[key].upload;
 			}
 		}
 	}
 
 	//Handle fetching instagram post data
-	if (object.mediaItem) {
-		const instagramData = await getInstaData(object.mediaItem.data.url);
-		object.mediaItem.data = instagramData;
+
+	if (clone.mediaItem && clone.mediaItem.type === "instaPost") {
+		const instagramData = await getInstaData(clone.mediaItem.data.url);
+		clone.mediaItem.data = instagramData;
+		return clone;
 	}
 
-	return object;
+	return clone;
 };
 
 export default handleMedia;
