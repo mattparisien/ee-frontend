@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useAxios from "axios-hooks";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import Block from "../../Blocks/Block";
+import { GlobalContext } from "../../../context/Context";
 
 function About({ pageId }) {
 	const [blocks, setBlocks] = useState([]);
@@ -9,6 +10,8 @@ function About({ pageId }) {
 		`${process.env.REACT_APP_API_URL}/pages/${pageId}?populate=deep,10`,
 		{ manual: true }
 	);
+
+	const { setLoading } = useContext(GlobalContext);
 
 	useEffect(() => {
 		if (data && !loading && !blocks[0]) {
@@ -24,7 +27,11 @@ function About({ pageId }) {
 					}
 				});
 			});
+
+			setLoading(false);
 		}
+
+		return () => setLoading(true);
 	}, [data, error, loading]);
 
 	useEffect(() => {

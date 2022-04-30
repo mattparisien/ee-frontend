@@ -1,4 +1,4 @@
-import { execute, useQuery } from "@apollo/client";
+import useAxios from "axios-hooks";
 import React, {
 	createContext,
 	useContext,
@@ -7,14 +7,16 @@ import React, {
 	useState,
 } from "react";
 import { Helmet } from "react-helmet-async";
-import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
-import { ColorContext, DataContext } from "../../../context/Context";
+import {
+	ColorContext,
+	DataContext,
+	GlobalContext,
+} from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import getParam from "../../Templates/Project/helpers/getParam";
 import Next from "./Parts/Next";
-import useAxios from "axios-hooks";
 
 export const ProjectContext = createContext();
 
@@ -24,7 +26,7 @@ function SingleProject({ location }) {
 	});
 
 	const { setCurrentColor } = useContext(ColorContext);
-
+	const { setLoading, setError } = useContext(GlobalContext);
 	const { projects } = useContext(DataContext);
 
 	const projectId = useMemo(() => {
@@ -81,7 +83,13 @@ function SingleProject({ location }) {
 					}
 				});
 			});
+
+			setLoading(false);
 		}
+
+		return () => {
+			setLoading(true);
+		};
 	}, [data, loading, error]);
 
 	useEffect(() => {

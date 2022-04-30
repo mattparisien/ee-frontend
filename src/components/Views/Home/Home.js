@@ -4,7 +4,7 @@ import gsap from "gsap";
 import IntertiaPLugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useEffect, useState, useContext } from "react";
-import { ViewContext } from "../../Containers/View";
+import { GlobalContext } from "../../../context/Context";
 import STATICHOME from "../../../api/graphql/queries/static/GetStaticHome";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
@@ -13,6 +13,7 @@ import About from "./Parts/About";
 import Hero from "./Parts/Hero";
 import How from "../../Templates/Parts/Steps/How";
 import Work from "./Parts/Work";
+
 
 function Home({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -23,6 +24,8 @@ function Home({ pageHeading, location }) {
 			projectLimit: 1,
 		},
 	});
+
+	const { setLoading } = useContext(GlobalContext);
 
 	const [staticData, setStaticData] = useState({
 		about: null,
@@ -60,8 +63,10 @@ function Home({ pageHeading, location }) {
 					})),
 			}));
 
-			// setTemplateLoaded();
+			setLoading(false);
 		}
+
+		return () => setLoading(true);
 	}, [data, loading]);
 
 	return (

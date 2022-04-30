@@ -6,7 +6,7 @@ import useRandomColor from "../../../helpers/hooks/useRandomColor";
 import Block from "../../Blocks/Block";
 import Container from "../../Containers/ContainerFluid";
 import Section from "../../Containers/Section";
-// import { ViewContext } from "../../Containers/View";
+import { GlobalContext } from "../../../context/Context";
 import ProjectGrid from "./ProjectGrid/ProjectGrid";
 
 function Projects() {
@@ -14,6 +14,7 @@ function Projects() {
 	const [projects, setProjects] = useState([]);
 	const { loading, error, data } = useQuery(PROJECTS);
 
+	const { setLoading } = useContext(GlobalContext);
 	const theme = useTheme();
 	const colors = useRandomColor(theme.palette.primary.colorSet, 10);
 
@@ -34,8 +35,12 @@ function Projects() {
 					}))
 			);
 
-			// setTemplateLoaded();
+			setLoading(false);
 		}
+
+		return () => {
+			setLoading(true);
+		};
 	}, [data, loading]);
 
 	return (
