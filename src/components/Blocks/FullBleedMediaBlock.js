@@ -1,13 +1,7 @@
 import React from "react";
 import Media from "../Media/Media";
-import useMedia from "./helpers/hooks/useMedia";
 
 function FullBleedMediaBlock({ data }) {
-	// const media = useMedia(data.media);
-
-	
-
-
 	const layoutOptions = {
 		format: "landscape",
 		width: {
@@ -22,7 +16,7 @@ function FullBleedMediaBlock({ data }) {
 
 	return (
 		<Media
-			items={data && data.mediaItem.data}
+			items={data && data.media}
 			disableContainer
 			options={layoutOptions}
 		/>

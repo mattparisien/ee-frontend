@@ -3,10 +3,13 @@ import normalizeData from "./normalizeData";
 
 const formatBlockData = array => {
 	const blocks = array.map(async block => {
-		const blockName = getBlockName(block.__typename);
+		const blockName = getBlockName(block.__component);
 		const normalizedData = await normalizeData(block, blockName, array);
 
-		if (!normalizedData) {
+		if (
+			!normalizedData ||
+			(normalizedData.media && normalizedData.media.length < 1)
+		) {
 			return null;
 		}
 

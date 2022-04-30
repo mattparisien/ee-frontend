@@ -7,7 +7,6 @@ import Container from "../Containers/ContainerFluid";
 import CircleSvg from "../Vector/Circle";
 import Accent from "./Accent";
 import Carousel from "./Carousel";
-import checkMediaType from "./helpers/checkMediaType";
 import Image from "./Image";
 import Loader from "./Loader";
 import MediaTransition from "./MediaTransition";
@@ -25,17 +24,13 @@ function Media(props) {
 	const [loaded, setLoaded] = useState(false);
 
 	const mediaType = useMemo(() => {
-		if (items && !items.items) {
-			const type = checkMediaType(items);
+		if (items) {
+			if (items.length > 1) {
+				return "carousel";
+			}
 
-			return type;
+			return items[0].media_type;
 		}
-
-		if (items.items.length === 1) {
-			return items.items[0].type;
-		}
-
-		return "carousel"
 	}, [items]);
 
 	const innerComponent = {
@@ -135,18 +130,15 @@ function Media(props) {
 									)}
 									condition={zoom}
 								>
-									{items && mediaType && mediaType === "image" && (
-										<Image
-											src={(items && items.url) || items.items[0].url}
-											alt={items && items.alt}
-										/>
+									{mediaType && mediaType === "image" && (
+										<Image src={items[0].url} alt={items[0].alt} />
 									)}
-									{items && mediaType && mediaType === "video" && (
-										<Video src={items && items.url} />
+									{mediaType && mediaType === "video" && (
+										<Video src={items[0].url} />
 									)}
-									{items && mediaType && mediaType === "carousel" && (
+									{mediaType && mediaType === "carousel" && (
 										<Carousel
-											items={items && items.items}
+											items={items}
 											image={url => <Image src={url} />}
 											video={url => <Video src={url} />}
 										/>

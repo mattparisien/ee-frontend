@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Container from "../../Containers/ContainerFluid";
 import Cta from "../../Link/Cta";
 import Markdown from "../../Markdown/Markdown";
 import Media from "../../Media/Media";
-import useMedia from "../helpers/hooks/useMedia";
 import SplitBlock from "./SplitBlock";
 
 function SplitTextMediaBlock({ data }) {
-	const media = useMedia(data && data.right.media);
-
-
-
 	return (
 		<SplitBlock
-			leftComponent={<Left data={data} />}
-			rightComponent={media ? <Right media={media} /> : null}
+			leftComponent={
+				<Left text={data && data.text} cta={data && data.callToAction} />
+			}
+			rightComponent={data.media ? <Right media={data.media} /> : null}
 			width={{
 				left: "50%",
 				right: "50%",
@@ -28,7 +25,8 @@ function SplitTextMediaBlock({ data }) {
 	);
 }
 
-function Left({ data }) {
+function Left({ text, cta }) {
+	
 	return (
 		<Container>
 			<Markdown
@@ -36,14 +34,14 @@ function Left({ data }) {
 					p: "body2",
 				}}
 			>
-				{data && data.left.text}
+				{text}
 			</Markdown>
 
-			{data.left.cta && (
+			{cta && (
 				<Cta
-					children={data.left.cta.ButtonText}
-					target={data.left.cta.OpenNewTab ? "_blank" : "_self"}
-					href={data.left.cta.URL}
+					children={cta.buttonText}
+					target={cta.openNewTab ? "_blank" : "_self"}
+					href={cta.uRL}
 				/>
 			)}
 		</Container>

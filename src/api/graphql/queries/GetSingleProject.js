@@ -43,6 +43,7 @@ const SINGLEPROJECT = gql`
 						${TEXTBLOCK}
 						${SPLITTEXTBLOCK}
 						${STATSBLOCK}
+						${SPLITTEXTMEDIABLOCK}
 						
 						
 						

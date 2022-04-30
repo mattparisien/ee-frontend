@@ -1,7 +1,8 @@
-import toCamel from "./toCamel";
+import camelcaseKeys from "camelcase-keys";
 
 const sanitize = object => {
-	let newObj = toCamel(object);
+	const options = { deep: true };
+	let newObj = camelcaseKeys(object, options);
 
 	return newObj;
 };

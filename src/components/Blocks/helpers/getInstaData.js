@@ -1,12 +1,16 @@
 import getInstaPostList from "./getInstaPostList";
 import getInstaPost from "./getInstaPost";
 
-const getInstaData = async url => {
-	const postList = await getInstaPostList();
-	let post = await getInstaPost(url, postList);
-	
+const getInstaData = async (url, nextUrl) => {
+	const data = await getInstaPostList(nextUrl);
 
-	return post;
+	if (data) {
+		let post = await getInstaPost(url, data.data);
+
+		return post;
+	}
+
+	return null;
 };
 
 export default getInstaData;

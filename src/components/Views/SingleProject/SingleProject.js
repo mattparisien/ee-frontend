@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { execute, useQuery } from "@apollo/client";
 import React, {
 	createContext,
 	useContext,
@@ -14,6 +14,7 @@ import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import getParam from "../../Templates/Project/helpers/getParam";
 import Next from "./Parts/Next";
+import useAxios from "axios-hooks";
 
 export const ProjectContext = createContext();
 
@@ -47,15 +48,14 @@ function SingleProject({ location }) {
 		accentColor && setCurrentColor(() => color);
 	}, [accentColor]);
 
-	const { loading, error, data } = useQuery(SINGLEPROJECT, {
-		variables: {
-			id: projectId,
-		},
-	});
+	const [{ data, error, loading }, executeRequest] = useAxios(
+		`${process.env.REACT_APP_API_URL}/projects/${projectId}?populate=deep,10`,
+		{ manual: true }
+	);
 
 	useEffect(() => {
 		if (data && !loading && !project.blocks[0]) {
-			const blocks = formatBlockData(data.project.data.attributes.Choose);
+			const blocks = formatBlockData(data.data.attributes.Choose);
 
 			blocks.forEach(block => {
 				block.then(blockInfo => {
@@ -64,16 +64,14 @@ function SingleProject({ location }) {
 							styles: {
 								color: accentColor,
 							},
-							title: data.project.data.attributes.Title,
-							subtitle: data.project.data.attributes.Subtitle,
+							title: data.data.attributes.Title,
+							subtitle: data.data.attributes.Subtitle,
 							featureImage: {
-								url: data.project.data.attributes.FeatureImage.data.attributes
-									.url,
-								alt: data.project.data.attributes.FeatureImage.data.attributes
+								url: data.data.attributes.FeatureImage.data.attributes.url,
+								alt: data.data.attributes.FeatureImage.data.attributes
 									.alternativeText,
 								caption:
-									data.project.data.attributes.FeatureImage.data.attributes
-										.caption,
+									data.data.attributes.FeatureImage.data.attributes.caption,
 							},
 							blocks: [
 								...prev.blocks,
@@ -84,7 +82,13 @@ function SingleProject({ location }) {
 				});
 			});
 		}
-	}, [data, loading]);
+	}, [data, loading, error]);
+
+	useEffect(() => {
+		if (projectId && !data) {
+			executeRequest();
+		}
+	}, [projectId]);
 
 	return (
 		<ProjectContext.Provider>
