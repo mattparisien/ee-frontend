@@ -14,12 +14,12 @@ function SplitTextBlock({ data }) {
 	return (
 		<SplitBlock
 			flex={{
-				left: 1.4,
-				right: 0.5,
+				left: 1,
+				right: 1,
 			}}
 			rightStyles={theme => ({
 				[theme.breakpoints.up("sm")]: {
-					marginLeft: "4rem",
+					marginLeft: theme.spacing(30),
 				},
 			})}
 			leftComponent={<Left text={data.textLeft} cta={data.cta} />}
@@ -31,7 +31,13 @@ function SplitTextBlock({ data }) {
 function Left({ text, cta }) {
 	return (
 		<>
-			<Markdown>{text}</Markdown>
+			<Markdown
+				variantMap={{
+					p: "body2",
+				}}
+			>
+				{text}
+			</Markdown>
 			{cta && (
 				<Cta
 					children={cta.ButtonText}
@@ -43,7 +49,15 @@ function Left({ text, cta }) {
 	);
 }
 function Right({ text }) {
-	return <Markdown>{text}</Markdown>;
+	return (
+		<Markdown
+			variantMap={{
+				p: "body2",
+			}}
+		>
+			{text}
+		</Markdown>
+	);
 }
 
 export default SplitTextBlock;

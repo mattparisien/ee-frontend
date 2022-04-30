@@ -44,6 +44,7 @@ function Next({ color, currentProjectId, projects }) {
 				<Section
 					sectionTheme={color}
 					disableMarginBottom
+					disableMarginTop
 					sx={theme => ({
 						button: {
 							color:

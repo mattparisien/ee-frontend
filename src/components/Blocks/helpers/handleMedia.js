@@ -12,6 +12,11 @@ const handleMedia = async object => {
 
 	if (object.instaUrl) {
 		const instagramData = await getInstaData(object.instaUrl, null);
+
+		if (!instagramData) {
+			return null;
+		}
+
 		instagramData &&
 			instagramData.items &&
 			newObj.media.push(...instagramData.items);

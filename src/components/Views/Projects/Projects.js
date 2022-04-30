@@ -45,7 +45,7 @@ function Projects() {
 				name='TitleBlock'
 				theme={"light"}
 				data={{
-					Title: "Projects",
+					title: "Projects",
 					options: null,
 				}}
 			/>

@@ -48,7 +48,6 @@ function Left({ text, cta }) {
 }
 
 function Right({ media }) {
-	console.log("media", media);
 	return (
 		<Media
 			items={media && media.items}

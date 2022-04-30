@@ -1,6 +1,9 @@
 import getInstaCarousel from "./getInstaCarousel";
+// import getInstaMediaType from "./getInstaMediaType";
 
 const getInstaPost = async (url, array) => {
+	// const type = getInstaMediaType(url);
+
 	const post = array.filter(post => post.permalink === url)[0];
 	const newObj = {};
 

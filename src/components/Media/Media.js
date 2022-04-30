@@ -19,10 +19,6 @@ function Media(props) {
 	const { accent, items, options, permalink, overlayColor, accentColor, zoom } =
 		props;
 
-		console.log(props)
-
-		
-
 	const classes = classNames("media-wrapper");
 
 	const [loaded, setLoaded] = useState(false);
@@ -149,21 +145,23 @@ function Media(props) {
 									)}
 								</ConditionalWrapper>
 							</ConditionalWrapper>
-							{options && options.displayCaption && items.caption && (
+							{options && options.displayCaption && (
 								<Box className='media-caption' m={2}>
 									<Typography
-										key='title'
+										className='foreground-el'
 										variant='body3'
 										fontWeight={400}
 										textAlign='right'
 										sx={{
 											opacity: 0.6,
+
 											display: "flex",
 											alignItems: "center",
 											justifyContent: "flex-end",
+											zIndex: 999,
 										}}
 									>
-										{items.caption}
+										{items[0].caption}
 									</Typography>
 								</Box>
 							)}
