@@ -86,13 +86,14 @@ function ProjectGridItem({
 			<Box sx={item}>
 				<Box className='item-inner' sx={{ height: "100%" }}>
 					<Media
-						variant='image'
 						overlayColor={color}
-						items={{
-							type: "image",
-							url: image.url,
-							alt: image.alt,
-						}}
+						items={[
+							{
+								media_type: "image",
+								url: image.url,
+								alt: image.alt,
+							},
+						]}
 					/>
 					{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
 					{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}

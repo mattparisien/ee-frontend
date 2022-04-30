@@ -26,7 +26,6 @@ function SplitTextMediaBlock({ data }) {
 }
 
 function Left({ text, cta }) {
-	
 	return (
 		<Container>
 			<Markdown
@@ -41,7 +40,7 @@ function Left({ text, cta }) {
 				<Cta
 					children={cta.buttonText}
 					target={cta.openNewTab ? "_blank" : "_self"}
-					href={cta.uRL}
+					href={cta.url}
 				/>
 			)}
 		</Container>
@@ -49,9 +48,10 @@ function Left({ text, cta }) {
 }
 
 function Right({ media }) {
+	console.log("media", media);
 	return (
 		<Media
-			items={media && media}
+			items={media && media.items}
 			disableContainer
 			options={
 				media && {

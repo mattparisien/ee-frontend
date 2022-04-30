@@ -19,6 +19,10 @@ function Media(props) {
 	const { accent, items, options, permalink, overlayColor, accentColor, zoom } =
 		props;
 
+		console.log(props)
+
+		
+
 	const classes = classNames("media-wrapper");
 
 	const [loaded, setLoaded] = useState(false);

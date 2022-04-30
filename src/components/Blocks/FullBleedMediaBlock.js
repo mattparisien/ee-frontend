@@ -16,7 +16,7 @@ function FullBleedMediaBlock({ data }) {
 
 	return (
 		<Media
-			items={data && data.media}
+			items={data && data.media && data.media.items}
 			disableContainer
 			options={layoutOptions}
 		/>

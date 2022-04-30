@@ -8,8 +8,6 @@ import Section from "../Containers/Section";
 export const BlockContext = createContext();
 
 function Block(props) {
-
-	console.log('the props', props)
 	const [state, setState] = useState({
 		container: true,
 		theme: null,
@@ -33,10 +31,10 @@ function Block(props) {
 					? props.data.options.theme
 					: null,
 			marginTop: props.data.options
-				? !props.data.options.DisableGutterTop
+				? !props.data.options.disableGutterTop
 				: true,
 			marginBottom: props.data.options
-				? !props.data.options.DisableGutterBottom
+				? !props.data.options.disableGutterBottom
 				: true,
 			paddingX: props.name.startsWith("SplitTextMedia") ? false : true,
 		}));
