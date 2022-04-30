@@ -5,6 +5,7 @@ import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { motion } from "framer-motion/dist/framer-motion";
 import FadeChildren from "../HOC/FadeChildren";
+import { Link } from "@mui/material";
 
 function Markdown({ children, variantMap }) {
 	const componentMap = {
@@ -88,6 +89,29 @@ function Markdown({ children, variantMap }) {
 						variant: "body3",
 						fontWeight: 200,
 					}}
+				/>
+			</>
+		),
+		a: ({ node, ...props }) => (
+			<>
+				<Link
+					children={props.children}
+					fontWeight={600}
+					underline={"none"}
+					sx={theme => ({
+						color: theme.palette.primary.dark,
+						position: "relative",
+						"&::after": {
+							position: "absolute",
+							content: '""',
+							bottom: 0,
+							left: 0,
+							width: "100%",
+							height: "0.4rem",
+							mixBlendMode: "multiply",
+							backgroundColor: theme.palette.primary.colorSet.yellow,
+						},
+					})}
 				/>
 			</>
 		),

@@ -4,7 +4,15 @@ import getInstaCarousel from "./getInstaCarousel";
 const getInstaPost = async (url, array) => {
 	// const type = getInstaMediaType(url);
 
-	const post = array.filter(post => post.permalink === url)[0];
+	const post = array.filter(post => {
+		if (post.media_type !== "VIDEO") {
+			return post.permalink === url;
+		}
+
+		return url.replace("/p/", "/tv/") === post.permalink;
+	})[0];
+	console.log(array[76].permalink, url);
+
 	const newObj = {};
 
 	if (!post) {
