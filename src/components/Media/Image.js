@@ -5,8 +5,6 @@ import { MediaContext } from "./Media";
 function Image({ src, alt, frame, accent }) {
 	const { setLoaded } = useContext(MediaContext);
 
-	console.log('in here', src)
-
 	const imageWrapper = {
 		width: "100%",
 		height: "100%",

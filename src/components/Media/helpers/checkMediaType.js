@@ -2,6 +2,12 @@ function checkMediaType(data) {
 	if (!Array.isArray(data)) {
 		return checkType(data.url);
 	}
+
+	if (data.length > 1) {
+		return "carousel";
+	} else {
+		return checkType(data[0]);
+	}
 }
 
 function checkType(url) {

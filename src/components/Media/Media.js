@@ -1,19 +1,18 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
 import { motion } from "framer-motion/dist/framer-motion";
-import React, { createContext, useState, useContext, useMemo } from "react";
+import React, { createContext, useMemo, useState } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
 import CircleSvg from "../Vector/Circle";
 import Accent from "./Accent";
 import Carousel from "./Carousel";
+import checkMediaType from "./helpers/checkMediaType";
 import Image from "./Image";
 import Loader from "./Loader";
 import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
 import Video from "./Video";
-import checkMediaType from "./helpers/checkMediaType";
-import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
 export const MediaContext = createContext();
 
@@ -26,10 +25,14 @@ function Media(props) {
 	const [loaded, setLoaded] = useState(false);
 
 	const mediaType = useMemo(() => {
-		if (items) {
+		if (items && !items.items) {
 			const type = checkMediaType(items);
 
 			return type;
+		}
+
+		if (items.items.length === 1) {
+			return items.items[0].type;
 		}
 	}, [items]);
 
@@ -131,7 +134,7 @@ function Media(props) {
 									condition={zoom}
 								>
 									{items && mediaType && mediaType === "image" && (
-										<Image src={items && items.url} alt={items && items.alt} />
+										<Image src={items && items.url || items.items[0].url} alt={items && items.alt} />
 									)}
 									{items && mediaType && mediaType === "video" && (
 										<Video src={items && items.url} />

@@ -24,7 +24,7 @@ function FullBleedMediaBlock({ data }) {
 		<Media
 			items={data && data.mediaItem.data}
 			disableContainer
-			// options={{ ...(media && media.options), ...layoutOptions }}
+			options={layoutOptions}
 		/>
 	);
 }

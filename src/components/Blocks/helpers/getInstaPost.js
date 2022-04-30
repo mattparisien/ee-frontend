@@ -1,6 +1,8 @@
 const getInstaPost = async (url, array) => {
 	const post = array.filter(post => post.permalink === url)[0];
 
+	console.log(url, array);
+
 	if (!post) {
 		return null;
 	}
@@ -12,7 +14,15 @@ const getInstaPost = async (url, array) => {
 		return post;
 	}
 
-	post["items"] = [post.media_url];
+	console.log(post, "the post");
+	post["items"] = [
+		{
+			url: post.media_url,
+			type: post.media_type.toLowerCase(),
+		},
+	];
+
+	console.log(post)
 	delete post.media_url;
 	return post;
 };

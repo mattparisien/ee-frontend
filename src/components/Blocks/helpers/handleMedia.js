@@ -49,8 +49,11 @@ const handleMedia = async object => {
 	//Handle fetching instagram post data
 
 	if (clone.mediaItem && clone.mediaItem.type === "instaPost") {
+		
 		const instagramData = await getInstaData(clone.mediaItem.data.url);
+		console.log(instagramData, 'insta data')
 		clone.mediaItem.data = instagramData;
+
 		return clone;
 	}
 
