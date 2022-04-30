@@ -34,6 +34,8 @@ function Media(props) {
 		if (items.items.length === 1) {
 			return items.items[0].type;
 		}
+
+		return "carousel"
 	}, [items]);
 
 	const innerComponent = {
@@ -134,7 +136,10 @@ function Media(props) {
 									condition={zoom}
 								>
 									{items && mediaType && mediaType === "image" && (
-										<Image src={items && items.url || items.items[0].url} alt={items && items.alt} />
+										<Image
+											src={(items && items.url) || items.items[0].url}
+											alt={items && items.alt}
+										/>
 									)}
 									{items && mediaType && mediaType === "video" && (
 										<Video src={items && items.url} />

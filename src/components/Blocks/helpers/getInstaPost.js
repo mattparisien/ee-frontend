@@ -1,3 +1,5 @@
+import getInstaCarousel from "./getInstaCarousel";
+
 const getInstaPost = async (url, array) => {
 	const post = array.filter(post => post.permalink === url)[0];
 
@@ -14,7 +16,6 @@ const getInstaPost = async (url, array) => {
 		return post;
 	}
 
-	console.log(post, "the post");
 	post["items"] = [
 		{
 			url: post.media_url,
@@ -22,7 +23,7 @@ const getInstaPost = async (url, array) => {
 		},
 	];
 
-	console.log(post)
+	console.log(post);
 	delete post.media_url;
 	return post;
 };

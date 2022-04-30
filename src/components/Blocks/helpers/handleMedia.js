@@ -3,7 +3,7 @@ import getInstaData from "./getInstaData";
 
 const handleMedia = async object => {
 	const clone = Object.assign({}, object);
-	console.log(clone, "clone");
+	
 
 	const getMediaType = object => {
 		if (!object["instaUrl"] && (!object["upload"] || !object["upload"].data)) {
@@ -51,7 +51,6 @@ const handleMedia = async object => {
 	if (clone.mediaItem && clone.mediaItem.type === "instaPost") {
 		
 		const instagramData = await getInstaData(clone.mediaItem.data.url);
-		console.log(instagramData, 'insta data')
 		clone.mediaItem.data = instagramData;
 
 		return clone;

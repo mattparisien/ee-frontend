@@ -6,6 +6,7 @@ import { MediaContext } from "./Media";
 function Video({ src }) {
 	const { setLoaded } = useContext(MediaContext);
 
+
 	const wrapper = {
 		height: "100%",
 		width: "100%",

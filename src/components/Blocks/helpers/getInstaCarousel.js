@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const getInstaCarousel = async mediaId => {
 	const baseURL = "https://graph.instagram.com" + "/" + mediaId + "/children";
 

@@ -9,9 +9,7 @@ import SplitBlock from "./SplitBlock";
 function SplitTextMediaBlock({ data }) {
 	const media = useMedia(data && data.right.media);
 
-	useEffect(() => {
-		console.log("the data", data);
-	}, [media, data]);
+
 
 	return (
 		<SplitBlock

@@ -35,7 +35,6 @@ function ProjectTemplate({ location }) {
 		accentColor && setCurrentColor(() => color);
 	}, [accentColor]);
 
-	console.log('huuuuur')
 
 	// useEffect(() => {
 	// 	//Find query param
