@@ -9,9 +9,11 @@ const getInstaPost = async (url, array) => {
 			return post.permalink === url;
 		}
 
-		return url.replace("/p/", "/tv/") === post.permalink;
+		return (
+			(url.includes("/p/") ? url.replace("/p/", "/tv/") : url) ===
+			post.permalink
+		);
 	})[0];
-	console.log(array[76].permalink, url);
 
 	const newObj = {};
 
