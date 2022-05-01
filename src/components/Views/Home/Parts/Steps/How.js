@@ -9,6 +9,7 @@ import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
 import animateNotes from "./animations";
 import StepItem from "./StepItem";
+import SplitText from "../../../../HOC/SplitText";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);

@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-
+import SplitText from "../../../../HOC/SplitText";
 
 function StepItem({ step }) {
 	const stepHeading = theme => ({
@@ -36,7 +36,7 @@ function StepItem({ step }) {
 					mb={2}
 					className='-splitChars'
 				>
-					{step.title}
+					<SplitText>{step.title}</SplitText>
 				</Typography>
 
 				<Typography

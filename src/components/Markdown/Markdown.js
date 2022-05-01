@@ -63,13 +63,20 @@ function Markdown({ children, variantMap }) {
 		),
 
 		p: ({ node, ...props }) => (
-			<Fade wrapper={children => <Box>{children}</Box>}>
-				<Typography
-					component='p'
-					variant={variantMap && variantMap.p ? variantMap.p : "body1"}
-					children={props.children}
-					mb={5}
-				/>
+			<Fade
+				wrapper={children => (
+					<Typography
+						component='p'
+						variant={variantMap && variantMap.p ? variantMap.p : "body1"}
+						children={props.children}
+						fontWeight="40"
+						mb={5}
+					>
+						{children}
+					</Typography>
+				)}
+			>
+				{props.children}
 			</Fade>
 		),
 		ul: ({ node, ...props }) => (
