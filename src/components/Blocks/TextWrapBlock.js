@@ -4,8 +4,10 @@ import Markdown from "../Markdown/Markdown";
 import Media from "../Media/Media";
 import Cta from "../Link/Cta";
 
+
 function TextWrapBlock({ data }) {
 	const right = theme => ({
+		position: 'relative',
 		paddingBottom: theme.spacing(10),
 		[theme.breakpoints.up("sm")]: {
 			paddingLeft: theme.spacing(10),
@@ -19,6 +21,7 @@ function TextWrapBlock({ data }) {
 			<Box className='wrapper'>
 				<Box sx={right}>
 					<Media
+						frame
 						items={data.media.items}
 						options={{
 							...data.media.options,
@@ -33,6 +36,7 @@ function TextWrapBlock({ data }) {
 							},
 						}}
 					/>
+					
 				</Box>
 				<Markdown
 					variantMap={{

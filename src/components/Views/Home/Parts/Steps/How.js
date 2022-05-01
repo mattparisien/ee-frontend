@@ -81,6 +81,7 @@ function How({ steps }) {
 		height: "140vw",
 		marginLeft: 10,
 		marginRight: 10,
+
 		".c-steps_sheet": {
 			height: "90%",
 		},
@@ -117,7 +118,7 @@ function How({ steps }) {
 			},
 			".c-steps_item_2": {
 				gridRow: " 2/3",
-				gridColumn: "7/14 !important",
+				gridColumn: "6/14 !important",
 			},
 			".c-steps_item_3": {
 				gridRow: " 3/4",
@@ -125,7 +126,7 @@ function How({ steps }) {
 			},
 			".c-steps_item_4": {
 				gridRow: " 4/5",
-				gridColumn: "7/14 !important",
+				gridColumn: "6/14 !important",
 			},
 			".c-steps_item_5": {
 				gridRow: " 5/6",
@@ -136,6 +137,9 @@ function How({ steps }) {
 			height: "auto",
 			marginLeft: 2,
 			marginRight: 2,
+			".c-steps_item": {
+				marginBottom: theme.spacing(5),
+			},
 			".c-steps_item_1": {
 				gridRow: "1/2 !important",
 				gridColumn: "1/14 !important",
@@ -180,17 +184,17 @@ function How({ steps }) {
 		".c-note": noteStyle,
 	});
 
-	const playerSvg = theme => ({
-		width: "36%",
-		transform: "translateY(-10vw)",
-		[theme.breakpoints.down("sm")]: {
-			display: "none",
-		},
+	// const playerSvg = theme => ({
+	// 	width: "36%",
+	// 	transform: "translateY(-10vw)",
+	// 	[theme.breakpoints.down("sm")]: {
+	// 		display: "none",
+	// 	},
 
-		svg: {
-			overflow: "visible",
-		},
-	});
+	// 	svg: {
+	// 		overflow: "visible",
+	// 	},
+	// });
 
 	const headingLayout = theme => ({
 		display: "flex",
@@ -221,11 +225,7 @@ function How({ steps }) {
 				sx={{ overflow: "hidden" }}
 			>
 				<Container disableMaxWidth>
-					<Box className='heading-layout' sx={headingLayout} mb={20}>
-						{/* <Box sx={playerSvg}>
-							<InstrumentPlayer />
-						</Box> */}
-					</Box>
+					<Box className='heading-layout' sx={headingLayout} mb={20}></Box>
 
 					<Box
 						className='steps-container -relative'
@@ -236,13 +236,9 @@ function How({ steps }) {
 							<div className='c-steps_background'></div>
 							{steps &&
 								steps.map(step => {
-									return <StepItem step={step} key={step.id} />;
+									return <StepItem step={step} key={step.id} id={step.id} />;
 								})}
-
-							{/* <Sheet /> */}
 						</Box>
-
-						{/* <Notes /> */}
 					</Box>
 				</Container>
 			</Section>

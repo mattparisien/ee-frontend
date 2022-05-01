@@ -8,8 +8,10 @@ import Fade from "../HOC/Fade";
 import FadeChildren from "../HOC/FadeChildren";
 import { Link } from "@mui/material";
 import { Box } from "@mui/material";
+import ConditionalWrapper from "../Containers/ConditionalWrapper";
+import SplitText from "../HOC/SplitText";
 
-function Markdown({ children, variantMap }) {
+function Markdown({ children, variantMap, sx, isSplit }) {
 	const componentMap = {
 		h1: ({ node, ...props }) => (
 			<Typography component='h1' variant='h1' mb={7}>
@@ -26,13 +28,15 @@ function Markdown({ children, variantMap }) {
 			/>
 		),
 		h3: ({ node, ...props }) => (
-			<Typography
-				component='h3'
-				variant='h3'
-				children={props.children}
-				fontWeight={400}
-				mb={7}
-			/>
+			<Typography sx={sx} component='h3' variant='h3' fontWeight={400} mb={7}>
+				<ConditionalWrapper
+					condition={isSplit}
+					wrapper={SplitText}
+					timeout={1000}
+				>
+					{props.children}
+				</ConditionalWrapper>
+			</Typography>
 		),
 		h4: ({ node, ...props }) => (
 			<Typography
@@ -69,7 +73,8 @@ function Markdown({ children, variantMap }) {
 						component='p'
 						variant={variantMap && variantMap.p ? variantMap.p : "body1"}
 						children={props.children}
-						fontWeight="40"
+						fontWeight='40'
+						sx={sx}
 						mb={5}
 					>
 						{children}
@@ -118,9 +123,8 @@ function Markdown({ children, variantMap }) {
 							bottom: 0,
 							left: 0,
 							width: "100%",
-							height: "0.4rem",
-							mixBlendMode: "multiply",
-							backgroundColor: theme.palette.primary.colorSet.yellow,
+							height: "0.1rem",
+							backgroundColor: theme.palette.primary.dark,
 						},
 					})}
 				/>

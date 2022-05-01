@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion/dist/framer-motion";
 import { Box } from "@mui/material";
-import { useInView } from "react-intersection-observer";
+import InView from "./InView";
 
 function FadeChildren({
 	children,
@@ -10,8 +10,6 @@ function FadeChildren({
 	wrapperProps,
 	childWrapperProps,
 }) {
-	const { ref, inView, entry } = useInView();
-
 	const variants = {
 		hidden: {
 			opacity: 0,
@@ -48,11 +46,11 @@ function FadeChildren({
 	const CustomChildWrapper = motion(childWrapper);
 
 	return (
-		<Box className='inview-wrapper' ref={ref}>
+		<InView>
 			<CustomWrapper
 				{...wrapperProps}
 				variants={variants}
-				animate={inView && "visible"}
+				animate={"visible"}
 				initial={"hidden"}
 				ext={"exit"}
 			>
@@ -67,7 +65,7 @@ function FadeChildren({
 						</CustomChildWrapper>
 					))}
 			</CustomWrapper>
-		</Box>
+		</InView>
 	);
 }
 

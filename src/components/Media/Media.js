@@ -12,12 +12,21 @@ import Loader from "./Loader";
 import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
 import Video from "./Video";
+import Frame from "../Vector/Frame";
 
 export const MediaContext = createContext();
 
 function Media(props) {
-	const { accent, items, options, permalink, overlayColor, accentColor, zoom } =
-		props;
+	const {
+		accent,
+		items,
+		options,
+		permalink,
+		overlayColor,
+		accentColor,
+		zoom,
+		frame,
+	} = props;
 
 	const classes = classNames("media-wrapper");
 
@@ -179,6 +188,7 @@ function Media(props) {
 					{loaded && <MediaTransition />}
 					{accent && <Accent component={CircleSvg} color={accentColor} />}
 				</ConditionalWrapper>
+				{frame && <Frame sx={{ transform: "scale(1.05)" }} />}
 			</Box>
 		</MediaContext.Provider>
 	);
