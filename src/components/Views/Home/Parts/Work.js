@@ -1,14 +1,9 @@
-import {
-	ImageList,
-	ImageListItem,
-	useMediaQuery,
-	Typography,
-	Box,
-} from "@mui/material";
+import { Box, ImageListItem, Typography, useMediaQuery } from "@mui/material";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useMemo } from "react";
 import Section from "../../../Containers/Section";
+import Slider from "../../../Slider/Slider";
 
 function Work({ projects }) {
 	gsap.registerPlugin(ScrollTrigger);
@@ -19,20 +14,8 @@ function Work({ projects }) {
 	}, [projects]);
 
 	return (
-		<Section classes='o-work ' data-theme='light'>
-			<ImageList variant='quilted' cols={3} gap={8} sx={{ width: "100%" }}>
-				{projects &&
-					projects.map(project => (
-						<Item
-							key={project.id}
-							src={project.image.url}
-							alt={project.image.alt}
-							title={project.title}
-							subtitle={project.subtitle}
-						/>
-					))}
-			</ImageList>
-			{/* <Slider items={projects} /> */}
+		<Section data-theme='light'>
+			<Slider items={projects} />
 		</Section>
 	);
 }

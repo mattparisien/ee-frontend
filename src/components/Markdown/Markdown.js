@@ -4,8 +4,10 @@ import { Typography } from "@mui/material";
 import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { motion } from "framer-motion/dist/framer-motion";
+import Fade from "../HOC/Fade";
 import FadeChildren from "../HOC/FadeChildren";
 import { Link } from "@mui/material";
+import { Box } from "@mui/material";
 
 function Markdown({ children, variantMap }) {
 	const componentMap = {
@@ -61,12 +63,14 @@ function Markdown({ children, variantMap }) {
 		),
 
 		p: ({ node, ...props }) => (
-			<Typography
-				component='p'
-				variant={variantMap && variantMap.p ? variantMap.p : "body1"}
-				children={props.children}
-				mb={5}
-			/>
+			<Fade wrapper={children => <Box>{children}</Box>}>
+				<Typography
+					component='p'
+					variant={variantMap && variantMap.p ? variantMap.p : "body1"}
+					children={props.children}
+					mb={5}
+				/>
+			</Fade>
 		),
 		ul: ({ node, ...props }) => (
 			<FadeChildren

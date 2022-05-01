@@ -5,13 +5,9 @@ import ScrollTrigger from "gsap/src/ScrollTrigger";
 import $ from "jquery";
 import React, { useEffect, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import ContainerFluid from "../../../Containers/ContainerFluid";
-import Section from "../../../Containers/Section";
-import CircleSvg from "../../../Vector/Circle";
+import Container from "../../../../Containers/ContainerFluid";
+import Section from "../../../../Containers/Section";
 import animateNotes from "./animations";
-import AnimationWrapper from "./AnimationWrapper";
-import Notes from "./Notes";
-import Sheet from "./Sheet";
 import StepItem from "./StepItem";
 
 function How({ steps }) {
@@ -223,112 +219,34 @@ function How({ steps }) {
 				noGutter
 				sx={{ overflow: "hidden" }}
 			>
-				<AnimationWrapper>
-					<ContainerFluid disableMaxWidth>
-						<Box className='heading-layout' sx={headingLayout} mb={20}>
-							{/* <Box sx={playerSvg}>
+				<Container disableMaxWidth>
+					<Box className='heading-layout' sx={headingLayout} mb={20}>
+						{/* <Box sx={playerSvg}>
 							<InstrumentPlayer />
 						</Box> */}
+					</Box>
+
+					<Box
+						className='steps-container -relative'
+						sx={containerStyles}
+						ref={stepsContainer}
+					>
+						<Box className='c-steps' sx={{ height: "100%", display: "grid" }}>
+							<div className='c-steps_background'></div>
+							{steps &&
+								steps.map(step => {
+									return <StepItem step={step} key={step.id} />;
+								})}
+
+							{/* <Sheet /> */}
 						</Box>
 
-						<Box
-							className='steps-container -relative'
-							sx={containerStyles}
-							ref={stepsContainer}
-						>
-							<Box className='c-steps' sx={{ height: "100%" }}>
-								<div className='c-steps_background'></div>
-								{steps &&
-									steps.map(step => {
-										return <StepItem step={step} key={step.id} />;
-									})}
-
-								<Sheet />
-							</Box>
-
-							<Notes />
-						</Box>
-					</ContainerFluid>
-					<Circles />
-				</AnimationWrapper>
+						{/* <Notes /> */}
+					</Box>
+				</Container>
 			</Section>
 		</>
 	);
 }
-
-const Circles = () => {
-	const wrapper = theme => ({
-		width: "100%",
-		height: "100%",
-		position: "absolute",
-		top: 0,
-		left: 0,
-
-		".circle-wrapper": {
-			position: "absolute",
-			bottom: 0,
-			left: 0,
-			zIndex: 999,
-
-			"&:nth-child(1)": {
-				width: "55vw",
-				top: "8%",
-				left: "-10%",
-				fill: theme.palette.primary.colorSet.yellow,
-				mixBlendMode: "multiply",
-			},
-			"&:nth-child(2)": {
-				width: "7vw",
-				top: 0,
-				left: "30%",
-				mixBlendMode: "exclusion",
-				fill: theme.palette.primary.colorSet.blue,
-			},
-			"&:nth-child(3)": {
-				width: "30vw",
-				top: 0,
-				left: "70%",
-				fill: "#CCA321",
-				mixBlendMode: "exclusion",
-			},
-			"&:nth-child(4)": {
-				width: "40vw",
-				top: "29%",
-				left: "10%",
-				fill: "hotpink",
-				mixBlendMode: "multiply",
-			},
-			"&:nth-child(5)": {
-				width: "40vw",
-				top: "40%",
-				left: "20%",
-				fill: theme.palette.primary.colorSet.yellow,
-				mixBlendMode: "screen",
-			},
-		},
-	});
-
-	return (
-		<Box className='circles-wrapper' sx={wrapper}>
-			<Box
-				className='circles-inner'
-				position='relative'
-				sx={{ width: "100%", height: "100%" }}
-			>
-				<CircleSvg />
-				<CircleSvg />
-				<CircleSvg />
-				<CircleSvg />
-				<CircleSvg />
-				{/* <CircleSvg />
-				<CircleSvg />
-				<CircleSvg />
-				<CircleSvg />
-				<CircleSvg />
-				<CircleSvg /> */}
-			</Box>
-		</Box>
-	);
-};
 
 export default How;

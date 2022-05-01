@@ -7,6 +7,8 @@ import FullBleedMediaBlock from "./FullBleedMediaBlock";
 import SplitTextMediaBlock from "./SplitBlock/SplitTextMediaBlock";
 import TitleBlock from "./TitleBlock";
 import StatsBlock from "./StatsBlock/StatsBlock";
+import TextWrapBlock from "./TextWrapBlock";
+import SplitTextListBlock from "./SplitBlock/SplitTextListBlock";
 
 export const BLOCKS = {
 	TitleBlock: TitleBlock,
@@ -17,5 +19,7 @@ export const BLOCKS = {
 	TextBlock: TextBlock,
 	SplitTextBlock: SplitTextBlock,
 	SplitTextMediaBlock: SplitTextMediaBlock,
+	SplitTextListBlock: SplitTextListBlock,
 	StatsBlock: StatsBlock,
+	TextWrapBlock: TextWrapBlock,
 };

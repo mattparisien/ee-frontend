@@ -35,8 +35,11 @@ function FadeChildren({
 			opacity: 1,
 			y: 0,
 			transition: {
-				ease: "easeOut",
-				duration: 0.5,
+				transition: {
+					ease: [0.215, 0.61, 0.355, 1],
+					duration: 0.9,
+					delay: 0.1,
+				},
 			},
 		},
 	};
@@ -53,15 +56,16 @@ function FadeChildren({
 				initial={"hidden"}
 				ext={"exit"}
 			>
-				{children.map((child, i) => (
-					<CustomChildWrapper
-						key={i}
-						variants={childrenVariants}
-						{...childWrapperProps}
-					>
-						{child}
-					</CustomChildWrapper>
-				))}
+				{children &&
+					children.map((child, i) => (
+						<CustomChildWrapper
+							key={i}
+							variants={childrenVariants}
+							{...childWrapperProps}
+						>
+							{child}
+						</CustomChildWrapper>
+					))}
 			</CustomWrapper>
 		</Box>
 	);

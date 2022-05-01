@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Stack, Typography, Divider } from "@mui/material";
 import Cta from "../../Link/Cta";
+import FadeChildren from "../../HOC/FadeChildren";
 
 function StatsBlock({ data }) {
 	return (
@@ -18,26 +19,32 @@ function StatsBlock({ data }) {
 						{data.heading}
 					</Typography>
 				)}
-				<Stack
-					spacing={20}
-					direction='row'
-					justifyContent={"space-evenly"}
-					alignItems='center'
-					sx={theme => ({
-						[theme.breakpoints.down("sm")]: {
-							flexDirection: "column",
-							justifyContent: "center",
-							".item": {
-								marginLeft: 0,
-								marginBottom: theme.spacing(8),
+
+				<FadeChildren
+					wrapper={Stack}
+					childWrapper={Box}
+					wrapperProps={{
+						spacing: 20,
+						direction: "row",
+						justifyContent: "space-evenly",
+						alignItems: "center",
+						sx: theme => ({
+							[theme.breakpoints.down("sm")]: {
+								flexDirection: "column",
+								justifyContent: "center",
+
+								"> .MuiBox-root": {
+									marginLeft: 0,
+									marginBottom: theme.spacing(8),
+								},
 							},
-						},
-					})}
+						}),
+					}}
 				>
 					{data.statsBlockItem.map((item, i) => (
 						<Item heading={item.heading} line={item.line} key={i} />
 					))}
-				</Stack>
+				</FadeChildren>
 			</Box>
 			<Divider />
 			{data.cta && (

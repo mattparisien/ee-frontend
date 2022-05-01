@@ -13,57 +13,6 @@ function About({ aboutText }) {
 	const hasPassedViewport = useRef(false);
 	const timeline = useRef(gsap.timeline());
 
-	useEffect(() => {
-		if (inView && !hasPassedViewport.current) {
-			const circles = document.querySelectorAll(".circle-wrapper");
-
-			gsap.to([...circles], {
-				y: 0,
-				ease: "power4.out",
-				stagger: 0.1,
-				duration: 2,
-				onComplete: () => float(),
-			});
-
-			const float = () => {
-				$([...circles])
-					.find("svg")
-					.each((i, circle) => {
-						const dur = circle.dataset.duration;
-
-						const tl = gsap.timeline();
-
-						const animateCircle = () => {
-							let isFirstRun = true;
-							const circleBounds = circle.getBoundingClientRect();
-
-							tl.to(circle, {
-								y: -(circleBounds.top + circleBounds.height + 200),
-								duration: dur,
-								ease: "linear",
-								onComplete: () => {
-									tl.progress(0).play();
-								},
-							});
-						};
-
-						animateCircle();
-					});
-			};
-
-			hasPassedViewport.current = true;
-		}
-	}, [inView]);
-
-	useEffect(() => {
-		const circles = [...document.querySelectorAll(".circle-wrapper")];
-		const windowHeight = window.innerHeight;
-
-		circles.forEach(circle => {
-			circle.style.transform = `translateY(${windowHeight + 500}px)`;
-		});
-	}, []);
-
 	const circles = theme => ({
 		position: "absolute",
 		width: "100%",
@@ -168,16 +117,6 @@ function About({ aboutText }) {
 							</Typography>
 						</Box>
 					</Container>
-					<Box sx={circles}>
-						<Box sx={{ position: "relative", width: "100%", height: "100%" }}>
-							<CircleSvg data-duration='10' />
-							<CircleSvg data-duration='10' />
-							<CircleSvg data-duration='10' />
-							<CircleSvg data-duration='10' />
-							<CircleSvg data-duration='10' />
-							<CircleSvg data-duration='10' />
-						</Box>
-					</Box>
 				</Box>
 			</Section>
 		</>

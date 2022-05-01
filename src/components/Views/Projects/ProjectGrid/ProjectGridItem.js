@@ -99,6 +99,8 @@ function ProjectGridItem({
 					{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
 
 					<Fade
+						enterY={"100%"}
+						exitY={"-100%"}
 						wrapper={children => (
 							<Box className='item-info' sx={itemInfo} pt={2}>
 								{children}
