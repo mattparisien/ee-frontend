@@ -10,6 +10,7 @@ import Section from "../../../../Containers/Section";
 import animateNotes from "./animations";
 import StepItem from "./StepItem";
 import SplitText from "../../../../HOC/SplitText";
+import Notes from "./Notes";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -184,18 +185,6 @@ function How({ steps }) {
 		".c-note": noteStyle,
 	});
 
-	// const playerSvg = theme => ({
-	// 	width: "36%",
-	// 	transform: "translateY(-10vw)",
-	// 	[theme.breakpoints.down("sm")]: {
-	// 		display: "none",
-	// 	},
-
-	// 	svg: {
-	// 		overflow: "visible",
-	// 	},
-	// });
-
 	const headingLayout = theme => ({
 		display: "flex",
 		flexDirection: "row-reverse",
@@ -206,23 +195,66 @@ function How({ steps }) {
 		},
 	});
 
-	const heading = theme => ({
-		fontSize: "10vw",
-		lineHeight: "10vw",
-		textAlign: "center",
-		[theme.breakpoints.down("sm")]: {
-			fontSize: "5.2rem",
-			lineHeight: "5.6rem",
+	const notesWrapper = theme => ({
+		position: "absolute",
+		".inner": {
+			width: "100%",
+			height: "100%",
+			position: "relative",
+		},
+		top: 0,
+		left: 0,
+		width: "100%",
+		height: "100%",
+		".Notes": {
+			width: "30vw",
+			position: 'absolute',
+			top: "10vw",
+			left: "60vw"
+		},
+		".c-note": {
+			"&_1": {
+				top: "30vw",
+				left: "14vw",
+				fill: theme.palette.primary.colorSet.yellow,
+			},
+			"&_2": {
+				top: "10vw",
+				right: "20vw",
+				fill: theme.palette.primary.colorSet.blue,
+			},
+			"&_5": {
+				top: "50vw",
+				right: "40vw",
+
+				fill: theme.palette.primary.colorSet.green,
+				mixBlendMode: "multiply",
+			},
 		},
 	});
+
+	useEffect(() => {
+		const notes = document.querySelectorAll(".c-note");
+
+		if (scroll && scroll.scroll) {
+			[...notes].forEach(note => {
+				scroll.scroll.on("scroll", e => {
+					const { top } = note.getBoundingClientRect();
+					const scrollPos = e.scroll.y;
+
+					const rotate = top / scrollPos;
+					note.style.transform = `rotate(${rotate * 100}deg)`;
+				});
+			});
+		}
+	}, [scroll]);
 
 	return (
 		<>
 			<Section
-				classes='o-how -relative'
 				data-theme='light'
 				noGutter
-				sx={{ overflow: "hidden" }}
+				sx={{ overflow: "hidden", position: "relative" }}
 			>
 				<Container disableMaxWidth>
 					<Box className='heading-layout' sx={headingLayout} mb={20}></Box>
@@ -241,6 +273,11 @@ function How({ steps }) {
 						</Box>
 					</Box>
 				</Container>
+				<Box className='notes-wrap' sx={notesWrapper}>
+					<Box className='inner'>
+						<Notes />
+					</Box>
+				</Box>
 			</Section>
 		</>
 	);

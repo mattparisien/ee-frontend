@@ -86,9 +86,7 @@ function Home({ pageHeading, location }) {
 						<QuoteSvg
 							sx={{
 								width: "14vw",
-								position: "absolute",
-								top: 0,
-								left: 0,
+
 								mixBlendMode: "multiply",
 							}}
 						/>
@@ -97,9 +95,7 @@ function Home({ pageHeading, location }) {
 						<QuoteSvg
 							sx={{
 								width: "14vw",
-								position: "absolute",
-								bottom: 0,
-								right: 0,
+								marginLeft: "auto",
 								zIndex: 999,
 								mixBlendMode: "multiply",
 								transform: "rotate(180deg)",

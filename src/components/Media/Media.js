@@ -26,6 +26,7 @@ function Media(props) {
 		accentColor,
 		zoom,
 		frame,
+		boxHeight
 	} = props;
 
 	const classes = classNames("media-wrapper");
@@ -47,6 +48,7 @@ function Media(props) {
 		height: "100%",
 		objectFit: "cover",
 		objectPosition: "center",
+		filter: options && options.filter && "grayscale(1)",
 	};
 
 	const aspects = {
@@ -88,7 +90,7 @@ function Media(props) {
 				className={classes}
 				sx={{
 					width: "100%",
-					height: "100%",
+					height: boxHeight || "100%",
 					position: "relative",
 					"img, video": innerComponent,
 				}}

@@ -134,6 +134,9 @@
 }
 
 .-underline {
+
+
+	
 	&::after {
 		position: absolute;
 		transition: transform 500ms ease;
@@ -146,6 +149,8 @@
 		transform-origin: right;
 		transform: scaleX(0);
 	}
+
+	
 
 	&-dark::after {
 		background-color: $dark;

@@ -39,7 +39,7 @@ function StepItem({ step, id }) {
 					{step.body}
 				</Markdown>
 			</Box>
-			<Overlay
+			{/* <Overlay
 				color={
 					theme.palette.primary.colorSet[
 						Object.keys(theme.palette.primary.colorSet)[id]
@@ -54,7 +54,7 @@ function StepItem({ step, id }) {
 					borderRadius: "50%",
 					mixBlendMode: "multiply",
 				}}
-			/>
+			/> */}
 		</Box>
 	);
 }

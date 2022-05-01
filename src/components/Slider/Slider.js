@@ -188,7 +188,7 @@ function Item({
 							{projectTitle}
 						</Typography>
 					</Box>
-					<Frame />
+					{/* <Frame /> */}
 				</Box>
 				<Box className='temp-credits' sx={credits}>
 					<Typography variant='body2' component='p'>
