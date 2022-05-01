@@ -16,9 +16,7 @@ function Error({ statusCode, message }) {
 		alignItems: "center",
 	});
 
-	useEffect(() => {
-		message && console.log(message);
-	}, [message]);
+
 
 	return (
 		<Box sx={wrapper} className='Error' textAlign='center'>

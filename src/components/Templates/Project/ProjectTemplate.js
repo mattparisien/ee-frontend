@@ -4,24 +4,22 @@ import React, {
 	useContext,
 	useEffect,
 	useMemo,
-	useState,
+	useState
 } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
 import { ColorContext, DataContext } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
-import Block from "../../Blocks/Block";
-import formatBlockData from "./helpers/formatBlockData";
+import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import { ViewContext } from "../../Containers/View";
-import getParam from "./helpers/getParam";
-import getProjectIdByTitle from "./helpers/getProjectIdByTitle";
-import Next from "./Parts/Next";
 
 export const ProjectContext = createContext();
 
 function ProjectTemplate({ location }) {
 	const [id, setId] = useState(null);
-	const [project, setProject] = useState(null);
+	const [project, setProject] = useState({
+		blocks: [],
+	});
 
 	const { setCurrentColor } = useContext(ColorContext);
 	const { setTemplateLoaded, setViewError } = useContext(ViewContext);
@@ -37,44 +35,52 @@ function ProjectTemplate({ location }) {
 		accentColor && setCurrentColor(() => color);
 	}, [accentColor]);
 
-	useEffect(() => {
-		//Find query param
-		if (!id && projects) {
-			const param = getParam(location.pathname);
-			const id = getProjectIdByTitle(param, projects);
 
-			setId(id);
-		}
-	}, [location, id, projects]);
+	// useEffect(() => {
+	// 	//Find query param
+	// 	if (!id && projects) {
+	// 		const param = getParam(location.pathname);
+	// 		const id = getProjectIdByTitle(param, projects);
+
+	// 		setId(id);
+	// 	}
+	// }, [location, id, projects]);
 
 	const { loading, error, data } = useQuery(SINGLEPROJECT, {
 		variables: {
-			id: id,
+			id: 1,
 		},
-		skip: !id,
 	});
 
 	useEffect(() => {
-		if (data && !loading) {
-			setProject(() => ({
-				styles: {
-					color: accentColor,
-				},
-				data: {
-					id: data.project.data.id,
-					title: data.project.data.attributes.Title,
-					subtitle: data.project.data.attributes.Subtitle,
-					subtitle: data.project.data.attributes.Subtitle,
-					featureImage: {
-						url: data.project.data.attributes.FeatureImage.data.attributes.url,
-						alt: data.project.data.attributes.FeatureImage.data.attributes
-							.alternativeText,
-						caption:
-							data.project.data.attributes.FeatureImage.data.attributes.caption,
-					},
-					blocks: formatBlockData(data.project.data.attributes.Choose),
-				},
-			}));
+		if (data && !loading && !project.blocks[0]) {
+			
+			const blocks = formatBlockData(data.project.data.attributes.Choose);
+
+			blocks.forEach(block => {
+				block.data.then(blockInfo => {
+					setProject(prev => ({
+						styles: {
+							color: accentColor,
+						},
+						title: data.project.data.attributes.Title,
+						subtitle: data.project.data.attributes.Subtitle,
+						featureImage: {
+							url: data.project.data.attributes.FeatureImage.data.attributes
+								.url,
+							alt: data.project.data.attributes.FeatureImage.data.attributes
+								.alternativeText,
+							caption:
+								data.project.data.attributes.FeatureImage.data.attributes
+									.caption,
+						},
+						blocks: [
+							...prev.blocks,
+							{ name: block.name, data: { ...blockInfo } },
+						],
+					}));
+				});
+			});
 
 			setTemplateLoaded();
 		}
@@ -85,41 +91,37 @@ function ProjectTemplate({ location }) {
 				message: error.message,
 			}));
 		}
-	}, [data, loading, accentColor]);
+	}, [data, loading]);
 
 	return (
-		<ProjectContext.Provider
-			value={{
-				projectColor: project && project.styles.accentColor,
-			}}
-		>
+		<ProjectContext.Provider>
 			<Helmet>
 				<title>
-					{project && project.data
-						? `${project.data.title} - ${project.data.subtitle}`
+					{project && project.title
+						? `${project.title} - ${project.subtitle}`
 						: "Eyes & Ears Agency"}
 				</title>
 			</Helmet>
 
-			{project && (
+			{/* {project.featureImage && (
 				<Block
 					name='HeroBlock'
 					data={{
-						title: project.data.title,
-						subtitle: project.data.subtitle,
+						title: project.title,
+						subtitle: project.subtitle,
 						image: {
-							url: project.data.featureImage.url,
-							alt: project.data.featureImage.alt,
-							caption: project.data.featureImage.caption,
+							url: project.featureImage.url,
+							alt: project.featureImage.alt,
+							caption: project.featureImage.caption,
 						},
 					}}
 				/>
 			)}
 
 			{project &&
-				project.data.blocks.map((block, i) => <Block {...block} key={i} />)}
+				project.blocks.map((block, i) => <Block {...block} key={i} />)}
 
-			<Next color={accentColor[1]} currentProjectId={id} projects={projects} />
+			<Next color={accentColor[1]} currentProjectId={id} projects={projects} /> */}
 		</ProjectContext.Provider>
 	);
 }

@@ -26,12 +26,15 @@ function Block(props) {
 
 		setState(() => ({
 			container: container,
-			theme: props.theme,
+			theme:
+				props.data.options && props.data.options.theme
+					? props.data.options.theme
+					: null,
 			marginTop: props.data.options
-				? !props.data.options.DisableGutterTop
+				? !props.data.options.disableGutterTop
 				: true,
 			marginBottom: props.data.options
-				? !props.data.options.DisableGutterBottom
+				? !props.data.options.disableGutterBottom
 				: true,
 			paddingX: props.name.startsWith("SplitTextMedia") ? false : true,
 		}));

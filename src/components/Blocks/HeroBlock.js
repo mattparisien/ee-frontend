@@ -30,10 +30,12 @@ function HeroBlock({ data }) {
 			<Box>
 				<Media
 					zoom
-					items={{
-						type: "image",
-						...data.image,
-					}}
+					items={[
+						{
+							media_type: "image",
+							...data.image,
+						},
+					]}
 					options={{
 						format: "portrait",
 						displayCaption: true,

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { Box } from "@mui/material";
 
-function InView({ children }) {
+function InView({ children, sx }) {
 	const [hasViewed, setHasViewed] = useState(false);
 
 	const { ref, inView, entry } = useInView();
@@ -14,7 +14,11 @@ function InView({ children }) {
 	}, [inView, hasViewed]);
 
 	return (
-		<Box className='InView' ref={ref} sx={{ width: "100%", height: "100%" }}>
+		<Box
+			className='InView'
+			ref={ref}
+			sx={{ width: "100%", height: "100%", ...sx }}
+		>
 			{hasViewed && children}
 		</Box>
 	);

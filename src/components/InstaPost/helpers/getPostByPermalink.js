@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 const getPostByPermalink = (posts, permalink, next) => {
@@ -8,7 +7,7 @@ const getPostByPermalink = (posts, permalink, next) => {
 		}
 	}
 
-	return next;
+	return null;
 };
 
 export default getPostByPermalink;

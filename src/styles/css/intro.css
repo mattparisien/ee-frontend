@@ -1,0 +1,15 @@
+.c-header_nav-btn {
+  opacity: 0;
+}
+
+.is-not-first-visit .c-header_nav-btn {
+  opacity: 1;
+}
+
+.is-not-first-visit header .c-header_logo {
+  opacity: 1;
+}
+
+.is-not-first-visit .c-drawnLogo {
+  opacity: 1;
+}

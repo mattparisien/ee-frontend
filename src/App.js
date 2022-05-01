@@ -233,7 +233,7 @@ The Eyes & Ears Agency builds a bridge between the music industry and impactful 
 						<meta property='og:type' content='website' />
 					</Helmet>
 
-					<LoadingScreen isActive={loading} />
+					{<LoadingScreen isActive={loading} />}
 					{error && (
 						<Error message={error.message} statusCode={error.statusCode} />
 					)}

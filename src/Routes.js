@@ -5,44 +5,74 @@ import { Route, Routes } from "react-router-dom";
 import PAGES from "./api/graphql/queries/GetPages";
 import View from "./components/Containers/View";
 import keysToCamelCase from "./helpers/keysToCamelCase";
+import useAxios from "axios-hooks";
 
 function SiteRoutes(props) {
 	const { location } = props;
 
-	const [views, setViews] = useState(null);
-
-	const { loading, error, data } = useQuery(PAGES, {
-		variables: {
-			active: true,
+	const [views, setViews] = useState([
+		{
+			id: 1,
+			name: "Home",
+			slug: "/",
 		},
-	});
+		{
+			id: 9,
+			name: "Home",
+			slug: "/home",
+		},
+		{
+			id: 11,
+			name: "Projects",
+			slug: "projects",
+		},
+		{
+			id: 13,
+			name: "SingleProject",
+			slug: "/projects/:name",
+		},
+		{
+			id: 12,
+			name: "About",
+			slug: "/about",
+		},
+		{
+			id: 14,
+			name: "NotFound",
+			slug: "/not-found",
+		},
+	]);
 
-	useEffect(() => {
-		if (!loading && data) {
-			const views = data.pages.data
-				.filter(page => page.attributes.Active)
-				.flatMap(current =>
-					current.attributes.Name === "Home"
-						? [
-								current,
-								{
-									id: current.id,
-									attributes: {
-										name: "Home",
-										slug: "/",
-									},
-								},
-						  ]
-						: current
-				)
-				.map(view => ({
-					id: view.id,
-					...keysToCamelCase(view.attributes),
-				}));
+	// const [{ data, error, loading }] = useAxios(
+	// 	process.env.REACT_APP_API_URL + "/pages"
+	// );
 
-			setViews(views);
-		}
-	}, [loading, error, data]);
+	// useEffect(() => {
+	// 	if (!loading && data) {
+	// 		const views = data.data
+	// 			.filter(page => page.attributes.Active)
+	// 			.flatMap(current =>
+	// 				current.attributes.Name === "Home"
+	// 					? [
+	// 							current,
+	// 							{
+	// 								id: current.id,
+	// 								attributes: {
+	// 									name: "Home",
+	// 									slug: "/",
+	// 								},
+	// 							},
+	// 					  ]
+	// 					: current
+	// 			)
+	// 			.map(view => ({
+	// 				id: view.id,
+	// 				...keysToCamelCase(view.attributes),
+	// 			}));
+
+	// 		setViews(views);
+	// 	}
+	// }, [loading, error, data]);
 
 	return (
 		<AnimatePresence exitBeforeEnter>
@@ -52,7 +82,14 @@ function SiteRoutes(props) {
 						<Route
 							exact
 							path={view.slug}
-							element={<View {...props} location={location} pageId={view.id} />}
+							element={
+								<View
+									{...props}
+									location={location}
+									pageId={view.id}
+									name={view.name}
+								/>
+							}
 							key={location.pathname}
 						/>
 					))}

@@ -4,7 +4,7 @@ import React from "react";
 function GalleryBlock({ data }) {
 	return (
 		<ImageList variant='masonry' cols={3} gap={8}>
-			{data.images.map((image, i) => {
+			{data.images.data.map((image, i) => {
 				return (
 					<ImageListItem key={i}>
 						<img src={image.url} alt={image.alt} />

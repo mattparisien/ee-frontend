@@ -1,7 +1,7 @@
 import { Box, Link, Typography } from "@mui/material";
 import classNames from "classnames";
 import { motion } from "framer-motion/dist/framer-motion";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useMemo, useState } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
 import CircleSvg from "../Vector/Circle";
@@ -23,6 +23,16 @@ function Media(props) {
 
 	const [loaded, setLoaded] = useState(false);
 
+	const mediaType = useMemo(() => {
+		if (items) {
+			if (items.length > 1) {
+				return "carousel";
+			}
+
+			return items[0].media_type;
+		}
+	}, [items]);
+
 	const innerComponent = {
 		width: "100%",
 		height: "100%",
@@ -37,6 +47,7 @@ function Media(props) {
 	};
 
 	const aspectRatioConfig = theme => ({
+		overflow: "hidden",
 		width: options && options.width.desktop,
 		maxWidth: options && options.maxWidth.desktop,
 		height: `calc(${options && options.width.desktop} * ${
@@ -66,11 +77,12 @@ function Media(props) {
 		<MediaContext.Provider value={{ loaded, setLoaded }}>
 			<Box
 				className={classes}
-				sx={
-					options && options.width
-						? aspectRatioConfig
-						: { width: "100%", height: "100%", "img, video": innerComponent }
-				}
+				sx={{
+					width: "100%",
+					height: "100%",
+					position: "relative",
+					"img, video": innerComponent,
+				}}
 			>
 				<ConditionalWrapper
 					condition={props.options && props.options.inset}
@@ -80,14 +92,19 @@ function Media(props) {
 						</Container>
 					)}
 				>
-					<Box sx={{ overflow: "hidden", height: "100%" }}>
-						<ConditionalWrapper
-							condition={!props.disableContainer}
-							wrapper={children => (
-								<Container sx={{ height: "100%" }} disableGutters>
-									{children}
-								</Container>
-							)}
+					<ConditionalWrapper
+						condition={!props.disableContainer}
+						wrapper={children => (
+							<Container sx={{ height: "100%" }} disableGutters>
+								{children}
+							</Container>
+						)}
+					>
+						<Box
+							sx={
+								!options ? { width: "100%", height: "100%" } : aspectRatioConfig
+							}
+							className='aspect-wrap'
 						>
 							<ConditionalWrapper
 								wrapper={children => (
@@ -120,41 +137,43 @@ function Media(props) {
 									)}
 									condition={zoom}
 								>
-									{items && items.type === "image" && (
-										<Image src={items && items.url} alt={items && items.alt} />
+									{mediaType && mediaType === "image" && (
+										<Image src={items[0].url} alt={items[0].alt} />
 									)}
-									{items && items.type === "video" && (
-										<Video src={items && items.url} />
+									{mediaType && mediaType === "video" && (
+										<Video src={items[0].url} />
 									)}
-									{items && items.type === "carousel" && (
+									{mediaType && mediaType === "carousel" && (
 										<Carousel
-											items={items && items.items}
+											items={items}
 											image={url => <Image src={url} />}
 											video={url => <Video src={url} />}
 										/>
 									)}
 								</ConditionalWrapper>
 							</ConditionalWrapper>
-							{options && options.displayCaption && items.caption && (
-								<Box className='media-caption' m={2}>
-									<Typography
-										key='title'
-										variant='body3'
-										fontWeight={400}
-										textAlign='right'
-										sx={{
-											opacity: 0.6,
-											display: "flex",
-											alignItems: "center",
-											justifyContent: "flex-end",
-										}}
-									>
-										{items.caption}
-									</Typography>
-								</Box>
-							)}
-						</ConditionalWrapper>
-					</Box>
+						</Box>
+						{options && options.displayCaption && (
+							<Box className='media-caption' m={2}>
+								<Typography
+									variant='body3'
+									fontWeight={400}
+									textAlign='right'
+									sx={{
+										opacity: 0.6,
+
+										display: "flex",
+										alignItems: "center",
+										justifyContent: "flex-end",
+										zIndex: 999,
+									}}
+								>
+									{items[0].caption}
+								</Typography>
+							</Box>
+						)}
+					</ConditionalWrapper>
+
 					{!loaded && <Loader />}
 					<Overlay color={overlayColor} />
 					{loaded && <MediaTransition />}

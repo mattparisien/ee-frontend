@@ -4,7 +4,7 @@ import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 export const DataContext = createContext();
 export const SearchContext = createContext();
 export const SiteWideControls = createContext();
-export const LoadingContext = createContext();
+export const GlobalContext = createContext();
 export const ColorContext = createContext();
 export const CursorContext = createContext();
 
@@ -23,7 +23,7 @@ function Context({
 	setError,
 }) {
 	return (
-		<LoadingContext.Provider value={{ setLoading, error, setError }}>
+		<GlobalContext.Provider value={{ setLoading, error, setError }}>
 			<LocomotiveScrollProvider
 				onLocationChange={scroll => scroll.scrollTo(0, 0)}
 				watch={[location.pathname]}
@@ -51,7 +51,7 @@ function Context({
 					</DataContext.Provider>
 				</SiteWideControls.Provider>
 			</LocomotiveScrollProvider>
-		</LoadingContext.Provider>
+		</GlobalContext.Provider>
 	);
 }
 

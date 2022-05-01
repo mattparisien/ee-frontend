@@ -10,10 +10,9 @@ const getInstaMedia = (url, options) => {
 		})
 		.then(post => {
 			//Post object was returned
-			if (post.media_type === "CAROUSEL_ALBUM") {
+			if (post && post.media_type === "CAROUSEL_ALBUM") {
 				return getCarouselMedia(post.id, options);
 			}
-
 			return post;
 		});
 };

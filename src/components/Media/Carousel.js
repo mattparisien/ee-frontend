@@ -63,9 +63,9 @@ function Carousel({ items, image, video }) {
 				<SwiperSlide>
 					<Item
 						key={i}
-						type={item.data.type}
-						url={item.data.url}
-						permalink={item.data.permalink}
+						type={item.media_type}
+						url={item.url}
+						permalink={item.permalink}
 						image={image}
 						video={video}
 					/>
