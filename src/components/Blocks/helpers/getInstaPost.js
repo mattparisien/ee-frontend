@@ -11,7 +11,7 @@ const getInstaPost = async (url, array) => {
 
 		return (
 			(url.includes("/p/") ? url.replace("/p/", "/tv/") : url) ===
-			post.permalink
+				post.permalink || url === post.permalink
 		);
 	})[0];
 

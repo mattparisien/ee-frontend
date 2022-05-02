@@ -4,8 +4,6 @@ import divideArray from "../../../../helpers/divideArray";
 import ProjectGridItem from "./ProjectGridItem";
 
 function ProjectGrid({ items, colors }) {
-	console.log("items", items);
-
 	const gutter = "5vw";
 
 	const gridContainer = theme => ({
@@ -104,7 +102,6 @@ function ProjectGrid({ items, colors }) {
 			return dividedArrays;
 		}
 	}, [items]);
-
 
 	return (
 		<Box className='projects'>

@@ -1,7 +1,6 @@
 import { useTheme } from "@mui/material";
 import { useState } from "react";
 
-
 export default function useAppData(scrollRef) {
 	const theme = useTheme();
 
@@ -82,12 +81,6 @@ export default function useAppData(scrollRef) {
 		setState(prev => ({ ...prev, currentColor: color }));
 	};
 
-	console.log(state.currentColor)
-
-	
-
-
-
 	return {
 		state,
 		setState,
@@ -106,6 +99,6 @@ export default function useAppData(scrollRef) {
 		loading,
 		setLoading,
 		error,
-		setError
+		setError,
 	};
 }

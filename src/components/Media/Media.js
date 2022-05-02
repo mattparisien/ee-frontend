@@ -26,10 +26,8 @@ function Media(props) {
 		accentColor,
 		zoom,
 		frame,
-		boxHeight
+		boxHeight,
 	} = props;
-
-	console.log(props, 'in media')
 
 	const classes = classNames("media-wrapper");
 
