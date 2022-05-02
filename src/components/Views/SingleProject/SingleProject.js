@@ -47,7 +47,7 @@ function SingleProject({ location }) {
 	}, []);
 
 	useEffect(() => {
-		accentColor && setCurrentColor(() => color);
+		accentColor && setCurrentColor(accentColor);
 	}, [accentColor]);
 
 	const [{ data, error, loading }, executeRequest] = useAxios(

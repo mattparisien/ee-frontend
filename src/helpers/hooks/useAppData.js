@@ -82,6 +82,8 @@ export default function useAppData(scrollRef) {
 		setState(prev => ({ ...prev, currentColor: color }));
 	};
 
+	console.log(state.currentColor)
+
 	
 
 

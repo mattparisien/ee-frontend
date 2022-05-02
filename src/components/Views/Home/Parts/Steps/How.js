@@ -8,9 +8,8 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
 import animateNotes from "./animations";
-import StepItem from "./StepItem";
-import SplitText from "../../../../HOC/SplitText";
 import Notes from "./Notes";
+import StepItem from "./StepItem";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -208,9 +207,9 @@ function How({ steps }) {
 		height: "100%",
 		".Notes": {
 			width: "30vw",
-			position: 'absolute',
+			position: "absolute",
 			top: "10vw",
-			left: "60vw"
+			left: "60vw",
 		},
 		".c-note": {
 			"&_1": {
@@ -251,6 +250,11 @@ function How({ steps }) {
 
 	return (
 		<>
+			{/* <TitleBlock
+				data={{
+					title: "Finding your rhythm",
+				}}
+			/> */}
 			<Section
 				data-theme='light'
 				noGutter

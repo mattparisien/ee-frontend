@@ -4,7 +4,7 @@ import React, {
 	useContext,
 	useEffect,
 	useMemo,
-	useState
+	useState,
 } from "react";
 import { Helmet } from "react-helmet-async";
 import SINGLEPROJECT from "../../../api/graphql/queries/GetSingleProject";
@@ -32,9 +32,11 @@ function ProjectTemplate({ location }) {
 	}, []);
 
 	useEffect(() => {
-		accentColor && setCurrentColor(() => color);
-	}, [accentColor]);
 
+		console.log('accnet color', accentColor)
+
+		accentColor && setCurrentColor(accentColor);
+	}, [accentColor]);
 
 	// useEffect(() => {
 	// 	//Find query param
@@ -54,7 +56,6 @@ function ProjectTemplate({ location }) {
 
 	useEffect(() => {
 		if (data && !loading && !project.blocks[0]) {
-			
 			const blocks = formatBlockData(data.project.data.attributes.Choose);
 
 			blocks.forEach(block => {

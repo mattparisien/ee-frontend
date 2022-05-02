@@ -72,7 +72,7 @@ function Home({ pageHeading, location }) {
 	return (
 		<>
 			<Hero pageHeading={pageHeading} />
-			<About aboutText={staticData.about} />
+			{/* <About aboutText={staticData.about} />
 			<How steps={staticData.steps} />
 
 			<Work projects={staticData.featuredWork} />
@@ -103,7 +103,7 @@ function Home({ pageHeading, location }) {
 						/>
 					</Box>
 				</Container>
-			</Section>
+			</Section> */}
 		</>
 	);
 }
