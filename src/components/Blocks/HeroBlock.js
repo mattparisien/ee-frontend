@@ -23,7 +23,7 @@ function HeroBlock({ data }) {
 				<Typography variant='h1' component='h1'>
 					<SplitText enterDelay={0.7}>{data.title}</SplitText>
 				</Typography>
-				<Typography variant='h3'>
+				<Typography variant='h4'>
 					<SplitText enterDelay={0.8}>{data.subtitle}</SplitText>
 				</Typography>
 			</Box>
