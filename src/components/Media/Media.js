@@ -29,6 +29,8 @@ function Media(props) {
 		boxHeight
 	} = props;
 
+	console.log(props, 'in media')
+
 	const classes = classNames("media-wrapper");
 
 	const [loaded, setLoaded] = useState(false);

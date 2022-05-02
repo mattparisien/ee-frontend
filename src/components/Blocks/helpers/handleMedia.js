@@ -23,12 +23,15 @@ const handleMedia = async object => {
 	}
 
 	if (object.upload.data) {
-		newObj.media.push({
-			url: object.upload.data.attributes.url,
-			alt: object.upload.data.attributes.alternativeText,
-			caption: object.upload.data.attributes.alternativeText,
-			media_type: getMediaType(object.upload.data.attributes.url),
-		});
+		console.log(object);
+		const uploads = object.upload.data.map(upload => ({
+			url: upload.attributes.url,
+			alt: upload.attributes.alternativeText,
+			caption: upload.attributes.caption,
+			media_type: upload.attributes.providerMetadata.resourceType,
+		}));
+
+		newObj.media.push(...uploads);
 	}
 
 	return newObj;

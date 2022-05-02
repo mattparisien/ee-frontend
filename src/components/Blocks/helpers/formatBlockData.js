@@ -12,6 +12,7 @@ const formatBlockData = array => {
 			(normalizedData.media && normalizedData.media.length < 1)
 		) {
 			return null;
+			
 		}
 
 		const blockObj = {

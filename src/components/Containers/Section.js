@@ -12,7 +12,7 @@ function Section(props) {
 
 	const { currentColor } = useContext(ColorContext);
 
-	console.log(currentColor)
+	
 
 	const mobile = useMediaQuery("(max-width: 600px)");
 
