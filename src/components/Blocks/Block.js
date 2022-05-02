@@ -8,6 +8,9 @@ import Section from "../Containers/Section";
 export const BlockContext = createContext();
 
 function Block(props) {
+
+	console.log('block props', props)
+
 	const [state, setState] = useState({
 		container: true,
 		theme: null,

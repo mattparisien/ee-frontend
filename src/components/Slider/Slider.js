@@ -8,7 +8,6 @@ import "swiper/swiper.min.css";
 import ContainerFluid from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
 import Frame from "../Vector/Frame";
-import Media from "../Media/Media";
 
 function Slider({ items }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
@@ -18,7 +17,7 @@ function Slider({ items }) {
 	const navigationNextRef = useRef(null);
 
 	return (
-		<div className='Slider'>
+		<div className='o-slider'>
 			<ContainerFluid>
 				<Swiper
 					height={"100%"}
@@ -163,28 +162,7 @@ function Item({
 	return (
 		<Box sx={itemStyles} className=' -hover-frame'>
 			<Link classes='o-slider_item' isRouterLink href={`/projects`}>
-				<Media
-					items={[
-						{
-							url: src,
-							alt: alt,
-							caption: projectTitle + "-" + artistName,
-							media_type: "image",
-						},
-					]}
-					options={{
-						format: "portrait",
-						width: {
-							desktop: "25vw",
-							mobile: "calc(100vw - 2rem)",
-						},
-						maxWidth: {
-							desktop: "600px",
-							mobile: "100vw",
-						},
-					}}
-				/>
-				{/* <Box className='image-wrapper' sx={imgWrapper}>
+				<Box className='image-wrapper' sx={imgWrapper}>
 					<Box component='img' src={src} alt={alt}></Box>
 					<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
 						<Typography
@@ -210,8 +188,8 @@ function Item({
 							{projectTitle}
 						</Typography>
 					</Box>
-					<Frame />
-				</Box> */}
+					{/* <Frame /> */}
+				</Box>
 				<Box className='temp-credits' sx={credits}>
 					<Typography variant='body2' component='p'>
 						{credit}

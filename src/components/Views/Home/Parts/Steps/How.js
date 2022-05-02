@@ -8,6 +8,7 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
 import animateNotes from "./animations";
+import Notes from "./Notes";
 import StepItem from "./StepItem";
 
 function How({ steps }) {
@@ -80,6 +81,7 @@ function How({ steps }) {
 		height: "140vw",
 		marginLeft: 10,
 		marginRight: 10,
+
 		".c-steps_sheet": {
 			height: "90%",
 		},
@@ -116,7 +118,7 @@ function How({ steps }) {
 			},
 			".c-steps_item_2": {
 				gridRow: " 2/3",
-				gridColumn: "7/14 !important",
+				gridColumn: "6/14 !important",
 			},
 			".c-steps_item_3": {
 				gridRow: " 3/4",
@@ -124,7 +126,7 @@ function How({ steps }) {
 			},
 			".c-steps_item_4": {
 				gridRow: " 4/5",
-				gridColumn: "7/14 !important",
+				gridColumn: "6/14 !important",
 			},
 			".c-steps_item_5": {
 				gridRow: " 5/6",
@@ -135,6 +137,9 @@ function How({ steps }) {
 			height: "auto",
 			marginLeft: 2,
 			marginRight: 2,
+			".c-steps_item": {
+				marginBottom: theme.spacing(5),
+			},
 			".c-steps_item_1": {
 				gridRow: "1/2 !important",
 				gridColumn: "1/14 !important",
@@ -179,18 +184,6 @@ function How({ steps }) {
 		".c-note": noteStyle,
 	});
 
-	const playerSvg = theme => ({
-		width: "36%",
-		transform: "translateY(-10vw)",
-		[theme.breakpoints.down("sm")]: {
-			display: "none",
-		},
-
-		svg: {
-			overflow: "visible",
-		},
-	});
-
 	const headingLayout = theme => ({
 		display: "flex",
 		flexDirection: "row-reverse",
@@ -201,30 +194,74 @@ function How({ steps }) {
 		},
 	});
 
-	const heading = theme => ({
-		fontSize: "10vw",
-		lineHeight: "10vw",
-		textAlign: "center",
-		[theme.breakpoints.down("sm")]: {
-			fontSize: "5.2rem",
-			lineHeight: "5.6rem",
+	const notesWrapper = theme => ({
+		position: "absolute",
+		".inner": {
+			width: "100%",
+			height: "100%",
+			position: "relative",
+		},
+		top: 0,
+		left: 0,
+		width: "100%",
+		height: "100%",
+		".Notes": {
+			width: "30vw",
+			position: "absolute",
+			top: "10vw",
+			left: "60vw",
+		},
+		".c-note": {
+			"&_1": {
+				top: "30vw",
+				left: "14vw",
+				fill: theme.palette.primary.colorSet.yellow,
+			},
+			"&_2": {
+				top: "10vw",
+				right: "20vw",
+				fill: theme.palette.primary.colorSet.blue,
+			},
+			"&_5": {
+				top: "50vw",
+				right: "40vw",
+
+				fill: theme.palette.primary.colorSet.green,
+				mixBlendMode: "multiply",
+			},
 		},
 	});
 
+	useEffect(() => {
+		const notes = document.querySelectorAll(".c-note");
+
+		if (scroll && scroll.scroll) {
+			[...notes].forEach(note => {
+				scroll.scroll.on("scroll", e => {
+					const { top } = note.getBoundingClientRect();
+					const scrollPos = e.scroll.y;
+
+					const rotate = top / scrollPos;
+					note.style.transform = `rotate(${rotate * 100}deg)`;
+				});
+			});
+		}
+	}, [scroll]);
+
 	return (
 		<>
+			{/* <TitleBlock
+				data={{
+					title: "Finding your rhythm",
+				}}
+			/> */}
 			<Section
-				classes='o-how -relative'
 				data-theme='light'
 				noGutter
-				sx={{ overflow: "hidden" }}
+				sx={{ overflow: "hidden", position: "relative" }}
 			>
 				<Container disableMaxWidth>
-					<Box className='heading-layout' sx={headingLayout} mb={20}>
-						{/* <Box sx={playerSvg}>
-							<InstrumentPlayer />
-						</Box> */}
-					</Box>
+					<Box className='heading-layout' sx={headingLayout} mb={20}></Box>
 
 					<Box
 						className='steps-container -relative'
@@ -235,15 +272,16 @@ function How({ steps }) {
 							<div className='c-steps_background'></div>
 							{steps &&
 								steps.map(step => {
-									return <StepItem step={step} key={step.id} />;
+									return <StepItem step={step} key={step.id} id={step.id} />;
 								})}
-
-							{/* <Sheet /> */}
 						</Box>
-
-						{/* <Notes /> */}
 					</Box>
 				</Container>
+				<Box className='notes-wrap' sx={notesWrapper}>
+					<Box className='inner'>
+						<Notes />
+					</Box>
+				</Box>
 			</Section>
 		</>
 	);

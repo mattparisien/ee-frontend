@@ -12,12 +12,22 @@ import Loader from "./Loader";
 import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
 import Video from "./Video";
+import Frame from "../Vector/Frame";
 
 export const MediaContext = createContext();
 
 function Media(props) {
-	const { accent, items, options, permalink, overlayColor, accentColor, zoom } =
-		props;
+	const {
+		accent,
+		items,
+		options,
+		permalink,
+		overlayColor,
+		accentColor,
+		zoom,
+		frame,
+		boxHeight
+	} = props;
 
 	const classes = classNames("media-wrapper");
 
@@ -38,6 +48,7 @@ function Media(props) {
 		height: "100%",
 		objectFit: "cover",
 		objectPosition: "center",
+		filter: options && options.filter && "grayscale(1)",
 	};
 
 	const aspects = {
@@ -79,7 +90,7 @@ function Media(props) {
 				className={classes}
 				sx={{
 					width: "100%",
-					height: "100%",
+					height: boxHeight || "100%",
 					position: "relative",
 					"img, video": innerComponent,
 				}}
@@ -179,6 +190,7 @@ function Media(props) {
 					{loaded && <MediaTransition />}
 					{accent && <Accent component={CircleSvg} color={accentColor} />}
 				</ConditionalWrapper>
+				{frame && <Frame sx={{ transform: "scale(1.05)" }} />}
 			</Box>
 		</MediaContext.Provider>
 	);

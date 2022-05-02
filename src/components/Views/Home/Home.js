@@ -72,7 +72,7 @@ function Home({ pageHeading, location }) {
 	return (
 		<>
 			<Hero pageHeading={pageHeading} />
-			<About aboutText={staticData.about} />
+			{/* <About aboutText={staticData.about} />
 			<How steps={staticData.steps} />
 
 			<Work projects={staticData.featuredWork} />
@@ -86,9 +86,7 @@ function Home({ pageHeading, location }) {
 						<QuoteSvg
 							sx={{
 								width: "14vw",
-								position: "absolute",
-								top: 0,
-								left: 0,
+
 								mixBlendMode: "multiply",
 							}}
 						/>
@@ -97,9 +95,7 @@ function Home({ pageHeading, location }) {
 						<QuoteSvg
 							sx={{
 								width: "14vw",
-								position: "absolute",
-								bottom: 0,
-								right: 0,
+								marginLeft: "auto",
 								zIndex: 999,
 								mixBlendMode: "multiply",
 								transform: "rotate(180deg)",
@@ -107,7 +103,7 @@ function Home({ pageHeading, location }) {
 						/>
 					</Box>
 				</Container>
-			</Section>
+			</Section> */}
 		</>
 	);
 }

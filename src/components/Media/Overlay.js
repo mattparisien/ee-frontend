@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
 
-function Overlay({ color }) {
+function Overlay({ color, sx }) {
 	const overlayRef = useRef(null);
 	const windowHeight = useRef(window.innerHeight);
 	const scroll = useLocomotiveScroll();
@@ -35,17 +35,24 @@ function Overlay({ color }) {
 		}
 	}, [scroll, overlayRef]);
 
-	const overlay = theme => ({
-		width: "100%",
-		height: "100%",
-		position: "absolute",
-		pointerEvents: "none",
-		opacity: 0,
-		top: 0,
-		left: 0,
-		backgroundColor: color ? color : theme.palette.primary.colorSet.yellow,
-	});
-	return <Box className='overlay' sx={overlay} ref={overlayRef}></Box>;
+	return (
+		<Box
+			className='overlay'
+			sx={theme => ({
+				width: "100%",
+				height: "100%",
+				position: "absolute",
+				pointerEvents: "none",
+				opacity: 0,
+				top: 0,
+				left: 0,
+				backgroundColor: color ? color : theme.palette.primary.colorSet.yellow,
+
+				...sx,
+			})}
+			ref={overlayRef}
+		></Box>
+	);
 }
 
 export default Overlay;
