@@ -17,6 +17,7 @@ import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import getParam from "../../Templates/Project/helpers/getParam";
 import Next from "./Parts/Next";
+import SingleInstaBlock from "../../Blocks/SingleInstaBlock";
 
 export const ProjectContext = createContext();
 
@@ -125,7 +126,7 @@ function SingleProject({ location }) {
 
 			{project &&
 				project.blocks.map((block, i) => <Block {...block} key={i} />)}
-
+			<SingleInstaBlock />
 			<Next
 				color={accentColor[1]}
 				currentProjectId={projectId}

@@ -1,5 +1,4 @@
 import getInstaData from "./getInstaData";
-import getMediaType from "./getMediaType";
 
 const handleMedia = async object => {
 	if (!object) {

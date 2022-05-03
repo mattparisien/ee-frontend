@@ -15,7 +15,7 @@ const normalizeData = async blockData => {
 				permalink: newObj.mediaItem.permalink,
 			};
 		} else {
-			newObj["media"] = null;
+			newObj["media"] = newObj.media || null;
 		}
 
 		delete newObj.mediaItem;

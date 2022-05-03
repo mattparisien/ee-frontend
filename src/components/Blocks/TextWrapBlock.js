@@ -6,6 +6,10 @@ import Cta from "../Link/Cta";
 
 
 function TextWrapBlock({ data }) {
+
+
+	console.log(data)
+
 	const right = theme => ({
 		position: 'relative',
 		paddingBottom: theme.spacing(10),
