@@ -2,12 +2,15 @@ import { ImageList, ImageListItem } from "@mui/material";
 import React from "react";
 
 function GalleryBlock({ data }) {
+
+console.log(data)
+
 	return (
-		<ImageList variant='masonry' cols={3} gap={8}>
-			{data.images.data.map((image, i) => {
+		<ImageList variant={data.images.variant} cols={data.images.rows} gap={data.images.gap}>
+			{data.images.media.data.map((image, i) => {
 				return (
 					<ImageListItem key={i}>
-						<img src={image.url} alt={image.alt} />
+						<img src={image.attributes.formats.medium.url} alt={image.attributes.alternativeText} />
 					</ImageListItem>
 				);
 			})}

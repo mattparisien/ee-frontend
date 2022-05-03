@@ -20,31 +20,28 @@ function StatsBlock({ data }) {
 					</Typography>
 				)}
 
-				<FadeChildren
-					wrapper={Stack}
-					childWrapper={Box}
-					wrapperProps={{
-						spacing: 20,
-						direction: "row",
-						justifyContent: "space-evenly",
-						alignItems: "center",
-						sx: theme => ({
-							[theme.breakpoints.down("sm")]: {
-								flexDirection: "column",
-								justifyContent: "center",
+				<Stack
+					spacing={20}
+					direction='row'
+					justifyContent={"space-between"}
+					width='100%'
+					alignItems='center'
+					sx={theme => ({
+						[theme.breakpoints.down("sm")]: {
+							flexDirection: "column",
+							justifyContent: "center",
 
-								"> .MuiBox-root": {
-									marginLeft: 0,
-									marginBottom: theme.spacing(8),
-								},
+							"> .MuiBox-root": {
+								marginLeft: 0,
+								marginBottom: theme.spacing(8),
 							},
-						}),
-					}}
+						},
+					})}
 				>
 					{data.statsBlockItem.map((item, i) => (
 						<Item heading={item.heading} line={item.line} key={i} />
 					))}
-				</FadeChildren>
+				</Stack>
 			</Box>
 			<Divider />
 			{data.cta && (
@@ -63,11 +60,20 @@ function StatsBlock({ data }) {
 
 function Item({ heading, line }) {
 	return (
-		<Box className='item' textAlign='center'>
+		<Box
+			className='item'
+			textAlign='center'
+			sx={theme => ({
+				maxWidth: theme.spacing(60),
+				marginLeft: "0 !important",
+			})}
+			display='flex'
+			flexDirection='column'
+		>
 			<Typography variant='h2' component='h3' sx={{ width: "100%" }}>
 				{heading}
 			</Typography>
-			<Typography variant='body2' component='p' sx={{ width: "100%" }}>
+			<Typography variant='body3' component='p' sx={{ width: "100%" }}>
 				{line}
 			</Typography>
 		</Box>

@@ -1,13 +1,8 @@
+import CheckIcon from "@mui/icons-material/Check";
+import { Link, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { motion } from "framer-motion/dist/framer-motion";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import { Typography } from "@mui/material";
-import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
-import { motion } from "framer-motion/dist/framer-motion";
-import Fade from "../HOC/Fade";
-import FadeChildren from "../HOC/FadeChildren";
-import { Link } from "@mui/material";
-import { Box } from "@mui/material";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import SplitText from "../HOC/SplitText";
 
@@ -67,46 +62,31 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 		),
 
 		p: ({ node, ...props }) => (
-			<Fade
-				wrapper={children => (
-					<Typography
-						component='p'
-						variant={variantMap && variantMap.p ? variantMap.p : "body1"}
-						children={props.children}
-						fontWeight='40'
-						sx={sx}
-						mb={5}
-					>
-						{children}
-					</Typography>
-				)}
+			<Typography
+				component='p'
+				variant={variantMap && variantMap.p ? variantMap.p : "body1"}
+				children={props.children}
+				fontWeight='40'
+				sx={sx}
+				mb={5}
 			>
 				{props.children}
-			</Fade>
+			</Typography>
 		),
-		ul: ({ node, ...props }) => (
-			<FadeChildren
-				wrapper={List}
-				childWrapper={ListItem}
-				wrapperProps={{ disablePadding: true }}
-				childWrapperProps={{ disablePadding: true }}
-			>
-				{props.children}
-			</FadeChildren>
-		),
+		ul: ({ node, ...props }) => <List disablePadding>{props.children}</List>,
 		li: ({ node, ...props }) => (
-			<>
+			<ListItem disablePadding>
 				<ListItemIcon sx={{ minWidth: "auto", marginRight: "0.6rem" }}>
 					<CheckIcon sx={{ height: "0.97rem", opacity: 0.5 }} />
 				</ListItemIcon>
 				<ListItemText
 					children={props.children}
 					primaryTypographyProps={{
-						variant: "body2",
+						variant: "body3",
 						fontWeight: 200,
 					}}
 				/>
-			</>
+			</ListItem>
 		),
 		a: ({ node, ...props }) => (
 			<>
