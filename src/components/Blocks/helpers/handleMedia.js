@@ -8,22 +8,26 @@ const handleMedia = async object => {
 
 	const newObj = {
 		media: [],
+		options: {},
 	};
 
-	if (object.instaUrl) {
-		const instagramData = await getInstaData(object.instaUrl, null);
+	if (object.instaPost) {
+		const instagramData = await getInstaData(object.instaPost.url, null);
 
 		if (!instagramData) {
 			return null;
 		}
 
-		instagramData &&
-			instagramData.items &&
+		if (instagramData && instagramData.items) {
 			newObj.media.push(...instagramData.items);
+			for (let key in object.instaPost) {
+				newObj.options[key] = object.instaPost[key];
+			}
+		}
 	}
 
-	if (object.upload.data) {
-		const uploads = object.upload.data.map(upload => ({
+	if (object.mediaUpload && object.mediaUpload.media.data) {
+		const uploads = object.mediaUpload.media.data.map(upload => ({
 			url: upload.attributes.url,
 			alt: upload.attributes.alternativeText,
 			caption: upload.attributes.caption,

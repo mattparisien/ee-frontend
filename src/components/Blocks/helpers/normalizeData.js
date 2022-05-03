@@ -1,8 +1,6 @@
-import { ConstructionOutlined } from "@mui/icons-material";
+import camelcaseKeys from "camelcase-keys";
 import checkIfObject from "./checkIfObject";
 import handleMedia from "./handleMedia";
-import sanitize from "./sanitize";
-import camelcaseKeys from "camelcase-keys";
 
 const normalizeData = async blockData => {
 	const clone = Object.assign({}, { ...blockData });
@@ -13,7 +11,7 @@ const normalizeData = async blockData => {
 		if (data && data.media.length > 0) {
 			newObj["media"] = {
 				items: data.media,
-				options: newObj.mediaItem.options,
+				options: newObj.mediaItem.options || data.options,
 				permalink: newObj.mediaItem.permalink,
 			};
 		} else {
