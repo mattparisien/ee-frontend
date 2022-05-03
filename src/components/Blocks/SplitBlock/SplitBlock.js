@@ -1,8 +1,6 @@
 import { Box } from "@mui/material";
 
 function SplitBlock(props) {
-	console.log(props);
-
 	const wrapper = theme => ({
 		display: "flex",
 		justifyContent: "space-between",

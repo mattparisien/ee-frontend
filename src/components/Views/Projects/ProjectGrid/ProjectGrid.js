@@ -1,21 +1,10 @@
 import { Box } from "@mui/material";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import divideArray from "../../../../helpers/divideArray";
 import ProjectGridItem from "./ProjectGridItem";
 
 function ProjectGrid({ items, colors }) {
 	const gutter = "5vw";
-
-	const globalContainer = theme => ({
-		".grid-container": {
-			// "&:not(:first-of-type)": {
-			// 	marginTop: "36%",
-			// 	[theme.breakpoints.down("sm")]: {
-			// 		marginTop: 0,
-			// 	},
-			// },
-		},
-	});
 
 	const gridContainer = theme => ({
 		position: "relative",
@@ -115,7 +104,7 @@ function ProjectGrid({ items, colors }) {
 	}, [items]);
 
 	return (
-		<Box className='projects' sx={globalContainer}>
+		<Box className='projects'>
 			{arrays
 				? arrays.map((array, i) => (
 						<Box
@@ -140,8 +129,8 @@ function ProjectGrid({ items, colors }) {
 										artist={item.title}
 										title={item.subtitle}
 										image={{
-											url: item.image.url,
-											alt: item.image.alt,
+											url: item.featureImage.data.attributes.url,
+											alt: item.featureImage.data.attributes.alt,
 										}}
 									/>
 								</Row>

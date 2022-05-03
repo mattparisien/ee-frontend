@@ -32,9 +32,6 @@ function ProjectTemplate({ location }) {
 	}, []);
 
 	useEffect(() => {
-
-		console.log('accnet color', accentColor)
-
 		accentColor && setCurrentColor(accentColor);
 	}, [accentColor]);
 

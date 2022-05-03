@@ -1,4 +1,4 @@
-import { ApolloProvider } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { ThemeProvider } from "@mui/material";
 import classNames from "classnames";
 import gsap from "gsap";
@@ -7,24 +7,21 @@ import $ from "jquery";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
-import { client } from "./api/graphql/index";
-import { Header } from "./components";
+import PROJECTS from "./api/graphql/queries/GetProjects";
 import Cursor from "./components/Cursor/Cursor";
+import Error from "./components/Error/Error";
 import Footer from "./components/Footer/Footer";
+import ScrollToTop from "./components/HOC/ScrollToTop";
+import BackToTop from "./components/Link/BackToTop";
 import LoadingScreen from "./components/Loading/LoadingScreen";
 import Menu from "./components/Menu/Menu";
+import Navigation from "./components/Nav/Navigation";
 import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
-import ScrollToTop from "./components/HOC/ScrollToTop";
-import BackToTop from "./components/Link/BackToTop";
-import { useQuery } from "@apollo/client";
-import NAVIGATION from "./api/graphql/queries/GetNavigation";
-import Navigation from "./components/Nav/Navigation";
-import { AnimatePresence } from "framer-motion/dist/framer-motion";
-import PROJECTS from "./api/graphql/queries/GetProjects";
-import Error from "./components/Error/Error";
+import useAxios from "axios-hooks";
+import camelcaseKeys from "camelcase-keys";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -62,26 +59,26 @@ function App() {
 	const introTl = useRef(gsap.timeline());
 	const [projects, setProjects] = useState([]);
 
-	const query = useQuery(PROJECTS);
+	const [
+		{ data: projectsData, loading: projectsLoading, error: projectsError },
+	] = useAxios(`${process.env.REACT_APP_API_URL}/projects?populate=*`);
 
 	useEffect(() => {
-		if (query && query.data && !query.loading) {
+		if (projectsData && !projectsLoading && !projects[0]) {
 			setProjects(
-				[...query.data.projects.data]
-					.sort((a, b) => a.attributes.Date - b.attributes.Date)
+				[...projectsData.data]
+					.sort(
+						(a, b) =>
+							new Date(b.attributes.Date).getTime() -
+							new Date(a.attributes.Date).getTime()
+					)
 					.map(project => ({
 						id: project.id,
-						title: project.attributes.Title,
-						subtitle: project.attributes.Subtitle,
-						image: {
-							url: project.attributes.FeatureImage.data.attributes.url,
-							alt: project.attributes.FeatureImage.data.attributes
-								.alternativeText,
-						},
+						...camelcaseKeys(project.attributes),
 					}))
 			);
 		}
-	}, [query.data, query.loading, query.error]);
+	}, [projectsData, projectsLoading, projectsError]);
 
 	const observedElements = useRef([]);
 	observedElements.current = [];

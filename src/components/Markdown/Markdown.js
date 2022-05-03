@@ -102,7 +102,7 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 				<ListItemText
 					children={props.children}
 					primaryTypographyProps={{
-						variant: "body3",
+						variant: "body2",
 						fontWeight: 200,
 					}}
 				/>

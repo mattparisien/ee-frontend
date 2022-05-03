@@ -9,6 +9,7 @@ import TitleBlock from "./TitleBlock";
 import StatsBlock from "./StatsBlock/StatsBlock";
 import TextWrapBlock from "./TextWrapBlock";
 import SplitTextListBlock from "./SplitBlock/SplitTextListBlock";
+import SingleInstaBlock from "./SingleInstaBlock";
 
 export const BLOCKS = {
 	TitleBlock: TitleBlock,
@@ -22,4 +23,5 @@ export const BLOCKS = {
 	SplitTextListBlock: SplitTextListBlock,
 	StatsBlock: StatsBlock,
 	TextWrapBlock: TextWrapBlock,
+	SingleInstaBlock: SingleInstaBlock,
 };

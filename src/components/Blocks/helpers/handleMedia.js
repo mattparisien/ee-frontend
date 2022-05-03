@@ -1,5 +1,4 @@
 import getInstaData from "./getInstaData";
-import getMediaType from "./getMediaType";
 
 const handleMedia = async object => {
 	if (!object) {
@@ -8,27 +7,33 @@ const handleMedia = async object => {
 
 	const newObj = {
 		media: [],
+		options: {},
 	};
 
-	if (object.instaUrl) {
-		const instagramData = await getInstaData(object.instaUrl, null);
+	if (object.instaPost) {
+		const instagramData = await getInstaData(object.instaPost.url, null);
 
 		if (!instagramData) {
 			return null;
 		}
 
-		instagramData &&
-			instagramData.items &&
+		if (instagramData && instagramData.items) {
 			newObj.media.push(...instagramData.items);
+			for (let key in object.instaPost) {
+				newObj.options[key] = object.instaPost[key];
+			}
+		}
 	}
 
-	if (object.upload.data) {
-		newObj.media.push({
-			url: object.upload.data.attributes.url,
-			alt: object.upload.data.attributes.alternativeText,
-			caption: object.upload.data.attributes.alternativeText,
-			media_type: getMediaType(object.upload.data.attributes.url),
-		});
+	if (object.mediaUpload && object.mediaUpload.media.data) {
+		const uploads = object.mediaUpload.media.data.map(upload => ({
+			url: upload.attributes.url,
+			alt: upload.attributes.alternativeText,
+			caption: upload.attributes.caption,
+			media_type: upload.attributes.providerMetadata.resourceType,
+		}));
+
+		newObj.media.push(...uploads);
 	}
 
 	return newObj;

@@ -108,7 +108,7 @@ function ProjectGridItem({
 						)}
 					>
 						<Typography
-							variant='body2'
+							variant='body3'
 							className='artist -underline'
 							sx={infoTitle}
 						>
@@ -116,7 +116,7 @@ function ProjectGridItem({
 						</Typography>
 
 						<Typography
-							variant='body2'
+							variant='body3'
 							className='title -underline'
 							sx={infoTitle}
 						>

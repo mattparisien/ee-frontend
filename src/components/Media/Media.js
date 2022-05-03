@@ -26,7 +26,7 @@ function Media(props) {
 		accentColor,
 		zoom,
 		frame,
-		boxHeight
+		boxHeight,
 	} = props;
 
 	const classes = classNames("media-wrapper");
@@ -56,6 +56,8 @@ function Media(props) {
 		square: 1,
 		landscape: 0.5625,
 	};
+
+	console.log(props)
 
 	const aspectRatioConfig = theme => ({
 		overflow: "hidden",
@@ -185,7 +187,7 @@ function Media(props) {
 						)}
 					</ConditionalWrapper>
 
-					{!loaded && <Loader />}
+					{/* {!loaded && <Loader />} */}
 					<Overlay color={overlayColor} />
 					{loaded && <MediaTransition />}
 					{accent && <Accent component={CircleSvg} color={accentColor} />}
