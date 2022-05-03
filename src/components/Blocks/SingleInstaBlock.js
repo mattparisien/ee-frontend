@@ -97,7 +97,7 @@ function SingleInstaBlock({ data }) {
 				{data && data.caption && (
 					<CardActions>
 						<Typography variant='body3' sx={caption}>
-							{data.caption.slice(0, 150)}...
+							{data.caption.slice(0, 100)}...
 						</Typography>
 					</CardActions>
 				)}

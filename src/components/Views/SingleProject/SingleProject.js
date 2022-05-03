@@ -126,7 +126,7 @@ function SingleProject({ location }) {
 
 			{project &&
 				project.blocks.map((block, i) => <Block {...block} key={i} />)}
-			<SingleInstaBlock />
+
 			<Next
 				color={accentColor[1]}
 				currentProjectId={projectId}
