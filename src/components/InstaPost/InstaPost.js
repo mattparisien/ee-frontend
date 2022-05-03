@@ -1,209 +1,111 @@
+import React, { useMemo } from "react";
+import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import {
-	Avatar,
-	Box,
-	Button,
 	Card,
 	CardHeader,
-	Paper,
+	Avatar,
+	CardActions,
 	Typography,
+	Box,
 } from "@mui/material";
-import React, { useEffect, useState, useContext } from "react";
-import { DataContext } from "../../context/Context";
-import variables from "../../styles/scss/_vars.module.scss";
-import ConditionalWrapper from "../Containers/ConditionalWrapper";
-import getInstaPost from "./helpers/getInstaPost";
-import InstaCarousel from "./InstaCarousel";
-import InstaImage from "./InstaImage";
-import InstaVideo from "./InstaVideo";
+import Media from "../Media/Media";
+import VerifiedBadge from "./assets/verified.png";
 
-function InstaPost({ postInfo }) {
-	const [postData, setPostData] = useState({
-		type: "",
-		data: null,
-	});
-
-	const [error, setError] = useState(false);
-
-	const [mediaComponent, setMediaComponent] = useState(null);
-
-	const itemWidth = "30rem";
-
+function InstaPost({
+	linkTo,
+	handle,
+	caption,
+	items,
+	profileImage,
+	isVerified,
+}) {
 	const wrapper = {
-		display: "inline-block",
-		width: itemWidth,
-		position: "relative",
-		overflow: "hidden",
+		margin: "0 auto",
+		width: "30vw",
+		maxWidth: "20rem",
 	};
 
-	const caption = {
-		width: "300px",
+	const captionStyles = {
+		"mask-image":
+			"linear-gradient(transparent, black 90%, black 100%, transparent 100%)",
+		"-webkit-mask-image":
+			"-webkit-gradient(linear, left top, left bottom,  from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))",
 	};
 
-	const text = {
-		height: "5rem",
-		position: "relative",
-		overflow: "hidden",
-		"&::after": {
-			content: "''",
-			position: "absolute",
-			top: 0,
-			left: 0,
-			width: "100%",
-			height: "100%",
-			background: `linear-gradient(transparent, ${variables["colors-light"]})`,
-		},
-	};
+	const aspect = useMemo(() => {
+		if (items) {
+			const width = items[0].width;
+			const height = items[0].height;
+			const ratio =
+				width && height ? Math.round((width / height) * 10) / 10 : null;
 
-	useEffect(() => {
-		if (postInfo && postInfo.URL) {
-			const options = {
-				...postInfo,
-			};
+			if (!ratio) {
+				return "portrait";
+			}
 
-			getInstaPost(postInfo.URL, options)
-				.then(post =>
-					setPostData(prev => ({
-						...prev,
-						type: post.media_type,
-						data: post.item || post.items,
-					}))
-				)
-				.catch(err => setError(true));
+			if (ratio === 1) {
+				return "square";
+			} else if (ratio === 0.8) {
+				return "portrait";
+			} else if (ratio === 0.5) {
+				return "landscape";
+			}
 		}
-	}, [postInfo]);
-
-	useEffect(() => {
-		if (postData.type && postInfo) {
-			setMediaComponent(
-				(postData.type === "IMAGE" && (
-					<InstaImage
-						src={postData.data.media_url}
-						preserveAspectRatio={postInfo.PreserveAspectRatio}
-					/>
-				)) ||
-					(postData.type === "VIDEO" && (
-						<InstaVideo
-							src={postData.data.media_url}
-							preserveAspectRatio={postInfo.PreserveAspectRatio}
-						/>
-					)) ||
-					(postData.type === "CAROUSEL_ALBUM" && (
-						<InstaCarousel
-							items={postData.data}
-							image={url => <InstaImage src={url} />}
-							video={url => <InstaVideo src={url} />}
-							preserveAspectRatio={postInfo.PreserveAspectRatio}
-						/>
-					))
-			);
-		}
-	}, [postData, postInfo]);
-
-	const mediaWrapper = {
-		position: "relative",
-	};
+	}, [items]);
 
 	return (
-		!error && (
-			<Paper elevation={10}>
-				<Card className='instaPost-wrapper' sx={wrapper}>
-					<PostHeader
-						username={
-							postData.data &&
-							(postData.data.username || postData.data[0].username)
-						}
-					/>
-
-					<ConditionalWrapper
-						condition={postInfo && postInfo.Linkable}
-						wrapper={children => (
-							<LinkWrapper children={children} permalink={postData.permalink} />
-						)}
-					>
-						<Box className='media-wrapper' sx={mediaWrapper}>
-							{mediaComponent && mediaComponent}
-						</Box>
-						{postData.caption && (
-							<Box className='post-text' sx={text} pt={2}>
-								<Typography sx={caption} className='caption'>
-									{postData.caption && postData.caption}
-								</Typography>
-							</Box>
-						)}
-					</ConditionalWrapper>
-				</Card>
-			</Paper>
-		)
+		<ConditionalWrapper
+			condition={linkTo}
+			wrapper={children => (
+				<a href={linkTo} target='_blank' rel='noreferrer'>
+					{children}
+				</a>
+			)}
+		>
+			<Card className='InstaPost' sx={wrapper}>
+				<CardHeader
+					className='InstaPost_header'
+					avatar={<Avatar src={profileImage.url} alt={profileImage.alt} />}
+					title={<Title handle={handle} isVerified={isVerified} />}
+					component='a'
+					href={`https://instagram.com/${handle}`}
+					target='_blank'
+				/>
+				<Media
+					options={{
+						format: aspect && aspect,
+						displayCaption: false,
+						width: {
+							mobile: "calc(60vw - 2rem)",
+							desktop: "30vw",
+						},
+						maxWidth: {
+							desktop: "20rem",
+							mobile: "100%",
+						},
+					}}
+					items={items}
+				/>
+				{caption && (
+					<CardActions className='InstaPost_caption'>
+						<Typography variant='body3' sx={captionStyles}>
+							{caption.slice(0, 100)}...
+						</Typography>
+					</CardActions>
+				)}
+			</Card>
+		</ConditionalWrapper>
 	);
 }
 
-const LinkWrapper = ({ children, permalink }) => {
-	const linkWrap = {
-		width: "100%",
-		height: "100%",
-	};
-
+const Title = ({ handle, isVerified }) => {
 	return (
-		<Box
-			sx={linkWrap}
-			component='a'
-			href={permalink}
-			rel='noreferrer'
-			target='_blank'
-		>
-			{children}
+		<Box display='flex' alignItems='center' className='handle'>
+			<Typography variant='body2' fontWeight='600' mr={2}>
+				@{handle}
+			</Typography>
+			{isVerified && <img src={VerifiedBadge} width='15px' height='15px' />}
 		</Box>
-	);
-};
-
-const PostHeader = ({ username, src }) => {
-	const header = {
-		alignItems: "center",
-		".MuiCardHeader-title": {
-			fontFamily: "Kobe Bold",
-			fontSize: "1.4rem",
-		},
-		".css-sgoict-MuiCardHeader-action": {
-			marginTop: 0,
-		},
-	};
-
-	const cta = theme => ({
-		textTransform: "capitalize",
-		transition: "opacity 500ms ease",
-		"&:hover": {
-			backgroundColor: theme.palette.primary.main,
-			opacity: 0.6,
-		},
-	});
-
-	return (
-		<CardHeader
-			avatar={<CardPicture />}
-			title={
-				<a
-					target='_blank'
-					href={`https://instagram.com/${username}`}
-				>{`@${username}`}</a>
-			}
-			sx={header}
-			action={
-				<Button variant='contained' color='primary' sx={cta}>
-					View post
-				</Button>
-			}
-		/>
-	);
-};
-
-const CardPicture = ({ src }) => {
-	const data = useContext(DataContext);
-
-	return (
-		<Avatar
-			alt='The Eyes and Ears Agency'
-			src={data && data.seo && data.seo.ProfileImage.data.attributes.url}
-		/>
 	);
 };
 
