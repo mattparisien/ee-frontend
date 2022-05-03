@@ -57,6 +57,8 @@ function Media(props) {
 		landscape: 0.5625,
 	};
 
+	console.log(props)
+
 	const aspectRatioConfig = theme => ({
 		overflow: "hidden",
 		width: options && options.width.desktop,
@@ -185,7 +187,7 @@ function Media(props) {
 						)}
 					</ConditionalWrapper>
 
-					{!loaded && <Loader />}
+					{/* {!loaded && <Loader />} */}
 					<Overlay color={overlayColor} />
 					{loaded && <MediaTransition />}
 					{accent && <Accent component={CircleSvg} color={accentColor} />}
