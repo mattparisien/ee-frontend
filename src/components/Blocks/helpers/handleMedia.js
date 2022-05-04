@@ -26,6 +26,7 @@ const handleMedia = async object => {
 	}
 
 	if (object.mediaUpload && object.mediaUpload.media.data) {
+		console.log(object, '.....')
 		const uploads = object.mediaUpload.media.data.map(upload => ({
 			url: upload.attributes.url,
 			alt: upload.attributes.alternativeText,

@@ -13,6 +13,8 @@ import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
 import Video from "./Video";
 import Frame from "../Vector/Frame";
+import ParallaxWrapper from "../HOC/ParallaxWrapper";
+import MediaCaption from "./MediaCaption";
 
 export const MediaContext = createContext();
 
@@ -27,6 +29,7 @@ function Media(props) {
 		zoom,
 		frame,
 		boxHeight,
+		overflowHidden,
 	} = props;
 
 	const classes = classNames("media-wrapper");
@@ -56,8 +59,6 @@ function Media(props) {
 		square: 1,
 		landscape: 0.5625,
 	};
-
-	console.log(props)
 
 	const aspectRatioConfig = theme => ({
 		overflow: "hidden",
@@ -93,6 +94,7 @@ function Media(props) {
 				sx={{
 					width: "100%",
 					height: boxHeight || "100%",
+					overflow: overflowHidden ? "hidden" : "",
 					position: "relative",
 					"img, video": innerComponent,
 				}}
@@ -150,44 +152,35 @@ function Media(props) {
 									)}
 									condition={zoom}
 								>
-									{mediaType && mediaType === "image" && (
-										<Image src={items[0].url} alt={items[0].alt} />
-									)}
-									{mediaType && mediaType === "video" && (
-										<Video src={items[0].url} />
-									)}
-									{mediaType && mediaType === "carousel" && (
-										<Carousel
-											items={items}
-											image={url => <Image src={url} />}
-											video={url => <Video src={url} />}
-										/>
-									)}
+									<Box
+										className='parallax-wrap'
+										data-scroll
+										data-scroll-speed={-1}
+										sx={{ height: "100%" }}
+									>
+										{mediaType && mediaType === "image" && (
+											<Image src={items[0].url} alt={items[0].alt} />
+										)}
+										{mediaType && mediaType === "video" && (
+											<Video src={items[0].url} />
+										)}
+										{mediaType && mediaType === "carousel" && (
+											<Carousel
+												items={items}
+												image={url => <Image src={url} />}
+												video={url => <Video src={url} />}
+											/>
+										)}
+									</Box>
 								</ConditionalWrapper>
 							</ConditionalWrapper>
 						</Box>
 						{options && options.displayCaption && (
-							<Box className='media-caption' m={2}>
-								<Typography
-									variant='body3'
-									fontWeight={400}
-									textAlign='right'
-									sx={{
-										opacity: 0.6,
-
-										display: "flex",
-										alignItems: "center",
-										justifyContent: "flex-end",
-										zIndex: 999,
-									}}
-								>
-									{items[0].caption}
-								</Typography>
-							</Box>
+							<MediaCaption caption={items[0].caption} />
 						)}
 					</ConditionalWrapper>
 
-					{/* {!loaded && <Loader />} */}
+					{!loaded && <Loader />}
 					<Overlay color={overlayColor} />
 					{loaded && <MediaTransition />}
 					{accent && <Accent component={CircleSvg} color={accentColor} />}

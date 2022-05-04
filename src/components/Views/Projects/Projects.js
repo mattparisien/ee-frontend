@@ -15,6 +15,8 @@ function Projects() {
 
 	useEffect(() => {
 		projects[0] && setLoading(false);
+
+		return () => setLoading(true);
 	}, [projects]);
 
 	return (

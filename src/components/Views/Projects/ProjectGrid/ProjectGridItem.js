@@ -86,6 +86,7 @@ function ProjectGridItem({
 			<Box sx={item}>
 				<Box className='item-inner' sx={{ height: "100%" }}>
 					<Media
+						overflowHidden
 						overlayColor={color}
 						items={[
 							{

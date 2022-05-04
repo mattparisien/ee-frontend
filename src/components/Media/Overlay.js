@@ -46,6 +46,7 @@ function Overlay({ color, sx }) {
 				opacity: 0,
 				top: 0,
 				left: 0,
+				zIndex: 9999,
 				backgroundColor: color ? color : theme.palette.primary.colorSet.yellow,
 
 				...sx,

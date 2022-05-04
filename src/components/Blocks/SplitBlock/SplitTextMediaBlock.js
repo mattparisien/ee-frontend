@@ -6,6 +6,9 @@ import Media from "../../Media/Media";
 import SplitBlock from "./SplitBlock";
 
 function SplitTextMediaBlock({ data }) {
+
+	console.log(data)
+
 	return (
 		<SplitBlock
 			leftComponent={

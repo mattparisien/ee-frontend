@@ -21,8 +21,8 @@ function InstaPost({
 }) {
 	const wrapper = {
 		margin: "0 auto",
-		width: "30vw",
-		maxWidth: "20rem",
+		width: "50vw",
+		maxWidth: "30rem",
 	};
 
 	const captionStyles = {
@@ -77,10 +77,10 @@ function InstaPost({
 						displayCaption: false,
 						width: {
 							mobile: "calc(60vw - 2rem)",
-							desktop: "30vw",
+							desktop: "50vw",
 						},
 						maxWidth: {
-							desktop: "20rem",
+							desktop: "30rem",
 							mobile: "100%",
 						},
 					}}
