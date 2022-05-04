@@ -15,7 +15,7 @@ import {
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
-import getParam from "../../Templates/Project/helpers/getParam";
+import getParam from "./helpers/getParam";
 import Next from "./Parts/Next";
 
 export const ProjectContext = createContext();
@@ -101,7 +101,7 @@ function SingleProject({ location }) {
 		}
 	}, [projectId]);
 
-	console.log(project)
+	console.log(project);
 
 	return (
 		<ProjectContext.Provider>
@@ -119,7 +119,7 @@ function SingleProject({ location }) {
 					data={{
 						title: project.title,
 						subtitle: project.subtitle,
-						image: {...project.featureImage}
+						image: { ...project.featureImage },
 					}}
 				/>
 			)}
