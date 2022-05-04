@@ -55,20 +55,13 @@ function Left({ text, cta }) {
 function Right({ media }) {
 	return (
 		<Media
-		boxHeight="auto"
+			aspect='landscape'
+			boxHeight='auto'
 			items={media && media.items}
 			disableContainer
 			options={
 				media && {
 					...media.options,
-					width: {
-						desktop: "50vw",
-						mobile: "100vw",
-					},
-					maxWidth: {
-						desktop: "600px",
-						mobile: "100vw",
-					},
 				}
 			}
 			permalink={media && media.permalink}

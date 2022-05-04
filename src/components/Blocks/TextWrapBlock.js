@@ -3,9 +3,12 @@ import { Box } from "@mui/material";
 import Markdown from "../Markdown/Markdown";
 import Media from "../Media/Media";
 import Cta from "../Link/Cta";
+import useMediaRatio from "../../helpers/hooks/useMediaRatio";
 
 function TextWrapBlock({ data }) {
 	const right = theme => ({
+		width: "30vw",
+
 		position: "relative",
 		paddingBottom: theme.spacing(10),
 		[theme.breakpoints.up("sm")]: {
@@ -15,24 +18,23 @@ function TextWrapBlock({ data }) {
 		},
 	});
 
+	console.log(data);
+
+	const ratio = useMediaRatio(
+		data && data.media.items[0].width,
+		data && data.media.items[0].height
+	);
+
 	return (
 		data && (
 			<Box className='wrapper'>
 				<Box sx={right}>
 					<Media
+						aspect={ratio}
 						frame
 						items={data.media.items}
 						options={{
 							...data.media.options,
-							width: {
-								desktop: "33.3vw",
-								mobile: "calc(100vw - 2rem)",
-							},
-
-							maxWidth: {
-								desktop: "600px",
-								mobile: "100vw",
-							},
 						}}
 					/>
 				</Box>

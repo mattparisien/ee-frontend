@@ -62,10 +62,6 @@ function ProjectGridItem({
 		display: "flex",
 		alignItems: "center",
 
-		[theme.breakpoints.up("md")]: {
-			maxWidth: theme.spacing(30),
-		},
-
 		position: "relative",
 		"&::after": {
 			backgroundColor: "black",
@@ -90,6 +86,7 @@ function ProjectGridItem({
 			<Box sx={item}>
 				<Box className='item-inner' sx={{ height: "100%" }}>
 					<Media
+						boxHeight='100%'
 						disableContainer
 						overflowHidden
 						overlayColor={color}
@@ -101,8 +98,6 @@ function ProjectGridItem({
 							},
 						]}
 					/>
-					{/* <Box component='img' src={image.url} alt={image.alt}></Box> */}
-					{/* <Box className='item-overlay' sx={overlay} ref={overlayRef}></Box> */}
 
 					<Fade
 						enterY={"100%"}

@@ -17,6 +17,14 @@ function HeroBlock({ data }) {
 		},
 	});
 
+	const mediaSize = theme => ({
+		width: "45vw",
+		[theme.breakpoints.up("sm")]: {
+			width: "30vw",
+			maxWidth: theme.spacing(80),
+		},
+	});
+
 	return (
 		<Box sx={splitLayout}>
 			<Box sx={{ flex: 1 }}>
@@ -27,9 +35,11 @@ function HeroBlock({ data }) {
 					<SplitText enterDelay={0.8}>{data.subtitle}</SplitText>
 				</Typography>
 			</Box>
-			<Box>
+			<Box sx={mediaSize}>
 				<Media
 					zoom
+					aspect='portrait'
+					width='100%'
 					items={[
 						{
 							media_type: "image",
@@ -37,16 +47,7 @@ function HeroBlock({ data }) {
 						},
 					]}
 					options={{
-						format: "portrait",
 						displayCaption: true,
-						width: {
-							mobile: "calc(60vw - 2rem)",
-							desktop: "30vw",
-						},
-						maxWidth: {
-							desktop: "25rem",
-							mobile: "100%",
-						},
 					}}
 					accent
 				/>

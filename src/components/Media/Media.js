@@ -1,6 +1,5 @@
 import { Box, Link } from "@mui/material";
 import classNames from "classnames";
-import { motion } from "framer-motion/dist/framer-motion";
 import React, { createContext, useMemo, useState } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
@@ -16,6 +15,11 @@ import Overlay from "./Overlay";
 import Video from "./Video";
 
 export const MediaContext = createContext();
+export const aspects = {
+	portrait: 1.25,
+	square: 1,
+	landscape: 0.5625,
+};
 
 function Media(props) {
 	const {
@@ -30,6 +34,8 @@ function Media(props) {
 		boxHeight,
 		overflowHidden,
 		disableParallax,
+		width,
+		aspect,
 	} = props;
 
 	const classes = classNames("media-wrapper");
@@ -46,39 +52,14 @@ function Media(props) {
 		}
 	}, [items]);
 
-	const aspects = {
-		portrait: 1.25,
-		square: 1,
-		landscape: 0.5625,
-	};
 
-	const aspect = useMemo(() => {
-		if (items && options && !options.format) {
-			const width = items[0].width;
-			const height = items[0].height;
-			const aspect = height / width;
-
-			if (!aspect) {
-				return null;
-			}
-
-			if (aspect >= aspects["portrait"]) {
-				return "portrait";
-			}
-
-			if (aspect <= aspects["square"] && aspect >= aspects["landscape"]) {
-				return "landscape";
-			}
-
-			if (aspect <= aspects["landscape"]) {
-				return "landscape";
-			}
-		}
-	}, [items, options]);
 
 	const innerComponent = {
 		width: "100%",
 		height: "100%",
+		position: "absolute",
+		top: 0,
+		left: 0,
 		objectFit: "cover",
 		objectPosition: "center",
 		filter: options && options.filter && "grayscale(1)",
@@ -86,29 +67,11 @@ function Media(props) {
 
 	const aspectRatioConfig = theme => ({
 		overflow: "hidden",
-		width: options && options.width.desktop,
-		maxWidth: options && options.maxWidth.desktop,
-		height: `calc(${options && options.width.desktop} * ${
-			aspects[!options.format ? aspect : options.format]
-		})`,
-		maxHeight: `calc(${options && options.maxWidth.desktop} * ${
-			aspects[!options.format ? aspect : options.format]
-		})`,
+		width: width || "100%",
+		paddingTop: `${aspects[aspect ? aspect : "square"] * 100}%` || "100%",
 		position: "relative",
-		".react-reveal": {
-			height: "100%",
-		},
 
-		[theme.breakpoints.down("sm")]: {
-			maxWidth: options && options.maxWidth.mobile,
-			width: options && options.width.mobile,
-			maxHeight: "100%",
-			height: `calc(${options && options.width.mobile} * ${
-				aspects[!options.format ? aspect : options.format]
-			})`,
-		},
-
-		"img, video": innerComponent,
+		"img, video, .swiper": innerComponent,
 	});
 
 	return (
@@ -117,7 +80,7 @@ function Media(props) {
 				className={classes}
 				sx={{
 					width: "100%",
-					height: boxHeight || "100%",
+					height: boxHeight || `calc(100% + 2rem)`,
 					overflow: overflowHidden ? "hidden" : "",
 					position: "relative",
 					"img, video": innerComponent,
@@ -141,7 +104,7 @@ function Media(props) {
 					>
 						<Box
 							sx={
-								!options ? { width: "100%", height: "100%" } : aspectRatioConfig
+								!aspect ? { width: "100%", height: "100%" } : aspectRatioConfig
 							}
 							className='aspect-wrap'
 						>
@@ -151,10 +114,10 @@ function Media(props) {
 								)}
 								condition={options && options.linkable && permalink}
 							>
-								<ConditionalWrapper
+								{/* <ConditionalWrapper
 									wrapper={children => (
 										<motion.div
-											style={{ height: "100%" }}
+											style={{ height: "100%", width: '100%' }}
 											initial={{ scale: 1.2 }}
 											animate={{
 												scale: 1,
@@ -175,21 +138,21 @@ function Media(props) {
 										</motion.div>
 									)}
 									condition={zoom}
-								>
-									{mediaType && mediaType === "image" && (
-										<Image src={items[0].url} alt={items[0].alt} />
-									)}
-									{mediaType && mediaType === "video" && (
-										<Video src={items[0].url} />
-									)}
-									{mediaType && mediaType === "carousel" && (
-										<Carousel
-											items={items}
-											image={url => <Image src={url} />}
-											video={url => <Video src={url} />}
-										/>
-									)}
-								</ConditionalWrapper>
+								> */}
+								{mediaType && mediaType === "image" && (
+									<Image src={items[0].url} alt={items[0].alt} />
+								)}
+								{mediaType && mediaType === "video" && (
+									<Video src={items[0].url} />
+								)}
+								{mediaType && mediaType === "carousel" && (
+									<Carousel
+										items={items}
+										image={url => <Image src={url} />}
+										video={url => <Video src={url} />}
+									/>
+								)}
+								{/* </ConditionalWrapper> */}
 							</ConditionalWrapper>
 						</Box>
 						{options && options.displayCaption && (

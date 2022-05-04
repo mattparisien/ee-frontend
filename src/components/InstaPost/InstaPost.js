@@ -72,8 +72,8 @@ function InstaPost({
 					target='_blank'
 				/>
 				<Media
+					aspect={aspect}
 					options={{
-						format: aspect && aspect,
 						displayCaption: false,
 						width: {
 							mobile: "calc(60vw - 2rem)",

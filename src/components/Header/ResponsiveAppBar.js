@@ -31,7 +31,7 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 	});
 
 	const logoWrap = theme => ({
-		width: "150px",
+		width: "120px",
 		svg: {
 			transition: "fill 200ms ease",
 			fill: theme.palette.primary[menuActive ? "light" : "dark"],
@@ -42,9 +42,6 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 		width: "20rem",
 		[theme.breakpoints.down("md")]: {
 			width: "10rem",
-		},
-		[theme.breakpoints.down("sm")]: {
-			display: "none",
 		},
 	});
 
