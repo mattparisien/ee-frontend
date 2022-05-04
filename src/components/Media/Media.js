@@ -157,7 +157,9 @@ function Media(props) {
 										className='parallax-wrap'
 										data-scroll
 										data-scroll-speed={props.disableParallax ? 1 : -1}
-										sx={{ height: "100%", transform: `scale(1.1)` }}
+										sx={{ height: "100%", "img, video": {
+											transform: "scale(1.3)"
+										} }}
 									>
 										{mediaType && mediaType === "image" && (
 											<Image src={items[0].url} alt={items[0].alt} />
