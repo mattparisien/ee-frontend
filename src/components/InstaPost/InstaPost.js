@@ -1,13 +1,14 @@
-import React, { useMemo } from "react";
-import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import {
-	Card,
-	CardHeader,
 	Avatar,
-	CardActions,
-	Typography,
 	Box,
+	Card,
+	CardActions,
+	CardHeader,
+	Typography,
 } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import useMediaRatio from "../../helpers/hooks/useMediaRatio";
+import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Media from "../Media/Media";
 import VerifiedBadge from "./assets/verified.png";
 
@@ -19,39 +20,55 @@ function InstaPost({
 	profileImage,
 	isVerified,
 }) {
-	const wrapper = {
+	const [dimensions, setDimensions] = useState({
+		width: null,
+		height: null,
+	});
+
+	const ratio = useMediaRatio(dimensions.width, dimensions.height);
+
+	useEffect(() => {
+		if (items && items[0].url && !dimensions.width) {
+			if (items[0].media_type === "image") {
+				const img = new Image();
+				img.src = items[0].url;
+				img.onload = () => {
+					setDimensions({
+						height: img.height,
+						width: img.width,
+					});
+				};
+			} else if (items[0].media_type === "video") {
+				const video = document.createElement("video");
+				video.src = items[0].url;
+
+				video.onloadeddata = () => {
+					setDimensions({
+						height: video.videoHeight,
+						width: video.videoWidth,
+					});
+				};
+			}
+		}
+	}, [items]);
+
+	const wrapper = theme => ({
 		margin: "0 auto",
-		width: "50vw",
-		maxWidth: "30rem",
-	};
+
+		width: "calc(100vw - 2rem)",
+		[theme.breakpoints.up("sm")]: {
+			width: "50vw",
+			maxWidth: "30rem",
+		},
+	});
 
 	const captionStyles = {
+		height: "100%",
 		"mask-image":
 			"linear-gradient(transparent, black 90%, black 100%, transparent 100%)",
 		"-webkit-mask-image":
 			"-webkit-gradient(linear, left top, left bottom,  from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))",
 	};
-
-	const aspect = useMemo(() => {
-		if (items) {
-			const width = items[0].width;
-			const height = items[0].height;
-			const ratio =
-				width && height ? Math.round((width / height) * 10) / 10 : null;
-
-			if (!ratio) {
-				return "portrait";
-			}
-
-			if (ratio === 1) {
-				return "square";
-			} else if (ratio === 0.8) {
-				return "portrait";
-			} else if (ratio === 0.5) {
-				return "landscape";
-			}
-		}
-	}, [items]);
 
 	return (
 		<ConditionalWrapper
@@ -64,6 +81,7 @@ function InstaPost({
 		>
 			<Card className='InstaPost' sx={wrapper}>
 				<CardHeader
+					sx={{ height: "4rem" }}
 					className='InstaPost_header'
 					avatar={<Avatar src={profileImage.url} alt={profileImage.alt} />}
 					title={<Title handle={handle} isVerified={isVerified} />}
@@ -72,7 +90,7 @@ function InstaPost({
 					target='_blank'
 				/>
 				<Media
-					aspect={aspect}
+					aspect={ratio}
 					options={{
 						displayCaption: false,
 						width: {
@@ -87,9 +105,12 @@ function InstaPost({
 					items={items}
 				/>
 				{caption && (
-					<CardActions className='InstaPost_caption'>
+					<CardActions
+						className='InstaPost_caption'
+						sx={{ height: "5rem", overflow: "hidden" }}
+					>
 						<Typography variant='body3' sx={captionStyles}>
-							{caption.slice(0, 100)}...
+							{caption}
 						</Typography>
 					</CardActions>
 				)}
