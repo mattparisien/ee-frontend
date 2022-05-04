@@ -51,7 +51,7 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 		isPresent &&
 			setTimeout(() => {
 				setNavItemsReady(!navItemsReady);
-			}, 300);
+			}, 100);
 
 		return () => {
 			setNavItemsReady(!navItemsReady);
@@ -65,16 +65,15 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 		visible: {
 			y: 0,
 			transition: {
-				ease: "anticipate",
-				duration: 1.2,
+				ease: [0.645, 0.045, 0.355, 1],
+				duration: 0.6,
 			},
 		},
 		exit: {
 			y: "-100%",
 			transition: {
-				ease: "anticipate",
-				duration: 1.3,
-				delay: 0.4,
+				ease: [0.645, 0.045, 0.355, 1],
+				duration: 0.6,
 			},
 		},
 	};
@@ -116,7 +115,7 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 												},
 											})}
 										>
-											<SplitText>{item.name}</SplitText>
+											{item.name}
 										</Typography>
 									)}
 								</Link>

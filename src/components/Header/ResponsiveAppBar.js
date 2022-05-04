@@ -7,13 +7,14 @@ import {
 	List,
 	ListItem,
 	ListItemText,
-	Toolbar
+	Toolbar,
 } from "@mui/material";
 import React from "react";
 import Container from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
 // import List from "../Lists/List";
 import { TextLogo } from "../Vector/Svg";
+import Burger from "./Burger";
 
 function ResponsiveAppBar({
 	toggleTransitioning,
@@ -22,8 +23,6 @@ function ResponsiveAppBar({
 	onBurgerClick,
 	color,
 }) {
-	
-
 	const wrapper = theme => ({
 		zIndex: 99999999,
 		transition: "background 200ms ease",
@@ -128,6 +127,7 @@ function ResponsiveAppBar({
 					<Box
 						className='mobile-nav'
 						sx={theme => ({
+							height: "50%",
 							width: "10rem",
 							display: "flex",
 							justifyContent: "flex-end",
@@ -142,35 +142,6 @@ function ResponsiveAppBar({
 				</Toolbar>
 			</Container>
 		</AppBar>
-	);
-}
-
-function Burger({ menuActive, onBurgerClick }) {
-	const burgerBtn = theme => ({
-		display: "none",
-		paddingRight: 0,
-		svg: {
-			fill: theme.palette.primary[menuActive ? "light" : "dark"],
-			transition: "fill 200ms ease",
-		},
-		[theme.breakpoints.down("md")]: {
-			display: "block",
-		},
-	});
-
-	return (
-		<IconButton
-			sx={burgerBtn}
-			onClick={onBurgerClick}
-			data-testid={"menuBtn"}
-			disableRipple
-		>
-			{menuActive ? (
-				<CloseIcon data-testid='close' />
-			) : (
-				<MenuIcon data-testid='burger' />
-			)}
-		</IconButton>
 	);
 }
 
