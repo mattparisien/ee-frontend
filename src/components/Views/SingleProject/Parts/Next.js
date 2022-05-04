@@ -33,8 +33,6 @@ function Next({ color, currentProjectId, projects }) {
 		}
 	}, [next]);
 
-	console.log("hello!!!!");
-
 	return (
 		<>
 			{next && (

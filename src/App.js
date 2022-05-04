@@ -218,16 +218,23 @@ function App() {
 				<HelmetProvider>
 					<Helmet>
 						<html lang='en' />
-						<title>The Eyes & Ears Agency</title>
+						<title>The Eyes and Ears Agency</title>
+						<meta property='og:type' content='website' />
+						<meta property='og:title' content='The Eyes & Ears Agency' />
 						<meta
 							name='description'
 							content='
-The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
+The Eyes and Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
 
 '
 						/>
-						<meta content='The Eyes & Ears Agency' property='og:title' />
-						<meta property='og:type' content='website' />
+						<meta property='og:title' content='The Eyes and Ears Agency' />
+						<meta
+							property='og:url'
+							content='https://www.eyesandearsagency.com/'
+						/>
+						<meta property='og:site_name' content='The Eyes and Ears Agency' />
+						<link rel='canonical' href='https://www.eyesandearsagency.com/' />
 					</Helmet>
 
 					{<LoadingScreen isActive={loading} />}

@@ -1,9 +1,6 @@
 import getInstaData from "./getInstaData";
 
 const handleMedia = async object => {
-
-	console.log('the object..', object)
-
 	if (!object) {
 		return null;
 	}

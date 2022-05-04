@@ -5,8 +5,6 @@ import { useMediaQuery } from "@mui/material";
 function GalleryBlock({ data }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
 
-	console.log('gallery block data', data)
-
 	return (
 		<ImageList
 			variant={data.images.variant}

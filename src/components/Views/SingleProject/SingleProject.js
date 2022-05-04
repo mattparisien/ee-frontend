@@ -4,13 +4,13 @@ import React, {
 	useContext,
 	useEffect,
 	useMemo,
-	useState
+	useState,
 } from "react";
 import { Helmet } from "react-helmet-async";
 import {
 	ColorContext,
 	DataContext,
-	GlobalContext
+	GlobalContext,
 } from "../../../context/Context";
 import { shuffleColors } from "../../../helpers/shuffleColors";
 import Block from "../../Blocks/Block";
@@ -28,8 +28,6 @@ function SingleProject({ location }) {
 	const { setCurrentColor } = useContext(ColorContext);
 	const { setLoading, setError } = useContext(GlobalContext);
 	const { projects } = useContext(DataContext);
-
-	console.log("hiiiiii");
 
 	const projectId = useMemo(() => {
 		if (location && projects[0]) {
@@ -72,9 +70,11 @@ function SingleProject({ location }) {
 							subtitle: data.data.attributes.Subtitle,
 							featureImage: {
 								url: data.data.attributes.FeatureImage.data.attributes.formats
-									.medium ? data.data.attributes.FeatureImage.data.attributes.formats
-									.medium.url : data.data.attributes.FeatureImage.data.attributes.formats
-									.small.url,
+									.medium
+									? data.data.attributes.FeatureImage.data.attributes.formats
+											.medium.url
+									: data.data.attributes.FeatureImage.data.attributes.formats
+											.small.url,
 								alt: data.data.attributes.FeatureImage.data.attributes
 									.alternativeText,
 								caption:

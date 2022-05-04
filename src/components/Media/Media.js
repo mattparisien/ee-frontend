@@ -1,20 +1,19 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import classNames from "classnames";
 import { motion } from "framer-motion/dist/framer-motion";
 import React, { createContext, useMemo, useState } from "react";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Container from "../Containers/ContainerFluid";
 import CircleSvg from "../Vector/Circle";
+import Frame from "../Vector/Frame";
 import Accent from "./Accent";
 import Carousel from "./Carousel";
 import Image from "./Image";
 import Loader from "./Loader";
+import MediaCaption from "./MediaCaption";
 import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
 import Video from "./Video";
-import Frame from "../Vector/Frame";
-import ParallaxWrapper from "../HOC/ParallaxWrapper";
-import MediaCaption from "./MediaCaption";
 
 export const MediaContext = createContext();
 
