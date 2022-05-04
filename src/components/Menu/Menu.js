@@ -1,19 +1,50 @@
-import { Box, List, ListItem, Typography, useMediaQuery } from "@mui/material";
+import { Box, List, ListItem, Typography, useTheme } from "@mui/material";
 import classNames from "classnames";
-import { motion, useIsPresent } from "framer-motion/dist/framer-motion";
-import React, { useEffect, useState } from "react";
-import variables from "../../styles/scss/_vars.module.scss";
+import React, { useEffect } from "react";
+import useResize from "../../helpers/hooks/useResize";
 import ContainerFluid from "../Containers/ContainerFluid";
-import SplitText from "../HOC/SplitText";
 import Link from "../Link/Link";
 import SocialList from "../Lists/SocialList";
-import useResize from "../../helpers/hooks/useResize";
-import { useTheme } from "@mui/material";
 
 function Menu({ menuActive, navItems, toggleMenu }) {
-	const matches = useMediaQuery(
-		`(min-width: ${variables["breakpoints-tablet"]}px)`
-	);
+	const menuStyles = theme => ({
+		position: "fixed",
+		top: 0,
+		transition: "visibility .8s",
+		visibility: menuActive ? "visible" : "hidden",
+		left: 0,
+		width: "100%",
+		height: "60vh",
+		zIndex: 9999,
+		"&::before": {
+			content: '""',
+			backgroundColor: theme.palette.primary.dark,
+			width: "100%",
+			height: "100%",
+			position: "absolute",
+			top: 0,
+			left: 0,
+			transformOrigin: "center top",
+			transition: "transform .6s cubic-bezier(.645,.045,.355,1)",
+			transform: `scaleY(${menuActive ? 1 : 0})`,
+		},
+		a: {
+			transition:
+				"opacity .3s cubic-bezier(.55,.055,.675,.19),transform .3s cubic-bezier(.55,.055,.675,.19)",
+			transitionTimingFunction: "cubic-bezier(.215,.61,.355,1)",
+			transform: `translateY(${menuActive ? "0" : "100%"})`,
+			opacity: menuActive ? 1 : 0,
+		},
+		"li:first-of-type a": {
+			transitionDelay: menuActive ? "0.27s" : 0,
+		},
+		"li:nth-of-type(2) a": {
+			transitionDelay: menuActive ? "0.34s" : 0,
+		},
+		"li:nth-of-type(3) a": {
+			transitionDelay: menuActive ? "0.41s" : 0,
+		},
+	});
 
 	const classes = classNames("c-menu", {
 		"is-active": menuActive,
@@ -21,10 +52,6 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 
 	const theme = useTheme();
 	const [windowWidth] = useResize();
-
-	const [navItemsReady, setNavItemsReady] = useState(false);
-
-	const isPresent = useIsPresent();
 
 	const imageOverlayWrap = {
 		position: "absolute",
@@ -43,50 +70,16 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 		if (theme) {
 			const breakpoint = theme.breakpoints.values.md;
 
-			windowWidth > breakpoint && toggleMenu();
+			windowWidth > breakpoint && menuActive && toggleMenu();
 		}
 	}, [theme, windowWidth]);
 
-	useEffect(() => {
-		isPresent &&
-			setTimeout(() => {
-				setNavItemsReady(!navItemsReady);
-			}, 100);
-
-		return () => {
-			setNavItemsReady(!navItemsReady);
-		};
-	}, [isPresent]);
-
-	const variants = {
-		hidden: {
-			y: "-100%",
-		},
-		visible: {
-			y: 0,
-			transition: {
-				ease: [0.645, 0.045, 0.355, 1],
-				duration: 0.6,
-			},
-		},
-		exit: {
-			y: "-100%",
-			transition: {
-				ease: [0.645, 0.045, 0.355, 1],
-				duration: 0.6,
-			},
-		},
-	};
-
 	return (
-		<motion.div
-			className={classes}
-			variants={variants}
-			animate='visible'
-			exit='exit'
-			initial='hidden'
-		>
-			<ContainerFluid classes={"-stretchY"}>
+		<Box className={classes} sx={menuStyles}>
+			<ContainerFluid
+				classes={"-stretchY"}
+				sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+			>
 				<List data-testid='menu'>
 					{navItems &&
 						navItems.map((item, i) => (
@@ -97,27 +90,21 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 								}}
 							>
 								<Link isRouterLink href={item.path} onClick={toggleMenu}>
-									{navItemsReady && (
-										<Typography
-											component='span'
-											variant='h1'
-											sx={theme => ({
-												color: theme.palette.primary.light,
-												fontSize: "19vw !important",
-												[theme.breakpoints.up("md")]: {
-													fontSize: "10rem !important",
+									<Typography
+										variant='h1'
+										sx={theme => ({
+											color: theme.palette.primary.light,
+
+											transition: "color 400ms ease",
+											"@media (hover: hover)": {
+												"&:hover": {
+													color: theme.palette.primary.yellow,
 												},
-												transition: "color 400ms ease",
-												"@media (hover: hover)": {
-													"&:hover": {
-														color: theme.palette.primary.yellow,
-													},
-												},
-											})}
-										>
-											{item.name}
-										</Typography>
-									)}
+											},
+										})}
+									>
+										{item.name}
+									</Typography>
 								</Link>
 							</ListItem>
 						))}
@@ -145,7 +132,7 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 					}}
 				></Box>
 			</Box>
-		</motion.div>
+		</Box>
 	);
 }
 

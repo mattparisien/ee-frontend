@@ -16,13 +16,7 @@ import Link from "../Link/Link";
 import { TextLogo } from "../Vector/Svg";
 import Burger from "./Burger";
 
-function ResponsiveAppBar({
-	toggleTransitioning,
-	navItems,
-	menuActive,
-	onBurgerClick,
-	color,
-}) {
+function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 	const wrapper = theme => ({
 		zIndex: 99999999,
 		transition: "background 200ms ease",
@@ -48,6 +42,9 @@ function ResponsiveAppBar({
 		width: "20rem",
 		[theme.breakpoints.down("md")]: {
 			width: "10rem",
+		},
+		[theme.breakpoints.down("sm")]: {
+			display: "none",
 		},
 	});
 
