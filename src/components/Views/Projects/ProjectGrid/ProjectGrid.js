@@ -151,7 +151,7 @@ function Row({ children, align, gutter, height }) {
 		position: "sticky",
 		alignItems: align,
 		marginBottom: gutter,
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("md")]: {
 			height: "65vw",
 			marginBottom: "2rem",
 		},

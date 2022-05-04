@@ -30,6 +30,8 @@ function SingleProject({ location }) {
 	const { setLoading, setError } = useContext(GlobalContext);
 	const { projects } = useContext(DataContext);
 
+	console.log("hiiiiii");
+
 	const projectId = useMemo(() => {
 		if (location && projects[0]) {
 			const param = getParam(location.pathname);

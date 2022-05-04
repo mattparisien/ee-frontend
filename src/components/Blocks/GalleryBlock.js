@@ -5,7 +5,7 @@ import { useMediaQuery } from "@mui/material";
 function GalleryBlock({ data }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
 
-	console.log(data)
+	console.log('gallery block data', data)
 
 	return (
 		<ImageList
@@ -17,7 +17,7 @@ function GalleryBlock({ data }) {
 				return (
 					<ImageListItem key={i}>
 						<img
-							src={image.attributes.url}
+							src={image.attributes.formats.medium.url}
 							alt={image.attributes.alternativeText}
 						/>
 					</ImageListItem>

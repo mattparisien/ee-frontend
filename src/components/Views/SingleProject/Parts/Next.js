@@ -1,12 +1,7 @@
-import { applyNextFetchPolicy, useQuery } from "@apollo/client";
 import { Box, Typography } from "@mui/material";
 import React, { useMemo } from "react";
-import Marquee from "react-fast-marquee";
-import NEXTPROJECT from "../../../../api/graphql/queries/GetNextProject";
-import PROJECTS from "../../../../api/graphql/queries/GetProjects";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
-import SplitText from "../../../HOC/SplitText";
 import Link from "../../../Link/Link";
 import Arrow from "../../../Vector/Arrow";
 import getNextId from "../helpers/getNextId";
@@ -37,6 +32,8 @@ function Next({ color, currentProjectId, projects }) {
 			return array;
 		}
 	}, [next]);
+
+	console.log("hello!!!!");
 
 	return (
 		<>
@@ -118,4 +115,4 @@ function Next({ color, currentProjectId, projects }) {
 	);
 }
 
-export default Next;
+export default React.memo(Next);

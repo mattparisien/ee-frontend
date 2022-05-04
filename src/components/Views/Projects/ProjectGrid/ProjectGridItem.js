@@ -43,7 +43,7 @@ function ProjectGridItem({
 
 		position: "relative",
 
-		[theme.breakpoints.down("sm")]: {
+		[theme.breakpoints.down("md")]: {
 			width: "100%",
 			height: `calc(((100vw - 2rem) * 0.5625) + 1rem)`,
 			marginTop: 0,
