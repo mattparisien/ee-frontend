@@ -62,6 +62,10 @@ function ProjectGridItem({
 		display: "flex",
 		alignItems: "center",
 
+		[theme.breakpoints.up("md")]: {
+			maxWidth: theme.spacing(30),
+		},
+
 		position: "relative",
 		"&::after": {
 			backgroundColor: "black",
