@@ -1,6 +1,9 @@
 import getInstaData from "./getInstaData";
 
 const handleMedia = async object => {
+
+	console.log('the object..', object)
+
 	if (!object) {
 		return null;
 	}
@@ -26,9 +29,10 @@ const handleMedia = async object => {
 	}
 
 	if (object.mediaUpload && object.mediaUpload.media.data) {
-		console.log(object, '.....')
 		const uploads = object.mediaUpload.media.data.map(upload => ({
-			url: upload.attributes.url,
+			url: upload.attributes.formats
+				? upload.attributes.formats.medium.url
+				: upload.attributes.url,
 			alt: upload.attributes.alternativeText,
 			caption: upload.attributes.caption,
 			media_type: upload.attributes.providerMetadata.resourceType,
