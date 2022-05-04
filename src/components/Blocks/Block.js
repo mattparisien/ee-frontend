@@ -20,7 +20,11 @@ function Block(props) {
 	useEffect(() => {
 		let container = true;
 
-		if (props.name.startsWith("FullBleed")) {
+		if (
+			props.name.startsWith("FullBleed") &&
+			props.data.options &&
+			!props.data.options.inset
+		) {
 			container = false;
 		}
 
@@ -53,7 +57,7 @@ function Block(props) {
 	});
 
 	return (
-		<BlockContext.Provider value={{ theme: state.theme }}>
+		<BlockContext.Provider value={{...state}}>
 			<Section
 				sectionTheme={state.theme}
 				disableMarginTop={!state.marginTop}
