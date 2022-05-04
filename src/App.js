@@ -1,5 +1,6 @@
-import { useQuery } from "@apollo/client";
 import { ThemeProvider } from "@mui/material";
+import useAxios from "axios-hooks";
+import camelcaseKeys from "camelcase-keys";
 import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
@@ -7,7 +8,6 @@ import $ from "jquery";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
-import PROJECTS from "./api/graphql/queries/GetProjects";
 import Cursor from "./components/Cursor/Cursor";
 import Error from "./components/Error/Error";
 import Footer from "./components/Footer/Footer";
@@ -20,8 +20,6 @@ import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
-import useAxios from "axios-hooks";
-import camelcaseKeys from "camelcase-keys";
 
 function App() {
 	const scrollWrapper = useRef(null);

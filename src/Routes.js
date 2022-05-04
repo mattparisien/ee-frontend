@@ -1,11 +1,7 @@
-import { useQuery } from "@apollo/client";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import PAGES from "./api/graphql/queries/GetPages";
 import View from "./components/Containers/View";
-import keysToCamelCase from "./helpers/keysToCamelCase";
-import useAxios from "axios-hooks";
 
 function SiteRoutes(props) {
 	const { location } = props;

@@ -5,8 +5,10 @@ import { useLocomotiveScroll } from "react-locomotive-scroll";
 import FOOTER from "../../api/graphql/queries/static/GetFooter";
 // import { StyledFooter } from "./styles";
 import ContainerFluid from "../Containers/ContainerFluid";
-import { DrawnLogo } from "../Vector/Svg";
+import Scale from "../HOC/Scale";
+import SplitText from "../HOC/SplitText";
 import SocialList from "../Lists/SocialList";
+import { DrawnLogo } from "../Vector/Svg";
 import {
 	bottom,
 	boxStyles,
@@ -14,11 +16,8 @@ import {
 	drawnLogo,
 	footer,
 	spacer,
-	wrap,
+	wrap
 } from "./styles/styles";
-import SplitText from "../HOC/SplitText";
-import Scale from "../HOC/Scale";
-import Fade from "../HOC/Fade";
 
 export default function Footer(props) {
 	const [info, setInfo] = useState(null);

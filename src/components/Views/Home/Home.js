@@ -3,17 +3,11 @@ import { Box } from "@mui/material";
 import gsap from "gsap";
 import IntertiaPLugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import React, { useEffect, useState, useContext } from "react";
-import { GlobalContext } from "../../../context/Context";
+import React, { useContext, useEffect, useState } from "react";
 import STATICHOME from "../../../api/graphql/queries/static/GetStaticHome";
-import Container from "../../Containers/ContainerFluid";
-import Section from "../../Containers/Section";
-import Stories from "../../Stories/Stories";
-import About from "./Parts/About";
-import Hero from "./Parts/Hero";
-import How from "./Parts/Steps/How";
-import Work from "./Parts/Work";
+import { GlobalContext } from "../../../context/Context";
 import Scale from "../../HOC/Scale";
+import Hero from "./Parts/Hero";
 
 function Home({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -72,38 +66,6 @@ function Home({ pageHeading, location }) {
 	return (
 		<>
 			<Hero pageHeading={pageHeading} />
-			{/* <About aboutText={staticData.about} />
-			<How steps={staticData.steps} />
-
-			<Work projects={staticData.featuredWork} />
-
-			<Section
-				classes='o-stories -flex -align-center -justify-center'
-				data-theme='light'
-			>
-				<Container>
-					<Box pt={10} pb={10} sx={{ position: "relative" }}>
-						<QuoteSvg
-							sx={{
-								width: "14vw",
-
-								mixBlendMode: "multiply",
-							}}
-						/>
-						<Stories slides={staticData.testimonials} withFrame />
-
-						<QuoteSvg
-							sx={{
-								width: "14vw",
-								marginLeft: "auto",
-								zIndex: 999,
-								mixBlendMode: "multiply",
-								transform: "rotate(180deg)",
-							}}
-						/>
-					</Box>
-				</Container>
-			</Section> */}
 		</>
 	);
 }

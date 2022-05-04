@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import Header from "../Header/Header";
-import Menu from "../Menu/Menu";
 import { useQuery } from "@apollo/client";
+import React, { useEffect } from "react";
 import NAVIGATION from "../../api/graphql/queries/GetNavigation";
+import Header from "../Header/Header";
 
 function Navigation(props) {
 	const { loading, error, data } = useQuery(NAVIGATION);
