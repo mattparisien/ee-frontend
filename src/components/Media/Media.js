@@ -176,31 +176,19 @@ function Media(props) {
 									)}
 									condition={zoom}
 								>
-									<Box
-										className='parallax-wrap'
-										data-scroll
-										data-scroll-speed={props.disableParallax ? 1 : -1}
-										sx={{
-											height: "100%",
-											"img, video": {
-												transform: "scale(1.2)",
-											},
-										}}
-									>
-										{mediaType && mediaType === "image" && (
-											<Image src={items[0].url} alt={items[0].alt} />
-										)}
-										{mediaType && mediaType === "video" && (
-											<Video src={items[0].url} />
-										)}
-										{mediaType && mediaType === "carousel" && (
-											<Carousel
-												items={items}
-												image={url => <Image src={url} />}
-												video={url => <Video src={url} />}
-											/>
-										)}
-									</Box>
+									{mediaType && mediaType === "image" && (
+										<Image src={items[0].url} alt={items[0].alt} />
+									)}
+									{mediaType && mediaType === "video" && (
+										<Video src={items[0].url} />
+									)}
+									{mediaType && mediaType === "carousel" && (
+										<Carousel
+											items={items}
+											image={url => <Image src={url} />}
+											video={url => <Video src={url} />}
+										/>
+									)}
 								</ConditionalWrapper>
 							</ConditionalWrapper>
 						</Box>

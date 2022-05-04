@@ -12,7 +12,7 @@ function Cta({ children, target, href }) {
 		alignItems: "center",
 		justifyContent: "flex-start",
 		"&:hover::after": {
-			transform: `scale(1.6)translateY(-30%)`,
+			transform: `translateY(-30%)`,
 			transformOrigin: "center",
 		},
 		"&:hover .inner": {

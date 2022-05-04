@@ -27,9 +27,7 @@ const handleMedia = async object => {
 
 	if (object.mediaUpload && object.mediaUpload.media.data) {
 		const uploads = object.mediaUpload.media.data.map(upload => ({
-			url: upload.attributes.formats
-				? upload.attributes.formats.medium.url
-				: upload.attributes.url,
+			url: upload.attributes.url,
 			alt: upload.attributes.alternativeText,
 			caption: upload.attributes.caption,
 			media_type: upload.attributes.providerMetadata.resourceType,
