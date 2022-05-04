@@ -33,6 +33,8 @@ const handleMedia = async object => {
 			alt: upload.attributes.alternativeText,
 			caption: upload.attributes.caption,
 			media_type: upload.attributes.providerMetadata.resourceType,
+			width: upload.attributes.width,
+			height: upload.attributes.height,
 		}));
 
 		newObj.media.push(...uploads);

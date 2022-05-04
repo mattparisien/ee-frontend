@@ -69,16 +69,14 @@ function SingleProject({ location }) {
 							title: data.data.attributes.Title,
 							subtitle: data.data.attributes.Subtitle,
 							featureImage: {
-								url: data.data.attributes.FeatureImage.data.attributes.formats
-									.medium
-									? data.data.attributes.FeatureImage.data.attributes.formats
-											.medium.url
-									: data.data.attributes.FeatureImage.data.attributes.formats
-											.small.url,
+								url: data.data.attributes.FeatureImage.data.attributes.url,
 								alt: data.data.attributes.FeatureImage.data.attributes
 									.alternativeText,
 								caption:
 									data.data.attributes.FeatureImage.data.attributes.caption,
+								width: data.data.attributes.FeatureImage.data.attributes.width,
+								height:
+									data.data.attributes.FeatureImage.data.attributes.height,
 							},
 							blocks: [
 								...prev.blocks,
@@ -103,6 +101,8 @@ function SingleProject({ location }) {
 		}
 	}, [projectId]);
 
+	console.log(project)
+
 	return (
 		<ProjectContext.Provider>
 			<Helmet>
@@ -119,11 +119,7 @@ function SingleProject({ location }) {
 					data={{
 						title: project.title,
 						subtitle: project.subtitle,
-						image: {
-							url: project.featureImage.url,
-							alt: project.featureImage.alt,
-							caption: project.featureImage.caption,
-						},
+						image: {...project.featureImage}
 					}}
 				/>
 			)}

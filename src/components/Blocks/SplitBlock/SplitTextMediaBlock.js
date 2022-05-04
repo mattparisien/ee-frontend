@@ -21,6 +21,11 @@ function SplitTextMediaBlock({ data }) {
 				alignItems: "center",
 				justifyContent: "center",
 			}}
+			rightStyles={{
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+			}}
 		/>
 	);
 }
@@ -50,6 +55,7 @@ function Left({ text, cta }) {
 function Right({ media }) {
 	return (
 		<Media
+		boxHeight="auto"
 			items={media && media.items}
 			disableContainer
 			options={

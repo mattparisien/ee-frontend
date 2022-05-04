@@ -46,6 +46,36 @@ function Media(props) {
 		}
 	}, [items]);
 
+	const aspects = {
+		portrait: 1.25,
+		square: 1,
+		landscape: 0.5625,
+	};
+
+	const aspect = useMemo(() => {
+		if (items && options && !options.format) {
+			const width = items[0].width;
+			const height = items[0].height;
+			const aspect = height / width;
+
+			if (!aspect) {
+				return null;
+			}
+
+			if (aspect >= aspects["portrait"]) {
+				return "portrait";
+			}
+
+			if (aspect <= aspects["square"] && aspect >= aspects["landscape"]) {
+				return "landscape";
+			}
+
+			if (aspect <= aspects["landscape"]) {
+				return "landscape";
+			}
+		}
+	}, [items, options]);
+
 	const innerComponent = {
 		width: "100%",
 		height: "100%",
@@ -54,21 +84,15 @@ function Media(props) {
 		filter: options && options.filter && "grayscale(1)",
 	};
 
-	const aspects = {
-		portrait: 1.25,
-		square: 1,
-		landscape: 0.5625,
-	};
-
 	const aspectRatioConfig = theme => ({
 		overflow: "hidden",
 		width: options && options.width.desktop,
 		maxWidth: options && options.maxWidth.desktop,
 		height: `calc(${options && options.width.desktop} * ${
-			aspects[options && options.format]
+			aspects[!options.format ? aspect : options.format]
 		})`,
 		maxHeight: `calc(${options && options.maxWidth.desktop} * ${
-			aspects[options && options.format]
+			aspects[!options.format ? aspect : options.format]
 		})`,
 		position: "relative",
 		".react-reveal": {
@@ -80,7 +104,7 @@ function Media(props) {
 			width: options && options.width.mobile,
 			maxHeight: "100%",
 			height: `calc(${options && options.width.mobile} * ${
-				aspects[options && options.format]
+				aspects[!options.format ? aspect : options.format]
 			})`,
 		},
 
@@ -156,9 +180,12 @@ function Media(props) {
 										className='parallax-wrap'
 										data-scroll
 										data-scroll-speed={props.disableParallax ? 1 : -1}
-										sx={{ height: "100%", "img, video": {
-											transform: "scale(1.3)"
-										} }}
+										sx={{
+											height: "100%",
+											"img, video": {
+												transform: "scale(1.2)",
+											},
+										}}
 									>
 										{mediaType && mediaType === "image" && (
 											<Image src={items[0].url} alt={items[0].alt} />

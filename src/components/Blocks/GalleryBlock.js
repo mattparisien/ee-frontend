@@ -15,7 +15,7 @@ function GalleryBlock({ data }) {
 				return (
 					<ImageListItem key={i}>
 						<img
-							src={image.attributes.formats.medium.url}
+							src={image.attributes.url}
 							alt={image.attributes.alternativeText}
 						/>
 					</ImageListItem>
