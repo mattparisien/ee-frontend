@@ -22,7 +22,8 @@
 	overflow-y: overlay !important;
 }
 
-.Page .motion-wrap .motion-word:not(:last-child) {
+.Page .motion-wrap .motion-word:not(:last-child),
+footer .motion-wrap .motion-word:not(:last-child) {
 	margin-right: 0.5rem;
 }
 

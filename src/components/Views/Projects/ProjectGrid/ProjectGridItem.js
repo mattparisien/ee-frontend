@@ -86,6 +86,7 @@ function ProjectGridItem({
 			<Box sx={item}>
 				<Box className='item-inner' sx={{ height: "100%" }}>
 					<Media
+						useIO
 						boxHeight='100%'
 						disableContainer
 						overflowHidden
@@ -93,7 +94,7 @@ function ProjectGridItem({
 						items={[
 							{
 								media_type: "image",
-								url: image.url,
+								src: { ...image.src },
 								alt: image.alt,
 							},
 						]}

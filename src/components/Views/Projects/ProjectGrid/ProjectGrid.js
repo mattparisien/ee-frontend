@@ -6,6 +6,8 @@ import ProjectGridItem from "./ProjectGridItem";
 function ProjectGrid({ items, colors }) {
 	const gutter = "5vw";
 
+	console.log(items, "...");
+
 	const gridContainer = theme => ({
 		position: "relative",
 		".o-colorBlobs": {
@@ -129,7 +131,14 @@ function ProjectGrid({ items, colors }) {
 										artist={item.title}
 										title={item.subtitle}
 										image={{
-											url: item.featureImage.data.attributes.url,
+											src: {
+												lowRes:
+													item.featureImage.data.attributes.formats.thumbnail
+														.url,
+												highRes: item.featureImage.data.attributes.formats.large
+													? item.featureImage.data.attributes.formats.large.url
+													: item.featureImage.data.attributes.url,
+											},
 											alt: item.featureImage.data.attributes.alt,
 										}}
 									/>
