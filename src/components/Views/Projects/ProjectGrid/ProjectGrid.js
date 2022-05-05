@@ -167,7 +167,7 @@ function Row({ children, align, gutter, height }) {
 	});
 
 	return (
-		<Box sx={row} className='Row'>
+		<Box sx={row} className='Row '>
 			{children}
 		</Box>
 	);

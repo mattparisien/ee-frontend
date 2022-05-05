@@ -7,13 +7,13 @@ import useMediaRatio from "../../helpers/hooks/useMediaRatio";
 
 function TextWrapBlock({ data }) {
 	const right = theme => ({
-		width: "30vw",
-
+		width: "50vw",
+		margin: "-10vw auto 0 auto",
 		position: "relative",
 		paddingBottom: theme.spacing(10),
 		[theme.breakpoints.up("sm")]: {
+			width: "30vw",
 			paddingLeft: theme.spacing(10),
-
 			float: "right",
 		},
 	});
