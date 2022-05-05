@@ -1,10 +1,22 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import useImageOnLoad from "../../helpers/hooks/useImageOnLoad";
 import classNames from "classnames";
+import { useInView } from "react-intersection-observer";
 
-function Image({ lowResSrc, highResSrc, alt, lowResClasses, highResClasses }) {
+function Image({
+	lowResSrc,
+	highResSrc,
+	alt,
+	lowResClasses,
+	highResClasses,
+	useIO,
+}) {
 	const { handleImageOnLoad, isLoaded } = useImageOnLoad();
+	const { ref, inView, entry } = useInView({
+		triggerOnce: true,
+		skip: !useIO,
+	});
 
 	const lowResStyles = { display: isLoaded ? "none" : "block" };
 	const highResStyles = { display: isLoaded ? "block" : "none" };
@@ -18,15 +30,27 @@ function Image({ lowResSrc, highResSrc, alt, lowResClasses, highResClasses }) {
 	});
 
 	return (
-		<Box className='Image'>
-			<Box
-				component='img'
-				className={classesHighRes}
-				src={highResSrc}
-				alt={alt}
-				sx={highResStyles}
-				onLoad={handleImageOnLoad}
-			></Box>
+		<Box className='Image' ref={ref}>
+			{useIO && inView && (
+				<Box
+					component='img'
+					className={classesHighRes}
+					src={highResSrc}
+					alt={alt}
+					sx={highResStyles}
+					onLoad={handleImageOnLoad}
+				></Box>
+			)}
+			{!useIO && (
+				<Box
+					component='img'
+					className={classesHighRes}
+					src={highResSrc}
+					alt={alt}
+					sx={highResStyles}
+					onLoad={handleImageOnLoad}
+				></Box>
+			)}
 			<Box
 				component='img'
 				className={classesLowRes}

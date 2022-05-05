@@ -6,8 +6,6 @@ import Image from "../Media/Image";
 function GalleryBlock({ data }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
 
-	console.log("tge data..", data);
-
 	return (
 		<ImageList
 			variant={data.images.variant}

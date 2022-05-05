@@ -55,6 +55,7 @@ function Left({ text, cta }) {
 function Right({ media }) {
 	return (
 		<Media
+			useIO
 			aspect='landscape'
 			boxHeight='auto'
 			items={media && media.items}

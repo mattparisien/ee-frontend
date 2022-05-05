@@ -4,6 +4,10 @@ import Media from "../Media/Media";
 import SplitText from "../HOC/SplitText";
 
 function HeroBlock({ data }) {
+
+
+	console.log('the data..', data)
+
 	const splitLayout = theme => ({
 		display: "flex",
 		alignItems: "center",

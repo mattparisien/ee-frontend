@@ -58,7 +58,7 @@ function SingleProject({ location }) {
 	useEffect(() => {
 		if (data && !loading && !project.blocks[0]) {
 			const blocks = formatBlockData(data.data.attributes.Choose);
-
+			console.log("the data", data);
 			blocks.forEach(block => {
 				block.then(blockInfo => {
 					if (blockInfo) {
@@ -73,9 +73,11 @@ function SingleProject({ location }) {
 									lowRes:
 										data.data.attributes.FeatureImage.data.attributes.formats
 											.thumbnail.url,
-									highRes:
-										data.data.attributes.FeatureImage.data.attributes.formats
-											.large.url,
+									highRes: data.data.attributes.FeatureImage.data.attributes
+										.formats.large
+										? data.data.attributes.FeatureImage.data.attributes.formats
+												.large.url
+										: data.data.attributes.FeatureImage.data.attributes.url,
 								},
 								alt: data.data.attributes.FeatureImage.data.attributes
 									.alternativeText,

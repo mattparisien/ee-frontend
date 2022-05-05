@@ -33,10 +33,10 @@ function Media(props) {
 		frame,
 		boxHeight,
 		overflowHidden,
-		disableParallax,
 		width,
 		aspect,
 		lazy,
+		useIO,
 	} = props;
 
 	const classes = classNames("media-wrapper");
@@ -117,19 +117,35 @@ function Media(props) {
 							>
 								{mediaType && mediaType === "image" && (
 									<Image
-										lowResSrc={items[0].src.lowRes}
-										highResSrc={items[0].src.highRes}
+										useIO={useIO}
+										lowResSrc={
+											items[0].src
+												? items[0].src.lowRes
+												: items[0].formats.thumbnail.url
+										}
+										highResSrc={
+											items[0].src ? items[0].src.highRes : items[0].url
+										}
 										alt={items[0].alt}
 									/>
 								)}
 								{mediaType && mediaType === "video" && (
-									<Video src={items[0].url} thumbnail={items[0].thumbnailUrl} />
+									<Video
+										src={items[0].src || items[0].url}
+										thumbnail={items[0].thumbnailUrl}
+									/>
 								)}
 								{mediaType && mediaType === "carousel" && (
 									<Carousel
 										items={items}
-										image={url => <Image src={url} />}
-										video={url => <Video src={url} />}
+										image={src => (
+											<Image
+												lowResSrc={src.lowRes}
+												highResSrc={src.highRes}
+												useIO={useIO}
+											/>
+										)}
+										video={src => <Video src={src} />}
 									/>
 								)}
 							</ConditionalWrapper>

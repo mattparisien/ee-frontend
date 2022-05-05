@@ -1,18 +1,25 @@
 import getInstaData from "./getInstaData";
 
 const getSrc = object => {
-	console.log(object, "the obj");
-	if (!object.formats) {
+	const mediaType = object.providerMetadata.resourceType;
+
+	if (!object.formats && mediaType !== "video") {
 		return {
 			lowRes: null,
 			highRes: object.url,
 		};
 	}
 
-	return {
-		lowRes: object.formats.thumbnail.url,
-		highRes: object.formats.large.url,
-	};
+	if (mediaType === "image") {
+		return {
+			lowRes: object.formats.thumbnail.url,
+			highRes: object.formats.large ? object.formats.large.url : object.url,
+		};
+	}
+
+	if (mediaType === "video") {
+		return object.url;
+	}
 };
 
 const handleMedia = async object => {

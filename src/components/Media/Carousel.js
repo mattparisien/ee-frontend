@@ -64,7 +64,7 @@ function Carousel({ items, image, video }) {
 					<Item
 						key={i}
 						type={item.media_type}
-						url={item.url}
+						src={item.src || item.url}
 						permalink={item.permalink}
 						image={image}
 						video={video}
@@ -83,13 +83,13 @@ function Carousel({ items, image, video }) {
 	);
 }
 
-function Item({ type, url, permalink, image, video }) {
+function Item({ type, src, permalink, image, video }) {
 	const itemWrapper = {};
 
 	return (
 		<Box sx={itemWrapper} className='item-wrapper'>
-			{type === "image" && image(url)}
-			{type === "video" && video(url)}
+			{type === "image" && image(src)}
+			{type === "video" && video(src)}
 		</Box>
 	);
 }
