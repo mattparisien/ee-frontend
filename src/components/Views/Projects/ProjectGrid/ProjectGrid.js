@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import divideArray from "../../../../helpers/divideArray";
 import ProjectGridItem from "./ProjectGridItem";
 
 function ProjectGrid({ items, colors }) {
 	const gutter = "5vw";
 
-	console.log(items, "...");
+	
 
 	const gridContainer = theme => ({
 		position: "relative",

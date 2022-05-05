@@ -2,6 +2,7 @@ import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import Cta from "../../Link/Cta";
 import { useTheme, useMediaQuery } from "@mui/material";
+import Fade from "../../HOC/Fade";
 
 function StatsBlock({ data }) {
 	const itemsWrap = theme => ({
@@ -15,9 +16,6 @@ function StatsBlock({ data }) {
 		},
 		[theme.breakpoints.up("md")]: {
 			gridTemplateColumns: `repeat(${data && data.statsBlockItem.length}, 1fr)`,
-			".item:not(:first-of-type):not(:last-of-type)": {
-				margin: "0 2rem",
-			},
 		},
 	});
 
@@ -44,6 +42,7 @@ function StatsBlock({ data }) {
 							line={item.line}
 							key={i}
 							itemLength={data.statsBlockItem.length}
+							index={i}
 						/>
 					))}
 				</Box>
@@ -63,15 +62,28 @@ function StatsBlock({ data }) {
 	);
 }
 
-function Item({ heading, line, itemLength }) {
+function Item({ heading, line, itemLength, index }) {
 	const theme = useTheme();
 	const matches = useMediaQuery(
 		`(max-width: ${theme.breakpoints.values.md}px)`
 	);
 
-	const item = {};
+	const item = theme => ({
+		[theme.breakpoints.down("md")]: {
+			marginBottom: index + 1 < itemLength && "2rem",
+		},
+	});
+
 	return (
-		<Box textAlign='center' sx={item} className='item'>
+		<Fade
+			wrapper={Box}
+			wrapperProps={{
+				sx: item,
+				className: "item",
+				textAlign: "center",
+			}}
+			enterDelay={`${0.25 * index}`}
+		>
 			<Typography
 				variant={matches ? "h1" : "h2"}
 				component='h3'
@@ -86,7 +98,7 @@ function Item({ heading, line, itemLength }) {
 			>
 				{line}
 			</Typography>
-		</Box>
+		</Fade>
 	);
 }
 

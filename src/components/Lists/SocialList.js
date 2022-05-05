@@ -1,20 +1,15 @@
-import {
-	Box,
-	List,
-	ListItemButton,
-	ListItem,
-	ListItemIcon,
-} from "@mui/material";
 import { useQuery } from "@apollo/client";
-import SOCIALACCOUNTS from "../../api/graphql/queries/GetSocialAccounts";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import PinterestIcon from "@mui/icons-material/Pinterest";
+import {
+	List, ListItem, ListItemButton, ListItemIcon
+} from "@mui/material";
 import React from "react";
-import Fade from "../HOC/Fade";
+import SOCIALACCOUNTS from "../../api/graphql/queries/GetSocialAccounts";
 
 const iconMap = {
 	instagram: InstagramIcon,
@@ -38,8 +33,8 @@ function SocialList({ color, direction }) {
 		[theme.breakpoints.down("sm")]: {
 			flexDirection: "column",
 			".fade-child-wrap:not(:last-of-type) li": {
-				marginBottom: theme.spacing(3)
-			}
+				marginBottom: theme.spacing(3),
+			},
 		},
 	});
 
@@ -47,13 +42,7 @@ function SocialList({ color, direction }) {
 		!error &&
 		!loading &&
 		data && (
-			<Fade
-				wrapper={children => (
-					<List disablePadding sx={listWrapper}>
-						{children}
-					</List>
-				)}
-			>
+			<List disablePadding sx={listWrapper}>
 				{data.socials.data.map((account, i) => (
 					<ListItem disablePadding key={i}>
 						<ListItemButton
@@ -76,7 +65,7 @@ function SocialList({ color, direction }) {
 						</ListItemButton>
 					</ListItem>
 				))}
-			</Fade>
+			</List>
 		)
 	);
 }

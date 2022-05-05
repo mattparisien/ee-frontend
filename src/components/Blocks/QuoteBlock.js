@@ -63,12 +63,15 @@ function QuoteBlock({ data }) {
 			justifyContent='center'
 			flexDirection='column'
 		>
-			<Fade wrapper={children => <Box>{children}</Box>}>
-				<Typography
-					variant='h4'
-					component='blockquote'
-					sx={quote}
-				>{`"${data.quote}"`}</Typography>
+			<Fade
+				wrapper={Typography}
+				wrapperProps={{
+					variant: "h4",
+					component: "blockquote",
+					sx: quote,
+				}}
+			>
+				{`"${data.quote}"`}
 			</Fade>
 
 			<Box sx={authorWrap} mt={8}>
@@ -80,16 +83,9 @@ function QuoteBlock({ data }) {
 					className='accent accent-left accent-text'
 					fontWeight={600}
 				>
-					<Fade
-						enterDelay={0.5}
-						wrapper={children => (
-							<Box component='span' fontWeight='800'>
-								{children}
-							</Box>
-						)}
-					>
+					<Box component='span' fontWeight='800'>
 						{data.author}
-					</Fade>
+					</Box>
 				</Typography>
 				<InView sx={{ flex: 1 }}>
 					<CustomMotionLine

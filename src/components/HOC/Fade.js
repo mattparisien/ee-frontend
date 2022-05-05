@@ -1,9 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion/dist/framer-motion";
-import { useInView } from "react-intersection-observer";
+import InView from "./InView";
 
-function Fade({ children, wrapper, enterDelay, exitDelay, enterY, exitY }) {
-	const { ref, inView, entry } = useInView();
+function Fade({
+	children,
+	wrapper,
+	enterDelay,
+	exitDelay,
+	enterY,
+	exitY,
+	wrapperProps,
+}) {
+	const CustomWrapper = motion(wrapper);
 
 	const variants = {
 		hidden: {
@@ -30,31 +38,18 @@ function Fade({ children, wrapper, enterDelay, exitDelay, enterY, exitY }) {
 		},
 	};
 
-	return wrapper(
-		children && Array.isArray(children) ? (
-			children.map((child, i) => (
-				<motion.div
-					key={i}
-					className='fade-child-wrap'
-					ref={ref}
-					variants={variants}
-					initial={"hidden"}
-					animate={inView && "visible"}
-				>
-					{child}
-				</motion.div>
-			))
-		) : (
-			<motion.div
-				className='fade-child-wrap'
-				ref={ref}
+	return (
+		<InView>
+			<CustomWrapper
+				{...wrapperProps}
 				variants={variants}
-				initial={"hidden"}
-				animate={inView && "visible"}
+				animate={"visible"}
+				initial='hidden'
+				exit='exit'
 			>
 				{children}
-			</motion.div>
-		)
+			</CustomWrapper>
+		</InView>
 	);
 }
 
