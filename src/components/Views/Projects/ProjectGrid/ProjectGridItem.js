@@ -3,10 +3,10 @@ import React, { useMemo } from "react";
 import Link from "../../../Link/Link";
 import Media from "../../../Media/Media";
 import Fade from "../../../HOC/Fade";
+import Frame from "../../../Vector/Frame";
 
 function ProjectGridItem({
 	width,
-	projectId,
 	height,
 	margin,
 	color,
@@ -15,9 +15,13 @@ function ProjectGridItem({
 	artist,
 }) {
 	const item = theme => ({
+		".c-frame": {
+			mixBlendMode: "multiply",
+		},
 		a: {
 			zIndex: 99999,
 		},
+		position: "relative",
 		margin: margin,
 		width: width,
 		height: height,
@@ -40,8 +44,6 @@ function ProjectGridItem({
 				transform: "scale(1) rotate(30deg)",
 			},
 		},
-
-		position: "relative",
 
 		[theme.breakpoints.down("md")]: {
 			width: "100%",
@@ -84,7 +86,7 @@ function ProjectGridItem({
 			classes='-hover-underline -stretchX -stretchY -block'
 		>
 			<Box sx={item}>
-				<Box className='item-inner' sx={{ height: "100%" }}>
+				<Box className='item-inner -relative' sx={{ height: "100%" }}>
 					<Media
 						useIO
 						boxHeight='100%'
@@ -125,6 +127,8 @@ function ProjectGridItem({
 							{title}
 						</Typography>
 					</Fade>
+
+					<Frame />
 				</Box>
 			</Box>
 		</Link>
