@@ -28,6 +28,7 @@ const getInstaPost = async (url, array) => {
 			media_type: x.media_type.toLowerCase(),
 			url: x.media_url,
 			permalink: x.permalink,
+			caption: x.caption,
 		}));
 
 		return newObj;
@@ -37,6 +38,7 @@ const getInstaPost = async (url, array) => {
 		{
 			url: post.media_url,
 			media_type: post.media_type.toLowerCase(),
+			caption: post.caption,
 		},
 	];
 

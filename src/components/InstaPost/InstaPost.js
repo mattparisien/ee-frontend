@@ -107,9 +107,14 @@ function InstaPost({
 				{caption && (
 					<CardActions
 						className='InstaPost_caption'
-						sx={{ height: "5rem", overflow: "hidden" }}
+						sx={{
+							overflow: "hidden",
+							padding: "0.5em 0.8em",
+							height: "4rem",
+						}}
 					>
 						<Typography variant='body3' sx={captionStyles}>
+							{<strong style={{ marginRight: "0.5em" }}>{handle}</strong>}
 							{caption}
 						</Typography>
 					</CardActions>

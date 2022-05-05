@@ -6,7 +6,7 @@ const getInstaPostList = async next => {
 		params: {
 			access_token: process.env.REACT_APP_INSTA_APPTOKEN,
 			fields:
-				"id,media_type,media_product_type,video_title,media_url,permalink,username",
+				"id,media_type,media_product_type,video_title,media_url,permalink,username, caption",
 			limit: 100,
 		},
 	};

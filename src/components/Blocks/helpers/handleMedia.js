@@ -23,6 +23,8 @@ const getSrc = object => {
 };
 
 const handleMedia = async object => {
+	console.log("object", object);
+
 	if (!object) {
 		return null;
 	}
@@ -32,8 +34,11 @@ const handleMedia = async object => {
 		options: {},
 	};
 
-	if (object.instaPost) {
-		const instagramData = await getInstaData(object.instaPost.url, null);
+	if (object.instaPost || object.myPostUrl) {
+		const instagramData = await getInstaData(
+			object.myPostUrl || object.instaPost.url,
+			null
+		);
 
 		if (!instagramData) {
 			return null;
@@ -47,7 +52,11 @@ const handleMedia = async object => {
 		}
 	}
 
-	if (object.mediaUpload && object.mediaUpload.media.data) {
+	if (
+		object.mediaUpload &&
+		object.mediaUpload.media.data &&
+		!object.myPostUrl
+	) {
 		const uploads = object.mediaUpload.media.data.map(upload => ({
 			src: getSrc(upload.attributes),
 			thumbnailUrl: upload.attributes.previewUrl,

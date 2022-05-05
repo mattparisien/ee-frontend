@@ -1,26 +1,48 @@
 import React from "react";
 import InstaPost from "../InstaPost/InstaPost";
+import Avatar from "./assets/avatar.jpg";
 
 function SingleInstaBlock({ data }) {
+	console.log("the data", data);
+
 	return (
-		data && (
-			<InstaPost
-				items={
-					data &&
-					data.media.data.map(item => ({
-						...item.attributes,
-						media_type: item.attributes.providerMetadata.resourceType,
-					}))
-				}
-				profileImage={{
-					url: data.profileImage.data.attributes.url,
-					alt: data.profileImage.data.attributes.alternativeText,
-				}}
-				handle={data.handle}
-				isVerified={data && data.verifiedUser}
-				caption={data.caption}
-			/>
-		)
+		<>
+			{data && !data.myPostUrl && (
+				<InstaPost
+					items={
+						data &&
+						data.media.data.map(item => ({
+							...item.attributes,
+							media_type: item.attributes.providerMetadata.resourceType,
+						}))
+					}
+					
+					profileImage={{
+						url: data.profileImage.data.attributes.url,
+						alt: "instagram-avatar",
+					}}
+					handle={data.handle}
+					isVerified={data && data.verifiedUser}
+					caption={data.caption}
+				/>
+			)}
+			{data && data.myPostUrl && (
+				<InstaPost
+					items={
+						data &&
+						data.media.items.map(item => ({
+							...item,
+						}))
+					}
+					handle={"eyes__ears"}
+					profileImage={{
+						url: Avatar,
+						alt: "instagram-avatar",
+					}}
+					caption={data.caption}
+				/>
+			)}
+		</>
 	);
 }
 
