@@ -1,5 +1,20 @@
 import getInstaData from "./getInstaData";
 
+const getSrc = object => {
+	console.log(object, "the obj");
+	if (!object.formats) {
+		return {
+			lowRes: null,
+			highRes: object.url,
+		};
+	}
+
+	return {
+		lowRes: object.formats.thumbnail.url,
+		highRes: object.formats.large.url,
+	};
+};
+
 const handleMedia = async object => {
 	if (!object) {
 		return null;
@@ -27,7 +42,7 @@ const handleMedia = async object => {
 
 	if (object.mediaUpload && object.mediaUpload.media.data) {
 		const uploads = object.mediaUpload.media.data.map(upload => ({
-			url: upload.attributes.url,
+			src: getSrc(upload.attributes),
 			thumbnailUrl: upload.attributes.previewUrl,
 			alt: upload.attributes.alternativeText,
 			caption: upload.attributes.caption,

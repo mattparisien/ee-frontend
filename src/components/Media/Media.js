@@ -36,12 +36,14 @@ function Media(props) {
 		disableParallax,
 		width,
 		aspect,
-		lazy
+		lazy,
 	} = props;
 
 	const classes = classNames("media-wrapper");
 
-	const [loaded, setLoaded] = useState(false);
+	const [loaded, setLoaded] = useState(
+		items[0].media_type === "image" ? true : false
+	);
 
 	const mediaType = useMemo(() => {
 		if (items) {
@@ -114,7 +116,11 @@ function Media(props) {
 								condition={options && options.linkable && permalink}
 							>
 								{mediaType && mediaType === "image" && (
-									<Image src={items[0].url} alt={items[0].alt} />
+									<Image
+										lowResSrc={items[0].src.lowRes}
+										highResSrc={items[0].src.highRes}
+										alt={items[0].alt}
+									/>
 								)}
 								{mediaType && mediaType === "video" && (
 									<Video src={items[0].url} thumbnail={items[0].thumbnailUrl} />

@@ -1,11 +1,12 @@
-import { ImageList, ImageListItem } from "@mui/material";
+import { Box, ImageList, ImageListItem } from "@mui/material";
 import React from "react";
 import { useMediaQuery } from "@mui/material";
+import Image from "../Media/Image";
 
 function GalleryBlock({ data }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
 
-	console.log('gallery block data...', data)
+	console.log("tge data..", data);
 
 	return (
 		<ImageList
@@ -16,10 +17,12 @@ function GalleryBlock({ data }) {
 			{data.images.media.data.map((image, i) => {
 				return (
 					<ImageListItem key={i}>
-						<img
-							loading='lazy'
-							src={image.attributes.url}
+						<Image
+							lowResSrc={image.attributes.formats.thumbnail.url}
+							highResSrc={image.attributes.formats.large.url}
 							alt={image.attributes.alternativeText}
+							lowResClasses={"MuiImageListItem-img"}
+							highResClasses={"MuiImageListItem-img"}
 						/>
 					</ImageListItem>
 				);

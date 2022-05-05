@@ -1,19 +1,40 @@
 import { Box } from "@mui/material";
-import React, { useContext } from "react";
-import { MediaContext } from "./Media";
+import React from "react";
+import useImageOnLoad from "../../helpers/hooks/useImageOnLoad";
+import classNames from "classnames";
 
-function Image({ src, alt, frame, accent }) {
-	const { setLoaded, lazy } = useContext(MediaContext);
+function Image({ lowResSrc, highResSrc, alt, lowResClasses, highResClasses }) {
+	const { handleImageOnLoad, isLoaded } = useImageOnLoad();
+
+	const lowResStyles = { display: isLoaded ? "none" : "block" };
+	const highResStyles = { display: isLoaded ? "block" : "none" };
+
+	const classesLowRes = classNames("img-lowRes", {
+		[lowResClasses]: lowResClasses,
+	});
+
+	const classesHighRes = classNames("img-highRes", {
+		[highResClasses]: highResClasses,
+	});
 
 	return (
-		<Box
-			component='img'
-			className='image'
-			loading={lazy ? "lazy" : "eager"}
-			src={src}
-			alt={alt}
-			onLoad={() => setLoaded(true)}
-		></Box>
+		<Box className='Image'>
+			<Box
+				component='img'
+				className={classesHighRes}
+				src={highResSrc}
+				alt={alt}
+				sx={highResStyles}
+				onLoad={handleImageOnLoad}
+			></Box>
+			<Box
+				component='img'
+				className={classesLowRes}
+				src={lowResSrc}
+				alt={alt}
+				sx={lowResStyles}
+			></Box>
+		</Box>
 	);
 }
 

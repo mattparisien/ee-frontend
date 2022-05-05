@@ -69,7 +69,14 @@ function SingleProject({ location }) {
 							title: data.data.attributes.Title,
 							subtitle: data.data.attributes.Subtitle,
 							featureImage: {
-								url: data.data.attributes.FeatureImage.data.attributes.url,
+								src: {
+									lowRes:
+										data.data.attributes.FeatureImage.data.attributes.formats
+											.thumbnail.url,
+									highRes:
+										data.data.attributes.FeatureImage.data.attributes.formats
+											.large.url,
+								},
 								alt: data.data.attributes.FeatureImage.data.attributes
 									.alternativeText,
 								caption:
