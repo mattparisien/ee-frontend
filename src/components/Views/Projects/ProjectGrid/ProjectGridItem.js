@@ -1,9 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import React, { useMemo } from "react";
+import useMouseEnter from "../../../../helpers/hooks/useMouseEnter";
 import Link from "../../../Link/Link";
 import Media from "../../../Media/Media";
-import Fade from "../../../HOC/Fade";
-import useMouseEnter from "../../../../helpers/hooks/useMouseEnter";
 
 function ProjectGridItem({
 	width,
@@ -104,15 +103,7 @@ function ProjectGridItem({
 						]}
 					/>
 
-					<Fade
-						enterY={"100%"}
-						exitY={"-100%"}
-						wrapper={children => (
-							<Box className='item-info' sx={itemInfo} pt={2}>
-								{children}
-							</Box>
-						)}
-					>
+					<Box className='item-info' sx={itemInfo} pt={2}>
 						<Typography
 							variant='body3'
 							className='artist -underline'
@@ -128,7 +119,7 @@ function ProjectGridItem({
 						>
 							{title}
 						</Typography>
-					</Fade>
+					</Box>
 					<Frame isHovering={isEnter} />
 				</Box>
 			</Box>

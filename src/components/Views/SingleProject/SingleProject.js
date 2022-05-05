@@ -58,7 +58,7 @@ function SingleProject({ location }) {
 	useEffect(() => {
 		if (data && !loading && !project.blocks[0]) {
 			const blocks = formatBlockData(data.data.attributes.Choose);
-			console.log("the data", data);
+
 			blocks.forEach(block => {
 				block.then(blockInfo => {
 					if (blockInfo) {
