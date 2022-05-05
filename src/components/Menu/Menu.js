@@ -110,14 +110,39 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 						))}
 				</List>
 				<Box
-					sx={{
+					sx={theme => ({
 						position: "absolute",
 						bottom: 0,
 						right: 0,
-						paddingRight: 10,
-						paddingBottom: 7,
-					}}
+						display: "flex",
+						padding: "0 1rem 1rem 1rem",
+
+						width: "100%",
+						alignItems: "flex-end",
+						justifyContent: "space-between",
+						[theme.breakpoints.up("sm")]: {
+							padding: "0 2rem 1rem 1rem",
+						},
+					})}
 				>
+					<Typography
+						variant='body1'
+						component='span'
+						sx={theme => ({
+							color: theme.palette.primary.light,
+							transition:
+								"opacity .2s cubic-bezier(.55,.055,.675,.19),transform .2s cubic-bezier(.55,.055,.675,.19)",
+							transitionTimingFunction: menuActive
+								? "cubic-bezier(.215,.61,.355,1)"
+								: null,
+							transitionDuration: menuActive ? ".6s" : null,
+							transitionDelay: menuActive ? ".6s" : null,
+							transform: `translateY(${menuActive ? 0 : "-100%"})`,
+							opacity: `${menuActive ? 1 : 0}`,
+						})}
+					>
+						Social Impact Agency
+					</Typography>
 					<SocialList color='light' />
 				</Box>
 			</ContainerFluid>

@@ -18,8 +18,6 @@ function TextWrapBlock({ data }) {
 		},
 	});
 
-	console.log(data);
-
 	const ratio = useMediaRatio(
 		data && data.media.items[0].width,
 		data && data.media.items[0].height

@@ -1,4 +1,3 @@
-import { ConstructionOutlined } from "@mui/icons-material";
 import axios from "axios";
 
 const getInstaCarousel = async mediaId => {

@@ -36,6 +36,7 @@ function Media(props) {
 		disableParallax,
 		width,
 		aspect,
+		lazy
 	} = props;
 
 	const classes = classNames("media-wrapper");
@@ -51,8 +52,6 @@ function Media(props) {
 			return items[0].media_type;
 		}
 	}, [items]);
-
-
 
 	const innerComponent = {
 		width: "100%",
@@ -75,7 +74,7 @@ function Media(props) {
 	});
 
 	return (
-		<MediaContext.Provider value={{ loaded, setLoaded }}>
+		<MediaContext.Provider value={{ loaded, setLoaded, lazy }}>
 			<Box
 				className={classes}
 				sx={{
@@ -114,36 +113,11 @@ function Media(props) {
 								)}
 								condition={options && options.linkable && permalink}
 							>
-								{/* <ConditionalWrapper
-									wrapper={children => (
-										<motion.div
-											style={{ height: "100%", width: '100%' }}
-											initial={{ scale: 1.2 }}
-											animate={{
-												scale: 1,
-												transition: {
-													duration: 2,
-													ease: [0.86, 0, 0.07, 0.995],
-												},
-											}}
-											exit={{
-												scale: 1.2,
-												transition: {
-													duration: 2,
-													ease: [0.86, 0, 0.07, 0.995],
-												},
-											}}
-										>
-											{children}
-										</motion.div>
-									)}
-									condition={zoom}
-								> */}
 								{mediaType && mediaType === "image" && (
 									<Image src={items[0].url} alt={items[0].alt} />
 								)}
 								{mediaType && mediaType === "video" && (
-									<Video src={items[0].url} />
+									<Video src={items[0].url} thumbnail={items[0].thumbnailUrl} />
 								)}
 								{mediaType && mediaType === "carousel" && (
 									<Carousel
@@ -152,7 +126,6 @@ function Media(props) {
 										video={url => <Video src={url} />}
 									/>
 								)}
-								{/* </ConditionalWrapper> */}
 							</ConditionalWrapper>
 						</Box>
 						{options && options.displayCaption && (

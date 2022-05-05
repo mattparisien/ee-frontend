@@ -1,4 +1,3 @@
-import { normalize } from "gsap";
 import getBlockName from "./getBlockName";
 import normalizeData from "./normalizeData";
 

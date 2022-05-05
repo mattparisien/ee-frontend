@@ -6,8 +6,6 @@ import { useInView } from "react-intersection-observer";
 function SplitText(props) {
 	const wordStyle = theme => ({
 		display: "inline-block",
-
-		paddingRight: theme.spacing(3),
 	});
 
 	const charStyle = {
@@ -86,7 +84,9 @@ const AnimationWrapper = ({ children, enterDelay, exitDelay }) => {
 			initial={"hidden"}
 			exit='exit'
 			animate={inView && "visible"}
-			style={{ overflow: "hidden" }}
+			style={{
+				overflow: "hidden",
+			}}
 		>
 			{children}
 		</motion.div>

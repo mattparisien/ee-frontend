@@ -18,7 +18,7 @@ function HeroBlock({ data }) {
 	});
 
 	const mediaSize = theme => ({
-		width: "45vw",
+		width: "50vw",
 		[theme.breakpoints.up("sm")]: {
 			width: "30vw",
 			maxWidth: theme.spacing(80),

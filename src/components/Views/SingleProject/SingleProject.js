@@ -101,8 +101,6 @@ function SingleProject({ location }) {
 		}
 	}, [projectId]);
 
-	console.log(project);
-
 	return (
 		<ProjectContext.Provider>
 			<Helmet>

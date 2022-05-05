@@ -1,9 +1,26 @@
+import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
-import { Box, Stack, Typography, Divider } from "@mui/material";
 import Cta from "../../Link/Cta";
-import FadeChildren from "../../HOC/FadeChildren";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 function StatsBlock({ data }) {
+	const itemsWrap = theme => ({
+		width: "100%",
+		display: "grid",
+		overflow: "hidden",
+		[theme.breakpoints.down("md")]: {
+			".item:not(:last-of-type)": {
+				marginBottom: theme.spacing(10),
+			},
+		},
+		[theme.breakpoints.up("md")]: {
+			gridTemplateColumns: `repeat(${data && data.statsBlockItem.length}, 1fr)`,
+			".item:not(:first-of-type):not(:last-of-type)": {
+				margin: "0 2rem",
+			},
+		},
+	});
+
 	return (
 		<>
 			<Divider />
@@ -20,28 +37,16 @@ function StatsBlock({ data }) {
 					</Typography>
 				)}
 
-				<Stack
-					spacing={20}
-					direction='row'
-					justifyContent={"space-between"}
-					width='100%'
-					alignItems='center'
-					sx={theme => ({
-						[theme.breakpoints.down("sm")]: {
-							flexDirection: "column",
-							justifyContent: "center",
-
-							"> .MuiBox-root": {
-								marginLeft: 0,
-								marginBottom: theme.spacing(8),
-							},
-						},
-					})}
-				>
+				<Box className='grid-wrapper' sx={itemsWrap}>
 					{data.statsBlockItem.map((item, i) => (
-						<Item heading={item.heading} line={item.line} key={i} />
+						<Item
+							heading={item.heading}
+							line={item.line}
+							key={i}
+							itemLength={data.statsBlockItem.length}
+						/>
 					))}
-				</Stack>
+				</Box>
 			</Box>
 			<Divider />
 			{data.cta && (
@@ -58,22 +63,27 @@ function StatsBlock({ data }) {
 	);
 }
 
-function Item({ heading, line }) {
+function Item({ heading, line, itemLength }) {
+	const theme = useTheme();
+	const matches = useMediaQuery(
+		`(max-width: ${theme.breakpoints.values.md}px)`
+	);
+
+	const item = {};
 	return (
-		<Box
-			className='item'
-			textAlign='center'
-			sx={theme => ({
-				maxWidth: theme.spacing(60),
-				marginLeft: "0 !important",
-			})}
-			display='flex'
-			flexDirection='column'
-		>
-			<Typography variant='h2' component='h3' sx={{ width: "100%" }}>
+		<Box textAlign='center' sx={item} className='item'>
+			<Typography
+				variant={matches ? "h1" : "h2"}
+				component='h3'
+				sx={{ width: "100%" }}
+			>
 				{heading}
 			</Typography>
-			<Typography variant='body3' component='p' sx={{ width: "100%" }}>
+			<Typography
+				variant={matches ? "body1" : "body3"}
+				component='p'
+				sx={{ width: "100%" }}
+			>
 				{line}
 			</Typography>
 		</Box>

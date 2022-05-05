@@ -85,8 +85,6 @@ const typography = {
 	},
 	h1: {
 		fontFamily: "Kobe Bold",
-
-		fontSize: "6.4rem",
 	},
 	h2: {
 		fontFamily: "Kobe Bold",
