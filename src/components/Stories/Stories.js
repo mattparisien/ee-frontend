@@ -36,10 +36,10 @@ function Stories({ slides }) {
 		[theme.breakpoints.down("md")]: {
 			top: "100%",
 			justifyContent: "center",
-			marginTop: "2rem",
+			marginTop: "3rem",
 			"> button": {
-				width: "6rem",
-				height: "6rem",
+				width: "4rem",
+				height: "4rem",
 			},
 			".button-next": {
 				marginLeft: "1rem",

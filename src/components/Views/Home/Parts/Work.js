@@ -45,7 +45,9 @@ function Work({ projects }) {
 
 	return (
 		<>
-			{/* <TitleBlock title={"Featured work"}/> */}
+			<TitleBlock data={{
+				title: "Featured Work"
+			}}/>
 			<Section data-theme='light'>
 				<Container>
 					<Box

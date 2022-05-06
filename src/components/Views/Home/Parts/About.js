@@ -1,11 +1,11 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
-import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
 import Markdown from "../../../Markdown/Markdown";
-import CircleSvg from "../../../Vector/Circle";
-import { useInView } from "react-intersection-observer";
-import gsap from "gsap";
+import Megaphone from "../../../Vector/Megaphone";
 
 function About({ aboutText }) {
 	const matches = useMediaQuery("(max-width: 900px)");
@@ -101,23 +101,29 @@ function About({ aboutText }) {
 							sx={{
 								display: "flex",
 								alignItems: "center",
-								justifyContent: "center",
+								justifyContent: "space-between",
 							}}
 							pt={matches ? 5 : 20}
 							pb={matches ? 5 : 20}
 						>
-							<Typography variant='h3'>
+							<Typography variant='h4' sx={{ width: "50%" }}>
 								<Markdown
 									variantMap={{
-										p: "h3",
+										p: "h4",
 									}}
 								>
 									{aboutText}
 								</Markdown>
 							</Typography>
+							<Box
+								sx={{ width: "50%", transform: "scaleX(-100%) rotate(-30deg)" }}
+							>
+								<Megaphone />
+							</Box>
 						</Box>
 					</Container>
 				</Box>
+				<Box></Box>
 			</Section>
 		</>
 	);
