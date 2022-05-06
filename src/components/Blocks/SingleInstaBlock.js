@@ -20,6 +20,7 @@ function SingleInstaBlock({ data }) {
 						url: data.profileImage.data.attributes.url,
 						alt: "instagram-avatar",
 					}}
+					caption={data.caption}
 					handle={data.handle}
 					isVerified={data && data.verifiedUser}
 				/>

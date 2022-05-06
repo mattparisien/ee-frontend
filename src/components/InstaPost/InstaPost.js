@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import {
 	Avatar,
 	Box,
@@ -24,6 +25,10 @@ function InstaPost({
 		width: null,
 		height: null,
 	});
+
+
+	console.log('the caption', caption)
+	
 
 	const ratio = useMediaRatio(dimensions.width, dimensions.height);
 
@@ -115,7 +120,7 @@ function InstaPost({
 					>
 						<Typography variant='body3' sx={captionStyles}>
 							{<strong style={{ marginRight: "0.5em" }}>{handle}</strong>}
-							{items[0].caption}
+							{caption || items[0].caption}
 						</Typography>
 					</CardActions>
 				)}
