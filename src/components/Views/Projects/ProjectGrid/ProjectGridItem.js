@@ -27,7 +27,6 @@ function ProjectGridItem({
 		margin: margin,
 		width: width,
 		height: height,
-	
 
 		[theme.breakpoints.down("md")]: {
 			width: "100%",
@@ -83,7 +82,6 @@ function ProjectGridItem({
 						boxHeight='100%'
 						disableContainer
 						overflowHidden
-						overlayColor={color}
 						items={[
 							{
 								media_type: "image",

@@ -78,6 +78,7 @@ function Stories({ slides }) {
 							slides.map((slide, i) => (
 								<SwiperSlide key={i}>
 									<QuoteBlock
+										fontSize='body2'
 										data={{
 											quote: slide.quote,
 											author: slide.author,

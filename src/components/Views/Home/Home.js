@@ -49,7 +49,9 @@ function Home({ pageHeading, location }) {
 					author: testimonial.attributes.Author,
 				})),
 				featuredWork: [...data.projects.data.slice(0, 4)]
-					.sort((a, b) => a.Date - b.Date)
+					.sort(
+						(a, b) => new Date(b.attributes.Date).getTime() - new Date(a.attributes.Date).getTime()
+					)
 					.map(project => ({
 						id: project.id,
 						title: project.attributes.Title,

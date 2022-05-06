@@ -4,7 +4,7 @@ import Fade from "../HOC/Fade";
 import { motion } from "framer-motion/dist/framer-motion";
 import InView from "../HOC/InView";
 
-function QuoteBlock({ data }) {
+function QuoteBlock({ data, fontSize }) {
 	const author = {
 		display: "block",
 		textAlign: "left",
@@ -66,7 +66,7 @@ function QuoteBlock({ data }) {
 			<Fade
 				wrapper={Typography}
 				wrapperProps={{
-					variant: "h4",
+					variant: fontSize || "h4",
 					component: "blockquote",
 					sx: quote,
 				}}

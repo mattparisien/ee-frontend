@@ -22,6 +22,12 @@
 	overflow-y: overlay !important;
 }
 
+.swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .Page .motion-wrap .motion-word:not(:last-child),
 footer .motion-wrap .motion-word:not(:last-child) {
 	margin-right: 0.5rem;

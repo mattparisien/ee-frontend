@@ -104,7 +104,7 @@ function InstaPost({
 					}}
 					items={items}
 				/>
-				{caption && (
+				{items[0].caption && (
 					<CardActions
 						className='InstaPost_caption'
 						sx={{
@@ -115,7 +115,7 @@ function InstaPost({
 					>
 						<Typography variant='body3' sx={captionStyles}>
 							{<strong style={{ marginRight: "0.5em" }}>{handle}</strong>}
-							{caption}
+							{items[0].caption}
 						</Typography>
 					</CardActions>
 				)}

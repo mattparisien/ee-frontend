@@ -16,14 +16,12 @@ function SingleInstaBlock({ data }) {
 							media_type: item.attributes.providerMetadata.resourceType,
 						}))
 					}
-					
 					profileImage={{
 						url: data.profileImage.data.attributes.url,
 						alt: "instagram-avatar",
 					}}
 					handle={data.handle}
 					isVerified={data && data.verifiedUser}
-					caption={data.caption}
 				/>
 			)}
 			{data && data.myPostUrl && (

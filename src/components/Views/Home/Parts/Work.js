@@ -45,9 +45,11 @@ function Work({ projects }) {
 
 	return (
 		<>
-			<TitleBlock data={{
-				title: "Featured Work"
-			}}/>
+			<TitleBlock
+				data={{
+					title: "Featured Work",
+				}}
+			/>
 			<Section data-theme='light'>
 				<Container>
 					<Box
@@ -60,7 +62,7 @@ function Work({ projects }) {
 							projects.map((project, i) => (
 								<Box sx={item}>
 									<Link
-									isRouterLink
+										isRouterLink
 										href={`/projects/${project.subtitle
 											.toLowerCase()
 											.split(" ")
