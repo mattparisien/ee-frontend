@@ -11,6 +11,9 @@ import Hero from "./Parts/Hero";
 import About from "./Parts/About";
 import How from "./Parts/Steps/How";
 import Work from "./Parts/Work";
+import Stories from "../../Stories/Stories";
+import Section from "../../Containers/Section";
+import Container from "../../Containers/ContainerFluid";
 
 function Home({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -69,7 +72,7 @@ function Home({ pageHeading, location }) {
 		return () => setLoading(true);
 	}, [data, loading]);
 
-	console.log(staticData)
+	console.log(staticData);
 
 	return (
 		<>
@@ -77,6 +80,11 @@ function Home({ pageHeading, location }) {
 			<About aboutText={staticData.about} />
 			<How steps={staticData.steps} />
 			<Work projects={staticData.featuredWork} />
+			<Section>
+				<Container sx={{ paddingTop: "5rem", paddingBottom: "5rem" }}>
+					<Stories slides={staticData.testimonials} />
+				</Container>
+			</Section>
 		</>
 	);
 }

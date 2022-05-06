@@ -39,7 +39,7 @@ function Work({ projects }) {
 			filter: `grayscale(1)`,
 		},
 		width: `${
-			matches ? "100%" : `calc(100vw / ${projects && projects.length} - 5vw)`
+			matches ? "100%" : `calc(100vw / ${projects && projects.length} - 6vw)`
 		}`,
 	});
 
@@ -57,37 +57,47 @@ function Work({ projects }) {
 						{projects &&
 							projects.map((project, i) => (
 								<Box sx={item}>
-									<HoverFrame
-										wrapper={(children, ref) => (
-											<Box ref={ref} key={i} className='item -relative'>
-												{children}
-											</Box>
-										)}
+									<Link
+									isRouterLink
+										href={`/projects/${project.subtitle
+											.toLowerCase()
+											.split(" ")
+											.join("-")}`}
 									>
-										<Media
-											aspect={matches ? "landscape" : "portrait"}
-											boxHeight='auto'
-											items={[
-												{
-													media_type: "image",
-													src: project.image.src,
-												},
-											]}
-										/>
-									</HoverFrame>
-									<Box
-										className='item-info'
-										display='flex'
-										justifyContent='space-between'
-										pt={2}
-									>
-										<Typography variant={matches ? "body2" : "body3"}>
-											{project.title}
-										</Typography>
-										<Typography variant={matches ? "body2" : "body3"}>
-											{project.subtitle}
-										</Typography>
-									</Box>
+										<HoverFrame
+											wrapper={(children, ref) => (
+												<Box ref={ref} key={i} className='item -relative'>
+													{children}
+												</Box>
+											)}
+										>
+											<Media
+												aspect={matches ? "landscape" : "portrait"}
+												boxHeight='auto'
+												items={[
+													{
+														media_type: "image",
+														src: project.image.src,
+													},
+												]}
+											/>
+										</HoverFrame>
+										<Box
+											className='item-info'
+											display='flex'
+											flexDirection={matches ? "row" : "column"}
+											justifyContent='space-between'
+											sx={{ width: "100%" }}
+											pt={2}
+										>
+											<Typography variant={matches ? "body2" : "body3"}>
+												{project.title}
+											</Typography>
+											<Typography variant={matches ? "body2" : "body3"}>
+												{project.subtitle}
+											</Typography>
+										</Box>
+									</Link>
 								</Box>
 							))}
 						{/* <FeaturedGrid rows={rows} /> */}

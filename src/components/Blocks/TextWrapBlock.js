@@ -12,6 +12,7 @@ function TextWrapBlock({ data }) {
 		position: "relative",
 		paddingBottom: theme.spacing(10),
 		[theme.breakpoints.up("sm")]: {
+			margin: 0,
 			width: "30vw",
 			paddingLeft: theme.spacing(10),
 			float: "right",
