@@ -17,12 +17,11 @@ function Slider({ items }) {
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
 
-	console.log("the items", items);
-
 	return (
 		<div className='o-slider'>
 			<ContainerFluid>
 				<Swiper
+					loop={true}
 					height={"100%"}
 					breakpoints={{
 						400: {
@@ -39,7 +38,6 @@ function Slider({ items }) {
 						},
 					}}
 					spaceBetween={60}
-					autoplay={{ delay: 4000 }}
 					navigation={{
 						prevEl: navigationPrevRef.current,
 						nextEl: navigationNextRef.current,

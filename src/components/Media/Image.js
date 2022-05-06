@@ -15,8 +15,13 @@ function Image({
 	const { handleImageOnLoad, isLoaded } = useImageOnLoad();
 	const { ref, inView, entry } = useInView({
 		triggerOnce: true,
+		threshold: 0,
 		skip: !useIO,
 	});
+
+	useEffect(() => {
+		console.log(inView, entry);
+	}, [inView]);
 
 	const lowResStyles = { display: isLoaded ? "none" : "block" };
 	const highResStyles = { display: isLoaded ? "block" : "none" };
@@ -30,7 +35,7 @@ function Image({
 	});
 
 	return (
-		<Box className='Image' ref={ref}>
+		<Box className='Image'>
 			{useIO && inView && (
 				<Box
 					component='img'
@@ -52,6 +57,7 @@ function Image({
 				></Box>
 			)}
 			<Box
+				ref={ref}
 				component='img'
 				className={classesLowRes}
 				src={lowResSrc}

@@ -48,6 +48,7 @@ function Carousel({ items, image, video }) {
 
 	return (
 		<Swiper
+			loop={true}
 			className='insta-carousel'
 			style={wrapper}
 			slidesPerView={1}

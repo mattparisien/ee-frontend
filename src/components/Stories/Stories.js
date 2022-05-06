@@ -64,10 +64,10 @@ function Stories({ slides }) {
 			<Box sx={{ height: "100%", height: "100%", position: "relative" }}>
 				<Box className='content-container' sx={contentContainer}>
 					<Swiper
+						loop={true}
 						slidesPerView={1}
 						spaceBetween={30}
 						style={swiperStyle}
-						autoplay={{ delay: 9000 }}
 						centeredSlides={true}
 						navigation={{
 							nextEl: ".button-next",
