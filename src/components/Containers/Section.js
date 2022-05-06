@@ -8,11 +8,7 @@ import classNames from "classnames";
 function Section(props) {
 	const { sectionTheme } = props;
 
-	
-
 	const { currentColor } = useContext(ColorContext);
-
-	
 
 	const mobile = useMediaQuery("(max-width: 600px)");
 
@@ -27,6 +23,10 @@ function Section(props) {
 	}, [sectionTheme, currentColor]);
 
 	const themeObject = theme => ({
+		a: {
+			color: theme.palette.primary[foregroundColor],
+			textDecorationColor: theme.palette.primary[foregroundColor],
+		},
 		".accent::after": {
 			mixBlendMode:
 				sectionTheme === "light" || !sectionTheme ? "multiply" : "screen",

@@ -1,5 +1,12 @@
 import CheckIcon from "@mui/icons-material/Check";
-import { Link, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import {
+	Link,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	Typography,
+} from "@mui/material";
 import { motion } from "framer-motion/dist/framer-motion";
 import React from "react";
 import ReactMarkdown from "react-markdown";
@@ -91,9 +98,11 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 		a: ({ node, ...props }) => (
 			<>
 				<Link
+					{...props}
 					children={props.children}
-					fontWeight={600}
-					underline={"none"}
+					fontWeight={400}
+					target='_blank'
+					rel='noreferrer'
 					sx={theme => ({
 						color: theme.palette.primary.dark,
 						position: "relative",
@@ -104,7 +113,6 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 							left: 0,
 							width: "100%",
 							height: "0.1rem",
-							backgroundColor: theme.palette.primary.dark,
 						},
 					})}
 				/>
