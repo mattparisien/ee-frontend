@@ -19,10 +19,6 @@ function Image({
 		skip: !useIO,
 	});
 
-	useEffect(() => {
-		console.log(inView, entry);
-	}, [inView]);
-
 	const lowResStyles = { display: isLoaded ? "none" : "block" };
 	const highResStyles = { display: isLoaded ? "block" : "none" };
 

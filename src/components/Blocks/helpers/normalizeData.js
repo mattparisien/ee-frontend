@@ -7,8 +7,6 @@ const normalizeData = async blockData => {
 	const options = { deep: true };
 	let newObj = camelcaseKeys(clone, options);
 
-	console.log("new obj", newObj);
-
 	await handleMedia(newObj.mediaItem || { myPostUrl: newObj.myPostUrl }).then(
 		data => {
 			if (data && data.media.length > 0) {

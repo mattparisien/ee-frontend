@@ -3,8 +3,6 @@ import InstaPost from "../InstaPost/InstaPost";
 import Avatar from "./assets/avatar.jpg";
 
 function SingleInstaBlock({ data }) {
-	console.log("the data", data);
-
 	return (
 		<>
 			{data && !data.myPostUrl && (

@@ -24,7 +24,6 @@ function How({ steps }) {
 		if (scroll && scroll.scroll) {
 			[...notes].forEach(note => {
 				const { direction } = note.dataset;
-				console.log("the direction...", direction);
 
 				scroll.scroll.on("scroll", e => {
 					const { top } = note.getBoundingClientRect();

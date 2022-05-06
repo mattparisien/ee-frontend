@@ -243,8 +243,6 @@ function FeaturedGridItem({ item, mediaAspect }) {
 		color: theme.palette.primary.light,
 	});
 
-	console.log(item);
-
 	return (
 		<Box className='FeaturedGridItem -relative' sx={itemStyles}>
 			<Link

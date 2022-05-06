@@ -23,8 +23,6 @@ const getSrc = object => {
 };
 
 const handleMedia = async object => {
-	console.log("object", object);
-
 	if (!object) {
 		return null;
 	}
@@ -45,7 +43,6 @@ const handleMedia = async object => {
 		}
 
 		if (instagramData && instagramData.items) {
-			console.log(instagramData, 'instadata')
 			newObj.media.push(...instagramData.items);
 			for (let key in object.instaPost) {
 				newObj.options[key] = object.instaPost[key];

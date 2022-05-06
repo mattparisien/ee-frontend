@@ -26,10 +26,6 @@ function InstaPost({
 		height: null,
 	});
 
-
-	console.log('the caption', caption)
-	
-
 	const ratio = useMediaRatio(dimensions.width, dimensions.height);
 
 	useEffect(() => {

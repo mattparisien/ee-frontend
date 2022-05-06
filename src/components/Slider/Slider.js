@@ -89,8 +89,6 @@ function Item({
 	mobile,
 	credit,
 }) {
-	console.log("src", src);
-
 	const desktopInfoStyles = {
 		width: "100%",
 		height: "100%",

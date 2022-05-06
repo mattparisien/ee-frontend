@@ -50,7 +50,9 @@ function Home({ pageHeading, location }) {
 				})),
 				featuredWork: [...data.projects.data.slice(0, 4)]
 					.sort(
-						(a, b) => new Date(b.attributes.Date).getTime() - new Date(a.attributes.Date).getTime()
+						(a, b) =>
+							new Date(b.attributes.Date).getTime() -
+							new Date(a.attributes.Date).getTime()
 					)
 					.map(project => ({
 						id: project.id,
@@ -73,8 +75,6 @@ function Home({ pageHeading, location }) {
 
 		return () => setLoading(true);
 	}, [data, loading]);
-
-	console.log(staticData);
 
 	return (
 		<>
