@@ -122,35 +122,31 @@ const notesWrapper = theme => ({
 	".c-note": {
 		position: "absolute",
 		mixBlendMode: "multiply",
+		fill: theme.palette.primary.yellow,
 		"&_1": {
 			width: "4vw",
 			top: "37vw",
 			left: "59vw",
-			fill: theme.palette.primary.colorSet.blue,
 		},
 		"&_2": {
 			width: "10vw",
 			top: "7vw",
 			right: "50vw",
-			fill: theme.palette.primary.colorSet.red,
 		},
 		"&_3": {
 			width: "5vw",
 			bottom: "40vw",
 			right: "36vw",
-			fill: theme.palette.primary.colorSet.red,
 		},
 		"&_4": {
 			width: "10vw",
 			bottom: "71vw",
 			right: "12vw",
-			fill: theme.palette.primary.colorSet.yellow,
 		},
 		"&_5": {
 			width: "5vw",
 			bottom: "12vw",
 			right: "53vw",
-			fill: theme.palette.primary.colorSet.green,
 		},
 	},
 });

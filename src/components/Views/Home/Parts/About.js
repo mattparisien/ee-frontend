@@ -25,16 +25,6 @@ function About({ aboutText }) {
 			fill: "#FFE633",
 			mixBlendMode: "exclusion",
 
-			// "&:nth-child(3)": {
-			// 	right: "-5%",
-			// 	width: "17vw",
-			// 	top: "25%",
-			// },
-			// "&:nth-child(2)": {
-			// 	left: "20%",
-			// 	width: "50px",
-			// 	top: "25%",
-			// },
 			"&:nth-child(1)": {
 				left: "-10%",
 
