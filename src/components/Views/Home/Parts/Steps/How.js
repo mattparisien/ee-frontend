@@ -2,247 +2,38 @@ import { Box } from "@mui/material";
 import gsap from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import $ from "jquery";
 import React, { useEffect, useRef } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
+import TitleBlock from "../../../../Blocks/TitleBlock";
 import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
-import animateNotes from "./animations";
 import Notes from "./Notes";
 import StepItem from "./StepItem";
+import { containerStyles, notesWrapper } from "./styles";
 
 function How({ steps }) {
 	gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
-	const container = useRef(null);
 	const scroll = useLocomotiveScroll();
 
 	const stepsContainer = useRef(null);
-
-	useEffect(() => {
-		const elements = {
-			container: stepsContainer.current,
-			notes: $(stepsContainer.current).find(".c-note"),
-		};
-
-		if (scroll.isReady) {
-			animateNotes(scroll, elements);
-		}
-	}, [scroll]);
-
-	const noteStyle = theme => ({
-		"&_1": {
-			top: 0,
-			left: 0,
-		},
-		"&_2": {
-			top: "35vw",
-			left: "2vw",
-		},
-		"&_3": {
-			bottom: "70vw",
-			left: "10vw",
-		},
-		"&_4": {
-			right: "10vw",
-			bottom: "15vw",
-		},
-		"&_5": {
-			top: "20vw",
-			right: "10vw",
-
-			width: "2vw",
-			height: "2vw",
-		},
-		[theme.breakpoints.down("md")]: {
-			"&_1": {
-				left: "60vw",
-				top: "10vw",
-			},
-			"&_2": {
-				top: "40vw",
-				right: "60vw",
-			},
-			"&_3": {
-				bottom: "80vw",
-				left: "65vw",
-			},
-			"&_4": {
-				right: "70vw",
-				bottom: "55vw",
-			},
-		},
-	});
-
-	const containerStyles = theme => ({
-		".MuiContainer-root": {
-			overflow: "visible",
-		},
-		height: "140vw",
-		marginLeft: 10,
-		marginRight: 10,
-
-		".c-steps_sheet": {
-			height: "90%",
-		},
-		".c-steps_sheet_line": {
-			"&:last-of-type": {
-				display: "none",
-			},
-		},
-		[theme.breakpoints.down("md")]: {
-			height: "auto",
-		},
-		[theme.breakpoints.down("md")]: {
-			marginLeft: 5,
-			marginRight: 5,
-			".c-steps_sheet": {
-				height: "100%",
-			},
-
-			".c-steps_sheet_line": {
-				"&:last-of-type": {
-					display: "block",
-				},
-				"&:nth-of-type(even)": {
-					display: "none",
-				},
-			},
-
-			".c-steps_item": {
-				justifyContent: "center",
-			},
-			".c-steps_item_1": {
-				gridRow: "1/2 !important",
-				gridColumn: "1/8 !important",
-			},
-			".c-steps_item_2": {
-				gridRow: " 2/3",
-				gridColumn: "6/14 !important",
-			},
-			".c-steps_item_3": {
-				gridRow: " 3/4",
-				gridColumn: "1/8 !important",
-			},
-			".c-steps_item_4": {
-				gridRow: " 4/5",
-				gridColumn: "6/14 !important",
-			},
-			".c-steps_item_5": {
-				gridRow: " 5/6",
-				gridColumn: "1/8 !important",
-			},
-		},
-		[theme.breakpoints.down("sm")]: {
-			height: "auto",
-			marginLeft: 2,
-			marginRight: 2,
-			".c-steps_item": {
-				marginBottom: theme.spacing(5),
-			},
-			".c-steps_item_1": {
-				gridRow: "1/2 !important",
-				gridColumn: "1/14 !important",
-			},
-			".c-steps_item_2": {
-				gridRow: " 2/3",
-				gridColumn: "1/14 !important",
-			},
-			".c-steps_item_3": {
-				gridRow: " 3/4",
-				gridColumn: "1/14 !important",
-			},
-			".c-steps_item_4": {
-				gridRow: " 4/5",
-				gridColumn: "1/14 !important",
-			},
-			".c-steps_item_5": {
-				gridRow: " 5/6",
-				gridColumn: "1/14 !important",
-			},
-		},
-
-		".c-steps_item_1": {
-			gridRow: "1/2",
-			gridColumn: "1/7",
-		},
-		".c-steps_item_2": {
-			gridColumn: "5/11",
-		},
-		".c-steps_item_3": {
-			gridRow: " 3/4",
-			gridColumn: "8/14",
-		},
-		".c-steps_item_4": {
-			gridRow: " 4/5",
-			gridColumn: "5/11",
-		},
-		".c-steps_item_5": {
-			gridRow: " 5/6",
-			gridColumn: "1/7",
-		},
-		".c-note": noteStyle,
-	});
-
-	const headingLayout = theme => ({
-		display: "flex",
-		flexDirection: "row-reverse",
-		alignItems: "center",
-		justifyContent: "center",
-		[theme.breakpoints.down("sm")]: {
-			marginBottom: 0,
-		},
-	});
-
-	const notesWrapper = theme => ({
-		position: "absolute",
-		".inner": {
-			width: "100%",
-			height: "100%",
-			position: "relative",
-		},
-		top: 0,
-		left: 0,
-		width: "100%",
-		height: "100%",
-		".Notes": {
-			width: "30vw",
-			position: "absolute",
-			top: "10vw",
-			left: "60vw",
-		},
-		".c-note": {
-			"&_1": {
-				top: "30vw",
-				left: "14vw",
-				fill: theme.palette.primary.colorSet.yellow,
-			},
-			"&_2": {
-				top: "10vw",
-				right: "20vw",
-				fill: theme.palette.primary.colorSet.blue,
-			},
-			"&_5": {
-				top: "50vw",
-				right: "40vw",
-
-				fill: theme.palette.primary.colorSet.green,
-				mixBlendMode: "multiply",
-			},
-		},
-	});
 
 	useEffect(() => {
 		const notes = document.querySelectorAll(".c-note");
 
 		if (scroll && scroll.scroll) {
 			[...notes].forEach(note => {
+				const { direction } = note.dataset;
+				console.log("the direction...", direction);
+
 				scroll.scroll.on("scroll", e => {
 					const { top } = note.getBoundingClientRect();
 					const scrollPos = e.scroll.y;
 
 					const rotate = top / scrollPos;
-					note.style.transform = `rotate(${rotate * 100}deg)`;
+					note.style.transform = `rotate(${
+						direction === "left" ? -Math.abs(rotate * 100) : rotate * 100
+					}deg)`;
 				});
 			});
 		}
@@ -250,18 +41,18 @@ function How({ steps }) {
 
 	return (
 		<>
-			{/* <TitleBlock
+			<TitleBlock
 				data={{
-					title: "Finding your rhythm",
+					title: "Finding Your Rhythm",
 				}}
-			/> */}
+			/>
 			<Section
 				data-theme='light'
 				noGutter
 				sx={{ overflow: "hidden", position: "relative" }}
 			>
 				<Container disableMaxWidth>
-					<Box className='heading-layout' sx={headingLayout} mb={20}></Box>
+					<Box className='heading-layout' mb={20}></Box>
 
 					<Box
 						className='steps-container -relative'

@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import useMouseEnter from "../../../../helpers/hooks/useMouseEnter";
 import Link from "../../../Link/Link";
 import Media from "../../../Media/Media";
+import HoverFrame from "../../../HOC/HoverFrame";
 
 function ProjectGridItem({
 	width,
@@ -13,7 +14,7 @@ function ProjectGridItem({
 	title,
 	artist,
 }) {
-	const { ref, isEnter } = useMouseEnter();
+	// const { ref, isEnter } = useMouseEnter();
 
 	const item = theme => ({
 		".c-frame": {
@@ -86,7 +87,14 @@ function ProjectGridItem({
 			isRouterLink
 			classes='-hover-underline -stretchX -stretchY -block'
 		>
-			<Box sx={item} ref={ref}>
+			{/* <Box sx={item} ref={ref}> */}
+			<HoverFrame
+				wrapper={(children, ref) => (
+					<Box sx={item} ref={ref}>
+						{children}
+					</Box>
+				)}
+			>
 				<Box className='item-inner -relative' sx={{ height: "100%" }}>
 					<Media
 						useIO
@@ -120,14 +128,15 @@ function ProjectGridItem({
 							{title}
 						</Typography>
 					</Box>
-					<Frame isHovering={isEnter} />
+					{/* <Frame isHovering={isEnter} /> */}
 				</Box>
-			</Box>
+			</HoverFrame>
+			{/* </Box> */}
 		</Link>
 	);
 }
 
-const Frame = ({ isHovering }) => {
+export const Frame = ({ isHovering }) => {
 	const wrapper = {
 		transform: `scale(${isHovering ? 1.03 : 0.8})rotate(${
 			isHovering ? "0deg" : "18deg"

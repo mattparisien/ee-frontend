@@ -8,6 +8,9 @@ import STATICHOME from "../../../api/graphql/queries/static/GetStaticHome";
 import { GlobalContext } from "../../../context/Context";
 import Scale from "../../HOC/Scale";
 import Hero from "./Parts/Hero";
+import About from "./Parts/About";
+import How from "./Parts/Steps/How";
+import Work from "./Parts/Work";
 
 function Home({ pageHeading, location }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
@@ -42,14 +45,17 @@ function Home({ pageHeading, location }) {
 					quote: testimonial.attributes.Quote,
 					author: testimonial.attributes.Author,
 				})),
-				featuredWork: [...data.projects.data.slice(0, 3)]
+				featuredWork: [...data.projects.data.slice(0, 4)]
 					.sort((a, b) => a.Date - b.Date)
 					.map(project => ({
 						id: project.id,
 						title: project.attributes.Title,
 						subtitle: project.attributes.Subtitle,
 						image: {
-							url: project.attributes.FeatureImage.data.attributes.url,
+							src: {
+								lowRes: project.attributes.FeatureImage.data.attributes.url,
+								highRes: project.attributes.FeatureImage.data.attributes.url,
+							},
 							alt: project.attributes.FeatureImage.data.attributes
 								.alternativeText,
 							caption: project.attributes.FeatureImage.data.attributes.caption,
@@ -63,9 +69,14 @@ function Home({ pageHeading, location }) {
 		return () => setLoading(true);
 	}, [data, loading]);
 
+	console.log(staticData)
+
 	return (
 		<>
 			<Hero pageHeading={pageHeading} />
+			<About aboutText={staticData.about} />
+			<How steps={staticData.steps} />
+			<Work projects={staticData.featuredWork} />
 		</>
 	);
 }

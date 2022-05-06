@@ -7,7 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
 import ContainerFluid from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
-import Frame from "../Vector/Frame";
+import HoverFrame from "../HOC/HoverFrame";
+import Media from "../Media/Media";
 
 function Slider({ items }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
@@ -15,6 +16,8 @@ function Slider({ items }) {
 
 	const navigationPrevRef = useRef(null);
 	const navigationNextRef = useRef(null);
+
+	console.log("the items", items);
 
 	return (
 		<div className='o-slider'>
@@ -50,8 +53,7 @@ function Slider({ items }) {
 									projectId={item.id}
 									artistName={item.title}
 									projectTitle={item.subtitle}
-									credit={item.caption}
-									src={item.image.url}
+									src={item.image.src}
 									alt={item.image.alt}
 								/>
 							</SwiperSlide>
@@ -89,6 +91,8 @@ function Item({
 	mobile,
 	credit,
 }) {
+	console.log("src", src);
+
 	const desktopInfoStyles = {
 		width: "100%",
 		height: "100%",
@@ -118,7 +122,6 @@ function Item({
 	};
 
 	const itemStyles = theme => ({
-		height: "500px",
 		".c-frame": {
 			transform: "rotate(-10deg) scale(0.8)",
 		},
@@ -160,11 +163,21 @@ function Item({
 	};
 
 	return (
-		<Box sx={itemStyles} className=' -hover-frame'>
+		<HoverFrame
+			wrapper={(children, ref) => (
+				<Box sx={itemStyles} ref={ref}>
+					{children}
+				</Box>
+			)}
+		>
 			<Link classes='o-slider_item' isRouterLink href={`/projects`}>
 				<Box className='image-wrapper' sx={imgWrapper}>
+					<Media
+						aspect='portrait'
+						items={[{ src: { ...src }, media_type: "image" }]}
+					/>
 					<Box component='img' src={src} alt={alt}></Box>
-					<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
+					{/* <Box className='info_desktop' sx={desktopInfoStyles} p={2}>
 						<Typography
 							className='info_desktop--artist'
 							variant='h6'
@@ -187,14 +200,14 @@ function Item({
 						>
 							{projectTitle}
 						</Typography>
-					</Box>
+					</Box> */}
 					{/* <Frame /> */}
 				</Box>
-				<Box className='temp-credits' sx={credits}>
+				{/* <Box className='temp-credits' sx={credits}>
 					<Typography variant='body2' component='p'>
 						{credit}
 					</Typography>
-				</Box>
+				</Box> */}
 
 				{mobile && (
 					<Box className='info_mobile'>
@@ -217,7 +230,7 @@ function Item({
 					</Box>
 				)}
 			</Link>
-		</Box>
+		</HoverFrame>
 	);
 }
 
