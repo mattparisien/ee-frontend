@@ -59,40 +59,43 @@ function SingleProject({ location }) {
 		if (data && !loading && !project.blocks[0]) {
 			const blocks = formatBlockData(data.data.attributes.Choose);
 
-			blocks.forEach(block => {
-				block.then(blockInfo => {
-					if (blockInfo) {
-						setProject(prev => ({
-							styles: {
-								color: accentColor,
-							},
-							title: data.data.attributes.Title,
-							subtitle: data.data.attributes.Subtitle,
-							featureImage: {
-								src: {
-									lowRes:
-										data.data.attributes.FeatureImage.data.attributes.formats
-											.thumbnail.url,
-									highRes: data.data.attributes.FeatureImage.data.attributes
-										.formats.large
-										? data.data.attributes.FeatureImage.data.attributes.formats
-												.large.url
-										: data.data.attributes.FeatureImage.data.attributes.url,
+			blocks.then(res => {
+				res.forEach(block => {
+					block.then(blockInfo => {
+						if (blockInfo) {
+							setProject(prev => ({
+								styles: {
+									color: accentColor,
 								},
-								alt: data.data.attributes.FeatureImage.data.attributes
-									.alternativeText,
-								caption:
-									data.data.attributes.FeatureImage.data.attributes.caption,
-								width: data.data.attributes.FeatureImage.data.attributes.width,
-								height:
-									data.data.attributes.FeatureImage.data.attributes.height,
-							},
-							blocks: [
-								...prev.blocks,
-								{ name: blockInfo.name, data: { ...blockInfo.data } },
-							],
-						}));
-					}
+								title: data.data.attributes.Title,
+								subtitle: data.data.attributes.Subtitle,
+								featureImage: {
+									src: {
+										lowRes:
+											data.data.attributes.FeatureImage.data.attributes.formats
+												.thumbnail.url,
+										highRes: data.data.attributes.FeatureImage.data.attributes
+											.formats.large
+											? data.data.attributes.FeatureImage.data.attributes
+													.formats.large.url
+											: data.data.attributes.FeatureImage.data.attributes.url,
+									},
+									alt: data.data.attributes.FeatureImage.data.attributes
+										.alternativeText,
+									caption:
+										data.data.attributes.FeatureImage.data.attributes.caption,
+									width:
+										data.data.attributes.FeatureImage.data.attributes.width,
+									height:
+										data.data.attributes.FeatureImage.data.attributes.height,
+								},
+								blocks: [
+									...prev.blocks,
+									{ name: blockInfo.name, data: { ...blockInfo.data } },
+								],
+							}));
+						}
+					});
 				});
 			});
 

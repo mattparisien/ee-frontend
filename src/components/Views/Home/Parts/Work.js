@@ -39,15 +39,18 @@ function Work({ projects }) {
 			filter: `grayscale(1)`,
 		},
 		width: `${
-			matches ? "100%" : `calc(100vw / ${projects && projects.length} - 6vw)`
+			matches ? "100%" : `calc(100vw / ${projects && projects.length} - 8vw)`
 		}`,
+		[theme.breakpoints.up("md")]: {
+			maxWidth: "230px",
+		},
 	});
 
 	return (
 		<>
 			<TitleBlock
 				data={{
-					title: "Featured Work",
+					title: "Our Work",
 				}}
 			/>
 			<Section data-theme='light'>

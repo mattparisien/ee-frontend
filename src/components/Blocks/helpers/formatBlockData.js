@@ -1,7 +1,7 @@
 import getBlockName from "./getBlockName";
 import normalizeData from "./normalizeData";
 
-const formatBlockData = array => {
+const formatBlockData = async array => {
 	const blocks = array.map(async block => {
 		const blockName = getBlockName(block.__component);
 		const normalizedData = await normalizeData(block, blockName, array);
@@ -22,7 +22,7 @@ const formatBlockData = array => {
 		return blockObj;
 	});
 
-	return blocks;
+	return await blocks;
 };
 
 export default formatBlockData;
