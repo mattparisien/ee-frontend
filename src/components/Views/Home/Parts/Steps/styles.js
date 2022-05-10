@@ -2,7 +2,7 @@ const containerStyles = theme => ({
 	".MuiContainer-root": {
 		overflow: "visible",
 	},
-	height: "140vw",
+	height: "100vw",
 	marginLeft: 10,
 	marginRight: 10,
 
@@ -38,7 +38,7 @@ const containerStyles = theme => ({
 		},
 		".c-steps_item_1": {
 			gridRow: "1/2 !important",
-			gridColumn: "1/8 !important",
+			gridColumn: "1/3 !important",
 		},
 		".c-steps_item_2": {
 			gridRow: " 2/3",
@@ -88,22 +88,22 @@ const containerStyles = theme => ({
 
 	".c-steps_item_1": {
 		gridRow: "1/2",
-		gridColumn: "1/7",
+		gridColumn: "1/4",
 	},
 	".c-steps_item_2": {
-		gridColumn: "5/11",
+		gridColumn: "4/8",
 	},
 	".c-steps_item_3": {
 		gridRow: " 3/4",
-		gridColumn: "8/14",
+		gridColumn: "8/11",
 	},
 	".c-steps_item_4": {
 		gridRow: " 4/5",
-		gridColumn: "5/11",
+		gridColumn: "4/8",
 	},
 	".c-steps_item_5": {
 		gridRow: " 5/6",
-		gridColumn: "1/7",
+		gridColumn: "1/4",
 	},
 });
 

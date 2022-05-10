@@ -718,7 +718,7 @@ body {
 }
 
 .how-grid {
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(9, 1fr);
   margin: 6vw;
   grid-gap: 1.4vw;
 }

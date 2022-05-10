@@ -29,8 +29,8 @@ function StepItem({ step, id }) {
 						textAlign: "center",
 						marginBottom: theme.spacing(5),
 					})}
-					variant='h3'
-					component='h3'
+					variant='h4'
+					component='h4'
 				>
 					<SplitText>{step.title}</SplitText>
 				</Typography>
