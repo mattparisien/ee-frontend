@@ -17,18 +17,19 @@ function About({ pageId }) {
 		if (data && !loading && !blocks[0]) {
 			const blocks = formatBlockData(data.data.attributes.Choose);
 
-			blocks.forEach(block => {
-				block.then(blockInfo => {
-					if (blockInfo) {
-						setBlocks(prev => [
-							...prev,
-							{ name: blockInfo.name, data: { ...blockInfo.data } },
-						]);
-					}
+			blocks.then(res => {
+				res.forEach(block => {
+					block.then(blockInfo => {
+						if (blockInfo) {
+							setBlocks(prev => [
+								...prev,
+								{ name: blockInfo.name, data: { ...blockInfo.data } },
+							]);
+						}
+					});
 				});
+				setLoading(false);
 			});
-
-			setLoading(false);
 		}
 
 		return () => setLoading(true);

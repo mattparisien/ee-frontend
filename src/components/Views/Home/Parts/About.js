@@ -87,16 +87,18 @@ function About({ aboutText }) {
 				>
 					<Container position='relative'>
 						<Box
-							className='o-about_content -fullHeight'
+							className={`o-about_content`}
 							sx={{
 								display: "flex",
 								alignItems: "center",
 								justifyContent: "space-between",
+								flexDirection: matches ? "column" : "row",
+								height: matches ? "auto" : "100vh"
 							}}
 							pt={matches ? 5 : 20}
 							pb={matches ? 5 : 20}
 						>
-							<Typography variant='h4' sx={{ width: "50%" }}>
+							<Typography variant='h4' sx={{ width: matches ? "100%" : "50%" }}>
 								<Markdown
 									variantMap={{
 										p: "h4",

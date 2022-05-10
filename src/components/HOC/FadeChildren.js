@@ -1,6 +1,6 @@
 import { motion } from "framer-motion/dist/framer-motion";
 import React from "react";
-import InView from "./InView";
+import useInView from "../../helpers/hooks/useInView";
 
 function FadeChildren({
 	children,
@@ -9,6 +9,7 @@ function FadeChildren({
 	wrapperProps,
 	childWrapperProps,
 }) {
+	const { ref, inView } = useInView();
 	const variants = {
 		hidden: {
 			opacity: 0,
@@ -41,28 +42,28 @@ function FadeChildren({
 
 	const CustomWrapper = motion(wrapper);
 	const CustomChildWrapper = motion(childWrapper);
+	
 
 	return (
-		<InView>
-			<CustomWrapper
-				{...wrapperProps}
-				variants={variants}
-				animate={"visible"}
-				initial={"hidden"}
-				exit={"exit"}
-			>
-				{children &&
-					children.map((child, i) => (
-						<CustomChildWrapper
-							key={i}
-							variants={childrenVariants}
-							{...childWrapperProps}
-						>
-							{child}
-						</CustomChildWrapper>
-					))}
-			</CustomWrapper>
-		</InView>
+		<CustomWrapper
+			ref={ref}
+			{...wrapperProps}
+			variants={variants}
+			animate={inView && "visible"}
+			initial={"hidden"}
+			exit={"exit"}
+		>
+			{children &&
+				children.map((child, i) => (
+					<CustomChildWrapper
+						key={i}
+						variants={childrenVariants}
+						{...childWrapperProps}
+					>
+						{child}
+					</CustomChildWrapper>
+				))}
+		</CustomWrapper>
 	);
 }
 

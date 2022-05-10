@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import classNames from "classnames";
 import React, { forwardRef, useContext } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { SiteWideControls } from "../../context/Context";
 
 function Link(props) {
@@ -37,7 +37,7 @@ function Link(props) {
 	};
 
 	return props.isRouterLink ? (
-		<NavLink
+		<RouterLink
 			className={classes}
 			to={props.href === "/" ? "" : props.href}
 			style={props.style}
@@ -46,7 +46,7 @@ function Link(props) {
 			// component='button'
 		>
 			<Typography variant='body3'>{props.children}</Typography>
-		</NavLink>
+		</RouterLink>
 	) : (
 		<a
 			className={classes}

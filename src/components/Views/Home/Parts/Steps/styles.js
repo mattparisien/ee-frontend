@@ -14,49 +14,7 @@ const containerStyles = theme => ({
 			display: "none",
 		},
 	},
-	[theme.breakpoints.down("md")]: {
-		height: "auto",
-	},
-	[theme.breakpoints.down("md")]: {
-		marginLeft: 5,
-		marginRight: 5,
-		".c-steps_sheet": {
-			height: "100%",
-		},
 
-		".c-steps_sheet_line": {
-			"&:last-of-type": {
-				display: "block",
-			},
-			"&:nth-of-type(even)": {
-				display: "none",
-			},
-		},
-
-		".c-steps_item": {
-			justifyContent: "center",
-		},
-		".c-steps_item_1": {
-			gridRow: "1/2 !important",
-			gridColumn: "1/3 !important",
-		},
-		".c-steps_item_2": {
-			gridRow: " 2/3",
-			gridColumn: "6/14 !important",
-		},
-		".c-steps_item_3": {
-			gridRow: " 3/4",
-			gridColumn: "1/8 !important",
-		},
-		".c-steps_item_4": {
-			gridRow: " 4/5",
-			gridColumn: "6/14 !important",
-		},
-		".c-steps_item_5": {
-			gridRow: " 5/6",
-			gridColumn: "1/8 !important",
-		},
-	},
 	[theme.breakpoints.down("sm")]: {
 		height: "auto",
 		marginLeft: 2,
@@ -148,6 +106,10 @@ const notesWrapper = theme => ({
 			bottom: "12vw",
 			right: "53vw",
 		},
+		[theme.breakpoints.down("md")]: {
+			left: "50%",
+			transform: `translateX(-50%)`
+		}
 	},
 });
 

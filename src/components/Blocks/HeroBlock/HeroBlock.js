@@ -1,33 +1,14 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import Media from "../Media/Media";
-import SplitText from "../HOC/SplitText";
+import Media from "../../Media/Media";
+import SplitText from "../../HOC/SplitText";
+import { splitLayout, mediaSize } from "./styles";
+import ScrollDownCta from "./components/ScrollDownCta";
 
 function HeroBlock({ data }) {
-	const splitLayout = theme => ({
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		[theme.breakpoints.down("sm")]: {
-			flexDirection: "column",
-			textAlign: "center",
-			"> *:nth-of-type(1)": {
-				marginBottom: theme.spacing(10),
-			},
-		},
-	});
-
-	const mediaSize = theme => ({
-		width: "50vw",
-		[theme.breakpoints.up("sm")]: {
-			width: "30vw",
-			maxWidth: theme.spacing(80),
-		},
-	});
-
 	return (
 		<Box sx={splitLayout}>
-			<Box sx={{ flex: 1 }}>
+			<Box sx={{ flex: 1, position: "relative" }}>
 				<Typography variant='h1' component='h1'>
 					<SplitText enterDelay={0.7}>{data.title}</SplitText>
 				</Typography>
@@ -52,6 +33,7 @@ function HeroBlock({ data }) {
 					accent
 				/>
 			</Box>
+			<ScrollDownCta />
 		</Box>
 	);
 }

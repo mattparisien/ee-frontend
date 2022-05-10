@@ -47,7 +47,7 @@ function Block(props) {
 	const padding = props.name === "FullBleedMediaBlock" ? 0 : 10;
 
 	const verticalPaddingStyles = theme => ({
-		padding: `${theme.spacing(10)} 0`,
+		padding: `${theme.spacing(5)} 0`,
 		[theme.breakpoints.up("sm")]: {
 			padding: `${theme.spacing(15)} 0`,
 		},

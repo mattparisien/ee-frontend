@@ -2,9 +2,11 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import Fade from "../HOC/Fade";
 import { motion } from "framer-motion/dist/framer-motion";
-import InView from "../HOC/InView";
+import useInView from "../../helpers/hooks/useInView";
 
 function QuoteBlock({ data, fontSize }) {
+	const { ref, inView } = useInView();
+
 	const author = {
 		display: "block",
 		textAlign: "left",
@@ -62,6 +64,7 @@ function QuoteBlock({ data, fontSize }) {
 			alignItems='center'
 			justifyContent='center'
 			flexDirection='column'
+			ref={ref}
 		>
 			<Fade
 				wrapper={Typography}
@@ -87,16 +90,15 @@ function QuoteBlock({ data, fontSize }) {
 						{data.author}
 					</Box>
 				</Typography>
-				<InView sx={{ flex: 1 }}>
-					<CustomMotionLine
-						sx={line}
-						className='line foreground-el'
-						variants={lineVariants}
-						initial='hidden'
-						animate='visible'
-						exit='exit'
-					/>
-				</InView>
+
+				<CustomMotionLine
+					sx={line}
+					className='line foreground-el'
+					variants={lineVariants}
+					initial='hidden'
+					animate={inView && "visible"}
+					exit='exit'
+				/>
 			</Box>
 		</Box>
 	);

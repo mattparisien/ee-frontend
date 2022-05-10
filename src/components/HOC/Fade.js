@@ -1,6 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion/dist/framer-motion";
-import InView from "./InView";
+import React from "react";
+import useInView from "../../helpers/hooks/useInView";
 
 function Fade({
 	children,
@@ -11,6 +11,7 @@ function Fade({
 	exitY,
 	wrapperProps,
 }) {
+	const { ref, inView } = useInView();
 	const CustomWrapper = motion(wrapper);
 
 	const variants = {
@@ -39,17 +40,16 @@ function Fade({
 	};
 
 	return (
-		<InView>
-			<CustomWrapper
-				{...wrapperProps}
-				variants={variants}
-				animate={"visible"}
-				initial='hidden'
-				exit='exit'
-			>
-				{children}
-			</CustomWrapper>
-		</InView>
+		<CustomWrapper
+			ref={ref}
+			{...wrapperProps}
+			variants={variants}
+			animate={inView && "visible"}
+			initial='hidden'
+			exit='exit'
+		>
+			{children}
+		</CustomWrapper>
 	);
 }
 

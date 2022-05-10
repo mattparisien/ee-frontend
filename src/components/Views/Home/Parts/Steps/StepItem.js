@@ -1,12 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import React from "react";
 import SplitText from "../../../../HOC/SplitText";
 import Markdown from "../../../../Markdown/Markdown";
-import Overlay from "../../../../Media/Overlay";
-import { useTheme } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 function StepItem({ step, id }) {
 	const theme = useTheme();
+	const matches = useMediaQuery(
+		`(max-width: ${theme.breakpoints.values.sm}px)`
+	);
 
 	const stepParagraph = theme => ({
 		fontSize: "1.3vw",
@@ -29,8 +31,8 @@ function StepItem({ step, id }) {
 						textAlign: "center",
 						marginBottom: theme.spacing(5),
 					})}
-					variant='h4'
-					component='h4'
+					variant={matches ? 'h3' : "h4"}
+					component={'h4'}
 				>
 					<SplitText>{step.title}</SplitText>
 				</Typography>
@@ -39,22 +41,6 @@ function StepItem({ step, id }) {
 					{step.body}
 				</Markdown>
 			</Box>
-			{/* <Overlay
-				color={
-					theme.palette.primary.colorSet[
-						Object.keys(theme.palette.primary.colorSet)[id]
-					]
-				}
-				sx={{
-					width: "60vw",
-					height: "60vw",
-					top: "24%",
-					left: "50%",
-					transform: "translate(-50%, -50%)",
-					borderRadius: "50%",
-					mixBlendMode: "multiply",
-				}}
-			/> */}
 		</Box>
 	);
 }

@@ -6,6 +6,7 @@ import Link from "../../../Link/Link";
 import Arrow from "../../../Vector/Arrow";
 import getNextId from "../helpers/getNextId";
 import TextMarquee from "./TextMarquee";
+import Fade from "../../../HOC/Fade";
 
 function Next({ color, currentProjectId, projects }) {
 	const next = useMemo(() => {
@@ -101,8 +102,9 @@ function Next({ color, currentProjectId, projects }) {
 											<Arrow color='dark' />
 										</Box>
 									</Container>
-
-									<TextMarquee direction='right' words={marqueeWords} />
+									<Fade wrapper={Box}>
+										<TextMarquee direction='right' words={marqueeWords} />
+									</Fade>
 								</div>
 							</Box>
 						</Link>

@@ -1,8 +1,10 @@
 import React from "react";
-import InView from "./InView";
+import useInView from "../../helpers/hooks/useInView";
 import { motion } from "framer-motion/dist/framer-motion";
 
 function Scale({ children }) {
+	const { ref, inView } = useInView();
+
 	const variants = {
 		hidden: {
 			scale: 0,
@@ -28,18 +30,17 @@ function Scale({ children }) {
 	};
 
 	return (
-		<InView>
-			<motion.div
-				className='Scale'
-				style={{ width: "100%", height: "100%" }}
-				variants={variants}
-				initial='hidden'
-				animate='visible'
-				exit='exit'
-			>
-				{children}
-			</motion.div>
-		</InView>
+		<motion.div
+			ref={ref}
+			className='Scale'
+			style={{ width: "100%", height: "100%" }}
+			variants={variants}
+			initial='hidden'
+			animate={inView && "visible"}
+			exit='exit'
+		>
+			{children}
+		</motion.div>
 	);
 }
 
