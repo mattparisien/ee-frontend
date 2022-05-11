@@ -108,7 +108,33 @@ const notesWrapper = theme => ({
 		},
 		[theme.breakpoints.down("md")]: {
 			left: "50%",
-			transform: `translateX(-50%)`
+			transform: `translateX(-50%)`,
+			"&_1": {
+				width: "5vw",
+				top: "43vw",
+				left: "69vw",
+			},
+			"&_2": {
+				width: "8vw",
+				top: "20vw",
+				left: "16vw"
+			},
+			"&_3": {
+				width: "5vw",
+				bottom: "60vw",
+				left: "15vw"
+				
+			},
+			"&_4": {
+				width: "8vw",
+				bottom: "35vw",
+				left: '73vw'
+			},
+			"&_5": {
+				width: "5vw",
+				bottom: "3vw",
+				left: "12vw"
+			},
 		}
 	},
 });
