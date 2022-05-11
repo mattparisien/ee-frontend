@@ -1,7 +1,6 @@
 import { IconButton } from "@mui/material";
 
-function Burger({ menuActive, onBurgerClick }) {
-	
+function Burger({ menuActive, onBurgerClick, isIntroDone }) {
 	const burgerBtn = theme => ({
 		display: "none",
 		paddingRight: 0,
@@ -10,8 +9,10 @@ function Burger({ menuActive, onBurgerClick }) {
 		borderRadius: "2rem",
 		height: "100%",
 		position: "relative",
+		transform: `translateY(${isIntroDone ? 0 : "100%"})`,
+		opacity: isIntroDone ? 1 : 0,
 		transition:
-			"color .3s cubic-bezier(.35,.755,.42,.95),background-color .3s cubic-bezier(.35,.755,.42,.95)",
+			"color .3s cubic-bezier(.35,.755,.42,.95),background-color .3s cubic-bezier(.35,.755,.42,.95),opacity .75s cubic-bezier(.215,.61,.355,1) .15s,transform .75s cubic-bezier(.215,.61,.355,1) .15s",
 		svg: {
 			fill: theme.palette.primary[menuActive ? "light" : "dark"],
 			transition: "fill 200ms ease",

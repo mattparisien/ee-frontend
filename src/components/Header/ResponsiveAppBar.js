@@ -6,15 +6,17 @@ import {
 	ListItemText,
 	Toolbar,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { SiteWideControls } from "../../context/Context";
 import Container from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
-// import List from "../Lists/List";
+
 import { TextLogo } from "../Vector/Svg";
 import Burger from "./Burger";
-import { motion } from "framer-motion/dist/framer-motion";
 
 function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
+	const { introDone } = useContext(SiteWideControls);
+
 	const wrapper = theme => ({
 		zIndex: 99999999,
 		transition: "background 200ms ease",
@@ -75,6 +77,18 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 		".MuiListItem-root:not(first-of-type)": {
 			marginLeft: theme.spacing(12),
 		},
+		".MuiListItem-root": {
+			transform: `translateY(${introDone ? "0" : "100%"})`,
+			opacity: introDone ? 1 : 0,
+			transition:
+				"opacity .75s cubic-bezier(.215,.61,.355,1) .15s,transform .75s cubic-bezier(.215,.61,.355,1) .15s",
+		},
+		".MuiListItem-root:nth-of-type(2)": {
+			transitionDelay: 0.23,
+		},
+		".MuiListItem-root:nth-of-type(3)": {
+			transitionDelay: 0.34,
+		},
 	});
 
 	return (
@@ -92,6 +106,7 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 							{navItems &&
 								navItems.map((item, i) => (
 									<ListItem
+										className={`listItem_${i + 1}`}
 										key={i}
 										sx={{
 											justifyContent: "flex-end",
@@ -130,7 +145,11 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 							},
 						})}
 					>
-						<Burger onBurgerClick={onBurgerClick} menuActive={menuActive} />
+						<Burger
+							onBurgerClick={onBurgerClick}
+							menuActive={menuActive}
+							isIntroDone={introDone}
+						/>
 					</Box>
 				</Toolbar>
 			</Container>
