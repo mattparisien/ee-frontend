@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion/dist/framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -86,7 +86,7 @@ const AnimationWrapper = ({ children, enterDelay, exitDelay }) => {
 			animate={inView && "visible"}
 			style={{
 				overflow: "hidden",
-				display: "inline"
+				display: "inline",
 			}}
 		>
 			{children}

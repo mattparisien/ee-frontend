@@ -20,6 +20,7 @@ import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
+import IntroCard from "./components/Transition/IntroCard";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -52,7 +53,7 @@ function App() {
 	} = useAppData();
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
-	const [introDone, setIntroDone] = useState(false);
+
 	// const [navItems, setNavItems] = useState([]);
 
 	const introTl = useRef(gsap.timeline());
@@ -90,11 +91,18 @@ function App() {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
 	};
 
+	const [introDone, setIntroDone] = useState(false);
+
+	const onComplete = useCallback(() => {
+		setIntroDone(!introDone);
+	}, []);
+
 	useEffect(() => {
-		introAnimation(introTl.current)
-	}, [])
+		introAnimation(introTl.current, onComplete);
+	}, [onComplete]);
 
 	const siteControls = {
+		introDone,
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
 		transitioning,
@@ -162,7 +170,7 @@ The Eyes and Ears Agency builds a bridge between the music industry and impactfu
 						error={error}
 						setError={setError}
 					>
-						{/* <IntroCard pending={pending} /> */}
+						<IntroCard />
 						<BackToTop />
 						<ScrollToTop watch={location.pathname}>
 							<Navigation
@@ -181,7 +189,6 @@ The Eyes and Ears Agency builds a bridge between the music industry and impactfu
 							/>
 
 							<Cursor />
-							{/* <IntroCard /> */}
 
 							<div
 								className='scroll-wrapper'

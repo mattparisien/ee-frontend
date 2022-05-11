@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useContext } from "react";
+import { SiteWideControls } from "../../../../context/Context";
 import Section from "../../../Containers/Section";
 import Container from "../../../Containers/ContainerFluid";
 import { Typography, Box } from "@mui/material";
@@ -7,6 +8,8 @@ import Scale from "../../../HOC/Scale";
 import { DrawnLogo } from "../../../Vector/Svg";
 
 function Hero({ pageHeading }) {
+	const { introDone } = useContext(SiteWideControls);
+
 	const words = useMemo(() => {
 		return pageHeading && pageHeading.split(" ");
 	}, [pageHeading]);
@@ -29,7 +32,6 @@ function Hero({ pageHeading }) {
 			transform: "translate(-70%, -50%) !important",
 		},
 		[theme.breakpoints.down("md")]: {
-			// width: "90vw",
 			height: "40vw",
 			width: "40vw",
 			position: "static",
@@ -106,17 +108,20 @@ function Hero({ pageHeading }) {
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<Container classes='-stretchX -stretchY' sx={containerStyles}>
-				{wordMap.map((word, i) => (
-					<Typography key={i} className='word'>
-						<SplitText enterDelay={3.4}>{word}</SplitText>
-					</Typography>
-				))}
-
-				<Box className='logo' sx={logo}>
-					<Scale enterDelay={3.4}>
-						<DrawnLogo />
-					</Scale>
-				</Box>
+				{introDone && (
+					<>
+						{wordMap.map((word, i) => (
+							<Typography key={i} className='word'>
+								<SplitText isReady={introDone}>{word}</SplitText>
+							</Typography>
+						))}
+						<Box className='logo' sx={logo}>
+							<Scale>
+								<DrawnLogo />
+							</Scale>
+						</Box>
+					</>
+				)}
 				<Typography
 					variant='h2'
 					sx={theme => ({

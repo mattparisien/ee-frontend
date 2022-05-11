@@ -84,27 +84,27 @@ const notesWrapper = theme => ({
 		"&_1": {
 			width: "3vw",
 			top: "31vw",
-			left: "50vw",
+			left: "60vw",
 		},
 		"&_2": {
-			width: "7vw",
-			top: "10vw",
-			left: "20vw"
+			width: "5vw",
+			top: "11.5vw",
+			left: "30vw"
 		},
 		"&_3": {
 			width: "3vw",
 			bottom: "48vw",
-			right: "22vw",
+			right: "10vw",
 		},
 		"&_4": {
-			width: "4vw",
+			width: "5vw",
 			bottom: "30vw",
-			right: "50vw",
+			right: "36vw",
 		},
 		"&_5": {
 			width: "3vw",
-			bottom: "10vw",
-			left: "19vw"
+			bottom: "7vw",
+			left: "30vw"
 		},
 		[theme.breakpoints.down("md")]: {
 			left: "50%",
