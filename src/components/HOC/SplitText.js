@@ -86,6 +86,7 @@ const AnimationWrapper = ({ children, enterDelay, exitDelay }) => {
 			animate={inView && "visible"}
 			style={{
 				overflow: "hidden",
+				display: "inline"
 			}}
 		>
 			{children}

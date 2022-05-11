@@ -3,14 +3,17 @@ import { Box } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import "./ScrollDownCta.css";
 
-function ScrollDownCta() {
+function ScrollDownCta({ isMobile }) {
 	const cta = theme => ({
 		position: "absolute",
 		transform: "translateX(-50%)",
-		bottom: '-8vw',
+		bottom: '-4vw',
+		display: !isMobile ? "none" : "block",
+
 		[theme.breakpoints.up("md")]: {
-			bottom: "5vw",
-			left: "22vw",
+			display: isMobile ? "none" : "block",
+			bottom: "-8vw",
+			left: "50%",
 		},
 	});
 

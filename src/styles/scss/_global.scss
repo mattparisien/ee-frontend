@@ -19,7 +19,9 @@
 // }
 
 .content-container .swiper-slide-active {
-	overflow-y: overlay !important;
+	@media screen and (max-width: 600px) {
+		overflow-y: overlay !important;
+	}
 }
 
 .swiper-slide {

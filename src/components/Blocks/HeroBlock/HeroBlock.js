@@ -12,8 +12,9 @@ function HeroBlock({ data }) {
 				<Typography variant='h1' component='h1'>
 					<SplitText enterDelay={0.7}>{data.title}</SplitText>
 				</Typography>
-				<Typography variant='h4'>
+				<Typography variant='h4' sx={{display: "inline", position: "relative"}}>
 					<SplitText enterDelay={0.8}>{data.subtitle}</SplitText>
+					<ScrollDownCta />
 				</Typography>
 			</Box>
 			<Box sx={mediaSize}>
@@ -33,7 +34,7 @@ function HeroBlock({ data }) {
 					accent
 				/>
 			</Box>
-			<ScrollDownCta />
+			<ScrollDownCta isMobile/>
 		</Box>
 	);
 }

@@ -82,29 +82,29 @@ const notesWrapper = theme => ({
 		mixBlendMode: "multiply",
 		fill: theme.palette.primary.yellow,
 		"&_1": {
-			width: "4vw",
-			top: "37vw",
-			left: "59vw",
+			width: "3vw",
+			top: "31vw",
+			left: "50vw",
 		},
 		"&_2": {
-			width: "10vw",
-			top: "7vw",
-			right: "50vw",
+			width: "7vw",
+			top: "10vw",
+			left: "20vw"
 		},
 		"&_3": {
-			width: "5vw",
-			bottom: "40vw",
-			right: "36vw",
+			width: "3vw",
+			bottom: "48vw",
+			right: "22vw",
 		},
 		"&_4": {
-			width: "10vw",
-			bottom: "71vw",
-			right: "12vw",
+			width: "4vw",
+			bottom: "30vw",
+			right: "50vw",
 		},
 		"&_5": {
-			width: "5vw",
-			bottom: "12vw",
-			right: "53vw",
+			width: "3vw",
+			bottom: "10vw",
+			left: "19vw"
 		},
 		[theme.breakpoints.down("md")]: {
 			left: "50%",
