@@ -1,8 +1,8 @@
 import { gsap } from "gsap";
 import $ from "jquery";
 
-const introAnimation = (timeline, onCompleteCb) => {
-	const headerLogo = document.querySelector(".c-header_logo");
+const introAnimation = timeline => {
+	const headerLogo = document.querySelector(".logo-wrap");
 	const characters = $(headerLogo).find(".chars path");
 	const listItems = $(".c-header li");
 	const subtitle = $(headerLogo).find(".the");
@@ -17,6 +17,7 @@ const introAnimation = (timeline, onCompleteCb) => {
 	const windowHeight = window.innerHeight;
 	gsap.set(headerLogo, {
 		y: windowHeight / 2,
+		scale: 2,
 	});
 	gsap.set(subtitles, {
 		opacity: 0,
@@ -34,13 +35,12 @@ const introAnimation = (timeline, onCompleteCb) => {
 			headerLogo,
 			{
 				y: "0%",
-				width: "140px",
+				scale: 1,
 				duration: 2,
 				ease: "expo.inOut",
 			},
 			2.4
 		)
-		.to(header, { boxShadow: "3px 4px 30px -12px rgba(0, 0, 0, 0.2)" }, 4)
 		.to(card, { opacity: 0, duration: 1 })
 		.to(
 			subtitles,
@@ -86,7 +86,6 @@ const introAnimation = (timeline, onCompleteCb) => {
 				stagger: 0.05,
 				ease: "power3.out",
 				onComplete: () => {
-					onCompleteCb(prev => !prev);
 					gsap.set(card, { display: "none" });
 				},
 			},

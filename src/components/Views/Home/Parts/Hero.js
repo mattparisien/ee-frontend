@@ -29,7 +29,11 @@ function Hero({ pageHeading }) {
 			transform: "translate(-70%, -50%) !important",
 		},
 		[theme.breakpoints.down("md")]: {
-			display: "none",
+			// width: "90vw",
+			height: "40vw",
+			width: "40vw",
+			position: "static",
+			transform: "translateX(-5%) translateY(0)",
 		},
 		".c-drawnLogo": {
 			height: "100%",
@@ -65,12 +69,15 @@ function Hero({ pageHeading }) {
 
 		".word": {
 			fontFamily: "Kobe Bold",
+			display: "none",
 		},
 		".word:nth-of-type(2)": {
 			textAlign: "right",
 		},
+
 		[theme.breakpoints.up("md")]: {
 			".word": {
+				display: "block !important",
 				fontSize: "8rem",
 				lineHeight: "8rem",
 			},
@@ -83,7 +90,7 @@ function Hero({ pageHeading }) {
 		},
 
 		[theme.breakpoints.down("md")]: {
-			justifyContent: "center",
+			justifyContent: "space-evenly",
 			alignItems: "center",
 			height: "80vw",
 			".word": {
@@ -101,15 +108,25 @@ function Hero({ pageHeading }) {
 			<Container classes='-stretchX -stretchY' sx={containerStyles}>
 				{wordMap.map((word, i) => (
 					<Typography key={i} className='word'>
-						<SplitText>{word}</SplitText>
+						<SplitText enterDelay={3.4}>{word}</SplitText>
 					</Typography>
 				))}
 
 				<Box className='logo' sx={logo}>
-					<Scale>
+					<Scale enterDelay={3.4}>
 						<DrawnLogo />
 					</Scale>
 				</Box>
+				<Typography
+					variant='h2'
+					sx={theme => ({
+						[theme.breakpoints.up("md")]: {
+							display: "none",
+						},
+					})}
+				>
+					Social Impact Agency
+				</Typography>
 			</Container>
 		</Section>
 	);

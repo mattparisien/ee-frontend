@@ -22,7 +22,7 @@ function View({ location, pageId, name }) {
 
 	return (
 		<ViewContext.Provider>
-			<Page location={location}>
+			<Page location={location} name={name}>
 				<motion.div
 					variants={containerVariants}
 					initial={"hidden"}

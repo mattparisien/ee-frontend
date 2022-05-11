@@ -1,9 +1,6 @@
-import CloseIcon from "@mui/icons-material/Close";
-import MenuIcon from "@mui/icons-material/Menu";
 import {
 	AppBar,
 	Box,
-	IconButton,
 	List,
 	ListItem,
 	ListItemText,
@@ -15,6 +12,7 @@ import Link from "../Link/Link";
 // import List from "../Lists/List";
 import { TextLogo } from "../Vector/Svg";
 import Burger from "./Burger";
+import { motion } from "framer-motion/dist/framer-motion";
 
 function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 	const wrapper = theme => ({
@@ -32,6 +30,7 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 
 	const logoWrap = theme => ({
 		width: "120px",
+
 		svg: {
 			transition: "fill 200ms ease",
 			fill: theme.palette.primary[menuActive ? "light" : "dark"],

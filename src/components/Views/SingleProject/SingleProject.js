@@ -17,6 +17,7 @@ import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import getParam from "./helpers/getParam";
 import Next from "./Parts/Next";
+import "./SingleProject.css";
 
 export const ProjectContext = createContext();
 

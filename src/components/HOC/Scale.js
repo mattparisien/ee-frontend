@@ -2,7 +2,7 @@ import React from "react";
 import useInView from "../../helpers/hooks/useInView";
 import { motion } from "framer-motion/dist/framer-motion";
 
-function Scale({ children }) {
+function Scale({ children, enterDelay }) {
 	const { ref, inView } = useInView();
 
 	const variants = {
@@ -16,6 +16,7 @@ function Scale({ children }) {
 			transition: {
 				ease: [0.86, 0, 0.07, 0.995],
 				duration: 1,
+				delay: enterDelay || 0,
 			},
 		},
 

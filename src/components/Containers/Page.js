@@ -7,7 +7,7 @@ import Section from "./Section";
 import Container from "./ContainerFluid";
 
 function Page(props) {
-	const classes = classNames("Page", { [`page-${props.name}`]: props.name });
+	const classes = classNames("Page", { [`Page-${props.name}`]: props.name });
 
 	const [headerHeight, setHeaderHeight] = useState(null);
 	const [windowWidth] = useResize();
