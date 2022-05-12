@@ -18,8 +18,33 @@
 // 	border-radius: 20px; /* roundness of the scroll thumb */
 // }
 
+.content-container .swiper-slide-active {
+	@media screen and (max-width: 600px) {
+		overflow-y: overlay !important;
+	}
+}
+
+.swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Page .motion-wrap .motion-word:not(:last-child),
+footer .motion-wrap .motion-word:not(:last-child) {
+	margin-right: 0.5rem;
+}
+
+strong {
+	font-weight: 800;
+}
+
 body {
 	overflow-x: hidden;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: $light;
 }
 
 .c-scrollbar {
@@ -42,21 +67,9 @@ body {
 
 .App {
 	background-color: $light;
-	transition-delay: 300ms;
+
 	min-height: 100%;
 	overflow: hidden;
-
-	&.is-new-page main {
-		opacity: 1;
-	}
-
-	&.is-old-page main {
-		opacity: 0;
-	}
-}
-
-main {
-	transition: $transition;
 }
 
 .c-heading.-h2 {
@@ -76,62 +89,51 @@ ul {
 	overflow: hidden;
 }
 
-@media (max-width: 699px) {
-	html {
-		font-size: 12px;
-	}
-}
+// @media (max-width: 699px) {
+// 	html {
+// 		font-size: 12px;
+// 	}
+// }
 
 h1 {
 	font-family: "Kobe Bold";
 }
 
-footer .email,
-footer p,
-.o-stories p,
-.swiper p,
-.c-steps p,
-.o-about h4,
-.o-page_contact h3,
-.o-page_contact p {
-	font-family: "Kobe";
-}
-
-@media (min-width: 700px) and (max-width: 1024px) {
-	html {
-		font-size: 13px;
-	}
-}
-@media (min-width: 1025px) and (max-width: 1199px) {
-	html {
-		font-size: 13px;
-	}
-}
-@media (min-width: 1200px) and (max-width: 1399px) {
-	html {
-		font-size: 15px;
-	}
-}
-@media (min-width: 1400px) and (max-width: 1599px) {
-	html {
-		font-size: 15px;
-	}
-}
-@media (min-width: 1600px) and (max-width: 1999px) {
-	html {
-		font-size: 17px;
-	}
-}
-@media (min-width: 2000px) and (max-width: 2399px) {
-	html {
-		font-size: 19px;
-	}
-}
-@media (min-width: 2400px) {
-	html {
-		font-size: 21px;
-	}
-}
+// @media (min-width: 700px) and (max-width: 1024px) {
+// 	html {
+// 		font-size: 13px;
+// 	}
+// }
+// @media (min-width: 1025px) and (max-width: 1199px) {
+// 	html {
+// 		font-size: 13px;
+// 	}
+// }
+// @media (min-width: 1200px) and (max-width: 1399px) {
+// 	html {
+// 		font-size: 15px;
+// 	}
+// }
+// @media (min-width: 1400px) and (max-width: 1599px) {
+// 	html {
+// 		font-size: 15px;
+// 	}
+// }
+// @media (min-width: 1600px) and (max-width: 1999px) {
+// 	html {
+// 		font-size: 17px;
+// 	}
+// }
+// @media (min-width: 2000px) and (max-width: 2399px) {
+// 	html {
+// 		font-size: 19px;
+// 	}
+// }
+// @media (min-width: 2400px) {
+// 	html {
+// 		font-size: 21px;
+// 	}
+// }
 
 [data-theme="green"] {
 	background-color: $green;
@@ -225,8 +227,14 @@ footer p,
 }
 
 [data-theme="dark"] {
-	background-color: $dark;
+	& {
+		background-color: $dark;
+	}
 	color: $light !important;
+
+	.line {
+		background-color: $light;
+	}
 
 	.c-header_logo svg path {
 		fill: $light;
@@ -236,10 +244,5 @@ footer p,
 		path {
 			fill: $light;
 		}
-	}
-
-	*::after,
-	*::before {
-		background-color: $light;
 	}
 }

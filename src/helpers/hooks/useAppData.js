@@ -1,14 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import {
-	formatAbout,
-	formatPosts,
-	formatSteps,
-	formatTestimonials,
-} from "../formatData";
-import getData from "../getData";
+import { useTheme } from "@mui/material";
+import { useState } from "react";
 
 export default function useAppData(scrollRef) {
+	const theme = useTheme();
+
 	const navItems = [
 		{
 			name: "Home",
@@ -26,6 +21,8 @@ export default function useAppData(scrollRef) {
 
 	//App state
 	const [transitioning, setTransitioning] = useState(true);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	const [state, setState] = useState({
 		user: {
@@ -36,15 +33,19 @@ export default function useAppData(scrollRef) {
 		},
 		scroller: null,
 		headerColor: "dark",
+		currentColor: [theme.palette.primary.yellow, "yellow"],
 		sidebar: {
 			showSidebar: false,
 			hasShown: false,
 		},
-		cursor: "normal",
+		cursor: {
+			active: false,
+		},
 		isScrollLock: false,
 		data: {
 			isLoaded: false,
 		},
+		projects: [],
 		pending: true,
 	});
 
@@ -65,33 +66,20 @@ export default function useAppData(scrollRef) {
 		}));
 	};
 
-	const changeCursor = value => {
-		setState(prev => ({ ...prev, cursor: value }));
+	const toggleCursorState = () => {
+		setState(prev => ({
+			...prev,
+			cursor: { ...prev.cursor, active: !prev.cursor.active },
+		}));
 	};
 
-	const setDataLoaded = () => {
-		setState(prev => ({ ...prev, data: { ...prev.data, isLoaded: true } }));
+	const setHeaderColor = color => {
+		setState(prev => ({ ...prev, headerColor: color }));
 	};
 
-	//Fetch essential data
-	useEffect(() => {
-		const endpoints = [
-			`/projects?populate=*`,
-			`/steps`,
-			`/about`,
-			`/testimonials`,
-			`/footer`,
-			`/bio?populate=*`,
-			`/socials`,
-			`/pages`,
-		];
-
-		getData(endpoints)
-			.then(final => {
-				setState(prev => ({ ...prev, data: { ...prev.data, ...final } }));
-			})
-			.finally(() => setDataLoaded(true));
-	}, []);
+	const setCurrentColor = color => {
+		setState(prev => ({ ...prev, currentColor: color }));
+	};
 
 	return {
 		state,
@@ -99,10 +87,18 @@ export default function useAppData(scrollRef) {
 		navItems,
 		transitioning,
 		setTransitioning,
-		cursor: state.cursor,
-		changeCursor,
+		cursor: { ...state.cursor },
+		toggleCursorState,
 		pending: state.pending,
 		search: state.search,
 		setSearch,
+		headerColor: state.headerColor,
+		setHeaderColor,
+		currentColor: state.currentColor,
+		setCurrentColor,
+		loading,
+		setLoading,
+		error,
+		setError,
 	};
 }

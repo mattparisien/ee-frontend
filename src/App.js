@@ -1,20 +1,26 @@
 import { ThemeProvider } from "@mui/material";
+import useAxios from "axios-hooks";
+import camelcaseKeys from "camelcase-keys";
 import classNames from "classnames";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
-import $ from "jquery";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
-import { Header } from "./components";
+import { introAnimation } from "./animations";
+import Cursor from "./components/Cursor/Cursor";
+import Error from "./components/Error/Error";
 import Footer from "./components/Footer/Footer";
+import ScrollToTop from "./components/HOC/ScrollToTop";
+import BackToTop from "./components/Link/BackToTop";
+import LoadingScreen from "./components/Loading/LoadingScreen";
 import Menu from "./components/Menu/Menu";
+import Navigation from "./components/Nav/Navigation";
 import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
 import SiteRoutes from "./Routes";
 import { theme } from "./styles/mui/theming";
 import IntroCard from "./components/Transition/IntroCard";
-import { introAnimation } from "./animations";
 
 function App() {
 	const scrollWrapper = useRef(null);
@@ -29,30 +35,51 @@ function App() {
 		addToRefs,
 		state,
 		setState,
-		navItems,
+
 		transitioning,
 		setTransitioning,
 		cursor,
-		changeCursor,
-
+		toggleCursorState,
 		search,
 		setSearch,
+		headerColor,
+		setHeaderColor,
+		currentColor,
+		setCurrentColor,
+		loading,
+		setLoading,
+		error,
+		setError,
 	} = useAppData();
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
 
+	// const [navItems, setNavItems] = useState([]);
+
 	const introTl = useRef(gsap.timeline());
+	const [projects, setProjects] = useState([]);
+
+	const [
+		{ data: projectsData, loading: projectsLoading, error: projectsError },
+	] = useAxios(`${process.env.REACT_APP_API_URL}/projects?populate=*`);
 
 	useEffect(() => {
-		//Intro animation
-		if (state.data.isLoaded) {
-			introAnimation(introTl.current, setFirstVisit);
+		if (projectsData && !projectsLoading && !projects[0]) {
+			setProjects(
+				[...projectsData.data]
+					.sort(
+						(a, b) =>
+							new Date(b.attributes.Date).getTime() -
+							new Date(a.attributes.Date).getTime()
+					)
+					.map(project => ({
+						id: project.id,
+						...camelcaseKeys(project.attributes),
+					}))
+			);
 		}
-	}, [state]);
+	}, [projectsData, projectsLoading, projectsError]);
 
-	// const [isSplit, setSplit] = useState(false);
-
-	// const isFirstRender = useRef(true);
 	const observedElements = useRef([]);
 	observedElements.current = [];
 
@@ -60,136 +87,29 @@ function App() {
 		setDomAnimatedReady(!domAnimatedReady);
 	}, [domAnimatedReady]);
 
-	useEffect(() => {
-		setTimeout(() => {
-			const splitChars = document.querySelectorAll(".-splitChars");
-			const splitLines = document.querySelectorAll(".-splitLines");
-
-			//Chars
-			new SplitText(splitChars, {
-				type: "words, chars",
-				wordsClass: "c-word",
-				charsClass: "c-char",
-			});
-
-			//Lines
-			new SplitText(splitLines, {
-				type: "lines",
-				linesClass: "c-line",
-			});
-
-			observedElements.current.push(splitChars);
-		}, 500);
-	}, []);
-
-	useEffect(() => {
-		//Observers,
-
-		const fadeUpChars = elements => {
-			gsap.to(elements, {
-				stagger: 0.05,
-				ease: "power3.out",
-				y: 0,
-				opacity: 1,
-				duration: 1,
-				delay: 0.2,
-			});
-		};
-
-		const fadeUpLines = elements => {
-			gsap.to(elements, {
-				stagger: 0.06,
-				ease: "power3.out",
-				y: 0,
-				opacity: 1,
-				duration: 1,
-				delay: 0.2,
-			});
-		};
-
-		const fadeSide = elements => {
-			gsap.to(elements, {
-				stagger: 0.06,
-				ease: "power3.out",
-				x: 0,
-				rotation: 0,
-				opacity: 1,
-				duration: 1,
-				delay: 0.2,
-			});
-		};
-
-		setTimeout(() => {
-			const items = document.querySelectorAll(
-				".-splitChars, .-splitLines, .-fadeUp, .-fadeSideRight, .-fadeSideLeft"
-			);
-
-			const handleIntersection = entries => {
-				entries.forEach(entry => {
-					if (
-						entry.isIntersecting &&
-						entry.target.classList.contains("-splitChars")
-					) {
-						const chars = $(entry.target)
-							.find(".c-char")
-							.not(".o-hero .c-char");
-
-						fadeUpChars(chars);
-					} else if (
-						entry.isIntersecting &&
-						entry.target.classList.contains("-splitLines")
-					) {
-						const lines = entry.target.querySelectorAll(".c-line");
-						fadeUpLines(lines);
-					} else if (
-						entry.isIntersecting &&
-						entry.target.classList.contains("-fadeUp")
-					) {
-						fadeUpLines(entry.target);
-					} else if (
-						(entry.isIntersecting &&
-							entry.target.classList.contains("-fadeSideRight")) ||
-						entry.target.classList.contains("-fadeSideLeft")
-					) {
-						fadeSide(entry.target);
-					}
-				});
-			};
-
-			const observer = new IntersectionObserver(handleIntersection);
-
-			items.forEach(element => observer.observe(element));
-		}, 800);
-	}, [location.pathname]);
-
-	useEffect(() => {
-		//Handle lines fading up on scroll
-
-		//Handle header observer
-		const handleSectionIntersection = entries => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					$(entry.target).attr("data-theme");
-					const color = $(entry.target).attr("data-theme");
-				}
-			});
-		};
-		const headerObserver = new IntersectionObserver(handleSectionIntersection, {
-			threshold: 0.3,
-		});
-		$("[data-theme]").each((i, el) => headerObserver.observe(el));
-	}, [location]);
-
 	const toggleScrollLock = () => {
 		setState(prev => ({ ...prev, isScrollLock: !state.isScrollLock }));
 	};
 
+	const [introDone, setIntroDone] = useState(false);
+
+	const onComplete = useCallback(() => {
+		setIntroDone(!introDone);
+	}, []);
+
+	useEffect(() => {
+		introAnimation(introTl.current, onComplete);
+	}, [onComplete]);
+
 	const siteControls = {
+		introDone,
 		isScrollLock: state.isScrollLock,
 		toggleScrollLock,
 		transitioning,
 		setTransitioning,
 		toggleDomAnimationReady,
+		currentColor,
+		setHeaderColor,
 	};
 
 	const [menuActive, setMenuActive] = useState(false);
@@ -198,10 +118,9 @@ function App() {
 		setTransitioning(false);
 	}, [location, setTransitioning]);
 
+	const [navItems, setNavItems] = useState([]);
+
 	const classes = classNames("App", {
-		"is-new-page": !transitioning,
-		"is-old-page": transitioning,
-		"is-dom-animated-ready": domAnimatedReady,
 		"cursor-hidden": cursor === "drag",
 		"is-not-first-visit": !isFirstVisit,
 	});
@@ -212,85 +131,92 @@ function App() {
 				<HelmetProvider>
 					<Helmet>
 						<html lang='en' />
-						<title>The Eyes & Ears Agency</title>
+						<title>The Eyes and Ears Agency</title>
+						<meta property='og:type' content='website' />
+						<meta property='og:title' content='The Eyes & Ears Agency' />
 						<meta
 							name='description'
 							content='
-The Eyes & Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
+The Eyes and Ears Agency builds a bridge between the music industry and impactful non-profit organizations. We work to leverage the cultural power of music to amplify the work of non-profit organizations and mobilize musicians’ audiences to take action in support of social and environmental causes.
 
 '
 						/>
-						<meta content='The Eyes & Ears Agency' property='og:title' />
-						<meta property='og:type' content='website' />
+						<meta property='og:title' content='The Eyes and Ears Agency' />
+						<meta
+							property='og:url'
+							content='https://www.eyesandearsagency.com/'
+						/>
+						<meta property='og:site_name' content='The Eyes and Ears Agency' />
+						<link rel='canonical' href='https://www.eyesandearsagency.com/' />
 					</Helmet>
 
+					{<LoadingScreen isActive={loading} />}
+					{error && (
+						<Error message={error.message} statusCode={error.statusCode} />
+					)}
+
 					<Context
-						stateData={state.data}
+						stateData={{ ...state.data, projects: [...projects] }}
 						siteControls={siteControls}
 						cursor={cursor}
-						changeCursor={changeCursor}
+						toggleCursorState={toggleCursorState}
 						scrollRef={scrollWrapper}
 						location={location}
 						search={search}
 						setSearch={setSearch}
+						currentColor={currentColor}
+						setCurrentColor={setCurrentColor}
+						setLoading={setLoading}
+						error={error}
+						setError={setError}
 					>
-						{/* <DragCursor cursor={cursor} /> */}
-						{/* <IntroCard pending={pending} /> */}
-						<Header
-							toggleMenu={() => setMenuActive(!menuActive)}
-							menuActive={menuActive}
-							navItems={navItems}
-							location={location}
-						/>
 						<IntroCard />
-
-						<Menu
-							isActive={menuActive}
-							navItems={navItems}
-							toggleMenu={() => setMenuActive(!menuActive)}
-						/>
-
-						<div
-							className='scroll-wrapper'
-							ref={scrollWrapper}
-							data-scroll-container
-						>
-							{/* <ArrowButton
-														classes='scroll-to-top'
-														color='light'
-														rotation={90}
-														handleClick={scrollToTop}
-													/> */}
-
-							{/* <ModalWrapper hoverState={hoverState} /> */}
-
-							{/* <CursorFollower /> */}
-
-							{/* <SideMenu
-									isOpen={state.sidebar.showSidebar}
-									hasShown={state.sidebar.hasShown}
-									appRefs={appRefs}
-									addToRefs={addToRefs}
-									offset={state.menuOffset}
-									toggleMenu={toggleMenu}
-								/> */}
-
-							<main>
-								<SiteRoutes
-									addToRdefs={addToRefs}
-									location={location}
-									siteControls={siteControls}
-									pages={state.data.pages}
-								/>
-							</main>
-
-							<Footer
-								info={state.data.footer}
-								addToRefs={addToRefs}
-								location={location.pathname}
+						<BackToTop />
+						<ScrollToTop watch={location.pathname}>
+							<Navigation
+								toggleMenu={() => setMenuActive(!menuActive)}
+								menuActive={menuActive}
+								location={location}
+								color={headerColor}
 								navItems={navItems}
+								setNavItems={setNavItems}
 							/>
-						</div>
+
+							<Menu
+								menuActive={menuActive}
+								navItems={navItems}
+								toggleMenu={() => setMenuActive(!menuActive)}
+							/>
+
+							<Cursor />
+
+							<div
+								className='scroll-wrapper'
+								ref={scrollWrapper}
+								data-scroll-container
+							>
+								<main>
+									<SiteRoutes
+										addToRdefs={addToRefs}
+										location={location}
+										siteControls={siteControls}
+										pages={state.data.pages}
+										toggleMenu={() => setMenuActive(!menuActive)}
+										menuActive={menuActive}
+										color={headerColor}
+										navItems={navItems}
+										setNavItems={setNavItems}
+									/>
+								</main>
+
+								<Footer
+									info={state.data.footer}
+									addToRefs={addToRefs}
+									location={location.pathname}
+									navItems={navItems}
+								/>
+							</div>
+						</ScrollToTop>
 					</Context>
 				</HelmetProvider>
 			</div>

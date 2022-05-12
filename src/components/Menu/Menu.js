@@ -1,82 +1,163 @@
-import { useMediaQuery } from "@mui/material";
+import { Box, List, ListItem, Typography, useTheme } from "@mui/material";
 import classNames from "classnames";
-import gsap from "gsap";
-import $ from "jquery";
-import React, { useEffect, useRef, useState } from "react";
-import variables from "../../styles/scss/_vars.module.scss";
+import React, { useEffect } from "react";
+import useResize from "../../helpers/hooks/useResize";
 import ContainerFluid from "../Containers/ContainerFluid";
-import List from "../Lists/List";
+import Link from "../Link/Link";
 import SocialList from "../Lists/SocialList";
 
-function Menu({ isActive, navItems, toggleMenu }) {
-	const [reveal, setReveal] = useState(false);
-
-	useEffect(() => {
-		if (isActive) {
-			setTimeout(() => {
-				setReveal(true);
-			}, 500);
-		}
-	}, [isActive]);
-
-	const matches = useMediaQuery(
-		`(min-width: ${variables["breakpoints-tablet"]}px)`
-	);
+function Menu({ menuActive, navItems, toggleMenu }) {
+	const menuStyles = theme => ({
+		position: "fixed",
+		top: 0,
+		transition: "visibility .8s",
+		visibility: menuActive ? "visible" : "hidden",
+		left: 0,
+		width: "100%",
+		height: "60vh",
+		zIndex: 9999,
+		"&::before": {
+			content: '""',
+			backgroundColor: theme.palette.primary.dark,
+			width: "100%",
+			height: "100%",
+			position: "absolute",
+			top: 0,
+			left: 0,
+			transformOrigin: "center top",
+			transition: "transform .6s cubic-bezier(.645,.045,.355,1)",
+			transform: `scaleY(${menuActive ? 1 : 0})`,
+		},
+		a: {
+			transition:
+				"opacity .3s cubic-bezier(.55,.055,.675,.19),transform .3s cubic-bezier(.55,.055,.675,.19)",
+			transitionTimingFunction: "cubic-bezier(.215,.61,.355,1)",
+			transform: `translateY(${menuActive ? "0" : "100%"})`,
+			opacity: menuActive ? 1 : 0,
+		},
+		"li:first-of-type a": {
+			transitionDelay: menuActive ? "0.27s" : 0,
+		},
+		"li:nth-of-type(2) a": {
+			transitionDelay: menuActive ? "0.34s" : 0,
+		},
+		"li:nth-of-type(3) a": {
+			transitionDelay: menuActive ? "0.41s" : 0,
+		},
+	});
 
 	const classes = classNames("c-menu", {
-		"is-active": isActive,
+		"is-active": menuActive,
 	});
-	const card = useRef(null);
 
-	const container = useRef(null);
-	const tl = useRef(gsap.timeline());
+	const theme = useTheme();
+	const [windowWidth] = useResize();
+
+	const imageOverlayWrap = {
+		position: "absolute",
+		top: 0,
+		left: 0,
+		width: "100%",
+		height: "100%",
+		zIndex: -1,
+		".bg-overlay_image": {
+			height: "100%",
+			width: "100%",
+		},
+	};
 
 	useEffect(() => {
-		matches && toggleMenu();
+		if (theme) {
+			const breakpoint = theme.breakpoints.values.md;
 
-		if (isActive) {
-			tl.current.progress(0).play();
-			tl.current.to(
-				$(container.current).find(".c-link"),
-				{
-					y: 0,
-					opacity: 1,
-					duration: 1,
-					ease: "power3.out",
-					stagger: 0.1,
-					delay: 0.3,
-				},
-				0.1
-			);
-		} else {
-			gsap.to($(container.current).find(".c-link"), {
-				opacity: 0,
-				duration: 0.3,
-				onComplete: () => {
-					gsap.set($(container.current).find(".c-link"), {
-						y: "-150%",
-						opacity: 0,
-					});
-				},
-			});
+			windowWidth > breakpoint && menuActive && toggleMenu();
 		}
-	}, [matches, isActive, toggleMenu]);
+	}, [theme, windowWidth]);
 
 	return (
-		<div className={classes} ref={card}>
-			<ContainerFluid classes={'-stretchY'} reveal={reveal}>
-				<nav className='c-menu_nav'>
-					<List
-						ref={container}
-						items={navItems}
-						onClick={() => toggleMenu()}
-						isRouterLink
-					/>
-				</nav>
-				<SocialList />
+		<Box className={classes} sx={menuStyles}>
+			<ContainerFluid
+				classes={"-stretchY"}
+				sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+			>
+				<List data-testid='menu'>
+					{navItems &&
+						navItems.map((item, i) => (
+							<ListItem
+								key={i}
+								sx={{
+									justifyContent: "center",
+								}}
+							>
+								<Link isRouterLink href={item.path} onClick={toggleMenu}>
+									<Typography
+										variant='h1'
+										sx={theme => ({
+											color: theme.palette.primary.light,
+
+											transition: "color 400ms ease",
+											"@media (hover: hover)": {
+												"&:hover": {
+													color: theme.palette.primary.yellow,
+												},
+											},
+										})}
+									>
+										{item.name}
+									</Typography>
+								</Link>
+							</ListItem>
+						))}
+				</List>
+				<Box
+					sx={theme => ({
+						position: "absolute",
+						bottom: 0,
+						right: 0,
+						display: "flex",
+						padding: "0 1rem 1rem 1rem",
+
+						width: "100%",
+						alignItems: "flex-end",
+						justifyContent: "space-between",
+						[theme.breakpoints.up("sm")]: {
+							padding: "0 2rem 1rem 1rem",
+						},
+					})}
+				>
+					<Typography
+						variant='body1'
+						component='span'
+						sx={theme => ({
+							color: theme.palette.primary.light,
+							transition:
+								"opacity .2s cubic-bezier(.55,.055,.675,.19),transform .2s cubic-bezier(.55,.055,.675,.19)",
+							transitionTimingFunction: menuActive
+								? "cubic-bezier(.215,.61,.355,1)"
+								: null,
+							transitionDuration: menuActive ? ".6s" : null,
+							transitionDelay: menuActive ? ".6s" : null,
+							transform: `translateY(${menuActive ? 0 : "-100%"})`,
+							opacity: `${menuActive ? 1 : 0}`,
+						})}
+					>
+						Social Impact Agency
+					</Typography>
+					<SocialList color='light' />
+				</Box>
 			</ContainerFluid>
-			<div className='c-menu_bg' ref={card}></div>
-		</div>
+			<Box className='bg-overlay' sx={imageOverlayWrap}>
+				<Box
+					className='bg-overlay_image'
+					sx={{
+						backgroundPosition: "center",
+						backgroundSize: "cover",
+						backgroundRepeat: "no-repeat",
+						opacity: 0.1,
+					}}
+				></Box>
+			</Box>
+		</Box>
 	);
 }
 

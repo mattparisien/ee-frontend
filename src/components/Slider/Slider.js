@@ -7,7 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
 import ContainerFluid from "../Containers/ContainerFluid";
 import Link from "../Link/Link";
-import Frame from "../Vector/Frame";
+import HoverFrame from "../HOC/HoverFrame";
+import Media from "../Media/Media";
 
 function Slider({ items }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
@@ -20,6 +21,7 @@ function Slider({ items }) {
 		<div className='o-slider'>
 			<ContainerFluid>
 				<Swiper
+					loop={true}
 					height={"100%"}
 					breakpoints={{
 						400: {
@@ -36,7 +38,6 @@ function Slider({ items }) {
 						},
 					}}
 					spaceBetween={60}
-					autoplay={{ delay: 4000 }}
 					navigation={{
 						prevEl: navigationPrevRef.current,
 						nextEl: navigationNextRef.current,
@@ -48,11 +49,10 @@ function Slider({ items }) {
 								<Item
 									mobile={mobile}
 									projectId={item.id}
-									artistName={item.Title}
-									projectTitle={item.Subtitle}
-									credit={item.FeatureImage.data.attributes.caption}
-									src={item.FeatureImage.data.attributes.url}
-									alt={item.FeatureImage.data.attributes.alternativeText}
+									artistName={item.title}
+									projectTitle={item.subtitle}
+									src={item.image.src}
+									alt={item.image.alt}
 								/>
 							</SwiperSlide>
 						))}
@@ -118,7 +118,6 @@ function Item({
 	};
 
 	const itemStyles = theme => ({
-		height: "40vw",
 		".c-frame": {
 			transform: "rotate(-10deg) scale(0.8)",
 		},
@@ -126,8 +125,14 @@ function Item({
 			height: "100%",
 			width: "100%",
 		},
+		"@media screen and (max-width: 1168px)": {
+			height: "460px",
+		},
+		[theme.breakpoints.down("md")]: {
+			height: "3px",
+		},
 		[theme.breakpoints.down("sm")]: {
-			height: "80vw !important",
+			height: "60vw !important",
 		},
 		"&:hover .info_desktop h6": {
 			opacity: 1,
@@ -154,11 +159,21 @@ function Item({
 	};
 
 	return (
-		<Box sx={itemStyles} className=' -hover-frame'>
+		<HoverFrame
+			wrapper={(children, ref) => (
+				<Box sx={itemStyles} ref={ref}>
+					{children}
+				</Box>
+			)}
+		>
 			<Link classes='o-slider_item' isRouterLink href={`/projects`}>
 				<Box className='image-wrapper' sx={imgWrapper}>
+					<Media
+						aspect='portrait'
+						items={[{ src: { ...src }, media_type: "image" }]}
+					/>
 					<Box component='img' src={src} alt={alt}></Box>
-					<Box className='info_desktop' sx={desktopInfoStyles} p={2}>
+					{/* <Box className='info_desktop' sx={desktopInfoStyles} p={2}>
 						<Typography
 							className='info_desktop--artist'
 							variant='h6'
@@ -181,14 +196,14 @@ function Item({
 						>
 							{projectTitle}
 						</Typography>
-					</Box>
-					<Frame />
+					</Box> */}
+					{/* <Frame /> */}
 				</Box>
-				<Box className='temp-credits' sx={credits}>
+				{/* <Box className='temp-credits' sx={credits}>
 					<Typography variant='body2' component='p'>
 						{credit}
 					</Typography>
-				</Box>
+				</Box> */}
 
 				{mobile && (
 					<Box className='info_mobile'>
@@ -211,7 +226,7 @@ function Item({
 					</Box>
 				)}
 			</Link>
-		</Box>
+		</HoverFrame>
 	);
 }
 

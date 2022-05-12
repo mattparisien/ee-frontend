@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function useMouseMove() {
-	const [location, setLocation] = useState({});
+	const coords = useRef({
+		pageX: 0,
+		pageY: 0,
+	});
 
 	useEffect(() => {
-		const handleMouseMove = (e, index) => {
-			setLocation({
-				pageX: e.clientX,
-				pageY: e.clientY,
-			});
+		const handleMouseMove = e => {
+			coords.current = {
+				pageX: e.pageX,
+				pageY: e.pageY,
+			};
 		};
 
 		window.addEventListener("mousemove", e => handleMouseMove(e));
@@ -18,5 +21,5 @@ export default function useMouseMove() {
 		};
 	}, []);
 
-	return location;
+	return coords;
 }

@@ -1,71 +1,96 @@
-import React, { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion/dist/framer-motion";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import ContactPage from "./components/Pages/Contact/ContactPage";
-import HomePage from "./components/Pages/Home/HomePage";
-import ProjectPage from "./components/Pages/Projects/ProjectPage";
-import SingleProjectPage from "./components/Pages/SingleProject/SingleProjectPage";
-import NotFoundPage from "./components/Pages/NotFound/NotFoundPage";
+import View from "./components/Containers/View";
 
 function SiteRoutes(props) {
-	const { location, pages } = props;
+	const { location } = props;
 
-	const [pageHeadings, setPageHeadings] = useState(null);
-
-	const pageSchema = {
-		about: {
-			path: "/about",
-			component: ContactPage,
-			title: "about",
+	const [views, setViews] = useState([
+		{
+			id: 1,
+			name: "Home",
+			slug: "/",
 		},
-		home: {
-			path: "/",
-			component: HomePage,
-			title: "home",
+		{
+			id: 9,
+			name: "Home",
+			slug: "/home",
 		},
-		projects: {
-			path: "/projects",
-			component: ProjectPage,
-			title: "projects",
+		{
+			id: 11,
+			name: "Projects",
+			slug: "projects",
 		},
-		notFound: {
-			path: "/*",
-			component: NotFoundPage,
-			title: "notFound",
+		{
+			id: 13,
+			name: "SingleProject",
+			slug: "/projects/:name",
 		},
-		// singleProject: {
-		// 	path: "/projects/:id",
-		// 	component: SingleProjectPage,
-		// 	title: "singleproject",
-		// },
-	};
+		{
+			id: 12,
+			name: "About",
+			slug: "/about",
+		},
+		{
+			id: 14,
+			name: "NotFound",
+			slug: "/not-found",
+		},
+	]);
 
-	useEffect(() => {
-		if (pages) {
-			const newObj = {};
+	// const [{ data, error, loading }] = useAxios(
+	// 	process.env.REACT_APP_API_URL + "/pages"
+	// );
 
-			pages.forEach(page => (newObj[page.Name.toLowerCase()] = page.Heading));
+	// useEffect(() => {
+	// 	if (!loading && data) {
+	// 		const views = data.data
+	// 			.filter(page => page.attributes.Active)
+	// 			.flatMap(current =>
+	// 				current.attributes.Name === "Home"
+	// 					? [
+	// 							current,
+	// 							{
+	// 								id: current.id,
+	// 								attributes: {
+	// 									name: "Home",
+	// 									slug: "/",
+	// 								},
+	// 							},
+	// 					  ]
+	// 					: current
+	// 			)
+	// 			.map(view => ({
+	// 				id: view.id,
+	// 				...keysToCamelCase(view.attributes),
+	// 			}));
 
-			setPageHeadings(newObj);
-		}
-	}, [pages]);
+	// 		setViews(views);
+	// 	}
+	// }, [loading, error, data]);
 
 	return (
-		<>
+		<AnimatePresence exitBeforeEnter>
 			<Routes location={location} key={location.pathname}>
-				{Object.entries(pageSchema).map(page => (
-					<Route
-						path={page[1].path}
-						element={React.createElement(page[1].component, {
-							key: location.pathname,
-							location: location,
-							pageHeading:
-								pageHeadings && pageHeadings[page[1].title.toLowerCase()],
-						})}
-						key={location.pathname}
-					/>
-				))}
+				{views &&
+					views.map(view => (
+						<Route
+							exact
+							path={view.slug}
+							element={
+								<View
+									{...props}
+									location={location}
+									pageId={view.id}
+									name={view.name}
+								/>
+							}
+							key={location.pathname}
+						/>
+					))}
 			</Routes>
-		</>
+		</AnimatePresence>
 	);
 }
 

@@ -14,18 +14,8 @@
 }
 
 @font-face {
-	font-family: "Kobe";
-	src: url("../assets/fonts/Kobe1.1-Regular.woff");
-}
-
-@font-face {
 	font-family: "OggItalic";
 	src: url("../assets/fonts/OggItalic.ttf");
-}
-
-@font-face {
-	font-family: "Kobe";
-	src: url("../assets/fonts/Kobe1.1-Regular.woff");
 }
 
 @font-face {
@@ -33,10 +23,12 @@
 	src: url("../assets/fonts/NeueMontreal-Regular.otf");
 }
 
+@font-face {
+	font-family: "America";
+	src: url("../assets//fonts/GT-America-Standard-Regular-Trial.woff2");
+}
 
 em {
 	position: relative;
 	font-style: normal;
 }
-
-

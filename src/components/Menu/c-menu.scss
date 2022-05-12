@@ -1,94 +1,82 @@
-.c-menu {
-	position: fixed;
-	top: 0;
-	left: 0;
-	min-height: 100vh;
-	width: 100vw;
-	display: block;
-	z-index: 99999;
-	transform: translateY(-100%);
-	transform-origin: top;
-	transition: 600ms ease;
-	padding-top: $headerHeight;
-	background-color: $dark;
-	transition: $transition-menu;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+// .c-menu {
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	/* mobile safari viewport fix */
+// 	min-height: -webkit-fill-available;
+// 	// min-height: 100vh;
 
-	.c-list_social {
-		transition: 300ms ease;
-		opacity: 0;
-	}
+// 	width: 100vw;
+// 	display: block;
+// 	z-index: 99999;
+// 	transform: translateY(-100%);
+// 	transform-origin: top;
 
-	&.is-active {
-		transform: translateY(0);
+// 	background-color: $dark;
 
-		.c-list_social {
-			opacity: 1;
-		}
-	}
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
 
-	.c-list_social {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		padding-left: inherit;
-		padding-bottom: 1rem;
+// 	.c-list_social {
+// 		position: absolute;
+// 		bottom: 0;
+// 		left: 0;
+// 		padding-left: inherit;
+// 		padding-bottom: 1rem;
 
-		a svg {
-			font-size: 2rem;
-			fill: $light;
-		}
-	}
+// 		a svg {
+// 			font-size: 2rem;
+// 			fill: $light;
+// 		}
+// 	}
 
-	&_nav {
-		height: 100%;
-		width: 100%;
+// 	&_nav {
+// 		height: 100%;
+// 		width: 100%;
 
-		ul {
-			height: 100%;
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100%;
-			text-align: center;
+// 		ul {
+// 			height: 100%;
+// 			width: 100%;
+// 			display: flex;
+// 			flex-direction: column;
+// 			align-items: center;
+// 			justify-content: center;
+// 			height: 100%;
+// 			text-align: center;
 
-			li {
-				margin-right: 0 !important;
-				text-transform: uppercase;
-				overflow: hidden;
+// 			li {
+// 				margin-right: 0 !important;
+// 				text-transform: uppercase;
+// 				overflow: hidden;
 
-				.c-highlight {
-					height: 100%;
-				}
+// 				.c-highlight {
+// 					height: 100%;
+// 				}
 
-				.c-link {
-					transform: translateY(-150%);
-					opacity: 0;
-					display: block;
-					transition: none;
-				}
+// 				.c-link {
+// 					transform: translateY(-150%);
+// 					opacity: 0;
+// 					display: block;
+// 					transition: none;
+// 				}
 
-				&:not(:last-child) {
-					margin-bottom: 3rem;
-				}
-			}
+// 				&:not(:last-child) {
+// 					margin-bottom: 3rem;
+// 				}
+// 			}
 
-			li:hover .c-link {
-				color: lighten($yellow, 10%);
-			}
+// 			li:hover .c-link {
+// 				color: lighten($yellow, 10%);
+// 			}
 
-			.c-link {
-				color: $light;
-				font-size: 17vw;
-				line-height: 17vw;
-				
-				font-family: 'Kobe';
-				text-transform: uppercase;
-			}
-		}
-	}
-}
+// 			.c-link {
+// 				color: $light;
+// 				font-size: 17vw;
+// 				line-height: 17vw;
+
+// 				text-transform: uppercase;
+// 			}
+// 		}
+// 	}
+// }

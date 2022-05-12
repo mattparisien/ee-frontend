@@ -1,11 +1,11 @@
+import { Typography } from "@mui/material";
 import classNames from "classnames";
 import React, { forwardRef, useContext } from "react";
 import { useLocomotiveScroll } from "react-locomotive-scroll";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { SiteWideControls } from "../../context/Context";
 
-
-function Link(props, ref) {
+function Link(props) {
 	const scroll = useLocomotiveScroll();
 	const classes = classNames("c-link", {
 		[props.classes]: props.classes,
@@ -37,24 +37,25 @@ function Link(props, ref) {
 	};
 
 	return props.isRouterLink ? (
-		<button
+		<RouterLink
 			className={classes}
-			ref={ref}
-			onClick={e => handleNavigate(e)}
+			to={props.href === "/" ? "" : props.href}
+			style={props.style}
+			rel={props.rel}
+			onClick={props.onClick}
+			// component='button'
 		>
-			{props.children}
-		</button>
+			<Typography variant='body3'>{props.children}</Typography>
+		</RouterLink>
 	) : (
-		// <RouterLink to={props.href} className={classes} ref={ref} onClick={() => console.log('has clicked!')}>{props.children}</RouterLink>
 		<a
-			// onMouseEnter={handleMouseEnter}
-			// onMouseLeave={handleMouseLeave}
 			className={classes}
 			href={props.href}
 			target={props.target}
+			rel={props.rel}
 			onClick={!props.isRouterLink ? props.onClick : handleNavigate}
-			ref={ref}
 			data-rotate={props.rotate}
+			{...props}
 		>
 			{props.children}
 		</a>
