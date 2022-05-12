@@ -23,7 +23,7 @@ function StepItem({ step, id }) {
 	return (
 		<Box
 			className={`c-steps_item c-steps_item_${step.id}`}
-			sx={{ position: "relative" }}
+			sx={{ position: "relative", zIndex: 999 }}
 		>
 			<Box className='item-content'>
 				<Typography

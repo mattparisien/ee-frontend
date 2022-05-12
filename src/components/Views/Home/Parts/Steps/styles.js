@@ -79,7 +79,8 @@ const notesWrapper = theme => ({
 
 	".c-note": {
 		position: "absolute",
-		mixBlendMode: "multiply",
+		// mixBlendMode: "multiply",
+		zIndex: 0,
 		fill: theme.palette.primary.yellow,
 		"&_1": {
 			width: "3vw",
@@ -89,7 +90,7 @@ const notesWrapper = theme => ({
 		"&_2": {
 			width: "5vw",
 			top: "11.5vw",
-			left: "30vw"
+			left: "30vw",
 		},
 		"&_3": {
 			width: "3vw",
@@ -104,7 +105,7 @@ const notesWrapper = theme => ({
 		"&_5": {
 			width: "3vw",
 			bottom: "7vw",
-			left: "30vw"
+			left: "30vw",
 		},
 		[theme.breakpoints.down("md")]: {
 			left: "50%",
@@ -118,27 +119,24 @@ const notesWrapper = theme => ({
 			"&_2": {
 				width: "20vw",
 				top: "28vw",
-				left: "-3vw"
+				left: "-3vw",
 			},
 			"&_3": {
 				width: "10vw",
 				bottom: "5vw",
-				left: "1.3vw"
-				
+				left: "1.3vw",
 			},
 			"&_4": {
 				width: "18vw",
 				bottom: "60vw",
-				left: '82vw',
-				
+				left: "82vw",
 			},
 			"&_5": {
 				width: "10vw",
 				bottom: "86vw",
 				left: "0vw",
-				
 			},
-		}
+		},
 	},
 });
 
