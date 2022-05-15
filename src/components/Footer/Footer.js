@@ -16,7 +16,7 @@ import {
 	drawnLogo,
 	footer,
 	spacer,
-	wrap
+	wrap,
 } from "./styles/styles";
 
 export default function Footer(props) {
@@ -33,15 +33,6 @@ export default function Footer(props) {
 			});
 		}
 	}, [data, loading]);
-
-	const handleScrollTop = e => {
-		e.preventDefault();
-		if (scroll) {
-			scroll.scroll.scrollTo(0, 0);
-		} else {
-			window.scrollTo(0, 0);
-		}
-	};
 
 	return (
 		<Box className='c-footer -bg-dark' component='footer' sx={footer}>

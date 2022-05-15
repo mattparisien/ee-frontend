@@ -590,117 +590,6 @@ h1 {
 	font-family: "Kobe Bold";
 }
 
-[data-theme="green"] {
-	background-color: #16854b;
-	color: #f9f8f4;
-}
-
-[data-theme="green"],
-[data-theme="green"] * {
-	color: #f9f8f4;
-}
-
-[data-theme="green"] svg path {
-	fill: #f9f8f4;
-	stroke: #f9f8f4;
-}
-
-[data-theme="green"] *::after {
-	background-color: #f9f8f4;
-}
-
-[data-theme="red"] {
-	background-color: #e94034;
-	color: #f9f8f4;
-}
-
-[data-theme="red"],
-[data-theme="red"] * {
-	color: #f9f8f4;
-}
-
-[data-theme="red"] svg path {
-	fill: #f9f8f4;
-	stroke: #f9f8f4;
-}
-
-[data-theme="red"] svg circle {
-	stroke: #f9f8f4;
-	stroke-width: 1px;
-}
-
-[data-theme="red"] *::after {
-	background-color: #f9f8f4;
-}
-
-[data-theme="yellow"] {
-	background-color: #f6e544;
-}
-
-[data-theme="yellow"],
-[data-theme="yellow"] * {
-	color: #181818;
-}
-
-[data-theme="yellow"] svg path {
-	fill: #181818;
-	stroke: #181818;
-}
-
-[data-theme="yellow"] *::after {
-	background-color: #181818;
-}
-
-[data-theme="blue"] {
-	background-color: #0a4d98;
-	color: #f9f8f4;
-}
-
-[data-theme="blue"],
-[data-theme="blue"] * {
-	color: #f9f8f4;
-}
-
-[data-theme="blue"] svg path {
-	fill: #f9f8f4;
-	stroke: #f9f8f4;
-}
-
-[data-theme="blue"] *::after {
-	background-color: #f9f8f4;
-}
-
-[data-theme="light"] {
-	background-color: #f9f8f4;
-	color: #181818;
-	fill: #181818;
-}
-
-[data-theme="light"] *::after,
-[data-theme="light"] *::before {
-	background-color: #181818;
-}
-
-[data-theme="dark"] {
-	color: #f9f8f4 !important;
-}
-
-[data-theme="dark"] {
-	background-color: #181818;
-}
-
-[data-theme="dark"] .line {
-	background-color: #f9f8f4;
-}
-
-[data-theme="dark"] .c-header_logo svg path {
-	fill: #f9f8f4;
-}
-
-[data-theme="dark"] .MuiSvgIcon-root path {
-	fill: #f9f8f4;
-}
-
 @keyframes scaleMenuBg {
 	0% {
 		transform: scaleX(0.001);
@@ -770,20 +659,6 @@ h1 {
 		opacity: 0;
 	}
 }
-
-/* @keyframes frameScale {
-  to {
-    transform: rotate(0deg) scale(1.04);
-    opacity: 1;
-  }
-}
-
-@keyframes frameHide {
-  to {
-    transform: rotate(-15deg) scale(0.8);
-    opacity: 0;
-  }
-} */
 
 @keyframes fadeUp {
 	from {
