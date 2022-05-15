@@ -17,7 +17,7 @@
 	path {
 		z-index: 99;
 		position: sticky;
-		transition: $transition;
+		// transition: $transition;
 	}
 
 	@include media("<=tablet") {

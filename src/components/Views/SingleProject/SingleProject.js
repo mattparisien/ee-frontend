@@ -18,10 +18,12 @@ import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import getParam from "./helpers/getParam";
 import Next from "./Parts/Next";
 import "./SingleProject.css";
+import { useTheme } from "@mui/material";
 
 export const ProjectContext = createContext();
 
 function SingleProject({ location }) {
+	const theme = useTheme();
 	const [project, setProject] = useState({
 		blocks: [],
 	});
@@ -42,10 +44,10 @@ function SingleProject({ location }) {
 	}, [location, projects]);
 
 	const accentColor = useMemo(() => {
-		const color = shuffleColors();
+		const color = shuffleColors(theme.palette.primary.colorSet);
 
 		return color;
-	}, []);
+	}, [theme]);
 
 	useEffect(() => {
 		accentColor && setCurrentColor(accentColor);

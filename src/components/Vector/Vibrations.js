@@ -2,127 +2,13 @@ import gsap from "gsap";
 import React, { useRef } from "react";
 
 function Vibrations() {
-	// const masterTimeline = useRef(gsap.timeline());
-	const masterTimelineOne = useRef(gsap.timeline({ onComplete: () => masterTimelineOne.current.restart() }));
-	// const outerTimeline = useRef(gsap.timeline());
-	// const innerTimeline = useRef(gsap.timeline());
+	const masterTimelineOne = useRef(
+		gsap.timeline({ onComplete: () => masterTimelineOne.current.restart() })
+	);
 
-	// const centerTimeline = useRef(gsap.timeline());
 	const vibrationInner = useRef(null);
 	const vibrationCenter = useRef(null);
 	const vibrationOuter = useRef(null);
-
-	// useEffect(() => {
-	// 	const duration = 2;
-
-	// 	const outer = () => {
-	// 		outerTimeline.current
-	// 			.to(vibrationOuter.current, {
-	// 				x: "0",
-	// 				duration: duration,
-	// 				ease: "linear",
-	// 			})
-	// 			.to(
-	// 				vibrationOuter.current,
-	// 				{
-	// 					opacity: 1,
-	// 				},
-	// 				duration / 2
-	// 			)
-	// 			.to(
-	// 				vibrationOuter.current,
-	// 				{
-	// 					opacity: 0,
-	// 				},
-	// 				duration
-	// 			)
-	// 			.to(
-	// 				vibrationOuter.current,
-	// 				{
-	// 					transformOrigin: "center",
-	// 					scale: 1.5,
-	// 					duration: duration,
-	// 				},
-	// 				0
-	// 			);
-	// 		return outerTimeline.current;
-	// 	};
-
-	// 	const center = () => {
-	// 		centerTimeline.current
-	// 			.to(vibrationCenter.current, {
-	// 				x: "0",
-	// 				duration: duration,
-	// 				ease: "linear",
-	// 			})
-	// 			.to(
-	// 				vibrationCenter.current,
-	// 				{
-	// 					opacity: 1,
-	// 				},
-	// 				duration / 2
-	// 			)
-	// 			.to(
-	// 				vibrationCenter.current,
-	// 				{
-	// 					opacity: 0,
-	// 				},
-	// 				duration
-	// 			)
-	// 			.to(
-	// 				vibrationCenter.current,
-	// 				{
-	// 					transformOrigin: "center",
-	// 					scale: 1.5,
-	// 					duration: duration,
-	// 				},
-	// 				0
-	// 			);
-
-	// 		return centerTimeline.current;
-	// 	};
-
-	// 	const inner = () => {
-	// 		innerTimeline.current
-	// 			.to(vibrationInner.current, {
-	// 				x: "0",
-	// 				duration: duration,
-	// 				ease: "linear",
-	// 			})
-	// 			.to(
-	// 				vibrationInner.current,
-	// 				{
-	// 					opacity: 1,
-	// 				},
-	// 				duration / 2
-	// 			)
-	// 			.to(
-	// 				vibrationInner.current,
-	// 				{
-	// 					opacity: 0,
-	// 				},
-	// 				duration
-	// 			)
-	// 			.to(
-	// 				vibrationInner.current,
-	// 				{
-	// 					transformOrigin: "center",
-	// 					scale: 1.5,
-	// 					duration: duration,
-	// 				},
-	// 				0
-	// 			);
-	// 		return innerTimeline.current;
-	// 	};
-	// 	masterTimelineOne.current
-	// 		.set(vibrationInner.current, { opacity: 0 })
-	// 		.set(vibrationCenter.current, { opacity: 0 })
-	// 		.set(vibrationOuter.current, { opacity: 0 })
-	// 		.add(outer())
-	// 		.add(center(), 0.4)
-	// 		.add(inner(), 0.8)
-	// 		.timeScale(2);
-	// }, []);
 
 	return (
 		<div className='c-vibrations'>

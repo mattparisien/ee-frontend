@@ -185,7 +185,7 @@
 		flex-grow: 1;
 		background-size: cover;
 		background-position: center;
-		transition: $transition ease;
+		// transition: $transition ease;
 		overflow: hidden;
 		position: relative;
 
@@ -215,13 +215,13 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			transition: $transition-zoom;
+			// transition: $transition-zoom;
 		}
 	}
 
 	&_info {
 		// opacity: 0;
-		transition: $transition;
+		// transition: $transition;
 		height: 100%;
 		position: absolute;
 		top: 0;
@@ -244,7 +244,7 @@
 		* {
 			transform: translateY(100%);
 			opacity: 0;
-			transition: $transition;
+			// transition: $transition;
 		}
 	}
 

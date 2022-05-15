@@ -12,8 +12,6 @@ function ArrowButton(
 		[`is-${color}`]: color,
 	});
 
-	
-
 	const location = useMouseMove();
 
 	return !isRouterLink ? (
@@ -29,15 +27,13 @@ function ArrowButton(
 			onClick={handleClick}
 		>
 			<Arrow rotation={rotation} color={color} />
-			<div className="circle"></div>
+			<div className='circle'></div>
 		</Link>
 	);
 }
 
-function Arrow({ rotation, color, location }) {
+function Arrow({ rotation }) {
 	const svg = useRef(null);
-	const circle = useRef(null);
-
 
 	return (
 		<svg

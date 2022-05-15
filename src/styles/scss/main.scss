@@ -1,28 +1,13 @@
 @import "breakpoints";
 @import "vars.module.scss";
-@import "mixins";
 @import "utils";
 @import "global";
 @import "animations";
 @import "config";
-@import "objects/o-h1.scss";
-@import "objects/o-h2.scss";
-@import "objects/o-h3.scss";
-@import "objects/o-h4.scss";
 @import "objects/o-text.scss";
-@import "objects/o-page.scss";
-@import "../../components/Containers/o-container.scss";
-
-@import "../../components/Header/c-header.scss";
-@import "../../components/Link/c-link.scss";
-@import "../../components/Menu/c-menu.scss";
 @import "../../components/Vector/c-arrow.scss";
 @import "../../components/Vector/svg.scss";
-
 @import "../../components/Transition/c-transition-card.scss";
-@import "../../components/Transition/intro.scss";
-@import "../../components/Stories/c-stories.scss";
 @import "../../components/Button/c-arrow-button.scss";
 @import "../../components/Vector/c-frame.scss";
 @import "../../components/Slider/o-slider.scss";
-@import "../../components/Drawings/o-colorBlobs.scss";
