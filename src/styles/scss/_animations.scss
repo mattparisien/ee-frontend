@@ -69,19 +69,19 @@
 	}
 }
 
-@keyframes frameScale {
-	to {
-		transform: rotate(0deg) scale(1.04);
-		opacity: 1;
-	}
-}
+// @keyframes frameScale {
+// 	to {
+// 		transform: rotate(0deg) scale(1.04);
+// 		opacity: 1;
+// 	}
+// }
 
-@keyframes frameHide {
-	to {
-		transform: rotate(-15deg) scale(0.8);
-		opacity: 0;
-	}
-}
+// @keyframes frameHide {
+// 	to {
+// 		transform: rotate(-15deg) scale(0.8);
+// 		opacity: 0;
+// 	}
+// }
 
 @keyframes fadeUp {
 	from {

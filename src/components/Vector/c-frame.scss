@@ -71,11 +71,11 @@
 	}
 }
 
-.-hover-frame .c-frame {
-	transition: $transition-zoom;
+// .-hover-frame .c-frame {
+// 	transition: $transition-zoom;
 
-	&_svg {
-		transition: 1s cubic-bezier(1, 0, 0, 1);
-	}
-	@include frameRevealDefaultStyles();
-}
+// 	&_svg {
+// 		transition: 1s cubic-bezier(1, 0, 0, 1);
+// 	}
+// 	@include frameRevealDefaultStyles();
+// }
