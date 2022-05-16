@@ -5,7 +5,7 @@ import useInView from "../../helpers/hooks/useInView";
 import { ThemeContext } from "../Containers/Section";
 import { useContext } from "react";
 
-function Quote({ quote, author }) {
+function Quote({ quote, author, paragraphSize }) {
 	const { theme } = useContext(ThemeContext);
 
 	const line = {
@@ -22,7 +22,9 @@ function Quote({ quote, author }) {
 	return (
 		<div className='Quote flex flex-col items-center justify-center'>
 			<blockquote
-				className='quote-text text-xl md:text-3xl'
+				className={`quote-text text-xl md:text-${
+					!paragraphSize || paragraphSize === "large" ? "3xl" : "1xl"
+				}`}
 				style={quoteStyle}
 			>{`"${quote}"`}</blockquote>
 			<div className='author-wrap w-full flex flex-row-reverse items-center justify-end mt-5'>

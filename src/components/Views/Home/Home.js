@@ -11,14 +11,13 @@ import Hero from "./Parts/Hero";
 import About from "./Parts/About";
 import How from "./Parts/Steps/How";
 import Work from "./Parts/Work";
-import Stories from "../../Stories/Stories";
+import QuoteSwiper from "../../QuoteSwiper/QuoteSwiper";
 import Section from "../../Containers/Section";
 import Container from "../../Containers/ContainerFluid";
 
-function Home({ pageHeading, location }) {
+function Home({ pageHeading }) {
 	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
 
-	// const { setTemplateLoaded  } = useContext(ViewContext);
 	const { loading, error, data } = useQuery(STATICHOME, {
 		variables: {
 			projectLimit: 1,
@@ -83,8 +82,8 @@ function Home({ pageHeading, location }) {
 			<How steps={staticData.steps} />
 			<Work projects={staticData.featuredWork} />
 			<Section>
-				<Container sx={{ paddingTop: "5rem", paddingBottom: "5rem" }}>
-					<Stories slides={staticData.testimonials} />
+				<Container>
+					<QuoteSwiper slides={staticData.testimonials} />
 				</Container>
 			</Section>
 		</>

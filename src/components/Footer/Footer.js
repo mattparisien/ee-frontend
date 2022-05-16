@@ -22,7 +22,7 @@ export default function Footer(props) {
 	console.log(info)
 
 	return (
-		<div className='Footer h-[600px] w-screen bg-dark text-light'>
+		<footer className='Footer h-[600px] w-screen bg-dark text-light'>
 			<ContainerFluid classes='h-full'>
 				<div className='content-wrapper h-full flex flex-col justify-between'>
 					<div className='spacer h-28'></div>
@@ -33,6 +33,6 @@ export default function Footer(props) {
 					<FooterBottom />
 				</div>
 			</ContainerFluid>
-		</div>
+		</footer>
 	);
 }
