@@ -6,7 +6,6 @@ import $ from "jquery";
 import React, { useEffect, useRef } from "react";
 import { StyledDrawnLogo } from "./styles";
 
-
 export function LineYellow() {
 	return (
 		<svg
@@ -647,7 +646,11 @@ export function TextLogo(props) {
 	};
 
 	return (
-		<motion.svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 477.36 141.96'>
+		<motion.svg
+			xmlns='http://www.w3.org/2000/svg'
+			viewBox='0 0 477.36 141.96'
+			className={props.className || ""}
+		>
 			<motion.g className='chars'>
 				<motion.path
 					d='M59.68,396.44H98.12V406c-1.57.11-3.17,0-4.77,0h-24v8.79c4.77.06,9.57,0,14.37,0H98.12v9.58c-1.87.15-3.78.05-5.68.07s-3.86,0-5.79,0H69.36v8.76H98.14v9.52H59.68Z'

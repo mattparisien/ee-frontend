@@ -6,28 +6,16 @@ import Link from "../Link/Link";
 import { TextLogo } from "../Vector/Svg";
 import Burger from "./Burger";
 import NavDesktop from "./NavDesktop";
+import HeaderLogo from "./HeaderLogo";
 
 function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 	const { introDone } = useContext(SiteWideControls);
-
-	const logoWrap = theme => ({
-		width: "120px",
-
-		svg: {
-			transition: "fill 200ms ease",
-			fill: theme.palette.primary[menuActive ? "light" : "dark"],
-		},
-	});
 
 	return (
 		<Container>
 			<div className='header-content flex items-center justify-between py-3'>
 				<div className='header-spacer w-20 md:w-[195px]'></div>
-				<Box className='logo-wrap' sx={logoWrap}>
-					<Link isRouterLink href={"/"}>
-						<TextLogo />
-					</Link>
-				</Box>
+				<HeaderLogo menuActive={menuActive} />
 				<NavDesktop navItems={navItems} />
 
 				<Burger
