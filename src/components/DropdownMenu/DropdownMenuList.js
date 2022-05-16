@@ -4,7 +4,7 @@ import Heading from "../Heading/Heading";
 import classNames from "classnames";
 
 function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
-	const linkClasses = classNames("block", {
+	const linkClasses = classNames("block hover:text-yellow-custom", {
 		"opacity-0 translate-y-full": !menuActive,
 		"opacity-100 translate-y-0": menuActive,
 	});

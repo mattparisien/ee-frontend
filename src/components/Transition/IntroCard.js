@@ -2,7 +2,7 @@ import React from "react";
 
 function IntroCard() {
 	const card = {
-		zIndex: 9999999,
+		zIndex: 99999,
 		transition: "visibility 300ms ease",
 	};
 
