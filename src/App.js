@@ -54,8 +54,6 @@ function App() {
 
 	const [domAnimatedReady, setDomAnimatedReady] = useState(false);
 
-	// const [navItems, setNavItems] = useState([]);
-
 	const introTl = useRef(gsap.timeline());
 	const [projects, setProjects] = useState([]);
 
@@ -120,7 +118,7 @@ function App() {
 
 	const [navItems, setNavItems] = useState([]);
 
-	const classes = classNames("App", {
+	const classes = classNames("App bg-light", {
 		"cursor-hidden": cursor === "drag",
 		"is-not-first-visit": !isFirstVisit,
 	});

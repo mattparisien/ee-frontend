@@ -12,25 +12,20 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import SplitText from "../HOC/SplitText";
+import Paragraph from "../Paragraph/Paragraph";
+import Heading from "../Heading/Heading";
+import "./Markdown";
 
 function Markdown({ children, variantMap, sx, isSplit }) {
 	const componentMap = {
 		h1: ({ node, ...props }) => (
-			<Typography component='h1' variant='h1' mb={7}>
+			<Heading level={1}>
 				<motion.div>{props.children}</motion.div>
-			</Typography>
+			</Heading>
 		),
-		h2: ({ node, ...props }) => (
-			<Typography
-				component='h2'
-				variant='h2'
-				children={props.children}
-				fontWeight={400}
-				mb={7}
-			/>
-		),
+		h2: ({ node, ...props }) => <Heading level={2}>{props.children}</Heading>,
 		h3: ({ node, ...props }) => (
-			<Typography sx={sx} component='h3' variant='h3' fontWeight={400} mb={7}>
+			<Heading level={3}>
 				<ConditionalWrapper
 					condition={isSplit}
 					wrapper={SplitText}
@@ -38,17 +33,9 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 				>
 					{props.children}
 				</ConditionalWrapper>
-			</Typography>
+			</Heading>
 		),
-		h4: ({ node, ...props }) => (
-			<Typography
-				component='h4'
-				variant='h4'
-				children={props.children}
-				fontWeight={400}
-				mb={7}
-			/>
-		),
+		h4: ({ node, ...props }) => <Heading level={4}>{props.children}</Heading>,
 		h5: ({ node, ...props }) => (
 			<Typography
 				component='h5'
@@ -58,27 +45,10 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 				mb={7}
 			/>
 		),
-		h6: ({ node, ...props }) => (
-			<Typography
-				component='h6'
-				variant='h6'
-				children={props.children}
-				fontWeight={600}
-				mb={3}
-			/>
-		),
+		h6: ({ node, ...props }) => <Heading level={6}>{props.children}</Heading>,
 
 		p: ({ node, ...props }) => (
-			<Typography
-				component='p'
-				variant={variantMap && variantMap.p ? variantMap.p : "body1"}
-				children={props.children}
-				fontWeight='40'
-				sx={sx}
-				mb={5}
-			>
-				{props.children}
-			</Typography>
+			<Paragraph size='large'>{props.children}</Paragraph>
 		),
 		ul: ({ node, ...props }) => <List disablePadding>{props.children}</List>,
 		li: ({ node, ...props }) => (
