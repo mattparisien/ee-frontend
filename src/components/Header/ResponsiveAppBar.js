@@ -10,19 +10,6 @@ import NavDesktop from "./NavDesktop";
 function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 	const { introDone } = useContext(SiteWideControls);
 
-	const wrapper = theme => ({
-		zIndex: 99999999,
-		transition: "background 200ms ease",
-		backgroundColor: menuActive
-			? "transparent"
-			: theme.palette.primary[color === "dark" ? "light" : "dark"],
-		height: theme.spacing(15),
-		".MuiContainer-root": {
-			width: "100%",
-			height: "100%",
-		},
-	});
-
 	const logoWrap = theme => ({
 		width: "120px",
 
@@ -39,61 +26,37 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 		},
 	});
 
-	const navToolbar = theme => ({
-		width: "100%",
-		height: "100%",
-		zIndex: 0,
-		color: "black",
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "space-between",
-		zIndex: 999999999,
-		button: {
-			color: theme.palette.primary[color],
-		},
-		".c-list": {
-			justifyContent: "flex-end",
-		},
-	});
-
 	return (
-		<header
-			className={`Header fixed top-0 left-0 w-screen h-13 ${
-				menuActive ? "bg-transparent" : "bg-light"
-			}`}
-			style={{ zIndex: 99999 }}
-		>
-			<Container>
-				<Toolbar sx={navToolbar} disableGutters>
-					<Box className='spacer' sx={spacer}></Box>
-					<Box className='logo-wrap' sx={logoWrap}>
-						<Link isRouterLink href={"/"}>
-							<TextLogo />
-						</Link>
-					</Box>
-					<NavDesktop navItems={navItems} />
-					<Box
-						className='mobile-nav'
-						sx={theme => ({
-							height: "50%",
-							width: "10rem",
-							display: "flex",
-							justifyContent: "flex-end",
-							alignItems: "center",
-							[theme.breakpoints.up("md")]: {
-								display: "none",
-							},
-						})}
-					>
-						<Burger
-							onBurgerClick={onBurgerClick}
-							menuActive={menuActive}
-							isIntroDone={introDone}
-						/>
-					</Box>
-				</Toolbar>
-			</Container>
-		</header>
+		<Container>
+			<div className='header-content flex items-center justify-between py-3'>
+				<Box className='spacer' sx={spacer}></Box>
+				<Box className='logo-wrap' sx={logoWrap}>
+					<Link isRouterLink href={"/"}>
+						<TextLogo />
+					</Link>
+				</Box>
+				<NavDesktop navItems={navItems} />
+				<Box
+					className='mobile-nav'
+					sx={theme => ({
+						height: "50%",
+						width: "10rem",
+						display: "flex",
+						justifyContent: "flex-end",
+						alignItems: "center",
+						[theme.breakpoints.up("md")]: {
+							display: "none",
+						},
+					})}
+				>
+					<Burger
+						onBurgerClick={onBurgerClick}
+						menuActive={menuActive}
+						isIntroDone={introDone}
+					/>
+				</Box>
+			</div>
+		</Container>
 	);
 }
 

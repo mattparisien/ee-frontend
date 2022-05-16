@@ -25,13 +25,20 @@ function Header({
 	}, [menuActive]);
 
 	return (
-		<ResponsiveAppBar
-			navItems={navItems}
-			toggleTransitioning={toggleTransitioning}
-			menuActive={menuActive}
-			onBurgerClick={handleClick}
-			color={color}
-		/>
+		<header
+			className={`Header fixed top-0 left-0 w-screen h-13 ${
+				menuActive ? "bg-transparent" : "bg-light"
+			}`}
+			style={{ zIndex: 99999 }}
+		>
+			<ResponsiveAppBar
+				navItems={navItems}
+				toggleTransitioning={toggleTransitioning}
+				menuActive={menuActive}
+				onBurgerClick={handleClick}
+				color={color}
+			/>
+		</header>
 	);
 }
 

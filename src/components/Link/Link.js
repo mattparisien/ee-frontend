@@ -7,7 +7,7 @@ import { SiteWideControls } from "../../context/Context";
 
 function Link(props) {
 	const scroll = useLocomotiveScroll();
-	const classes = classNames("c-link", {
+	const classes = classNames("Link font-semibold", {
 		[props.classes]: props.classes,
 	});
 
@@ -43,9 +43,8 @@ function Link(props) {
 			style={props.style}
 			rel={props.rel}
 			onClick={props.onClick}
-			// component='button'
 		>
-			<Typography variant='body3'>{props.children}</Typography>
+			{props.children}
 		</RouterLink>
 	) : (
 		<a
