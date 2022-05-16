@@ -10,10 +10,10 @@ function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 	});
 
 	return (
-		<ul className='DropdownMenuList z-50 sticky w-full h-full flex flex-col items-center justify-center text-center'>
+		<ul className='DropdownMenuList z-50 sticky w-full  flex flex-col items-center justify-center text-center'>
 			{navItems &&
 				navItems.map((item, i) => (
-					<li key={i}>
+					<li key={i} className={i !== navItems.length - 1 ? "pb-5" : ""}>
 						<Heading
 							level={1}
 							wrapperClasses={"text-light transition color duration-400 ease"}

@@ -5,9 +5,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import {
-	List, ListItem, ListItemButton, ListItemIcon
-} from "@mui/material";
+import classNames from "classnames";
 import React from "react";
 import SOCIALACCOUNTS from "../../api/graphql/queries/GetSocialAccounts";
 
@@ -20,52 +18,35 @@ const iconMap = {
 	pinterest: PinterestIcon,
 };
 
-function SocialList({ color, direction }) {
+function SocialList({ direction }) {
 	const { loading, error, data } = useQuery(SOCIALACCOUNTS);
 
-	const listWrapper = theme => ({
-		display: "flex",
-		flexDirection: direction || "row",
-		svg: {
-			fill: theme.palette.primary[color],
-		},
-
-		[theme.breakpoints.down("sm")]: {
-			flexDirection: "column",
-			".fade-child-wrap:not(:last-of-type) li": {
-				marginBottom: theme.spacing(3),
-			},
-		},
+	const classes = classNames("SocialList flex ", {
+		"flex-col md:flex-row": !direction || direction === "row",
+		"flex-col": direction === "col",
 	});
 
 	return (
 		!error &&
 		!loading &&
 		data && (
-			<List disablePadding sx={listWrapper}>
+			<ul className={classes}>
 				{data.socials.data.map((account, i) => (
-					<ListItem disablePadding key={i}>
-						<ListItemButton
-							disableTouchRipple
-							component='a'
+					<li key={i}>
+						<a
 							href={account.attributes.Url}
 							target='_blank'
 							rel='noreferrer'
-							sx={{
-								padding: 0,
-								"&:hover": { opacity: 0.5 },
-								transition: "300ms ease",
-							}}
+							className='p-0'
 						>
-							<ListItemIcon sx={{ justifyContent: "flex-end" }}>
-								{React.createElement(
-									iconMap[account.attributes.Name.toLowerCase()]
-								)}
-							</ListItemIcon>
-						</ListItemButton>
-					</ListItem>
+							{React.createElement(
+								iconMap[account.attributes.Name.toLowerCase()],
+								{ className: `text-light ${i !== 0 && "mt-3 md:ml-3 md:mt-0"}` }
+							)}
+						</a>
+					</li>
 				))}
-			</List>
+			</ul>
 		)
 	);
 }

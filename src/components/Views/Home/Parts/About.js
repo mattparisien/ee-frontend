@@ -1,7 +1,3 @@
-import { Box, Typography, useMediaQuery } from "@mui/material";
-import gsap from "gsap";
-import { useRef } from "react";
-import { useInView } from "react-intersection-observer";
 import Container from "../../../Containers/ContainerFluid";
 import Section from "../../../Containers/Section";
 import Markdown from "../../../Markdown/Markdown";
@@ -22,7 +18,7 @@ function About({ aboutText }) {
 								{aboutText}
 							</Markdown>
 						</div>
-						<div className='graphic-wrapper w-1/2 mt-20 md:mt-0 mx-auto md:mx-0 -scale-x-100 -rotate-30'>
+						<div className='graphic-wrapper w-1/2 mt-20 md:mt-0 mx-auto md:mx-0 -scale-x-100 md:rotate-[35deg]'>
 							<Megaphone />
 						</div>
 					</div>
