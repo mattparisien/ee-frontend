@@ -10,7 +10,7 @@ function NavDesktop({ navItems }) {
 						<li
 							className={`listItem_${i + 1} flex items-end ${
 								i !== navItems.length - 1 ? "pr-10" : ""
-							} w-auto opacity-50 transition ease duration-400 hover:opacity-100`}
+							} w-auto opacity-50 transition-opacity ease duration-300 hover:opacity-100`}
 							key={i}
 						>
 							<Link isRouterLink href={item.path}>
