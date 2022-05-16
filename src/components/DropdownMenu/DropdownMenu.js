@@ -1,54 +1,23 @@
-import { Box, List, ListItem, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import classNames from "classnames";
 import React, { useEffect } from "react";
 import useResize from "../../helpers/hooks/useResize";
 import ContainerFluid from "../Containers/ContainerFluid";
-import Link from "../Link/Link";
 import SocialList from "../Lists/SocialList";
+import "./DropdownMenu.css";
+import DropdownMenuList from "./DropdownMenuList";
 
-function Menu({ menuActive, navItems, toggleMenu }) {
-	const menuStyles = theme => ({
-		position: "fixed",
-		top: 0,
-		transition: "visibility .8s",
-		visibility: menuActive ? "visible" : "hidden",
-		left: 0,
-		width: "100%",
-		height: "60vh",
-		zIndex: 9999,
-		"&::before": {
-			content: '""',
-			backgroundColor: theme.palette.primary.dark,
-			width: "100%",
-			height: "100%",
-			position: "absolute",
-			top: 0,
-			left: 0,
-			transformOrigin: "center top",
-			transition: "transform .6s cubic-bezier(.645,.045,.355,1)",
-			transform: `scaleY(${menuActive ? 1 : 0})`,
-		},
-		a: {
-			transition:
-				"opacity .3s cubic-bezier(.55,.055,.675,.19),transform .3s cubic-bezier(.55,.055,.675,.19)",
-			transitionTimingFunction: "cubic-bezier(.215,.61,.355,1)",
-			transform: `translateY(${menuActive ? "0" : "100%"})`,
-			opacity: menuActive ? 1 : 0,
-		},
-		"li:first-of-type a": {
-			transitionDelay: menuActive ? "0.27s" : 0,
-		},
-		"li:nth-of-type(2) a": {
-			transitionDelay: menuActive ? "0.34s" : 0,
-		},
-		"li:nth-of-type(3) a": {
-			transitionDelay: menuActive ? "0.41s" : 0,
-		},
-	});
-
-	const classes = classNames("c-menu", {
-		"is-active": menuActive,
-	});
+function DropdownMenu({ menuActive, navItems, toggleMenu }) {
+	const classes = classNames(
+		"DropdownMenu fixed top-0 left-0 w-full h-[60vh] transition-visibility transition-duration-0.8 before:bg-dark before:w-full before:h-full before:absolute before:top-0 before:left-0 before:origin-top before:transition before:duration-[0.6s] before:ease-dropdown",
+		{
+			"is-active": menuActive,
+			"visibility-hidden": !menuActive,
+			"visibility-visible": menuActive,
+			"before:scale-y-1": menuActive,
+			"before:scale-y-0": !menuActive,
+		}
+	);
 
 	const theme = useTheme();
 	const [windowWidth] = useResize();
@@ -75,40 +44,16 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 	}, [theme, windowWidth]);
 
 	return (
-		<Box className={classes} sx={menuStyles}>
+		<div className={classes} style={{ zIndex: 9999 }}>
 			<ContainerFluid
 				classes={"-stretchY"}
 				sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
 			>
-				<List data-testid='menu'>
-					{navItems &&
-						navItems.map((item, i) => (
-							<ListItem
-								key={i}
-								sx={{
-									justifyContent: "center",
-								}}
-							>
-								<Link isRouterLink href={item.path} onClick={toggleMenu}>
-									<Typography
-										variant='h1'
-										sx={theme => ({
-											color: theme.palette.primary.light,
-
-											transition: "color 400ms ease",
-											"@media (hover: hover)": {
-												"&:hover": {
-													color: theme.palette.primary.yellow,
-												},
-											},
-										})}
-									>
-										{item.name}
-									</Typography>
-								</Link>
-							</ListItem>
-						))}
-				</List>
+				<DropdownMenuList
+					navItems={navItems}
+					toggleMenu={toggleMenu}
+					menuActive={menuActive}
+				/>
 				<Box
 					sx={theme => ({
 						position: "absolute",
@@ -157,8 +102,8 @@ function Menu({ menuActive, navItems, toggleMenu }) {
 					}}
 				></Box>
 			</Box>
-		</Box>
+		</div>
 	);
 }
 
-export default Menu;
+export default DropdownMenu;

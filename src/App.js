@@ -14,7 +14,7 @@ import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/HOC/ScrollToTop";
 import BackToTop from "./components/Link/BackToTop";
 import LoadingScreen from "./components/Loading/LoadingScreen";
-import Menu from "./components/Menu/Menu";
+import DropdownMenu from "./components/DropdownMenu/DropdownMenu";
 import Navigation from "./components/Nav/Navigation";
 import Context from "./context/Context";
 import useAppData from "./helpers/hooks/useAppData";
@@ -178,7 +178,7 @@ The Eyes and Ears Agency builds a bridge between the music industry and impactfu
 								setNavItems={setNavItems}
 							/>
 
-							<Menu
+							<DropdownMenu
 								menuActive={menuActive}
 								navItems={navItems}
 								toggleMenu={() => setMenuActive(!menuActive)}

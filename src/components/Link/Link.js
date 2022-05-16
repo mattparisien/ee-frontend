@@ -8,7 +8,7 @@ import { SiteWideControls } from "../../context/Context";
 function Link(props) {
 	const scroll = useLocomotiveScroll();
 	const classes = classNames("Link font-semibold", {
-		[props.classes]: props.classes,
+		[props.className]: props.className,
 	});
 
 	const { setTransitioning, toggleDomAnimationReady } =

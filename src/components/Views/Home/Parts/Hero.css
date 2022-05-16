@@ -1,27 +1,5 @@
-/* ".word": {
-  fontFamily: "Kobe Bold",
-  display: "none",
-},
-".word:nth-of-type(2)": {
-  textAlign: "right",
-},
 
-[theme.breakpoints.up("md")]: {
-  ".word": {
-    display: "block !important",
-    fontSize: "8rem",
-    lineHeight: "8rem",
-  },
-},
-[theme.breakpoints.up("lg")]: {
-  ".word": {
-    fontSize: "9rem",
-    lineHeight: "9rem",
-  },
-}, */
-
-.HeroWord {
-  font-family: 'Kobe Bold';
+.HeroWord {  font-family: 'Kobe Bold';
 }
 
 .HeroWord_2 {
@@ -37,7 +15,7 @@
   display: none;
 }
 
-@media screen and (min-width: 1900px and max-width: 900px) {
+@media screen and (min-width: 1900px and max-width: 769px) {
   .HeroLogo {
     transform: translate(-50%, -50%);
   }
@@ -49,7 +27,7 @@
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 769px) {
   .HeroWord {
     display: none !important;
   }

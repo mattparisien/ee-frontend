@@ -19,42 +19,22 @@ function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 		},
 	});
 
-	const spacer = theme => ({
-		width: "195px",
-		[theme.breakpoints.down("md")]: {
-			width: "10rem",
-		},
-	});
-
 	return (
 		<Container>
 			<div className='header-content flex items-center justify-between py-3'>
-				<Box className='spacer' sx={spacer}></Box>
+				<div className='header-spacer w-20 md:w-[195px]'></div>
 				<Box className='logo-wrap' sx={logoWrap}>
 					<Link isRouterLink href={"/"}>
 						<TextLogo />
 					</Link>
 				</Box>
 				<NavDesktop navItems={navItems} />
-				<Box
-					className='mobile-nav'
-					sx={theme => ({
-						height: "50%",
-						width: "10rem",
-						display: "flex",
-						justifyContent: "flex-end",
-						alignItems: "center",
-						[theme.breakpoints.up("md")]: {
-							display: "none",
-						},
-					})}
-				>
-					<Burger
-						onBurgerClick={onBurgerClick}
-						menuActive={menuActive}
-						isIntroDone={introDone}
-					/>
-				</Box>
+
+				<Burger
+					onBurgerClick={onBurgerClick}
+					menuActive={menuActive}
+					isIntroDone={introDone}
+				/>
 			</div>
 		</Container>
 	);

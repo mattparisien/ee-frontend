@@ -23,6 +23,9 @@ module.exports = {
 					custom: "#0a4d98",
 				},
 			},
+			transitionTimingFunction: {
+				dropdown: "cubic-bezier(.645,.045,.355,1)",
+			},
 		},
 	},
 	plugins: [],
