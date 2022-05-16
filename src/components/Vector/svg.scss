@@ -1,0 +1,67 @@
+.c-megaphone {
+
+	
+	svg {
+		path:first-child,
+		path:nth-child(2) {
+			fill: $yellow;
+		}
+	}
+}
+
+.c-quotation {
+	width: 80vw;
+	opacity: 0.8;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	svg {
+		height: 100%;
+		path {
+			fill: $yellow;
+		}
+	}
+}
+
+.c-drawnLogo {
+	
+	.eye,
+	.vibration {
+		fill: $yellow;
+	}
+
+	&.is-light {
+		.faceLine {
+			fill: $light;
+		}
+	}
+
+	&.is-dark {
+		.faceLine {
+			fill: $dark;
+		}
+	}
+}
+
+.c-lineDrawing {
+	position: absolute;
+	bottom: 2vw;
+	transform: scaleX(0);
+	transform-origin: left;
+	width: 90%;
+	left: 5%;
+
+	&.draw {
+		animation: draw 1s cubic-bezier(1, 0, 0, 1) forwards;
+	}
+}
+
+@keyframes draw {
+	to {
+		transform-origin: left;
+		transform: scaleX(1);
+	}
+}
