@@ -11,9 +11,9 @@ import { motion } from "framer-motion";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import ConditionalWrapper from "../Containers/ConditionalWrapper";
+import Heading from "../Heading/Heading";
 import SplitText from "../HOC/SplitText";
 import Paragraph from "../Paragraph/Paragraph";
-import Heading from "../Heading/Heading";
 import "./Markdown";
 
 function Markdown({ children, variantMap, sx, isSplit }) {
@@ -48,7 +48,9 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 		h6: ({ node, ...props }) => <Heading level={6}>{props.children}</Heading>,
 
 		p: ({ node, ...props }) => (
-			<Paragraph size='large'>{props.children}</Paragraph>
+			<Paragraph size={variantMap && variantMap.p || "large"}>
+				{props.children}
+			</Paragraph>
 		),
 		ul: ({ node, ...props }) => <List disablePadding>{props.children}</List>,
 		li: ({ node, ...props }) => (

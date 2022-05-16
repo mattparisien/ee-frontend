@@ -73,6 +73,14 @@
 	color: $light;
 }
 
+.accent-multiply::after {
+	mix-blend-mode: multiply;
+}
+
+.accent-screen::after {
+	mix-blend-mode: screen;
+}
+
 .accent {
 	position: relative;
 

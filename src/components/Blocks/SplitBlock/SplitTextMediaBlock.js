@@ -35,7 +35,7 @@ function Left({ text, cta }) {
 		<Container>
 			<Markdown
 				variantMap={{
-					p: "body2",
+					p: "small",
 				}}
 			>
 				{text}

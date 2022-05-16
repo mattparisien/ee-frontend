@@ -30,9 +30,10 @@ code {
 
 body {
   font-family: Neue Mtl;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+h1, h2 {
   font-family: Kobe Bold;
 }
 

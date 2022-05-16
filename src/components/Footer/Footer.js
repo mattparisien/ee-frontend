@@ -18,6 +18,7 @@ import {
 	spacer,
 	wrap,
 } from "./styles/styles";
+import Heading from "../Heading/Heading";
 
 export default function Footer(props) {
 	const [info, setInfo] = useState(null);
@@ -52,16 +53,14 @@ export default function Footer(props) {
 									<Typography variant='h1' className='-splitChars'>
 										<SplitText>{info && info.heading}</SplitText>
 									</Typography>
-
-									<Typography
-										component='a'
-										variant='h5'
-										href={`mailto:${info.email}`}
-									>
-										<div className='email -underline -hover-underline -relative -inline -splitChars'>
+									<Heading level={3}>
+										<a
+											href={`mailto:${info.email}`}
+											onClick={e => e.preventDefault()}
+										>
 											<SplitText>{info.email}</SplitText>
-										</div>
-									</Typography>
+										</a>
+									</Heading>
 								</>
 							)}
 						</Box>
@@ -73,16 +72,7 @@ export default function Footer(props) {
 					</Box>
 
 					<Box pt={4} pb={4} sx={bottom}>
-						<Typography
-							variant='body3'
-							component='p'
-							fontWeight={400}
-							sx={theme => ({
-								[theme.breakpoints.down("md")]: { alignSelf: "flex-end" },
-							})}
-						>
-							The Eyes & Ears Agency
-						</Typography>
+						<Heading level={4}>The Eyes & Ears Agency</Heading>
 						<SocialList color='light' />
 					</Box>
 				</Box>
