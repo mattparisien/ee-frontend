@@ -14,8 +14,8 @@ function Steps({ steps }) {
 						title: "Finding Your Rhythm",
 					}}
 				/>
-				<div className='content-wrapper relative w-full h-full'>
-					<div className='Steps h-full grid grid-cols-6 gap-y-7 sm:gap-y-20 sm:gap-x-20 lg:gap-x-10 lg:gap-y-0'>
+				<div className='content-wrapper relative w-full h-full py-20'>
+					<div className='Steps h-full grid grid-cols-6 gap-y-7 sm:gap-y-20 sm:gap-x-20 lg:gap-x-10 lg:gap-y-10'>
 						{steps &&
 							steps.map(step => {
 								return <StepItem step={step} key={step.id} id={step.id} />;

@@ -16,7 +16,7 @@ function Hero() {
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<Container>
-				<div className='content-wrapper h-[80vw] md:h-[calc(100vh-200px)] max-h-[600px] min-h-[400px] flex flex-col items-center md:items-start justify-end md:justify-between  py-3 relative'>
+				<div className='content-wrapper h-[80vw] md:h-[calc(100vh-200px)] max-h-[600px] min-h-[400px] flex flex-col items-center md:items-start justify-center md:justify-between  py-3 relative'>
 					{introDone && (
 						<>
 							{wordMap.map((word, i) => (

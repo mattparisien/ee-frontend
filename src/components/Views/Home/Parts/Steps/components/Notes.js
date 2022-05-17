@@ -1,12 +1,7 @@
 import React from "react";
-import {
-	DoubleNote,
-	HalfNote, QuarterNote
-} from "../../../../../Vector/Notes";
+import { DoubleNote, HalfNote, QuarterNote } from "../../../../../Vector/Notes";
 
 function Notes() {
-
-
 	useEffect(() => {
 		const notes = document.querySelectorAll(".c-note");
 
@@ -26,7 +21,6 @@ function Notes() {
 			});
 		}
 	}, [scroll]);
-
 
 	return (
 		<>

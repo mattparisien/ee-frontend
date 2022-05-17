@@ -3,50 +3,19 @@ import React from "react";
 import Cta from "../../Link/Cta";
 import { useTheme, useMediaQuery } from "@mui/material";
 import Fade from "../../HOC/Fade";
+import StatsGrid from "./StatsGrid";
 
 function StatsBlock({ data }) {
-	const itemsWrap = theme => ({
-		width: "100%",
-		display: "grid",
-		overflow: "hidden",
-		[theme.breakpoints.down("md")]: {
-			".item:not(:last-of-type)": {
-				marginBottom: theme.spacing(10),
-			},
-		},
-		[theme.breakpoints.up("md")]: {
-			gridTemplateColumns: `repeat(${data && data.statsBlockItem.length}, 1fr)`,
-		},
-	});
-
 	return (
 		<>
 			<Divider />
-			<Box
-				display='flex'
-				flexDirection='column'
-				justifyContent='center'
-				alignItems='center'
-				py={15}
-			>
-				{data.heading && (
-					<Typography variant='body2' component='h5' textAlign='center' mb={15}>
-						{data.heading}
-					</Typography>
-				)}
 
-				<Box className='grid-wrapper' sx={itemsWrap}>
-					{data.statsBlockItem.map((item, i) => (
-						<Item
-							heading={item.heading}
-							line={item.line}
-							key={i}
-							itemLength={data.statsBlockItem.length}
-							index={i}
-						/>
-					))}
-				</Box>
-			</Box>
+			<div className='content-wrapper flex flex-col items-center jusitfy-center py-20'>
+				{data.heading && <Heading level={3}>{data.heading}</Heading>}
+
+				<StatsGrid items={data.statsBlockItem} />
+			</div>
+
 			<Divider />
 			{data.cta && (
 				<Box display='flex' alignItems='center' justifyContent='center'>

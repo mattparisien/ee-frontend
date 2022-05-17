@@ -15,7 +15,7 @@ const logo = {
 function HeroLogo() {
 	return (
 		<div
-			className='HeroLogo absolute top-1/2 left-1/2  overflow-visible'
+			className='HeroLogo mb-10 md:mb-0 md:absolute top-1/2 left-1/2 overflow-visible'
 			style={logo}
 		>
 			<Scale>

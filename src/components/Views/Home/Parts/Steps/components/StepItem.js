@@ -36,7 +36,7 @@ function StepItem({ step, id }) {
 			<Heading level={3} wrapperClasses='text-center mb-5 font-semibold'>
 				<SplitText>{step.title}</SplitText>
 			</Heading>
-			<Markdown variantMap={{ p: "small" }}>{step.body}</Markdown>
+			<Markdown variantMap={{ p: "small" }} textCenter>{step.body}</Markdown>
 		</div>
 	);
 }

@@ -16,7 +16,15 @@ import SplitText from "../HOC/SplitText";
 import Paragraph from "../Paragraph/Paragraph";
 import "./Markdown";
 
-function Markdown({ children, variantMap, sx, isSplit }) {
+function Markdown({
+	children,
+	variantMap,
+	sx,
+	isSplit,
+	textLeft,
+	textCenter,
+	textRight,
+}) {
 	const componentMap = {
 		h1: ({ node, ...props }) => (
 			<Heading level={1}>
@@ -48,7 +56,12 @@ function Markdown({ children, variantMap, sx, isSplit }) {
 		h6: ({ node, ...props }) => <Heading level={6}>{props.children}</Heading>,
 
 		p: ({ node, ...props }) => (
-			<Paragraph size={variantMap && variantMap.p || "large"}>
+			<Paragraph
+				size={(variantMap && variantMap.p) || "large"}
+				textCenter={textCenter}
+				textLeft={textLeft}
+				textRight={textRight}
+			>
 				{props.children}
 			</Paragraph>
 		),
