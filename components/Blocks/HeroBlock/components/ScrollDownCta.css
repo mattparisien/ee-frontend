@@ -1,0 +1,13 @@
+.ScrollDownCta {
+  animation: bounceAnim 2s linear infinite alternate-reverse;
+  display: block;
+}
+
+@keyframes bounceAnim {
+  0% {
+    transform: translateY(-30%)translateX(-50%);
+  }
+  100% {
+    transform: translateY(30%)translateX(-50%);
+  }
+}
