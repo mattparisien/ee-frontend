@@ -7,7 +7,7 @@ import FullBleedMediaBlock from "./FullBleedMediaBlock";
 import SplitTextMediaBlock from "./SplitBlock/SplitTextMediaBlock";
 import TitleBlock from "./TitleBlock";
 import StatsBlock from "./StatsBlock/StatsBlock";
-import TextWrapBlock from "./TextWrapBlock";
+import TextWrapBlock from "./TextWrapBlock/TextWrapBlock";
 import SplitTextListBlock from "./SplitBlock/SplitTextListBlock";
 import SingleInstaBlock from "./SingleInstaBlock";
 
