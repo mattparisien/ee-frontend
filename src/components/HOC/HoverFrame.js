@@ -1,5 +1,5 @@
 import useMouseEnter from "../../helpers/hooks/useMouseEnter";
-import { Frame } from "../Views/Projects/ProjectGrid/ProjectGridItem";
+// import { Frame } from "../Views/Projects/ProjectGrid/components/ProjectGridItem";
 
 function HoverFrame({ wrapper, children }) {
 	const { ref, isEnter } = useMouseEnter();
@@ -7,7 +7,7 @@ function HoverFrame({ wrapper, children }) {
 	children = (
 		<>
 			{children}
-			{<Frame isHovering={isEnter} />}
+			{/* {<Frame isHovering={isEnter} />} */}
 		</>
 	);
 

@@ -32,22 +32,14 @@ function Projects() {
 			/>
 			<Section>
 				<Container disableMaxWidth>
-					<Box
-						sx={theme => ({
-							[theme.breakpoints.up("sm")]: {
-								paddingBottom: theme.spacing(3),
-							},
-						})}
-					>
-						{projects && (
-							<ProjectGrid
-								variant='projects'
-								items={projects}
-								hoverEffect={"frame"}
-								colors={colors}
-							/>
-						)}
-					</Box>
+					{projects && (
+						<ProjectGrid
+							variant='projects'
+							items={projects}
+							hoverEffect={"frame"}
+							colors={colors}
+						/>
+					)}
 				</Container>
 			</Section>
 		</>

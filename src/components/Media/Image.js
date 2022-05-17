@@ -19,19 +19,27 @@ function Image({
 		skip: !useIO,
 	});
 
-	const lowResStyles = { display: isLoaded ? "none" : "block" };
-	const highResStyles = { display: isLoaded ? "block" : "none" };
+	const lowResStyles = {
+		display: isLoaded ? "none" : "block",
+		objectPosition: 'center',
+		objectFit: "cover",
+	};
+	const highResStyles = {
+		display: isLoaded ? "block" : "none",
+		objectFit: "cover",
+		objectPosition: 'center'
+	};
 
-	const classesLowRes = classNames("img-lowRes", {
+	const classesLowRes = classNames("img-lowRes w-full h-full", {
 		[lowResClasses]: lowResClasses,
 	});
 
-	const classesHighRes = classNames("img-highRes", {
+	const classesHighRes = classNames("img-highRes w-full h-full", {
 		[highResClasses]: highResClasses,
 	});
 
 	return (
-		<Box className='Image'>
+		<Box className='Image w-full h-full'>
 			{useIO && inView && (
 				<Box
 					component='img'
