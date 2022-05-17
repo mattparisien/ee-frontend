@@ -11,7 +11,7 @@ function Heading({
 	const headingClasses = {
 		1: "text-6xl md:text-8xl",
 		2: "text-5xl md:text-6xl",
-		3: "text-2xl md:text-3xl",
+		3: "text-3xl md:text-4xl",
 		6: `text-1xl md:text-2xl font-semibold ${!disableMargin ? "mb-4" : ""}`,
 	};
 

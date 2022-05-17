@@ -1,18 +1,14 @@
 import React from "react";
 import Image from "../../../../Media/Image";
 
-function ProjectGridItemImage({ height }) {
+function ProjectGridItemImage({ image }) {
 	return (
-		<div className={`ProjectGridItemImage w-full h-[${height}]`}>
+		<div className={`ProjectGridItemImage w-full`}>
 			<Image
 				cover
-				lowResSrc={
-					"https://images.pexels.com/photos/11932917/pexels-photo-11932917.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-				}
-				highResSrc={
-					"https://images.pexels.com/photos/11932917/pexels-photo-11932917.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-				}
-				alt={"hi"}
+				lowResSrc={image.url}
+				highResSrc={image.url}
+				alt={image.alternativeText}
 				useIO={false}
 			/>
 		</div>

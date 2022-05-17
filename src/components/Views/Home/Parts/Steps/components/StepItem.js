@@ -2,8 +2,13 @@ import React from "react";
 import Heading from "../../../../../Heading/Heading";
 import SplitText from "../../../../../HOC/SplitText";
 import Markdown from "../../../../../Markdown/Markdown";
+import { useMediaQuery } from "@mui/material";
+
 
 function StepItem({ step, id }) {
+
+	const matches = useMediaQuery('(max-width: 769px)');
+
 	const locations = {
 		1: {
 			column: "col-span-full sm:col-span-4 lg:col-span-2",

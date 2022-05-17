@@ -31,7 +31,7 @@ function Projects() {
 				}}
 			/>
 			<Section>
-				<Container disableMaxWidth>
+				<Container>
 					{projects && (
 						<ProjectGrid
 							variant='projects'

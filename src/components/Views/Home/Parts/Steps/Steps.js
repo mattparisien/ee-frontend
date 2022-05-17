@@ -1,9 +1,8 @@
 import React from "react";
 import TitleBlock from "../../../../Blocks/TitleBlock";
+import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
 import StepItem from "./components/StepItem";
-import Container from "../../../../Containers/ContainerFluid";
-import "./Steps.css";
 
 function Steps({ steps }) {
 	return (
