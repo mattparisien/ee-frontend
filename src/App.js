@@ -26,10 +26,6 @@ function App() {
 
 	const location = useLocation();
 
-	gsap.registerPlugin(SplitText);
-
-	const [isFirstVisit, setFirstVisit] = useState(true);
-
 	const {
 		addToRefs,
 		state,
@@ -117,10 +113,7 @@ function App() {
 
 	const [navItems, setNavItems] = useState([]);
 
-	const classes = classNames("App bg-light", {
-		"cursor-hidden": cursor === "drag",
-		"is-not-first-visit": !isFirstVisit,
-	});
+	const classes = classNames("App bg-light");
 
 	return (
 		<ThemeProvider theme={theme}>

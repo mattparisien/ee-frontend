@@ -1,30 +1,20 @@
-import { Typography } from "@mui/material";
-import { motion } from "framer-motion";
 import React from "react";
+import Heading from "../Heading/Heading";
 import SplitText from "../HOC/SplitText";
 
 function TitleBlock({ data }) {
 	return !data.title.includes("-") ? (
-		<Typography
-			variant='h1'
-			component='h1'
-			textAlign='center'
-			className='title'
-		>
+		<Heading level={1} wrapperClasses={"text-center"}>
 			<SplitText>{data.title}</SplitText>
-		</Typography>
+		</Heading>
 	) : (
 		<>
-			<Typography variant='h1' component='h1' textAlign='center'>
-				<motion.div className='motion-wrap'>
-					<SplitText>{data.title.split("-")[0]}</SplitText>
-				</motion.div>
-			</Typography>
-			<Typography variant='h4' component='h4' textAlign='center'>
-				<motion.div className='motion-wrap'>
-					<SplitText>{data.title.split("-")[1]}</SplitText>
-				</motion.div>
-			</Typography>
+			<Heading level={1} wrapperClasses={"text-center"}>
+				<SplitText>{data.title.split("-")[0]}</SplitText>
+			</Heading>
+			<Heading level={3} wrapperClasses={"text-center"}>
+				<SplitText>{data.title.split("-")[1]}</SplitText>
+			</Heading>
 		</>
 	);
 }

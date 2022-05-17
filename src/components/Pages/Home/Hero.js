@@ -84,7 +84,7 @@ function Hero({ pageHeading }) {
 	return (
 		<Section data-theme='light' classes='o-hero ' noGutter>
 			<ContainerFluid>
-				<div className='content-wrapper h-[80vh] flex flex-col justify-between py-3 relative'>
+				<div className='content-wrapper h-[80vh] max-h-[600px] flex flex-col justify-between py-3 relative'>
 					<Typography className='word'>Social</Typography>
 					<Typography className='word'>Impact</Typography>
 					<Typography className='word'>Agency</Typography>

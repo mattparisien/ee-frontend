@@ -10,7 +10,7 @@ import Section from "../../Containers/Section";
 import QuoteSwiper from "../../QuoteSwiper/QuoteSwiper";
 import About from "./Parts/About";
 import Hero from "./Parts/Hero";
-import How from "./Parts/Steps/How";
+import Steps from "./Parts/Steps/Steps";
 import Work from "./Parts/Work";
 
 function Home({ pageHeading }) {
@@ -77,7 +77,7 @@ function Home({ pageHeading }) {
 		<>
 			<Hero pageHeading={pageHeading} />
 			<About aboutText={staticData.about} />
-			<How steps={staticData.steps} />
+			<Steps steps={staticData.steps} />
 			<Work projects={staticData.featuredWork} />
 			<Section>
 				<Container>

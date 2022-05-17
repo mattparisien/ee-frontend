@@ -3,7 +3,7 @@ import React from "react";
 import Container from "../Containers/ContainerFluid";
 import "./Error.css";
 
-function Error({ statusCode, message }) {
+function Error() {
 	const wrapper = {
 		zIndex: 9999999999999,
 	};

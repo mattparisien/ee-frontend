@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
 import classNames from "classnames";
+import React, { useEffect, useState } from "react";
 import useResize from "../../helpers/hooks/useResize";
-import { useLocation } from "react-router";
-import Section from "./Section";
-import Container from "./ContainerFluid";
 
 function Page(props) {
-	const classes = classNames("Page", { [`Page-${props.name}`]: props.name });
+	const classes = classNames("Page", { [`Page_${props.name}`]: props.name });
 
 	const [headerHeight, setHeaderHeight] = useState(null);
 	const [windowWidth] = useResize();
@@ -24,9 +20,9 @@ function Page(props) {
 	};
 
 	return (
-		<Box className={classes} {...props} sx={styles}>
+		<div className={classes} style={styles}>
 			{props.children}
-		</Box>
+		</div>
 	);
 }
 
