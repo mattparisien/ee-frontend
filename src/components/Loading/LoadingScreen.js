@@ -1,27 +1,16 @@
-import React, { useEffect } from "react";
-import { CircularProgress, Box } from "@mui/material";
+import { CircularProgress } from "@mui/material";
+import React from "react";
 
 function LoadingScreen({ isActive }) {
-	const wrapper = theme => ({
-		backgroundColor: theme.palette.primary.light,
-		top: 0,
-		left: 0,
-		position: "fixed",
-		zIndex: 999,
-		width: "100%",
-		height: "100vh",
-		display: isActive ? "flex" : "none",
-		justifyContent: "center",
-		alignItems: "center",
-		".MuiCircularProgress-colorPrimary": {
-			color: theme.palette.primary.dark,
-		},
-	});
-
 	return (
-		<Box sx={wrapper}>
-			<CircularProgress />
-		</Box>
+		<div
+			className={`LoadingScreen bg-light fixed top-0 left-0 w-full h-screen ${
+				isActive ? "flex items-center justify-center" : "hidden"
+			}`}
+			style={{ zIndex: 999 }}
+		>
+			<CircularProgress sx={{ color: "black" }} />
+		</div>
 	);
 }
 

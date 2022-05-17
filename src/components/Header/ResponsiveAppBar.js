@@ -1,12 +1,9 @@
-import { Box, Toolbar } from "@mui/material";
 import React, { useContext } from "react";
 import { SiteWideControls } from "../../context/Context";
 import Container from "../Containers/ContainerFluid";
-import Link from "../Link/Link";
-import { TextLogo } from "../Vector/Svg";
 import Burger from "./Burger";
-import NavDesktop from "./NavDesktop";
 import HeaderLogo from "./HeaderLogo";
+import NavDesktop from "./NavDesktop";
 
 function ResponsiveAppBar({ navItems, menuActive, onBurgerClick, color }) {
 	const { introDone } = useContext(SiteWideControls);

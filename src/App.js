@@ -8,7 +8,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { introAnimation } from "./animations";
-import Cursor from "./components/Cursor/Cursor";
 import Error from "./components/Error/Error";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/HOC/ScrollToTop";
@@ -148,7 +147,7 @@ The Eyes and Ears Agency builds a bridge between the music industry and impactfu
 						<link rel='canonical' href='https://www.eyesandearsagency.com/' />
 					</Helmet>
 
-					{<LoadingScreen isActive={loading} />}
+					<LoadingScreen isActive={loading} />
 
 					<Context
 						stateData={{ ...state.data, projects: [...projects] }}
@@ -183,8 +182,6 @@ The Eyes and Ears Agency builds a bridge between the music industry and impactfu
 								navItems={navItems}
 								toggleMenu={() => setMenuActive(!menuActive)}
 							/>
-
-							<Cursor />
 
 							<div
 								className='scroll-wrapper'

@@ -1,6 +1,5 @@
 import React from "react";
 import Heading from "../../../Heading/Heading";
-import SplitText from "../../../HOC/SplitText";
 import ScrollDownCta from "./ScrollDownCta";
 
 function HeroTitle({ title, subtitle }) {
