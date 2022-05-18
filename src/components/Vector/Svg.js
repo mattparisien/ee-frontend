@@ -619,7 +619,7 @@ export function BlobTwo() {
 export function TextLogo(props) {
 	const variants = {
 		hidden: {
-			y: window.innerHeight / 2,
+			y: 0,
 			// scale: 2,
 			transformOrigin: "center",
 		},

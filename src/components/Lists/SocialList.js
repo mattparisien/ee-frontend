@@ -6,7 +6,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import classNames from "classnames";
 import React, { useEffect } from "react";
-import useGlobalStore from "../../store/store";
+import useGlobalStore from "../../store/globalStore";
 
 const iconMap = {
 	instagram: InstagramIcon,
@@ -33,27 +33,23 @@ function SocialList({ direction }) {
 	});
 
 	return (
-		!error &&
-		!loading &&
-		data && (
-			<ul className={classes}>
-				{socials.map((account, i) => (
-					<li key={i}>
-						<a
-							href={account.attributes.Url}
-							target='_blank'
-							rel='noreferrer'
-							className='p-0'
-						>
-							{React.createElement(
-								iconMap[account.attributes.Name.toLowerCase()],
-								{ className: `text-light ${i !== 0 && "mt-3 md:ml-3 md:mt-0"}` }
-							)}
-						</a>
-					</li>
-				))}
-			</ul>
-		)
+		<ul className={classes}>
+			{socials.map((account, i) => (
+				<li key={i}>
+					<a
+						href={account.Url}
+						target='_blank'
+						rel='noreferrer'
+						className='p-0'
+					>
+						{React.createElement(
+							iconMap[account.Name.toLowerCase()],
+							{ className: `text-light ${i !== 0 && "mt-3 md:ml-3 md:mt-0"}` }
+						)}
+					</a>
+				</li>
+			))}
+		</ul>
 	);
 }
 

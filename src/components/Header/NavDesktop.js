@@ -13,9 +13,7 @@ function NavDesktop({ navItems }) {
 							} w-auto opacity-50 transition-opacity ease duration-300 hover:opacity-100`}
 							key={i}
 						>
-							<Link href={item.path}>
-								{item.name}
-							</Link>
+							<Link href={item.Slug}>{item.Name}</Link>
 						</li>
 					))}
 			</ul>

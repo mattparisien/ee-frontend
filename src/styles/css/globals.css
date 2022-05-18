@@ -5,6 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+}
+
+:root {
+  min-height: 100vh;
+}
+
+body  {
+  height: 100%;
 }
 
 code {
@@ -14,13 +23,13 @@ code {
 
 @font-face {
   font-family: 'Neue Mtl';
-  src: url("./styles/assets/fonts/NeueMontreal-Regular.otf");
+  src: url("../fonts/NeueMontreal-Regular.otf");
   font-weight: 200;
 }
 
 @font-face {
   font-family: 'Neue Mtl';
-  src: url("./styles/assets/fonts/NeueMontreal-Bold.otf");
+  src: url("../fonts/NeueMontreal-Bold.otf");
   font-weight: 600;
 }
 
@@ -28,13 +37,19 @@ code {
   font-weight: 600 !important;
 }
 
-body {
+body, #__next, .Layout {
   font-family: Neue Mtl;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
+
 
 h1, h2 {
   font-family: Kobe Bold;
+}
+
+main {
+  height: 100%;
 }
 
 

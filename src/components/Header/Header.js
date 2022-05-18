@@ -32,7 +32,6 @@ function Header({
 			style={{ zIndex: 99999 }}
 		>
 			<ResponsiveAppBar
-				navItems={navItems}
 				toggleTransitioning={toggleTransitioning}
 				menuActive={menuActive}
 				onBurgerClick={handleClick}

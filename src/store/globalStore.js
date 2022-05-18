@@ -2,6 +2,14 @@ import create from "zustand";
 import axios from "axios";
 
 const useGlobalStore = create(set => ({
+	navigation: [],
+	getNavigation: async () => {
+		const response = await axios.get(
+			`${process.env.NEXT_PUBLIC_API_URL}/pages?fields=Name,Slug,SeoUrl&filters=[Active][$eq]=true&sort[0]=id%3Aasc`
+		);
+
+		set({ navigation: response.data.data.map(x => ({ ...x.attributes })) });
+	},
 	projects: [],
 	getProjects: async () => {
 		const config = {
