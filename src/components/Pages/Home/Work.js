@@ -1,6 +1,4 @@
 import { useMediaQuery } from "@mui/material";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useMemo } from "react";
 import Section from "../../Containers/Section";
 import SectionHeading from "../../Headings/SectionHeading";

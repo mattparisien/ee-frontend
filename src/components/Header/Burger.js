@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import "./Burger.module.css";
+import styles from "./Burger.module.css";
 import useGlobalStore from "../../store/globalStore";
 
 function Burger() {
@@ -14,11 +14,12 @@ function Burger() {
 	};
 
 	const classes = classNames(
-		`Burger relative block h-7 w-16 rounded-3xl md:hidden ${pseudoClasses.common} `,
+		`Burger ${
+			dropdownActive ? styles.isClose : styles.isBurger
+		} relative block h-7 w-16 rounded-3xl md:hidden ${pseudoClasses.common} `,
 		{
 			"is-close bg-light before:bg-dark after:bg-dark": dropdownActive,
 			"is-burger bg-dark before:bg-light after:bg-light": !dropdownActive,
-			"before:translate-y-[2px] after:-translate-y-[4px] ": !dropdownActive,
 			"before:-translate-y-1/2 before:-translate-x-1/2 after:-translate-y-1/2 after:-translate-x-1/2 ":
 				!dropdownActive,
 			"before:-translate-y-1/2 after:-translate-y-1/2 before:-translate-x-1/2 after:-translate-x-1/2":

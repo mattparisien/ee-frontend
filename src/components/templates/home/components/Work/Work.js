@@ -16,22 +16,6 @@ function Work({ projects }) {
 		`(max-width: ${theme.breakpoints.values.md}px)`
 	);
 
-	const item = theme => ({
-		[theme.breakpoints.down("md")]: {
-			marginBottom: theme.spacing(20),
-		},
-		img: {
-			filter: `grayscale(1)`,
-		},
-		width: `${
-			matches ? "100%" : `calc(100vw / ${projects && projects.length} - 8vw)`
-		}`,
-		height: "300px",
-		[theme.breakpoints.up("md")]: {
-			maxWidth: "230px",
-		},
-	});
-
 	return (
 		<>
 			<TitleBlock
@@ -44,7 +28,7 @@ function Work({ projects }) {
 					<div className='content-wrapper flex flex-col md:flex-row items-center justify-between'>
 						{projects &&
 							projects.map((project, i) => (
-								<div className='mb-20 w-[20vw] h-[20vw]'>
+								<div className='mb-20'>
 									<Link href={`/projects/${convertToSlug(project.Subtitle)}`}>
 										<a
 											className='block h-full'
@@ -55,7 +39,7 @@ function Work({ projects }) {
 												alt={
 													project.FeatureImage.data.attributes.alternativeText
 												}
-												ratio="portrait"
+												ratio='portrait'
 												objectFit='cover'
 												width={200}
 												grayscale

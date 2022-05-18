@@ -3,11 +3,9 @@ import ProjectGridItemImage from "./ProjectGridItemImage";
 import Link from "../../../../Link/Link";
 import ProjectGridItemInfo from "./ProjectGridItemInfo";
 import convertToSlug from "../../../../../helpers/convertToSlug";
-import "./ProjectGridItem.css";
+import styles from "./ProjectGridItem.module.css";
 
 function ProjectGridItem({ gridNumber, title, subtitle, featureImage }) {
-	console.log(featureImage);
-
 	const locations = {
 		1: {
 			column: "col-span-12 md:col-span-5",
@@ -37,7 +35,11 @@ function ProjectGridItem({ gridNumber, title, subtitle, featureImage }) {
 
 	return (
 		<div
-			className={`ProjectGridItem ProjectGridItem_${gridNumber} flex flex-col w-full h-full ${locations[gridNumber].column} ${locations[gridNumber].row} ${locations[gridNumber].translate}`}
+			className={`ProjectGridItem ${
+				styles[`ProjectGridItem_${gridNumber}`]
+			} flex flex-col w-full h-full ${locations[gridNumber].column} ${
+				locations[gridNumber].row
+			} ${locations[gridNumber].translate}`}
 		>
 			<Link isRouterLink href={`/${convertToSlug(subtitle)}`}>
 				<ProjectGridItemImage
