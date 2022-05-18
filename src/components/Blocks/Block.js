@@ -57,7 +57,7 @@ function Block(props) {
 	});
 
 	return (
-		<BlockContext.Provider value={{...state}}>
+		<BlockContext.Provider value={{ ...state }}>
 			<Section
 				sectionTheme={state.theme}
 				disableMarginTop={!state.marginTop}
@@ -75,19 +75,21 @@ function Block(props) {
 						</Container>
 					)}
 				>
-					<ConditionalWrapper
+					<div className='py-5 md:py-10 lg:py-14'>
+						{/* <ConditionalWrapper
 						wrapper={children => (
 							<Box sx={verticalPaddingStyles}>{children}</Box>
 						)}
 						condition={props.name !== "FullBleedMediaBlock"}
-					>
+					> */}
 						{props.data &&
 							React.createElement(BLOCKS[props.name], {
 								key: props.id,
 								data: props.data,
 							})}
-					</ConditionalWrapper>
+					</div>
 				</ConditionalWrapper>
+				{/* </ConditionalWrapper> */}
 			</Section>
 		</BlockContext.Provider>
 	);
