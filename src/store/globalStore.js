@@ -2,6 +2,10 @@ import create from "zustand";
 import axios from "axios";
 
 const useGlobalStore = create(set => ({
+	dropdownActive: false,
+	toggleDropdown: () => {
+		set({ dropdownActive: !useGlobalStore.getState().dropdownActive });
+	},
 	navigation: [],
 	getNavigation: async () => {
 		const response = await axios.get(

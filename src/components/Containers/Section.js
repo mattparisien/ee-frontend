@@ -1,13 +1,10 @@
 import classNames from "classnames";
-import React, { useContext, useRef, createContext } from "react";
-import { ColorContext } from "../../context/Context";
+import React, { createContext, useRef } from "react";
 
 export const ThemeContext = createContext();
 
 function Section(props) {
 	const { sectionTheme } = props;
-
-	const { currentColor } = useContext(ColorContext);
 
 	const ref = useRef(null);
 

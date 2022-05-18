@@ -25,6 +25,8 @@ const useLocalStore = create(set => ({
 			`${process.env.NEXT_PUBLIC_API_URL}/steps`,
 			stepsConfig
 		);
+
+    console.log(about, steps)
 	},
 }));
 

@@ -1,7 +1,5 @@
-import Head from "next/head";
+import HomePage from "../components/templates/home/HomePage";
 
 export default function Home() {
-  return (
-    <div>this si the home page!</div>
-  )
+	return <HomePage />;
 }
