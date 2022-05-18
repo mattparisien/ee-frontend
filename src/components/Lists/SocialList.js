@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -6,8 +5,8 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import classNames from "classnames";
-import React from "react";
-import SOCIALACCOUNTS from "../../api/graphql/queries/GetSocialAccounts";
+import React, { useEffect } from "react";
+import useGlobalStore from "../../store/store";
 
 const iconMap = {
 	instagram: InstagramIcon,
@@ -19,7 +18,14 @@ const iconMap = {
 };
 
 function SocialList({ direction }) {
-	const { loading, error, data } = useQuery(SOCIALACCOUNTS);
+	const { socials, getSocials } = useGlobalStore(state => ({
+		socials: state.socials,
+		getSocials: state.getSocials,
+	}));
+
+	useEffect(() => {
+		getSocials();
+	}, []);
 
 	const classes = classNames("SocialList flex ", {
 		"flex-col md:flex-row": !direction || direction === "row",
@@ -31,7 +37,7 @@ function SocialList({ direction }) {
 		!loading &&
 		data && (
 			<ul className={classes}>
-				{data.socials.data.map((account, i) => (
+				{socials.map((account, i) => (
 					<li key={i}>
 						<a
 							href={account.attributes.Url}

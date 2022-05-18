@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'Neue Mtl';
+  src: url("./styles/assets/fonts/NeueMontreal-Regular.otf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Neue Mtl';
+  src: url("./styles/assets/fonts/NeueMontreal-Bold.otf");
+  font-weight: 600;
+}
+
+* strong {
+  font-weight: 600 !important;
+}
+
+body {
+  font-family: Neue Mtl;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+  font-family: Kobe Bold;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
