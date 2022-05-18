@@ -41,7 +41,11 @@ function DropdownMenu() {
 	return (
 		<div
 			className={classes}
-			style={{ zIndex: 9999, transition: "visibility 0.8s" }}
+			style={{
+				zIndex: 9999,
+				transition: "visibility 0.8s",
+				// boxShadow: "-3px 50vw 50vw 100vw rgba(245, 223, 30, 0.43)",
+			}}
 		>
 			<ContainerFluid classes={"flex items-center justify-center h-full"}>
 				<DropdownMenuList

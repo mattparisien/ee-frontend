@@ -40,7 +40,7 @@ function SocialList({ direction }) {
 						href={account.Url}
 						target='_blank'
 						rel='noreferrer'
-						className='p-0'
+						className='p-0 hover:opacity-50 transition transition-ease duration-300'
 					>
 						{React.createElement(
 							iconMap[account.Name.toLowerCase()],

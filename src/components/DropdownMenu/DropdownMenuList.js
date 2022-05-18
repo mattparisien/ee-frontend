@@ -2,10 +2,11 @@ import React from "react";
 import Heading from "../Heading/Heading";
 import classNames from "classnames";
 import Link from "next/Link";
+import styles from "./DropdownMenu.module.css";
 
 function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 	const linkClasses = classNames(
-		"block hover:text-yellow-custom transition duration-[300ms] ease-[cubic-bezier(0.55, 0.055, 0.675, 0.19)]",
+		`${styles.DropdownLink} block hover:text-yellow-custom`,
 		{
 			"opacity-0 translate-y-full": !menuActive,
 			"opacity-100 translate-y-0": menuActive,
@@ -13,7 +14,11 @@ function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 	);
 
 	return (
-		<ul className='DropdownMenuList z-50 sticky w-full  flex flex-col items-center justify-center text-center'>
+		<ul
+			className={`${
+				menuActive ? styles.DropdownMenuList : ""
+			} z-50 sticky w-full  flex flex-col items-center justify-center text-center`}
+		>
 			{navItems &&
 				navItems.map((item, i) => (
 					<li key={i} className={i !== navItems.length - 1 ? "pb-5" : ""}>
