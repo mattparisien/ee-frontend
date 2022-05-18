@@ -26,8 +26,9 @@ function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 							level={1}
 							wrapperClasses={"text-light transition color duration-400 ease"}
 						>
-							<Link href={item.Slug} onClick={toggleMenu}>
+							<Link href={item.Slug}>
 								<a
+									onClick={toggleMenu}
 									className={linkClasses}
 									style={{
 										transition:
