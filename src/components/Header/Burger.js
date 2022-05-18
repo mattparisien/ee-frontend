@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import "./Burger.css";
+import "./Burger.module.css";
 
 function Burger({ menuActive, onBurgerClick, isIntroDone }) {
 	const classes = classNames(

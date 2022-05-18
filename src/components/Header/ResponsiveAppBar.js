@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SiteWideControls } from "../../context/Context";
+import { SiteWideControls } from "../../../contexts/Context";
 import Container from "../Containers/ContainerFluid";
 import Burger from "./Burger";
 import HeaderLogo from "./HeaderLogo";

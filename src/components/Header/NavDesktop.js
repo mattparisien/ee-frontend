@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "../Link/Link";
+import Link from "next/Link";
 
 function NavDesktop({ navItems }) {
 	return (
@@ -13,7 +13,7 @@ function NavDesktop({ navItems }) {
 							} w-auto opacity-50 transition-opacity ease duration-300 hover:opacity-100`}
 							key={i}
 						>
-							<Link isRouterLink href={item.path}>
+							<Link href={item.path}>
 								{item.name}
 							</Link>
 						</li>
