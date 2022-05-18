@@ -26,8 +26,6 @@ const useLocalStore = create(set => ({
 			stepsConfig
 		);
 
-		console.log(steps);
-
 		set({
 			home: {
 				about: about.data.data.attributes.Body1,

@@ -5,11 +5,13 @@ import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 function Layout({ children }) {
 	return (
-		<div className='Layout'>
-			<Header />
-			<DropdownMenu />
-			<main className='main pt-[69px] bg-light'>{children}</main>
-			<Footer />
+		<div className='scroll-wrapper' data-scroll-container>
+			<div className='Layout'>
+				<Header />
+				<DropdownMenu />
+				<main className='main pt-[69px] bg-light'>{children}</main>
+				<Footer />
+			</div>
 		</div>
 	);
 }

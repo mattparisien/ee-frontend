@@ -1154,8 +1154,6 @@ export function Megaphone() {
 export function Ellipse(props) {
 	const ellipseClass = classNames("circle", props.classes);
 
-	gsap.registerPlugin(DrawSVGPlugin);
-
 	const ellipseAnim = useRef(gsap.timeline());
 
 	const scaleEllipse = function (e) {

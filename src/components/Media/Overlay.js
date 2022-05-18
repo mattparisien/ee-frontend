@@ -1,11 +1,7 @@
-import { Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 
 function Overlay({ color, sx }) {
 	const overlayRef = useRef(null);
-	const windowHeight = useRef(window.innerHeight);
-	const scroll = useLocomotiveScroll();
 
 	const animateOverlayOpacityIn = (overlay, top) => {
 		const offset = windowHeight.current - top;
@@ -18,41 +14,25 @@ function Overlay({ color, sx }) {
 			const bounds = overlay.getBoundingClientRect();
 			const itemTop = bounds.top;
 
-			if (itemTop - 300 < windowHeight.current) {
+			if (itemTop - 300 < window.innerHeight) {
 				//If is entering viewport, fade overlay opacity
 				animateOverlayOpacityIn(overlay, itemTop);
 			}
 		});
 	};
 
-	const hasRegisteredScroll = useRef(false);
-
 	useEffect(() => {
-		if (scroll && scroll.scroll && !hasRegisteredScroll.current) {
-			hasRegisteredScroll.current = true;
+		if (window !== "undefined") {
 			const overlays = document.querySelectorAll(".overlay");
-			scroll.scroll.on("scroll", e => handleScroll(e, overlays));
+			window.addEventListener("scroll", e => handleScroll(e, overlays));
 		}
-	}, [scroll, overlayRef]);
+	}, [overlayRef]);
 
 	return (
-		<Box
-			className='overlay'
-			sx={theme => ({
-				width: "100%",
-				height: "100%",
-				position: "absolute",
-				pointerEvents: "none",
-				opacity: 0,
-				top: 0,
-				left: 0,
-				zIndex: 9999,
-				backgroundColor: color ? color : theme.palette.primary.colorSet.yellow,
-
-				...sx,
-			})}
+		<div
+			className='Overlay w-full h-full absolute left-0 top-0 z-50 bg-yellow-custom pointer-events-none opacity-0'
 			ref={overlayRef}
-		></Box>
+		></div>
 	);
 }
 

@@ -13,7 +13,6 @@ import TitleBlock from "../../../Blocks/TitleBlock";
 import HoverFrame from "../../../HOC/HoverFrame";
 
 function Work({ projects }) {
-	gsap.registerPlugin(ScrollTrigger);
 	const theme = useTheme();
 	const matches = useMediaQuery(
 		`(max-width: ${theme.breakpoints.values.md}px)`

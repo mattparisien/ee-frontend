@@ -7,7 +7,6 @@ import SectionHeading from "../../Headings/SectionHeading";
 import Slider from "../../Slider/Slider";
 
 function Work({ projects }) {
-	gsap.registerPlugin(ScrollTrigger);
 	const mobile = useMediaQuery("(max-width: 600px)");
 
 	const featuredProjects = useMemo(() => {

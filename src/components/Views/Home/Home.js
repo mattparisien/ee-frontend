@@ -1,7 +1,4 @@
 import { useQuery } from "@apollo/client";
-import gsap from "gsap";
-import IntertiaPLugin from "gsap/InertiaPlugin";
-import ScrollTrigger from "gsap/src/ScrollTrigger";
 import React, { useContext, useEffect, useState } from "react";
 import STATICHOME from "../../../api/graphql/queries/static/GetStaticHome";
 import { GlobalContext } from "../../../context/Context";
@@ -14,8 +11,6 @@ import Steps from "./Parts/Steps/Steps";
 import Work from "./Parts/Work";
 
 function Home({ pageHeading }) {
-	gsap.registerPlugin(IntertiaPLugin, ScrollTrigger);
-
 	const { loading, error, data } = useQuery(STATICHOME, {
 		variables: {
 			projectLimit: 1,
