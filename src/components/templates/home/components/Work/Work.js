@@ -8,13 +8,13 @@ import HoverFrame from "../../../../HOC/HoverFrame";
 import Image from "../../../../Media/Image";
 import MyImage from "../../../../Media/MyImage";
 import convertToSlug from "../../../../../helpers/convertToSlug";
+import ProjectGrid from "../../../projects/components/ProjectGrid/ProjectGrid";
 import Link from "next/Link";
+import Cta from "../../../../Link/Cta";
 
 function Work({ projects }) {
 	const theme = useTheme();
-	const matches = useMediaQuery(
-		`(max-width: ${theme.breakpoints.values.md}px)`
-	);
+	const matches = useMediaQuery("(min-width: 769px)");
 
 	return (
 		<>
@@ -26,7 +26,11 @@ function Work({ projects }) {
 			<Section data-theme='light'>
 				<Container>
 					<div className='content-wrapper flex flex-col md:flex-row items-center justify-between'>
+						{projects && !matches && (
+							<ProjectGrid items={projects.slice(0, 4)} />
+						)}
 						{projects &&
+							matches &&
 							projects.map((project, i) => (
 								<div className='mb-20'>
 									<Link href={`/projects/${convertToSlug(project.Subtitle)}`}>
@@ -63,97 +67,12 @@ function Work({ projects }) {
 									</Link>
 								</div>
 							))}
+						<Cta href='/projects'>All projects</Cta>
 						{/* <FeaturedGrid rows={rows} /> */}
 					</div>
 				</Container>
 			</Section>
 		</>
-	);
-}
-
-function FeaturedGrid({ rows }) {
-	const groups = useMemo(() => {
-		if (rows) {
-			return rows.map((row, i) => {
-				if (i === 0) {
-					const group = [...row.slice(1, 3)];
-
-					return [row.slice(0, 1), group];
-				} else {
-					return row;
-				}
-			});
-		}
-	}, [rows]);
-
-	const gap = "0.5rem";
-
-	const gridSpacing = {
-		".Row:nth-of-type(odd)": {
-			marginBottom: gap,
-		},
-		".Row:nth-child(1) .row-group:nth-child(1)": {
-			paddingRight: gap,
-		},
-	};
-
-	const grid = {
-		width: "100%",
-		height: "100%",
-		...gridSpacing,
-		".FeaturedGridItem": {
-			width: "100%",
-			height: "100%",
-			".Image": {
-				width: "100%",
-				height: "100%",
-				filter: "grayscale(1)",
-				img: {
-					objectFit: "cover",
-					objectPosition: "40% 40%",
-					width: "100%",
-					height: "100%",
-				},
-			},
-		},
-		".Row:first-child": {
-			height: "50vw",
-			".row-group": {
-				display: "inline-block",
-				"&:first-child": {
-					height: "50vw",
-					width: "50%",
-					".FeaturedGridItem": {
-						width: "100%",
-						height: "100%",
-					},
-				},
-				"&:nth-child(2)": {
-					display: "inline-block",
-					height: "50vw",
-					width: "calc(50% - 1px)",
-					".FeaturedGridItem": {
-						width: "100%",
-						height: "50%",
-						"&:first-child": {
-							paddingBottom: gap,
-						},
-					},
-				},
-			},
-		},
-		".Row:nth-child(2)": {
-			"&, .row-group": {
-				width: "100%",
-				height: "40vw",
-			},
-		},
-	};
-
-	return (
-		<Box className='FeaturedGrid' sx={grid}>
-			{groups && groups.map((group, i) => <Row group={group} key={i} />)}
-		</Box>
 	);
 }
 

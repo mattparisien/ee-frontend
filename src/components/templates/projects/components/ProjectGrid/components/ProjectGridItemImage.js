@@ -23,7 +23,6 @@ function ProjectGridItemImage({ image, ratio, gridNumber }) {
 				width={"100%"}
 				height='100%'
 				layout='fill'
-				// ratio={"portrait"}
 			/>
 		</div>
 	);

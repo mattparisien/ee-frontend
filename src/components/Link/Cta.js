@@ -1,5 +1,5 @@
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Box, Link } from "@mui/material";
+import Link from "next/Link";
 import React from "react";
 
 function Cta({ children, target, href }) {
@@ -21,32 +21,24 @@ function Cta({ children, target, href }) {
 	});
 
 	return (
-		<Link
-			component='a'
-			variant='h6'
-			children={
-				<>
-					<Box
-						className='inner'
-						component='span'
-						fontWeight={300}
-						sx={theme => ({
-							transition: `${theme.transitions.duration.long}s ${theme.transitions.easing.zoom}`,
-						})}
-					>
-						{children}
-						{<ArrowForwardIosIcon sx={{ height: "0.8rem" }} />}
-					</Box>
-				</>
-			}
-			target={target}
-			rel={"noreferrer"}
-			href={href}
-			sx={styles}
-			underline={"none"}
-			color='inherit'
-			className='accent accent-text accent-left'
-		/>
+		<Link href={href}>
+			<a href={href} className={`flex items-center`}>
+				<CtaInner text={children} />
+			</a>
+		</Link>
+	);
+}
+
+function CtaInner({ text }) {
+	return (
+		<>
+			<span
+				className={`CtaInner text-xl accent accent-left accent-text accent-multiply`}
+			>
+				{text}
+			</span>
+			<ArrowForwardIosIcon sx={{ height: "0.8rem" }} />
+		</>
 	);
 }
 

@@ -106,6 +106,14 @@
 	}
 }
 
+.accent-text:hover::after {
+		transform: translateY(-50%) scale(1.4);
+}
+
+.accent-multiply::after {
+	mix-blend-mode: multiply;
+}
+
 .-stroke-light {
 	stroke: $light !important;
 }
