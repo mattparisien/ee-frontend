@@ -2,7 +2,7 @@ import create from "zustand";
 import axios from "axios";
 
 const useLocalStore = create(set => ({
-	home: [],
+	home: {},
 	singleProject: [],
 	about: [],
 	getHome: async () => {
@@ -14,7 +14,7 @@ const useLocalStore = create(set => ({
 
 		const stepsConfig = {
 			params: {
-				fields: "Title, Body",
+				fields: "id, Title, Body",
 			},
 		};
 		const about = await axios.get(
@@ -26,7 +26,14 @@ const useLocalStore = create(set => ({
 			stepsConfig
 		);
 
-    console.log(about, steps)
+		console.log(steps);
+
+		set({
+			home: {
+				about: about.data.data.attributes.Body1,
+				steps: steps.data.data.map(x => ({ id: x.id, ...x.attributes })),
+			},
+		});
 	},
 }));
 
