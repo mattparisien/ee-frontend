@@ -1,57 +1,57 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-  min-height: 100vh;
+	min-height: 100vh;
 }
 
-body  {
-  height: 100%;
+body {
+	height: 100%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 @font-face {
-  font-family: 'Neue Mtl';
-  src: url("../fonts/NeueMontreal-Regular.otf");
-  font-weight: 200;
+	font-family: "Neue Mtl";
+	src: url("../fonts/NeueMontreal-Regular.otf");
+	font-weight: 200;
 }
 
 @font-face {
-  font-family: 'Neue Mtl';
-  src: url("../fonts/NeueMontreal-Bold.otf");
-  font-weight: 600;
+	font-family: "Neue Mtl";
+	src: url("../fonts/NeueMontreal-Bold.otf");
+	font-weight: 600;
 }
 
 * strong {
-  font-weight: 600 !important;
+	font-weight: 600 !important;
 }
 
-body, #__next, .Layout {
-  font-family: Neue Mtl;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+body,
+#__next,
+.Layout {
+	font-family: Neue Mtl;
+	-webkit-font-smoothing: antialiased;
+	min-height: 100vh;
 }
 
-
-h1, h2 {
-  font-family: Kobe Bold;
+h1,
+h2 {
+	font-family: Kobe Bold;
 }
 
 main {
-  height: 100%;
+	height: 100%;
 }
-
 
 @tailwind base;
 @tailwind components;
