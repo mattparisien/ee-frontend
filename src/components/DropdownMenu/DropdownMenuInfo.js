@@ -1,6 +1,7 @@
 import React from "react";
 import SocialList from "../Lists/SocialList";
 import Paragraph from "../Paragraph/Paragraph";
+import styles from "./DropdownMenu.module.css";
 
 function DropdownMenuInfo({ dropdownActive }) {
 	return (
@@ -15,7 +16,15 @@ function DropdownMenuInfo({ dropdownActive }) {
 			>
 				Social Impact Agency
 			</Paragraph>
-			<SocialList color='light' />
+			<div
+				className={`${
+					dropdownActive
+						? styles.SocialListWrapper + ` translate-y-0 opacity-100`
+						: "translate-y-full opacity-0"
+				} `}
+			>
+				<SocialList color='light' />
+			</div>
 		</div>
 	);
 }

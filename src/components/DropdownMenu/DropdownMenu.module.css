@@ -1,16 +1,17 @@
-.DropdownLink {
+.DropdownLink, .SocialListWrapper {
 	transition: opacity 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19),
 		transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-.DropdownMenuList li:nth-child(1) a{
+.DropdownMenuList li:nth-child(1) a,
+.SocialListWrapper {
 	transition-delay: 0.27s;
 }
 
-.DropdownMenuList li:nth-child(2) a{
+.DropdownMenuList li:nth-child(2) a {
 	transition-delay: 0.34s;
 }
 
-.DropdownMenuList li:nth-child(3) a{
+.DropdownMenuList li:nth-child(3) a {
 	transition-delay: 0.45s;
 }
