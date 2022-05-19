@@ -1,32 +1,16 @@
 import React, { useEffect } from "react";
-import useGlobalStore from "../../../store/globalStore";
-import useLocalStore from "../../../store/localStore";
 import About from "./components/About/About";
 import Hero from "./components/Hero/Hero";
 import Steps from "./components/Steps/Steps";
 import Work from "./components/Work/Work";
+import { GlobalContext } from "../../../lib/context";
 
-function HomePage() {
-	const { getHome, home } = useLocalStore(state => ({
-		home: state.home,
-		getHome: state.getHome,
-	}));
-
-	const { projects, getProjects } = useGlobalStore(state => ({
-		projects: state.projects,
-		getProjects: state.getProjects,
-	}));
-
-	useEffect(() => {
-		getHome();
-		!projects[0] && getProjects();
-	}, []);
-
+function HomePage({ about, steps, projects }) {
 	return (
 		<div className='HomePage'>
 			<Hero />
-			<About aboutText={home.about && home.about} />
-			<Steps steps={home.steps} />
+			<About aboutText={about && about} />
+			<Steps steps={steps} />
 			<Work projects={projects} />
 		</div>
 	);

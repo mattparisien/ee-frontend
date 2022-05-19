@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../../lib/context";
 import ResponsiveAppBar from "./ResponsiveAppBar";
-import useGlobalStore from "../../store/globalStore";
 
 function Header({ toggleTransitioning, color }) {
-	const dropdownActive = useGlobalStore(state => state.dropdownActive);
+	const { appState } = useContext(GlobalContext);
+	const dropdownActive = appState.dropdownActive;
 
 	return (
 		<header
+		
 			className={`Header fixed top-0 left-0 w-screen h-13 ${
 				dropdownActive ? "bg-transparent" : "bg-light"
 			}`}
@@ -14,7 +16,7 @@ function Header({ toggleTransitioning, color }) {
 		>
 			<ResponsiveAppBar
 				toggleTransitioning={toggleTransitioning}
-				menuActive={dropdownActive}
+				dropdownActive={dropdownActive}
 				color={color}
 			/>
 		</header>

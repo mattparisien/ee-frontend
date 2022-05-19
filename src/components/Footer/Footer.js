@@ -2,18 +2,17 @@ import ContainerFluid from "../Containers/ContainerFluid";
 import "./Footer.module.css";
 import FooterBottom from "./FooterBottom";
 import FooterCenter from "./FooterCenter";
-import useGlobalStore from "../../store/globalStore";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { GlobalContext } from "../../lib/context";
+import { getFooter } from "../../lib/getFooter";
+import { Apps } from "@mui/icons-material";
 
 export default function Footer(props) {
-	const { footer, getFooter, socials } = useGlobalStore(state => ({
-		footer: state.footer,
-		getFooter: state.getFooter,
-		socials: state.socials,
-	}));
+	const { appState, setAppState } = useContext(GlobalContext);
+	const footer = appState.footer;
 
 	useEffect(() => {
-		getFooter();
+		getFooter(setAppState);
 	}, []);
 
 	return (

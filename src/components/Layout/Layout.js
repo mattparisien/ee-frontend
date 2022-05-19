@@ -1,14 +1,16 @@
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import useGlobalStore from "../../store/globalStore";
 import classNames from "classnames";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 import LoadingScreen from "../Loading/LoadingScreen";
+import { GlobalContext } from "../../lib/context";
 
 function Layout({ children }) {
-	const dropdownActive = useGlobalStore(state => state.dropdownActive);
+	const { appState} = useContext(GlobalContext);
+	const dropdownActive = appState.dropdownActive;
+
 	const fadeClasses = classNames(
 		"FadeWrapper transition transition-opacity ease duration-300 delay-100",
 		{

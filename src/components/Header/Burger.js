@@ -1,13 +1,7 @@
 import classNames from "classnames";
 import styles from "./Burger.module.css";
-import useGlobalStore from "../../store/globalStore";
 
-function Burger() {
-	const { dropdownActive, toggleDropdown } = useGlobalStore(state => ({
-		dropdownActive: state.dropdownActive,
-		toggleDropdown: state.toggleDropdown,
-	}));
-
+function Burger({ dropdownActive }) {
 	const pseudoClasses = {
 		common:
 			"after:absolute before:absolute after:top-1/2 after:left-1/2 after:w-[30px] after:h-[2px] before:top-1/2 before:left-1/2 before:w-[30px] before:h-[2px] before:transition before:duration-[300ms] before:ease-[cubic-bezier(0.35, 0.755, 0.42, 0.95)] after:transition after:duration-[300ms] after:ease-[cubic-bezier(0.35, 0.755, 0.42, 0.95)]",

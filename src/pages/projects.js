@@ -1,26 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Seo from "../components/Seo/Seo";
 import ProjectsPage from "../components/templates/projects/ProjectsPage";
+import { GlobalContext } from "../lib/context";
 import { getProjects } from "../lib/getProjects";
 
 function projects({ projects, seo }) {
+	const { setAppState } = useContext(GlobalContext);
+
+	useEffect(() => {
+		projects &&
+			setAppState(state => ({ ...state, projects: [...projects[0]] }));
+	}, [projects]);
+
 	return (
 		<>
-			<Seo
-				title={seo.Title}
-				description={seo.Description}
-				viewport={seo.MetaViewport}
-				canonical={seo.CanonicalUrl}
-			/>
+			{seo && (
+				<Seo
+					title={seo.metaTitle}
+					description={seo.metaDescription}
+					viewport={seo.metaViewport}
+					canonical={seo.canonicalURL}
+				/>
+			)}
 			<ProjectsPage />
 		</>
 	);
 }
 
+export default projects;
+
 export async function getStaticProps() {
 	const projects = await getProjects();
-
-	console.log("the projects", projects);
 
 	return {
 		props: {
@@ -28,5 +38,3 @@ export async function getStaticProps() {
 		},
 	};
 }
-
-export default projects;

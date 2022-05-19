@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
-import useGlobalStore from "../../../store/globalStore";
-import Section from "../../Containers/Section";
-import Container from "../../Containers/ContainerFluid";
-import ProjectGrid from "./components/ProjectGrid/ProjectGrid";
+import React, { useContext } from "react";
+import { GlobalContext } from "../../../lib/context";
 import Block from "../../Blocks/Block";
+import Container from "../../Containers/ContainerFluid";
+import Section from "../../Containers/Section";
+import ProjectGrid from "./components/ProjectGrid/ProjectGrid";
 
 function ProjectsPage() {
-	const { projects } = useGlobalStore(state => ({
-		projects: state.projects,
-	}));
+	const { appState } = useContext(GlobalContext);
 
 	return (
 		<div className='ProjectsPage'>
@@ -22,7 +20,9 @@ function ProjectsPage() {
 				}}
 			/>
 			<Section>
-				<Container>{projects[0] && <ProjectGrid items={projects} />}</Container>
+				<Container>
+					{appState.projects && <ProjectGrid items={appState.projects} />}
+				</Container>
 			</Section>
 		</div>
 	);
