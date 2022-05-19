@@ -5,8 +5,10 @@ function Frame({ isHovering }) {
 		transform: `scale(${isHovering ? 1.03 : 0.8})rotate(${
 			isHovering ? "0deg" : "18deg"
 		})`,
-
-		transition: "transform 2s cubic-bezier(0.190, 1.000, 0.220, 1.000)",
+		opacity: !isHovering ? 0 : "",
+		transition: `transform 2s cubic-bezier(0.190, 1.000, 0.220, 1.000), ${
+			!isHovering ? "opacity 0.3s ease" : ""
+		}`,
 	};
 
 	const xInitial = {
@@ -26,19 +28,19 @@ function Frame({ isHovering }) {
 	const green = {
 		...xInitial,
 		...transition,
-		transitionDelay: "0.25s",
+		transitionDelay: isHovering ? "0.25s" : "0s",
 	};
 
 	const red = {
 		...xInitial,
 		...transition,
-		transitionDelay: "0.41s",
+		transitionDelay: isHovering ? "0.41s" : "0s",
 	};
 
 	const blue = {
 		...yInitial,
 		...transition,
-		transitionDelay: "0.34s",
+		transitionDelay: isHovering ? "0.34s" : "0s",
 	};
 	const yellow = {
 		...yInitial,
