@@ -1,5 +1,6 @@
 import React from "react";
 import MyImage from "../../../../../Media/MyImage";
+import HoverFrame from "../../../../../HOC/HoverFrame";
 
 function ProjectGridItemImage({ image, ratio, gridNumber }) {
 	const dimensionsDesktop = {
@@ -13,8 +14,15 @@ function ProjectGridItemImage({ image, ratio, gridNumber }) {
 	const dimensionsMobile = "w-[90.9vw] h-[50vw]";
 
 	return (
-		<div
-			className={`ProjectGridItemImage ${dimensionsMobile} ${dimensionsDesktop[gridNumber]}`}
+		<HoverFrame
+			wrapper={(children, ref) => (
+				<div
+					className={`ProjectGridItemImage relative ${dimensionsMobile} ${dimensionsDesktop[gridNumber]}`}
+					ref={ref}
+				>
+					{children}
+				</div>
+			)}
 		>
 			<MyImage
 				src={image.url}
@@ -24,7 +32,7 @@ function ProjectGridItemImage({ image, ratio, gridNumber }) {
 				height='100%'
 				layout='fill'
 			/>
-		</div>
+		</HoverFrame>
 	);
 }
 

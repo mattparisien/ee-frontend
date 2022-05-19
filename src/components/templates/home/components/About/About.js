@@ -9,7 +9,7 @@ function About({ aboutText }) {
 		<>
 			<Section sectionTheme='dark'>
 				<Container position='relative'>
-					<div className='content-wrapper flex flex-col md:flex-row py-20 md:py-0 min-h-[80vw] md:h-[80vh] items-center justify-between md:justify-center'>
+					<div className='content-wrapper flex flex-col md:flex-row py-20 md:py-0 max-h-[80vh] min-h-[80vw] md:h-[80vh] items-center justify-between md:justify-center'>
 						<div className='flex flex-col w-full md:w-1/2'>
 							<Markdown
 								variantMap={{

@@ -11,7 +11,6 @@ function ProjectGridItem({
 	FeatureImage,
 	imageRatio,
 }) {
-
 	return (
 		<div
 			className={`ProjectGridItem ProjectGridItem_${gridNumber} ${

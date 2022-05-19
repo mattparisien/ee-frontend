@@ -1,7 +1,11 @@
 import classNames from "classnames";
+import { useContext } from "react";
+import { GlobalContext } from "../../lib/context";
 import styles from "./Burger.module.css";
 
 function Burger({ dropdownActive }) {
+	const { toggleDropdown } = useContext(GlobalContext);
+
 	const pseudoClasses = {
 		common:
 			"after:absolute before:absolute after:top-1/2 after:left-1/2 after:w-[30px] after:h-[2px] before:top-1/2 before:left-1/2 before:w-[30px] before:h-[2px] before:transition before:duration-[300ms] before:ease-[cubic-bezier(0.35, 0.755, 0.42, 0.95)] after:transition after:duration-[300ms] after:ease-[cubic-bezier(0.35, 0.755, 0.42, 0.95)]",
@@ -23,7 +27,7 @@ function Burger({ dropdownActive }) {
 	return (
 		<button
 			className={classes}
-			onClick={() => toggleDropdown()}
+			onClick={toggleDropdown}
 			data-testid={"menuBtn"}
 		></button>
 	);

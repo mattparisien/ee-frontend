@@ -9,7 +9,6 @@ function ProjectGridItemInfo({ title, subtitle }) {
 			<span className='uppercase text-xs md:text-sm pl-5 lg:text-md leading-3 md:leading-4 lg:leading-5'>
 				{subtitle}
 			</span>
-			{/* <div className='relative w-2 h-2 before:w-full before:h-full before:bg-black before:absolute before:rounded-full self-center overflow-visible'></div> */}
 		</div>
 	);
 }

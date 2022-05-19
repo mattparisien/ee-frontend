@@ -16,8 +16,15 @@ function MyApp({ Component, pageProps }) {
 		getSocials(setAppState);
 	}, []);
 
+	const toggleDropdown = () => {
+		setAppState(prev => ({
+			...prev,
+			dropdownActive: !prev.dropdownActive,
+		}));
+	};
+
 	return (
-		<GlobalContext.Provider value={{ appState, setAppState, ACTIONS }}>
+		<GlobalContext.Provider value={{ appState, setAppState, toggleDropdown }}>
 			<Layout>
 				<Component {...pageProps} />;
 			</Layout>
