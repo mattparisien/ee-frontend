@@ -8,6 +8,9 @@ function Heading({
 	wrapperClasses,
 	disableMargin,
 }) {
+
+	const commonClasses = "tracking-tight ";
+
 	const headingClasses = {
 		1: "text-6xl md:text-8xl",
 		2: "text-5xl md:text-6xl",
@@ -23,7 +26,7 @@ function Heading({
 	return (
 		<div className={wrapper}>
 			{React.createElement(`h${level}`, {
-				className: headingClasses[level],
+				className: commonClasses + headingClasses[level],
 				children: children,
 				style: level < 2 ? { fontFamily: "Kobe Bold" } : {},
 			})}
