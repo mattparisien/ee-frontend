@@ -8,10 +8,11 @@ function Paragraph({
 	textCenter,
 	textLeft,
 	textRight,
+	disableMargin,
 }) {
 	const classes = {
-		large: "text-xl md:text-3xl mb-2.5 md:mb-3",
-		small: "text-xl mb-2.5 md:mb-3",
+		large: `text-xl md:text-3xl ${!disableMargin ? `mb-2.5 md:mb-3` : ""}`,
+		small: `text-xl ${!disableMargin ? "mb-2.5 md:mb-3" : ""}`,
 	};
 
 	const wrapperClass = classNames("Paragraph", {

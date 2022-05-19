@@ -1,6 +1,11 @@
-.DropdownLink, .SocialListWrapper {
+.SocialListWrapper {
 	transition: opacity 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19),
 		transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.DropdownLink {
+	transition: opacity 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19), transform 0.3s
+		cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .DropdownMenuList li:nth-child(1) a,

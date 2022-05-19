@@ -8,6 +8,7 @@ function DropdownMenuInfo({ dropdownActive }) {
 		<div className='DropdownMenuInfo absolute bottom-0 right-0 flex items-end justify-between w-full p-4'>
 			<Paragraph
 				size='small'
+				disableMargin
 				wrapperClasses={`text-light transition-[transform,opacity] ${
 					dropdownActive
 						? "opacity-100 translate-y-0 ease-[cubic-bezier(.215,.61,.355,1)] duration-[600ms] delay-[600ms]"
