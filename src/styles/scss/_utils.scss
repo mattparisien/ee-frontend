@@ -94,7 +94,6 @@
 		transform: translateY(-50%);
 		left: 1%;
 		opacity: 0.8;
-		transition: 3s cubic-bezier(0.075, 0.82, 0.165, 1);
 		transform-origin: center;
 	}
 
@@ -107,7 +106,7 @@
 }
 
 .accent-text:hover::after {
-		transform: translateY(-50%) scale(1.4);
+	transform: translateY(-50%) scale(1.4);
 }
 
 .accent-multiply::after {
