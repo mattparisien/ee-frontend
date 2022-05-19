@@ -6,14 +6,10 @@ import ProjectGrid from "./components/ProjectGrid/ProjectGrid";
 import Block from "../../Blocks/Block";
 
 function ProjectsPage() {
-	const { projects, getProjects } = useGlobalStore(state => ({
+	const { projects } = useGlobalStore(state => ({
 		projects: state.projects,
-		getProjects: state.getProjects,
 	}));
 
-	useEffect(() => {
-		!projects[0] && getProjects();
-	}, [projects]);
 	return (
 		<div className='ProjectsPage'>
 			<Block
@@ -26,9 +22,7 @@ function ProjectsPage() {
 				}}
 			/>
 			<Section>
-				<Container>
-					<ProjectGrid items={projects} />
-				</Container>
+				<Container>{projects[0] && <ProjectGrid items={projects} />}</Container>
 			</Section>
 		</div>
 	);

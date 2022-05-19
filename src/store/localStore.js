@@ -26,12 +26,14 @@ const useLocalStore = create(set => ({
 			stepsConfig
 		);
 
-		set({
+		set(state => ({
+			...state,
 			home: {
+				...state.home,
 				about: about.data.data.attributes.Body1,
 				steps: steps.data.data.map(x => ({ id: x.id, ...x.attributes })),
 			},
-		});
+		}));
 	},
 }));
 

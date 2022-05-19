@@ -1,6 +1,7 @@
 import HomePage from "../components/templates/home/HomePage";
 import Head from "next/head";
 import Seo from "../components/Seo/Seo";
+import axios from "axios";
 
 export default function Home() {
 	return (
@@ -13,3 +14,5 @@ export default function Home() {
 		</>
 	);
 }
+
+

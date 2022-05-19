@@ -13,6 +13,5 @@ export const shuffleColors = object => {
 	const randomColorHex = colors[randomIndex];
 	const randomColorName = getKeyByValue(object, randomColorHex);
 
-	console.log(randomColorHex, randomColorName);
 	return [randomColorHex, randomColorName];
 };

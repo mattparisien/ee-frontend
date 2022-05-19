@@ -4,10 +4,8 @@ import SplitText from "../../../../../HOC/SplitText";
 import Markdown from "../../../../../Markdown/Markdown";
 import { useMediaQuery } from "@mui/material";
 
-
 function StepItem({ step, id }) {
-
-	const matches = useMediaQuery('(max-width: 769px)');
+	const matches = useMediaQuery("(max-width: 769px)");
 
 	const locations = {
 		1: {
@@ -15,7 +13,8 @@ function StepItem({ step, id }) {
 			row: "row-start-1 row-end-2",
 		},
 		2: {
-			column: "col-span-full sm:col-start-3 col-end-7 lg:col-start-3 lg:col-end-5",
+			column:
+				"col-span-full sm:col-start-3 col-end-7 lg:col-start-3 lg:col-end-5",
 			row: "row-start-2 row-end-3",
 		},
 		3: {
@@ -23,7 +22,8 @@ function StepItem({ step, id }) {
 			row: "row-start-3 row-end-4",
 		},
 		4: {
-			column: "col-span-full sm:col-start-3 col-end-7 lg:col-start-3 lg:col-end-5",
+			column:
+				"col-span-full sm:col-start-3 col-end-7 lg:col-start-3 lg:col-end-5",
 			row: "row-start-4 row-end-5",
 		},
 		5: {
@@ -32,8 +32,6 @@ function StepItem({ step, id }) {
 		},
 	};
 
-	console.log(step.id);
-
 	return (
 		<div
 			className={`StepItem StepItem_${step.id} relative z-50 ${locations[id].column} ${locations[id].row}`}
@@ -41,7 +39,9 @@ function StepItem({ step, id }) {
 			<Heading level={3} wrapperClasses='text-center mb-5 font-semibold'>
 				<SplitText>{step.title}</SplitText>
 			</Heading>
-			<Markdown variantMap={{ p: "small" }} textCenter>{step.body}</Markdown>
+			<Markdown variantMap={{ p: "small" }} textCenter>
+				{step.body}
+			</Markdown>
 		</div>
 	);
 }

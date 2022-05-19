@@ -12,8 +12,6 @@ function ProjectGridItem({
 	imageRatio,
 }) {
 
-	console.log(gridNumber % 2 === 0)
-
 	return (
 		<div
 			className={`ProjectGridItem ProjectGridItem_${gridNumber} ${
@@ -21,14 +19,16 @@ function ProjectGridItem({
 			} flex flex-col h-full pointer-cursor`}
 		>
 			<Link href={`/projects/${convertToSlug(Subtitle)}`}>
-				<div className='link-inner w-full h-full'>
-					<ProjectGridItemImage
-						gridNumber={gridNumber}
-						image={{ ...FeatureImage.data.attributes }}
-						ratio={imageRatio}
-					/>
-					<ProjectGridItemInfo title={Title} subtitle={Subtitle} />
-				</div>
+				<a href={`/projects/${convertToSlug(Subtitle)}`}>
+					<div className='link-inner w-full h-full'>
+						<ProjectGridItemImage
+							gridNumber={gridNumber}
+							image={{ ...FeatureImage.data.attributes }}
+							ratio={imageRatio}
+						/>
+						<ProjectGridItemInfo title={Title} subtitle={Subtitle} />
+					</div>
+				</a>
 			</Link>
 		</div>
 	);

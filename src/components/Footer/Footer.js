@@ -16,8 +16,6 @@ export default function Footer(props) {
 		getFooter();
 	}, []);
 
-	console.log(footer);
-
 	return (
 		<footer className='Footer h-[600px] w-screen bg-dark text-light'>
 			<ContainerFluid classes='h-full'>
