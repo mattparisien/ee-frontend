@@ -12,10 +12,13 @@ function ProjectGridItem({
 	imageRatio,
 }) {
 
+	console.log(gridNumber % 2 === 0)
 
 	return (
 		<div
-			className={`ProjectGridItem ProjectGridItem_${gridNumber} flex flex-col h-full pointer-cursor`}
+			className={`ProjectGridItem ProjectGridItem_${gridNumber} ${
+				gridNumber % 2 === 0 ? "md:ml-auto" : ""
+			} flex flex-col h-full pointer-cursor`}
 		>
 			<Link href={`/projects/${convertToSlug(Subtitle)}`}>
 				<div className='link-inner w-full h-full'>

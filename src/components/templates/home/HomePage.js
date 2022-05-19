@@ -19,7 +19,7 @@ function HomePage() {
 
 	useEffect(() => {
 		getHome();
-		getProjects();
+		!projects[0] && getProjects();
 	}, []);
 
 	return (
