@@ -1,4 +1,6 @@
 import Image from "next/image";
+import MediaTransition from "./MediaTransition";
+import Overlay from "./Overlay";
 
 function MyImage({
 	src,
@@ -29,6 +31,7 @@ function MyImage({
 				layout={layout}
 				loading='lazy'
 			/>
+			<MediaTransition />
 		</div>
 	);
 }

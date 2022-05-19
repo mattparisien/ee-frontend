@@ -8,9 +8,8 @@ import DropdownMenuInfo from "./DropdownMenuInfo";
 import DropdownMenuList from "./DropdownMenuList";
 
 function DropdownMenu() {
-	const { appState, setAppState, ACTIONS } = useContext(GlobalContext);
+	const { appState, setAppState, toggleDropdown } = useContext(GlobalContext);
 	const dropdownActive = appState.dropdownActive;
-	// const toggleDropdown = ACTIONS.toggleDropdown(setAppState);
 
 	const classes = classNames(
 		"DropdownMenu fixed top-0 left-0 w-full h-[60vh] before:bg-dark before:w-full before:h-full before:absolute before:top-0 before:left-0 before:origin-top before:transition before:duration-[0.6s] before:ease-dropdown",
@@ -23,16 +22,16 @@ function DropdownMenu() {
 		}
 	);
 
-	// const theme = useTheme();
-	// const [windowWidth] = useResize();
+	const theme = useTheme();
+	const [windowWidth] = useResize();
 
-	// useEffect(() => {
-	// 	if (theme) {
-	// 		const breakpoint = theme.breakpoints.values.md;
+	useEffect(() => {
+		if (theme) {
+			const breakpoint = "769"
 
-	// 		windowWidth > breakpoint && dropdownActive && toggleDropdown();
-	// 	}
-	// }, [theme, windowWidth]);
+			windowWidth > breakpoint && dropdownActive && toggleDropdown();
+		}
+	}, [theme, windowWidth]);
 
 	return (
 		<div
@@ -46,7 +45,7 @@ function DropdownMenu() {
 			<ContainerFluid classes={"flex items-center justify-center h-full"}>
 				<DropdownMenuList
 					navItems={appState.navigation}
-					// toggleMenu={toggleDropdown}
+					toggleMenu={toggleDropdown}
 					menuActive={dropdownActive}
 				/>
 				<DropdownMenuInfo dropdownActive={dropdownActive} />
