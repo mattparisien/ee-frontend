@@ -16,6 +16,11 @@ body {
 	position: relative;
 }
 
+.flickity-slider {
+	display: flex;
+	
+}
+
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;

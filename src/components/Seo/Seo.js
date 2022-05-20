@@ -1,7 +1,14 @@
 import React from "react";
 import Head from "next/head";
 
-function Seo({ title, description, viewport, icon, keywords, canonical }) {
+function Seo({
+	metaTitle,
+	metaDescription,
+	metaViewport,
+	metaImage,
+	keywords,
+	canonicalURL,
+}) {
 	const seoDefaults = {
 		title: "The Eyes and Ears Agency",
 		description:
@@ -15,40 +22,46 @@ function Seo({ title, description, viewport, icon, keywords, canonical }) {
 
 	return (
 		<Head>
-			<link rel='icon' href={icon || seoDefaults.icon} />
-			<title>{title || seoDefaults.title}</title>
+			<link
+				rel='icon'
+				href={metaImage ? metaImage.data.attributes.url : seoDefaults.icon}
+			/>
+			<title>{metaTitle || seoDefaults.title}</title>
 			<meta
 				name='description'
-				content={description || seoDefaults.description}
+				content={metaDescription || seoDefaults.description}
 			/>
 			<meta name='keywords' content={keywords || seoDefaults.keywords} />
 
-			<link rel='canonical' href={canonical || seoDefaults.canonical} />
-			<meta name='viewport' content={viewport || seoDefaults.viewport} />
+			<link rel='canonical' href={canonicalURL || seoDefaults.canonical} />
+			<meta name='viewport' content={metaViewport || seoDefaults.viewport} />
 			<meta httpEquiv='content-type' content='text/html; charset=UTF-9' />
 			<meta
 				property='og:title'
-				content={title || seoDefaults.title}
+				content={metaTitle || seoDefaults.title}
 				key='title'
 			/>
 			<meta
 				property='og:description'
-				content={description || seoDefaults.description}
+				content={metaDescription || seoDefaults.description}
 			/>
 			<meta property='og:type' content='website' />
 			<meta property='og:site_name' content='The Eyes and Ears Agency' />
 
 			<meta property='og:url' content='https://www.eyesandearsagency.com/' />
 			<meta
-				content={description || seoDefaults.description}
+				content={metaDescription || seoDefaults.description}
 				name='description'
 			/>
-			<meta itemprop='name' content={title || seoDefaults.title} />
+			<meta itemprop='name' content={metaTitle || seoDefaults.title} />
 			<meta
 				itemprop='description'
-				content={description || seoDefaults.description}
+				content={metaDescription || seoDefaults.description}
 			/>
-			<meta itemprop='image' content={icon || seoDefaults.icon} />
+			<meta
+				itemprop='image'
+				content={metaImage ? metaImage.data.attributes.url : seoDefaults.icon}
+			/>
 		</Head>
 	);
 }

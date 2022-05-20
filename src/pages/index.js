@@ -5,10 +5,7 @@ import { getHome } from "../lib/getHome";
 export default function Home({ home }) {
 	return (
 		<>
-			<Seo
-				title='The Eyes and Ears Agency'
-				description='The Eyes and Ears Agency builds a bridge between the music industry and impactful non-profit organizations.'
-			/>
+			{Object.keys(home.seo).length[0] && <Seo {...home.seo} />}
 			<HomePage {...home} />
 		</>
 	);

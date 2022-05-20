@@ -1,4 +1,5 @@
 import axios from "axios";
+import getProjects from "./getProjects";
 
 export async function getHome() {
 	try {
@@ -13,6 +14,14 @@ export async function getHome() {
 				fields: "id, Title, Body",
 			},
 		};
+
+		const postsConfig = {
+			params: {
+				fields: "Title,Subtitle,Date",
+				populate: "FeatureImage",
+			},
+		};
+
 		const about = await axios.get(
 			`${process.env.NEXT_PUBLIC_API_URL}/about`,
 			aboutConfig
@@ -22,10 +31,22 @@ export async function getHome() {
 			stepsConfig
 		);
 
+		const posts = await axios.get(
+			`${process.env.NEXT_PUBLIC_API_URL}/projects`,
+			postsConfig
+		);
+
+		const seo = await axios.get(
+			`${process.env.NEXT_PUBLIC_API_URL}/pages/?filters[name][$eq]=Home&populate[0]=seo&fields=Name`
+		);
+
 		return {
 			about: about.data.data.attributes.Body1,
 			steps: steps.data.data.map(x => ({ id: x.id, ...x.attributes })),
+			projects: [posts.data.data.map(x => ({ ...x.attributes }))][0],
+			seo: { ...seo.data.data[0].attributes.seo },
 		};
+		
 	} catch (err) {
 		console.log(err);
 	}

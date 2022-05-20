@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
+import Carousel from "../../Carousel/Carousel";
 import About from "./components/About/About";
 import Hero from "./components/Hero/Hero";
 import Steps from "./components/Steps/Steps";
-import Work from "./components/Work/Work";
-import { GlobalContext } from "../../../lib/context";
 
 function HomePage({ about, steps, projects }) {
 	return (
@@ -11,7 +10,8 @@ function HomePage({ about, steps, projects }) {
 			<Hero />
 			<About aboutText={about && about} />
 			<Steps steps={steps} />
-			<Work projects={projects} />
+			<Carousel items={projects} />
+			{/* <Work projects={projects} /> */}
 		</div>
 	);
 }

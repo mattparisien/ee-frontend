@@ -10,9 +10,6 @@ export async function getNavigation(setState) {
 			...state,
 			navigation: [...response.data.data.map(x => ({ ...x.attributes }))],
 		}));
-
-		console.log([...response.data.data.map(x => ({ ...x.attributes }))])
-
 	} catch (err) {
 		console.log(err);
 	}

@@ -14,14 +14,7 @@ function projects({ projects, seo }) {
 
 	return (
 		<>
-			{seo && (
-				<Seo
-					title={seo.metaTitle}
-					description={seo.metaDescription}
-					viewport={seo.metaViewport}
-					canonical={seo.canonicalURL}
-				/>
-			)}
+			{seo && <Seo {...seo} />}
 			<ProjectsPage />
 		</>
 	);
