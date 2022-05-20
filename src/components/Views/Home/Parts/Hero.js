@@ -7,6 +7,7 @@ import "./Hero.css";
 import HeroLogo from "./HeroLogo";
 import HeroWord from "./HeroWord";
 import Heading from "../../../Heading/Heading";
+import SplitText from "../../../HOC/SplitText";
 
 function Hero() {
 	const { introDone } = useContext(SiteWideControls);
@@ -30,7 +31,7 @@ function Hero() {
 						</>
 					)}
 					<Heading level={2} wrapperClasses='block md:hidden'>
-						Social Impact Agency
+						<SplitText>Social Impact Agency</SplitText>
 					</Heading>
 				</div>
 			</Container>

@@ -1,4 +1,5 @@
 export const defaultState = {
+	isIntroComplete: false,
 	navigation: [],
 	socials: [],
 	dropdownActive: false,

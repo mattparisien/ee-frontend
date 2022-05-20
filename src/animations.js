@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
 import $ from "jquery";
 
-const introAnimation = (timeline, onCompleteCb) => {
-	const headerLogo = document.querySelector(".logo-wrap");
+const introAnimation = onCompleteCb => {
+	const timeline = gsap.timeline();
+	const headerLogo = document.querySelector(".HeaderLogo");
 	const characters = $(headerLogo).find(".chars path");
 	const subtitle = $(headerLogo).find(".the");
 	const subtitle2 = $(headerLogo).find(".agency");
@@ -44,7 +45,6 @@ const introAnimation = (timeline, onCompleteCb) => {
 				duration: 1,
 				onComplete: () => {
 					setTimeout(() => {
-						gsap.set(card, { visibility: "hidden" });
 						onCompleteCb();
 					}, 400);
 				},

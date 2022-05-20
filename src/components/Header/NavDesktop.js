@@ -1,7 +1,15 @@
 import React from "react";
 import Link from "next/Link";
+import classNames from "classnames";
 
-function NavDesktop({ navItems }) {
+function NavDesktop({ navItems, isIntroComplete }) {
+	const linkClasses = classNames(
+		"transition duration-[800ms] ease-[cubic-bezier(.215,.61,.355,1)]",
+		{
+			"opacity-0 translate-y-full": !isIntroComplete,
+		}
+	);
+
 	return (
 		<nav className='NavDesktop hidden md:block' data-testid='navDesktop'>
 			<ul className='flex'>
@@ -13,7 +21,15 @@ function NavDesktop({ navItems }) {
 							} w-auto opacity-50 transition-opacity ease duration-300 hover:opacity-100`}
 							key={i}
 						>
-							<Link href={item.Slug}>{item.Name}</Link>
+							<Link href={item.Slug}>
+								<a
+									href={item.slug}
+									className={linkClasses}
+									style={{transitionDelay: `${i}00ms`}}
+								>
+									{item.Name}
+								</a>
+							</Link>
 						</li>
 					))}
 			</ul>

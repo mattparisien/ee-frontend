@@ -5,8 +5,13 @@ import Heading from "../../../../Heading/Heading";
 import SplitText from "../../../../HOC/SplitText";
 import HeroLogo from "./HeroLogo";
 import HeroWord from "./HeroWord";
+import { GlobalContext } from "../../../../../lib/context";
+import { useContext } from "react";
+import { Global } from "@emotion/react";
 
 function Hero() {
+	const { appState } = useContext(GlobalContext);
+
 	const wordMap = ["Social", "Impact", "Agency"];
 
 	return (
@@ -15,20 +20,22 @@ function Hero() {
 				<div
 					className={`content-wrapper bg-light h-[80vw] md:h-[calc(100vh-200px)] max-h-[600px] min-h-[400px] flex flex-col items-center md:items-start justify-center md:justify-between  py-3 relative`}
 				>
-					<>
-						{wordMap.map((word, i) => (
-							<HeroWord
-								key={i}
-								word={<SplitText>{word}</SplitText>}
-								index={i}
-							/>
-						))}
-						<HeroLogo />
-					</>
+					{appState.isIntroComplete && (
+						<>
+							{wordMap.map((word, i) => (
+								<HeroWord
+									key={i}
+									word={<SplitText>{word}</SplitText>}
+									index={i}
+								/>
+							))}
+							<HeroLogo />
 
-					<Heading level={2} wrapperClasses='block md:hidden'>
-						Social Impact Agency
-					</Heading>
+							<Heading level={2} wrapperClasses='block md:hidden'>
+								Social Impact Agency
+							</Heading>
+						</>
+					)}
 				</div>
 			</Container>
 		</Section>

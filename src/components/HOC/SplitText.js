@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo } from "react";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
+import React, { useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 
 function SplitText(props) {

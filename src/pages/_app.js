@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
-import { ACTIONS } from "../lib/actions";
 import { GlobalContext } from "../lib/context";
 import { defaultState } from "../lib/defaultState";
 import { getNavigation } from "../lib/getNavigation";
 import { getSocials } from "../lib/getSocials";
+import { introAnimation } from "../animations";
 import "../styles/css/globals.css";
 import "../styles/scss/main.scss";
 
@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
 	const [appState, setAppState] = useState(defaultState);
 
 	useEffect(() => {
+		introAnimation(setIntroComplete);
 		getNavigation(setAppState);
 		getSocials(setAppState);
 	}, []);
@@ -20,6 +21,13 @@ function MyApp({ Component, pageProps }) {
 		setAppState(prev => ({
 			...prev,
 			dropdownActive: !prev.dropdownActive,
+		}));
+	};
+
+	const setIntroComplete = () => {
+		setAppState(prev => ({
+			...prev,
+			isIntroComplete: !prev.isIntroComplete,
 		}));
 	};
 
