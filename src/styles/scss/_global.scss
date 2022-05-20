@@ -215,16 +215,16 @@ h1 {
 	}
 }
 
-[data-theme="light"] {
-	background-color: $light;
-	color: $dark;
-	fill: $dark;
+// [data-theme="light"] {
+// 	background-color: $light;
+// 	color: $dark;
+// 	fill: $dark;
 
-	*::after,
-	*::before {
-		background-color: $dark;
-	}
-}
+// 	*::after,
+// 	*::before {
+// 		background-color: $dark;
+// 	}
+// }
 
 [data-theme="dark"] {
 	& {
