@@ -19,9 +19,7 @@ function MyImage({
 	};
 
 	return (
-		<div
-			className={`Image w-full h-full relative ${grayscale ? "grayscale" : ""}`}
-		>
+		<div className={'Image w-full h-full relative'}>
 			<Image
 				src={src}
 				alt={alt}
@@ -30,8 +28,10 @@ function MyImage({
 				objectFit={objectFit}
 				layout={layout}
 				loading='lazy'
+				className={`${grayscale ? "grayscale" : ""}`}
 			/>
 			<MediaTransition />
+			<Overlay />
 		</div>
 	);
 }

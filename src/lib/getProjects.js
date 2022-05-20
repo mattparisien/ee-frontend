@@ -10,7 +10,7 @@ export async function getProjects() {
 
 	try {
 		const posts = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_URL}/projects`,
+			`${process.env.NEXT_PUBLIC_API_URL}/projects?sort[0]=Date%3Adesc`,
 			postsConfig
 		);
 

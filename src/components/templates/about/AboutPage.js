@@ -24,7 +24,6 @@ function AboutPage({ blocks }) {
 
 	return (
 		<>
-			<div className='hi'>hi</div>
 			{blockData &&
 				blockData.map((block, i) => (
 					<Block name={block.name} data={block.data} />

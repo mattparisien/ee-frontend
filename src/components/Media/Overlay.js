@@ -1,31 +1,35 @@
 import React, { useEffect, useRef } from "react";
 
-function Overlay({ color, sx }) {
+function Overlay() {
 	const overlayRef = useRef(null);
 
 	const animateOverlayOpacityIn = (overlay, top) => {
-		const offset = windowHeight.current - top;
-		const opacityValue = 1 - offset / (windowHeight.current / 2);
+		const offset = window.innerHeight - top;
+		const opacityValue = 1 - offset / (window.innerHeight / 2);
 		overlay.style.opacity = opacityValue;
 	};
 
-	const handleScroll = (e, overlays) => {
-		overlays.forEach(overlay => {
-			const bounds = overlay.getBoundingClientRect();
-			const itemTop = bounds.top;
+	const handleScroll = e => {
+		console.log(overlayRef.current);
+		const bounds = overlayRef.current.getBoundingClientRect();
+		const itemTop = bounds.top;
 
-			if (itemTop - 300 < window.innerHeight) {
-				//If is entering viewport, fade overlay opacity
-				animateOverlayOpacityIn(overlay, itemTop);
-			}
-		});
+		if (itemTop - 300 < window.innerHeight) {
+			//If is entering viewport, fade overlay opacity
+			animateOverlayOpacityIn(overlayRef.current, itemTop);
+		}
 	};
 
 	useEffect(() => {
 		if (window !== "undefined") {
-			const overlays = document.querySelectorAll(".overlay");
-			window.addEventListener("scroll", e => handleScroll(e, overlays));
+			window.addEventListener("scroll", handleScroll);
 		}
+
+		return () => {
+			if (window !== "undefined") {
+				window.removeEventListener("scroll", handleScroll);
+			}
+		};
 	}, [overlayRef]);
 
 	return (

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { ItemContext } from "./ProjectGridItem";
 import detectTouchDevice from "../../../../../../helpers/detectTouchDevice";
 import ConditionalWrapper from "../../../../../Containers/ConditionalWrapper";
 import HoverFrame from "../../../../../HOC/HoverFrame";
@@ -22,22 +23,14 @@ function ProjectGridItemImage({ image, ratio, gridNumber }) {
 export default ProjectGridItemImage;
 
 function FrameWrapper({ children, gridNumber }) {
+	const { dimensionsDesktop, dimensionsMobile } = useContext(ItemContext);
+
 	const [isTouch, setIsTouch] = useState(false);
 
 	useEffect(() => {
 		const isTouch = detectTouchDevice();
 		setIsTouch(isTouch);
 	}, []);
-
-	const dimensionsDesktop = {
-		1: "md:w-[40vw] md:h-[27vw] md:max-w-[500px] max-h-[350px]",
-		2: "md:w-[30vw] md:h-[37vw] md:max-w-[400px] max-h-[500px]",
-		3: "md:w-[40vw] md:h-[27vw] md:max-w-[500px] max-h-[350px]",
-		4: "md:w-[45vw] md:h-[55vw] md:max-w-[600px] max-h-[700px]",
-		5: "md:w-[30vw] md:h-[10vw]",
-	};
-
-	const dimensionsMobile = "w-[90.9vw] h-[50vw]";
 
 	return (
 		<ConditionalWrapper
@@ -46,7 +39,7 @@ function FrameWrapper({ children, gridNumber }) {
 				<HoverFrame
 					wrapper={(children, ref) => (
 						<div
-							className={`ProjectGridItemImage relative ${dimensionsMobile} ${dimensionsDesktop[gridNumber]}`}
+							className={`ProjectGridItemImage relative  ${dimensionsMobile} ${dimensionsDesktop[gridNumber]}`}
 							ref={ref}
 						>
 							{children}

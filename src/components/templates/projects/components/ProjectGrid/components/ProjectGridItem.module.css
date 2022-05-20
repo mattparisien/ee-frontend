@@ -1,6 +1,6 @@
 .ProjectGridItem .ProjectGridItemImage {
 	height: 49vw;
-  max-height: auto;
+	max-height: auto;
 }
 
 @media screen and (min-width: 769px) {
@@ -17,6 +17,6 @@
 
 	.ProjectGridItem_4 .ProjectGridItemImage {
 		height: 50vw;
-    max-height: 700px;
+		max-height: 700px;
 	}
 }
