@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 function NavDesktop({ navItems, isIntroComplete }) {
 	const linkClasses = classNames(
-		"transition duration-[800ms] ease-[cubic-bezier(.215,.61,.355,1)]",
+		"transition duration-[800ms] ease-[cubic-bezier(.215,.61,.355,1)] cursor-pointer",
 		{
 			"opacity-0 translate-y-full": !isIntroComplete,
 		}

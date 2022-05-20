@@ -4,7 +4,7 @@ import Link from "next/Link";
 
 function HeaderLogo({ dropdownActive }) {
 	return (
-		<div className='HeaderLogo w-[150px]'>
+		<div className='HeaderLogo w-[150px] opacity-0'>
 			<Link href={"/"}>
 				<a href='/'>
 					<TextLogo

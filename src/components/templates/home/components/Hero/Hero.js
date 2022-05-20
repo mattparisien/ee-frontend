@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../../../../../lib/context";
 import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
 import Heading from "../../../../Heading/Heading";
-import SplitText from "../../../../HOC/SplitText";
 import HeroLogo from "./HeroLogo";
 import HeroWord from "./HeroWord";
-import { GlobalContext } from "../../../../../lib/context";
-import { useContext } from "react";
-import { Global } from "@emotion/react";
+import SplitText from "../../../../HOC/SplitText";
 
 function Hero() {
 	const { appState } = useContext(GlobalContext);
@@ -32,7 +30,7 @@ function Hero() {
 							<HeroLogo />
 
 							<Heading level={2} wrapperClasses='block md:hidden'>
-								Social Impact Agency
+								<SplitText>Social Impact Agency</SplitText>
 							</Heading>
 						</>
 					)}

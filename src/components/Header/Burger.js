@@ -14,14 +14,14 @@ function Burger({ dropdownActive, isIntroComplete }) {
 	const classes = classNames(
 		`Burger ${
 			dropdownActive ? styles.isClose : styles.isBurger
-		} relative block h-7 w-16 rounded-3xl md:hidden ${pseudoClasses.common} transition duration-[300ms] ease-[cubic-bezier(.215,.61,.355,1)]`,
+		} relative block h-7 w-16 rounded-3xl md:hidden ${pseudoClasses.common} transition duration-[700ms] ease-[cubic-bezier(.215,.61,.355,1)]`,
 		{
 			"is-close bg-light before:bg-dark after:bg-dark": dropdownActive,
 			"is-burger bg-dark before:bg-light after:bg-light": !dropdownActive,
 			"before:-translate-y-1/2 after:-translate-y-1/2 before:-translate-x-1/2 after:-translate-x-1/2":
 				dropdownActive,
 			"before:rotate-[20deg] after:-rotate-[20deg]": dropdownActive,
-			"translate-y-full opacity-0": !isIntroComplete,
+			"-translate-y-full opacity-0": !isIntroComplete,
 		}
 	);
 

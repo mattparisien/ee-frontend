@@ -18,10 +18,8 @@ function Layout({ children }) {
 		}
 	);
 
-	console.log(appState)
-
 	const layoutClasses = classNames(
-		"Layout after:fixed after:top-0 after:left-0 after:w-full after:h-full after:z-50 after:bg-light after:transition after:duration-[500ms] after:ease-[cubic-bezier(.645,.045,.355,1)]",
+		"Layout after:fixed after:top-0 after:left-0 after:w-full after:h-full after:z-50 after:bg-light after:transition after:duration-[500ms] after:ease-[cubic-bezier(.645,.045,.355,1)] after:origin-top bg-light",
 		{
 			"after:scale-y-0": appState.isIntroComplete,
 		}
