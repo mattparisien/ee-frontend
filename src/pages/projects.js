@@ -8,6 +8,8 @@ import { getProjects } from "../lib/getProjects";
 function projects({ projects, seo }) {
 	const { setAppState } = useContext(GlobalContext);
 
+	console.log('the seo', seo)
+
 	useEffect(() => {
 		projects &&
 			setAppState(state => ({ ...state, projects: [...projects[0]] }));

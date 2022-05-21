@@ -15,7 +15,7 @@ export async function getProjects() {
 		);
 
 		const seo = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_URL}/pages/?filters[name][$eq]=Projects&populate[0]=seo&fields=Name`
+			`${process.env.NEXT_PUBLIC_API_URL}/pages?filters[Name][$eq]=Projects&populate=deep,10`
 		);
 
 		return {
