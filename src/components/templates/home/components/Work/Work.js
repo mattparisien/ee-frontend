@@ -33,37 +33,40 @@ function Work({ projects }) {
 							matches &&
 							projects.map((project, i) => (
 								<div className='mb-20'>
-									<Link href={`/projects/${convertToSlug(project.Subtitle)}`}>
-										<a
+									<Link
+										href={{
+											pathname: "/projects/[slug]",
+											query: { slug: "earth-sessions" },
+										}}
+									>
+										{/* <a
 											className='block h-full'
 											href={`/projects/${convertToSlug(project.Subtitle)}`}
+										> */}
+										<MyImage
+											src={project.FeatureImage.data.attributes.url}
+											alt={project.FeatureImage.data.attributes.alternativeText}
+											ratio='portrait'
+											objectFit='cover'
+											width={200}
+											grayscale
+										/>
+										<Box
+											className='item-info'
+											display='flex'
+											flexDirection={matches ? "row" : "column"}
+											justifyContent='space-between'
+											sx={{ width: "100%" }}
+											pt={2}
 										>
-											<MyImage
-												src={project.FeatureImage.data.attributes.url}
-												alt={
-													project.FeatureImage.data.attributes.alternativeText
-												}
-												ratio='portrait'
-												objectFit='cover'
-												width={200}
-												grayscale
-											/>
-											<Box
-												className='item-info'
-												display='flex'
-												flexDirection={matches ? "row" : "column"}
-												justifyContent='space-between'
-												sx={{ width: "100%" }}
-												pt={2}
-											>
-												<Typography variant={matches ? "body2" : "body3"}>
-													{project.Title}
-												</Typography>
-												<Typography variant={matches ? "body2" : "body3"}>
-													{project.Subtitle}
-												</Typography>
-											</Box>
-										</a>
+											<Typography variant={matches ? "body2" : "body3"}>
+												{project.Title}
+											</Typography>
+											<Typography variant={matches ? "body2" : "body3"}>
+												{project.Subtitle}
+											</Typography>
+										</Box>
+										{/* </a> */}
 									</Link>
 								</div>
 							))}

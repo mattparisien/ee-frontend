@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import Seo from "../components/Seo/Seo";
 import ProjectsPage from "../components/templates/projects/ProjectsPage";
@@ -11,6 +12,15 @@ function projects({ projects, seo }) {
 		projects &&
 			setAppState(state => ({ ...state, projects: [...projects[0]] }));
 	}, [projects]);
+
+	useEffect(() => {
+		const test = async () => {
+			const post = await axios.get(
+				`${process.env.NEXT_PUBLIC_API_URL}/projects?filters[Subtitle][$eq]=Intersectional%20Environmentalist`
+			);
+		};
+		test();
+	}, []);
 
 	return (
 		<>

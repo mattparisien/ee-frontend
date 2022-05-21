@@ -30,8 +30,11 @@ function ProjectGridItem({
 					gridNumber % 2 === 0 ? "md:ml-auto" : ""
 				} flex flex-col h-full pointer-cursor ${dimensionsDesktop[gridNumber]}`}
 			>
-				<Link href={`/projects/${convertToSlug(Subtitle)}`}>
-					<a href={`/projects/${convertToSlug(Subtitle)}`}>
+				<Link
+					href={"/projects/[slug]"}
+					as={`/projects/${convertToSlug(Subtitle)}`}
+				>
+					<a>
 						<div className='link-inner w-full h-full'>
 							<ProjectGridItemImage
 								gridNumber={gridNumber}

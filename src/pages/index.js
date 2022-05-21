@@ -3,9 +3,12 @@ import HomePage from "../components/templates/home/HomePage";
 import { getHome } from "../lib/getHome";
 
 export default function Home({ home }) {
+
+
+
 	return (
 		<>
-			{Object.keys(home.seo).length[0] && <Seo {...home.seo} />}
+			{<Seo {...home.seo} />}
 			<HomePage {...home} />
 		</>
 	);

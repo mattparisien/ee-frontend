@@ -10,7 +10,6 @@ function Overlay() {
 	};
 
 	const handleScroll = e => {
-		console.log(overlayRef.current);
 		const bounds = overlayRef.current.getBoundingClientRect();
 		const itemTop = bounds.top;
 
