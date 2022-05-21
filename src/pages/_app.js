@@ -7,6 +7,8 @@ import { getSocials } from "../lib/getSocials";
 import { introAnimation } from "../animations";
 import "../styles/css/globals.css";
 import "../styles/scss/main.scss";
+import { DefaultSeo } from "next-seo";
+import SEO from "../../next-seo.config";
 
 function MyApp({ Component, pageProps }) {
 	const [appState, setAppState] = useState(defaultState);
@@ -33,6 +35,7 @@ function MyApp({ Component, pageProps }) {
 
 	return (
 		<GlobalContext.Provider value={{ appState, setAppState, toggleDropdown }}>
+			<DefaultSeo {...SEO} />
 			<Layout>
 				<Component {...pageProps} />;
 			</Layout>
