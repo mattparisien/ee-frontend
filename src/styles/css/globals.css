@@ -90,6 +90,14 @@ main {
 	height: 100%;
 }
 
+.Block_SplitTextListBlock .Heading, .Block_SplitTextListBlock ul  {
+	margin-top: 2rem;
+}
+
+p #text {
+	display: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

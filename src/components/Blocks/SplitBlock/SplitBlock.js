@@ -19,9 +19,6 @@ function SplitBlock(props) {
 			".is-right, .is-left": {
 				width: "100%",
 			},
-			".is-left": {
-				marginBottom: theme.spacing(10),
-			},
 		},
 	});
 

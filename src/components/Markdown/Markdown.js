@@ -24,6 +24,9 @@ function Markdown({
 	textLeft,
 	textCenter,
 	textRight,
+	paragraphClasses,
+	headingClasses,
+	listClasses,
 }) {
 	const componentMap = {
 		h1: ({ node, ...props }) => (
@@ -31,9 +34,13 @@ function Markdown({
 				<motion.div>{props.children}</motion.div>
 			</Heading>
 		),
-		h2: ({ node, ...props }) => <Heading level={2}>{props.children}</Heading>,
+		h2: ({ node, ...props }) => (
+			<Heading level={2} wrapperClasses={headingClasses}>
+				{props.children}
+			</Heading>
+		),
 		h3: ({ node, ...props }) => (
-			<Heading level={3}>
+			<Heading level={3} wrapperClasses={headingClasses}>
 				<ConditionalWrapper
 					condition={isSplit}
 					wrapper={SplitText}
@@ -43,7 +50,11 @@ function Markdown({
 				</ConditionalWrapper>
 			</Heading>
 		),
-		h4: ({ node, ...props }) => <Heading level={4}>{props.children}</Heading>,
+		h4: ({ node, ...props }) => (
+			<Heading level={4} wrapperClasses={headingClasses}>
+				{props.children}
+			</Heading>
+		),
 		h5: ({ node, ...props }) => (
 			<Typography
 				component='h5'
@@ -53,7 +64,11 @@ function Markdown({
 				mb={7}
 			/>
 		),
-		h6: ({ node, ...props }) => <Heading level={6}>{props.children}</Heading>,
+		h6: ({ node, ...props }) => (
+			<Heading level={6} wrapperClasses={headingClasses}>
+				{props.children}
+			</Heading>
+		),
 
 		p: ({ node, ...props }) => (
 			<Paragraph
@@ -61,11 +76,16 @@ function Markdown({
 				textCenter={textCenter}
 				textLeft={textLeft}
 				textRight={textRight}
+				wrapperClasses={paragraphClasses}
 			>
 				{props.children}
 			</Paragraph>
 		),
-		ul: ({ node, ...props }) => <List disablePadding>{props.children}</List>,
+		ul: ({ node, ...props }) => (
+			<List disablePadding className={listClasses}>
+				{props.children}
+			</List>
+		),
 		li: ({ node, ...props }) => (
 			<ListItem disablePadding>
 				<ListItemIcon sx={{ minWidth: "auto", marginRight: "0.6rem" }}>
@@ -86,7 +106,7 @@ function Markdown({
 				rel='noopener noreferrer'
 				target='_blank'
 				style={{ fontWeight: 700 }}
-				className='border-b hover:text-yellow-custom hover:border-yellow-custom transition-color duration-[200ms] ease '
+				className='border-b text-light hover:text-yellow-custom hover:border-yellow-custom transition-color duration-[300ms] ease'
 			>
 				{props.children}
 			</a>

@@ -37,13 +37,7 @@ function SplitTextMediaBlock({ data }) {
 function Left({ text, cta }) {
 	return (
 		<Container>
-			<Markdown
-				variantMap={{
-					p: "small",
-				}}
-			>
-				{text}
-			</Markdown>
+			<Markdown paragraphClasses={"mt-5 md:mt-8"}>{text}</Markdown>
 
 			{cta && (
 				<Cta
@@ -57,7 +51,6 @@ function Left({ text, cta }) {
 }
 
 function Right({ media }) {
-	console.log(media, )
 	return (
 		<Media
 			url={media[0].attributes.url}

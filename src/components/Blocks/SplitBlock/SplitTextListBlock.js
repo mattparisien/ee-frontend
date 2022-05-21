@@ -1,6 +1,7 @@
 import SplitBlock from "./SplitBlock";
 import Markdown from "../../Markdown/Markdown";
 
+
 function SplitTextListBlock({ data }) {
 	return (
 		data && (
@@ -23,10 +24,18 @@ function SplitTextListBlock({ data }) {
 }
 
 function Left({ text }) {
-	return <Markdown>{text}</Markdown>;
+	return (
+		<div className={"Left"}>
+			<Markdown paragraphClasses={"md:mt-3"}>{text}</Markdown>
+		</div>
+	);
 }
 function Right({ list }) {
-	return <Markdown>{list}</Markdown>;
+	return (
+		<div className='Right'>
+			<Markdown>{list}</Markdown>
+		</div>
+	);
 }
 
 export default SplitTextListBlock;

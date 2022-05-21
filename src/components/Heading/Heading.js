@@ -8,7 +8,6 @@ function Heading({
 	wrapperClasses,
 	disableMargin,
 }) {
-
 	const commonClasses = "font-bold ";
 
 	const headingClasses = {
@@ -16,7 +15,7 @@ function Heading({
 		2: "text-5xl md:text-6xl font-adieu",
 		3: "text-xl md:text-2xl font-adieu",
 		5: "text-md md:text-xl",
-		6: `text-lg md:text-lg  ${!disableMargin ? "mt-5 md:mt-6" : ""}`,
+		6: `text-lg md:text-lg`,
 	};
 
 	const wrapper = classNames("Heading", {

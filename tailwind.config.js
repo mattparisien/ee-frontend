@@ -1,3 +1,5 @@
+let plugin = require("tailwindcss/plugin");
+
 module.exports = {
 	content: [
 		"./src/pages/index.js",
@@ -5,6 +7,14 @@ module.exports = {
 		"./src/pages/_app.js",
 		"./src/components/**/*.{js,jsx,ts,tsx}",
 	],
+	plugins: [
+		plugin(function ({ addVariant }) {
+			// Add a `third` variant, ie. `third:pb-0`
+			addVariant("second", "&:nth-child(2)");
+			addVariant("third", "&:nth-child(3)");
+		}),
+	],
+
 	theme: {
 		extend: {
 			fontFamily: {
