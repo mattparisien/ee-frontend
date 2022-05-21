@@ -37,7 +37,7 @@ export async function getHome() {
 		);
 
 		const seo = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_URL}/pages/?filters[name][$eq]=Home&populate[0]=seo&fields=Name`
+			`${process.env.NEXT_PUBLIC_API_URL}/pages/?filters[name][$eq]=Home&populate[0]=seo`
 		);
 
 		return {

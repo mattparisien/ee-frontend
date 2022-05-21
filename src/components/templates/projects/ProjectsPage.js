@@ -8,11 +8,13 @@ import ProjectGrid from "./components/ProjectGrid/ProjectGrid";
 function ProjectsPage() {
 	const { appState } = useContext(GlobalContext);
 
+	console.log(appState)
+
 	return (
 		<div className='ProjectsPage'>
 			<Block
 				options={null}
-				name='TitleBlock'
+				component='TitleBlock'
 				theme={"light"}
 				data={{
 					title: "Projects",

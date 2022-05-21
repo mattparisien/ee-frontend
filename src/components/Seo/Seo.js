@@ -1,23 +1,21 @@
-import React from "react";
-import Head from "next/head";
 import { NextSeo } from "next-seo";
+import React from "react";
 
 function Seo({
 	metaTitle,
 	metaDescription,
-	metaViewport,
 	metaImage,
 	keywords,
 	canonicalURL,
 }) {
 	return (
 		<NextSeo
-			title={null}
+			title={metaTitle}
 			description={metaDescription}
 			canonical={canonicalURL}
 			openGraph={{
 				url: canonicalURL,
-				title: null,
+				title: metaTitle,
 				description: metaDescription,
 				images: metaImage
 					? [

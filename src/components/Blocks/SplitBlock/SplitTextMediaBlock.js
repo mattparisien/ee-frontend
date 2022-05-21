@@ -9,9 +9,13 @@ function SplitTextMediaBlock({ data }) {
 	return (
 		<SplitBlock
 			leftComponent={
-				<Left text={data && data.text} cta={data && data.callToAction} />
+				<Left text={data && data.Text} cta={data && data.CallToAction} />
 			}
-			rightComponent={data.media ? <Right media={data.media} /> : null}
+			rightComponent={
+				data.MediaItem ? (
+					<Right media={data.MediaItem.MediaUpload.Media.data} />
+				) : null
+			}
 			width={{
 				left: "50%",
 				right: "50%",
@@ -53,19 +57,13 @@ function Left({ text, cta }) {
 }
 
 function Right({ media }) {
+	console.log(media, )
 	return (
 		<Media
-			useIO
-			aspect='landscape'
-			boxHeight='auto'
-			items={media && media.items}
-			disableContainer
-			options={
-				media && {
-					...media.options,
-				}
-			}
-			permalink={media && media.permalink}
+			url={media[0].attributes.url}
+			alt={media[0].attributes.alternativeText}
+			caption={media[0].attributes.caption}
+			resource_type={media[0].attributes.provider_metadata.resource_type}
 		/>
 	);
 }

@@ -4,8 +4,8 @@ import Quote from "../Quote/Quote";
 function QuoteBlock({ data, paragraphSize }) {
 	return (
 		<Quote
-			quote={data.quote}
-			author={data.author}
+			quote={data.Quote}
+			author={data.Author}
 			paragraphSize={paragraphSize}
 		/>
 	);

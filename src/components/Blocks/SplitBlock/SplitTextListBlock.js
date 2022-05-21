@@ -15,8 +15,8 @@ function SplitTextListBlock({ data }) {
 						marginLeft: 0,
 					},
 				})}
-				leftComponent={<Left text={data.text} />}
-				rightComponent={<Right list={data.list} />}
+				leftComponent={<Left text={data.Text} />}
+				rightComponent={<Right list={data.List} />}
 			/>
 		)
 	);

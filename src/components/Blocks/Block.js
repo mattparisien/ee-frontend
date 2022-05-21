@@ -7,6 +7,8 @@ import Section from "../Containers/Section";
 export const BlockContext = createContext();
 
 function Block(props) {
+	console.log(props);
+
 	const [state, setState] = useState({
 		container: true,
 		theme: null,
@@ -20,9 +22,9 @@ function Block(props) {
 		let container = true;
 
 		if (
-			props.name.startsWith("FullBleed") &&
-			props.data.options &&
-			!props.data.options.inset
+			props.component.startsWith("FullBleed") &&
+			props.data.Options &&
+			!props.data.Options.Inset
 		) {
 			container = false;
 		}
@@ -30,20 +32,20 @@ function Block(props) {
 		setState(() => ({
 			container: container,
 			theme:
-				props.data.options && props.data.options.theme
-					? props.data.options.theme
+				props.data.Options && props.data.Options.Theme
+					? props.data.Options.Theme
 					: null,
-			marginTop: props.data.options
-				? !props.data.options.disableGutterTop
+			marginTop: props.data.Options
+				? !props.data.Options.DisableGutterTop
 				: true,
-			marginBottom: props.data.options
-				? !props.data.options.disableGutterBottom
+			marginBottom: props.data.Options
+				? !props.data.Options.DisableGutterBottom
 				: true,
-			paddingX: props.name.startsWith("SplitTextMedia") ? false : true,
+			paddingX: props.component.startsWith("SplitTextMedia") ? false : true,
 		}));
 	}, []);
 
-	const padding = props.name === "FullBleedMediaBlock" ? 0 : 10;
+	const padding = props.component === "FullBleedMediaBlock" ? 0 : 10;
 
 	return (
 		<BlockContext.Provider value={{ ...state }}>
@@ -51,34 +53,41 @@ function Block(props) {
 				sectionTheme={state.theme}
 				disableMarginTop={!state.marginTop}
 				disableMarginBottom={!state.marginBottom}
-				blockName={props.name}
+				blockName={props.__component}
 			>
-				<ConditionalWrapper
-					condition={state.container}
-					wrapper={children => (
-						<Container
-							disableGutters={!state.paddingX}
-							disablePaddingY={!state.paddingY}
+				<div className={`Block Block_${props.component}`}>
+					<ConditionalWrapper
+						condition={state.container}
+						wrapper={children => (
+							<Container
+								disableGutters={!state.paddingX}
+								disablePaddingY={!state.paddingY}
+							>
+								{children}
+							</Container>
+						)}
+					>
+						<div
+							className={`${
+								props.component !== "FullBleedMediaBlock"
+									? "py-5 md:py-10 lg:py-14"
+									: ""
+							}`}
 						>
-							{children}
-						</Container>
-					)}
-				>
-					<div className='py-5 md:py-10 lg:py-14'>
-						{/* <ConditionalWrapper
+							{/* <ConditionalWrapper
 						wrapper={children => (
 							<Box sx={verticalPaddingStyles}>{children}</Box>
 						)}
 						condition={props.name !== "FullBleedMediaBlock"}
 					> */}
-						{props.data &&
-							React.createElement(BLOCKS[props.name], {
-								key: props.id,
-								data: props.data,
-							})}
-					</div>
-				</ConditionalWrapper>
-				{/* </ConditionalWrapper> */}
+							{props.data &&
+								React.createElement(BLOCKS[props.component], {
+									data: props.data,
+								})}
+						</div>
+					</ConditionalWrapper>
+					{/* </ConditionalWrapper> */}
+				</div>
 			</Section>
 		</BlockContext.Provider>
 	);

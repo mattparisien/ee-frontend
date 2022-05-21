@@ -1,23 +1,24 @@
-import React from "react";
-import CarouselImage from "./CarouselImage";
-import CarouselItemInfo from "./CarouselItemInfo";
-import convertToSlug from "../../helpers/convertToSlug";
 import Link from "next/link";
+import React from "react";
+import convertToSlug from "../../helpers/convertToSlug";
+import ConditionalWrapper from "../Containers/ConditionalWrapper";
+import Media from "../Media/Media";
 
-function Carouseltem({ FeatureImage, Title, Subtitle }) {
+function Carouseltem(props) {
 	return (
 		<div className='CarouselItem'>
-			<Link href={`/projects/${convertToSlug(Subtitle)}`}>
-				<a href={`/projects/${convertToSlug(Subtitle)}`}>
-					<CarouselImage
-						image={{
-							src: FeatureImage.data.attributes.url,
-							alt: FeatureImage.data.attributes.alternativeText,
-						}}
-					/>
-					<CarouselItemInfo title={Title} subtitle={Subtitle} />
-				</a>
-			</Link>
+			<ConditionalWrapper
+				wrapper={children => (
+					<Link href={`/projects/${convertToSlug(props.Subtitle)}`}>
+						<a href={`/projects/${convertToSlug(props.Subtitle)}`}>
+							{children}
+						</a>
+					</Link>
+				)}
+				condition={props.linkable}
+			>
+				<Media {...props} />
+			</ConditionalWrapper>
 		</div>
 	);
 }

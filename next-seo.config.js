@@ -14,6 +14,10 @@ export default {
 		site: "https://www.eyesandearsagency.com/",
 		cardType: "summary",
 	},
+  additionalLinkTags: [{
+    rel: "icon",
+    href: "/eyes-and-ears-favicon.png"
+  }],
 	additionalMetaTags: [
 		{
 			property: "keywords",

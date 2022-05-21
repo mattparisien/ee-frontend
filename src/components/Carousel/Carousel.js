@@ -5,25 +5,28 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import CarouselItem from "./Carouseltem";
 import CarouselControls from "./CarouselControls";
+import CarouselButton from "./CarouselButton";
 
-function Carousel({ items }) {
+function Carousel({ items, linkable, slidesPerView }) {
 	const matches = useMediaQuery(`(min-width: 769px)`);
 
 	const settings = {
 		dots: false,
 		infinite: true,
-		slidesToShow: matches ? 3 : 2,
+		slidesToShow: slidesPerView || 1,
 		slidesToScroll: 1,
+
+		prevArrow: <CarouselButton isPrev/>,
+		nextArrow: <CarouselButton />,
 	};
 
 	return (
 		<>
 			<Slider className={"Carousel mb-4"} {...settings}>
 				{items.map((item, i) => (
-					<CarouselItem key={i} {...item} />
+					<CarouselItem key={i} {...item} linkable={linkable} />
 				))}
 			</Slider>
-			<CarouselControls />
 		</>
 	);
 }

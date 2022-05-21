@@ -6,6 +6,8 @@ import Fade from "../../HOC/Fade";
 import StatsGrid from "./StatsGrid";
 
 function StatsBlock({ data }) {
+	console.log(data);
+
 	return (
 		<>
 			<Divider />
@@ -13,7 +15,7 @@ function StatsBlock({ data }) {
 			<div className='content-wrapper flex flex-col items-center jusitfy-center py-20'>
 				{data.heading && <Heading level={3}>{data.heading}</Heading>}
 
-				<StatsGrid items={data.statsBlockItem} />
+				<StatsGrid items={data.StatsBlockItem} />
 			</div>
 
 			<Divider />

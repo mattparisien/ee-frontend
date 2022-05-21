@@ -28,7 +28,8 @@ function MyImage({
 				objectFit={objectFit}
 				layout={layout}
 				loading='lazy'
-				className={`${grayscale ? "grayscale" : ""}`}
+				className={`${grayscale ? "grayscale block" : "block"}`}
+				display="block"
 			/>
 			<MediaTransition />
 			<Overlay />

@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useMemo } from "react";
+import Block from "../../../Blocks/Block";
+import getBlockName from "./utils/getBlockName";
 
-function SinglePage({Title, Subtitle}) {
+function SinglePage({ Choose }) {
+	const blocks = useMemo(() => {
+		return Choose.map(block => ({
+			data: { ...block },
+			component: getBlockName(block.__component),
+		}));
+	}, [Choose]);
 
-
-  
-
-  return (
-    <div className="SinglePage">
-      {}
-    </div>
-  )
+	return (
+		<div className='SinglePage'>
+			{blocks.slice(0, 7).map((block, i) => (
+				<Block {...block} key={i} />
+			))}
+		</div>
+	);
 }
 
-export default SinglePage
+export default SinglePage;
