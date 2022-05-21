@@ -71,7 +71,7 @@ function Block(props) {
 						<div
 							className={`${
 								props.component !== "FullBleedMediaBlock"
-									? "py-5 md:py-10 lg:py-14"
+									? "py-10 md:py-20"
 									: ""
 							}`}
 						>

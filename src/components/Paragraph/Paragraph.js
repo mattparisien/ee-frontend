@@ -11,8 +11,8 @@ function Paragraph({
 	disableMargin,
 }) {
 	const classes = {
-		large: `max-w-[709px] text-md md:text-xl leading-[1.9] md:leading-[1.7] ${!disableMargin ? `mb-5 md:mb-6` : ""}`,
-		small: `text-md leading-7 ${!disableMargin ? "mb-2.5 md:mb-3" : ""}`,
+		large: `max-w-[709px] text-md md:text-xl leading-[1.9] md:leading-[1.7] ${!disableMargin ? `mt-5 md:mt-6` : ""}`,
+		small: `text-md leading-7 ${!disableMargin ? "mt-2.5 md:mt-3" : ""}`,
 	};
 
 	const wrapperClass = classNames("Paragraph", {

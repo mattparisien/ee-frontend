@@ -9,14 +9,14 @@ function Heading({
 	disableMargin,
 }) {
 
-	const commonClasses = "tracking-tight ";
+	const commonClasses = "font-bold ";
 
 	const headingClasses = {
-		1: "text-6xl md:text-8xl",
-		2: "text-5xl md:text-6xl",
-		3: "text-3xl md:text-4xl",
+		1: "text-6xl md:text-8xl font-adieu",
+		2: "text-5xl md:text-6xl font-adieu",
+		3: "text-xl md:text-2xl font-adieu",
 		5: "text-md md:text-xl",
-		6: `text-1xl md:text-2xl font-semibold ${!disableMargin ? "mb-4" : ""}`,
+		6: `text-lg md:text-lg  ${!disableMargin ? "mt-5 md:mt-6" : ""}`,
 	};
 
 	const wrapper = classNames("Heading", {

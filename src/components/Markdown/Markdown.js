@@ -85,8 +85,8 @@ function Markdown({
 				{...props}
 				rel='noopener noreferrer'
 				target='_blank'
-				style={{fontWeight: 700}}
-				className="border-b hover:text-yellow-custom hover:border-yellow-custom transition-color duration-[200ms] ease "
+				style={{ fontWeight: 700 }}
+				className='border-b hover:text-yellow-custom hover:border-yellow-custom transition-color duration-[200ms] ease '
 			>
 				{props.children}
 			</a>
