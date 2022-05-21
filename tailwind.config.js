@@ -7,8 +7,11 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				adieu: ["Adieu"],
+			},
 			colors: {
-				light: "#f9f8f4",
+				light: "#F9F8F2",
 				dark: "#1c1c1c",
 				blue: {
 					custom: "#0a4d98",

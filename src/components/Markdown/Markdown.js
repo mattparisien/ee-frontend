@@ -81,27 +81,15 @@ function Markdown({
 			</ListItem>
 		),
 		a: ({ node, ...props }) => (
-			<>
-				<Link
-					{...props}
-					children={props.children}
-					fontWeight={400}
-					target='_blank'
-					rel='noreferrer'
-					sx={theme => ({
-						color: theme.palette.primary.dark,
-						position: "relative",
-						"&::after": {
-							position: "absolute",
-							content: '""',
-							bottom: 0,
-							left: 0,
-							width: "100%",
-							height: "0.1rem",
-						},
-					})}
-				/>
-			</>
+			<a
+				{...props}
+				rel='noopener noreferrer'
+				target='_blank'
+				style={{fontWeight: 700}}
+				className="border-b hover:text-yellow-custom hover:border-yellow-custom transition-color duration-[200ms] ease "
+			>
+				{props.children}
+			</a>
 		),
 	};
 	return (

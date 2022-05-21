@@ -22,9 +22,7 @@ function Quote({ quote, author, paragraphSize }) {
 	return (
 		<div className='Quote flex flex-col items-center justify-center'>
 			<blockquote
-				className={`quote-text text-xl md:text-${
-					!paragraphSize || paragraphSize === "large" ? "3xl" : "1xl"
-				}`}
+				className={`quote-text text-xl md:text-2xl`}
 				style={quoteStyle}
 			>{`"${quote}"`}</blockquote>
 			<div className='author-wrap w-full flex flex-row-reverse items-center justify-end mt-5'>

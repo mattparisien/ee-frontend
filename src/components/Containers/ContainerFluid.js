@@ -4,7 +4,10 @@ import React from "react";
 function Container(props) {
 	const classes = classNames("Container w-full", {
 		[props.classes]: props.classes,
-		"max-w-[1290px] mx-auto": !props.disableMaxWidth,
+		"max-w-[1290px] mx-auto":
+			!props.disableMaxWidth && props.maxWidth === "large",
+		"max-w-[980px] mx-auto":
+			!props.disableMaxWidth && props.maxWidth === "small",
 		"px-5 sm:px-10 lg:px-20": !props.disableGutters,
 	});
 

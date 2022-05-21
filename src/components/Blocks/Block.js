@@ -62,6 +62,7 @@ function Block(props) {
 							<Container
 								disableGutters={!state.paddingX}
 								disablePaddingY={!state.paddingY}
+								maxWidth="small"
 							>
 								{children}
 							</Container>
