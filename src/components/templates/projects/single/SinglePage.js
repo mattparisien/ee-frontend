@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import Block from "../../../Blocks/Block";
 import getBlockName from "./utils/getBlockName";
 
-function SinglePage({ Choose }) {
+function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
 	const blocks = useMemo(() => {
 		return Choose.map(block => ({
 			data: { ...block },
@@ -12,7 +12,15 @@ function SinglePage({ Choose }) {
 
 	return (
 		<div className='SinglePage'>
-			{blocks.slice(0, 7).map((block, i) => (
+			<Block
+				data={{
+					Title,
+					Subtitle,
+					FeatureImage,
+				}}
+				component="HeroBlock"
+			/>
+			{blocks.map((block, i) => (
 				<Block {...block} key={i} />
 			))}
 		</div>

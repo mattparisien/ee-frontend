@@ -1,26 +1,12 @@
-import React from "react";
-import { Box } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import React from "react";
 import styles from "./ScrollDownCta.module.css";
 
-function ScrollDownCta({ isMobile }) {
-	const cta = theme => ({
-		position: "absolute",
-		transform: "translateX(-50%)",
-		bottom: '-4vw',
-		display: !isMobile ? "none" : "block",
-
-		[theme.breakpoints.up("md")]: {
-			display: isMobile ? "none" : "block",
-			bottom: "-8vw",
-			left: "50%",
-		},
-	});
-
+function ScrollDownCta() {
 	return (
-		<Box className={styles.ScrollDownCta} sx={cta}>
+		<div  className={styles.ScrollDownCta}>
 			<ArrowBackIosIcon sx={{ transform: "rotate(-90deg)" }} />
-		</Box>
+		</div>
 	);
 }
 

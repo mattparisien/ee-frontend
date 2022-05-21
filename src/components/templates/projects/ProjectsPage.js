@@ -8,8 +8,6 @@ import ProjectGrid from "./components/ProjectGrid/ProjectGrid";
 function ProjectsPage() {
 	const { appState } = useContext(GlobalContext);
 
-	console.log(appState)
-
 	return (
 		<div className='ProjectsPage'>
 			<Block

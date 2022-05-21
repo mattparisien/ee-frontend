@@ -81,16 +81,12 @@ body,
 	font-weight: 2;
 }
 
-h1,
-h2 {
-	font-family: Kobe Bold;
-}
-
 main {
 	height: 100%;
 }
 
-.Block_SplitTextListBlock .Heading, .Block_SplitTextListBlock ul  {
+.Block_SplitTextListBlock .Heading,
+.Block_SplitTextListBlock ul {
 	margin-top: 2rem;
 }
 

@@ -11,7 +11,7 @@ function Heading({
 	const commonClasses = "font-bold ";
 
 	const headingClasses = {
-		1: "text-6xl md:text-8xl font-adieu",
+		1: "text-4xl md:text-5xl font-adieu",
 		2: "text-5xl md:text-6xl font-adieu",
 		3: "text-xl md:text-2xl font-adieu",
 		5: "text-md md:text-xl",
@@ -27,7 +27,6 @@ function Heading({
 			{React.createElement(`h${level}`, {
 				className: commonClasses + headingClasses[level],
 				children: children,
-				style: level < 2 ? { fontFamily: "Kobe Bold" } : {},
 			})}
 		</div>
 	);

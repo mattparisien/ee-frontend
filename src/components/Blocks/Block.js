@@ -7,8 +7,6 @@ import Section from "../Containers/Section";
 export const BlockContext = createContext();
 
 function Block(props) {
-	console.log(props);
-
 	const [state, setState] = useState({
 		container: true,
 		theme: null,
@@ -62,7 +60,7 @@ function Block(props) {
 							<Container
 								disableGutters={!state.paddingX}
 								disablePaddingY={!state.paddingY}
-								maxWidth="small"
+								maxWidth='small'
 							>
 								{children}
 							</Container>

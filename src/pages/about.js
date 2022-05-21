@@ -4,9 +4,6 @@ import { getAbout } from "../lib/getAbout";
 import Seo from "../components/Seo/Seo";
 
 function about({ about }) {
-
-	console.log(about.seo)
-
 	return (
 		<>
 			<Seo {...about.seo} />
@@ -17,8 +14,6 @@ function about({ about }) {
 
 export async function getStaticProps() {
 	const about = await getAbout();
-
-	console.log(about);
 
 	return {
 		props: {

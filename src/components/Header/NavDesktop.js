@@ -18,7 +18,7 @@ function NavDesktop({ navItems, isIntroComplete }) {
 						<li
 							className={`listItem_${i + 1} flex items-end ${
 								i !== navItems.length - 1 ? "pr-10" : ""
-							} w-auto opacity-50 transition-opacity ease duration-300 hover:opacity-100`}
+							} w-auto opacity-60 transition-opacity ease duration-300 hover:opacity-100 font-semibold`}
 							key={i}
 						>
 							<Link href={item.Slug}>
