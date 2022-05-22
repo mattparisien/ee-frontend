@@ -9,14 +9,12 @@ function InstaPostFooter({ handle, classes, caption }) {
 	};
 
 	return (
-		<footer className={`InstaPostFooter relative ease w-full bg-light `}>
+		<footer className={`InstaPostFooter relative ease w-full bg-white`}>
 			<div
-				className={`${styles.Text} ${
-					isCollapsed ? "is-collapsed" : "is-open"
-				} relative px-2 py-1`}
+				className={`${styles[isCollapsed ? 'TextCollapsed' : 'TextOpen']} relative px-2 py-1 overflow-hidden`}
 				style={{
-					transition: "max-height 0.6s cubic-bezier(.645,.045,.355,1)",
-					maxHeight: isCollapsed ? "3.4rem" : "10rem",
+					transition: "max-height 0.6s cubic-bezier(.645,.045,.355,1),",
+					maxHeight: isCollapsed ? "3.4rem" : "100rem",
 				}}
 			>
 				<div className='text-sm'>
@@ -25,7 +23,7 @@ function InstaPostFooter({ handle, classes, caption }) {
 				</div>
 			</div>
 			<button
-				className='read-more text-sm absolute right-0 bottom-0 z-50 p-2 font-semibold'
+				className='read-more text-xs block ml-auto z-50 pr-2 pb-2 font-semibold text-neutral-500 hover:text-dark transition duration-[300ms] ease'
 				onClick={handleClick}
 			>
 				{isCollapsed ? "Read more" : "Close"}

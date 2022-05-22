@@ -30,6 +30,7 @@ const getInstaPost = async (url, array) => {
 			permalink: x.permalink,
 			caption: x.caption,
 		}));
+		newObj["caption"] = post.caption;
 
 		return newObj;
 	}

@@ -6,6 +6,7 @@ function Media(props) {
 	const classes = {
 		landscape: "pt-[56.29%]",
 		portrait: "pt-[125%]",
+		square: "pt-[100%]"
 	};
 
 	const renderItem = resourceType => {

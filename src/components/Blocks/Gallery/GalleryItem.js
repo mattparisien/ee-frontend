@@ -9,7 +9,7 @@ function GalleryItem({ image }) {
 
 	return (
 		<div
-			className={`GalleryItem relative w-full break-inside-avoid mb-5`}
+			className={`GalleryItem relative break-inside-avoid mb-5`}
 			style={{ paddingTop: `${aspect}%` }}
 		>
 			<div className='GalleryItem_Media w-full h-full absolute top-0 left-0'>

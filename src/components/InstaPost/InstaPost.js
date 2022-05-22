@@ -14,12 +14,26 @@ function InstaPost(props) {
 		if (props.MyPostUrl) {
 			const getPost = async () => {
 				const data = await getInstaData(props.MyPostUrl);
+
 				if (!data || !data.items || !data.items[0]) {
 					return null;
 				}
 
 				if (data && data.items.length > 1) {
-					setPost(<Carousel />);
+					setPost({
+						component: (
+							<Carousel
+								linkable={false}
+								items={data.items.map(x => ({
+									resource_type: x.media_type,
+									url: x.url,
+									alt: x.alt,
+									aspect: data.items[0].aspect || "square",
+								}))}
+							/>
+						),
+						caption: data.caption,
+					});
 				} else if (data.items.length === 1) {
 					setPost({
 						component: (
@@ -30,7 +44,7 @@ function InstaPost(props) {
 								caption={data.items[0].url}
 							/>
 						),
-						caption: data.items[0].caption,
+						caption: data.caption || data.items[0].caption,
 					});
 				}
 			};
@@ -39,20 +53,24 @@ function InstaPost(props) {
 		}
 	}, [props.MyPostUrl, props.Media.data]);
 
-	const endPointClasses = "w-full bg-white px-2 py-1";
+	let endPointClasses = "w-full bg-white px-2 py-1";
 
 	return (
 		<div className='InstaPost sm:w-[50vw] sm:max-w-[300px] shadow-4xl rounded-xl overflow-hidden border mx-auto'>
 			<InstaPostHeader
-				avatar={props.MyPostUrl && process.env.NEXT_PUBLIC_INSTA_DEFAULT_IMAGE}
-				classes={endPointClasses += " min-h-12"}
+				avatar={
+					props.MyPostUrl ? process.env.NEXT_PUBLIC_INSTA_DEFAULT_IMAGE : ""
+				}
+				classes={(endPointClasses += " min-h-12")}
 			/>
 			{post && post.component}
-			<InstaPostFooter
-				classes={endPointClasses}
-				handle={props.handle || `eyes__ears`}
-				caption={post && post.caption}
-			/>
+			{post && post.caption && (
+				<InstaPostFooter
+					classes={endPointClasses}
+					handle={props.handle || `eyes__ears`}
+					caption={post && post.caption}
+				/>
+			)}
 		</div>
 	);
 }

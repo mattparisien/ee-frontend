@@ -10,6 +10,8 @@ import CarouselButton from "./CarouselButton";
 function Carousel({ items, linkable, slidesPerView }) {
 	const matches = useMediaQuery(`(min-width: 769px)`);
 
+	console.log(items, 'items')
+
 	const settings = {
 		dots: false,
 		infinite: true,

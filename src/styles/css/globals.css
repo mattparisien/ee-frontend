@@ -27,6 +27,10 @@ code {
 		monospace;
 }
 
+.slick-slider {
+	margin-bottom: 0 !important;
+}
+
 /* @font-face {
 	font-family: "Adieu";
 	src: url("../fonts/Adieu/GTFAdieuTRIAL-Bold.otf");

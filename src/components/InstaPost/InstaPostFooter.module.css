@@ -1,4 +1,4 @@
-.Text::after {
+.TextCollapsed::after {
 	position: absolute;
 	content: "";
 
@@ -10,10 +10,6 @@
 
 	background: linear-gradient(
 		rgba(255, 255, 255, 0) 0%,
-		rgba(255, 255, 255, 1) 80%
+		rgba(255, 255, 255, 1) 90%
 	);
-}
-
-.Text.is-open::after {
-	display: none;
 }
