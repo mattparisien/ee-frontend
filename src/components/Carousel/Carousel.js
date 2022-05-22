@@ -1,15 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import useMouseEnter from "../../helpers/hooks/useMouseEnter";
 import CarouselButton from "./CarouselButton";
 import CarouselItem from "./Carouseltem";
-import useMouseEnter from "../../helpers/hooks/useMouseEnter";
-import { useMediaQuery } from "@mui/material";
-import { AddToDrive } from "@mui/icons-material";
-import $ from "jquery";
 
-function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
+function Carousel({
+	items,
+	linkable,
+	slidesPerView,
+	wrapperClasses,
+	grayscale,
+}) {
 	const { ref, isEnter } = useMouseEnter();
 	const [slideIndex, setSlideIndex] = useState(0);
 	const matches = useMediaQuery(`(min-width: 769px)`);

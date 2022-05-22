@@ -1,11 +1,10 @@
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../../lib/context";
+import { getFooter } from "../../lib/getFooter";
 import ContainerFluid from "../Containers/ContainerFluid";
 import "./Footer.module.css";
 import FooterBottom from "./FooterBottom";
 import FooterCenter from "./FooterCenter";
-import { useEffect, useContext } from "react";
-import { GlobalContext } from "../../lib/context";
-import { getFooter } from "../../lib/getFooter";
-import { Apps } from "@mui/icons-material";
 
 export default function Footer(props) {
 	const { appState, setAppState } = useContext(GlobalContext);

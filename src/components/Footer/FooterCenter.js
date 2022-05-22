@@ -9,12 +9,12 @@ function FooterCenter({ heading, email }) {
 	return (
 		<div className='FooterCenter flex flex-col md:flex-row items-center justify-between w-full'>
 			<div className='flex flex-col'>
-				<Heading level={1} textCenter wrapperClasses={"text-center"}>
+				<Heading level={1} wrapperClasses={"text-center md:text-left"}>
 					{heading}
 				</Heading>
-				<Heading level={matches ? 4 : 3} wrapperClasses='text-center'>
+				<div className="email md:text-xl text-center md:text-left mt-5">
 					<a href={`mailto:${email}`}>{email}</a>
-				</Heading>
+				</div>
 			</div>
 			<FooterLogo />
 		</div>

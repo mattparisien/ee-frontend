@@ -20,6 +20,7 @@ function Media(props) {
 						height='100%'
 						layout='fill'
 						objectFit={"cover"}
+						grayscale={props.grayscale}
 					/>
 				);
 			case "video":
