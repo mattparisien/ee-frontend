@@ -1,44 +1,28 @@
 import { Box } from "@mui/material";
+import classNames from "classnames";
 
 function SplitBlock(props) {
-	const wrapper = theme => ({
-		display: "flex",
-		justifyContent: "space-between",
-
-		".is-left": {
-			width: props.width && props.width.left,
-			flex: props.flex && props.flex.left,
-		},
-		".is-right": {
-			width: props.width && props.width.right,
-			flex: props.flex && props.flex.right,
-		},
-
-		[theme.breakpoints.down("sm")]: {
-			flexDirection: "column",
-			".is-right, .is-left": {
-				width: "100%",
-			},
-		},
+	const wrapper = classNames("split-layout flex flex-col md:flex-row", {
+		[props.wrapperClasses]: props.wrapperClasses,
 	});
 
 	return (
-		<Box className='split-layout' sx={wrapper}>
-			<Left component={props.leftComponent} styles={props.leftStyles} />
-			<Right component={props.rightComponent} styles={props.rightStyles} />
-		</Box>
+		<div className={wrapper}>
+			<Left component={props.leftComponent} classes={props.leftClasses} />
+			<Right component={props.rightComponent} classes={props.rightClasses} />
+		</div>
 	);
 
-	function Left({ component, styles }) {
+	function Left({ component, classes }) {
 		return (
-			<Box className={`split-layout_section is-left`} sx={styles}>
+			<Box className={`split-layout_section is-left ${classes || ""}`}>
 				{component}
 			</Box>
 		);
 	}
-	function Right({ component, styles }) {
+	function Right({ component, classes }) {
 		return (
-			<Box className={`split-layout_section is-right`} sx={styles}>
+			<Box className={`split-layout_section is-right ${classes || ""}`}>
 				{component}
 			</Box>
 		);
