@@ -1,7 +1,6 @@
 import React from "react";
 import MyImage from "./MyImage";
 import MyVideo from "./Video";
-import Accent from "./Accent";
 
 function Media(props) {
 	const classes = {
