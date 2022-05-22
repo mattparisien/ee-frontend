@@ -3,33 +3,19 @@ import Block from "../../Blocks/Block";
 import formatBlockData from "../../Blocks/helpers/formatBlockData";
 
 function AboutPage({ blocks }) {
-	const [blockData, setBlockData] = useState([]);
+	console.log("blocks", blocks);
 
-	useEffect(() => {
-		const normalizedBlocks = formatBlockData(blocks);
+	const template = blocks.slice(0, 1).map((block, i) => (
+		<Block
+			component={block.__component}
+			key={i}
+			data={{
+				Title: block.Title,
+			}}
+		/>
+	));
 
-		normalizedBlocks.then(res => {
-			res.forEach(block => {
-				block.then(blockInfo => {
-					if (blockInfo) {
-						setBlockData(prev => [
-							...prev,
-							{ name: blockInfo.name, data: { ...blockInfo.data } },
-						]);
-					}
-				});
-			});
-		});
-	}, []);
-
-	return (
-		<>
-			{blockData &&
-				blockData.map((block, i) => (
-					<Block name={block.name} data={block.data} />
-				))}
-		</>
-	);
+	return template;
 }
 
 export default AboutPage;

@@ -9,7 +9,7 @@ import TitleBlock from "./TitleBlock";
 import StatsBlock from "./StatsBlock/StatsBlock";
 import TextWrapBlock from "./TextWrapBlock/TextWrapBlock";
 import SplitTextListBlock from "./SplitBlock/SplitTextListBlock";
-import SingleInstaBlock from "./SingleInstaBlock";
+import SingleInstaBlock from "./InstaBlock/SingleInstaBlock";
 
 export const BLOCKS = {
 	TitleBlock: TitleBlock,

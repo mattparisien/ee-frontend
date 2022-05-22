@@ -38,6 +38,8 @@ export const getStaticProps = async context => {
 
 	const single = await getSingle(slug);
 
+	console.log("single", single);
+
 	return {
 		props: {
 			...single,

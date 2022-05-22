@@ -1,8 +1,13 @@
 import React from "react";
 import MyImage from "./MyImage";
-import Video from "./Video";
+import MyVideo from "./Video";
 
 function Media(props) {
+	const classes = {
+		landscape: "pt-[56.29%]",
+		portrait: "pt-[125%]",
+	};
+
 	const renderItem = resourceType => {
 		switch (resourceType) {
 			case "image":
@@ -17,12 +22,24 @@ function Media(props) {
 					/>
 				);
 			case "video":
-				return <MyVideo />;
+				return (
+					<MyVideo
+						src={props.url}
+						width='100%'
+						height='100%'
+						layout='fill'
+						objectFit={"cover"}
+					/>
+				);
 		}
 	};
 
 	return (
-		<div className={`Media relative pt-[56.29%] w-full h-full`}>
+		<div
+			className={`Media relative w-full h-full ${
+				classes[props.aspect || "landscape"]
+			}`}
+		>
 			<div className='w-full h-full absolute top-0 left-0'>
 				{" "}
 				{renderItem(props.resource_type)}

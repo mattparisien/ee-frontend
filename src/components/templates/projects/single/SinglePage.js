@@ -3,6 +3,8 @@ import Block from "../../../Blocks/Block";
 import getBlockName from "./utils/getBlockName";
 
 function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
+	console.log(Choose, Title, Subtitle, FeatureImage);
+
 	const blocks = useMemo(() => {
 		return Choose.map(block => ({
 			data: { ...block },
@@ -18,7 +20,7 @@ function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
 					Subtitle,
 					FeatureImage,
 				}}
-				component="HeroBlock"
+				component='HeroBlock'
 			/>
 			{blocks.map((block, i) => (
 				<Block {...block} key={i} />

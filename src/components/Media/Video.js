@@ -1,22 +1,22 @@
-import { Box } from "@mui/material";
-import React, { useContext } from "react";
-import { MediaContext } from "./Media";
+import React from "react";
 
-function Video({ src }) {
-	const { setLoaded } = useContext(MediaContext);
-
-	setLoaded(true);
-
+function MyVideo({ src, width, height, objectFit }) {
 	return (
-		<Box
-			component='video'
-			src={src.highRes || src}
-			controls
-			playsInline
-			muted
-			onLoadStart={() => setLoaded(true)}
-		></Box>
+		<div className='MyVideo w-full h-full relative'>
+			<video
+				src={src}
+				controls
+				playsInline
+				muted
+				style={{
+					width: width,
+					height: height,
+					objectFit: objectFit || "cover",
+					objectPosition: "center",
+				}}
+			/>
+		</div>
 	);
 }
 
-export default Video;
+export default MyVideo;
