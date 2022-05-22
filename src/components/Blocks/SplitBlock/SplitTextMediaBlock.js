@@ -16,20 +16,9 @@ function SplitTextMediaBlock({ data }) {
 					<Right media={data.MediaItem.MediaUpload.Media.data} />
 				) : null
 			}
-			width={{
-				left: "50%",
-				right: "50%",
-			}}
-			leftStyles={{
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
-			}}
-			rightStyles={{
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
-			}}
+			
+			leftClasses='w-full md:w-1/2'
+			rightClasses='flex items-center justify-center w-full md:w-1/2 mt-5 md:mt-0'
 		/>
 	);
 }
@@ -37,7 +26,7 @@ function SplitTextMediaBlock({ data }) {
 function Left({ text, cta }) {
 	return (
 		<Container>
-			<Markdown paragraphClasses={"mt-5 md:mt-8"}>{text}</Markdown>
+			<Markdown paragraphClasses={"mt-5 md:mt-4"}>{text}</Markdown>
 
 			{cta && (
 				<Cta
@@ -52,12 +41,15 @@ function Left({ text, cta }) {
 
 function Right({ media }) {
 	return (
-		<Media
-			url={media[0].attributes.url}
-			alt={media[0].attributes.alternativeText}
-			caption={media[0].attributes.caption}
-			resource_type={media[0].attributes.provider_metadata.resource_type}
-		/>
+		<div className="w-full">
+			<Media
+				url={media[0].attributes.url}
+				alt={media[0].attributes.alternativeText}
+				caption={media[0].attributes.caption}
+				resource_type={media[0].attributes.provider_metadata.resource_type}
+				aspect='landscape'
+			/>
+		</div>
 	);
 }
 
