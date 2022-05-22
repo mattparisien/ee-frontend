@@ -19,9 +19,9 @@ function Cta({ children, target, href }) {
 function CtaInner({ text }) {
 	return (
 		<>
-			<div className='CtaInner w-full h-full flex items-center'>
-				<span className={`Cta_Text block text-xl`}>{text}</span>
-				<ArrowForwardIosIcon sx={{ height: "0.8rem" }} />
+			<div className='CtaInner w-full h-full flex items-center justify-center'>
+				<span className={`Cta_Text block uppercase text-xs font-adieu`}>{text}</span>
+				<ArrowForwardIosIcon sx={{ height: "0.5rem" }} />
 			</div>
 		</>
 	);
