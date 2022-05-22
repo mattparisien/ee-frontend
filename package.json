@@ -35,6 +35,7 @@
 		"react-locomotive-scroll": "^0.2.0",
 		"react-markdown": "^8.0.3",
 		"react-marquee-slider": "^1.1.5",
+		"react-reveal": "^1.2.2",
 		"react-router": "^6.3.0",
 		"react-router-dom": "^6.3.0",
 		"react-slick": "^0.29.0",

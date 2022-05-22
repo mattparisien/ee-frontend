@@ -113,13 +113,13 @@ function Markdown({
 		),
 	};
 	return (
-		(
+		<div className='Markdown first-child:mt-0 last-child:mt-5'>
 			<ReactMarkdown
 				components={componentMap}
 				children={children}
 				variantMap={variantMap}
 			/>
-		) || null
+		</div>
 	);
 }
 

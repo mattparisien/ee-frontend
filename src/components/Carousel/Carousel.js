@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import CarouselButton from "./CarouselButton";
 import CarouselItem from "./Carouseltem";
 import useMouseEnter from "../../helpers/hooks/useMouseEnter";
+import { useMediaQuery } from "@mui/material";
+import { AddToDrive } from "@mui/icons-material";
+import $ from "jquery";
 
 function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
 	const { ref, isEnter } = useMouseEnter();
+	const [slideIndex, setSlideIndex] = useState(0);
+	const matches = useMediaQuery(`(min-width: 769px)`);
+	const slideRefs = useRef([]);
+	slideRefs.current = [];
 
 	const settings = {
 		dots: false,
 		infinite: true,
-		slidesToShow: slidesPerView || 1,
+		slidesToShow: matches ? slidesPerView || 1 : 1,
 		slidesToScroll: 1,
-
+		fade: false,
+		autoplay: false,
 		prevArrow: <CarouselButton isPrev isVisible={isEnter} />,
 		nextArrow: <CarouselButton isVisible={isEnter} />,
 	};
 
 	return (
-		<div className="Carousel" ref={ref}>
+		<div className='Carousel' ref={ref}>
 			<>
 				<Slider
 					className={`mb-4 ${wrapperClasses ? wrapperClasses : ""}`}
@@ -32,6 +40,7 @@ function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
 							{...item}
 							linkable={linkable}
 							classes={item.itemClasses}
+							opacity={slideIndex === i ? 1 : 0}
 						/>
 					))}
 				</Slider>

@@ -1,13 +1,8 @@
 import classNames from "classnames";
 import React from "react";
+import { Fade } from "react-reveal";
 
-function Heading({
-	level,
-	className,
-	children,
-	wrapperClasses,
-	disableMargin,
-}) {
+function Heading({ level, children, wrapperClasses }) {
 	const commonClasses = "font-bold ";
 
 	const headingClasses = {
@@ -23,13 +18,15 @@ function Heading({
 	});
 
 	return (
-		<div className={wrapper}>
-			{React.createElement(`h${level}`, {
-				className: commonClasses + headingClasses[level],
-				children: children,
-			})}
-		</div>
+		<Fade bottom>
+			<div className={wrapper}>
+				{React.createElement(`h${level}`, {
+					className: commonClasses + headingClasses[level],
+					children: children,
+				})}
+			</div>
+		</Fade>
 	);
 }
 
-export default Heading;
+export default React.memo(Heading);

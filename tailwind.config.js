@@ -12,6 +12,10 @@ module.exports = {
 			// Add a `third` variant, ie. `third:pb-0`
 			addVariant("second", "&:nth-child(2)");
 			addVariant("third", "&:nth-child(3)");
+			addVariant("child", "& > *");
+			addVariant("child-hover", "& > *:hover");
+			addVariant("last-child", "& > *:last-child");
+			addVariant("first-child", "& > *:first-child");
 		}),
 	],
 
@@ -41,5 +45,4 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [],
 };

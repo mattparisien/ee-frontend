@@ -1,13 +1,10 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import React from "react";
 import Cta from "../../Link/Cta";
-import { useTheme, useMediaQuery } from "@mui/material";
-import Fade from "../../HOC/Fade";
 import StatsGrid from "./StatsGrid";
 
-function StatsBlock({ data }) {
-	console.log(data);
 
+function StatsBlock({ data }) {
 	return (
 		<>
 			<Divider />
@@ -30,46 +27,6 @@ function StatsBlock({ data }) {
 				</Box>
 			)}
 		</>
-	);
-}
-
-function Item({ heading, line, itemLength, index }) {
-	const theme = useTheme();
-	const matches = useMediaQuery(
-		`(max-width: ${theme.breakpoints.values.md}px)`
-	);
-
-	const item = theme => ({
-		[theme.breakpoints.down("md")]: {
-			marginBottom: index + 1 < itemLength && "2rem",
-		},
-	});
-
-	return (
-		<Fade
-			wrapper={Box}
-			wrapperProps={{
-				sx: item,
-				className: "item",
-				textAlign: "center",
-			}}
-			enterDelay={`${0.25 * index}`}
-		>
-			<Typography
-				variant={matches ? "h1" : "h2"}
-				component='h3'
-				sx={{ width: "100%" }}
-			>
-				{heading}
-			</Typography>
-			<Typography
-				variant={matches ? "body1" : "body3"}
-				component='p'
-				sx={{ width: "100%" }}
-			>
-				{line}
-			</Typography>
-		</Fade>
 	);
 }
 

@@ -11,16 +11,18 @@ function Work({ projects }) {
 					aspect: "portrait",
 					url: project.FeatureImage.data.attributes.url,
 					alt: project.FeatureImage.data.attributes.alternativeText,
+					Subtitle: project.Subtitle,
+					Title: project.Title,
 					resource_type:
 						project.FeatureImage.data.attributes.provider_metadata
 							.resource_type,
 				}))}
 				slidesPerView={3}
-				linkable={false}
+				linkable
 				wrapperClasses={"-ml-2 -mr-2"}
 			/>
 
-			<div className="mx-auto mt-10 flex justify-center">
+			<div className='mx-auto mt-10 flex justify-center'>
 				<Cta href={"/projects"}>View all work</Cta>
 			</div>
 		</div>

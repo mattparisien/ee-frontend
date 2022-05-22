@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Fade } from "react-reveal";
 
 function Paragraph({
 	children,
@@ -23,9 +24,11 @@ function Paragraph({
 	});
 
 	return (
-		<div className={wrapperClass}>
-			<p className={classes[size]}>{children}</p>
-		</div>
+		<Fade bottom>
+			<div className={wrapperClass}>
+				<p className={classes[size]}>{children}</p>
+			</div>
+		</Fade>
 	);
 }
 
