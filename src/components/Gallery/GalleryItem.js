@@ -1,6 +1,6 @@
 import React from "react";
-import MyImage from "../../Media/MyImage";
-import ConditionalWrapper from "../../Containers/ConditionalWrapper";
+import MyImage from "../Media/MyImage";
+import ConditionalWrapper from "../Containers/ConditionalWrapper";
 
 import { Fade } from "react-reveal";
 

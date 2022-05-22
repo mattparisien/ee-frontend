@@ -2,7 +2,7 @@ import { Box, ImageList, ImageListItem } from "@mui/material";
 import React from "react";
 import { useMediaQuery } from "@mui/material";
 import Image from "../Media/Image";
-import Gallery from "./Gallery/Gallery";
+import Gallery from "../Gallery/Gallery";
 
 function GalleryBlock({ data }) {
 	const mobile = useMediaQuery("(max-width: 600px)");
