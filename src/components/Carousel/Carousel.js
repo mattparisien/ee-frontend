@@ -7,13 +7,7 @@ import useMouseEnter from "../../helpers/hooks/useMouseEnter";
 import CarouselButton from "./CarouselButton";
 import CarouselItem from "./Carouseltem";
 
-function Carousel({
-	items,
-	linkable,
-	slidesPerView,
-	wrapperClasses,
-	grayscale,
-}) {
+function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
 	const { ref, isEnter } = useMouseEnter();
 	const [slideIndex, setSlideIndex] = useState(0);
 	const matches = useMediaQuery(`(min-width: 769px)`);
