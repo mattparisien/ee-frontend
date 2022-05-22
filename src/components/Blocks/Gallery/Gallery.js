@@ -17,6 +17,7 @@ function Gallery({ variant, cols, gap, items }) {
 				<GalleryItem
 					gap={gap}
 					key={item.id}
+					
 					image={{
 						url: item.attributes.url,
 						alt: item.attributes.alternativeText,

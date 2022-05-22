@@ -1,16 +1,13 @@
-import { useMediaQuery } from "@mui/material";
 import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import CarouselItem from "./Carouseltem";
-import CarouselControls from "./CarouselControls";
 import CarouselButton from "./CarouselButton";
+import CarouselItem from "./Carouseltem";
+import useMouseEnter from "../../helpers/hooks/useMouseEnter";
 
-function Carousel({ items, linkable, slidesPerView }) {
-	const matches = useMediaQuery(`(min-width: 769px)`);
-
-	console.log(items, 'items')
+function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
+	const { ref, isEnter } = useMouseEnter();
 
 	const settings = {
 		dots: false,
@@ -18,18 +15,28 @@ function Carousel({ items, linkable, slidesPerView }) {
 		slidesToShow: slidesPerView || 1,
 		slidesToScroll: 1,
 
-		prevArrow: <CarouselButton isPrev/>,
-		nextArrow: <CarouselButton />,
+		prevArrow: <CarouselButton isPrev isVisible={isEnter} />,
+		nextArrow: <CarouselButton isVisible={isEnter} />,
 	};
 
 	return (
-		<>
-			<Slider className={"Carousel mb-4"} {...settings}>
-				{items.map((item, i) => (
-					<CarouselItem key={i} {...item} linkable={linkable} />
-				))}
-			</Slider>
-		</>
+		<div className="Carousel" ref={ref}>
+			<>
+				<Slider
+					className={`mb-4 ${wrapperClasses ? wrapperClasses : ""}`}
+					{...settings}
+				>
+					{items.map((item, i) => (
+						<CarouselItem
+							key={i}
+							{...item}
+							linkable={linkable}
+							classes={item.itemClasses}
+						/>
+					))}
+				</Slider>
+			</>
+		</div>
 	);
 }
 
