@@ -3,17 +3,17 @@ import Heading from "../Heading/Heading";
 import SplitText from "../HOC/SplitText";
 
 function TitleBlock({ data }) {
-	return !data.title.includes("-") ? (
+	return !data.Title.includes("-") ? (
 		<Heading level={1} wrapperClasses={"text-center"}>
-			<SplitText>{data.title}</SplitText>
+			<SplitText>{data.Title}</SplitText>
 		</Heading>
 	) : (
 		<>
 			<Heading level={1} wrapperClasses={"text-center"}>
-				<SplitText>{data.title.split("-")[0]}</SplitText>
+				<SplitText>{data.Title.split("-")[0]}</SplitText>
 			</Heading>
 			<Heading level={3} wrapperClasses={"text-center"}>
-				<SplitText>{data.title.split("-")[1]}</SplitText>
+				<SplitText>{data.Title.split("-")[1]}</SplitText>
 			</Heading>
 		</>
 	);
