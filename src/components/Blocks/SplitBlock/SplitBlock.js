@@ -22,7 +22,7 @@ function SplitBlock(props) {
 	}
 	function Right({ component, classes }) {
 		return (
-			<Box className={`split-layout_section is-right ${classes || ""}`}>
+			<Box className={`split-layout_section is-right mt-5 md:mt-0 ${classes || ""}`}>
 				{component}
 			</Box>
 		);

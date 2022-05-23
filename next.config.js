@@ -1,5 +1,7 @@
 module.exports = {
 	images: {
+		loader: "akamai",
+		path: "",
 		domains: ["res.cloudinary.com", "scontent.cdninstagram.com"],
 	},
 	optimizeFileTracing: false,

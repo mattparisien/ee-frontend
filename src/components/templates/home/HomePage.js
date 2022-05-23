@@ -15,4 +15,4 @@ function HomePage({ about, steps, projects }) {
 	);
 }
 
-export default HomePage;
+export default React.memo(HomePage);

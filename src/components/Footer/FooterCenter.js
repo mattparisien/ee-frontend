@@ -12,7 +12,7 @@ function FooterCenter({ heading, email }) {
 				<Heading level={1} wrapperClasses={"text-center md:text-left"}>
 					{heading}
 				</Heading>
-				<div className="email md:text-xl text-center md:text-left mt-5">
+				<div className="email md:text-xl text-center md:text-left mt-5 font-semibold hover:opacity-60 transition-opacity duration-[300ms]">
 					<a href={`mailto:${email}`}>{email}</a>
 				</div>
 			</div>

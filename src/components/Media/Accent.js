@@ -46,9 +46,11 @@ function Accent({ component, color }) {
 	};
 
 	return (
-		<Box className='Accent' sx={styles}>
-			<Scale>{component()}</Scale>
-		</Box>
+		<div className='Accent w-14 h-14 md:w-20 md:h-20 absolute top-[-10%] left-[-12%] d:top-[-12%] md:left-[-16%] mix-blend-multiply'>
+			<Scale>
+				<div className='w-full h-full bg-yellow-custom rounded-full'></div>
+			</Scale>
+		</div>
 	);
 }
 

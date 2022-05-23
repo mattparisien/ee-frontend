@@ -52,7 +52,8 @@
 		"dev": "next dev",
 		"start": "next start",
 		"sitemap": "next-sitemap --config next-sitemap.config.js",
-		"build": "next build"
+		"build": "next build",
+		"export": "next build && next export"
 	},
 	"eslintConfig": {
 		"extends": [

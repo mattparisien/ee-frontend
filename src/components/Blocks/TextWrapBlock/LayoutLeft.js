@@ -5,13 +5,7 @@ import Cta from "../../Link/Cta";
 function LayoutLeft({ text, callToAction }) {
 	return (
 		<div className='TextWrapBlock_LayoutLeft'>
-			<Markdown
-				variantMap={{
-					p: "small",
-				}}
-			>
-				{text}
-			</Markdown>
+			<Markdown paragraphClasses={"mt-5"}>{text}</Markdown>
 			<div className='mt-10 flex justify-end md:justify-start '>
 				{callToAction && (
 					<Cta

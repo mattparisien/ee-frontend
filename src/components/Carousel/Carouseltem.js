@@ -17,28 +17,26 @@ function Carouseltem(props) {
 	const { ref, isEnter } = useMouseEnter();
 
 	return (
-		<Fade bottom>
-			<div
-				className={itemClasses}
-				ref={self => {
-					ref.current = self;
-				}}
+		<div
+			className={itemClasses}
+			ref={self => {
+				ref.current = self;
+			}}
+		>
+			<ConditionalWrapper
+				wrapper={children => (
+					<Link href={`/projects/${convertToSlug(props.Subtitle)}`}>
+						<a href={`/projects/${convertToSlug(props.Subtitle)}`}>
+							{children}
+							<CarouselItemOverlay {...props} isVisible={isEnter} />
+						</a>
+					</Link>
+				)}
+				condition={props.linkable}
 			>
-				<ConditionalWrapper
-					wrapper={children => (
-						<Link href={`/projects/${convertToSlug(props.Subtitle)}`}>
-							<a href={`/projects/${convertToSlug(props.Subtitle)}`}>
-								{children}
-								<CarouselItemOverlay {...props} isVisible={isEnter} />
-							</a>
-						</Link>
-					)}
-					condition={props.linkable}
-				>
-					<Media {...props} />
-				</ConditionalWrapper>
-			</div>
-		</Fade>
+				<Media {...props} />
+			</ConditionalWrapper>
+		</div>
 	);
 }
 

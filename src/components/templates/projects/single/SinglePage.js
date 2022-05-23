@@ -3,8 +3,6 @@ import Block from "../../../Blocks/Block";
 import getBlockName from "./utils/getBlockName";
 
 function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
-	console.log(Choose, Title, Subtitle, FeatureImage);
-
 	const blocks = useMemo(() => {
 		return Choose.map(block => ({
 			data: { ...block },
@@ -13,7 +11,7 @@ function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
 	}, [Choose]);
 
 	return (
-		<div className='SinglePage'>
+		<div className='SinglePage first-child:mb-0 second-child:mt-0'>
 			<Block
 				data={{
 					Title,
@@ -29,4 +27,4 @@ function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
 	);
 }
 
-export default SinglePage;
+export default React.memo(SinglePage);

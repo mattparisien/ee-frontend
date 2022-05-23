@@ -9,7 +9,6 @@ function Paragraph({
 	textCenter,
 	textLeft,
 	textRight,
-	disableMargin,
 }) {
 	const classes = {
 		large: `max-w-[709px] text-md md:text-xl leading-[1.9] md:leading-[1.7]`,

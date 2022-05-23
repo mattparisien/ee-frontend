@@ -67,9 +67,9 @@ function Block(props) {
 						)}
 					>
 						<div
-							className={`${
+							className={`ContainerVertical ${
 								props.component !== "FullBleedMediaBlock"
-									? "py-10 md:py-20"
+									? "py-5 sm:py-10 md:py-20"
 									: ""
 							}`}
 						>

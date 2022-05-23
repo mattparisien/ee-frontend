@@ -1,6 +1,7 @@
 import React from "react";
 import MyImage from "./MyImage";
 import MyVideo from "./Video";
+import Frame from "../Frame/Frame";
 
 function Media(props) {
 	const classes = {
@@ -8,6 +9,8 @@ function Media(props) {
 		portrait: "pt-[125%]",
 		square: "pt-[100%]",
 	};
+
+	console.log(props);
 
 	const renderItem = resourceType => {
 		switch (resourceType) {
@@ -37,16 +40,23 @@ function Media(props) {
 	};
 
 	return (
-		<div
-			className={`Media relative w-full h-full ${
-				classes[props.aspect || "landscape"]
-			}`}
-		>
-			<div className='w-full h-full absolute top-0 left-0'>
-				{" "}
-				{renderItem(props.resource_type)}
+		<>
+			<div
+				className={`Media relative w-full h-full ${
+					classes[props.aspect || "landscape"]
+				}`}
+			>
+				<div className='Media_Visual w-full h-full absolute top-0 left-0'>
+					{" "}
+					{renderItem(props.resource_type)}
+				</div>
 			</div>
-		</div>
+			{props.caption && (
+				<div className='Media_Caption text-xs text-right mt-2 text-neutral-500'>
+					{props.caption}
+				</div>
+			)}
+		</>
 	);
 }
 
