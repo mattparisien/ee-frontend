@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { CompareSharp } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
 
 function NavItem({ slug, index, name, isIntroComplete }) {
 	const router = useRouter();
@@ -35,10 +34,13 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 		{
 			"opacity-0 translate-y-full": !isIntroComplete,
 			"ml-10": index !== 0,
-			"after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-dark":
-				active,
 		}
 	);
+
+	const underlineClasses = classNames("link-underline", {
+		"after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-dark":
+			active,
+	});
 
 	return (
 		<li className={itemClasses}>
@@ -49,6 +51,7 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 					style={{ transitionDelay: `${index}00ms` }}
 				>
 					{name}
+					<span className={underlineClasses}></span>
 				</a>
 			</Link>
 		</li>
