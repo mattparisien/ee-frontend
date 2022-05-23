@@ -12,17 +12,17 @@ function LayoutLeft({ text, callToAction }) {
 			>
 				{text}
 			</Markdown>
-			<div className="mt-10 flex justify-end md:justify-start ">
+			<div className='mt-10 flex justify-end md:justify-start '>
 				{callToAction && (
 					<Cta
 						target={
-							callToAction.openNewTab && !callToAction.url.includes("mailto:")
+							callToAction.OpenNewTab && !callToAction.URL.includes("mailto:")
 								? "_blank"
 								: "_self"
 						}
-						href={callToAction.url}
+						href={callToAction.URL}
 					>
-						{callToAction.buttonText}
+						{callToAction.ButtonText}
 					</Cta>
 				)}
 			</div>

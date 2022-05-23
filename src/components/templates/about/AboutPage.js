@@ -4,12 +4,13 @@ import formatBlockData from "../../Blocks/helpers/formatBlockData";
 import getBlockName from "../../Blocks/helpers/getBlockName";
 
 function AboutPage({ blocks }) {
+	console.log(blocks);
 	const template = blocks.map((block, i) => (
 		<Block
 			component={getBlockName(block.__component)}
 			key={i}
 			data={{
-				Title: block.Title,
+				...block,
 			}}
 		/>
 	));
