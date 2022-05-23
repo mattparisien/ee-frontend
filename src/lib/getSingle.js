@@ -10,7 +10,7 @@ export async function getSingle(param) {
 
 	try {
 		const post = await axios.get(
-			`${process.env.NEXT_PUBLIC_API_URL}/projects?filters[Subtitle][$eq]=${formattedParam}&populate=deep,10`
+			`${process.env.NEXT_PUBLIC_API_URL}/projects?filters[Subtitle][$containsi]=${formattedParam}&populate=deep,10`
 		);
 
 		return post.data.data[0].attributes;

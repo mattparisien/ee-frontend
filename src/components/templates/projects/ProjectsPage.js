@@ -15,7 +15,7 @@ function ProjectsPage() {
 				component='TitleBlock'
 				theme={"light"}
 				data={{
-					title: "Projects",
+					Title: "Projects",
 					options: null,
 				}}
 			/>

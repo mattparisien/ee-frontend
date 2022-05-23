@@ -10,7 +10,7 @@ function Steps({ steps }) {
 			<Container>
 				<TitleBlock
 					data={{
-						title: "Finding Your Rhythm",
+						Title: "Finding Your Rhythm",
 					}}
 				/>
 				<div className='content-wrapper relative w-full h-full py-20'>
