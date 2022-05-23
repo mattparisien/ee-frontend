@@ -51,11 +51,8 @@ function Media(props) {
 					{renderItem(props.resource_type)}
 				</div>
 			</div>
-			{props.caption && (
-				<div className='Media_Caption text-xs text-right mt-2 text-neutral-500'>
-					{props.caption}
-				</div>
-			)}
+
+			{/* <Frame /> */}
 		</>
 	);
 }

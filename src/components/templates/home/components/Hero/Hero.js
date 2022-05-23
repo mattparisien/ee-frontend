@@ -29,7 +29,7 @@ function Hero() {
 							))}
 							<HeroLogo />
 
-							<Heading level={2} wrapperClasses='block md:hidden'>
+							<Heading level={3} wrapperClasses='block md:hidden'>
 								<SplitText>Social Impact Agency</SplitText>
 							</Heading>
 						</>

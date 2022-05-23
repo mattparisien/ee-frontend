@@ -12,7 +12,7 @@ function InstaPostHeader({ avatar, handle, classes }) {
 				<div className='user-details h-full flex items-center justify-start'>
 					<InstaPostAvatar url={avatar} />
 					<div className='user-details_handle text-neutral-900 ml-4 font-semibold'>
-						<span>{handle || `@eyes__ears`}</span>
+						<span>{handle ? `@${handle}` : '@eyes__ears'}</span>
 					</div>
 				</div>
 			</a>

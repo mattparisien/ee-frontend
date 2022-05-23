@@ -11,6 +11,43 @@ function InstaPost(props) {
 	const [post, setPost] = useState(null);
 
 	useMemo(() => {
+		if (!props.MyPostUrl) {
+			const data = props.Media.data;
+
+			if (data && data.length > 1) {
+				setPost({
+					component: (
+						<Carousel
+							linkable={false}
+							items={data.map(x => ({
+								resource_type: x.provider_metadata.resource_type,
+								url: x.url,
+								alt: x.alternativeText,
+								aspect: "square",
+							}))}
+						/>
+					),
+					caption: data.Caption,
+					isVerified: data.VerifiedUser,
+					handle: data.Handle,
+					profileImage: ProfileImage.data.attributes.url,
+				});
+			} else if (data.length === 1) {
+				setPost({
+					component: (
+						<Media
+							aspect={"portrait"}
+							resource_type={data[0].attributes.provider_metadata.resource_type}
+							url={data[0].attributes.url}
+						/>
+					),
+					caption: props.Caption,
+					handle: props.Handle,
+					profileImage: props.ProfileImage.data.attributes.url,
+				});
+			}
+		}
+
 		if (props.MyPostUrl) {
 			const getPost = async () => {
 				const data = await getInstaData(props.MyPostUrl);
@@ -59,15 +96,18 @@ function InstaPost(props) {
 		<div className='InstaPost sm:w-[50vw] sm:max-w-[300px] shadow-4xl rounded-xl overflow-hidden border mx-auto'>
 			<InstaPostHeader
 				avatar={
-					props.MyPostUrl ? process.env.NEXT_PUBLIC_INSTA_DEFAULT_IMAGE : ""
+					post && post.profileImage
+						? post.profileImage
+						: process.env.NEXT_PUBLIC_INSTA_DEFAULT_IMAGE
 				}
 				classes={(endPointClasses += " min-h-12")}
+				handle={post && post.handle || `eyes__ears`}
 			/>
 			{post && post.component}
 			{post && post.caption && (
 				<InstaPostFooter
 					classes={endPointClasses}
-					handle={props.handle || `eyes__ears`}
+					handle={(post && post.handle) || `eyes__ears`}
 					caption={post && post.caption}
 				/>
 			)}

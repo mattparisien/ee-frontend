@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import Block from "../../../Blocks/Block";
 import getBlockName from "./utils/getBlockName";
+import Next from "./components/Next";
 
 function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
 	const blocks = useMemo(() => {
@@ -11,7 +12,7 @@ function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
 	}, [Choose]);
 
 	return (
-		<div className='SinglePage first-child:mb-0 second-child:mt-0'>
+		<div className='SinglePage first-child:mb-0 second-child:mt-0 last-child:mb-0 last-child:pb-0'>
 			<Block
 				data={{
 					Title,
@@ -23,6 +24,7 @@ function SinglePage({ Choose, Title, Subtitle, FeatureImage }) {
 			{blocks.map((block, i) => (
 				<Block {...block} key={i} />
 			))}
+			<Next />
 		</div>
 	);
 }

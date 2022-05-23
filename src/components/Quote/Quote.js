@@ -9,7 +9,7 @@ function Quote({ quote, author, paragraphSize }) {
 	const { theme } = useContext(ThemeContext);
 
 	const line = {
-		flex: 0.5,
+		flex: 2,
 		height: "1px",
 		transformOrigin: "left",
 	};
@@ -25,12 +25,12 @@ function Quote({ quote, author, paragraphSize }) {
 				className={`quote-text text-xl md:text-2xl`}
 				style={quoteStyle}
 			>{`"${quote}"`}</blockquote>
-			<div className='author-wrap w-full flex flex-row-reverse items-center justify-end mt-5'>
+			<div className='author-wrap w-full flex flex-row-reverse items-center justify-end mt-5 mr-auto w-full md:w-3/4'>
 				<Heading
 					level={6}
-					wrapperClasses={`flex-2 font-semibold accent accent-text accent-tiny accent-yellow accent-${
+					wrapperClasses={`font-semibold accent accent-text accent-tiny accent-yellow accent-${
 						theme === "light" || !theme ? "multiply" : "screen"
-					} relative`}
+					} relative w-80`}
 					disableMargin
 				>
 					{author}
