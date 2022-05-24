@@ -7,7 +7,14 @@ import useMouseEnter from "../../helpers/hooks/useMouseEnter";
 import CarouselButton from "./CarouselButton";
 import CarouselItem from "./Carouseltem";
 
-function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
+function Carousel({
+	items,
+	linkable,
+	slidesPerView,
+	wrapperClasses,
+	type,
+	arrowColor,
+}) {
 	const { ref, isEnter } = useMouseEnter();
 	const [slideIndex, setSlideIndex] = useState(0);
 	const matches = useMediaQuery(`(min-width: 769px)`);
@@ -21,15 +28,32 @@ function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
 		slidesToScroll: 1,
 		fade: false,
 		autoplay: false,
-		prevArrow: <CarouselButton isPrev isVisible={isEnter} />,
-		nextArrow: <CarouselButton isVisible={isEnter} />,
+		adaptiveHeight: true,
+
+		prevArrow: (
+			<CarouselButton
+				isPrev
+				isVisible={isEnter}
+				color={arrowColor || "light"}
+				carouselType={type}
+			/>
+		),
+		nextArrow: (
+			<CarouselButton
+				isVisible={isEnter}
+				color={arrowColor || "light"}
+				carouselType={type}
+			/>
+		),
 	};
 
 	return (
-		<div className='Carousel' ref={ref}>
+		<div className='Carousel overflow-visible' ref={ref}>
 			<>
 				<Slider
-					className={`mb-4 ${wrapperClasses ? wrapperClasses : ""}`}
+					className={`mb-4 ${type === "text" ? "!flex items-center" : ""} ${
+						wrapperClasses ? wrapperClasses : ""
+					}`}
 					{...settings}
 				>
 					{items.map((item, i) => (
@@ -39,6 +63,7 @@ function Carousel({ items, linkable, slidesPerView, wrapperClasses }) {
 							linkable={linkable}
 							classes={item.itemClasses}
 							opacity={slideIndex === i ? 1 : 0}
+							type={type}
 						/>
 					))}
 				</Slider>

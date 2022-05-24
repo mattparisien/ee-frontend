@@ -1,18 +1,15 @@
-import React from "react";
-import Heading from "../Heading/Heading";
 import { motion } from "framer-motion";
-import useInView from "../../helpers/hooks/useInView";
+import React, { useContext } from "react";
 import { ThemeContext } from "../Containers/Section";
-import { useContext } from "react";
+import Heading from "../Heading/Heading";
+import { useMediaQuery } from "@mui/material";
+
 
 function Quote({ quote, author, paragraphSize }) {
-	const { theme } = useContext(ThemeContext);
 
-	const line = {
-		flex: 2,
-		height: "1px",
-		transformOrigin: "left",
-	};
+	const matches = useMediaQuery(`(min-width: 769px)`);
+
+	const { theme } = useContext(ThemeContext);
 
 	const quoteStyle = {
 		textIndent: "-0.45em",
@@ -22,23 +19,22 @@ function Quote({ quote, author, paragraphSize }) {
 	return (
 		<div className='Quote flex flex-col items-center justify-center'>
 			<blockquote
-				className={`quote-text text-xl md:text-2xl`}
+				className={`quote-text text-md md:text-2xl`}
 				style={quoteStyle}
 			>{`"${quote}"`}</blockquote>
-			<div className='author-wrap w-full flex flex-row-reverse items-center justify-end mt-5 mr-auto w-full md:w-3/4'>
+			<div className='author-wrap w-full flex flex-row-reverse items-center justify-end mt-5 mr-auto w-full'>
 				<Heading
-					level={6}
+					level={matches ? 6 : 5}
 					wrapperClasses={`font-semibold accent accent-text accent-tiny accent-yellow accent-${
 						theme === "light" || !theme ? "multiply" : "screen"
-					} relative w-80`}
+					} relative`}
 					disableMargin
 				>
 					{author}
 				</Heading>
 
 				<motion.div
-					style={line}
-					className='line bg-current block mx-4'
+					className='line bg-current block mx-4 h-px w-20 md:w-40'
 					initial='hidden'
 					exit='exit'
 				></motion.div>

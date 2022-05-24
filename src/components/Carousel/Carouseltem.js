@@ -6,7 +6,9 @@ import ConditionalWrapper from "../Containers/ConditionalWrapper";
 import Media from "../Media/Media";
 import CarouselItemOverlay from "./CarouselItemOverlay";
 import useMouseEnter from "../../helpers/hooks/useMouseEnter";
-import { Fade } from "react-reveal";
+import CarouselText from "./CarouselText";
+import Paragraph from "../Paragraph/Paragraph";
+import Quote from "../Quote/Quote";
 
 function Carouseltem(props) {
 	const itemClasses = classNames("CarouselItem relative", {
@@ -34,7 +36,12 @@ function Carouseltem(props) {
 				)}
 				condition={props.linkable}
 			>
-				<Media {...props} />
+				{props.type !== "text" && <Media {...props} />}
+				{props.type === "text" && (
+					<CarouselText>
+						<Quote quote={props.Quote} author={props.Author} />
+					</CarouselText>
+				)}
 			</ConditionalWrapper>
 		</div>
 	);

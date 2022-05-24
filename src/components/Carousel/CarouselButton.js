@@ -4,18 +4,19 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import useMouseEnter from "../../helpers/hooks/useMouseEnter";
 
 
-function CarouselButton({ onClick, isPrev, isVisible }) {
+function CarouselButton({ onClick, isPrev, isVisible, color, carouselType }) {
 	const { ref, isEnter } = useMouseEnter();
 
 	const arrowEase = "cubic-bezier(.215,.61,.355,1)";
 
 	const classes = classNames(
-		"CarouselButton h-full block p-4 flex items-center justify-center text-light rounded-full cursor-pointer absolute top-1/2 -translate-y-1/2 z-50 overflow-hidden transition-opacity duration-[300ms] ease",
+		`CarouselButton h-full block p-4 flex items-center justify-center rounded-full cursor-pointer -translate-y-1/2 z-50 overflow-hidden transition-opacity duration-[300ms] ease text-${color}`,
 		{
-			"right-0 mr-2 md:mr-4": !isPrev,
-			"left-0 ml-2 md:ml-4": isPrev,
+			[`right-0 mr-2 md:mr-4`]: !isPrev,
+			[`left-0 ml-2 md:ml-4`]: isPrev,
 			"md:opacity-0": !isVisible,
 			"md:opacity-100": isVisible,
+			"absolute top-1/2": carouselType !== "text"
 		}
 	);
 
