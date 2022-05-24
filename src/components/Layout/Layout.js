@@ -1,15 +1,17 @@
 import classNames from "classnames";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../../lib/context";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import RouteTransition from "../Transition/RouteTransition";
 
+
 function Layout({ children }) {
 	const { appState } = useContext(GlobalContext);
 	const dropdownActive = appState.dropdownActive;
+	const { pathname } = useRouter();
 
 	const fadeClasses = classNames(
 		"FadeWrapper transition transition-opacity ease duration-300 delay-100",
@@ -31,7 +33,9 @@ function Layout({ children }) {
 				<Header />
 				<DropdownMenu />
 				<div className={fadeClasses}>
-					<main className={"main pt-[69px] bg-light"}>
+					<main
+						className={`main pt-[${pathname === "/" ? "0" : "69px"}] bg-light`}
+					>
 						<RouteTransition>{children}</RouteTransition>
 					</main>
 					<Footer />
