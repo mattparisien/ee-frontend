@@ -1,0 +1,14 @@
+.Cta:hover svg,
+.Cta:hover span {
+	transform: translateX(7px);
+}
+
+.Cta svg, .Cta span {
+	transition: 0.5s cubic-bezier(.645,.045,.355,1);
+}
+
+.Cta:hover span {
+	transition-delay: 0.18s;
+}
+
+

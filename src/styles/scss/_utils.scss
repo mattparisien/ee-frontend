@@ -1,0 +1,168 @@
+@import "./breakpoints";
+
+@media (hover: hover) {
+	.-hover-underline {
+		&:hover .-underline::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
+		&:hover::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
+	}
+
+	.-hover-underline-label {
+		&:hover .label::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
+
+		&:hover .label::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
+	}
+}
+
+.-top {
+	top: 0;
+}
+
+.-inline {
+	display: inline;
+}
+
+.-left {
+	left: 0;
+}
+
+.-right {
+	right: 0;
+}
+
+.-bottom {
+	bottom: 0;
+}
+
+.-relative {
+	position: relative;
+}
+
+.-justify-center {
+	justify-content: center;
+}
+.-fullWidth {
+	width: 100%;
+}
+
+.-halfWidth {
+	width: 50%;
+}
+
+.-fullHeight {
+	min-height: 100vh;
+}
+
+.-height-auto {
+	height: auto !important;
+}
+
+.-bg-dark {
+	background-color: $dark;
+	color: $light;
+}
+
+.accent {
+	position: relative;
+
+	&-text {
+		padding-left: 1.3rem;
+	}
+
+
+
+	&-text::after {
+		width: 2.4rem;
+		height: 2.4rem;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 1%;
+		opacity: 0.8;
+		transform-origin: center;
+	}
+
+	&::after {
+		position: absolute;
+		background-color: $yellow !important;
+		content: "";
+		border-radius: 50%;
+	}
+}
+
+.accent-text:hover::after {
+	transform: translateY(-50%) scale(1.4);
+}
+
+.accent-multiply::after {
+	mix-blend-mode: multiply;
+}
+
+.-stroke-light {
+	stroke: $light !important;
+}
+
+.-fill-light {
+	fill: $light !important;
+}
+
+.-bg-yellow {
+	background-color: #faf281;
+}
+
+.-bg-black {
+	background-color: black;
+}
+
+.-text-yellow {
+	color: $yellow;
+}
+
+.-text-light {
+	color: $light;
+	*::after {
+		background-color: $light;
+	}
+}
+.-text-dark {
+	color: $dark;
+
+	*::after {
+		background-color: $dark;
+	}
+}
+
+.-bold {
+	&,
+	& * {
+		font-family: "Kobe Bold";
+	}
+}
+
+.-indent {
+	.line:nth-of-type(1) {
+		padding-left: 30%;
+	}
+}
+
+.-block {
+	display: block;
+}
+
+.-stretchY {
+	height: 100%;
+}
+
+.-stretchX {
+	width: 100%;
+}

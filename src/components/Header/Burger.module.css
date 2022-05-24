@@ -1,0 +1,16 @@
+.isBurger::before {
+	transform: translate(-50%, -50%) translateY(-2px);
+}
+
+.isBurger::after {
+	transform: translate(-50%, -50%) translateY(2px
+	);
+}
+
+.isClose::before {
+	transform: translate(-50%, -50%) rotate(25deg);
+}
+
+.isClose::after {
+	transform: translate(-50%, -50%) rotate(-25deg);
+}

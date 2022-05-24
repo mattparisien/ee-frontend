@@ -1,0 +1,104 @@
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	font-family: "Riposte";
+	font-weight: 200;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+	min-height: 100vh;
+}
+
+body {
+	height: 100%;
+	position: relative;
+}
+
+.flickity-slider {
+	display: flex;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+.slick-slider {
+	margin-bottom: 0 !important;
+}
+
+/* @font-face {
+	font-family: "Adieu";
+	src: url("../fonts/Adieu/GTFAdieuTRIAL-Bold.otf");
+	font-weight: 700;
+} */
+
+@font-face {
+	font-family: "Adieu";
+	src: url("../fonts/Adieu/GTFAdieuTRIAL-Regular.otf");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Adieu";
+	src: url("../fonts/Adieu/GTFAdieuTRIAL-Bold.otf");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Riposte";
+	src: url("../fonts/Riposte/GTFRiposteTRIAL-Light.otf");
+	font-weight: 200;
+}
+
+@font-face {
+	font-family: "Riposte";
+	src: url("../fonts/Riposte/GTFRiposteTRIAL-Regular.otf");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Riposte";
+	src: url("../fonts/Riposte/GTFRiposteTRIAL-SemiBold.otf");
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Riposte";
+	src: url("../fonts/Riposte/GTFRiposteTRIAL-Bold.otf");
+	font-weight: 700;
+}
+
+* strong {
+	font-weight: 600 !important;
+}
+
+body,
+#__next,
+.Layout {
+	-webkit-font-smoothing: antialiased;
+	min-height: 100vh;
+	font-weight: 2;
+}
+
+main {
+	height: 100%;
+}
+
+.Block_SplitTextListBlock .Heading,
+.Block_SplitTextListBlock ul {
+	margin-top: 2rem;
+}
+
+p #text {
+	display: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./specific.css";

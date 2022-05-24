@@ -1,0 +1,244 @@
+* {
+	-webkit-font-smoothing: antialiased;
+	font-weight: lighter;
+	box-sizing: border-box;
+}
+
+// body::-webkit-scrollbar {
+// 	width: 10px; /* width of the entire scrollbar */
+// }
+
+// body::-webkit-scrollbar-track {
+// 	background: none;
+// }
+
+// body::-webkit-scrollbar-thumb {
+// 	  background: transparent;
+
+// 	border-radius: 20px; /* roundness of the scroll thumb */
+// }
+
+.content-container .swiper-slide-active {
+	@media screen and (max-width: 600px) {
+		overflow-y: overlay !important;
+	}
+}
+
+.swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.motion-wrap .motion-word:not(:last-child),
+footer .motion-wrap .motion-word:not(:last-child) {
+	margin-right: 0.24em;
+}
+
+strong {
+	font-weight: 800;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: $light;
+}
+
+.c-scrollbar {
+	z-index: 9999999;
+}
+
+:root {
+	width: 100vw;
+}
+
+.scroll-to-top {
+	position: fixed !important;
+	bottom: 0;
+	right: 0;
+}
+
+.App {
+	background-color: $light;
+
+	min-height: 100%;
+	overflow: hidden;
+}
+
+.c-heading.-h2 {
+	font-size: 2rem;
+}
+
+body {
+	margin: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+.line-wrapper {
+	overflow: hidden;
+}
+
+// @media (max-width: 699px) {
+// 	html {
+// 		font-size: 12px;
+// 	}
+// }
+
+h1 {
+	font-family: "Kobe Bold";
+}
+
+// @media (min-width: 700px) and (max-width: 1024px) {
+// 	html {
+// 		font-size: 13px;
+// 	}
+// }
+// @media (min-width: 1025px) and (max-width: 1199px) {
+// 	html {
+// 		font-size: 13px;
+// 	}
+// }
+// @media (min-width: 1200px) and (max-width: 1399px) {
+// 	html {
+// 		font-size: 15px;
+// 	}
+// }
+// @media (min-width: 1400px) and (max-width: 1599px) {
+// 	html {
+// 		font-size: 15px;
+// 	}
+// }
+// @media (min-width: 1600px) and (max-width: 1999px) {
+// 	html {
+// 		font-size: 17px;
+// 	}
+// }
+// @media (min-width: 2000px) and (max-width: 2399px) {
+// 	html {
+// 		font-size: 19px;
+// 	}
+// }
+// @media (min-width: 2400px) {
+// 	html {
+// 		font-size: 21px;
+// 	}
+// }
+
+[data-theme="green"] {
+	background-color: $green;
+	color: $light;
+
+	&,
+	& * {
+		color: $light;
+	}
+
+	svg path {
+		fill: $light;
+		stroke: $light;
+	}
+
+	*::after {
+		background-color: $light;
+	}
+}
+
+[data-theme="red"] {
+	background-color: $red;
+	color: $light;
+
+	&,
+	& * {
+		color: $light;
+	}
+
+	svg path {
+		fill: $light;
+		stroke: $light;
+	}
+
+	svg circle {
+		stroke: $light;
+		stroke-width: 1px;
+	}
+
+	*::after {
+		background-color: $light;
+	}
+}
+
+[data-theme="yellow"] {
+	background-color: $yellow;
+
+	&,
+	& * {
+		color: $dark;
+	}
+
+	svg path {
+		fill: $dark;
+		stroke: $dark;
+	}
+
+	*::after {
+		background-color: $dark;
+	}
+}
+
+[data-theme="blue"] {
+	background-color: $blue;
+	color: $light;
+
+	&,
+	& * {
+		color: $light;
+	}
+
+	svg path {
+		fill: $light;
+		stroke: $light;
+	}
+
+	*::after {
+		background-color: $light;
+	}
+}
+
+// [data-theme="light"] {
+// 	background-color: $light;
+// 	color: $dark;
+// 	fill: $dark;
+
+// 	*::after,
+// 	*::before {
+// 		background-color: $dark;
+// 	}
+// }
+
+[data-theme="dark"] {
+	& {
+		background-color: $dark;
+	}
+	color: $light !important;
+
+	.line {
+		background-color: $light;
+	}
+
+	.c-header_logo svg path {
+		fill: $light;
+	}
+
+	.MuiSvgIcon-root {
+		path {
+			fill: $light;
+		}
+	}
+}
