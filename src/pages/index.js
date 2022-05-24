@@ -4,7 +4,7 @@ import { getHome } from "../lib/getHome";
 
 export default function Home({ home }) {
 
-
+	console.log(home)
 
 	return (
 		<>

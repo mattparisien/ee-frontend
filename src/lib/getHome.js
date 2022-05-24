@@ -36,6 +36,12 @@ export async function getHome() {
 			postsConfig
 		);
 
+		const testimonials = await axios.get(
+			`${process.env.NEXT_PUBLIC_API_URL}/testimonials`
+		);
+
+		console.log(testimonials);
+
 		const seo = await axios.get(
 			`${process.env.NEXT_PUBLIC_API_URL}/pages/?filters[name][$eq]=Home&populate[0]=seo`
 		);
@@ -45,8 +51,8 @@ export async function getHome() {
 			steps: steps.data.data.map(x => ({ id: x.id, ...x.attributes })),
 			projects: [posts.data.data.map(x => ({ ...x.attributes }))][0],
 			seo: { ...seo.data.data[0].attributes.seo },
+			testimonials: [...testimonials.data.data.map(x => ({ ...x.attributes }))],
 		};
-		
 	} catch (err) {
 		console.log(err);
 	}
