@@ -30,6 +30,7 @@ function MyImage({
 				loading='lazy'
 				className={`${grayscale ? "grayscale block" : "block"}`}
 				display="block"
+				// placeholder="blur"
 			/>
 			<MediaTransition />
 			<Overlay />

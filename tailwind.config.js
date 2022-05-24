@@ -17,6 +17,7 @@ module.exports = {
 			addVariant("last-child", "& > *:last-child");
 			addVariant("first-child", "& > *:first-child");
 			addVariant("second-child", "& > *:nth-child(2)");
+			addVariant("second-last-child", "& > *:nth-last-child(2)");
 		}),
 	],
 

@@ -3,6 +3,8 @@ import Carousel from "../Carousel/Carousel";
 import Media from "../Media/Media";
 
 function FullBleedMediaBlock({ data }) {
+	
+
 	const formattedData = useMemo(() => {
 		if (data.MediaItem.InstaPost) {
 		} else if (
@@ -21,6 +23,20 @@ function FullBleedMediaBlock({ data }) {
 							caption: item.attributes.caption,
 						};
 					})}
+				/>
+			);
+		} else {
+			return (
+				<Media
+					resource_type={
+						data.MediaItem.MediaUpload.Media.data[0].attributes
+							.provider_metadata.resource_type
+					}
+					url={data.MediaItem.MediaUpload.Media.data[0].attributes.url}
+					alt={
+						data.MediaItem.MediaUpload.Media.data[0].attributes.alternativeText
+					}
+					format='landscape'
 				/>
 			);
 		}

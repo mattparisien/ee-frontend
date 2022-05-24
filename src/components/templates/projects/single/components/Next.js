@@ -8,45 +8,22 @@ import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
 import { Fade } from "react-reveal";
 import TextMarquee from "./TextMarquee";
+import getNextProject from "./utils/getNextProject";
+import styles from "./Next.module.css";
+import useMouseEnter from "../../../../../helpers/hooks/useMouseEnter";
+import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
+import Arrow from "../../../../Vector/Arrow";
 
 function Next() {
 	const router = useRouter();
 
-	// const next = useMemo(() => {
-	// 	if (projects && currentProjectId) {
-	// 		const nextId = getNextId(projects, currentProjectId);
-	// 		const proj = projects.find(project => project.id === nextId);
-	// 		const { title, subtitle } = proj;
-
-	// 		return {
-	// 			id: nextId,
-	// 			title: title,
-	// 			subtitle: subtitle,
-	// 			slug: subtitle.toLowerCase().split(" ").join("-"),
-	// 		};
-	// 	}
-	// }, [currentProjectId, projects]);
+	const { ref, isEnter } = useMouseEnter();
 
 	const { projects, themeColor } = useContext(SingleContext);
 
 	const next = useMemo(() => {
-		const currSlug = router.query.slug.split("-").join(" ");
-
-		if (projects && projects.length) {
-			const currentProject = projects.find(
-				project => project.Subtitle.toLowerCase() === currSlug.toLowerCase()
-			);
-
-			const currIndex = projects.indexOf(currentProject);
-
-			if (currIndex + 1 !== projects.length) {
-				return projects[currIndex + 1];
-			} else {
-				return projects[0];
-			}
-		}
-
-		return null;
+		const nextProj = getNextProject(router.query.slug, projects);
+		return nextProj;
 	}, [projects, router]);
 
 	const marqueeWords = useMemo(() => {
@@ -70,7 +47,11 @@ function Next() {
 					>
 						<a
 							href={`/projects/${convertToSlug(next.Subtitle)}`}
-							className={`block bg-${themeColor || "yellow"}-custom `}
+							className={`${styles.NextLink} block bg-${
+								themeColor || "yellow"
+							}-custom py-10`}
+							rel='next'
+							ref={ref}
 						>
 							<Container classes='-relative -flex -align-center -justify-between'>
 								<Box
@@ -80,14 +61,18 @@ function Next() {
 									flexDirection='row-reverse'
 									pb={30}
 								>
-									<div className='p-5 text-5xl font-adieu'>Next</div>
-
-									{/* <Arrow color='dark' /> */}
+									<div className='text-3xl font-adieu'>Next</div>
+									<div className={`arrow-wrapper transition-transform ease duration-[400ms] ${isEnter ? 'translate-x-10' : ""}`}>
+										<Arrow />
+									</div>
 								</Box>
-								p
 							</Container>
 							<Fade wrapper={Box}>
-								<TextMarquee direction='right' words={marqueeWords} />
+								<TextMarquee
+									direction='right'
+									words={marqueeWords}
+									isScaledText={isEnter}
+								/>
 							</Fade>
 						</a>
 					</Link>
