@@ -1,18 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useMemo } from "react";
+import { Fade } from "react-reveal";
 import convertToSlug from "../../../../../helpers/convertToSlug";
+import useMouseEnter from "../../../../../helpers/hooks/useMouseEnter";
 import { SingleContext } from "../../../../../pages/projects/[slug]";
 import Container from "../../../../Containers/ContainerFluid";
 import Section from "../../../../Containers/Section";
-import { Fade } from "react-reveal";
+import Arrow from "../../../../Vector/Arrow";
+import styles from "./Next.module.css";
 import TextMarquee from "./TextMarquee";
 import getNextProject from "./utils/getNextProject";
-import styles from "./Next.module.css";
-import useMouseEnter from "../../../../../helpers/hooks/useMouseEnter";
-import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
-import Arrow from "../../../../Vector/Arrow";
 
 function Next() {
 	const router = useRouter();
@@ -62,7 +61,11 @@ function Next() {
 									pb={30}
 								>
 									<div className='text-3xl font-adieu'>Next</div>
-									<div className={`arrow-wrapper transition-transform ease duration-[400ms] ${isEnter ? 'translate-x-10' : ""}`}>
+									<div
+										className={`arrow-wrapper transition-transform ease duration-[400ms] ${
+											isEnter ? "translate-x-10" : ""
+										}`}
+									>
 										<Arrow />
 									</div>
 								</Box>

@@ -19,6 +19,7 @@ function Media(props) {
 					<MyImage
 						src={props.url}
 						alt={props.alt}
+						smallSrc={props.smallSrc}
 						width='100%'
 						height='100%'
 						layout='fill'

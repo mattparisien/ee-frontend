@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import Image from "next/image";
 import MediaTransition from "./MediaTransition";
 import Overlay from "./Overlay";
@@ -18,8 +19,23 @@ function MyImage({
 		square: 1,
 	};
 
+	const smallSrc = useMemo(() => {
+		const qualityString = "w_200,c_scale/";
+
+		if (src && src.includes("cloudinary")) {
+			const partLeft = src.substring(
+				0,
+				src.indexOf("/upload/") + "/upload".length + 1
+			);
+			const partRight = src.substring(partLeft.length, src.length);
+			const newUrl = partLeft + qualityString + partRight;
+			return newUrl;
+		}
+		return smallSrc;
+	}, [src]);
+
 	return (
-		<div className={'Image w-full h-full relative'}>
+		<div className={"Image w-full h-full relative"}>
 			<Image
 				src={src}
 				alt={alt}
@@ -27,10 +43,11 @@ function MyImage({
 				height={height || width * ratios[ratio]}
 				objectFit={objectFit}
 				layout={layout}
-				loading='lazy'
 				className={`${grayscale ? "grayscale block" : "block"}`}
-				display="block"
-				// placeholder="blur"
+				display='block'
+				placeholder='blur'
+				blurDataURL={smallSrc}
+				priority={true}
 			/>
 			<MediaTransition />
 			<Overlay />

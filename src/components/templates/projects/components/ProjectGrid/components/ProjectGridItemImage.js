@@ -10,6 +10,7 @@ function ProjectGridItemImage({ image, ratio, gridNumber }) {
 		<FrameWrapper gridNumber={gridNumber}>
 			<MyImage
 				src={image.url}
+				smallSrc={image.formats.thumbnail.url}
 				alt={image.alternativeText}
 				objectFit='cover'
 				width={"100%"}
