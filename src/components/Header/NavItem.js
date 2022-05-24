@@ -1,11 +1,13 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { HeaderContext } from "./Header";
 
 function NavItem({ slug, index, name, isIntroComplete }) {
 	const router = useRouter();
 	const [active, setActive] = useState(false);
+	const { headerColor } = useContext(HeaderContext);
 
 	useEffect(() => {
 		let currSlug = "/";
@@ -38,8 +40,10 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 	);
 
 	const underlineClasses = classNames("link-underline", {
-		"after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-dark":
+		"after:absolute after:bottom-0 after:left-0 after:w-full after:h-px":
 			active,
+		"after:bg-dark": headerColor.includes("bg-light"),
+		"after:bg-light": headerColor.includes("transparent"),
 	});
 
 	return (

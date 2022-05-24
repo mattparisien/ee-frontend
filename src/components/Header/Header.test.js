@@ -1,9 +1,6 @@
 import {
 	fireEvent,
-	render,
-	waitFor,
-	waitForElement,
-	waitForElementToBeRemoved,
+	render
 } from "@testing-library/react";
 import Header from "./Header";
 import ResponsiveAppBar from "./ResponsiveAppBar";

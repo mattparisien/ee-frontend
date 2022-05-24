@@ -13,7 +13,11 @@ function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
 		<Container>
 			<div className='header-content flex items-center justify-between py-3'>
 				<div className='header-spacer w-20 md:w-[195px]'></div>
-				<HeaderLogo dropdownActive={dropdownActive} headerColor={headerColor} />
+				<HeaderLogo
+					dropdownActive={dropdownActive}
+					headerColor={headerColor}
+					isIntroComplete={appState.isIntroComplete}
+				/>
 				<NavDesktop
 					navItems={appState.navigation[0] && appState.navigation}
 					isIntroComplete={appState.isIntroComplete}
