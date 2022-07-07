@@ -10,8 +10,8 @@ function Section(props) {
 
 	const classes = classNames("Section", {
 		[props.blockName]: props.blockName,
-		"mb-10": !props.disableMarginBottom,
-		"mt-10": !props.disableMarginTop,
+		"mb-10 md:mb-20": !props.disableMarginBottom,
+		"mt-10 md:mt-20": !props.disableMarginTop,
 		"bg-dark text-light": sectionTheme && sectionTheme === "dark",
 		"bg-light text-dark": sectionTheme && sectionTheme === "light",
 		[`bg-${sectionTheme}-custom`]:

@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
 		<GlobalContext.Provider value={{ appState, setAppState, toggleDropdown }}>
 			<DefaultSeo {...SEO} />
 			<Layout>
-				<Component {...pageProps} />;
+				<Component {...pageProps} />
 			</Layout>
 		</GlobalContext.Provider>
 	);

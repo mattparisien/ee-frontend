@@ -23,11 +23,9 @@ function Paragraph({
 	});
 
 	return (
-		<Fade bottom>
-			<div className={wrapperClass}>
-				<p className={classes[size]}>{children}</p>
-			</div>
-		</Fade>
+		<div className={wrapperClass}>
+			<p className={classes[size]}>{children}</p>
+		</div>
 	);
 }
 

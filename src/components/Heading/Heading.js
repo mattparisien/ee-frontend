@@ -18,14 +18,12 @@ function Heading({ level, children, wrapperClasses }) {
 	});
 
 	return (
-		<Fade bottom>
-			<div className={wrapper}>
-				{React.createElement(`h${level}`, {
-					className: commonClasses + headingClasses[level],
-					children: children,
-				})}
-			</div>
-		</Fade>
+		<div className={wrapper}>
+			{React.createElement(`h${level}`, {
+				className: commonClasses + headingClasses[level],
+				children: children,
+			})}
+		</div>
 	);
 }
 
