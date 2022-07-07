@@ -26,6 +26,8 @@ export async function getHome() {
 			`${process.env.NEXT_PUBLIC_API_URL}/about`,
 			aboutConfig
 		);
+
+		console.log(about, 'about');
 		const steps = await axios.get(
 			`${process.env.NEXT_PUBLIC_API_URL}/steps`,
 			stepsConfig
@@ -40,7 +42,7 @@ export async function getHome() {
 			`${process.env.NEXT_PUBLIC_API_URL}/testimonials`
 		);
 
-		console.log(testimonials);
+		
 
 		const seo = await axios.get(
 			`${process.env.NEXT_PUBLIC_API_URL}/pages/?filters[name][$eq]=Home&populate[0]=seo`
@@ -54,6 +56,6 @@ export async function getHome() {
 			testimonials: [...testimonials.data.data.map(x => ({ ...x.attributes }))],
 		};
 	} catch (err) {
-		console.log(err);
+		console.log('in error catch', err);
 	}
 }

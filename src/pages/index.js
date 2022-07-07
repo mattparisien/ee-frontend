@@ -3,9 +3,6 @@ import HomePage from "../components/templates/home/HomePage";
 import { getHome } from "../lib/getHome";
 
 export default function Home({ home }) {
-
-	console.log(home)
-
 	return (
 		<>
 			{<Seo {...home.seo} />}
