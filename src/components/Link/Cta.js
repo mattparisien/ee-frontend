@@ -16,7 +16,7 @@ function Cta({ children, target, href, mixBlend, opacity }) {
 						mixBlend || "multiply"
 					} after:opacity-${
 						opacity || "1"
-					} after:-translate-y-1/2 after:-translate-x-3 after:bg-yellow-custom  after:transition-all after:duration-[0.6s] ease-[cubic-bezier(.645,.045,.355,1)]`}
+					} after:-translate-y-1/2 after:-translate-x-3 after:bg-yellow-custom  after:transition-all after:duration-[0.6s] after:z-[-1] ease-[cubic-bezier(.645,.045,.355,1)]`}
 				>
 					<CtaInner text={children} />
 				</a>
