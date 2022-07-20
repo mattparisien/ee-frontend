@@ -27,7 +27,7 @@ function Work({ projects }) {
 				wrapperClasses={"-ml-2 -mr-2"}
 			/>
 
-			<div className='mx-auto mb-10 mt-20 flex justify-center'>
+			<div className='mx-auto mb-20 mt-10 flex justify-center'>
 				<Cta href={"/projects"}>View all work</Cta>
 			</div>
 		</div>

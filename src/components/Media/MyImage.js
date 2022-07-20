@@ -19,20 +19,20 @@ function MyImage({
 		square: 1,
 	};
 
-	const smallSrc = useMemo(() => {
-		const qualityString = "w_200,c_scale/";
+	// const smallSrc = useMemo(() => {
+	// 	const qualityString = "w_200,c_scale/";
 
-		if (src && src.includes("cloudinary")) {
-			const partLeft = src.substring(
-				0,
-				src.indexOf("/upload/") + "/upload".length + 1
-			);
-			const partRight = src.substring(partLeft.length, src.length);
-			const newUrl = partLeft + qualityString + partRight;
-			return newUrl;
-		}
-		return smallSrc;
-	}, [src]);
+	// 	if (src && src.includes("cloudinary")) {
+	// 		const partLeft = src.substring(
+	// 			0,
+	// 			src.indexOf("/upload/") + "/upload".length + 1
+	// 		);
+	// 		const partRight = src.substring(partLeft.length, src.length);
+	// 		const newUrl = partLeft + qualityString + partRight;
+	// 		return newUrl;
+	// 	}
+	// 	return smallSrc;
+	// }, [src]);
 
 	return (
 		<div className={"Image w-full h-full relative"}>
@@ -45,12 +45,10 @@ function MyImage({
 				layout={layout}
 				className={`${grayscale ? "grayscale block" : "block"}`}
 				display='block'
-				placeholder='blur'
-				blurDataURL={smallSrc}
-				priority={true}
+				priority={false}
 			/>
-			<MediaTransition />
-			<Overlay />
+			{/* <MediaTransition /> */}
+			{/* <Overlay /> */}
 		</div>
 	);
 }
