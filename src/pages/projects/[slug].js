@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
+import Seo from "../../components/Seo/Seo";
 import SinglePage from "../../components/templates/projects/single/SinglePage";
 import { getProjects } from "../../lib/getProjects";
 import { getSingle } from "../../lib/getSingle";
-import getProjectColor from "./utils/getProjectColor";
-import Seo from "../../components/Seo/Seo";
 
 export const SingleContext = React.createContext();
 

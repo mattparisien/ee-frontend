@@ -26,9 +26,12 @@ function Header({ toggleTransitioning, color }) {
 		changeHeaderColor(headerColor, setHeaderColor, pathname, dropdownActive);
 	}, [dropdownActive, pathname, headerColor]);
 
-	const headerClasses = classNames(`Header fixed top-0 left-0 w-screen h-13`, {
-		[headerColor]: headerColor,
-	});
+	const headerClasses = classNames(
+		`Header fixed top-0 left-0 w-screen h-13 bg-light text-dark`,
+		{
+			[headerColor]: headerColor,
+		}
+	);
 
 	return (
 		<HeaderContext.Provider value={{ headerColor }}>

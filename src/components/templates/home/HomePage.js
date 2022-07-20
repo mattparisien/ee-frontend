@@ -10,7 +10,7 @@ import Testimonials from "./components/Testimonials/Testimonials";
 function HomePage({ about, steps, projects, testimonials }) {
 	return (
 		<div className='HomePage first-child:mt-0'>
-			<Hero2 />
+			{/* <Hero2 /> */}
 			<Hero />
 			<About aboutText={about && about} />
 			<Steps steps={steps} />

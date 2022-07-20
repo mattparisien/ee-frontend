@@ -14,7 +14,7 @@ function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
 				<div className='header-spacer w-20 md:w-[195px]'></div>
 				<HeaderLogo
 					dropdownActive={dropdownActive}
-					headerColor={headerColor}
+					headerColor={"light"}
 					isIntroComplete={appState.isIntroComplete}
 				/>
 				<NavDesktop
