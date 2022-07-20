@@ -43,7 +43,7 @@
 		"react-slick": "^0.29.0",
 		"react-transition-group": "^4.4.2",
 		"sass-loader": "^12.6.0",
-		"sharp": "^0.30.5",
+		"sharp": "^0.30.7",
 		"slick-carousel": "^1.8.1",
 		"styled-components": "^5.3.5",
 		"swiper": "^8.1.1",

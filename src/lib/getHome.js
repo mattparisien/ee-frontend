@@ -27,7 +27,6 @@ export async function getHome() {
 			aboutConfig
 		);
 
-		console.log(about, 'about');
 		const steps = await axios.get(
 			`${process.env.NEXT_PUBLIC_API_URL}/steps`,
 			stepsConfig

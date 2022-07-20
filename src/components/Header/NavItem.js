@@ -39,12 +39,14 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 		}
 	);
 
-	const underlineClasses = classNames("link-underline", {
-		"after:absolute after:bottom-0 after:left-0 after:w-full after:h-px":
-			active,
-		"after:bg-dark": headerColor.includes("bg-light"),
-		"after:bg-light": headerColor.includes("transparent"),
-	});
+	const underlineClasses = classNames(
+		"link-underline after:absolute after:bottom-0 after:left-0 after:w-full after:h-px",
+		{
+			"after:scale-x-0 after:origin-left": !active,
+			"after:bg-dark": headerColor.includes("bg-light"),
+			"after:bg-light": headerColor.includes("transparent"),
+		}
+	);
 
 	return (
 		<li className={itemClasses}>

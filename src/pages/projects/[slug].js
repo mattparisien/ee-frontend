@@ -9,17 +9,7 @@ export const SingleContext = React.createContext();
 
 const Single = props => {
 	const [themeColor, setThemeColor] = useState("yellow");
-
-	// useCallback(
-	// 	()) => {
-	// 		const colors = ["yellow", "red", "blue", "green"];
-	// 		const color = getProjectColor(themeColor, colors);
-
-	// 		setThemeColor(newColor);
-	// 	},
-	// 	[themeColor, setThemeColor]
-	// );
-
+	
 	return (
 		<SingleContext.Provider value={{ projects: props.projects, themeColor }}>
 			<Seo {...props.seo} />

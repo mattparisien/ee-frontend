@@ -23,7 +23,7 @@ function TextMarquee({ direction, words, isScaledText }) {
 
 function MarqueeItem({ text }) {
 	return (
-		<Heading level={2} wrapperClasses=' mr-5'>
+		<Heading level={2} wrapperClasses=' mr-10'>
 			{text}
 		</Heading>
 	);

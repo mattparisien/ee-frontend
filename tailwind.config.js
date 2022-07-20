@@ -14,6 +14,7 @@ module.exports = {
 			addVariant("third", "&:nth-child(3)");
 			addVariant("child", "& > *");
 			addVariant("child-hover", "& > *:hover");
+			addVariant("hover-child-after", "&:hover > *::after");
 			addVariant("last-child", "& > *:last-child");
 			addVariant("first-child", "& > *:first-child");
 			addVariant("second-child", "& > *:nth-child(2)");

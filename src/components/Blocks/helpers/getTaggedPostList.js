@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const getTaggedPostList = async next => {
-	const base = `${process.env.REACT_APP_INSTA_GRAPH_ROOT}/${process.env.REACT_APP_INSTA_USERID}/tags`;
+	const base = `${process.env.NEXT_PUBLIC_INSTA_GRAPH_ROOT}/${process.env.NEXT_PUBLIC_INSTA_USERID}/tags`;
 	const requestConfig = {
 		params: {
-			access_token: process.env.REACT_APP_INSTA_APPTOKEN,
+			access_token: process.env.NEXT_PUBLIC_INSTA_APPTOKEN,
 			fields:
 				"id,media_type,media_product_type,video_title,media_url,permalink,username",
 			limit: 100,

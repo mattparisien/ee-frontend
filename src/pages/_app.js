@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }) {
 		introAnimation(setIntroComplete);
 		getNavigation(setAppState);
 		getSocials(setAppState);
+		document.querySelector("body").classList.add("bg-light");
 	}, []);
 
 	const toggleDropdown = () => {

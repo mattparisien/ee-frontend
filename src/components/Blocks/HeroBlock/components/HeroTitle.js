@@ -1,9 +1,12 @@
 import React from "react";
 import Heading from "../../../Heading/Heading";
-import ScrollDownCta from "./ScrollDownCta";
 import SplitText from "../../../HOC/SplitText";
 
 function HeroTitle({ title, subtitle }) {
+
+	console.log('hello', title, subtitle)
+
+
 	return (
 		<div className='HeroBlock_Title flex-1 relative'>
 			<Heading level={1} wrapperClasses='text-center md:text-left mb-2 md:mb-5'>

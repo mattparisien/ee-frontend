@@ -1,5 +1,4 @@
-import { Apps } from "@mui/icons-material";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../../lib/context";
 import Container from "../Containers/ContainerFluid";
 import Burger from "./Burger";

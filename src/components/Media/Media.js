@@ -1,7 +1,6 @@
 import React from "react";
 import MyImage from "./MyImage";
 import MyVideo from "./Video";
-import Frame from "../Frame/Frame";
 
 function Media(props) {
 	const classes = {
@@ -9,8 +8,6 @@ function Media(props) {
 		portrait: "pt-[125%]",
 		square: "pt-[100%]",
 	};
-
-	console.log(props);
 
 	const renderItem = resourceType => {
 		switch (resourceType) {

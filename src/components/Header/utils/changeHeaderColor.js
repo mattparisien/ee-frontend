@@ -7,7 +7,6 @@ const headerStyles = {
 const changeHeaderColor = (state, setState, pathname, dropdownActive) => {
 	if (pathname === "/" && window !== "undefined") {
 		const handleScroll = () => {
-			console.log(window.scrollY);
 			if (
 				window.scrollY > window.innerHeight &&
 				state !== headerStyles.default

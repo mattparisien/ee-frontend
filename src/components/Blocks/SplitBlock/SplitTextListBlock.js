@@ -6,8 +6,8 @@ function SplitTextListBlock({ data }) {
 		data && (
 			<SplitBlock
 				wrapperClasses='justify-between'
-				leftClasses="flex-[3]"
-				rightClasses='md:ml-20 md:w-1/2 mt-5 md:mt-0 flex-1'
+				leftClasses=""
+				rightClasses='md:ml-20 md:w-1/2 mt-5 md:mt-0 w-1/2'
 				leftComponent={<Left text={data.Text} />}
 				rightComponent={<Right list={data.List} />}
 			/>

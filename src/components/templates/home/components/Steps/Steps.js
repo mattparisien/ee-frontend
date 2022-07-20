@@ -7,7 +7,7 @@ import StepItem from "./components/StepItem";
 function Steps({ steps }) {
 	return (
 		<Section sectionTheme='light'>
-			<Container>
+			<Container maxWidth="large">
 				<TitleBlock
 					data={{
 						Title: "Finding Your Rhythm",

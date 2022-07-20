@@ -12,6 +12,7 @@ import Arrow from "../../../../Vector/Arrow";
 import styles from "./Next.module.css";
 import TextMarquee from "./TextMarquee";
 import getNextProject from "./utils/getNextProject";
+// import Link from "next-Link";
 
 function Next() {
 	const router = useRouter();
@@ -22,6 +23,7 @@ function Next() {
 
 	const next = useMemo(() => {
 		const nextProj = getNextProject(router.query.slug, projects);
+		console.log("next project", nextProj);
 		return nextProj;
 	}, [projects, router]);
 
@@ -39,11 +41,7 @@ function Next() {
 		<>
 			{next && (
 				<Section>
-					<Link
-						isRouterLink
-						rel={"next"}
-						href={`/projects/${convertToSlug(next.Subtitle)}`}
-					>
+					<Link href={`/projects/${convertToSlug(next.Subtitle)}`}>
 						<a
 							href={`/projects/${convertToSlug(next.Subtitle)}`}
 							className={`${styles.NextLink} block bg-${
