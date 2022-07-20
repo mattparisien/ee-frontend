@@ -12,6 +12,7 @@ function MyImage({
 	layout,
 	ratio,
 	grayscale,
+	lazyLoad,
 }) {
 	const ratios = {
 		portrait: 1.25,
@@ -36,7 +37,18 @@ function MyImage({
 
 	return (
 		<div className={"Image w-full h-full relative"}>
-			<Image
+			<img
+				className={`${grayscale ? "grayscale block" : "block"}`}
+				src={src}
+				alt={alt}
+				style={{
+					width: width,
+					height: height || width * ratios[ratio],
+					objectFit: objectFit,
+				}}
+				loading={"lazy"}
+			/>
+			{/* <Image
 				src={src}
 				alt={alt}
 				width={width}
@@ -46,9 +58,9 @@ function MyImage({
 				className={`${grayscale ? "grayscale block" : "block"}`}
 				display='block'
 				priority={true}
-				lazyBoundary="1000px"
+				lazyBoundary='1000px'
 				quality={60}
-			/>
+			/> */}
 			<MediaTransition />
 			{/* <Overlay /> */}
 		</div>
