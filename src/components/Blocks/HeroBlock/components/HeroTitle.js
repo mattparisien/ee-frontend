@@ -3,10 +3,6 @@ import Heading from "../../../Heading/Heading";
 import SplitText from "../../../HOC/SplitText";
 
 function HeroTitle({ title, subtitle }) {
-
-	console.log('hello', title, subtitle)
-
-
 	return (
 		<div className='HeroBlock_Title flex-1 relative'>
 			<Heading level={1} wrapperClasses='text-center md:text-left mb-2 md:mb-5'>
@@ -15,7 +11,6 @@ function HeroTitle({ title, subtitle }) {
 			<Heading level={3} wrapperClasses='inline relative'>
 				<SplitText enterDelay={0.8}>{subtitle}</SplitText>
 			</Heading>
-			
 		</div>
 	);
 }

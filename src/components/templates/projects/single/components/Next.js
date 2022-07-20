@@ -22,9 +22,8 @@ function Next() {
 
 	const next = useMemo(() => {
 		const nextProj = getNextProject(router.query.slug, projects);
-		console.log("next project", nextProj);
 		return nextProj;
-	}, [projects, router]);
+	}, [projects]);
 
 	const marqueeWords = useMemo(() => {
 		if (next && next.Title && next.Subtitle) {

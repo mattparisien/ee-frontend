@@ -6,6 +6,10 @@ const headerStyles = {
 
 const changeHeaderColor = (state, setState, pathname, dropdownActive) => {
 	if (pathname === "/" && window !== "undefined") {
+		if (window.scrollY <= 0) {
+			setState(headerStyles.transparentTextLight);
+		}
+
 		const handleScroll = () => {
 			if (
 				window.scrollY > window.innerHeight &&
@@ -31,4 +35,4 @@ const changeHeaderColor = (state, setState, pathname, dropdownActive) => {
 	}
 };
 
-export default changeHeaderColor
+export default changeHeaderColor;
