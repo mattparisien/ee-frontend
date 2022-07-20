@@ -1,4 +1,4 @@
-import Link from "next/Link";
+import Link from "next/link";
 import React from "react";
 import convertToSlug from "../../../../../../helpers/convertToSlug";
 import ProjectGridItemImage from "./ProjectGridItemImage";

@@ -1,7 +1,7 @@
 import React from "react";
 import Heading from "../Heading/Heading";
 import classNames from "classnames";
-import Link from "next/Link";
+import Link from "next/link";
 import styles from "./DropdownMenu.module.css";
 
 function DropdownMenuList({ navItems, toggleMenu, menuActive }) {

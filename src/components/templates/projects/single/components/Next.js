@@ -12,7 +12,6 @@ import Arrow from "../../../../Vector/Arrow";
 import styles from "./Next.module.css";
 import TextMarquee from "./TextMarquee";
 import getNextProject from "./utils/getNextProject";
-// import Link from "next-Link";
 
 function Next() {
 	const router = useRouter();

@@ -1,6 +1,6 @@
 import React from "react";
 import { TextLogo } from "../Vector/Svg";
-import Link from "next/Link";
+import Link from "next/link";
 
 function HeaderLogo({ headerColor, isIntroComplete }) {
 	return (
