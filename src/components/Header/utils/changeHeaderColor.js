@@ -5,30 +5,12 @@ const headerStyles = {
 };
 
 const changeHeaderColor = (state, setState, pathname, dropdownActive) => {
-	setState(headerStyles.default)
-	// if (pathname === "/" && window !== "undefined") {
-	// 	if (window.scrollY <= 0) {
-	// 		setState(headerStyles.transparentTextLight);
-	// 	}
-
-	// 	const handleScroll = () => {
-	// 		if (
-	// 			window.scrollY > window.innerHeight &&
-	// 			state !== headerStyles.default
-	// 		) {
-	// 			setState(headerStyles.default);
-	// 		} else if (
-	// 			window.scrollY < window.innerHeight &&
-	// 			state !== headerStyles.transparentTextLight
-	// 		) {
-	// 			setState(headerStyles.transparentTextLight);
-	// 		}
-	// 	};
-	// 	window.addEventListener("scroll", handleScroll);
-	// }
+	if (!dropdownActive) {
+		setState(headerStyles.default);
+	}
 
 	if (dropdownActive) {
-		setState(headerStyles.transparentTextDark);
+		setState(headerStyles.transparentTextLight);
 	}
 
 	if (!dropdownActive && pathname !== "/") {

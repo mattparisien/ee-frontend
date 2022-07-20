@@ -7,7 +7,6 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import RouteTransition from "../Transition/RouteTransition";
 
-
 function Layout({ children }) {
 	const { appState } = useContext(GlobalContext);
 	const dropdownActive = appState.dropdownActive;
@@ -36,7 +35,7 @@ function Layout({ children }) {
 					<main
 						className={`main pt-[${pathname === "/" ? "0" : "69px"}] bg-light`}
 					>
-						<RouteTransition>{children}</RouteTransition>
+						{children}
 					</main>
 					<Footer />
 				</div>

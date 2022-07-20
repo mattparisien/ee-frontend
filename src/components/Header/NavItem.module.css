@@ -1,0 +1,13 @@
+/* .NavItem span::after {
+	transition: transform 600ms ease;
+} */
+
+/* .is-off::after {
+	transform: scaleX(0);
+	transform-origin: right;
+} */
+
+/* .NavItem:hover span::after {
+	transform: scaleX(1);
+	transform-origin: left;
+} */

@@ -17,14 +17,6 @@ function Link(props) {
 	const navigate = useNavigate();
 
 	const handleNavigate = e => {
-		// scroll.isReady && scroll.scroll.scrollTo(0, 0);
-
-		// if (!scroll.isReady) {
-		// 	setTimeout(() => {
-		// 		window.scrollTo(0, 0);
-		// 	}, 200);
-		// }
-
 		toggleDomAnimationReady();
 		setTransitioning(true);
 

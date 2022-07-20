@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { HeaderContext } from "./Header";
+import styles from "./NavItem.module.css";
 
 function NavItem({ slug, index, name, isIntroComplete }) {
 	const router = useRouter();
@@ -27,12 +28,12 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 	}, [router.route, slug]);
 
 	const itemClasses = classNames(
-		"NavItem flex items-end w-auto transition-opacity ease duration-300 hover:opacity-100 font-semibold",
+		`${styles.NavItem} NavItem flex items-end w-auto transition-opacity ease duration-300 hover:opacity-100 font-semibold`,
 		{ "opacity-60": !active }
 	);
 
 	const linkClasses = classNames(
-		"relative transition duration-[800ms] ease-[cubic-bezier(.215,.61,.355,1)] cursor-pointer",
+		`relative transition duration-[800ms] ease-[cubic-bezier(.215,.61,.355,1)] cursor-pointer`,
 		{
 			"opacity-0 translate-y-full": !isIntroComplete,
 			"ml-10": index !== 0,
@@ -40,9 +41,9 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 	);
 
 	const underlineClasses = classNames(
-		"link-underline after:absolute after:bottom-0 after:left-0 after:w-full after:h-px",
+		"link-underline after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:mix-blend-multiply",
 		{
-			"after:scale-x-0 after:origin-left": !active,
+			"after:scale-x-0": !active,
 			"after:bg-dark": headerColor.includes("bg-light"),
 			"after:bg-light": headerColor.includes("transparent"),
 		}
