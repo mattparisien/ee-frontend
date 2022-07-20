@@ -45,9 +45,11 @@ function MyImage({
 				layout={layout}
 				className={`${grayscale ? "grayscale block" : "block"}`}
 				display='block'
-				priority={false}
+				priority={true}
+				lazyBoundary="1000px"
+				quality={60}
 			/>
-			{/* <MediaTransition /> */}
+			<MediaTransition />
 			{/* <Overlay /> */}
 		</div>
 	);
