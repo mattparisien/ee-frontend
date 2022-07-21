@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Heading from "../Heading/Heading";
 import classNames from "classnames";
 import Link from "next/link";
 import styles from "./DropdownMenu.module.css";
+import { GlobalContext } from "../../lib/context";
 
 function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 	const linkClasses = classNames(
@@ -12,6 +13,8 @@ function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 			"opacity-100 translate-y-0": menuActive,
 		}
 	);
+
+	const { toggleModal } = useContext(GlobalContext);
 
 	return (
 		<ul
@@ -27,7 +30,17 @@ function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 							wrapperClasses={"text-light transition color duration-400 ease"}
 						>
 							<Link href={item.Slug}>
-								<a onClick={toggleMenu} className={linkClasses}>
+								<a
+									onClick={
+										item.Slug === "/contact"
+											? e => {
+													e.preventDefault();
+													toggleModal();
+											  }
+											: toggleMenu
+									}
+									className={linkClasses}
+								>
 									{item.Name}
 								</a>
 							</Link>
