@@ -30,7 +30,7 @@ function Layout({ children }) {
 
 	return (
 		<>
-			<ContactModal />
+			{/* <ContactModal /> */}
 			<div className='scroll-wrapper' data-scroll-container>
 				<div className={layoutClasses}>
 					{showHeader && <Header />}
