@@ -15,7 +15,7 @@ function MarqueeHeading() {
 					"Contact us",
 					"/",
 				]}
-				textColor='light'
+				textColor='yellow-custom'
 			/>
 		</div>
 	);

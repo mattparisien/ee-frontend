@@ -22,7 +22,12 @@ function ContactModal({ isActive }) {
 	return (
 		<ModalWrapper ready={ready}>
 			<div className='sticky z-50 h-full w-full text-light'>
-				<ContactForm />
+				<div className='flex flex-col md:flex-row items-start justify-between mt-40'>
+					<p className='flex-1 text-2xl mr-10 mb-5 md:mb-0'>
+						Let's unlock together the next level of possibilities! Reach out.
+					</p>
+					<ContactForm />
+				</div>
 			</div>
 		</ModalWrapper>
 	);

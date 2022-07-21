@@ -6,7 +6,7 @@ function ModalWrapper({ ready, children }) {
 	return (
 		<div
 			style={{ clipPath: `url(#circle-clip)` }}
-			className={`ContactModal fixed top-0 left-0 w-screen h-screen z-[9999999] block px-5 sm:px-10 md:px-20 py-10 text-yellow-custom`}
+			className={`ContactModal fixed top-0 left-0 w-screen h-screen z-[9999999] block px-5 md:px-10 py-10 text-yellow-custom`}
 		>
 			<MarqueeHeading />
 			<div className='ContactModal_Bg absolute top-0 left-0 w-full h-full bg-dark z-1'></div>

@@ -62,7 +62,7 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 					{name}
 					<span className={underlineClasses}></span>
 				</a>
-			</Link> : <button onClick={toggleModal}>Contact</button>}
+			</Link> : <button onClick={toggleModal} className={linkClasses}>Contact</button>}
 		</li>
 	);
 }
