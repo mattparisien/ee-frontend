@@ -34,8 +34,19 @@ function MyApp({ Component, pageProps }) {
 		}));
 	};
 
+	const toggleModal = () => {
+		setAppState(prevState => {
+			return {
+				...prevState,
+				modalActive: !prevState.modalActive,
+			};
+		});
+	};
+
 	return (
-		<GlobalContext.Provider value={{ appState, setAppState, toggleDropdown }}>
+		<GlobalContext.Provider
+			value={{ appState, setAppState, toggleModal, toggleDropdown }}
+		>
 			<DefaultSeo {...SEO} />
 			<Layout>
 				<Component {...pageProps} />

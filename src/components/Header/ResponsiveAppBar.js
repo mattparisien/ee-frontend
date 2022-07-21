@@ -31,5 +31,5 @@ function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
 		</Container>
 	);
 }
-
+;
 export default ResponsiveAppBar;

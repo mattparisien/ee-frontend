@@ -1,4 +1,3 @@
-
 const toggleDropdown = setState => {
 	return setState(prevState => {
 		return {
@@ -8,6 +7,16 @@ const toggleDropdown = setState => {
 	});
 };
 
+const toggleModal = setState => {
+	return setState(prevState => {
+		return {
+			...prevState,
+			modalActive: !prevState.modalActive,
+		};
+	});
+};
+
 export const ACTIONS = {
 	toggleDropdown,
+	toggleModal,
 };

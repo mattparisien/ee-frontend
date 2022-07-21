@@ -5,10 +5,10 @@ import Marquee from "react-fast-marquee";
 import Heading from "../../../../Heading/Heading";
 import classNames from "classnames";
 
-function TextMarquee({ direction, words, isScaledText }) {
+function TextMarquee({ direction, words, isScaledText, textColor }) {
 	const ref = useRef(null);
 
-	const wrapperClasses = classNames("MarqueeText transition-transform ease-[0.86, 0, 0.07, 0.995] duration-0.6 text-dark");
+	const wrapperClasses = classNames(`MarqueeText transition-transform ease-[0.86, 0, 0.07, 0.995] duration-0.6 text-${textColor || "dark"}`);
 
 	return (
 		<div className={wrapperClasses}>

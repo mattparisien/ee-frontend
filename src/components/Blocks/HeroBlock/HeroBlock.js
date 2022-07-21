@@ -1,8 +1,6 @@
 import React from "react";
-import HeroMedia from "./components/HeroMedia";
-import HeroTitle from "./components/HeroTitle";
 import Heading from "../../Heading/Heading";
-import SplitText from "../../HOC/SplitText";
+import HeroMedia from "./components/HeroMedia";
 
 function HeroBlock({ data }) {
 	return (

@@ -4,8 +4,6 @@ const useImageLoaded = () => {
 	const [loaded, setLoaded] = useState(false);
 	const ref = useRef(null);
 
-  console.log(ref)
-
 	const onLoad = () => {
 		setLoaded(true);
 	};

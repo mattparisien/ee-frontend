@@ -3,6 +3,7 @@ export const defaultState = {
 	navigation: [],
 	socials: [],
 	dropdownActive: false,
+	modalActive: false,
 	projects: [],
 	home: {},
 	about: {},

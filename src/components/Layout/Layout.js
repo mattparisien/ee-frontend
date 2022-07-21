@@ -5,12 +5,14 @@ import { GlobalContext } from "../../lib/context";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import RouteTransition from "../Transition/RouteTransition";
+import ContactModal from "../ContactModal/ContactModal";
 
 function Layout({ children }) {
 	const { appState } = useContext(GlobalContext);
 	const dropdownActive = appState.dropdownActive;
 	const { pathname } = useRouter();
+
+	const showHeader = pathname === "/maintenance" ? false : true;
 
 	const fadeClasses = classNames(
 		"FadeWrapper transition transition-opacity ease duration-300 delay-100",
@@ -27,20 +29,25 @@ function Layout({ children }) {
 	);
 
 	return (
-		<div className='scroll-wrapper' data-scroll-container>
-			<div className={layoutClasses}>
-				<Header />
-				<DropdownMenu />
-				<div className={fadeClasses}>
-					<main
-						className={`main pt-[${pathname === "/" ? "0" : "69px"}] bg-light`}
-					>
-						{children}
-					</main>
-					<Footer />
+		<>
+			<ContactModal />
+			<div className='scroll-wrapper' data-scroll-container>
+				<div className={layoutClasses}>
+					{showHeader && <Header />}
+					<DropdownMenu />
+					<div className={fadeClasses}>
+						<main
+							className={`main pt-[${
+								pathname === "/" ? "0" : "69px"
+							}] bg-light`}
+						>
+							{children}
+						</main>
+						{showHeader && <Footer />}
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 

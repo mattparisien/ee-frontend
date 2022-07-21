@@ -4,11 +4,13 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { HeaderContext } from "./Header";
 import styles from "./NavItem.module.css";
+import { GlobalContext } from "../../lib/context";
 
 function NavItem({ slug, index, name, isIntroComplete }) {
 	const router = useRouter();
 	const [active, setActive] = useState(false);
 	const { headerColor } = useContext(HeaderContext);
+	const { toggleModal } = useContext(GlobalContext);
 
 	useEffect(() => {
 		let currSlug = "/";
@@ -51,7 +53,7 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 
 	return (
 		<li className={itemClasses}>
-			<Link href={`/${slug}`}>
+			{slug !== "/contact" ? <Link href={`/${slug}`}>
 				<a
 					href={`/${slug}`}
 					className={linkClasses}
@@ -60,7 +62,7 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 					{name}
 					<span className={underlineClasses}></span>
 				</a>
-			</Link>
+			</Link> : <button onClick={toggleModal}>Contact</button>}
 		</li>
 	);
 }
