@@ -1,6 +1,5 @@
-import React from "react";
 import classNames from "classnames";
-import Container from "../../Containers/ContainerFluid";
+import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
 
 function ContactForm() {
@@ -9,27 +8,93 @@ function ContactForm() {
 		{}
 	);
 
-	const handleSubmit = () => {
+	const fieldMap = [
+		[
+			{
+				name: "name",
+				placeholder: "Name",
+				element: "input",
+			},
+			{
+				name: "company",
+				placeholder: "Company",
+				element: "input",
+			},
+		],
+		[
+			{
+				name: "email",
+				placeholder: "Email",
+				element: "input",
+			},
+			{
+				name: "somethingelse",
+				placeholder: "Something else",
+				element: "input",
+			},
+		],
+		[
+			{
+				name: "message",
+				placeholder: "Message",
+				element: "textArea",
+			},
+		],
+	];
 
-	}
+	const defaultState = fieldMap.flat().reduce(
+		(obj, item) =>
+			Object.assign(obj, {
+				[item.name]: {
+					value: "",
+				},
+			}),
+		{}
+	);
+
+	const [values, setValues] = useState(defaultState);
+
+	const handleChange = e => {
+		const value = e.target.value;
+		setValues(prevState => ({
+			...prevState,
+			[e.target.name]: {
+				value: value,
+			},
+		}));
+	};
+
+	const handleSubmit = async e => {
+		e.preventDefault();
+		const formData = values;
+		fetch("/api/mail", {
+			method: "post",
+			body: JSON.stringify(formData),
+		});
+	};
 
 	return (
-		<Container maxWidth='small' disableGutters>
-			<form className='ContactForm mt-40 flex justify-center flex-wrap md:w-2/3 ml-auto' onSubmit={handleSubmit}>
-				<div className='flex flex-1'>
-					<input placeholder='Name' className={inputClasses} />
-					<input placeholder='Company' className={inputClasses} />
+		<form
+			className='ContactForm mt-40 flex justify-center flex-wrap md:w-2/3 ml-auto'
+			onSubmit={handleSubmit}
+		>
+			{fieldMap.map(fieldGroup => (
+				<div className='FieldGroup  mt-5 flex flex-[100%]'>
+					{fieldGroup.map(field =>
+						React.createElement(field.element, {
+							className: inputClasses,
+							placeholder: field.placeholder,
+							name: field.name,
+							value: values[field.name].value,
+							required: true,
+							onChange: handleChange,
+						})
+					)}
 				</div>
-				<div className='flex mt-5 flex-1'>
-					<input placeholder='Email' className={inputClasses} />
-					<input placeholder='Something else' className={inputClasses} />
-				</div>
-				<div className='mt-5 flex flex-1'>
-					<textArea placeholder='Message' className={inputClasses} />
-				</div>
-				<SubmitButton/>
-			</form>
-		</Container>
+			))}
+
+			<SubmitButton />
+		</form>
 	);
 }
 

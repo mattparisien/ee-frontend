@@ -6,7 +6,7 @@ import HeaderLogo from "./HeaderLogo";
 import NavDesktop from "./NavDesktop";
 
 function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
-	const { appState } = useContext(GlobalContext);
+	const { appState, setAppState } = useContext(GlobalContext);
 
 	return (
 		<Container>
@@ -20,6 +20,7 @@ function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
 				<NavDesktop
 					navItems={appState.navigation[0] && appState.navigation}
 					isIntroComplete={appState.isIntroComplete}
+					toggleModal={setAppState}
 				/>
 
 				<Burger
