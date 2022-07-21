@@ -1,12 +1,28 @@
 import React from "react";
 import Cta from "../components/Link/Cta";
+import Container from "../components/Containers/ContainerFluid";
+
+import { DrawnLogo } from "../components/Vector/Svg";
 
 function Custom404() {
 	return (
-		<div className='Custom404 h-screen flex flex-col items-center justify-center'>
-			<div className='text-9xl' style={{fontFamily: "Kobe Bold"}}>404</div>
-      <div className="text-2xl md:text-3xl">Sorry, this page doesn't seem to exist</div>
-      <Cta href="/">Back to home</Cta>
+		<div className='Custom404  flex flex-col items-center justify-center my-[10rem]'>
+			<Container maxWidth='small'>
+				
+				<div className='w-[100px] h-[100px] mx-auto mb-10'>
+					<DrawnLogo width='200px' height='200px' />
+				</div>
+
+				<div className='text-4xl sm:text-4xl font-adieu text-center'>
+					Whoops, looks like this page is gone.
+				</div>
+
+				<div className='mt-10 flex items-center justify-center'>
+					<Cta href='/' classes='hidden'>
+						go to website
+					</Cta>
+				</div>
+			</Container>
 		</div>
 	);
 }
