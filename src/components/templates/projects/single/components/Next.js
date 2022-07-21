@@ -38,44 +38,36 @@ function Next() {
 	return (
 		<>
 			{next && (
-				<Section>
-					<Link href={`/projects/${convertToSlug(next.Subtitle)}`}>
-						<a
-							href={`/projects/${convertToSlug(next.Subtitle)}`}
-							className={`${styles.NextLink} block bg-${
-								themeColor || "yellow"
-							}-custom py-10`}
-							rel='next'
-							ref={ref}
-						>
-							<Container classes='-relative -flex -align-center -justify-between'>
-								<Box
-									display='flex'
-									justifyContent='space-between'
-									alignItems='center'
-									flexDirection='row-reverse'
-									pb={30}
+				<Link href={`/projects/${convertToSlug(next.Subtitle)}`}>
+					<a
+						href={`/projects/${convertToSlug(next.Subtitle)}`}
+						className={`${styles.NextLink} block bg-${
+							themeColor || "yellow"
+						}-custom pt-10 md:py-10`}
+						rel='next'
+						ref={ref}
+					>
+						<Container classes='-relative -flex -align-center -justify-between'>
+							<div className='flex items-center justify-between flex-row-reverse pb-20 md:pb-40 lg:pb-60'>
+								<div className='text-xl md:text-3xl font-adieu'>Next</div>
+								<div
+									className={`arrow-wrapper transition-transform ease duration-[400ms] ${
+										isEnter ? "translate-x-10" : ""
+									}`}
 								>
-									<div className='text-3xl font-adieu'>Next</div>
-									<div
-										className={`arrow-wrapper transition-transform ease duration-[400ms] ${
-											isEnter ? "translate-x-10" : ""
-										}`}
-									>
-										<Arrow />
-									</div>
-								</Box>
-							</Container>
-							<Fade wrapper={Box}>
-								<TextMarquee
-									direction='right'
-									words={marqueeWords}
-									isScaledText={isEnter}
-								/>
-							</Fade>
-						</a>
-					</Link>
-				</Section>
+									<Arrow />
+								</div>
+							</div>
+						</Container>
+						<Fade wrapper={Box}>
+							<TextMarquee
+								direction='right'
+								words={marqueeWords}
+								isScaledText={isEnter}
+							/>
+						</Fade>
+					</a>
+				</Link>
 			)}
 		</>
 	);

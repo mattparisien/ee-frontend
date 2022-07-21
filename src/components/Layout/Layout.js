@@ -37,7 +37,7 @@ function Layout({ children }) {
 					<DropdownMenu />
 					<div className={fadeClasses}>
 						<main
-							className={`main mb-[600px] z-[2]  sticky pt-[${
+							className={`main bg-light mb-[600px] z-[2]  sticky pt-[${
 								pathname === "/" ? "0" : "69px"
 							}] bg-light relative after:absolute after:top-full after:left-0 ${pathname.includes("/projects/") ? 'after:bg-yellow-custom' : 'after:bg-light pb-2 md:pb-20'} after:rounded-b-3xl after:w-full after:h-10`}
 						>

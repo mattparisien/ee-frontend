@@ -11,7 +11,7 @@ function HeroBlock({ data }) {
 			<div className='HeroBlock_Title flex-1 relative'>
 				<Heading
 					level={1}
-					wrapperClasses='text-center md:text-left mb-2 md:mb-5'
+					wrapperClasses='text-center md:text-left mb-2 md:mb-5 font-normal'
 				>
 					{data.Title}
 				</Heading>

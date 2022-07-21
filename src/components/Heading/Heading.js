@@ -3,10 +3,10 @@ import React from "react";
 import { Fade } from "react-reveal";
 
 function Heading({ level, children, wrapperClasses }) {
-	const commonClasses = "font-bold ";
+	const commonClasses = " ";
 
 	const headingClasses = {
-		1: "text-4xl md:text-5xl font-adieu",
+		1: "font-bold text-4xl md:text-5xl font-adieu",
 		2: "text-5xl md:text-6xl font-adieu",
 		3: "text-xl md:text-2xl font-adieu",
 		5: "text-md md:text-xl",

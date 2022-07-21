@@ -1,9 +1,7 @@
-import { DriveEtaOutlined } from "@mui/icons-material";
 import { Box } from "@mui/material";
+import classNames from "classnames";
 import React, { useRef } from "react";
 import Marquee from "react-fast-marquee";
-import Heading from "../../../../Heading/Heading";
-import classNames from "classnames";
 
 function TextMarquee({ direction, words, isScaledText, textColor, fontSize }) {
 	const ref = useRef(null);
@@ -23,7 +21,7 @@ function TextMarquee({ direction, words, isScaledText, textColor, fontSize }) {
 
 function MarqueeItem({ text, fontSize }) {
 	return (
-		<div className={`mr-10 font-adieu ${fontSize ? `text-${fontSize}` : `text-6xl`}`}>
+		<div className={`mr-5 md:mr-10 font-adieu ${fontSize ? `text-${fontSize}` : `text-3xl md:text-6xl`}`}>
 			{text}
 		</div>
 	);

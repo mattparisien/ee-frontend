@@ -2,7 +2,7 @@ import React from "react";
 
 function Arrow() {
 	return (
-		<div className='c-arrow'>
+		<div className='c-arrow md:w-[150px] w-[60px]'>
 			<svg
 				className='c-arrow_svg'
 				viewBox='0 0 84 22'
