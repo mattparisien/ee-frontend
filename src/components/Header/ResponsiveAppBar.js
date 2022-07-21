@@ -11,7 +11,7 @@ function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
 	return (
 		<Container>
 			<div className='header-content flex items-center justify-between py-3'>
-				<div className='header-spacer w-16 md:w-[195px]'></div>
+				<div className='header-spacer w-16 md:w-[327px]'></div>
 				<HeaderLogo
 					dropdownActive={dropdownActive}
 					headerColor={headerColor}

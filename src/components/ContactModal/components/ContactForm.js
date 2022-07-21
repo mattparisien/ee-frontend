@@ -4,7 +4,7 @@ import SubmitButton from "./SubmitButton";
 
 function ContactForm() {
 	const inputClasses = classNames(
-		"bg-dark border-b-[1px] border-neutral-400 placeholder-neutral-400 focus:outline-none text-xl pb-2 mr-4 flex-1 relative",
+		"bg-dark border-b-[1px] border-neutral-400 placeholder-neutral-400 focus:outline-none text-xl pb-2 flex-1 relative",
 		{}
 	);
 
@@ -28,8 +28,8 @@ function ContactForm() {
 				element: "input",
 			},
 			{
-				name: "somethingelse",
-				placeholder: "Something else",
+				name: "city",
+				placeholder: "City",
 				element: "input",
 			},
 		],
@@ -80,19 +80,20 @@ function ContactForm() {
 		>
 			{fieldMap.map(fieldGroup => (
 				<div className='FieldGroup  mt-5 flex flex-[100%]'>
-					{fieldGroup.map(field =>
-						React.createElement(field.element, {
-							className: inputClasses,
-							placeholder: field.placeholder,
-							name: field.name,
-							value: values[field.name].value,
-							required: true,
-							onChange: handleChange,
-						})
-					)}
+					{fieldGroup.map(field => (
+						<div className='FieldWrapper mr-4 flex-[100%] flex relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-light after:scale-x-0 after:origin-left after:transition after:duration-[800ms] after:ease-[cubic-bezier(0.35, 0.755, 0.42, 0.95)] hover:after:scale-x-100 '>
+							{React.createElement(field.element, {
+								className: inputClasses,
+								placeholder: field.placeholder,
+								name: field.name,
+								value: values[field.name].value,
+								required: true,
+								onChange: handleChange,
+							})}
+						</div>
+					))}
 				</div>
 			))}
-
 			<SubmitButton />
 		</form>
 	);
