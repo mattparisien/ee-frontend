@@ -11,7 +11,7 @@ function Paragraph({
 	textRight,
 }) {
 	const classes = {
-		large: `max-w-[709px] text-md md:text-xl leading-[1.9] md:leading-[1.7]`,
+		large: `max-w-[709px] text-md md:text-xl leading-[1.9] md:leading-[1.7] font-normal`,
 		small: `text-md leading-7`,
 	};
 
