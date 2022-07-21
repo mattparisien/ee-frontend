@@ -1,0 +1,8 @@
+.Notes svg {
+  width: 100px;
+  height: 100px;
+}
+
+.Notes .c-note_1 {
+  display: none;
+}

@@ -2,7 +2,7 @@ import * as React from "react";
 import Scale from "../HOC/Scale";
 
 export const QuarterNote = props => (
-	<div className={`c-note c-note_${props.id} c-note_quarter`} {...props}>
+	<div className={`c-note c-note_${props.id} c-note_quarter ${props.classes || ''}`} {...props}>
 		<Scale>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -16,7 +16,7 @@ export const QuarterNote = props => (
 );
 
 export const HalfNote = props => (
-	<div className={`c-note c-note_${props.id}  c-note_half`} {...props}>
+	<div className={`c-note c-note_${props.id}  c-note_half ${props.classes || ''}`} {...props}>
 		<Scale>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -42,7 +42,7 @@ export const BassClef = props => (
 );
 
 export const WholeNote = props => (
-	<div className='c-note c-note_whole' {...props}>
+	<div className={`c-note c-note_whole ${props.classes || ''}`} {...props}>
 		<Scale>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
@@ -57,7 +57,7 @@ export const WholeNote = props => (
 
 export const DoubleNote = props => {
 	return (
-		<div className={`c-note c-note_${props.id} c-note_double`} {...props}>
+		<div className={`c-note c-note_${props.id} c-note_double ${props.classes || ''}`} {...props}>
 			<Scale>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
