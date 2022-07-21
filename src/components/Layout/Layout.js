@@ -39,7 +39,7 @@ function Layout({ children }) {
 						<main
 							className={`main mb-[600px] pb-2 md:pb-20 z-[99] sticky pt-[${
 								pathname === "/" ? "0" : "69px"
-							}] bg-light relative after:absolute after:top-full after:left-0 after:bg-light after:rounded-b-xl after:w-full after:h-10`}
+							}] bg-light relative after:absolute after:top-full after:left-0 after:bg-light after:rounded-b-3xl after:w-full after:h-10`}
 						>
 							{children}
 						</main>
