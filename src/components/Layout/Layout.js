@@ -37,9 +37,9 @@ function Layout({ children }) {
 					<DropdownMenu />
 					<div className={fadeClasses}>
 						<main
-							className={`main mb-[600px] pb-20 z-[99] sticky pt-[${
+							className={`main mb-[600px] pb-2 md:pb-20 z-[99] sticky pt-[${
 								pathname === "/" ? "0" : "69px"
-							}] bg-light`}
+							}] bg-light relative after:absolute after:top-full after:left-0 after:bg-light after:rounded-b-xl after:w-full after:h-10`}
 						>
 							{children}
 						</main>
