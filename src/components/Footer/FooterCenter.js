@@ -13,7 +13,7 @@ function FooterCenter({ heading, email }) {
 					{heading}
 				</Heading>
 				<div className="email md:text-xl text-center md:text-left mt-5 font-semibold hover:opacity-60 transition-opacity duration-[300ms]">
-					<a href={`mailto:${email}`}>{email}</a>
+					<a href={`mailto:${email}`} className="hover-underline">{email}</a>
 				</div>
 			</div>
 			<FooterLogo />

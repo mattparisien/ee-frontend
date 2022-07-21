@@ -22,3 +22,5 @@ export async function getFooter(setState) {
 		console.log(err);
 	}
 }
+
+

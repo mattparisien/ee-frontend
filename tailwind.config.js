@@ -9,7 +9,6 @@ module.exports = {
 	],
 	plugins: [
 		plugin(function ({ addVariant }) {
-			// Add a `third` variant, ie. `third:pb-0`
 			addVariant("second", "&:nth-child(2)");
 			addVariant("third", "&:nth-child(3)");
 			addVariant("child", "& > *");

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function useInView() {
+function useInView(options) {
 	const [inView, setInView] = useState(false);
 
 	const ref = useRef(null);
@@ -16,9 +16,14 @@ function useInView() {
 				});
 			};
 
-			const observer = new IntersectionObserver(handleIntersection, {
+			const defaultOptions = {
 				threshold: 0.1,
-			});
+			};
+
+			const observer = new IntersectionObserver(
+				handleIntersection,
+				options || defaultOptions
+			);
 			observer.observe(ref.current);
 		}
 	}, [ref.current]);
