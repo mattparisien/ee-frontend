@@ -15,7 +15,7 @@ export default function Footer(props) {
 	}, []);
 
 	return (
-		<footer className='Footer h-[600px] w-screen bg-dark text-light'>
+		<footer className='Footer h-[600px] fixed bottom-0 left-0 w-screen bg-dark text-light'>
 			<ContainerFluid classes='h-full'>
 				<div className='content-wrapper h-full flex flex-col justify-between'>
 					<div className='spacer h-28'></div>
