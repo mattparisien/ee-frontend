@@ -3,7 +3,6 @@ import Heading from "../../../../../Heading/Heading";
 import SplitText from "../../../../../HOC/SplitText";
 import Markdown from "../../../../../Markdown/Markdown";
 import { DoubleNote, HalfNote, QuarterNote } from "../../../../../Vector/Notes";
-import { useMediaQuery } from "@mui/material";
 
 function StepItem({ step, id, count }) {
 
