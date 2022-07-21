@@ -2,9 +2,39 @@ import React from "react";
 import Heading from "../../../../../Heading/Heading";
 import SplitText from "../../../../../HOC/SplitText";
 import Markdown from "../../../../../Markdown/Markdown";
+import { DoubleNote, HalfNote, QuarterNote } from "../../../../../Vector/Notes";
 import { useMediaQuery } from "@mui/material";
 
-function StepItem({ step, id }) {
+function StepItem({ step, id, count }) {
+
+	const noteClasses =
+		"fill-yellow-custom absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2";
+
+	const notes = [
+		{
+			component: DoubleNote,
+			classes: noteClasses + " w-[70px]"
+		},
+		{
+			component: HalfNote,
+			classes: noteClasses + " w-[30px]"
+		},
+		{
+			component: QuarterNote,
+			classes: noteClasses + " w-[30px]"
+		},
+		{
+			component: HalfNote,
+			classes: noteClasses + " w-[30px]"
+		},
+		{
+			component: DoubleNote,
+			classes: noteClasses + " w-[70px]"
+		},
+	];
+
+	console.log(id);
+
 	const locations = {
 		1: {
 			column: "col-span-full sm:col-span-4 lg:col-span-2",
@@ -30,16 +60,26 @@ function StepItem({ step, id }) {
 		},
 	};
 
+
 	return (
 		<div
 			className={`StepItem StepItem_${step.id} relative z-50 ${locations[id].column} ${locations[id].row}`}
 		>
-			<Heading level={3} wrapperClasses='text-center mb-5 font-semibold'>
+			<Heading
+				level={3}
+				wrapperClasses='text-center mb-5 font-semibold sticky z-[2]'
+			>
 				<SplitText>{step.Title}</SplitText>
 			</Heading>
-			<Markdown variantMap={{ p: "small" }} textCenter>
-				{step.Body}
-			</Markdown>
+			<div className='z-[2] sticky'>
+				<Markdown variantMap={{ p: "small" }} textCenter>
+					{step.Body}
+				</Markdown>
+			</div>
+			{React.createElement(notes[count].component, {
+				classes: notes[count].classes,
+			})}
+			{/* <DoubleNote classes='fill-yellow-custom w-[70px] absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2' /> */}
 		</div>
 	);
 }

@@ -15,11 +15,10 @@ function Steps({ steps }) {
 					}}
 				/>
 				<div className='content-wrapper relative w-full h-full py-20'>
-					<Notes />
 					<div className='Steps h-full grid grid-cols-6 gap-y-7 sm:gap-y-20 sm:gap-x-20 lg:gap-x-10 lg:gap-y-10'>
 						{steps &&
-							steps.map(step => {
-								return <StepItem step={step} key={step.id} id={step.id} />;
+							steps.map((step, index) => {
+								return <StepItem step={step} key={step.id} id={step.id} count={index} />;
 							})}
 					</div>
 				</div>

@@ -28,11 +28,11 @@ function Notes() {
 		<>
 			<div className={`${styles.Notes} absolute top-0 left-0 w-full h-full`}>
 				<div className="w-full h-full relative">
-					<QuarterNote id={1} data-direction='right' classes="absolute md:left-[21vw] md:top-[10vw] lg:left-[9vw] lg:top-[14vw] fill-yellow-custom" />
-					<DoubleNote id={2} data-direction='left' classes="absolute md:right-[25vw] md:top-[31vw] lg:top-[30vw] lg:left-[38vw] fill-yellow-custom"/>
-					<HalfNote id={3} data-direction='right' classes="absolute md:left-[21vw] md:top-[50vw] lg:top-[50vw] lg:right-[10vw] fill-yellow-custom"/>
-					<DoubleNote id={4} data-direction='right' classes="absolute md:right-[21vw] md:bottom-[28vw] lg:bottom-[30vw] lg:right-[40vw] fill-yellow-custom"/>
-					<QuarterNote id={5} data-direction='left' classes="absolute md:left-[21vw] lg:bottom-[9vw] lg:left-[6vw] fill-yellow-custom"/>
+					<QuarterNote id={1} data-direction='right' classes="absolute lg:top-[120px] lg:left-[100px] fill-yellow-custom" />
+					<DoubleNote id={2} data-direction='left' classes="absolute  lg:top-[400px] lg:left-[400px] fill-yellow-custom"/>
+					<HalfNote id={3} data-direction='right' classes="absolute  lg:top-[600px] lg:left-[680px] fill-yellow-custom"/>
+					<DoubleNote id={4} data-direction='right' classes="absolute  fill-yellow-custom"/>
+					<QuarterNote id={5} data-direction='left' classes="absolute bottom-[20vw] sm:left-[21vw] sm:bottom-[10vw] lg:bottom-[9vw] lg:left-[6vw] fill-yellow-custom"/>
 				</div>
 			</div>
 		</>
