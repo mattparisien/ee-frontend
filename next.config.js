@@ -29,7 +29,7 @@ module.exports = {
 	// 	];
 	// },
 	images: {
-		loader: "cloudinary",
+		loader: "akamai",
 		path: "",
 		domains: ["res.cloudinary.com", "scontent.cdninstagram.com"],
 	},
