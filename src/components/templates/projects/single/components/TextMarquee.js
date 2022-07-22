@@ -21,7 +21,7 @@ function TextMarquee({ direction, words, isScaledText, textColor, fontSize }) {
 
 function MarqueeItem({ text, fontSize }) {
 	return (
-		<div className={`mr-5 md:mr-10 font-adieu ${fontSize ? `text-${fontSize}` : `text-3xl md:text-6xl`}`}>
+		<div className={`mr-5 md:mr-10 font-walsheim font-bold ${fontSize ? `text-${fontSize}` : `text-4xl md:text-6xl`}`}>
 			{text}
 		</div>
 	);

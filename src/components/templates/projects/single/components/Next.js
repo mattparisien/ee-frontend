@@ -49,7 +49,7 @@ function Next() {
 					>
 						<Container classes='-relative -flex -align-center -justify-between'>
 							<div className='flex items-center justify-between flex-row-reverse pb-20 md:pb-40 lg:pb-60'>
-								<div className='text-xl md:text-3xl font-adieu'>Next</div>
+								<div className='text-3xl md:text-4xl font-medium font-walsheim'>Next</div>
 								<div
 									className={`arrow-wrapper transition-transform ease duration-[400ms] ${
 										isEnter ? "translate-x-10" : ""
