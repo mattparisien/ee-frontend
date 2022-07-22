@@ -39,7 +39,7 @@ function Layout({ children }) {
 		pathname.includes("/projects/")
 			? "after:bg-yellow-custom"
 			: pathname === "/contact"
-			? "after:bg-dark shadow-xl"
+			? "after:bg-dark after:shadow-2xl"
 			: "after:bg-light pb-2 md:pb-20"
 	} after:rounded-b-3xl after:w-full after:h-10`;
 

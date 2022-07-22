@@ -17,7 +17,7 @@ const iconMap = {
 	pinterest: PinterestIcon,
 };
 
-function SocialList({ direction }) {
+function SocialList({ direction, color }) {
 	const { appState } = useContext(GlobalContext);
 
 	const classes = classNames("SocialList flex ", {
@@ -37,7 +37,7 @@ function SocialList({ direction }) {
 							className='p-0 hover:opacity-50 transition transition-ease duration-300'
 						>
 							{React.createElement(iconMap[account.Name.toLowerCase()], {
-								className: `text-light ${i !== 0 && "mt-3 md:ml-3 md:mt-0"}`,
+								className: `text-${color} ${i !== 0 && "mt-3 md:ml-3 md:mt-0"}`,
 							})}
 						</a>
 					</li>

@@ -30,8 +30,12 @@ export default function Footer(props) {
 			<ContainerFluid classes='h-full'>
 				<div className='content-wrapper h-full flex flex-col justify-between'>
 					<div className='spacer h-28'></div>
-					<FooterCenter heading={footer.Heading} email={footer.Email} pathname={pathname}/>
-					<FooterBottom />
+					<FooterCenter
+						heading={footer.Heading}
+						email={footer.Email}
+						pathname={pathname}
+					/>
+					<FooterBottom pathname={pathname} />
 				</div>
 			</ContainerFluid>
 		</footer>
