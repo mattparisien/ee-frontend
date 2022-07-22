@@ -12,6 +12,8 @@ function Layout({ children }) {
 	const dropdownActive = appState.dropdownActive;
 	const { pathname } = useRouter();
 
+	console.log(pathname);
+
 	const showHeader = pathname === "/maintenance" ? false : true;
 
 	const fadeClasses = classNames(
@@ -27,8 +29,8 @@ function Layout({ children }) {
 	const layoutClasses = classNames("Layout bg-light", {
 		"after:scale-y-0": appState.isIntroComplete,
 		[revealerClasses]: pathname !== "/maintenance",
-		"mt-[4rem]": pathname !== "/maintenance",
-		"flex items-center justify-center": pathname === "/maintenance"
+		"pt-[4rem]": pathname !== "/contact",
+		"flex items-center justify-center": pathname === "/maintenance",
 	});
 
 	const mainClasses = `main bg-light mb-[600px] z-[2] sticky pt-[${
@@ -36,6 +38,8 @@ function Layout({ children }) {
 	}] bg-light relative after:absolute after:top-full after:left-0 ${
 		pathname.includes("/projects/")
 			? "after:bg-yellow-custom"
+			: pathname === "/contact"
+			? "after:bg-dark shadow-xl"
 			: "after:bg-light pb-2 md:pb-20"
 	} after:rounded-b-3xl after:w-full after:h-10`;
 
@@ -47,7 +51,13 @@ function Layout({ children }) {
 					{showHeader && <Header />}
 					<DropdownMenu />
 					<div className={fadeClasses}>
-						<main className={pathname !== "/maintenance" ? mainClasses : "main h-screen flex items-center justify-center bg-dark text-light w-screen"}>
+						<main
+							className={
+								pathname !== "/maintenance"
+									? mainClasses
+									: "main h-screen flex items-center justify-center bg-dark text-light w-screen"
+							}
+						>
 							{children}
 						</main>
 						{showHeader && <Footer />}

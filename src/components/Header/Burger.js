@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useContext } from "react";
 import { GlobalContext } from "../../lib/context";
 import styles from "./Burger.module.css";
+import { HeaderContext } from "./Header";
 
 function Burger({ dropdownActive, isIntroComplete }) {
 	const { toggleDropdown } = useContext(GlobalContext);

@@ -3,7 +3,7 @@ import Heading from "../Heading/Heading";
 import FooterLogo from "./FooterLogo";
 import { useMediaQuery } from "@mui/material";
 
-function FooterCenter({ heading, email }) {
+function FooterCenter({ heading, email, pathname }) {
 	const matches = useMediaQuery("(max-width: 769px)");
 
 	return (
@@ -16,7 +16,7 @@ function FooterCenter({ heading, email }) {
 					<a href={`mailto:${email}`} className="hover-underline">{email}</a>
 				</div>
 			</div>
-			<FooterLogo />
+			<FooterLogo color={pathname === "/contact" ? "dark" : "light"}/>
 		</div>
 	);
 }

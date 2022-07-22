@@ -2,8 +2,13 @@ import React from "react";
 import Container from "../../Containers/ContainerFluid";
 import ContactForm from "./components/ContactForm";
 import Heading from "../../Heading/Heading";
+import { GlobalContext } from "../../../lib/context";
+import { useContext } from "react";
 
 function ContactPage() {
+
+  
+
 	return (
 		<div className='ContactPage bg-dark h-screen pt-20'>
 			<Container>
