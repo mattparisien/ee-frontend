@@ -7,7 +7,7 @@ function SplitTextListBlock({ data }) {
 			<SplitBlock
 				wrapperClasses='justify-between'
 				leftClasses=""
-				rightClasses='md:ml-20 w-full md:w-1/2 mt-5 md:mt-0 w-1/2'
+				rightClasses='md:ml-20 w-full mt-5 md:mt-0 md:w-1/2'
 				leftComponent={<Left text={data.Text} />}
 				rightComponent={<Right list={data.List} />}
 			/>
