@@ -18,7 +18,7 @@ function SplitTextListBlock({ data }) {
 function Left({ text }) {
 	return (
 		<div className={"Left"}>
-			<Markdown paragraphClasses={"md:mt-3"}>{text}</Markdown>
+			<Markdown paragraphClasses={"mt-3"}>{text}</Markdown>
 		</div>
 	);
 }
