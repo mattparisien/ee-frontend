@@ -6,7 +6,7 @@ function Heading({ level, children, wrapperClasses }) {
 	const commonClasses = " ";
 
 	const headingClasses = {
-		1: "font-bold text-4xl md:text-5xl font-walsheim",
+		1: "font-bold text-5xl md:text-7xl font-walsheim",
 		2: "font-bold text-5xl md:text-6xl font-walsheim",
 		3: "font-medium text-3xl md:text-2xl font-walsheim",
 		5: "font-medium text-md md:text-xl font-walsheim",

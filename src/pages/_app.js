@@ -16,13 +16,11 @@ function MyApp({ Component, pageProps }) {
 	const { pathname } = useRouter();
 
 	useEffect(() => {
-		if (pathname !== "/maintenance") {
-			introAnimation(setIntroComplete);
-			getNavigation(setAppState);
-			getSocials(setAppState);
-			document.querySelector("body").classList.add("bg-light");
-		}
-	}, [pathname]);
+		introAnimation(setIntroComplete);
+		getNavigation(setAppState);
+		getSocials(setAppState);
+		document.querySelector("body").classList.add("bg-light");
+	}, []);
 
 	const toggleDropdown = () => {
 		setAppState(prev => ({

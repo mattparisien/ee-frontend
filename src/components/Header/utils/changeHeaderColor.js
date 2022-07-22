@@ -9,7 +9,7 @@ const changeHeaderColor = (state, setState, pathname, dropdownActive) => {
 		setState(headerStyles.default);
 	}
 
-	if (dropdownActive) {
+	if (dropdownActive ) {
 		setState(headerStyles.transparentTextLight);
 	}
 

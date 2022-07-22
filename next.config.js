@@ -1,33 +1,33 @@
 module.exports = {
-	async redirects() {
-		return [
-			{
-				source: "/",
-				destination: "/maintenance",
-				permanent: false,
-			},
-			{
-				source: "/about",
-				destination: "/maintenance",
-				permanent: false,
-			},
-			{
-				source: "/404",
-				destination: "/maintenance",
-				permanent: false,
-			},
-			{
-				source: "/projects",
-				destination: "/maintenance",
-				permanent: false,
-			},
-			{
-				source: "/projects/[slug]",
-				destination: "/maintenance",
-				permanent: false,
-			},
-		];
-	},
+	// async redirects() {
+	// 	return [
+	// 		{
+	// 			source: "/",
+	// 			destination: "/maintenance",
+	// 			permanent: false,
+	// 		},
+	// 		{
+	// 			source: "/about",
+	// 			destination: "/maintenance",
+	// 			permanent: false,
+	// 		},
+	// 		{
+	// 			source: "/404",
+	// 			destination: "/maintenance",
+	// 			permanent: false,
+	// 		},
+	// 		{
+	// 			source: "/projects",
+	// 			destination: "/maintenance",
+	// 			permanent: false,
+	// 		},
+	// 		{
+	// 			source: "/projects/[slug]",
+	// 			destination: "/maintenance",
+	// 			permanent: false,
+	// 		},
+	// 	];
+	// },
 	images: {
 		loader: "cloudinary",
 		path: "",

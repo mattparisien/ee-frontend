@@ -26,7 +26,7 @@ function Layout({ children }) {
 
 	const layoutClasses = classNames("Layout bg-light", {
 		"after:scale-y-0": appState.isIntroComplete,
-		revealerClasses: pathname !== "/maintenance",
+		[revealerClasses]: pathname !== "/maintenance",
 		"mt-[4rem]": pathname !== "/maintenance",
 		"flex items-center justify-center": pathname === "/maintenance"
 	});

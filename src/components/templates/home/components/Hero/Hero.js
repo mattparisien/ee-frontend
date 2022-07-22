@@ -29,7 +29,7 @@ function Hero() {
 							))}
 							<HeroLogo />
 
-							<div className="font-walsheim font-bold text-[6vw] md:hidden">
+							<div className='font-walsheim font-bold text-[6vw] md:hidden'>
 								<SplitText>Social Impact Agency</SplitText>
 							</div>
 						</>
