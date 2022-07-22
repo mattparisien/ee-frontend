@@ -4,7 +4,7 @@ import { GlobalContext } from "../../lib/context";
 import styles from "./Burger.module.css";
 import { HeaderContext } from "./Header";
 
-function Burger({ dropdownActive, isIntroComplete }) {
+function Burger({ dropdownActive, isIntroComplete, headerTheme }) {
 	const { toggleDropdown } = useContext(GlobalContext);
 
 	const pseudoClasses = {
@@ -17,8 +17,8 @@ function Burger({ dropdownActive, isIntroComplete }) {
 			dropdownActive ? styles.isClose : styles.isBurger
 		} relative block h-7 w-16 rounded-3xl md:hidden ${pseudoClasses.common} transition duration-[700ms] ease-[cubic-bezier(.215,.61,.355,1)]`,
 		{
-			"is-close bg-light before:bg-dark after:bg-dark": dropdownActive,
-			"is-burger bg-dark before:bg-light after:bg-light": !dropdownActive,
+			"is-close bg-light before:bg-dark after:bg-dark": dropdownActive || headerTheme === "dark",
+			"is-burger bg-dark before:bg-light after:bg-light": !dropdownActive && !headerTheme === "dark",
 			"before:-translate-y-1/2 after:-translate-y-1/2 before:-translate-x-1/2 after:-translate-x-1/2":
 				dropdownActive,
 			"before:rotate-[20deg] after:-rotate-[20deg]": dropdownActive,

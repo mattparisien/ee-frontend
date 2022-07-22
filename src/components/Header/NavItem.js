@@ -9,7 +9,7 @@ import { GlobalContext } from "../../lib/context";
 function NavItem({ slug, index, name, isIntroComplete }) {
 	const router = useRouter();
 	const [active, setActive] = useState(false);
-	const { headerColor } = useContext(HeaderContext);
+	const { headerTheme } = useContext(HeaderContext);
 	const { toggleModal } = useContext(GlobalContext);
 
 	useEffect(() => {
@@ -46,8 +46,8 @@ function NavItem({ slug, index, name, isIntroComplete }) {
 		"link-underline after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:mix-blend-multiply",
 		{
 			"after:scale-x-0": !active,
-			"after:bg-dark": headerColor.includes("bg-light"),
-			"after:bg-light": headerColor.includes("transparent"),
+			"after:bg-dark": headerTheme === "light",
+			"after:bg-light": headerTheme === "dark",
 		}
 	);
 

@@ -1,16 +1,14 @@
 import React from "react";
 import Container from "../../Containers/ContainerFluid";
-import ContactForm from "./components/ContactForm";
 import Heading from "../../Heading/Heading";
-import { GlobalContext } from "../../../lib/context";
-import { useContext } from "react";
+import ContactForm from "./components/ContactForm";
 
 function ContactPage() {
 
   
 
 	return (
-		<div className='ContactPage bg-dark h-screen pt-20'>
+		<div className='ContactPage bg-dark h-screen pt-40'>
 			<Container>
 				<div className='sticky z-50 h-full w-full text-light'>
 					<div className='flex flex-col lg:flex-row items-start justify-between'>

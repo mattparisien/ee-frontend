@@ -5,16 +5,16 @@ import Burger from "./Burger";
 import HeaderLogo from "./HeaderLogo";
 import NavDesktop from "./NavDesktop";
 
-function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
+function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerTheme }) {
 	const { appState, setAppState } = useContext(GlobalContext);
 
 	return (
 		<Container>
 			<div className='header-content flex items-center justify-between py-3'>
-				<div className='header-spacer w-16 md:w-[228px]'></div>
+				<div className='header-spacer w-16 md:w-[327.28px]'></div>
 				<HeaderLogo
 					dropdownActive={dropdownActive}
-					headerColor={headerColor}
+					headerTheme={headerTheme}
 					isIntroComplete={appState.isIntroComplete}
 				/>
 				<NavDesktop
@@ -24,6 +24,7 @@ function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
 				/>
 
 				<Burger
+					headerTheme={headerTheme}
 					onBurgerClick={onBurgerClick}
 					dropdownActive={dropdownActive}
 					isIntroComplete={appState.isIntroComplete}
@@ -32,5 +33,4 @@ function ResponsiveAppBar({ dropdownActive, onBurgerClick, headerColor }) {
 		</Container>
 	);
 }
-;
 export default ResponsiveAppBar;

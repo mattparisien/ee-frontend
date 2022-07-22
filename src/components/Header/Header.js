@@ -12,32 +12,22 @@ function Header({ toggleTransitioning, color }) {
 	const dropdownActive = appState.dropdownActive;
 	const { pathname } = useRouter();
 
-	const headerStyles = {
-		default: "bg-light text-dark",
-		transparentTextDark: "bg-transparent text-dark",
-		transparentTextLight: "bg-transparent text-light",
-	};
-
-	const [headerColor, setHeaderColor] = useState(
-		headerStyles.transparentTextLight
-	);
+	const [headerTheme, setHeaderTheme] = useState("light");
 
 	useEffect(() => {
-		changeHeaderColor(headerColor, setHeaderColor, pathname, dropdownActive);
-	}, [dropdownActive, pathname, headerColor]);
+		setHeaderTheme(pathname === "/contact" ? "dark" : "light");
+	}, [pathname]);
 
-	const headerClasses = classNames(
-		`Header fixed top-0 left-0 w-screen h-13 bg-light text-dark`,
-		{
-			[headerColor]: headerColor,
-		}
-	);
+	const headerClasses = classNames(`Header fixed top-0 left-0 w-screen h-13`, {
+		"bg-light text-dark": headerTheme === "light",
+		"bg-transparent text-light": headerTheme === "dark",
+	});
 
 	return (
-		<HeaderContext.Provider value={{ headerColor }}>
+		<HeaderContext.Provider value={{ headerTheme }}>
 			<header className={headerClasses} style={{ zIndex: 99999 }}>
 				<ResponsiveAppBar
-					headerColor={headerColor}
+					headerTheme={headerTheme}
 					toggleTransitioning={toggleTransitioning}
 					dropdownActive={dropdownActive}
 					color={color}
