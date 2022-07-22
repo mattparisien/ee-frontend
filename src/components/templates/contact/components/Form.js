@@ -15,9 +15,9 @@ function Form({
 			onSubmit={handleSubmit}
 		>
 			{fieldMap.map(fieldGroup => (
-				<div className='FieldGroup  mt-5 flex flex-[100%]'>
+				<div className='FieldGroup sm:mt-5 flex flex-col sm:flex-row flex-[100%]'>
 					{fieldGroup.map(field => (
-						<div className='FieldWrapper font-walsheim group mr-4 flex-[100%] flex relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-light after:scale-x-0 after:origin-left after:transition after:duration-[800ms] after:ease-[cubic-bezier(0.35, 0.755, 0.42, 0.95)] hover:after:scale-x-100 '>
+						<div className='FieldWrapper mt-5 sm:mt-0 font-walsheim group mr-4 flex-[100%] flex relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-light after:scale-x-0 after:origin-left after:transition after:duration-[800ms] after:ease-[cubic-bezier(0.35, 0.755, 0.42, 0.95)] hover:after:scale-x-100 '>
 							{!dirtyInputs[field.name].dirty && (
 								<label className='absolute text-xl group-hover:text-light z-[2] left-0 text-neutral-400 transition-colors duration-[800ms] ease-[cubic-bezier(.215,.61,.355,1)] top-0 text-light pointer-events-none'>
 									{field.placeholder}
