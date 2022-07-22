@@ -20,7 +20,7 @@ function Header({ toggleTransitioning, color }) {
 
 	const headerClasses = classNames(`Header fixed top-0 left-0 w-screen h-13`, {
 		"bg-light text-dark": headerTheme === "light",
-		"bg-transparent text-light": headerTheme === "dark",
+		"bg-transparent text-light": headerTheme === "dark" || dropdownActive,
 	});
 
 	return (
