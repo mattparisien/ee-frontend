@@ -16,7 +16,7 @@ function Hero() {
 		<Section>
 			<Container maxWidth='large'>
 				<div
-					className={`content-wrapper bg-light h-[80vw] md:h-[calc(100vh-200px)] max-h-[600px] min-h-[400px] flex flex-col items-center md:items-start justify-center md:justify-between  py-3 relative`}
+					className={`content-wrapper bg-light h-[80vw] md:h-[calc(100vh-200px)] max-h-[600px] min-h-[400px] flex flex-col items-center md:items-start justify-center md:justify-between py-5 md:py-10 relative`}
 				>
 					{appState.isIntroComplete && (
 						<>
