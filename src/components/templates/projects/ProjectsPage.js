@@ -9,7 +9,7 @@ function ProjectsPage() {
 	const { appState } = useContext(GlobalContext);
 
 	return (
-		<div className='ProjectsPage first-child:mt-32'>
+		<div className='ProjectsPage first-child:pt-16 first-child:mt-0'>
 			<Block
 				options={null}
 				component='TitleBlock'

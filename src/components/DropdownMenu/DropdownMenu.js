@@ -12,7 +12,7 @@ function DropdownMenu() {
 	const dropdownActive = appState.dropdownActive;
 
 	const classes = classNames(
-		"DropdownMenu fixed top-0 left-0 w-full h-[60vh] before:bg-dark before:w-full before:h-full before:absolute before:top-0 before:left-0 before:origin-top before:transition before:duration-[0.6s] before:ease-dropdown",
+		"DropdownMenu fixed top-0 left-0 w-full h-[138vw] max-h-[510px] before:bg-dark before:w-full before:h-full before:absolute before:top-0 before:left-0 before:origin-top before:transition before:duration-[0.6s] before:ease-dropdown",
 		{
 			"is-active": dropdownActive,
 			invisible: !dropdownActive,
@@ -39,7 +39,7 @@ function DropdownMenu() {
 			style={{
 				zIndex: 9999,
 				transition: "visibility 0.8s",
-				// boxShadow: "-3px 50vw 50vw 100vw rgba(245, 223, 30, 0.43)",
+				
 			}}
 		>
 			<ContainerFluid classes={"flex items-center justify-center h-full"}>
