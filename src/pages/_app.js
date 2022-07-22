@@ -9,16 +9,20 @@ import "../styles/css/globals.css";
 import "../styles/scss/main.scss";
 import { DefaultSeo } from "next-seo";
 import SEO from "../../next-seo.config";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
 	const [appState, setAppState] = useState(defaultState);
+	const { pathname } = useRouter();
 
 	useEffect(() => {
-		introAnimation(setIntroComplete);
-		getNavigation(setAppState);
-		getSocials(setAppState);
-		document.querySelector("body").classList.add("bg-light");
-	}, []);
+		if (pathname !== "/maintenance") {
+			introAnimation(setIntroComplete);
+			getNavigation(setAppState);
+			getSocials(setAppState);
+			document.querySelector("body").classList.add("bg-light");
+		}
+	}, [pathname]);
 
 	const toggleDropdown = () => {
 		setAppState(prev => ({

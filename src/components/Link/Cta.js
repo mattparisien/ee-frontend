@@ -15,7 +15,7 @@ function Cta({ children, target, href, mixBlend, opacity }) {
 					} inline-block relative after:will-change-width after:w-12 hover:after:w-[calc(100%+2rem)] after:h-12 after:absolute after:top-1/2 after:left-0 after:rounded-[3rem] after:mix-blend-${
 						mixBlend || "multiply"
 					} after:opacity-${
-						opacity || "1"
+						opacity || "40"
 					} after:-translate-y-1/2 after:-translate-x-3 after:bg-yellow-custom  after:transition-all after:duration-[0.6s] after:z-[-1] ease-[cubic-bezier(.645,.045,.355,1)]`}
 				>
 					<CtaInner text={children} />
