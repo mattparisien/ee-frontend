@@ -61,21 +61,9 @@ function MyImage({
 				blurDataURL={blurredUrl}
 			/>
 			<MediaTransition />
-			<Overlay />
+			{/* <Overlay /> */}
 		</div>
 	);
 }
-
-const LowResImage = props => {
-	return <img {...props} />;
-};
-
-const HighResImage = props => {
-	const handleLoad = () => {
-		props.setLoaded(true);
-	};
-
-	return <img {...props} onLoad={handleLoad} />;
-};
 
 export default MyImage;

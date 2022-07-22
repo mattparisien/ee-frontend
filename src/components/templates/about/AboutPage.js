@@ -13,7 +13,7 @@ function AboutPage({ blocks }) {
 		/>
 	));
 
-	return template;
+	return <div className='AboutPage first-child:mt-32'>{template}</div>;
 }
 
 export default React.memo(AboutPage);
