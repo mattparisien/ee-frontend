@@ -10,6 +10,7 @@ function LayoutRight({ media, mediaRatio }) {
 				frame
 				url={media.url}
 				alt={media.alt}
+				cloudinaryId={media.provider_metadata.public_id}
 			/>
 		</div>
 	);

@@ -14,6 +14,7 @@ function HeroMedia({ image }) {
 				layout='fill'
 				objectFit={"cover"}
 				resource_type='image'
+				cloudinaryId={image.attributes.provider_metadata.public_id}
 				aspect='portrait'
 			/>
 			<Accent />

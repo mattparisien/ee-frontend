@@ -47,6 +47,7 @@ function Right({ media }) {
 				alt={media[0].attributes.alternativeText}
 				caption={media[0].attributes.caption}
 				resource_type={media[0].attributes.provider_metadata.resource_type}
+				cloudinaryId={media[0].attributes.provider_metadata.public_id}
 				aspect='landscape'
 			/>
 		</div>

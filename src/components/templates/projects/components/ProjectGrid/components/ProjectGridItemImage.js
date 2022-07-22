@@ -6,6 +6,8 @@ import HoverFrame from "../../../../../HOC/HoverFrame";
 import MyImage from "../../../../../Media/MyImage";
 
 function ProjectGridItemImage({ image, ratio, gridNumber }) {
+	console.log(image);
+
 	return (
 		<FrameWrapper gridNumber={gridNumber}>
 			<MyImage
@@ -16,6 +18,7 @@ function ProjectGridItemImage({ image, ratio, gridNumber }) {
 				width={"100%"}
 				height='100%'
 				layout='fill'
+				cloudinaryId={image.provider_metadata.public_id}
 			/>
 		</FrameWrapper>
 	);

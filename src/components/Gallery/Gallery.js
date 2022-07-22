@@ -27,6 +27,7 @@ function Gallery({ variant, cols, gap, items }) {
 						caption: item.attributes.caption,
 						width: item.attributes.width,
 						height: item.attributes.height,
+						cloudinaryId: item.attributes.provider_metadata.public_id,
 					}}
 				/>
 			))}

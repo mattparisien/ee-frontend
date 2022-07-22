@@ -21,6 +21,8 @@ function Work({ projects }) {
 					resource_type:
 						project.FeatureImage.data.attributes.provider_metadata
 							.resource_type,
+							cloudinaryId: 	project.FeatureImage.data.attributes.provider_metadata
+							.public_id,
 				}))}
 				slidesPerView={3}
 				linkable

@@ -27,6 +27,7 @@ function GalleryItem({ image, isMobile }) {
 						src={image.url}
 						alt={image.alt}
 						layout='fill'
+						cloudinaryId={image.cloudinaryId}
 					/>
 				</div>
 			</div>

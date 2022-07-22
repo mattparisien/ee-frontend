@@ -22,6 +22,7 @@ function Media(props) {
 						layout='fill'
 						objectFit={"cover"}
 						grayscale={props.grayscale}
+						cloudinaryId={props.cloudinaryId}
 					/>
 				);
 			case "video":

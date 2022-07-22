@@ -21,6 +21,7 @@ function InstaPost(props) {
 							linkable={false}
 							items={data.map(x => ({
 								resource_type: x.provider_metadata.resource_type,
+								cloudinaryId: x.provider_metadata.public_id,
 								url: x.url,
 								alt: x.alternativeText,
 								aspect: "square",
@@ -38,6 +39,7 @@ function InstaPost(props) {
 						<Media
 							aspect={"portrait"}
 							resource_type={data[0].attributes.provider_metadata.resource_type}
+							cloudinaryId={data[0].attributes.provider_metadata.public_id}
 							url={data[0].attributes.url}
 						/>
 					),
@@ -101,7 +103,7 @@ function InstaPost(props) {
 						: process.env.NEXT_PUBLIC_INSTA_DEFAULT_IMAGE
 				}
 				classes={(endPointClasses += " min-h-12")}
-				handle={post && post.handle || `eyes__ears`}
+				handle={(post && post.handle) || `eyes__ears`}
 			/>
 			{post && post.component}
 			{post && post.caption && (
