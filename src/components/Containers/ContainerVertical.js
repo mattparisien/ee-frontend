@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 
 function ContainerVertical(props) {
   return (
-    <Box className="ContainerVertical" sx={{padding: "3rem 0", height: "100%"}}>
+    <Box className="ContainerVertical" sx={{padding: "2rem 0", height: "100%"}}>
       {props.children}
     </Box>
   )

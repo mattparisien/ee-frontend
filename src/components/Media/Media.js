@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Frame from "../Frame/Frame";
 import MyImage from "./MyImage";
 import MyVideo from "./Video";
 
@@ -8,6 +9,8 @@ function Media(props) {
 		portrait: "pt-[125%]",
 		square: "pt-[100%]",
 	};
+
+	const [frameReady, setFrameReady] = useState(false);
 
 	const renderItem = resourceType => {
 		switch (resourceType) {
@@ -49,9 +52,9 @@ function Media(props) {
 					{" "}
 					{renderItem(props.resource_type)}
 				</div>
-			</div>
 
-			{/* <Frame /> */}
+				{props.displayFrame && <Frame isHovering={true} />}
+			</div>
 		</>
 	);
 }

@@ -6,7 +6,7 @@ function HeroWord({ word, index }) {
 		<div
 			className={`${styles.HeroWord} ${`${
 				styles[`HeroWord_${index + 1}`]
-			}`} md:text-6xl lg:text-8xl tracking-tight hidden md:block`}
+			}`} md:text-6xl lg:text-8xl tracking-tight hidden md:block font-walsheim font-bold`}
 		>
 			{word}
 		</div>

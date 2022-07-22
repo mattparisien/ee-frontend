@@ -29,7 +29,7 @@ function CtaInner({ text }) {
 	return (
 		<>
 			<div className='CtaInner w-full h-full flex items-center justify-center'>
-				<span className={`Cta_Text block uppercase text-xs font-adieu`}>
+				<span className={`Cta_Text block uppercase text-sm font-walsheim font-medium`}>
 					{text}
 				</span>
 				<ArrowForwardIosIcon sx={{ height: "0.5rem" }} />

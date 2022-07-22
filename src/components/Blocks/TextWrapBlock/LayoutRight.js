@@ -7,10 +7,10 @@ function LayoutRight({ media, mediaRatio }) {
 			<Media
 				aspect={mediaRatio}
 				resource_type='image'
-				frame
 				url={media.url}
 				alt={media.alt}
 				cloudinaryId={media.provider_metadata.public_id}
+				displayFrame
 			/>
 		</div>
 	);

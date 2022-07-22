@@ -6,11 +6,11 @@ function Heading({ level, children, wrapperClasses }) {
 	const commonClasses = " ";
 
 	const headingClasses = {
-		1: "font-bold text-4xl md:text-5xl font-adieu",
-		2: "text-5xl md:text-6xl font-adieu",
-		3: "text-xl md:text-2xl font-adieu",
-		5: "font-semibold text-md md:text-xl",
-		6: `font-semibold text-lg md:text-lg`,
+		1: "font-bold text-4xl md:text-5xl font-walsheim",
+		2: "font-bold text-5xl md:text-6xl font-walsheim",
+		3: "font-medium text-3xl md:text-2xl font-walsheim",
+		5: "font-medium text-md md:text-xl font-walsheim",
+		6: `font-medium text-lg md:text-lg font-walsheim`,
 	};
 
 	const wrapper = classNames("Heading", {

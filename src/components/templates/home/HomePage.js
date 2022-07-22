@@ -8,6 +8,7 @@ import Work from "./components/Work/Work";
 import Testimonials from "./components/Testimonials/Testimonials";
 
 function HomePage({ about, steps, projects, testimonials }) {
+	
 	return (
 		<div className='HomePage first-child:mt-0'>
 			{/* <Hero2 /> */}

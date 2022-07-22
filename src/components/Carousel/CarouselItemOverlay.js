@@ -9,7 +9,7 @@ function CarouselItemOverlay({ Title, Subtitle, isVisible }) {
 				}`}
 			>
 				<p
-					className={`text-2xl font-semibold z-50 absolute left-0 top-0 p-4 translate-y-${
+					className={`text-2xl font-walsheim font-medium z-50 absolute left-0 top-0 p-4 translate-y-${
 						isVisible ? "0" : "full"
 					} opacity-${
 						isVisible ? 1 : 0
@@ -18,7 +18,7 @@ function CarouselItemOverlay({ Title, Subtitle, isVisible }) {
 					{Title}
 				</p>
 				<p
-					className={`text-2xl text-right font-semibold z-50 absolute bottom-0 right-0 p-4 translate-y-${
+					className={`text-2xl text-right font-walsheim font-medium z-50 absolute bottom-0 right-0 p-4 translate-y-${
 						isVisible ? "0" : "full"
 					} opacity-${
 						isVisible ? 1 : 0

@@ -7,7 +7,7 @@ import { GlobalContext } from "../../lib/context";
 
 function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 	const linkClasses = classNames(
-		`${styles.DropdownLink} block hover:text-yellow-custom`,
+		`${styles.DropdownLink} block hover:text-yellow-custom font-medium`,
 		{
 			"opacity-0 translate-y-full": !menuActive,
 			"opacity-100 translate-y-0": menuActive,
@@ -26,7 +26,7 @@ function DropdownMenuList({ navItems, toggleMenu, menuActive }) {
 				navItems.map((item, i) => (
 					<li key={i} className={i !== navItems.length - 1 ? "pb-5" : ""}>
 						<Heading
-							level={1}
+							level={2}
 							wrapperClasses={"text-light transition color duration-400 ease"}
 						>
 							<Link href={item.Slug}>

@@ -1,9 +1,9 @@
-.HeroWord {
-	font-family: "Adieu";
-}
-
 .HeroWord_2 {
 	align-self: flex-end;
+}
+
+.HeroWord div {
+	font-weight: 700;
 }
 
 .c-drawnLogo,

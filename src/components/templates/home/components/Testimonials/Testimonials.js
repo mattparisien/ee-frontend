@@ -4,6 +4,7 @@ import Carousel from "../../../../Carousel/Carousel";
 import Container from "../../../../Containers/ContainerFluid";
 
 function Testimonials({ items }) {
+	
 	return (
 		<Section>
 			<Container maxWidth="small">

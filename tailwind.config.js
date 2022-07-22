@@ -24,7 +24,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				adieu: ["Adieu"],
+				walsheim: ["Walsheim, Helvetica Neue, Helvetica, Arial, sans-serif"],
 			},
 			colors: {
 				light: "#F9F8F2",

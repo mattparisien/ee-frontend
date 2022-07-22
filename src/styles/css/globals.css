@@ -56,6 +56,30 @@ code {
 }
 
 @font-face {
+	font-family: "Walsheim";
+	src: url("../fonts/Walsheim/Walsheim-Regular.woff2");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Walsheim";
+	src: url("../fonts/Walsheim/Walsheim-Medium.woff2");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Walsheim";
+	src: url("../fonts/Walsheim/Walsheim-Bold.woff2");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Walsheim";
+	src: url("../fonts/Walsheim/Walsheim-Black.woff2");
+	font-weight: 900;
+}
+
+@font-face {
 	font-family: "Riposte";
 	src: url("../fonts/Riposte/GTFRiposteTRIAL-Regular.otf");
 	font-weight: 400;
@@ -96,6 +120,14 @@ main {
 
 p #text {
 	display: none;
+}
+
+.font-bold .motion-char {
+	font-weight: 700;
+}
+
+.font-medium .motion-char {
+	font-weight: 500;
 }
 
 @tailwind base;

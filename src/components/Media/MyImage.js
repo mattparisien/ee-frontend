@@ -5,6 +5,7 @@ import Overlay from "./Overlay";
 import Image from "next/image";
 import classNames from "classnames";
 import buildUrl from "cloudinary-build-url";
+import Frame from "../Frame/Frame";
 
 function MyImage({
 	cloudinaryId,
@@ -25,7 +26,6 @@ function MyImage({
 	const { ref, inView } = useInView({
 		threshold: 0,
 	});
-
 
 	const url = buildUrl(cloudinaryId || "", {
 		cloud: {
@@ -57,7 +57,7 @@ function MyImage({
 				className={customImgClasses}
 				lazyBoundary='1000px'
 				unoptimized={true}
-				placeholder="blur"
+				placeholder='blur'
 				blurDataURL={blurredUrl}
 			/>
 			<MediaTransition />
