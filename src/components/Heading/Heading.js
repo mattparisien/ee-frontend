@@ -9,8 +9,8 @@ function Heading({ level, children, wrapperClasses }) {
 		1: "font-bold text-4xl md:text-5xl font-adieu",
 		2: "text-5xl md:text-6xl font-adieu",
 		3: "text-xl md:text-2xl font-adieu",
-		5: "text-md md:text-xl",
-		6: `text-lg md:text-lg`,
+		5: "font-semibold text-md md:text-xl",
+		6: `font-semibold text-lg md:text-lg`,
 	};
 
 	const wrapper = classNames("Heading", {
