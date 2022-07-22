@@ -113,9 +113,16 @@ main {
 	height: 100%;
 }
 
+@media screen and (min-width: 768px) {
+	.Block_SplitTextListBlock .Heading,
+	.Block_SplitTextListBlock ul {
+		margin-top: 3rem;
+	}
+}
+
 .Block_SplitTextListBlock .Heading,
 .Block_SplitTextListBlock ul {
-	margin-top: 2rem;
+	margin-top: 1.25rem;
 }
 
 p #text {

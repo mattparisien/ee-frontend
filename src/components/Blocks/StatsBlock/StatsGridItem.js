@@ -7,7 +7,7 @@ function StatsGridItem({ heading, description, index }) {
 	return (
 		<Fade bottom>
 			<div
-				className={`StatsGridItem  ${index !== 0 ? "ml-5 mt-7 md:mt-0" : ""}`}
+				className={`StatsGridItem  ${index !== 0 ? "md:ml-5 mt-7 md:mt-0" : ""}`}
 			>
 				<Heading level={3} wrapperClasses='w-full text-center'>
 					{heading}

@@ -10,7 +10,7 @@ function Heading({ level, children, wrapperClasses }) {
 		2: "font-bold text-5xl md:text-6xl font-walsheim",
 		3: "font-medium text-3xl md:text-2xl font-walsheim",
 		5: "font-medium text-md md:text-xl font-walsheim",
-		6: `font-medium text-lg md:text-lg font-walsheim`,
+		6: `font-medium text-lg md:text-xl font-walsheim`,
 	};
 
 	const wrapper = classNames("Heading", {
