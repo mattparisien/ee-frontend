@@ -5,14 +5,11 @@ import { GlobalContext } from "../../lib/context";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import ContactModal from "../ContactModal/ContactModal";
 
 function Layout({ children }) {
 	const { appState } = useContext(GlobalContext);
 	const dropdownActive = appState.dropdownActive;
 	const { pathname } = useRouter();
-
-	console.log(pathname);
 
 	const showHeader = pathname === "/maintenance" ? false : true;
 

@@ -62,7 +62,7 @@ function ContactForm() {
 	const [success, setSuccess] = useState(false);
 
 	const inputClasses = classNames(
-		"bg-dark border-b-[1px] border-neutral-400 placeholder-neutral-400 hover:placeholder-light focus:outline-none text-xl pb-2 flex-1 relative",
+		"bg-transparent border-b-[1px] border-neutral-400 placeholder-neutral-400 hover:placeholder-light focus:outline-none text-xl pb-2 flex-1 relative",
 		{}
 	);
 

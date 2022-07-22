@@ -11,7 +11,7 @@ function Form({
 }) {
 	return (
 		<form
-			className='ContactForm flex justify-center flex-wrap ml-auto flex-1 mt-10 lg:mt-0'
+			className='ContactForm flex justify-center flex-wrap ml-auto flex-1 mt-3 sm:mt-10 lg:mt-0'
 			onSubmit={handleSubmit}
 		>
 			{fieldMap.map(fieldGroup => (

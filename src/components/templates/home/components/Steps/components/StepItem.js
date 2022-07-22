@@ -5,39 +5,35 @@ import Markdown from "../../../../../Markdown/Markdown";
 import { DoubleNote, HalfNote, QuarterNote } from "../../../../../Vector/Notes";
 
 function StepItem({ step, id, count }) {
+	const mobileOddTranslate = "-translate-x-[45vw]";
+	const mobileEvenTranslate = "translate-x-[32vw]";
 
-	console.log(count, step)
-
-	const mobileOddTranslate = '-translate-x-[45vw]';
-	const mobileEvenTranslate = 'translate-x-[32vw]';
-
-	const noteClasses =
-		`fill-yellow-custom absolute top-[50%] left-[50%] -translate-y-1/2 ${id % 2 === 0 ? mobileEvenTranslate : mobileOddTranslate} sm:-translate-x-1/2`;
+	const noteClasses = `fill-yellow-custom absolute top-[50%] left-[50%] -translate-y-1/2 ${
+		id % 2 === 0 ? mobileEvenTranslate : mobileOddTranslate
+	} sm:-translate-x-1/2`;
 
 	const notes = [
 		{
 			component: DoubleNote,
-			classes: noteClasses + " w-[70px]"
+			classes: noteClasses + " w-[70px]",
 		},
 		{
 			component: HalfNote,
-			classes: noteClasses + " w-[30px]"
+			classes: noteClasses + " w-[30px]",
 		},
 		{
 			component: QuarterNote,
-			classes: noteClasses + " w-[30px]"
+			classes: noteClasses + " w-[30px]",
 		},
 		{
 			component: HalfNote,
-			classes: noteClasses + " w-[30px]"
+			classes: noteClasses + " w-[30px]",
 		},
 		{
 			component: DoubleNote,
-			classes: noteClasses + " w-[70px]"
+			classes: noteClasses + " w-[70px]",
 		},
 	];
-
-	console.log(id);
 
 	const locations = {
 		1: {
@@ -63,7 +59,6 @@ function StepItem({ step, id, count }) {
 			row: "row-start-5 row-end-6",
 		},
 	};
-
 
 	return (
 		<div

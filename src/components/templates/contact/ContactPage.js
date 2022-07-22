@@ -5,7 +5,7 @@ import ContactForm from "./components/ContactForm";
 
 function ContactPage() {
 	return (
-		<div className='ContactPage bg-dark h-screen pt-40'>
+		<div className='ContactPage bg-dark min-h-screen pt-[calc(68.59px+4rem)]'>
 			<Container>
 				<div className='sticky z-50 h-full w-full text-light'>
 					<div className='flex flex-col lg:flex-row items-start justify-between'>

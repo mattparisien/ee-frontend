@@ -6,8 +6,6 @@ import HoverFrame from "../../../../../HOC/HoverFrame";
 import MyImage from "../../../../../Media/MyImage";
 
 function ProjectGridItemImage({ image, ratio, gridNumber }) {
-	console.log(image);
-
 	return (
 		<FrameWrapper gridNumber={gridNumber}>
 			<MyImage
